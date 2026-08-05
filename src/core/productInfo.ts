@@ -23,7 +23,8 @@ export const PRODUCT: ProductInfo = {
   gatewaySlug: 'jira',
 
   /** Product-specific advice appended to a scope-mismatch 401, where the scope families differ per product. */
-  scopeHint: 'Jira scopes are granted per operation rather than per API version — the scope the failing operation names in its API documentation is the one to add.',
+  scopeHint:
+    'Jira scopes are granted per operation rather than per API version — the scope the failing operation names in its API documentation is the one to add.',
 };
 
 /**

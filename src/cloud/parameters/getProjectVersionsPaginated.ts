@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { openEnum } from '#/core';
 
 export const GetProjectVersionsPaginatedSchema = z.object({
   /** The project ID or project key (case sensitive). */
@@ -16,25 +17,23 @@ export const GetProjectVersionsPaginatedSchema = z.object({
    * - `sequence` Sorts by the order of appearance in the user interface.
    * - `startDate` Sorts by start date, starting with the oldest date. Versions with no start date are listed last.
    */
-  orderBy: z
-    .enum([
-      'description',
-      '-description',
-      '+description',
-      'name',
-      '-name',
-      '+name',
-      'releaseDate',
-      '-releaseDate',
-      '+releaseDate',
-      'sequence',
-      '-sequence',
-      '+sequence',
-      'startDate',
-      '-startDate',
-      '+startDate',
-    ])
-    .optional(),
+  orderBy: openEnum([
+    'description',
+    '-description',
+    '+description',
+    'name',
+    '-name',
+    '+name',
+    'releaseDate',
+    '-releaseDate',
+    '+releaseDate',
+    'sequence',
+    '-sequence',
+    '+sequence',
+    'startDate',
+    '-startDate',
+    '+startDate',
+  ]).optional(),
   /**
    * Filter the results using a literal string. Versions with matching `name` or `description` are returned (case
    * insensitive).
@@ -58,8 +57,8 @@ export const GetProjectVersionsPaginatedSchema = z.object({
     .union([
       z.string(),
       z.array(z.string()),
-      z.enum(['issuesstatus', 'operations', 'driver', 'approvers']),
-      z.array(z.enum(['issuesstatus', 'operations', 'driver', 'approvers'])),
+      openEnum(['issuesstatus', 'operations', 'driver', 'approvers']),
+      z.array(openEnum(['issuesstatus', 'operations', 'driver', 'approvers'])),
     ])
     .optional(),
 });

@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { apiObject } from '#/core';
+import { apiObject, openEnum } from '#/core';
 /** The current gating status for the given Deployment.* */
 
 export const GetDeploymentGatingStatusByKeySchema = apiObject({
@@ -12,12 +12,12 @@ export const GetDeploymentGatingStatusByKeySchema = apiObject({
   /** Time the deployment gating status was updated. */
   updatedTimestamp: z.coerce.date().optional(),
   /** The gating status */
-  gatingStatus: z.enum(['allowed', 'prevented', 'awaiting', 'invalid']).optional(),
+  gatingStatus: openEnum(['allowed', 'prevented', 'awaiting', 'invalid']).optional(),
   details: z
     .array(
       apiObject({
         /** The type of the gating status details. */
-        type: z.enum(['issue']),
+        type: openEnum(['issue']),
         /** An issue key that references an issue in Jira. */
         issueKey: z.string(),
         /**

@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { openEnum } from '#/core';
 
 export const GetAllIssueTypeSchemesSchema = z.object({
   /** The index of the first item to return in a page of results (page offset). */
@@ -16,7 +17,7 @@ export const GetAllIssueTypeSchemesSchema = z.object({
    * - `name` Sorts by issue type scheme name.
    * - `id` Sorts by issue type scheme ID.
    */
-  orderBy: z.enum(['name', '-name', '+name', 'id', '-id', '+id']).optional(),
+  orderBy: openEnum(['name', '-name', '+name', 'id', '-id', '+id']).optional(),
   /**
    * Use [expand](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#expansion) to include additional
    * information in the response. This parameter accepts a comma-separated list. Expand options include:
@@ -29,8 +30,8 @@ export const GetAllIssueTypeSchemesSchema = z.object({
     .union([
       z.string(),
       z.array(z.string()),
-      z.enum(['projects', 'issueTypes']),
-      z.array(z.enum(['projects', 'issueTypes'])),
+      openEnum(['projects', 'issueTypes']),
+      z.array(openEnum(['projects', 'issueTypes'])),
     ])
     .optional(),
   /** String used to perform a case-insensitive partial match with issue type scheme name. */

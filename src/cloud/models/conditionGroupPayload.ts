@@ -1,12 +1,12 @@
 import { z } from 'zod';
-import { apiObject } from '#/core';
+import { apiObject, openEnum } from '#/core';
 import { RulePayloadSchema, type RulePayload } from './rulePayload';
 
-export type ConditionGroupPayload = {
+export interface ConditionGroupPayload {
   conditionGroup?: ConditionGroupPayload[];
   conditions?: RulePayload[];
-  operation?: 'ANY' | 'ALL';
-};
+  operation?: 'ANY' | 'ALL' | (string & {});
+}
 /** The payload for creating a condition group in a workflow */
 
 export const ConditionGroupPayloadSchema: z.ZodType<ConditionGroupPayload> = apiObject({
@@ -19,5 +19,5 @@ export const ConditionGroupPayloadSchema: z.ZodType<ConditionGroupPayload> = api
    * one condition in the group must be true for the group to evaluate to true. If `ALL` is used, all conditions in the
    * group must be true for the group to evaluate to true.
    */
-  operation: z.enum(['ANY', 'ALL']).optional(),
+  operation: openEnum(['ANY', 'ALL']).optional(),
 });

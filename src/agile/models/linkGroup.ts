@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
 
-export type LinkGroup = {
+export interface LinkGroup {
   groups?: LinkGroup[];
   header?: {
     href?: string;
@@ -24,7 +24,7 @@ export type LinkGroup = {
   }[];
   styleClass?: string;
   weight?: number;
-};
+}
 /** Details a link group, which defines issue operations. */
 
 export const LinkGroupSchema: z.ZodType<LinkGroup> = apiObject({

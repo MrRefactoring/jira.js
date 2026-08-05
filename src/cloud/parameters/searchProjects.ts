@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { openEnum } from '#/core';
 import { StringListSchema } from '../models';
 
 export const SearchProjectsSchema = z.object({
@@ -22,34 +23,32 @@ export const SearchProjectsSchema = z.object({
    * - `archivedDate` EXPERIMENTAL. Sorts by project archived date.
    * - `deletedDate` EXPERIMENTAL. Sorts by project deleted date.
    */
-  orderBy: z
-    .enum([
-      'category',
-      '-category',
-      '+category',
-      'key',
-      '-key',
-      '+key',
-      'name',
-      '-name',
-      '+name',
-      'owner',
-      '-owner',
-      '+owner',
-      'issueCount',
-      '-issueCount',
-      '+issueCount',
-      'lastIssueUpdatedDate',
-      '-lastIssueUpdatedDate',
-      '+lastIssueUpdatedDate',
-      'archivedDate',
-      '+archivedDate',
-      '-archivedDate',
-      'deletedDate',
-      '+deletedDate',
-      '-deletedDate',
-    ])
-    .optional(),
+  orderBy: openEnum([
+    'category',
+    '-category',
+    '+category',
+    'key',
+    '-key',
+    '+key',
+    'name',
+    '-name',
+    '+name',
+    'owner',
+    '-owner',
+    '+owner',
+    'issueCount',
+    '-issueCount',
+    '+issueCount',
+    'lastIssueUpdatedDate',
+    '-lastIssueUpdatedDate',
+    '+lastIssueUpdatedDate',
+    'archivedDate',
+    '+archivedDate',
+    '-archivedDate',
+    'deletedDate',
+    '+deletedDate',
+    '-deletedDate',
+  ]).optional(),
   /**
    * The project IDs to filter the results by. To include multiple IDs, provide an ampersand-separated list. For
    * example, `id=10000&id=10001`. Up to 50 project IDs can be provided.
@@ -94,7 +93,7 @@ export const SearchProjectsSchema = z.object({
    * - `create` the project, meaning that they have the _Create issues_ [project
    *   permission](https://confluence.atlassian.com/x/yodKLg) for the project in which the issue is created.
    */
-  action: z.enum(['view', 'browse', 'edit', 'create']).optional(),
+  action: openEnum(['view', 'browse', 'edit', 'create']).optional(),
   /**
    * Use [expand](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#expansion) to include additional
    * information in the response. This parameter accepts a comma-separated list. Expanded options include:
@@ -111,8 +110,8 @@ export const SearchProjectsSchema = z.object({
     .union([
       z.string(),
       z.array(z.string()),
-      z.enum(['description', 'projectKeys', 'lead', 'issueTypes', 'url', 'insight']),
-      z.array(z.enum(['description', 'projectKeys', 'lead', 'issueTypes', 'url', 'insight'])),
+      openEnum(['description', 'projectKeys', 'lead', 'issueTypes', 'url', 'insight']),
+      z.array(openEnum(['description', 'projectKeys', 'lead', 'issueTypes', 'url', 'insight'])),
     ])
     .optional(),
   /**
@@ -122,7 +121,7 @@ export const SearchProjectsSchema = z.object({
    * - `archived` Search archived projects.
    * - `deleted` Search deleted projects, those in the recycle bin.
    */
-  status: z.array(z.enum(['live', 'archived', 'deleted'])).optional(),
+  status: z.array(openEnum(['live', 'archived', 'deleted'])).optional(),
   /**
    * EXPERIMENTAL. A list of project properties to return for the project. This parameter accepts a comma-separated
    * list.

@@ -1,33 +1,31 @@
 import { z } from 'zod';
-import { apiObject } from '#/core';
+import { apiObject, openEnum } from '#/core';
 
 export const FeatureSchema = apiObject({
-  boardFeature: z
-    .enum([
-      'SIMPLE_ROADMAP',
-      'BACKLOG',
-      'SPRINTS',
-      'CALENDAR',
-      'DEVTOOLS',
-      'REPORTS',
-      'ESTIMATION',
-      'PAGES',
-      'CODE',
-      'SECURITY',
-      'REQUESTS',
-      'INCIDENTS',
-      'RELEASES',
-      'DEPLOYMENTS',
-      'ISSUE_NAVIGATOR',
-      'ON_CALL_SCHEDULE',
-      'BOARD',
-      'GOALS',
-      'LIST_VIEW',
-    ])
-    .optional(),
+  boardFeature: openEnum([
+    'SIMPLE_ROADMAP',
+    'BACKLOG',
+    'SPRINTS',
+    'CALENDAR',
+    'DEVTOOLS',
+    'REPORTS',
+    'ESTIMATION',
+    'PAGES',
+    'CODE',
+    'SECURITY',
+    'REQUESTS',
+    'INCIDENTS',
+    'RELEASES',
+    'DEPLOYMENTS',
+    'ISSUE_NAVIGATOR',
+    'ON_CALL_SCHEDULE',
+    'BOARD',
+    'GOALS',
+    'LIST_VIEW',
+  ]).optional(),
   boardId: z.number().optional(),
   featureId: z.string().optional(),
-  featureType: z.enum(['BASIC', 'ESTIMATION']).optional(),
+  featureType: openEnum(['BASIC', 'ESTIMATION']).optional(),
   imageUri: z.string().optional(),
   learnMoreArticleId: z.string().optional(),
   learnMoreLink: z.string().optional(),
@@ -39,11 +37,11 @@ export const FeatureSchema = apiObject({
       apiObject({
         localisedDescription: z.string().optional(),
         localisedName: z.string().optional(),
-        value: z.enum(['STORY_POINTS', 'ORIGINAL_ESTIMATE']).optional(),
+        value: openEnum(['STORY_POINTS', 'ORIGINAL_ESTIMATE']).optional(),
       }),
     )
     .optional(),
-  state: z.enum(['ENABLED', 'DISABLED', 'COMING_SOON']).optional(),
+  state: openEnum(['ENABLED', 'DISABLED', 'COMING_SOON']).optional(),
   toggleLocked: z.boolean().optional(),
 });
 

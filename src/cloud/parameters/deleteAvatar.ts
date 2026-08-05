@@ -1,8 +1,9 @@
 import { z } from 'zod';
+import { openEnum } from '#/core';
 
 export const DeleteAvatarSchema = z.object({
   /** The avatar type. */
-  type: z.enum(['project', 'issuetype', 'priority']),
+  type: openEnum(['project', 'issuetype', 'priority']),
   /** The ID of the item the avatar is associated with. */
   owningObjectId: z.string(),
   /** The ID of the avatar. */

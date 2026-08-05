@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { apiObject } from '#/core';
+import { apiObject, openEnum } from '#/core';
 /** Details of a permission and its availability to a user. */
 
 export const UserPermissionSchema = apiObject({
@@ -27,7 +27,7 @@ export const UserPermissionSchema = apiObject({
   /** The name of the permission. */
   name: z.string().optional(),
   /** The type of the permission. */
-  type: z.enum(['GLOBAL', 'PROJECT']).optional(),
+  type: openEnum(['GLOBAL', 'PROJECT']).optional(),
 });
 
 export type UserPermission = z.infer<typeof UserPermissionSchema>;

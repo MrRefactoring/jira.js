@@ -2,10 +2,10 @@ import type { AttachmentInput, AttachmentContent } from './attachmentInput.js';
 import { mimeTypeFor } from './mimeType.js';
 import { PRODUCT_SLUG } from '../productInfo.js';
 
-export type MultipartRequestBody = {
+export interface MultipartRequestBody {
   body: FormData | ReadableStream<Uint8Array>;
   headers?: Record<string, string>;
-};
+}
 
 const textEncoder = new TextEncoder();
 

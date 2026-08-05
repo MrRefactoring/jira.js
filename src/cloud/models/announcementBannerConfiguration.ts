@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { apiObject } from '#/core';
+import { apiObject, openEnum } from '#/core';
 /** Announcement banner configuration. */
 
 export const AnnouncementBannerConfigurationSchema = apiObject({
@@ -12,7 +12,7 @@ export const AnnouncementBannerConfigurationSchema = apiObject({
   /** The text on the announcement banner. */
   message: z.string().optional(),
   /** Visibility of the announcement banner. */
-  visibility: z.enum(['public', 'private']).optional(),
+  visibility: openEnum(['public', 'private']).optional(),
 });
 
 export type AnnouncementBannerConfiguration = z.infer<typeof AnnouncementBannerConfigurationSchema>;

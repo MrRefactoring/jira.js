@@ -13,6 +13,14 @@ jobs:
   build-and-publish:
     runs-on: ubuntu-latest
 
+    # `publishConfig.provenance` is on, and signing the attestation needs an OIDC token. Without this the publish step
+    # fails after packing, with `EUSAGE: Provenance generation in GitHub Actions requires "write" access to the
+    # "id-token" permission` — which is why the dev channel has been stuck since provenance was turned on. The release
+    # workflow already grants it; this one was left behind.
+    permissions:
+      contents: read
+      id-token: write
+
     steps:
       - name: 🔄 Checkout code
         uses: actions/checkout@v7

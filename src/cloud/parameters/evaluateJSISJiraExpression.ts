@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { openEnum } from '#/core';
 import { JiraExpressionEvaluateRequestSchema } from '../models';
 
 export const EvaluateJSISJiraExpressionSchema = z
@@ -14,7 +15,7 @@ export const EvaluateJSISJiraExpressionSchema = z
      * and debugging your expressions.
      */
     expand: z
-      .union([z.string(), z.array(z.string()), z.enum(['meta.complexity']), z.array(z.enum(['meta.complexity']))])
+      .union([z.string(), z.array(z.string()), openEnum(['meta.complexity']), z.array(openEnum(['meta.complexity']))])
       .optional(),
   });
 

@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { openEnum } from '#/core';
 import { UpdateProjectDetailsSchema } from '../models';
 
 export const UpdateProjectSchema = z
@@ -21,8 +22,8 @@ export const UpdateProjectSchema = z
       .union([
         z.string(),
         z.array(z.string()),
-        z.enum(['description', 'issueTypes', 'lead', 'projectKeys']),
-        z.array(z.enum(['description', 'issueTypes', 'lead', 'projectKeys'])),
+        openEnum(['description', 'issueTypes', 'lead', 'projectKeys']),
+        z.array(openEnum(['description', 'issueTypes', 'lead', 'projectKeys'])),
       ])
       .optional(),
   });

@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { openEnum } from '#/core';
 
 export const GetIssueTypeScreenSchemesSchema = z.object({
   /** The index of the first item to return in a page of results (page offset). */
@@ -18,13 +19,15 @@ export const GetIssueTypeScreenSchemesSchema = z.object({
    * - `name` Sorts by issue type screen scheme name.
    * - `id` Sorts by issue type screen scheme ID.
    */
-  orderBy: z.enum(['name', '-name', '+name', 'id', '-id', '+id']).optional(),
+  orderBy: openEnum(['name', '-name', '+name', 'id', '-id', '+id']).optional(),
   /**
    * Use [expand](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#expansion) to include additional
    * information in the response. This parameter accepts `projects` that, for each issue type screen schemes, returns
    * information about the projects the issue type screen scheme is assigned to.
    */
-  expand: z.union([z.string(), z.array(z.string()), z.enum(['projects']), z.array(z.enum(['projects']))]).optional(),
+  expand: z
+    .union([z.string(), z.array(z.string()), openEnum(['projects']), z.array(openEnum(['projects']))])
+    .optional(),
 });
 
 export type GetIssueTypeScreenSchemes = z.input<typeof GetIssueTypeScreenSchemesSchema>;

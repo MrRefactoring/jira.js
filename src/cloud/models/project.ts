@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { apiObject } from '#/core';
+import { apiObject, openEnum } from '#/core';
 import { DashboardUserSchema } from './dashboardUser';
 import { AvatarUrlsSchema } from './avatarUrls';
 import { ProjectComponentSchema } from './projectComponent';
@@ -19,7 +19,7 @@ export const ProjectSchema = apiObject({
   /** The date when the project was archived. */
   archivedDate: z.coerce.date().optional(),
   /** The default assignee when creating issues for this project. */
-  assigneeType: z.enum(['PROJECT_LEAD', 'UNASSIGNED']).optional(),
+  assigneeType: openEnum(['PROJECT_LEAD', 'UNASSIGNED']).optional(),
   avatarUrls: AvatarUrlsSchema.optional(),
   /** List of the components contained in the project. */
   components: z.array(ProjectComponentSchema).optional(),
@@ -60,7 +60,13 @@ export const ProjectSchema = apiObject({
    * type](https://confluence.atlassian.com/x/GwiiLQ#Jiraapplicationsoverview-Productfeaturesandprojecttypes) of the
    * project.
    */
-  projectTypeKey: z.enum(['software', 'service_desk', 'business']).optional(),
+  projectTypeKey: openEnum([
+    'software',
+    'service_desk',
+    'business',
+    'product_discovery',
+    'customer_service',
+  ]).optional(),
   /** Map of project properties */
   properties: z.record(z.string(), z.any()).optional(),
   /** The date when the project is deleted permanently. */
@@ -75,7 +81,7 @@ export const ProjectSchema = apiObject({
   /** Whether the project is simplified. */
   simplified: z.boolean().optional(),
   /** The type of the project. */
-  style: z.enum(['classic', 'next-gen']).optional(),
+  style: openEnum(['classic', 'next-gen']).optional(),
   /** A link to information about this project, such as project documentation. */
   url: z.string().optional(),
   /** Unique ID for next-gen projects. */

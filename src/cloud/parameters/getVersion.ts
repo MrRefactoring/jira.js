@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { openEnum } from '#/core';
 
 export const GetVersionSchema = z.object({
   /** The ID of the version. */
@@ -18,8 +19,8 @@ export const GetVersionSchema = z.object({
     .union([
       z.string(),
       z.array(z.string()),
-      z.enum(['operations', 'issuesstatus', 'driver', 'approvers']),
-      z.array(z.enum(['operations', 'issuesstatus', 'driver', 'approvers'])),
+      openEnum(['operations', 'issuesstatus', 'driver', 'approvers']),
+      z.array(openEnum(['operations', 'issuesstatus', 'driver', 'approvers'])),
     ])
     .optional(),
 });

@@ -1,10 +1,10 @@
 import { z } from 'zod';
-import { apiObject } from '#/core';
+import { apiObject, openEnum } from '#/core';
 /** Details about the project. */
 
 export const UpdateProjectDetailsSchema = apiObject({
   /** The default assignee when creating issues for this project. */
-  assigneeType: z.enum(['PROJECT_LEAD', 'UNASSIGNED']).optional(),
+  assigneeType: openEnum(['PROJECT_LEAD', 'UNASSIGNED']).optional(),
   /** An integer value for the project's avatar. */
   avatarId: z.number().optional(),
   /**

@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { openEnum } from '#/core';
 
 export const GetCommentsSchema = z.object({
   /** The ID or key of the issue. */
@@ -11,14 +12,14 @@ export const GetCommentsSchema = z.object({
    * [Order](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#ordering) the results by a field. Accepts
    * _created_ to sort comments by their created date.
    */
-  orderBy: z.enum(['created', '-created', '+created']).optional(),
+  orderBy: openEnum(['created', '-created', '+created']).optional(),
   /**
    * Use [expand](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#expansion) to include additional
    * information about comments in the response. This parameter accepts `renderedBody`, which returns the comment body
    * rendered in HTML.
    */
   expand: z
-    .union([z.string(), z.array(z.string()), z.enum(['renderedBody']), z.array(z.enum(['renderedBody']))])
+    .union([z.string(), z.array(z.string()), openEnum(['renderedBody']), z.array(openEnum(['renderedBody']))])
     .optional(),
 });
 

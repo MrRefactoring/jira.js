@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { apiObject } from '#/core';
+import { apiObject, openEnum } from '#/core';
 import { DashboardUserSchema } from './dashboardUser';
 /** Details about a project component. */
 
@@ -21,7 +21,7 @@ export const ProjectComponentSchema = apiObject({
    *
    * Default value: `PROJECT_DEFAULT`. Optional when creating or updating a component.
    */
-  assigneeType: z.enum(['PROJECT_DEFAULT', 'COMPONENT_LEAD', 'PROJECT_LEAD', 'UNASSIGNED']).optional(),
+  assigneeType: openEnum(['PROJECT_DEFAULT', 'COMPONENT_LEAD', 'PROJECT_LEAD', 'UNASSIGNED']).optional(),
   /** The description for the component. Optional when creating or updating a component. */
   description: z.string().optional(),
   /** The unique identifier for the component. */
@@ -61,7 +61,7 @@ export const ProjectComponentSchema = apiObject({
    * - `UNASSIGNED` when `assigneeType` is `UNASSIGNED` and Jira is configured to allow unassigned issues.
    * - `PROJECT_DEFAULT` when none of the preceding cases are true.
    */
-  realAssigneeType: z.enum(['PROJECT_DEFAULT', 'COMPONENT_LEAD', 'PROJECT_LEAD', 'UNASSIGNED']).optional(),
+  realAssigneeType: openEnum(['PROJECT_DEFAULT', 'COMPONENT_LEAD', 'PROJECT_LEAD', 'UNASSIGNED']).optional(),
   /** The URL of the component. */
   self: z.url().optional(),
 });

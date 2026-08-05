@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { apiObject } from '#/core';
+import { apiObject, openEnum } from '#/core';
 import { PreviewRuleConfigurationSchema } from './previewRuleConfiguration';
 import { PreviewConditionGroupConfigurationSchema } from './previewConditionGroupConfiguration';
 import { TransitionLinkSchema } from './transitionLink';
@@ -26,7 +26,7 @@ export const TransitionPreviewSchema = apiObject({
   /** The triggers of the transition. */
   triggers: z.array(PreviewTriggerSchema).optional(),
   /** The transition type. */
-  type: z.enum(['INITIAL', 'GLOBAL', 'DIRECTED']).optional(),
+  type: openEnum(['INITIAL', 'GLOBAL', 'DIRECTED']).optional(),
   /** The validators of the transition. */
   validators: z.array(PreviewRuleConfigurationSchema).optional(),
 });

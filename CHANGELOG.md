@@ -1,5 +1,32 @@
 # Jira.js changelog
 
+## 6.1.0
+
+Atlassian's specification lists the values it knows a field can hold, and that list falls behind the API it describes. Reading a project of a type the list has not caught up with was never an error — the response came back whole — but it printed a warning, once per project, that named neither the values it wanted nor the one it got. All three of those are fixed here.
+
+### Types
+
+Nothing here changes what the library does at runtime. Every call that worked before works now, unchanged, and returns the same thing — the runtime only became more accepting. What may need a moment is TypeScript.
+
+* **Enums in response schemas accept values the specification has not caught up with.** A field documented as `'software' | 'service_desk' | 'business'` is now typed `'software' | 'service_desk' | 'business' | (string & {})`. An editor still suggests the three; the compiler no longer insists on them.
+
+  Most code needs no change. What stops compiling is code that relied on the narrowness: a `switch` with a `never` exhaustiveness check now needs a `default`, and an assignment into a narrower variable — or a call into a function with a narrow signature — needs the check you would write anyway. Narrowing still works exactly as before: `if (project.projectTypeKey === 'software')` gives you the literal.
+
+  Properties that tell the branches of a union apart are unaffected: they stay closed, because that is what makes the union resolvable.
+* **Object types are declared as interfaces.** The handful of models emitted as `export type X = { … }` — `CompoundClause`, the `ConditionGroup*` family, `WorkflowCompoundCondition`, `LinkGroup`, `NotificationEvent`, `AttachmentInput` and the rest — are `export interface X { … }`. The type they describe is identical; they now report themselves by name in an editor instead of unfolding into their own body, and you can extend them.
+
+### Bug Fixes
+
+* **`projectTypeKey` was missing two project types.** `product_discovery` (Jira Product Discovery) and `customer_service` (Jira Customer Service) are now listed everywhere the field appears, in all three APIs. Atlassian's specification contradicts itself here — the same document lists four values on `ProjectPayload` and on the project-type operations, five on `WorkflowCapabilities`, and three on `Project`. Fixes [#431](https://github.com/MrRefactoring/jira.js/issues/431).
+* **A mismatch on a listed value reported nothing usable.** The message read `expected invalid_value, got string`, which is the name of zod's error code rather than a description of the problem. It now names the values the schema allows and the value that actually arrived — `expected one of 'software' | 'service_desk' | 'business', got "product_discovery"`. Limits, formats and the other checks are spelled out the same way instead of surfacing as codes.
+
+  The value is quoted only for a field the schema describes with a fixed list of values, which by construction cannot be holding free text. Everything else is still reported by type alone, so a response body never reaches a log.
+* **One bad field in a paginated response was reported once per element.** The deduplication key included the array index, so a stale enum across four projects printed four identical warnings — and across five hundred, five hundred. Indices no longer distinguish one problem from another; the line that gets printed still points at a concrete element.
+
+### General
+
+* **The schema audit reports a grown enum as drift.** It only ever understood one kind of gap — a key the API sends and the schema does not describe — so a value outside a documented set failed the run under the heading *real breakage, not drift*, which is the opposite of what it is. `pnpm run audit:schemas` now lists such fields in their own table, with the values seen and the values documented. This matters more than it did: an unlisted value no longer reaches a caller's log, so the audit is the only place left that can see one.
+
 ## 6.0.0
 
 6.0 replaces the transport, the client shape and the API surface. Read [MIGRATION.md](./MIGRATION.md) before upgrading — a codemod handles the mechanical parts, and the guide is explicit about who should not upgrade at all.

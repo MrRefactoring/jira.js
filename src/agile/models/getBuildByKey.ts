@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { apiObject } from '#/core';
+import { apiObject, openEnum } from '#/core';
 import { IssueIdOrKeysAssociationSchema } from './issueIdOrKeysAssociation';
 /** Data related to a single build* */
 
@@ -9,7 +9,7 @@ export const GetBuildByKeySchema = apiObject({
    *
    * Placeholder to support potential schema changes in the future.
    */
-  schemaVersion: z.enum(['1.0']).optional(),
+  schemaVersion: openEnum(['1.0']).optional(),
   /**
    * An ID that relates a sequence of builds. Depending on your use case this might be a project ID, pipeline ID, plan
    * key etc. - whatever logical unit you use to group a sequence of builds.
@@ -62,7 +62,7 @@ export const GetBuildByKeySchema = apiObject({
    * - `cancelled` - The build has been cancelled or stopped.
    * - `unknown` - The build is in an unknown state.
    */
-  state: z.enum(['pending', 'in_progress', 'successful', 'failed', 'cancelled', 'unknown']),
+  state: openEnum(['pending', 'in_progress', 'successful', 'failed', 'cancelled', 'unknown']),
   /** The last-updated timestamp to present to the user as a summary of the state of the build. */
   lastUpdated: z.coerce.date(),
   /** The Jira issue keys or IDs to associate the build with. */

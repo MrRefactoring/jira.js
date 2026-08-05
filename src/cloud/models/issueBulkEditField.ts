@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { apiObject } from '#/core';
+import { apiObject, openEnum } from '#/core';
 import { IssueBulkOperationsFieldOptionSchema } from './issueBulkOperationsFieldOption';
 
 export const IssueBulkEditFieldSchema = apiObject({
@@ -12,7 +12,7 @@ export const IssueBulkEditFieldSchema = apiObject({
   /** Indicates whether the field is mandatory for the operation. */
   isRequired: z.boolean().optional(),
   /** Specifies supported actions (like add, replace, remove) on multi-select fields via an enum. */
-  multiSelectFieldOptions: z.array(z.enum(['ADD', 'REMOVE', 'REPLACE', 'REMOVE_ALL'])).optional(),
+  multiSelectFieldOptions: z.array(openEnum(['ADD', 'REMOVE', 'REPLACE', 'REMOVE_ALL'])).optional(),
   /** The display name of the field. */
   name: z.string().optional(),
   /** A URL to fetch additional data for the field */

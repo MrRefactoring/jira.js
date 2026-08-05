@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { apiObject } from '#/core';
+import { apiObject, openEnum } from '#/core';
 import { WorkflowScopeSchema } from './workflowScope';
 /** Details of a status. */
 
@@ -12,7 +12,7 @@ export const JiraWorkflowStatusSchema = apiObject({
   name: z.string().optional(),
   scope: WorkflowScopeSchema.optional(),
   /** The category of the status. */
-  statusCategory: z.enum(['TODO', 'IN_PROGRESS', 'DONE']).optional(),
+  statusCategory: openEnum(['TODO', 'IN_PROGRESS', 'DONE']).optional(),
   /** The reference of the status. */
   statusReference: z.string().optional(),
 });

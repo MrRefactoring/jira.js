@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { apiObject } from '#/core';
+import { apiObject, openEnum } from '#/core';
 import { ProjectCreateResourceIdentifierSchema } from './projectCreateResourceIdentifier';
 import { SecurityLevelMemberPayloadSchema } from './securityLevelMemberPayload';
 /**
@@ -11,7 +11,7 @@ export const SecurityLevelPayloadSchema = apiObject({
   /** The description of the security level */
   description: z.string().optional(),
   /** Whether the security level is default for the security scheme */
-  isDefault: z.enum(['true', 'false']).optional(),
+  isDefault: openEnum(['true', 'false']).optional(),
   /** The name of the security level */
   name: z.string().optional(),
   pcri: ProjectCreateResourceIdentifierSchema.optional(),

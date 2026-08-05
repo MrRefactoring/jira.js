@@ -1,9 +1,9 @@
 import { z } from 'zod';
-import { apiObject } from '#/core';
+import { apiObject, openEnum } from '#/core';
 
 export const CreateIssueSourceRequestSchema = apiObject({
   /** The issue source type. This must be "Board", "Project" or "Filter". */
-  type: z.enum(['Board', 'Project', 'Filter']),
+  type: openEnum(['Board', 'Project', 'Filter']),
   /**
    * The issue source value. This must be a board ID if the type is "Board", a project ID if the type is "Project" or a
    * filter ID if the type is "Filter".

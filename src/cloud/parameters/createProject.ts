@@ -1,8 +1,9 @@
 import { z } from 'zod';
+import { openEnum } from '#/core';
 
 export const CreateProjectSchema = z.object({
   /** The default assignee when creating issues for this project. */
-  assigneeType: z.enum(['PROJECT_LEAD', 'UNASSIGNED']).optional(),
+  assigneeType: openEnum(['PROJECT_LEAD', 'UNASSIGNED']).optional(),
   /** An integer value for the project's avatar. */
   avatarId: z.number().optional(),
   /**
@@ -69,59 +70,63 @@ export const CreateProjectSchema = z.object({
    * A predefined configuration for a project. The type of the `projectTemplateKey` must match with the type of the
    * `projectTypeKey`.
    */
-  projectTemplateKey: z
-    .enum([
-      'com.pyxis.greenhopper.jira:gh-simplified-agility-kanban',
-      'com.pyxis.greenhopper.jira:gh-simplified-agility-scrum',
-      'com.pyxis.greenhopper.jira:gh-simplified-basic',
-      'com.pyxis.greenhopper.jira:gh-simplified-kanban-classic',
-      'com.pyxis.greenhopper.jira:gh-simplified-scrum-classic',
-      'com.pyxis.greenhopper.jira:gh-cross-team-template',
-      'com.pyxis.greenhopper.jira:gh-cross-team-planning-template',
-      'com.atlassian.servicedesk:simplified-it-service-management',
-      'com.atlassian.servicedesk:simplified-it-service-management-basic',
-      'com.atlassian.servicedesk:simplified-it-service-management-operations',
-      'com.atlassian.servicedesk:simplified-internal-service-desk',
-      'com.atlassian.servicedesk:simplified-external-service-desk',
-      'com.atlassian.servicedesk:simplified-hr-service-desk',
-      'com.atlassian.servicedesk:simplified-facilities-service-desk',
-      'com.atlassian.servicedesk:simplified-legal-service-desk',
-      'com.atlassian.servicedesk:simplified-marketing-service-desk',
-      'com.atlassian.servicedesk:simplified-finance-service-desk',
-      'com.atlassian.servicedesk:simplified-analytics-service-desk',
-      'com.atlassian.servicedesk:simplified-design-service-desk',
-      'com.atlassian.servicedesk:simplified-sales-service-desk',
-      'com.atlassian.servicedesk:simplified-halp-service-desk',
-      'com.atlassian.servicedesk:next-gen-it-service-desk',
-      'com.atlassian.servicedesk:next-gen-hr-service-desk',
-      'com.atlassian.servicedesk:next-gen-legal-service-desk',
-      'com.atlassian.servicedesk:next-gen-marketing-service-desk',
-      'com.atlassian.servicedesk:next-gen-facilities-service-desk',
-      'com.atlassian.servicedesk:next-gen-analytics-service-desk',
-      'com.atlassian.servicedesk:next-gen-finance-service-desk',
-      'com.atlassian.servicedesk:next-gen-design-service-desk',
-      'com.atlassian.servicedesk:next-gen-sales-service-desk',
-      'com.atlassian.servicedesk:company-managed-blank-service-project',
-      'com.atlassian.servicedesk:company-managed-general-service-project',
-      'com.atlassian.servicedesk:team-managed-general-service-project',
-      'com.atlassian.jira-core-project-templates:jira-core-simplified-content-management',
-      'com.atlassian.jira-core-project-templates:jira-core-simplified-document-approval',
-      'com.atlassian.jira-core-project-templates:jira-core-simplified-lead-tracking',
-      'com.atlassian.jira-core-project-templates:jira-core-simplified-process-control',
-      'com.atlassian.jira-core-project-templates:jira-core-simplified-procurement',
-      'com.atlassian.jira-core-project-templates:jira-core-simplified-project-management',
-      'com.atlassian.jira-core-project-templates:jira-core-simplified-recruitment',
-      'com.atlassian.jira-core-project-templates:jira-core-simplified-task-',
-      'com.atlassian.jcs:customer-service-management',
-    ])
-    .optional(),
+  projectTemplateKey: openEnum([
+    'com.pyxis.greenhopper.jira:gh-simplified-agility-kanban',
+    'com.pyxis.greenhopper.jira:gh-simplified-agility-scrum',
+    'com.pyxis.greenhopper.jira:gh-simplified-basic',
+    'com.pyxis.greenhopper.jira:gh-simplified-kanban-classic',
+    'com.pyxis.greenhopper.jira:gh-simplified-scrum-classic',
+    'com.pyxis.greenhopper.jira:gh-cross-team-template',
+    'com.pyxis.greenhopper.jira:gh-cross-team-planning-template',
+    'com.atlassian.servicedesk:simplified-it-service-management',
+    'com.atlassian.servicedesk:simplified-it-service-management-basic',
+    'com.atlassian.servicedesk:simplified-it-service-management-operations',
+    'com.atlassian.servicedesk:simplified-internal-service-desk',
+    'com.atlassian.servicedesk:simplified-external-service-desk',
+    'com.atlassian.servicedesk:simplified-hr-service-desk',
+    'com.atlassian.servicedesk:simplified-facilities-service-desk',
+    'com.atlassian.servicedesk:simplified-legal-service-desk',
+    'com.atlassian.servicedesk:simplified-marketing-service-desk',
+    'com.atlassian.servicedesk:simplified-finance-service-desk',
+    'com.atlassian.servicedesk:simplified-analytics-service-desk',
+    'com.atlassian.servicedesk:simplified-design-service-desk',
+    'com.atlassian.servicedesk:simplified-sales-service-desk',
+    'com.atlassian.servicedesk:simplified-halp-service-desk',
+    'com.atlassian.servicedesk:next-gen-it-service-desk',
+    'com.atlassian.servicedesk:next-gen-hr-service-desk',
+    'com.atlassian.servicedesk:next-gen-legal-service-desk',
+    'com.atlassian.servicedesk:next-gen-marketing-service-desk',
+    'com.atlassian.servicedesk:next-gen-facilities-service-desk',
+    'com.atlassian.servicedesk:next-gen-analytics-service-desk',
+    'com.atlassian.servicedesk:next-gen-finance-service-desk',
+    'com.atlassian.servicedesk:next-gen-design-service-desk',
+    'com.atlassian.servicedesk:next-gen-sales-service-desk',
+    'com.atlassian.servicedesk:company-managed-blank-service-project',
+    'com.atlassian.servicedesk:company-managed-general-service-project',
+    'com.atlassian.servicedesk:team-managed-general-service-project',
+    'com.atlassian.jira-core-project-templates:jira-core-simplified-content-management',
+    'com.atlassian.jira-core-project-templates:jira-core-simplified-document-approval',
+    'com.atlassian.jira-core-project-templates:jira-core-simplified-lead-tracking',
+    'com.atlassian.jira-core-project-templates:jira-core-simplified-process-control',
+    'com.atlassian.jira-core-project-templates:jira-core-simplified-procurement',
+    'com.atlassian.jira-core-project-templates:jira-core-simplified-project-management',
+    'com.atlassian.jira-core-project-templates:jira-core-simplified-recruitment',
+    'com.atlassian.jira-core-project-templates:jira-core-simplified-task-',
+    'com.atlassian.jcs:customer-service-management',
+  ]).optional(),
   /**
    * The [project
    * type](https://confluence.atlassian.com/x/GwiiLQ#Jiraapplicationsoverview-Productfeaturesandprojecttypes), which
    * defines the application-specific feature set. If you don't specify the project template you have to specify the
    * project type.
    */
-  projectTypeKey: z.enum(['software', 'service_desk', 'business']).optional(),
+  projectTypeKey: openEnum([
+    'software',
+    'service_desk',
+    'business',
+    'product_discovery',
+    'customer_service',
+  ]).optional(),
   /** A link to information about this project, such as project documentation */
   url: z.string().optional(),
   /**

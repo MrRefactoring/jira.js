@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { apiObject } from '#/core';
+import { apiObject, openEnum } from '#/core';
 /** Details of the status being updated. */
 
 export const WorkflowStatusUpdateSchema = apiObject({
@@ -10,7 +10,7 @@ export const WorkflowStatusUpdateSchema = apiObject({
   /** The name of the status. */
   name: z.string(),
   /** The category of the status. */
-  statusCategory: z.enum(['TODO', 'IN_PROGRESS', 'DONE']),
+  statusCategory: openEnum(['TODO', 'IN_PROGRESS', 'DONE']),
   /**
    * The reference of the status. If adding a new status to a team-managed workflow, this must be a UUID (for
    * company-managed a UUID is not needed).

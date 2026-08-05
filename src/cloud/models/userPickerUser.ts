@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { apiObject } from '#/core';
+import { apiObject, openEnum } from '#/core';
 /** A user found in a search. */
 
 export const UserPickerUserSchema = apiObject({
@@ -15,7 +15,7 @@ export const UserPickerUserSchema = apiObject({
    * - `app` system account used for Connect applications and OAuth to represent external systems
    * - `customer` Jira Service Desk account representing an external service desk
    */
-  accountType: z.enum(['atlassian', 'app', 'customer', 'unknown']).optional(),
+  accountType: openEnum(['atlassian', 'app', 'customer', 'unknown']).optional(),
   /** The avatar URL of the user. */
   avatarUrl: z.url().optional(),
   /** The display name of the user. Depending on the user’s privacy setting, this may be returned as null. */

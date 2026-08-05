@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { openEnum } from '#/core';
 
 export const GetDashboardsPaginatedSchema = z.object({
   /** String used to perform a case-insensitive partial match with `name`. */
@@ -32,34 +33,32 @@ export const GetDashboardsPaginatedSchema = z.object({
    * - `name` Sorts by dashboard name.
    * - `owner` Sorts by dashboard owner name.
    */
-  orderBy: z
-    .enum([
-      'description',
-      '-description',
-      '+description',
-      'favorite_count',
-      '-favorite_count',
-      '+favorite_count',
-      'id',
-      '-id',
-      '+id',
-      'is_favorite',
-      '-is_favorite',
-      '+is_favorite',
-      'name',
-      '-name',
-      '+name',
-      'owner',
-      '-owner',
-      '+owner',
-    ])
-    .optional(),
+  orderBy: openEnum([
+    'description',
+    '-description',
+    '+description',
+    'favorite_count',
+    '-favorite_count',
+    '+favorite_count',
+    'id',
+    '-id',
+    '+id',
+    'is_favorite',
+    '-is_favorite',
+    '+is_favorite',
+    'name',
+    '-name',
+    '+name',
+    'owner',
+    '-owner',
+    '+owner',
+  ]).optional(),
   /** The index of the first item to return in a page of results (page offset). */
   startAt: z.number().optional(),
   /** The maximum number of items to return per page. */
   maxResults: z.number().optional(),
   /** The status to filter by. It may be active, archived or deleted. */
-  status: z.enum(['active', 'archived', 'deleted']).optional(),
+  status: openEnum(['active', 'archived', 'deleted']).optional(),
   /**
    * Use [expand](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#expansion) to include additional
    * information about dashboard in the response. This parameter accepts a comma-separated list. Expand options
@@ -78,7 +77,7 @@ export const GetDashboardsPaginatedSchema = z.object({
     .union([
       z.string(),
       z.array(z.string()),
-      z.enum([
+      openEnum([
         'description',
         'owner',
         'viewUrl',
@@ -89,7 +88,7 @@ export const GetDashboardsPaginatedSchema = z.object({
         'isWritable',
       ]),
       z.array(
-        z.enum([
+        openEnum([
           'description',
           'owner',
           'viewUrl',

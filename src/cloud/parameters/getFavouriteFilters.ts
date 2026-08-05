@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { openEnum } from '#/core';
 
 export const GetFavouriteFiltersSchema = z.object({
   /**
@@ -19,8 +20,8 @@ export const GetFavouriteFiltersSchema = z.object({
     .union([
       z.string(),
       z.array(z.string()),
-      z.enum(['sharedUsers', 'subscriptions']),
-      z.array(z.enum(['sharedUsers', 'subscriptions'])),
+      openEnum(['sharedUsers', 'subscriptions']),
+      z.array(openEnum(['sharedUsers', 'subscriptions'])),
     ])
     .optional(),
 });

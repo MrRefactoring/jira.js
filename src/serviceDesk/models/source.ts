@@ -1,9 +1,9 @@
-import { z } from 'zod';
-import { apiObject } from '#/core';
+import type { z } from 'zod';
+import { apiObject, openEnum } from '#/core';
 
 export const SourceSchema = apiObject({
   /** Type of the knowledge base source */
-  type: z.enum(['confluence']).optional(),
+  type: openEnum(['confluence']).optional(),
 });
 
 export type Source = z.infer<typeof SourceSchema>;

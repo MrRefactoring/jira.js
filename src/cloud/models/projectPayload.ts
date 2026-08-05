@@ -1,5 +1,5 @@
-import { z } from 'zod';
-import { apiObject } from '#/core';
+import type { z } from 'zod';
+import { apiObject, openEnum } from '#/core';
 import { ProjectCreateResourceIdentifierSchema } from './projectCreateResourceIdentifier';
 /** The payload for creating a project */
 
@@ -17,7 +17,13 @@ export const ProjectPayloadSchema = apiObject({
    * defines the application-specific feature set. If you don't specify the project template you have to specify the
    * project type.
    */
-  projectTypeKey: z.enum(['software', 'business', 'service_desk', 'product_discovery']).optional(),
+  projectTypeKey: openEnum([
+    'software',
+    'business',
+    'service_desk',
+    'product_discovery',
+    'customer_service',
+  ]).optional(),
   workflowSchemeId: ProjectCreateResourceIdentifierSchema.optional(),
 });
 

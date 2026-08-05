@@ -1,8 +1,9 @@
 import { z } from 'zod';
+import { openEnum } from '#/core';
 
 export const GetAvatarsSchema = z.object({
   /** The avatar type. */
-  type: z.enum(['project', 'issuetype', 'priority']),
+  type: openEnum(['project', 'issuetype', 'priority']),
   /** The ID of the item the avatar is associated with. */
   entityId: z.string(),
 });

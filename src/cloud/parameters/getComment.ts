@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { openEnum } from '#/core';
 
 export const GetCommentSchema = z.object({
   /** The ID or key of the issue. */
@@ -11,7 +12,7 @@ export const GetCommentSchema = z.object({
    * rendered in HTML.
    */
   expand: z
-    .union([z.string(), z.array(z.string()), z.enum(['renderedBody']), z.array(z.enum(['renderedBody']))])
+    .union([z.string(), z.array(z.string()), openEnum(['renderedBody']), z.array(openEnum(['renderedBody']))])
     .optional(),
 });
 

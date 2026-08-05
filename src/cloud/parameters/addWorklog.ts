@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { openEnum } from '#/core';
 import { WorklogInputSchema } from '../models';
 
 export const AddWorklogSchema = z
@@ -17,7 +18,7 @@ export const AddWorklogSchema = z
      * - `manual` Reduces the estimate by amount specified in `reduceBy`.
      * - `auto` Reduces the estimate by the value of `timeSpent` in the worklog.
      */
-    adjustEstimate: z.enum(['new', 'leave', 'manual', 'auto']).optional(),
+    adjustEstimate: openEnum(['new', 'leave', 'manual', 'auto']).optional(),
     /**
      * The value to set as the issue's remaining time estimate, as days (#d), hours (#h), or minutes (#m or #). For
      * example, _2d_. Required when `adjustEstimate` is `new`.
@@ -34,7 +35,7 @@ export const AddWorklogSchema = z
      * properties.
      */
     expand: z
-      .union([z.string(), z.array(z.string()), z.enum(['properties']), z.array(z.enum(['properties']))])
+      .union([z.string(), z.array(z.string()), openEnum(['properties']), z.array(openEnum(['properties']))])
       .optional(),
     /**
      * Whether the worklog entry should be added to the issue even if the issue is not editable, because

@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { openEnum } from '#/core';
 import { IssueIdOrKeysAssociationSchema } from '../models';
 import { ServiceIdOrKeysAssociationSchema } from '../models';
 
@@ -26,7 +27,7 @@ export const SubmitRemoteLinksSchema = z.object({
        *
        * Placeholder to support potential schema changes in the future.
        */
-      schemaVersion: z.enum(['1.0']).optional(),
+      schemaVersion: openEnum(['1.0']).optional(),
       /** The identifier for the Remote Link. Must be unique for a given Provider. */
       id: z.string().max(255, 'id must be at most 255 characters'),
       /**
@@ -52,7 +53,17 @@ export const SubmitRemoteLinksSchema = z.object({
        * The type of the Remote Link. The current supported types are 'document', 'alert', 'test', 'security',
        * 'logFile', 'prototype', 'coverage', 'bugReport' and 'other'
        */
-      type: z.enum(['document', 'alert', 'test', 'security', 'logFile', 'prototype', 'coverage', 'bugReport', 'other']),
+      type: openEnum([
+        'document',
+        'alert',
+        'test',
+        'security',
+        'logFile',
+        'prototype',
+        'coverage',
+        'bugReport',
+        'other',
+      ]),
       /**
        * An optional description to attach to this Remote Link.
        *
@@ -71,7 +82,7 @@ export const SubmitRemoteLinksSchema = z.object({
            * colours they correspond to are equivalent to atlaskit's
            * [Lozenge](https://atlaskit.atlassian.com/packages/core/lozenge) component.
            */
-          appearance: z.enum(['default', 'inprogress', 'moved', 'new', 'removed', 'prototype', 'success']),
+          appearance: openEnum(['default', 'inprogress', 'moved', 'new', 'removed', 'prototype', 'success']),
           /**
            * The human-readable description for the Remote Link status.
            *

@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { apiObject } from '#/core';
+import { apiObject, openEnum } from '#/core';
 
 export const CustomFieldDefinitionJsonSchema = apiObject({
   /** The description of the custom field, which is displayed in Jira. */
@@ -38,23 +38,21 @@ export const CustomFieldDefinitionJsonSchema = apiObject({
    * fields](https://developer.atlassian.com/platform/forge/manifest-reference/modules/#jira-custom-field-type--beta-)
    * have a searcher set automatically, so are always searchable.
    */
-  searcherKey: z
-    .enum([
-      'com.atlassian.jira.plugin.system.customfieldtypes:cascadingselectsearcher',
-      'com.atlassian.jira.plugin.system.customfieldtypes:daterange',
-      'com.atlassian.jira.plugin.system.customfieldtypes:datetimerange',
-      'com.atlassian.jira.plugin.system.customfieldtypes:exactnumber',
-      'com.atlassian.jira.plugin.system.customfieldtypes:exacttextsearcher',
-      'com.atlassian.jira.plugin.system.customfieldtypes:grouppickersearcher',
-      'com.atlassian.jira.plugin.system.customfieldtypes:labelsearcher',
-      'com.atlassian.jira.plugin.system.customfieldtypes:multiselectsearcher',
-      'com.atlassian.jira.plugin.system.customfieldtypes:numberrange',
-      'com.atlassian.jira.plugin.system.customfieldtypes:projectsearcher',
-      'com.atlassian.jira.plugin.system.customfieldtypes:textsearcher',
-      'com.atlassian.jira.plugin.system.customfieldtypes:userpickergroupsearcher',
-      'com.atlassian.jira.plugin.system.customfieldtypes:versionsearcher',
-    ])
-    .optional(),
+  searcherKey: openEnum([
+    'com.atlassian.jira.plugin.system.customfieldtypes:cascadingselectsearcher',
+    'com.atlassian.jira.plugin.system.customfieldtypes:daterange',
+    'com.atlassian.jira.plugin.system.customfieldtypes:datetimerange',
+    'com.atlassian.jira.plugin.system.customfieldtypes:exactnumber',
+    'com.atlassian.jira.plugin.system.customfieldtypes:exacttextsearcher',
+    'com.atlassian.jira.plugin.system.customfieldtypes:grouppickersearcher',
+    'com.atlassian.jira.plugin.system.customfieldtypes:labelsearcher',
+    'com.atlassian.jira.plugin.system.customfieldtypes:multiselectsearcher',
+    'com.atlassian.jira.plugin.system.customfieldtypes:numberrange',
+    'com.atlassian.jira.plugin.system.customfieldtypes:projectsearcher',
+    'com.atlassian.jira.plugin.system.customfieldtypes:textsearcher',
+    'com.atlassian.jira.plugin.system.customfieldtypes:userpickergroupsearcher',
+    'com.atlassian.jira.plugin.system.customfieldtypes:versionsearcher',
+  ]).optional(),
   /**
    * The type of the custom field. These built-in custom field types are available:
    *

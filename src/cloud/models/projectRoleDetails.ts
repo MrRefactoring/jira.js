@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { apiObject } from '#/core';
+import { apiObject, openEnum } from '#/core';
 import { ScopeSchema } from './scope';
 /** Details about a project role. */
 
@@ -22,7 +22,7 @@ export const ProjectRoleDetailsSchema = apiObject({
   /** The translated name of the project role. */
   translatedName: z.string().optional(),
   /** The type of the project role. This is "DEFAULT" or "GUEST_ROLE". */
-  type: z.enum(['DEFAULT', 'GUEST_ROLE', 'AI_AGENT_ROLE']).optional(),
+  type: openEnum(['DEFAULT', 'GUEST_ROLE', 'AI_AGENT_ROLE']).optional(),
 });
 
 export type ProjectRoleDetails = z.infer<typeof ProjectRoleDetailsSchema>;

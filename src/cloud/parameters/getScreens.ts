@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { openEnum } from '#/core';
 
 export const GetScreensSchema = z.object({
   /** The index of the first item to return in a page of results (page offset). */
@@ -16,14 +17,14 @@ export const GetScreensSchema = z.object({
    * The scope filter string. To filter by multiple scope, provide an ampersand-separated list. For example,
    * `scope=GLOBAL&scope=PROJECT`.
    */
-  scope: z.array(z.enum(['GLOBAL', 'TEMPLATE', 'PROJECT'])).optional(),
+  scope: z.array(openEnum(['GLOBAL', 'TEMPLATE', 'PROJECT'])).optional(),
   /**
    * [Order](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#ordering) the results by a field:
    *
    * - `id` Sorts by screen ID.
    * - `name` Sorts by screen name.
    */
-  orderBy: z.enum(['name', '-name', '+name', 'id', '-id', '+id']).optional(),
+  orderBy: openEnum(['name', '-name', '+name', 'id', '-id', '+id']).optional(),
 });
 
 export type GetScreens = z.input<typeof GetScreensSchema>;

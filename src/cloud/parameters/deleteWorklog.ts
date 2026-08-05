@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { openEnum } from '#/core';
 
 export const DeleteWorklogSchema = z.object({
   /** The ID or key of the issue. */
@@ -15,7 +16,7 @@ export const DeleteWorklogSchema = z.object({
    * - `manual` Increases the estimate by amount specified in `increaseBy`.
    * - `auto` Reduces the estimate by the value of `timeSpent` in the worklog.
    */
-  adjustEstimate: z.enum(['new', 'leave', 'manual', 'auto']).optional(),
+  adjustEstimate: openEnum(['new', 'leave', 'manual', 'auto']).optional(),
   /**
    * The value to set as the issue's remaining time estimate, as days (#d), hours (#h), or minutes (#m or #). For
    * example, _2d_. Required when `adjustEstimate` is `new`.

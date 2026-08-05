@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { openEnum } from '#/core';
 
 export const GetFiltersPaginatedSchema = z.object({
   /** String used to perform a case-insensitive partial match with `name`. */
@@ -38,31 +39,29 @@ export const GetFiltersPaginatedSchema = z.object({
    * - `owner` Sorts by the ID of the filter owner.
    * - `is_shared` Sorts by whether the filter is shared.
    */
-  orderBy: z
-    .enum([
-      'description',
-      '-description',
-      '+description',
-      'favourite_count',
-      '-favourite_count',
-      '+favourite_count',
-      'id',
-      '-id',
-      '+id',
-      'is_favourite',
-      '-is_favourite',
-      '+is_favourite',
-      'name',
-      '-name',
-      '+name',
-      'owner',
-      '-owner',
-      '+owner',
-      'is_shared',
-      '-is_shared',
-      '+is_shared',
-    ])
-    .optional(),
+  orderBy: openEnum([
+    'description',
+    '-description',
+    '+description',
+    'favourite_count',
+    '-favourite_count',
+    '+favourite_count',
+    'id',
+    '-id',
+    '+id',
+    'is_favourite',
+    '-is_favourite',
+    '+is_favourite',
+    'name',
+    '-name',
+    '+name',
+    'owner',
+    '-owner',
+    '+owner',
+    'is_shared',
+    '-is_shared',
+    '+is_shared',
+  ]).optional(),
   /** The index of the first item to return in a page of results (page offset). */
   startAt: z.number().optional(),
   /** The maximum number of items to return per page. */
@@ -88,7 +87,7 @@ export const GetFiltersPaginatedSchema = z.object({
     .union([
       z.string(),
       z.array(z.string()),
-      z.enum([
+      openEnum([
         'description',
         'favourite',
         'favouritedCount',
@@ -103,7 +102,7 @@ export const GetFiltersPaginatedSchema = z.object({
         'viewUrl',
       ]),
       z.array(
-        z.enum([
+        openEnum([
           'description',
           'favourite',
           'favouritedCount',

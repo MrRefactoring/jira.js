@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { apiObject } from '#/core';
+import { apiObject, openEnum } from '#/core';
 /**
  * The JQL specifying the issues available in the evaluated Jira expression under the `issues` context variable. Not all
  * issues returned by the JQL query are loaded, only those described by the `startAt` and `maxResults` properties. To
@@ -18,7 +18,7 @@ export const JexpJqlIssuesSchema = apiObject({
   /** The index of the first issue to return from the JQL query. */
   startAt: z.number().optional(),
   /** Determines how to validate the JQL query and treat the validation results. */
-  validation: z.enum(['strict', 'warn', 'none']).optional(),
+  validation: openEnum(['strict', 'warn', 'none']).optional(),
 });
 
 export type JexpJqlIssues = z.infer<typeof JexpJqlIssuesSchema>;

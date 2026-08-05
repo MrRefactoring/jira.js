@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { apiObject } from '#/core';
+import { apiObject, openEnum } from '#/core';
 import { GetIssueSourceResponseSchema } from './getIssueSourceResponse';
 
 export const GetPlanResponseForPageSchema = apiObject({
@@ -12,7 +12,7 @@ export const GetPlanResponseForPageSchema = apiObject({
   /** Default scenario ID. */
   scenarioId: z.string(),
   /** The plan status. This is "Active", "Trashed" or "Archived". */
-  status: z.enum(['Active', 'Trashed', 'Archived']),
+  status: openEnum(['Active', 'Trashed', 'Archived']),
 });
 
 export type GetPlanResponseForPage = z.infer<typeof GetPlanResponseForPageSchema>;

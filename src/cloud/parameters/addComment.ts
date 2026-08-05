@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { openEnum } from '#/core';
 import { CommentInputSchema } from '../models';
 
 export const AddCommentSchema = z
@@ -13,7 +14,7 @@ export const AddCommentSchema = z
      * rendered in HTML.
      */
     expand: z
-      .union([z.string(), z.array(z.string()), z.enum(['renderedBody']), z.array(z.enum(['renderedBody']))])
+      .union([z.string(), z.array(z.string()), openEnum(['renderedBody']), z.array(openEnum(['renderedBody']))])
       .optional(),
   });
 

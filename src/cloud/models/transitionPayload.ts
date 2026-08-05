@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { apiObject } from '#/core';
+import { apiObject, openEnum } from '#/core';
 import { RulePayloadSchema } from './rulePayload';
 import { ConditionGroupPayloadSchema } from './conditionGroupPayload';
 import { FromLayoutPayloadSchema } from './fromLayoutPayload';
@@ -30,7 +30,7 @@ export const TransitionPayloadSchema = apiObject({
   /** The triggers that are performed when the transition is made */
   triggers: z.array(RulePayloadSchema).optional(),
   /** The type of the transition */
-  type: z.enum(['global', 'initial', 'directed']).optional(),
+  type: openEnum(['global', 'initial', 'directed']).optional(),
   /** The validators that are performed when the transition is made */
   validators: z.array(RulePayloadSchema).optional(),
 });

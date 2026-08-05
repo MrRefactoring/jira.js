@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { openEnum } from '#/core';
 import { IssueCommentListRequestSchema } from '../models';
 
 export const GetCommentsByIdsSchema = z
@@ -17,8 +18,8 @@ export const GetCommentsByIdsSchema = z
       .union([
         z.string(),
         z.array(z.string()),
-        z.enum(['renderedBody', 'properties']),
-        z.array(z.enum(['renderedBody', 'properties'])),
+        openEnum(['renderedBody', 'properties']),
+        z.array(openEnum(['renderedBody', 'properties'])),
       ])
       .optional(),
   });

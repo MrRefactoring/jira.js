@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { openEnum } from '#/core';
 import { IssueIdOrKeysAssociationSchema } from '../models';
 
 export const SubmitVulnerabilitiesSchema = z.object({
@@ -10,7 +11,7 @@ export const SubmitVulnerabilitiesSchema = z.object({
    * "NORMAL". "NORMAL" traffic has higher priority but tighter rate limits, "SCAN" traffic has medium priority and
    * looser limits, "BACKFILL" has lower priority and much looser limits
    */
-  operationType: z.enum(['NORMAL', 'SCAN', 'BACKFILL']).optional(),
+  operationType: openEnum(['NORMAL', 'SCAN', 'BACKFILL']).optional(),
   /**
    * Properties assigned to vulnerability data that can then be used for delete / query operations.
    *
@@ -28,7 +29,7 @@ export const SubmitVulnerabilitiesSchema = z.object({
        *
        * Placeholder to support potential schema changes in the future.
        */
-      schemaVersion: z.enum(['1.0']),
+      schemaVersion: openEnum(['1.0']),
       /** The identifier for the Vulnerability. Must be unique for a given Provider. */
       id: z.string().max(255, 'id must be at most 255 characters'),
       /**
@@ -69,7 +70,7 @@ export const SubmitVulnerabilitiesSchema = z.object({
        */
       url: z.url().max(2000, 'url must be at most 2000 characters'),
       /** The type of Vulnerability detected. */
-      type: z.enum(['sca', 'sast', 'dast', 'unknown']),
+      type: openEnum(['sca', 'sast', 'dast', 'unknown']),
       /**
        * The timestamp to present to the user that shows when the Vulnerability was introduced.
        *
@@ -89,7 +90,7 @@ export const SubmitVulnerabilitiesSchema = z.object({
        */
       severity: z.object({
         /** The severity level of the Vulnerability. */
-        level: z.enum(['critical', 'high', 'medium', 'low', 'unknown']),
+        level: openEnum(['critical', 'high', 'medium', 'low', 'unknown']),
       }),
       /** The identifying information for the Vulnerability. */
       identifiers: z
@@ -103,7 +104,7 @@ export const SubmitVulnerabilitiesSchema = z.object({
         )
         .optional(),
       /** The current status of the Vulnerability. */
-      status: z.enum(['open', 'closed', 'ignored', 'unknown']),
+      status: openEnum(['open', 'closed', 'ignored', 'unknown']),
       /**
        * Extra information (optional). This data will be shown in the security feature under the vulnerability
        * displayName.

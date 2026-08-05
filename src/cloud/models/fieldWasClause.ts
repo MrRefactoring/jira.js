@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { apiObject } from '#/core';
+import { apiObject, openEnum } from '#/core';
 import { JqlQueryFieldSchema } from './jqlQueryField';
 import { JqlQueryClauseOperandSchema } from './jqlQueryClauseOperand';
 import { JqlQueryClauseTimePredicateSchema } from './jqlQueryClauseTimePredicate';
@@ -13,7 +13,7 @@ export const FieldWasClauseSchema = apiObject({
   field: JqlQueryFieldSchema,
   operand: JqlQueryClauseOperandSchema,
   /** The operator between the field and operand. */
-  operator: z.enum(['was', 'was in', 'was not in', 'was not']),
+  operator: openEnum(['was', 'was in', 'was not in', 'was not']),
   /** The list of time predicates. */
   predicates: z.array(JqlQueryClauseTimePredicateSchema),
 });

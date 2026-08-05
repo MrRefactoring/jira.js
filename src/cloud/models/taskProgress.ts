@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { apiObject } from '#/core';
+import { apiObject, openEnum } from '#/core';
 /** Details about a task. */
 
 export const TaskProgressSchema = apiObject({
@@ -24,7 +24,7 @@ export const TaskProgressSchema = apiObject({
   /** A timestamp recording when the task was started. */
   started: z.coerce.date().optional(),
   /** The status of the task. */
-  status: z.enum(['ENQUEUED', 'RUNNING', 'COMPLETE', 'FAILED', 'CANCEL_REQUESTED', 'CANCELLED', 'DEAD']),
+  status: openEnum(['ENQUEUED', 'RUNNING', 'COMPLETE', 'FAILED', 'CANCEL_REQUESTED', 'CANCELLED', 'DEAD']),
   /** A timestamp recording when the task was submitted. */
   submitted: z.coerce.date().optional(),
   /** The ID of the user who submitted the task. */

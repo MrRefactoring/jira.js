@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { apiObject } from '#/core';
+import { apiObject, openEnum } from '#/core';
 import { ProjectCreateResourceIdentifierSchema } from './projectCreateResourceIdentifier';
 /** The payload for creating an issue type hierarchy */
 
@@ -12,7 +12,7 @@ export const IssueTypeHierarchyPayloadSchema = apiObject({
    * The conflict strategy to use when the issue type already exists. FAIL - Fail execution, this always needs to be
    * unique; USE - Use the existing entity and ignore new entity parameters
    */
-  onConflict: z.enum(['FAIL', 'USE', 'NEW']).optional(),
+  onConflict: openEnum(['FAIL', 'USE', 'NEW']).optional(),
   pcri: ProjectCreateResourceIdentifierSchema.optional(),
 });
 

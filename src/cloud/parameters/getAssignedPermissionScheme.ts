@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { openEnum } from '#/core';
 
 export const GetAssignedPermissionSchemeSchema = z.object({
   /** The project ID or project key (case sensitive). */
@@ -19,8 +20,8 @@ export const GetAssignedPermissionSchemeSchema = z.object({
     .union([
       z.string(),
       z.array(z.string()),
-      z.enum(['all', 'field', 'group', 'permissions', 'projectRole', 'user']),
-      z.array(z.enum(['all', 'field', 'group', 'permissions', 'projectRole', 'user'])),
+      openEnum(['all', 'field', 'group', 'permissions', 'projectRole', 'user']),
+      z.array(openEnum(['all', 'field', 'group', 'permissions', 'projectRole', 'user'])),
     ])
     .optional(),
 });

@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { apiObject } from '#/core';
+import { apiObject, openEnum } from '#/core';
 /** Details about a project. */
 
 export const ProjectDetailsSchema = apiObject({
@@ -35,7 +35,13 @@ export const ProjectDetailsSchema = apiObject({
    * type](https://confluence.atlassian.com/x/GwiiLQ#Jiraapplicationsoverview-Productfeaturesandprojecttypes) of the
    * project.
    */
-  projectTypeKey: z.enum(['software', 'service_desk', 'business']).optional(),
+  projectTypeKey: openEnum([
+    'software',
+    'service_desk',
+    'business',
+    'product_discovery',
+    'customer_service',
+  ]).optional(),
   /** The URL of the project details. */
   self: z.string().optional(),
   /** Whether or not the project is simplified. */

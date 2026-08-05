@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { openEnum } from '#/core';
 
 export const GetIssueSecurityLevelMembersSchema = z.object({
   /**
@@ -30,8 +31,8 @@ export const GetIssueSecurityLevelMembersSchema = z.object({
     .union([
       z.string(),
       z.array(z.string()),
-      z.enum(['all', 'field', 'group', 'projectRole', 'user']),
-      z.array(z.enum(['all', 'field', 'group', 'projectRole', 'user'])),
+      openEnum(['all', 'field', 'group', 'projectRole', 'user']),
+      z.array(openEnum(['all', 'field', 'group', 'projectRole', 'user'])),
     ])
     .optional(),
 });

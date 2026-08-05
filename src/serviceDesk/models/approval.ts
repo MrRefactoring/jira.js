@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { apiObject } from '#/core';
+import { apiObject, openEnum } from '#/core';
 import { SelfLinkSchema } from './selfLink';
 import { ApproverSchema } from './approver';
 import { DateSchema } from './date';
@@ -16,7 +16,7 @@ export const ApprovalSchema = apiObject({
   completedDate: DateSchema.optional(),
   createdDate: DateSchema.optional(),
   /** Outcome of the approval, based on the approvals provided by all approvers. */
-  finalDecision: z.enum(['approved', 'declined', 'pending']).optional(),
+  finalDecision: openEnum(['approved', 'declined', 'pending']).optional(),
   /** ID of the approval. */
   id: z.string().optional(),
   /** Description of the approval being sought or provided. */

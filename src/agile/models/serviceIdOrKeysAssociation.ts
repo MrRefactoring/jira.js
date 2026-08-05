@@ -1,10 +1,10 @@
 import { z } from 'zod';
-import { apiObject } from '#/core';
+import { apiObject, openEnum } from '#/core';
 /** An association type referencing service ID or keys.* */
 
 export const ServiceIdOrKeysAssociationSchema = apiObject({
   /** Defines the association type. */
-  associationType: z.enum(['serviceIdOrKeys']),
+  associationType: openEnum(['serviceIdOrKeys']),
   /**
    * The service ID or keys to associate the entity with.
    *

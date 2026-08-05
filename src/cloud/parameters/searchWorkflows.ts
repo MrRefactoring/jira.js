@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { openEnum } from '#/core';
 
 export const SearchWorkflowsSchema = z.object({
   /** The index of the first item to return in a page of results (page offset). */
@@ -12,7 +13,12 @@ export const SearchWorkflowsSchema = z.object({
    * - `values.transitions` Returns the transitions that each workflow is associated with.
    */
   expand: z
-    .union([z.string(), z.array(z.string()), z.enum(['values.transitions']), z.array(z.enum(['values.transitions']))])
+    .union([
+      z.string(),
+      z.array(z.string()),
+      openEnum(['values.transitions']),
+      z.array(openEnum(['values.transitions'])),
+    ])
     .optional(),
   /** String used to perform a case-insensitive partial match with workflow name. */
   queryString: z.string().optional(),

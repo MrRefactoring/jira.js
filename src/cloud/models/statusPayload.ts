@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { apiObject } from '#/core';
+import { apiObject, openEnum } from '#/core';
 import { ProjectCreateResourceIdentifierSchema } from './projectCreateResourceIdentifier';
 /** The payload for creating a status */
 
@@ -12,10 +12,10 @@ export const StatusPayloadSchema = apiObject({
    * The conflict strategy for the status already exists. FAIL - Fail execution, this always needs to be unique; USE -
    * Use the existing entity and ignore new entity parameters; NEW - Create a new entity
    */
-  onConflict: z.enum(['FAIL', 'USE', 'NEW']).optional(),
+  onConflict: openEnum(['FAIL', 'USE', 'NEW']).optional(),
   pcri: ProjectCreateResourceIdentifierSchema.optional(),
   /** The status category of the status. The value is case-sensitive. */
-  statusCategory: z.enum(['TODO', 'IN_PROGRESS', 'DONE']).optional(),
+  statusCategory: openEnum(['TODO', 'IN_PROGRESS', 'DONE']).optional(),
 });
 
 export type StatusPayload = z.infer<typeof StatusPayloadSchema>;

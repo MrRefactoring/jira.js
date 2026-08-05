@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { apiObject } from '#/core';
+import { apiObject, openEnum } from '#/core';
 
 export const GetPlanOnlyTeamResponseSchema = apiObject({
   /** The capacity for the plan-only team. */
@@ -13,7 +13,7 @@ export const GetPlanOnlyTeamResponseSchema = apiObject({
   /** The plan-only team name. */
   name: z.string(),
   /** The planning style for the plan-only team. This is "Scrum" or "Kanban". */
-  planningStyle: z.enum(['Scrum', 'Kanban']),
+  planningStyle: openEnum(['Scrum', 'Kanban']),
   /** The sprint length for the plan-only team. */
   sprintLength: z.number().optional(),
 });

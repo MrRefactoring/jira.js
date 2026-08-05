@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { apiObject } from '#/core';
+import { apiObject, openEnum } from '#/core';
 /** Details of a project feature. */
 
 export const ProjectFeatureSchema = apiObject({
@@ -19,7 +19,7 @@ export const ProjectFeatureSchema = apiObject({
    * The state of the feature. When updating the state of a feature, only ENABLED and DISABLED are supported. Responses
    * can contain all values
    */
-  state: z.enum(['ENABLED', 'DISABLED', 'COMING_SOON']).optional(),
+  state: openEnum(['ENABLED', 'DISABLED', 'COMING_SOON']).optional(),
   /** Whether the state of the feature can be updated. */
   toggleLocked: z.boolean().optional(),
 });

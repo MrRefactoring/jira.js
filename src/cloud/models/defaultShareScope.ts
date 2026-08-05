@@ -1,5 +1,5 @@
-import { z } from 'zod';
-import { apiObject } from '#/core';
+import type { z } from 'zod';
+import { apiObject, openEnum } from '#/core';
 /** Details of the scope of the default sharing for new filters and dashboards. */
 
 export const DefaultShareScopeSchema = apiObject({
@@ -10,7 +10,7 @@ export const DefaultShareScopeSchema = apiObject({
    * - `GLOBAL` Shared with all logged-in users. This shows as `AUTHENTICATED` in the response.
    * - `PRIVATE` Not shared with any users.
    */
-  scope: z.enum(['GLOBAL', 'AUTHENTICATED', 'PRIVATE']),
+  scope: openEnum(['GLOBAL', 'AUTHENTICATED', 'PRIVATE']),
 });
 
 export type DefaultShareScope = z.infer<typeof DefaultShareScopeSchema>;

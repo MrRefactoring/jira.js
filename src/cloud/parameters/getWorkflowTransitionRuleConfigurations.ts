@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { openEnum } from '#/core';
 
 export const GetWorkflowTransitionRuleConfigurationsSchema = z.object({
   /** The index of the first item to return in a page of results (page offset). */
@@ -6,7 +7,7 @@ export const GetWorkflowTransitionRuleConfigurationsSchema = z.object({
   /** The maximum number of items to return per page. */
   maxResults: z.number().optional(),
   /** The types of the transition rules to return. */
-  types: z.array(z.enum(['postfunction', 'condition', 'validator'])),
+  types: z.array(openEnum(['postfunction', 'condition', 'validator'])),
   /**
    * The transition rule class keys, as defined in the Connect or the Forge app descriptor, of the transition rules to
    * return.
@@ -28,7 +29,7 @@ export const GetWorkflowTransitionRuleConfigurationsSchema = z.object({
    * the transition the rule is assigned to.
    */
   expand: z
-    .union([z.string(), z.array(z.string()), z.enum(['transition']), z.array(z.enum(['transition']))])
+    .union([z.string(), z.array(z.string()), openEnum(['transition']), z.array(openEnum(['transition']))])
     .optional(),
 });
 

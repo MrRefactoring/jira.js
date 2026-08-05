@@ -1,11 +1,11 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
 
-export type RequestTypeFieldValue = {
+export interface RequestTypeFieldValue {
   children?: RequestTypeFieldValue[];
   label?: string;
   value?: string;
-};
+}
 
 export const RequestTypeFieldValueSchema: z.ZodType<RequestTypeFieldValue> = apiObject({
   /** List of child fields. */

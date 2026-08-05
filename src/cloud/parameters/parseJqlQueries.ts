@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { openEnum } from '#/core';
 import { JqlQueriesToParseSchema } from '../models';
 
 export const ParseJqlQueriesSchema = z
@@ -13,7 +14,7 @@ export const ParseJqlQueriesSchema = z
      *   returned.
      * - `none` No validation is performed. If JQL query is correctly formed, the query structure is returned.
      */
-    validation: z.enum(['strict', 'warn', 'none']),
+    validation: openEnum(['strict', 'warn', 'none']),
   });
 
 export type ParseJqlQueries = z.input<typeof ParseJqlQueriesSchema>;

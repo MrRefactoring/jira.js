@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { openEnum } from '#/core';
 
 export const GetUiModificationsSchema = z.object({
   /** The index of the first item to return in a page of results (page offset). */
@@ -13,7 +14,7 @@ export const GetUiModificationsSchema = z.object({
    * - `contexts` Returns UI modification contexts.
    */
   expand: z
-    .union([z.string(), z.array(z.string()), z.enum(['data', 'contexts']), z.array(z.enum(['data', 'contexts']))])
+    .union([z.string(), z.array(z.string()), openEnum(['data', 'contexts']), z.array(openEnum(['data', 'contexts']))])
     .optional(),
 });
 

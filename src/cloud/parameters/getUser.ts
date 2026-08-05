@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { openEnum } from '#/core';
 
 export const GetUserSchema = z.object({
   /**
@@ -17,8 +18,8 @@ export const GetUserSchema = z.object({
     .union([
       z.string(),
       z.array(z.string()),
-      z.enum(['groups', 'applicationRoles']),
-      z.array(z.enum(['groups', 'applicationRoles'])),
+      openEnum(['groups', 'applicationRoles']),
+      z.array(openEnum(['groups', 'applicationRoles'])),
     ])
     .optional(),
 });

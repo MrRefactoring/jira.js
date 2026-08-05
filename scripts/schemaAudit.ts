@@ -19,12 +19,23 @@ import { fileURLToPath } from 'node:url';
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const findings = join(root, 'node_modules', '.cache', 'schema-audit.jsonl');
 
-interface SchemaDrift {
+interface UndocumentedKeys {
+  kind: 'keys';
   endpoint: string;
   path: string;
   keys: string[];
   types: Record<string, string>;
 }
+
+interface UndocumentedValue {
+  kind: 'value';
+  endpoint: string;
+  path: string;
+  value: string;
+  documented: string[];
+}
+
+type SchemaDrift = UndocumentedKeys | UndocumentedValue;
 
 const reportOnly = process.argv.includes('--report-only');
 
@@ -82,22 +93,40 @@ function normalizeEndpoint(endpoint: string): string {
 const byField = new Map<string, Set<string>>();
 const typesByField = new Map<string, Set<string>>();
 
+/** Values a field was seen holding that its schema does not list, and the list it does. */
+const valuesByField = new Map<string, Set<string>>();
+const documentedByField = new Map<string, Set<string>>();
+const valueEndpoints = new Map<string, Set<string>>();
+
+function collect(index: Map<string, Set<string>>, field: string, entry: string): void {
+  if (!index.has(field)) index.set(field, new Set());
+
+  index.get(field)!.add(entry);
+}
+
 if (existsSync(findings)) {
   const lines = readFileSync(findings, 'utf8').trim();
 
   for (const line of lines ? lines.split('\n') : []) {
     const entry = JSON.parse(line) as SchemaDrift;
 
+    // Entries written before this script grew a second finding kind carry no `kind` and are always key drift.
+    if (entry.kind === 'value') {
+      const field = normalize(entry.path);
+
+      collect(valuesByField, field, entry.value);
+      collect(valueEndpoints, field, normalizeEndpoint(entry.endpoint));
+
+      entry.documented.forEach(value => collect(documentedByField, field, value));
+
+      continue;
+    }
+
     for (const key of entry.keys) {
       const field = normalize(entry.path ? `${entry.path}.${key}` : key);
 
-      if (!byField.has(field)) byField.set(field, new Set());
-
-      byField.get(field)!.add(normalizeEndpoint(entry.endpoint));
-
-      if (!typesByField.has(field)) typesByField.set(field, new Set());
-
-      typesByField.get(field)!.add(entry.types?.[key] ?? 'unknown');
+      collect(byField, field, normalizeEndpoint(entry.endpoint));
+      collect(typesByField, field, entry.types?.[key] ?? 'unknown');
     }
   }
 }
@@ -107,11 +136,38 @@ const ranked = [...byField.entries()].sort(
 );
 const endpoints = new Set([...byField.values()].flatMap(set => [...set]));
 
+const rankedValues = [...valuesByField.entries()].sort(
+  (a, b) => b[1].size - a[1].size || a[0].localeCompare(b[0]),
+);
+
 const summary: string[] = ['## Schema audit', ''];
 
-if (ranked.length === 0) {
+if (ranked.length === 0 && rankedValues.length === 0) {
   summary.push('No drift: every response matched the schema that describes it.');
-} else {
+}
+
+if (rankedValues.length > 0) {
+  summary.push(
+    `**${rankedValues.length} fields hold values their schema does not list.**`,
+    '',
+    'The field is described; its set of values is not complete. Not breakage — the response was returned whole —',
+    'but a consumer switching on one of these has a case it cannot see in the types.',
+    '',
+    '| Field | Undocumented values | Documented | Endpoints |',
+    '| --- | --- | --- | ---: |',
+  );
+
+  for (const [field, seen] of rankedValues) {
+    const values = [...seen].sort().map(value => `\`${value}\``).join('<br>');
+    const documented = [...(documentedByField.get(field) ?? new Set())].sort().map(value => `\`${value}\``).join(' \\| ');
+
+    summary.push(`| \`${field}\` | ${values} | ${documented} | ${valueEndpoints.get(field)?.size ?? 0} |`);
+  }
+
+  summary.push('');
+}
+
+if (ranked.length > 0) {
   summary.push(
     `**${ranked.length} undocumented fields** across **${endpoints.size} endpoints**.`,
     '',
@@ -146,8 +202,13 @@ if (run.status !== 0) {
   process.exit(run.status ?? 1);
 }
 
-if (ranked.length > 0) {
-  console.error(`\nSchema audit: ${ranked.length} undocumented fields across ${endpoints.size} endpoints.`);
+if (ranked.length > 0 || rankedValues.length > 0) {
+  const parts = [
+    ranked.length > 0 ? `${ranked.length} undocumented fields across ${endpoints.size} endpoints` : '',
+    rankedValues.length > 0 ? `${rankedValues.length} fields holding values their schema does not list` : '',
+  ].filter(Boolean);
+
+  console.error(`\nSchema audit: ${parts.join('; ')}.`);
   process.exit(1);
 }
 

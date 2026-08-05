@@ -53,7 +53,10 @@ export class OAuthError extends Error {
    */
   readonly error?: string;
   readonly errorDescription?: string;
-  /** Whether the only way forward is a fresh authorization. Read it through {@link core/errors/predicates!isReauthorizationRequired}. */
+  /**
+   * Whether the only way forward is a fresh authorization. Read it through
+   * {@link core/errors/predicates!isReauthorizationRequired}.
+   */
   readonly reauthorizationRequired: boolean;
 
   constructor(message: string, options?: OAuthErrorOptions) {

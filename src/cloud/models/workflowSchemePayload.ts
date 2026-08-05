@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { apiObject } from '#/core';
+import { apiObject, openEnum } from '#/core';
 import { ProjectCreateResourceIdentifierSchema } from './projectCreateResourceIdentifier';
 /**
  * The payload for creating a workflow scheme. See
@@ -15,7 +15,7 @@ export const WorkflowSchemePayloadSchema = apiObject({
   /** The name of the workflow scheme */
   name: z.string().optional(),
   /** The strategy to use if there is a conflict with another workflow scheme */
-  onConflict: z.enum(['FAIL', 'USE', 'NEW']).optional(),
+  onConflict: openEnum(['FAIL', 'USE', 'NEW']).optional(),
   pcri: ProjectCreateResourceIdentifierSchema.optional(),
 });
 

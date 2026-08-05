@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { apiObject } from '#/core';
+import { apiObject, openEnum } from '#/core';
 /** The details of a UI modification's context, which define where to activate the UI modification. */
 
 export const UiModificationContextDetailsSchema = apiObject({
@@ -40,7 +40,7 @@ export const UiModificationContextDetailsSchema = apiObject({
    *
    * Wildcards are not applicable for JSM contexts.
    */
-  viewType: z.enum(['GIC', 'IssueView', 'IssueTransition', 'JSMRequestCreate']).optional(),
+  viewType: openEnum(['GIC', 'IssueView', 'IssueTransition', 'JSMRequestCreate']).optional(),
 });
 
 export type UiModificationContextDetails = z.infer<typeof UiModificationContextDetailsSchema>;

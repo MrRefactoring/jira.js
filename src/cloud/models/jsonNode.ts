@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { apiObject } from '#/core';
+import { apiObject, openEnum } from '#/core';
 
 export const JsonNodeSchema = apiObject({
   array: z.boolean().optional(),
@@ -26,7 +26,7 @@ export const JsonNodeSchema = apiObject({
   missingNode: z.boolean().optional(),
   null: z.boolean().optional(),
   number: z.boolean().optional(),
-  numberType: z.enum(['INT', 'LONG', 'BIG_INTEGER', 'FLOAT', 'DOUBLE', 'BIG_DECIMAL']).optional(),
+  numberType: openEnum(['INT', 'LONG', 'BIG_INTEGER', 'FLOAT', 'DOUBLE', 'BIG_DECIMAL']).optional(),
   numberValue: z.number().optional(),
   object: z.boolean().optional(),
   pojo: z.boolean().optional(),

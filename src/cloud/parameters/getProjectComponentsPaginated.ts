@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { openEnum } from '#/core';
 
 export const GetProjectComponentsPaginatedSchema = z.object({
   /** The project ID or project key (case sensitive). */
@@ -15,28 +16,26 @@ export const GetProjectComponentsPaginatedSchema = z.object({
    * - `lead` Sorts by the user key of the component's project lead.
    * - `name` Sorts by component name.
    */
-  orderBy: z
-    .enum([
-      'description',
-      '-description',
-      '+description',
-      'issueCount',
-      '-issueCount',
-      '+issueCount',
-      'lead',
-      '-lead',
-      '+lead',
-      'name',
-      '-name',
-      '+name',
-    ])
-    .optional(),
+  orderBy: openEnum([
+    'description',
+    '-description',
+    '+description',
+    'issueCount',
+    '-issueCount',
+    '+issueCount',
+    'lead',
+    '-lead',
+    '+lead',
+    'name',
+    '-name',
+    '+name',
+  ]).optional(),
   /**
    * The source of the components to return. Can be `jira` (default), `compass` or `auto`. When `auto` is specified, the
    * API will return connected Compass components if the project is opted into Compass, otherwise it will return Jira
    * components. Defaults to `jira`.
    */
-  componentSource: z.enum(['jira', 'compass', 'auto']).optional(),
+  componentSource: openEnum(['jira', 'compass', 'auto']).optional(),
   /**
    * Filter the results using a literal string. Components with a matching `name` or `description` are returned (case
    * insensitive).

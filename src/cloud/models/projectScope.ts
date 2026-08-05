@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { apiObject } from '#/core';
+import { apiObject, openEnum } from '#/core';
 
 export const ProjectScopeSchema = apiObject({
   /**
@@ -7,7 +7,7 @@ export const ProjectScopeSchema = apiObject({
    * value. This is useful for archiving an option that has previously been selected but shouldn't be used anymore.If
    * defaultValue is set, the option is selected by default.
    */
-  attributes: z.array(z.enum(['notSelectable', 'defaultValue'])).optional(),
+  attributes: z.array(openEnum(['notSelectable', 'defaultValue'])).optional(),
   /** The ID of the project that the option's behavior applies to. */
   id: z.number().optional(),
 });

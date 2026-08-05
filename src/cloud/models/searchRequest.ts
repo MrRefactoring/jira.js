@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { apiObject } from '#/core';
+import { apiObject, openEnum } from '#/core';
 
 export const SearchRequestSchema = apiObject({
   /**
@@ -64,7 +64,7 @@ export const SearchRequestSchema = apiObject({
    *
    * Note: If the JQL is not correctly formed a 400 response code is returned, regardless of the `validateQuery` value.
    */
-  validateQuery: z.enum(['strict', 'warn', 'none', 'true', 'false']).optional(),
+  validateQuery: openEnum(['strict', 'warn', 'none', 'true', 'false']).optional(),
 });
 
 export type SearchRequest = z.infer<typeof SearchRequestSchema>;

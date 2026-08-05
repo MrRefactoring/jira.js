@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { apiObject } from '#/core';
+import { apiObject, openEnum } from '#/core';
 
 export const GetAtlassianTeamResponseSchema = apiObject({
   /** The capacity for the Atlassian team. */
@@ -9,7 +9,7 @@ export const GetAtlassianTeamResponseSchema = apiObject({
   /** The ID of the issue source for the Atlassian team. */
   issueSourceId: z.number().optional(),
   /** The planning style for the Atlassian team. This is "Scrum" or "Kanban". */
-  planningStyle: z.enum(['Scrum', 'Kanban']),
+  planningStyle: openEnum(['Scrum', 'Kanban']),
   /** The sprint length for the Atlassian team. */
   sprintLength: z.number().optional(),
 });
