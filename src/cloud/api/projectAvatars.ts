@@ -86,6 +86,9 @@ export async function createProjectAvatar(client: Client, parameters: CreateProj
   const config: SendRequestOptions<Avatar> = {
     url: `/rest/api/3/project/${parameters.projectIdOrKey}/avatar2`,
     method: 'POST',
+    headers: {
+      'X-Atlassian-Token': 'no-check',
+    },
     searchParams: {
       x: parameters.x,
       y: parameters.y,

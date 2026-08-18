@@ -97,6 +97,9 @@ export async function storeAvatar(client: Client, parameters: StoreAvatar): Prom
   const config: SendRequestOptions<Avatar> = {
     url: `/rest/api/3/universal_avatar/type/${parameters.type}/owner/${parameters.entityId}`,
     method: 'POST',
+    headers: {
+      'X-Atlassian-Token': 'no-check',
+    },
     searchParams: {
       x: parameters.x,
       y: parameters.y,

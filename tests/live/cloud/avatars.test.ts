@@ -1,23 +1,30 @@
-import { beforeAll, describe, expect, it } from 'vitest';
+import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 import type { CloudClient } from '#/cloud/createCloudClient';
 import { getCloudClient } from '../setup/client';
+import { ResourceTracker } from '../setup/resources';
 import { TEST_PROJECT_KEY } from '../setup/fixtures';
+import { pngBlob } from '../helpers/image';
 
 /**
  * Live suite for the `avatars` API (`getAllSystemAvatars`, `getAvatars`, `storeAvatar`, `deleteAvatar`,
  * `getAvatarImageByType`, `getAvatarImageByID`, `getAvatarImageByOwner`).
  *
- * Read-only. Uploading an avatar is a binary write against site or project configuration, and the image endpoints
- * answer with an image rather than JSON — which is the part worth asserting here, because a client that tries to parse
- * an image as JSON fails in a way that looks like a corrupt response. The fixtures are taken from endpoints asserted
- * above rather than guarded on, so nothing in this file can quietly stop testing.
+ * Both directions carry bytes, and the specification describes both as JSON, so both are asserted here: an image
+ * comes back as an image rather than as a parse failure that reads like a corrupt response, and an upload is accepted
+ * as an image rather than as an object. The upload is the one write this file makes — a custom avatar added to the
+ * test project and deleted again, which touches nothing else on the site.
+ *
+ * Fixtures come from endpoints asserted above rather than from guards, so nothing here can quietly stop testing.
  */
-describe('Jira Cloud — avatars (live, read-only)', () => {
+describe('Jira Cloud — avatars (live)', () => {
+  const tracker = new ResourceTracker();
   let client: CloudClient;
 
   beforeAll(() => {
     client = getCloudClient();
   });
+
+  afterAll(() => tracker.cleanup());
 
   it('lists the system avatars for each type', async () => {
     for (const type of ['project', 'issuetype', 'user', 'priority'] as const) {
@@ -67,6 +74,54 @@ describe('Jira Cloud — avatars (live, read-only)', () => {
       expect(image.type).toMatch(/^image\//);
       expect(image.size).toBeGreaterThan(50);
     }
+  });
+
+  it('stores a custom avatar from image bytes, and lists it as custom', async () => {
+    const project = await client.projects.getProject({ projectIdOrKey: TEST_PROJECT_KEY });
+
+    const stored = await client.avatars.storeAvatar({
+      type: 'project',
+      entityId: project.id!,
+      size: 48,
+      x: 0,
+      y: 0,
+      body: pngBlob(48),
+    });
+
+    expect(stored.id).toBeTruthy();
+    expect(stored.isSystemAvatar).toBe(false);
+    expect(stored.isDeletable).toBe(true);
+
+    tracker.defer(async () => {
+      await client.avatars.deleteAvatar({ type: 'project', owningObjectId: project.id!, id: Number(stored.id) });
+    });
+
+    const avatars = await client.avatars.getAvatars({ type: 'project', entityId: project.id! });
+
+    expect(avatars.custom?.some(avatar => avatar.id === stored.id)).toBe(true);
+  });
+
+  it('serves the avatar it was just given, as the image it was given', async () => {
+    const project = await client.projects.getProject({ projectIdOrKey: TEST_PROJECT_KEY });
+
+    const stored = await client.avatars.storeAvatar({
+      type: 'project',
+      entityId: project.id!,
+      size: 48,
+      x: 0,
+      y: 0,
+      body: pngBlob(48),
+    });
+
+    tracker.defer(async () => {
+      await client.avatars.deleteAvatar({ type: 'project', owningObjectId: project.id!, id: Number(stored.id) });
+    });
+
+    const image = await client.avatars.getAvatarImageByID({ type: 'project', id: Number(stored.id) });
+
+    // Jira answers with the charset appended — `image/png;charset=utf-8` — so the essence is what can be asserted.
+    expect(image.type).toMatch(/^image\/png\b/);
+    expect(image.size).toBeGreaterThan(50);
   });
 
   it('answers an unknown avatar type with an empty list rather than an error', async () => {

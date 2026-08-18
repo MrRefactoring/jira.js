@@ -166,6 +166,9 @@ export async function createIssueTypeAvatar(client: Client, parameters: CreateIs
   const config: SendRequestOptions<Avatar> = {
     url: `/rest/api/3/issuetype/${parameters.id}/avatar2`,
     method: 'POST',
+    headers: {
+      'X-Atlassian-Token': 'no-check',
+    },
     searchParams: {
       x: parameters.x,
       y: parameters.y,

@@ -43,7 +43,9 @@ export async function setIssueNavigatorDefaultColumns(
   const config: SendRequestOptions<void> = {
     url: '/rest/api/3/settings/columns',
     method: 'PUT',
-    body: parameters.body,
+    body: {
+      columns: parameters.columns,
+    },
   };
 
   return await client.sendRequest(config);

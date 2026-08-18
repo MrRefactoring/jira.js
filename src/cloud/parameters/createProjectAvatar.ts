@@ -9,7 +9,7 @@ export const CreateProjectAvatarSchema = z.object({
   y: z.number().optional(),
   /** The length of each side of the crop region. */
   size: z.number().optional(),
-  body: z.record(z.string(), z.any()),
+  body: z.custom<Blob>(),
 });
 
 export type CreateProjectAvatar = z.input<typeof CreateProjectAvatarSchema>;

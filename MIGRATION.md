@@ -155,6 +155,19 @@ The content type is worth keeping hold of: the same endpoint answers with SVG fo
 
 This landed in **6.2.0**. Between 6.0.0 and 6.1.0 these three methods were generated from a JSON schema and threw `SchemaMismatchError` on every call — see [#434](https://github.com/MrRefactoring/jira.js/issues/434). Attachments are unaffected: `getAttachmentContent` and `getAttachmentThumbnail` still return the bytes alone, since their content type is already on the attachment metadata.
 
+Uploading works the same way round. In v5 `storeAvatar` took `{ avatar, mimeType }`; it now takes a `Blob`, which carries both:
+
+```ts
+await jira.avatars.storeAvatar({
+  type: 'project',
+  entityId: project.id,
+  size: 48,
+  body: new Blob([bytes], { type: 'image/png' }),   // was `avatar` + `mimeType`
+});
+```
+
+The same applies to `createProjectAvatar` and `createIssueTypeAvatar`. The `X-Atlassian-Token: no-check` header v5 asked you to think about is now sent for you.
+
 ## Responses are validated, and a mismatch does not stop you
 
 Every response is checked against a schema. When one does not match, the body comes back **unvalidated** and the library reports the problem once — one line on stderr per distinct field, however many responses repeat it:
