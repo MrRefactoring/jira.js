@@ -70,7 +70,7 @@ export type {
   OnTokenRefresh,
 } from './oauth/index.js';
 
-export { BufferSchema, createMultipartRequestBody, toFormDataFile, mimeTypeFor } from './formData/index.js';
+export { BlobSchema, BufferSchema, createMultipartRequestBody, toFormDataFile, mimeTypeFor } from './formData/index.js';
 
 export type { AttachmentContent, AttachmentInput, Buffer, MultipartRequestBody } from './formData/index.js';
 

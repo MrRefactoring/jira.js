@@ -10,7 +10,7 @@ import {
   toNetworkError,
   TRANSIENT_HTTP_STATUSES,
 } from './errors/index.js';
-import { BufferSchema } from './formData/index.js';
+import { BlobSchema, BufferSchema } from './formData/index.js';
 import { isSchemaAuditEnabled, recordSchemaDrift } from './schemaAudit.js';
 import { describeIssues, reportSchemaMismatch } from './schemaMismatch.js';
 import type { SchemaMismatchReport } from './schemaMismatch.js';
@@ -332,6 +332,13 @@ export function createClient(config: ClientConfig | Client): Client {
 
       if ((requestConfig.schema as unknown) === BufferSchema) {
         return BufferSchema.parse(new Uint8Array(await response.arrayBuffer())) as T;
+      }
+
+      // A `Blob` carries the content type with the bytes, which is the whole reason these endpoints ask for one: the
+      // same avatar URL answers with SVG for a system avatar and PNG for an uploaded one, and nothing in the request
+      // says which is coming.
+      if ((requestConfig.schema as unknown) === BlobSchema) {
+        return BlobSchema.parse(await response.blob()) as T;
       }
 
       if (contentType && !contentType.includes('application/json')) {
