@@ -2,6 +2,7 @@ import { beforeAll, describe, expect, it } from 'vitest';
 import { isForbiddenError } from '#/core';
 import type { CloudClient } from '#/cloud/createCloudClient';
 import { getCloudClient } from '../setup/client';
+import { isNotEntitled } from '../setup/entitlement';
 
 /**
  * Live suite for the `auditRecords` API (`getAuditRecords`).
@@ -16,18 +17,22 @@ import { getCloudClient } from '../setup/client';
 describe('Jira Cloud — auditRecords (live, admin-gated)', () => {
   let client: CloudClient;
   let permitted = false;
+  let entitled = true;
 
   beforeAll(async () => {
     client = getCloudClient();
 
-    permitted = await client.auditRecords
-      .getAuditRecords({ limit: 1 })
-      .then(() => true)
-      .catch(() => false);
+    // Two different refusals wear the same 403, and the suite asserts opposite things about them: a site whose plan
+    // has no audit log at all, and an administrator-only endpoint reached without administrator rights.
+    const probe = await client.auditRecords.getAuditRecords({ limit: 1 }).catch((e: unknown) => e);
+
+    permitted = !(probe instanceof Error);
+    entitled = !isNotEntitled(probe);
   });
 
-  it('returns audit records for an administrator, each fully typed', async () => {
-    if (!permitted) return;
+  it('returns audit records for an administrator, each fully typed', async ctx => {
+    ctx.skip(!entitled, 'the site is on a Free plan, which has no audit log');
+    ctx.skip(!permitted, 'the account is not a Jira administrator');
 
     const page = await client.auditRecords.getAuditRecords({ limit: 5 });
 
@@ -42,16 +47,18 @@ describe('Jira Cloud — auditRecords (live, admin-gated)', () => {
     }
   });
 
-  it('fails typed rather than silently empty without admin rights', async () => {
-    if (permitted) return;
+  it('fails typed rather than silently empty without admin rights', async ctx => {
+    ctx.skip(!entitled, 'the site is on a Free plan, so the refusal names the plan rather than the missing rights');
+    ctx.skip(permitted, 'the account is a Jira administrator, so there is no refusal to inspect');
 
     const error = await client.auditRecords.getAuditRecords({ limit: 1 }).catch((e: unknown) => e);
 
     expect(isForbiddenError(error) || (error as { status?: number }).status === 401).toBe(true);
   });
 
-  it('pages with offset and limit, not startAt and maxResults', async () => {
-    if (!permitted) return;
+  it('pages with offset and limit, not startAt and maxResults', async ctx => {
+    ctx.skip(!entitled, 'the site is on a Free plan, which has no audit log');
+    ctx.skip(!permitted, 'the account is not a Jira administrator');
 
     const first = await client.auditRecords.getAuditRecords({ limit: 1 });
 
@@ -67,8 +74,9 @@ describe('Jira Cloud — auditRecords (live, admin-gated)', () => {
     }
   });
 
-  it('narrows the window with from and to', async () => {
-    if (!permitted) return;
+  it('narrows the window with from and to', async ctx => {
+    ctx.skip(!entitled, 'the site is on a Free plan, which has no audit log');
+    ctx.skip(!permitted, 'the account is not a Jira administrator');
 
     const from = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString();
 
@@ -81,8 +89,9 @@ describe('Jira Cloud — auditRecords (live, admin-gated)', () => {
     }
   });
 
-  it('answers a filter that matches nothing with an empty page', async () => {
-    if (!permitted) return;
+  it('answers a filter that matches nothing with an empty page', async ctx => {
+    ctx.skip(!entitled, 'the site is on a Free plan, which has no audit log');
+    ctx.skip(!permitted, 'the account is not a Jira administrator');
 
     const page = await client.auditRecords.getAuditRecords({ filter: 'nothingmatchesthisatall', limit: 10 });
 
