@@ -1,7 +1,6 @@
 import { SystemAvatarsSchema, type SystemAvatars } from '../models/systemAvatars';
 import { AvatarsSchema, type Avatars } from '../models/avatars';
 import { AvatarSchema, type Avatar } from '../models/avatar';
-import { StreamingResponseBodySchema, type StreamingResponseBody } from '../models/streamingResponseBody';
 import type { GetAllSystemAvatars } from '../parameters/getAllSystemAvatars';
 import type { GetAvatars } from '../parameters/getAvatars';
 import type { StoreAvatar } from '../parameters/storeAvatar';
@@ -9,7 +8,7 @@ import type { DeleteAvatar } from '../parameters/deleteAvatar';
 import type { GetAvatarImageByType } from '../parameters/getAvatarImageByType';
 import type { GetAvatarImageByID } from '../parameters/getAvatarImageByID';
 import type { GetAvatarImageByOwner } from '../parameters/getAvatarImageByOwner';
-import type { Client, SendRequestOptions } from '#/core';
+import { type Client, type SendRequestOptions, BlobSchema } from '#/core';
 
 /**
  * Returns a list of system avatar details by owner type, where the owner types are issue type, project, user or
@@ -132,18 +131,15 @@ export async function deleteAvatar(client: Client, parameters: DeleteAvatar): Pr
  *
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** None.
  */
-export async function getAvatarImageByType(
-  client: Client,
-  parameters: GetAvatarImageByType,
-): Promise<StreamingResponseBody> {
-  const config: SendRequestOptions<StreamingResponseBody> = {
+export async function getAvatarImageByType(client: Client, parameters: GetAvatarImageByType): Promise<Blob> {
+  const config: SendRequestOptions<Blob> = {
     url: `/rest/api/3/universal_avatar/view/type/${parameters.type}`,
     method: 'GET',
     searchParams: {
       size: parameters.size,
       format: parameters.format,
     },
-    schema: StreamingResponseBodySchema,
+    schema: BlobSchema,
   };
 
   return await client.sendRequest(config);
@@ -163,18 +159,15 @@ export async function getAvatarImageByType(
  *   at least one project the issue type is used in.
  * - For priority avatars, none.
  */
-export async function getAvatarImageByID(
-  client: Client,
-  parameters: GetAvatarImageByID,
-): Promise<StreamingResponseBody> {
-  const config: SendRequestOptions<StreamingResponseBody> = {
+export async function getAvatarImageByID(client: Client, parameters: GetAvatarImageByID): Promise<Blob> {
+  const config: SendRequestOptions<Blob> = {
     url: `/rest/api/3/universal_avatar/view/type/${parameters.type}/avatar/${parameters.id}`,
     method: 'GET',
     searchParams: {
       size: parameters.size,
       format: parameters.format,
     },
-    schema: StreamingResponseBodySchema,
+    schema: BlobSchema,
   };
 
   return await client.sendRequest(config);
@@ -194,18 +187,15 @@ export async function getAvatarImageByID(
  *   at least one project the issue type is used in.
  * - For priority avatars, none.
  */
-export async function getAvatarImageByOwner(
-  client: Client,
-  parameters: GetAvatarImageByOwner,
-): Promise<StreamingResponseBody> {
-  const config: SendRequestOptions<StreamingResponseBody> = {
+export async function getAvatarImageByOwner(client: Client, parameters: GetAvatarImageByOwner): Promise<Blob> {
+  const config: SendRequestOptions<Blob> = {
     url: `/rest/api/3/universal_avatar/view/type/${parameters.type}/owner/${parameters.entityId}`,
     method: 'GET',
     searchParams: {
       size: parameters.size,
       format: parameters.format,
     },
-    schema: StreamingResponseBodySchema,
+    schema: BlobSchema,
   };
 
   return await client.sendRequest(config);

@@ -1,5 +1,27 @@
 # Jira.js changelog
 
+## 6.2.0
+
+The three avatar image endpoints could not be called at all. Atlassian's specification describes them as JSON, Jira answers them with an image, and the client rejected the response before it reached the caller — so every call threw, for every avatar, on every site.
+
+### Bug Fixes
+
+* **`getAvatarImageByID`, `getAvatarImageByType` and `getAvatarImageByOwner` return the image.** All three were generated with `StreamingResponseBodySchema` — the specification's `StreamingResponseBody`, an object with no properties — so a response arriving as `image/png` or `image/svg+xml` was reported as `SchemaMismatchError: Expected a JSON response to validate against the schema`. There was no input for which they could succeed. They now return a [`Blob`](https://developer.mozilla.org/en-US/docs/Web/API/Blob). Fixes [#434](https://github.com/MrRefactoring/jira.js/issues/434).
+
+  A `Blob` rather than the bytes alone, because the content type cannot be worked out from the request: the same avatar URL answers with SVG for a system avatar and PNG for an uploaded one, and `format` is optional. `image.type` is the content type, `await image.arrayBuffer()` the bytes, and `new Response(image)` passes it straight to a browser. In v5 this was `AvatarWithDetails` — `{ avatar, contentType }`; the two fields are now one value.
+
+  Attachment downloads are unchanged. `getAttachmentContent` and `getAttachmentThumbnail` still return the bytes, because an attachment already carries its `mimeType` and `filename` in its metadata.
+
+### Types
+
+* **Those three methods are typed `Promise<Blob>`**, where they were `Promise<StreamingResponseBody>`. Nothing that compiled against the old type can have been working — the call threw before returning — so the compiler pointing at these lines is the first honest signal about them. `StreamingResponseBody` itself is still exported; nothing else referenced it.
+* **`BlobSchema` is exported from `jira.js/core`,** beside `BufferSchema`. It marks an endpoint whose response is bytes with a content type worth keeping; the client reads such a response with `response.blob()` rather than parsing it as JSON.
+
+### General
+
+* **The live test for these endpoints was passing without testing anything.** It looked for `avatarId=` in a project's `avatarUrls`, which give the path form and carry no such parameter, so the match failed, the test returned on its second line, and every assertion below it — including the one a `SchemaMismatchError` would have failed — was unreachable. That is why this shipped. The test now takes its avatar id from `getAllSystemAvatars`, asserted non-empty by the test above it, and has no branch that can turn it off; the two remaining image endpoints are covered as well.
+
+
 ## 6.1.0
 
 Atlassian's specification lists the values it knows a field can hold, and that list falls behind the API it describes. Reading a project of a type the list has not caught up with was never an error — the response came back whole — but it printed a warning, once per project, that named neither the values it wanted nor the one it got. All three of those are fixed here.

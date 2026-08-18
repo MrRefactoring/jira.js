@@ -138,6 +138,23 @@ Use the predicates rather than `instanceof`. They read a branded symbol instead 
 - **The CJS build.** The package is ESM-only.
 - **`mime-types`.** Attachment content types come from a built-in table now; an unknown extension is `application/octet-stream`, as before.
 
+## Avatar images come back as a `Blob`
+
+In v5 the three avatar image methods returned `AvatarWithDetails` — `{ avatar: Uint8Array, contentType: string }`. In v6 they return a [`Blob`](https://developer.mozilla.org/en-US/docs/Web/API/Blob), which carries both:
+
+```ts
+const image = await client.avatars.getAvatarImageByID({ type: 'project', id: 10011 });
+
+image.type;                                   // 'image/svg+xml' — was `contentType`
+new Uint8Array(await image.arrayBuffer());    // the bytes — was `avatar`
+
+return new Response(image);                   // proxying it on takes no unpacking at all
+```
+
+The content type is worth keeping hold of: the same endpoint answers with SVG for a system avatar and PNG for an uploaded one, and nothing in the request says which is coming.
+
+This landed in **6.2.0**. Between 6.0.0 and 6.1.0 these three methods were generated from a JSON schema and threw `SchemaMismatchError` on every call — see [#434](https://github.com/MrRefactoring/jira.js/issues/434). Attachments are unaffected: `getAttachmentContent` and `getAttachmentThumbnail` still return the bytes alone, since their content type is already on the attachment metadata.
+
 ## Responses are validated, and a mismatch does not stop you
 
 Every response is checked against a schema. When one does not match, the body comes back **unvalidated** and the library reports the problem once — one line on stderr per distinct field, however many responses repeat it:

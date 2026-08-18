@@ -1,5 +1,4 @@
 import { beforeAll, describe, expect, it } from 'vitest';
-import { isForbiddenError, isNotFoundError } from '#/core';
 import type { CloudClient } from '#/cloud/createCloudClient';
 import { getCloudClient } from '../setup/client';
 import { TEST_PROJECT_KEY } from '../setup/fixtures';
@@ -9,8 +8,9 @@ import { TEST_PROJECT_KEY } from '../setup/fixtures';
  * `getAvatarImageByType`, `getAvatarImageByID`, `getAvatarImageByOwner`).
  *
  * Read-only. Uploading an avatar is a binary write against site or project configuration, and the image endpoints
- * return raw bytes rather than JSON — which is the part worth asserting here, because a client that tries to parse an
- * image as JSON fails in a way that looks like a corrupt response.
+ * answer with an image rather than JSON — which is the part worth asserting here, because a client that tries to parse
+ * an image as JSON fails in a way that looks like a corrupt response. The fixtures are taken from endpoints asserted
+ * above rather than guarded on, so nothing in this file can quietly stop testing.
  */
 describe('Jira Cloud — avatars (live, read-only)', () => {
   let client: CloudClient;
@@ -46,25 +46,27 @@ describe('Jira Cloud — avatars (live, read-only)', () => {
   });
 
   it('returns an avatar image as bytes, not JSON', async () => {
+    const avatars = await client.avatars.getAllSystemAvatars({ type: 'project' });
+    const avatarId = Number(avatars.system![0].id);
+
+    const image = await client.avatars.getAvatarImageByID({ type: 'project', id: avatarId });
+
+    expect(image).toBeInstanceOf(Blob);
+    expect(image.type).toMatch(/^image\//);
+    expect(image.size).toBeGreaterThan(50);
+  });
+
+  it('returns the default avatar image for a type, and the image of an owner', async () => {
     const project = await client.projects.getProject({ projectIdOrKey: TEST_PROJECT_KEY });
-    const avatarId = (project.avatarUrls?.['48x48'] ?? '').match(/avatarId=(\d+)/)?.[1];
 
-    if (!avatarId) return;
+    const byType = await client.avatars.getAvatarImageByType({ type: 'project' });
+    const byOwner = await client.avatars.getAvatarImageByOwner({ type: 'project', entityId: project.id! });
 
-    const image = await client.avatars
-      .getAvatarImageByID({ type: 'project', id: Number(avatarId) })
-      .catch((e: unknown) => e);
-
-    if (image instanceof Error) {
-      expect(isForbiddenError(image) || isNotFoundError(image)).toBe(true);
-
-      return;
+    for (const image of [byType, byOwner]) {
+      expect(image).toBeInstanceOf(Blob);
+      expect(image.type).toMatch(/^image\//);
+      expect(image.size).toBeGreaterThan(50);
     }
-
-    const bytes = new Uint8Array(image as ArrayBufferLike);
-
-    expect(bytes.byteLength).toBeGreaterThan(0);
-    expect(bytes.byteLength).toBeGreaterThan(50);
   });
 
   it('answers an unknown avatar type with an empty list rather than an error', async () => {

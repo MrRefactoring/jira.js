@@ -2,6 +2,7 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 import { z } from 'zod';
 import {
   ApiError,
+  BlobSchema,
   BufferSchema,
   createClient,
   isNetworkError,
@@ -286,6 +287,28 @@ describe('responses', () => {
     const body = await createClient({ host: HOST }).sendRequest({ url: '/x', method: 'GET', schema: BufferSchema });
 
     expect(Buffer.from(body as Uint8Array).toString('utf8')).toBe('file contents');
+  });
+
+  it('returns a Blob carrying the content type for an endpoint that asks for one', async () => {
+    const bytes = new Uint8Array([0x89, 0x50, 0x4e, 0x47]);
+
+    mockFetch([new Response(bytes, { status: 200, headers: { 'content-type': 'image/png' } })]);
+
+    const body = await createClient({ host: HOST }).sendRequest({ url: '/x', method: 'GET', schema: BlobSchema });
+
+    expect(body).toBeInstanceOf(Blob);
+    expect((body as Blob).type).toBe('image/png');
+    expect(new Uint8Array(await (body as Blob).arrayBuffer())).toEqual(bytes);
+  });
+
+  it('reads an image as a Blob rather than reporting a schema mismatch', async () => {
+    mockFetch([
+      new Response('<svg/>', { status: 200, headers: { 'content-type': 'image/svg+xml;charset=UTF-8' } }),
+    ]);
+
+    const body = await createClient({ host: HOST }).sendRequest({ url: '/x', method: 'GET', schema: BlobSchema });
+
+    expect((body as Blob).type).toBe('image/svg+xml;charset=utf-8');
   });
 
   it('still discards a non-JSON body when the endpoint does not ask for a Buffer', async () => {

@@ -549,7 +549,6 @@ import type {
   SystemAvatars,
   Avatars,
   Avatar,
-  StreamingResponseBody,
   SubmittedBulkOperation,
   BulkEditGetFields,
   BulkTransitionGetAvailableTransitions,
@@ -797,11 +796,11 @@ export function createCloudClient(clientConfig: ClientConfig | Client) {
       getAvatars: (parameters: GetAvatars): Promise<Avatars> => avatars.getAvatars(client, parameters),
       storeAvatar: (parameters: StoreAvatar): Promise<Avatar> => avatars.storeAvatar(client, parameters),
       deleteAvatar: (parameters: DeleteAvatar): Promise<void> => avatars.deleteAvatar(client, parameters),
-      getAvatarImageByType: (parameters: GetAvatarImageByType): Promise<StreamingResponseBody> =>
+      getAvatarImageByType: (parameters: GetAvatarImageByType): Promise<Blob> =>
         avatars.getAvatarImageByType(client, parameters),
-      getAvatarImageByID: (parameters: GetAvatarImageByID): Promise<StreamingResponseBody> =>
+      getAvatarImageByID: (parameters: GetAvatarImageByID): Promise<Blob> =>
         avatars.getAvatarImageByID(client, parameters),
-      getAvatarImageByOwner: (parameters: GetAvatarImageByOwner): Promise<StreamingResponseBody> =>
+      getAvatarImageByOwner: (parameters: GetAvatarImageByOwner): Promise<Blob> =>
         avatars.getAvatarImageByOwner(client, parameters),
     },
     issueBulkOperations: {
