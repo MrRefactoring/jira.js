@@ -311,6 +311,23 @@ describe('responses', () => {
     expect((body as Blob).type).toBe('image/svg+xml;charset=utf-8');
   });
 
+  it('sends a Blob body untouched, letting it carry its own content type', async () => {
+    const calls = mockFetch([new Response('{}', { status: 200, headers: { 'content-type': 'application/json' } })]);
+
+    await createClient({ host: HOST }).sendRequest({
+      url: '/x',
+      method: 'POST',
+      headers: { 'X-Atlassian-Token': 'no-check' },
+      body: new Blob([new Uint8Array([1, 2, 3])], { type: 'image/png' }),
+    });
+
+    const headers = calls[0]!.init.headers as Record<string, string>;
+
+    expect(calls[0]!.init.body).toBeInstanceOf(Blob);
+    expect(headers['Content-Type']).toBeUndefined();
+    expect(headers['X-Atlassian-Token']).toBe('no-check');
+  });
+
   it('still discards a non-JSON body when the endpoint does not ask for a Buffer', async () => {
     mockFetch([new Response('<html/>', { status: 200, headers: { 'content-type': 'text/html' } })]);
 

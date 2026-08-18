@@ -7,13 +7,16 @@ import { getCloudClient } from '../setup/client';
  * Live suite for the `users` API (`getUser`, `getAllUsers`, `getAllUsersDefault`, `getUserGroups`, `getUserEmail`,
  * `getUserEmailBulk`, the column preferences group, and the admin-only `createUser`/`removeUser`).
  *
- * Read-only against the authenticating account. Creating or removing a user is an identity operation with billing
+ * Confined to the authenticating account. Creating or removing a user is an identity operation with billing
  * consequences and no clean undo, so neither is exercised — they are pinned only through their error channel.
  *
  * The theme worth pinning here is privacy: Cloud hides personal data by default, so `emailAddress` and `displayName`
  * may legitimately be absent. Code that assumes otherwise works on one tenant and breaks on the next.
+ *
+ * The column preferences are the one write, and they belong to the authenticating account alone: `setUserColumns`
+ * changes what this account sees in the issue navigator and `resetUserColumns` puts the site default back.
  */
-describe('Jira Cloud — users (live, read-only)', () => {
+describe('Jira Cloud — users (live)', () => {
   let client: CloudClient;
   let accountId: string;
 
@@ -94,5 +97,22 @@ describe('Jira Cloud — users (live, read-only)', () => {
 
     expect(error).toBeInstanceOf(Error);
     expect((error as { status?: number }).status).toBeGreaterThanOrEqual(400);
+  });
+  it('sets the calling account\'s issue navigator columns, then resets them', async () => {
+    const before = await client.users.getUserDefaultColumns({});
+
+    expect(Array.isArray(before)).toBe(true);
+
+    await client.users.setUserColumns({ columns: ['summary', 'status'] });
+
+    const columns = await client.users.getUserDefaultColumns({});
+
+    expect(columns.map(column => column.value)).toEqual(['summary', 'status']);
+
+    await client.users.resetUserColumns({});
+
+    const reset = await client.users.getUserDefaultColumns({});
+
+    expect(reset.map(column => column.value)).toEqual(before.map(column => column.value));
   });
 });

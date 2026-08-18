@@ -1,23 +1,56 @@
-import { beforeAll, describe, expect, it } from 'vitest';
+import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 import { isForbiddenError, isNotFoundError } from '#/core';
 import type { CloudClient } from '#/cloud/createCloudClient';
 import { getCloudClient } from '../setup/client';
+import { ResourceTracker } from '../setup/resources';
 import { TEST_PROJECT_KEY } from '../setup/fixtures';
+import { pngBlob } from '../helpers/image';
 
 /**
  * Live suite for the `issueTypes` API (`getIssueAllTypes`, `getIssueType`, `getAlternativeIssueTypes`, and the
  * admin-only create/update/delete group).
  *
- * Read-only. Issue types are site-wide configuration shared by every project on the tenant: creating one adds an
- * option everywhere, and deleting one asks Jira to migrate every issue that used it. Neither belongs in a suite that
- * runs against a working site, so the write half is pinned through its error channel and aimed only at ids that
- * cannot exist.
+ * Read-only but for one write. Issue types are site-wide configuration shared by every project on the tenant:
+ * creating one adds an option everywhere, and deleting one asks Jira to migrate every issue that used it. Neither
+ * belongs in a suite that runs against a working site, so that half is pinned through its error channel and aimed
+ * only at ids that cannot exist.
+ *
+ * `createIssueTypeAvatar` is the exception, and it is exercised because it takes image bytes — the shape the
+ * specification describes as an object of arbitrary keys, which is what made it unusable. It adds an avatar to the
+ * type's list of available avatars and deletes it again; nothing selects it, so what the type displays never changes.
  */
-describe('Jira Cloud — issueTypes (live, read-only)', () => {
+describe('Jira Cloud — issueTypes (live)', () => {
+  const tracker = new ResourceTracker();
   let client: CloudClient;
 
   beforeAll(() => {
     client = getCloudClient();
+  });
+
+  afterAll(() => tracker.cleanup());
+
+  it('stores an avatar for an issue type from image bytes', async () => {
+    const types = await client.issueTypes.getIssueAllTypes();
+    const type = types.find(candidate => candidate.subtask === false) ?? types[0]!;
+
+    const avatar = await client.issueTypes.createIssueTypeAvatar({
+      id: type.id!,
+      size: 48,
+      x: 0,
+      y: 0,
+      body: pngBlob(48),
+    });
+
+    expect(avatar.id).toBeTruthy();
+    expect(avatar.isSystemAvatar).toBe(false);
+
+    tracker.defer(async () => {
+      await client.avatars.deleteAvatar({ type: 'issuetype', owningObjectId: type.id!, id: Number(avatar.id) });
+    });
+
+    const avatars = await client.avatars.getAvatars({ type: 'issuetype', entityId: type.id! });
+
+    expect(avatars.custom?.some(candidate => candidate.id === avatar.id)).toBe(true);
   });
 
   it('lists the site issue types, each fully typed', async () => {

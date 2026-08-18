@@ -132,7 +132,9 @@ export async function setUserColumns(client: Client, parameters: SetUserColumns)
     searchParams: {
       accountId: parameters.accountId,
     },
-    body: parameters.body,
+    body: {
+      columns: parameters.columns,
+    },
   };
 
   return await client.sendRequest(config);

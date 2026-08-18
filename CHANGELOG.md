@@ -2,7 +2,7 @@
 
 ## 6.2.0
 
-The three avatar image endpoints could not be called at all. Atlassian's specification describes them as JSON, Jira answers them with an image, and the client rejected the response before it reached the caller — so every call threw, for every avatar, on every site.
+Avatars moved bytes in both directions and the specification described both as JSON, so neither direction worked. Reading an image threw before the response reached the caller; uploading one had no way to send an image at all. Both are fixed here, along with two column endpoints broken by the same reading of the same specification.
 
 ### Bug Fixes
 
@@ -12,13 +12,35 @@ The three avatar image endpoints could not be called at all. Atlassian's specifi
 
   Attachment downloads are unchanged. `getAttachmentContent` and `getAttachmentThumbnail` still return the bytes, because an attachment already carries its `mimeType` and `filename` in its metadata.
 
+* **`storeAvatar`, `createProjectAvatar` and `createIssueTypeAvatar` accept an image.** Their request body was generated as `Record<string, any>` — an object of arbitrary keys — because Atlassian declares it under a wildcard media type with an empty schema. It is now a [`Blob`](https://developer.mozilla.org/en-US/docs/Web/API/Blob):
+
+  ```ts
+  await jira.avatars.storeAvatar({
+    type: 'project',
+    entityId: project.id,
+    size: 48,
+    body: new Blob([bytes], { type: 'image/png' }),
+  });
+  ```
+
+  The `Blob` carries the content type the endpoint reads the image by; `fetch` takes the header from it, so nothing is passed alongside it and nothing can contradict it. The three calls also send `X-Atlassian-Token: no-check`, which Jira requires — without it the upload is refused outright, with it and no content type the image is rejected as an unsupported format. Both were verified against a live site.
+
+* **`setUserColumns` and `setIssueNavigatorDefaultColumns` take the columns.** Both declare a `ColumnRequestBody` reference under a wildcard media type and nowhere else; only `application/json` was read, so the reference was missed and the body degraded to the same shapeless object. They now take `columns: string[]`, like `setColumns` on a filter already did:
+
+  ```ts
+  await jira.users.setUserColumns({ columns: ['summary', 'status'] });
+  ```
+
 ### Types
 
 * **Those three methods are typed `Promise<Blob>`**, where they were `Promise<StreamingResponseBody>`. Nothing that compiled against the old type can have been working — the call threw before returning — so the compiler pointing at these lines is the first honest signal about them. `StreamingResponseBody` itself is still exported; nothing else referenced it.
 * **`BlobSchema` is exported from `jira.js/core`,** beside `BufferSchema`. It marks an endpoint whose response is bytes with a content type worth keeping; the client reads such a response with `response.blob()` rather than parsing it as JSON.
+* **The three upload bodies are typed `Blob`**, where they were `Record<string, any>`. No call could have worked: the endpoints refuse a request without the XSRF header, which the old shape had no way to send.
+* **`setUserColumns` and `setIssueNavigatorDefaultColumns` take `columns: string[]`** in place of `body`. Unlike the avatar uploads, these two had a working form — `{ body: { columns: [...] } }` reached Jira intact — so a call written that way needs the one-line change. `{ body: [...] }`, the other reading the old type invited, was answered with 400.
 
 ### General
 
+* **The writes are covered live now.** All three uploads store an image against the test site and delete it again, the filter, account and site-wide column endpoints are set and restored, and the avatar just uploaded is read back through `getAvatarImageByID` — the two halves proving each other. None of this had a single test before, which is how a body typed as an object survived a major release.
 * **The live test for these endpoints was passing without testing anything.** It looked for `avatarId=` in a project's `avatarUrls`, which give the path form and carry no such parameter, so the match failed, the test returned on its second line, and every assertion below it — including the one a `SchemaMismatchError` would have failed — was unreachable. That is why this shipped. The test now takes its avatar id from `getAllSystemAvatars`, asserted non-empty by the test above it, and has no branch that can turn it off; the two remaining image endpoints are covered as well.
 
 

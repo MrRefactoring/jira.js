@@ -9,7 +9,7 @@ export const CreateIssueTypeAvatarSchema = z.object({
   y: z.number().optional(),
   /** The length of each side of the crop region. */
   size: z.number(),
-  body: z.record(z.string(), z.any()),
+  body: z.custom<Blob>(),
 });
 
 export type CreateIssueTypeAvatar = z.input<typeof CreateIssueTypeAvatarSchema>;
