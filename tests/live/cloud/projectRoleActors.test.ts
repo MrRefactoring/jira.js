@@ -3,6 +3,7 @@ import { isNotFoundError } from '#/core';
 import type { CloudClient } from '#/cloud/createCloudClient';
 import { getCloudClient } from '../setup/client';
 import { TEST_PROJECT_KEY } from '../setup/fixtures';
+import { isNotEntitled } from '../setup/entitlement';
 
 /**
  * Live suite for the `projectRoleActors` API (`addActorUsers`, `setActors`, `deleteActor`,
@@ -72,19 +73,24 @@ describe('Jira Cloud — projectRoleActors (live, read-only)', () => {
     expect(isNotFoundError(error) || (error as { status?: number }).status === 400).toBe(true);
   });
 
-  it('rejects an actor addition naming nobody', async () => {
+  it('rejects an actor addition naming nobody', async ctx => {
     const error = await client.projectRoleActors
       .addActorUsers({ projectIdOrKey: TEST_PROJECT_KEY, id: roleId })
       .catch((e: unknown) => e);
+
+    // A Free plan refuses every role actor write, so the refusal here would say nothing about the empty payload.
+    ctx.skip(isNotEntitled(error), 'the site is on a Free plan, which refuses role actor writes whatever they say');
 
     expect(error).toBeInstanceOf(Error);
     expect((error as { status?: number }).status).toBeGreaterThanOrEqual(400);
   });
 
-  it('silently succeeds when removing an actor that is not in the role', async () => {
+  it('silently succeeds when removing an actor that is not in the role', async ctx => {
     const result = await client.projectRoleActors
       .deleteActor({ projectIdOrKey: TEST_PROJECT_KEY, id: roleId, user: 'no-such-account-id' })
       .catch((e: unknown) => e);
+
+    ctx.skip(isNotEntitled(result), 'the site is on a Free plan, which refuses role actor writes whatever they say');
 
     expect(result).toBeUndefined();
 
