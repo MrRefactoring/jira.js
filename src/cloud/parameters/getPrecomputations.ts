@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { openEnum } from '#/core';
 
 export const GetPrecomputationsSchema = z.object({
   /**
@@ -20,7 +21,20 @@ export const GetPrecomputationsSchema = z.object({
    * - `created` Sorts by the created timestamp.
    * - `updated` Sorts by the updated timestamp.
    */
-  orderBy: z.string().optional(),
+  orderBy: openEnum([
+    'functionKey',
+    '-functionKey',
+    '+functionKey',
+    'used',
+    '-used',
+    '+used',
+    'created',
+    '-created',
+    '+created',
+    'updated',
+    '-updated',
+    '+updated',
+  ]).optional(),
 });
 
 export type GetPrecomputations = z.input<typeof GetPrecomputationsSchema>;

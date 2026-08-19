@@ -29,7 +29,17 @@ export const SearchWorkflowsSchema = z.object({
    * - `created` Sorts by create time.
    * - `updated` Sorts by update time.
    */
-  orderBy: z.string().optional(),
+  orderBy: openEnum([
+    'name',
+    '-name',
+    '+name',
+    'created',
+    '-created',
+    '+created',
+    'updated',
+    '-updated',
+    '+updated',
+  ]).optional(),
   /** The scope of the workflow. Global for company-managed projects and Project for team-managed projects. */
   scope: z.string().optional(),
   /** Filters active and inactive workflows. */
