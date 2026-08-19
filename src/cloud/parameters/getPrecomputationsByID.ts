@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { openEnum } from '#/core';
 import { JqlFunctionPrecomputationGetByIdRequestSchema } from '../models';
 
 export const GetPrecomputationsByIDSchema = z.object(JqlFunctionPrecomputationGetByIdRequestSchema.shape).extend({
@@ -10,7 +11,20 @@ export const GetPrecomputationsByIDSchema = z.object(JqlFunctionPrecomputationGe
    * - `created` Sorts by the created timestamp.
    * - `updated` Sorts by the updated timestamp.
    */
-  orderBy: z.string().optional(),
+  orderBy: openEnum([
+    'functionKey',
+    '-functionKey',
+    '+functionKey',
+    'used',
+    '-used',
+    '+used',
+    'created',
+    '-created',
+    '+created',
+    'updated',
+    '-updated',
+    '+updated',
+  ]).optional(),
 });
 
 export type GetPrecomputationsByID = z.input<typeof GetPrecomputationsByIDSchema>;

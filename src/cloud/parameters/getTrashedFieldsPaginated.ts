@@ -30,7 +30,17 @@ export const GetTrashedFieldsPaginatedSchema = z.object({
    * - `trashDate` sorts by the date the field was moved to the trash
    * - `plannedDeletionDate` sorts by the planned deletion date
    */
-  orderBy: z.string().optional(),
+  orderBy: openEnum([
+    'name',
+    '-name',
+    '+name',
+    'trashDate',
+    '-trashDate',
+    '+trashDate',
+    'plannedDeletionDate',
+    '-plannedDeletionDate',
+    '+plannedDeletionDate',
+  ]).optional(),
 });
 
 export type GetTrashedFieldsPaginated = z.input<typeof GetTrashedFieldsPaginatedSchema>;
