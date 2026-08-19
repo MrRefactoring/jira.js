@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { UpdateUiModificationDetailsSchema } from '../models';
 
-export const UpdateUiModificationSchema = z.object({}).extend(UpdateUiModificationDetailsSchema.shape).extend({
+export const UpdateUiModificationSchema = z.object(UpdateUiModificationDetailsSchema.shape).extend({
   /** The ID of the UI modification. */
   uiModificationId: z.string(),
 });

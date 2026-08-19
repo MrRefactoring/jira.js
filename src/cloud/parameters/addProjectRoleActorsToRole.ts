@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { ActorInputSchema } from '../models';
 
-export const AddProjectRoleActorsToRoleSchema = z.object({}).extend(ActorInputSchema.shape).extend({
+export const AddProjectRoleActorsToRoleSchema = z.object(ActorInputSchema.shape).extend({
   /**
    * The ID of the project role. Use [Get all project
    * roles](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-role/#api-rest-api-3-role-get) to get

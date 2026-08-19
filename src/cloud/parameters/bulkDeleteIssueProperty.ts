@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { IssueFilterForBulkPropertyDeleteSchema } from '../models';
 
-export const BulkDeleteIssuePropertySchema = z.object({}).extend(IssueFilterForBulkPropertyDeleteSchema.shape).extend({
+export const BulkDeleteIssuePropertySchema = z.object(IssueFilterForBulkPropertyDeleteSchema.shape).extend({
   /** The key of the property. */
   propertyKey: z.string(),
 });

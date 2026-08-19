@@ -2,7 +2,7 @@ import { z } from 'zod';
 import { apiObject } from '#/core';
 import { FieldIdentifierObjectSchema } from '../models';
 
-export const FieldIdIdentifierSchema = apiObject({}).extend(FieldIdentifierObjectSchema.shape).extend({
+export const FieldIdIdentifierSchema = apiObject(FieldIdentifierObjectSchema.shape).extend({
   identifier: z.string().optional(),
 });
 

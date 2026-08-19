@@ -2,8 +2,7 @@ import { z } from 'zod';
 import { MultipleCustomFieldValuesUpdateDetailsSchema } from '../models';
 
 export const UpdateMultipleCustomFieldValuesSchema = z
-  .object({})
-  .extend(MultipleCustomFieldValuesUpdateDetailsSchema.shape)
+  .object(MultipleCustomFieldValuesUpdateDetailsSchema.shape)
   .extend({
     /** Whether to generate a changelog for this update. */
     generateChangelog: z.boolean().optional(),

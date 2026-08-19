@@ -2,8 +2,7 @@ import { z } from 'zod';
 import { ProjectIssueTypeMappingsSchema } from '../models';
 
 export const GetCustomFieldContextsForProjectsAndIssueTypesSchema = z
-  .object({})
-  .extend(ProjectIssueTypeMappingsSchema.shape)
+  .object(ProjectIssueTypeMappingsSchema.shape)
   .extend({
     /** The ID of the custom field. */
     fieldId: z.string(),

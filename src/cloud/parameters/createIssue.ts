@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { IssueUpdateDetailsSchema } from '../models';
 
-export const CreateIssueSchema = z.object({}).extend(IssueUpdateDetailsSchema.shape).extend({
+export const CreateIssueSchema = z.object(IssueUpdateDetailsSchema.shape).extend({
   /**
    * Whether the project in which the issue is created is added to the user's **Recently viewed** project list, as shown
    * under **Projects** in Jira. When provided, the issue type and request type are added to the user's history for a

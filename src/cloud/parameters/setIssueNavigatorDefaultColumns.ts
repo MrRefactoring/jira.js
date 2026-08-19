@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import { ColumnRequestBodySchema } from '../models';
 
-export const SetIssueNavigatorDefaultColumnsSchema = z.object({}).extend(ColumnRequestBodySchema.shape);
+export const SetIssueNavigatorDefaultColumnsSchema = z.object(ColumnRequestBodySchema.shape);
 
 export type SetIssueNavigatorDefaultColumns = z.input<typeof SetIssueNavigatorDefaultColumnsSchema>;

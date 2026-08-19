@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { IssueTypesWorkflowMappingSchema } from '../models';
 
-export const UpdateWorkflowMappingSchema = z.object({}).extend(IssueTypesWorkflowMappingSchema.shape).extend({
+export const UpdateWorkflowMappingSchema = z.object(IssueTypesWorkflowMappingSchema.shape).extend({
   /** The ID of the workflow scheme. */
   id: z.number(),
   /** The name of the workflow. */
