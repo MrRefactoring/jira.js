@@ -1,4 +1,5 @@
-import { PageIssueFieldOptionSchema, type PageIssueFieldOption } from '../models/pageIssueFieldOption';
+import { PageIssueFieldOptionSchema } from '../models/pageIssueFieldOption';
+import type { Page } from '../models/page';
 import { IssueFieldOptionSchema, type IssueFieldOption } from '../models/issueFieldOption';
 import {
   TaskProgressRemoveOptionFromIssuesResultSchema,
@@ -32,8 +33,8 @@ import type { Client, SendRequestOptions } from '#/core';
 export async function getAllIssueFieldOptions(
   client: Client,
   parameters: GetAllIssueFieldOptions,
-): Promise<PageIssueFieldOption> {
-  const config: SendRequestOptions<PageIssueFieldOption> = {
+): Promise<Page<IssueFieldOption>> {
+  const config: SendRequestOptions<Page<IssueFieldOption>> = {
     url: `/rest/api/3/field/${parameters.fieldKey}/option`,
     method: 'GET',
     searchParams: {
@@ -93,8 +94,8 @@ export async function createIssueFieldOption(
 export async function getSelectableIssueFieldOptions(
   client: Client,
   parameters: GetSelectableIssueFieldOptions,
-): Promise<PageIssueFieldOption> {
-  const config: SendRequestOptions<PageIssueFieldOption> = {
+): Promise<Page<IssueFieldOption>> {
+  const config: SendRequestOptions<Page<IssueFieldOption>> = {
     url: `/rest/api/3/field/${parameters.fieldKey}/option/suggestions/edit`,
     method: 'GET',
     searchParams: {
@@ -123,8 +124,8 @@ export async function getSelectableIssueFieldOptions(
 export async function getVisibleIssueFieldOptions(
   client: Client,
   parameters: GetVisibleIssueFieldOptions,
-): Promise<PageIssueFieldOption> {
-  const config: SendRequestOptions<PageIssueFieldOption> = {
+): Promise<Page<IssueFieldOption>> {
+  const config: SendRequestOptions<Page<IssueFieldOption>> = {
     url: `/rest/api/3/field/${parameters.fieldKey}/option/suggestions/search`,
     method: 'GET',
     searchParams: {

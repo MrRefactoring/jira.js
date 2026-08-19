@@ -1,7 +1,6 @@
-import {
-  PageIssueSecurityLevelMemberSchema,
-  type PageIssueSecurityLevelMember,
-} from '../models/pageIssueSecurityLevelMember';
+import { PageIssueSecurityLevelMemberSchema } from '../models/pageIssueSecurityLevelMember';
+import type { Page } from '../models/page';
+import type { IssueSecurityLevelMember } from '../models/issueSecurityLevelMember';
 import { SecurityLevelSchema, type SecurityLevel } from '../models/securityLevel';
 import type { GetIssueSecurityLevelMembers } from '../parameters/getIssueSecurityLevelMembers';
 import type { GetIssueSecurityLevel } from '../parameters/getIssueSecurityLevel';
@@ -18,8 +17,8 @@ import type { Client, SendRequestOptions } from '#/core';
 export async function getIssueSecurityLevelMembers(
   client: Client,
   parameters: GetIssueSecurityLevelMembers,
-): Promise<PageIssueSecurityLevelMember> {
-  const config: SendRequestOptions<PageIssueSecurityLevelMember> = {
+): Promise<Page<IssueSecurityLevelMember>> {
+  const config: SendRequestOptions<Page<IssueSecurityLevelMember>> = {
     url: `/rest/api/3/issuesecurityschemes/${parameters.issueSecuritySchemeId}/members`,
     method: 'GET',
     searchParams: {

@@ -1,13 +1,11 @@
-import { PageIssueTypeSchemeSchema, type PageIssueTypeScheme } from '../models/pageIssueTypeScheme';
+import { PageIssueTypeSchemeSchema } from '../models/pageIssueTypeScheme';
+import type { Page } from '../models/page';
+import type { IssueTypeScheme } from '../models/issueTypeScheme';
 import { IssueTypeSchemeIDSchema, type IssueTypeSchemeID } from '../models/issueTypeSchemeID';
-import {
-  PageIssueTypeSchemeMappingSchema,
-  type PageIssueTypeSchemeMapping,
-} from '../models/pageIssueTypeSchemeMapping';
-import {
-  PageIssueTypeSchemeProjectsSchema,
-  type PageIssueTypeSchemeProjects,
-} from '../models/pageIssueTypeSchemeProjects';
+import { PageIssueTypeSchemeMappingSchema } from '../models/pageIssueTypeSchemeMapping';
+import type { IssueTypeSchemeMapping } from '../models/issueTypeSchemeMapping';
+import { PageIssueTypeSchemeProjectsSchema } from '../models/pageIssueTypeSchemeProjects';
+import type { IssueTypeSchemeProjects } from '../models/issueTypeSchemeProjects';
 import type { GetAllIssueTypeSchemes } from '../parameters/getAllIssueTypeSchemes';
 import type { CreateIssueTypeScheme } from '../parameters/createIssueTypeScheme';
 import type { GetIssueTypeSchemesMapping } from '../parameters/getIssueTypeSchemesMapping';
@@ -32,8 +30,8 @@ import type { Client, SendRequestOptions } from '#/core';
 export async function getAllIssueTypeSchemes(
   client: Client,
   parameters?: GetAllIssueTypeSchemes,
-): Promise<PageIssueTypeScheme> {
-  const config: SendRequestOptions<PageIssueTypeScheme> = {
+): Promise<Page<IssueTypeScheme>> {
+  const config: SendRequestOptions<Page<IssueTypeScheme>> = {
     url: '/rest/api/3/issuetypescheme',
     method: 'GET',
     searchParams: {
@@ -87,8 +85,8 @@ export async function createIssueTypeScheme(
 export async function getIssueTypeSchemesMapping(
   client: Client,
   parameters?: GetIssueTypeSchemesMapping,
-): Promise<PageIssueTypeSchemeMapping> {
-  const config: SendRequestOptions<PageIssueTypeSchemeMapping> = {
+): Promise<Page<IssueTypeSchemeMapping>> {
+  const config: SendRequestOptions<Page<IssueTypeSchemeMapping>> = {
     url: '/rest/api/3/issuetypescheme/mapping',
     method: 'GET',
     searchParams: {
@@ -114,8 +112,8 @@ export async function getIssueTypeSchemesMapping(
 export async function getIssueTypeSchemeForProjects(
   client: Client,
   parameters: GetIssueTypeSchemeForProjects,
-): Promise<PageIssueTypeSchemeProjects> {
-  const config: SendRequestOptions<PageIssueTypeSchemeProjects> = {
+): Promise<Page<IssueTypeSchemeProjects>> {
+  const config: SendRequestOptions<Page<IssueTypeSchemeProjects>> = {
     url: '/rest/api/3/issuetypescheme/project',
     method: 'GET',
     searchParams: {

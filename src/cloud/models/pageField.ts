@@ -1,23 +1,7 @@
-import { z } from 'zod';
-import { apiObject } from '#/core';
-import { FieldSchema } from './field';
-/** A page of items. */
+import { pageSchema, type Page } from './page';
+import { FieldSchema, type Field } from './field';
 
-export const PageFieldSchema = apiObject({
-  /** Whether this is the last page. */
-  isLast: z.boolean().optional(),
-  /** The maximum number of items that could be returned. */
-  maxResults: z.number().optional(),
-  /** If there is another page of results, the URL of the next page. */
-  nextPage: z.url().optional(),
-  /** The URL of the page. */
-  self: z.url().optional(),
-  /** The index of the first item returned. */
-  startAt: z.number().optional(),
-  /** The number of items returned. */
-  total: z.number().optional(),
-  /** The list of items. */
-  values: z.array(FieldSchema).optional(),
-});
+export const PageFieldSchema = pageSchema(FieldSchema);
 
-export type PageField = z.infer<typeof PageFieldSchema>;
+/** @deprecated Use `Page<Field>`, which describes the same shape. This alias is removed in the next major version. */
+export type PageField = Page<Field>;

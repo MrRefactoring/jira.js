@@ -1,14 +1,13 @@
-import { PageIssueTypeScreenSchemeSchema, type PageIssueTypeScreenScheme } from '../models/pageIssueTypeScreenScheme';
+import { PageIssueTypeScreenSchemeSchema } from '../models/pageIssueTypeScreenScheme';
+import type { Page } from '../models/page';
+import type { IssueTypeScreenScheme } from '../models/issueTypeScreenScheme';
 import { IssueTypeScreenSchemeIdSchema, type IssueTypeScreenSchemeId } from '../models/issueTypeScreenSchemeId';
-import {
-  PageIssueTypeScreenSchemeItemSchema,
-  type PageIssueTypeScreenSchemeItem,
-} from '../models/pageIssueTypeScreenSchemeItem';
-import {
-  PageIssueTypeScreenSchemesProjectsSchema,
-  type PageIssueTypeScreenSchemesProjects,
-} from '../models/pageIssueTypeScreenSchemesProjects';
-import { PageProjectDetailsSchema, type PageProjectDetails } from '../models/pageProjectDetails';
+import { PageIssueTypeScreenSchemeItemSchema } from '../models/pageIssueTypeScreenSchemeItem';
+import type { IssueTypeScreenSchemeItem } from '../models/issueTypeScreenSchemeItem';
+import { PageIssueTypeScreenSchemesProjectsSchema } from '../models/pageIssueTypeScreenSchemesProjects';
+import type { IssueTypeScreenSchemesProjects } from '../models/issueTypeScreenSchemesProjects';
+import { PageProjectDetailsSchema } from '../models/pageProjectDetails';
+import type { ProjectDetails } from '../models/projectDetails';
 import type { GetIssueTypeScreenSchemes } from '../parameters/getIssueTypeScreenSchemes';
 import type { CreateIssueTypeScreenScheme } from '../parameters/createIssueTypeScreenScheme';
 import type { GetIssueTypeScreenSchemeMappings } from '../parameters/getIssueTypeScreenSchemeMappings';
@@ -34,8 +33,8 @@ import type { Client, SendRequestOptions } from '#/core';
 export async function getIssueTypeScreenSchemes(
   client: Client,
   parameters?: GetIssueTypeScreenSchemes,
-): Promise<PageIssueTypeScreenScheme> {
-  const config: SendRequestOptions<PageIssueTypeScreenScheme> = {
+): Promise<Page<IssueTypeScreenScheme>> {
+  const config: SendRequestOptions<Page<IssueTypeScreenScheme>> = {
     url: '/rest/api/3/issuetypescreenscheme',
     method: 'GET',
     searchParams: {
@@ -88,8 +87,8 @@ export async function createIssueTypeScreenScheme(
 export async function getIssueTypeScreenSchemeMappings(
   client: Client,
   parameters?: GetIssueTypeScreenSchemeMappings,
-): Promise<PageIssueTypeScreenSchemeItem> {
-  const config: SendRequestOptions<PageIssueTypeScreenSchemeItem> = {
+): Promise<Page<IssueTypeScreenSchemeItem>> {
+  const config: SendRequestOptions<Page<IssueTypeScreenSchemeItem>> = {
     url: '/rest/api/3/issuetypescreenscheme/mapping',
     method: 'GET',
     searchParams: {
@@ -115,8 +114,8 @@ export async function getIssueTypeScreenSchemeMappings(
 export async function getIssueTypeScreenSchemeProjectAssociations(
   client: Client,
   parameters: GetIssueTypeScreenSchemeProjectAssociations,
-): Promise<PageIssueTypeScreenSchemesProjects> {
-  const config: SendRequestOptions<PageIssueTypeScreenSchemesProjects> = {
+): Promise<Page<IssueTypeScreenSchemesProjects>> {
+  const config: SendRequestOptions<Page<IssueTypeScreenSchemesProjects>> = {
     url: '/rest/api/3/issuetypescreenscheme/project',
     method: 'GET',
     searchParams: {
@@ -267,8 +266,8 @@ export async function removeMappingsFromIssueTypeScreenScheme(
 export async function getProjectsForIssueTypeScreenScheme(
   client: Client,
   parameters: GetProjectsForIssueTypeScreenScheme,
-): Promise<PageProjectDetails> {
-  const config: SendRequestOptions<PageProjectDetails> = {
+): Promise<Page<ProjectDetails>> {
+  const config: SendRequestOptions<Page<ProjectDetails>> = {
     url: `/rest/api/3/issuetypescreenscheme/${parameters.issueTypeScreenSchemeId}/project`,
     method: 'GET',
     searchParams: {

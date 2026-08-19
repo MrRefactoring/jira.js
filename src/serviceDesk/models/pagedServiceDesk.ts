@@ -1,21 +1,7 @@
-import { z } from 'zod';
-import { apiObject } from '#/core';
-import { PagedLinkSchema } from './pagedLink';
-import { ServiceDeskSchema } from './serviceDesk';
+import { pageSchema, type Page } from './page';
+import { ServiceDeskSchema, type ServiceDesk } from './serviceDesk';
 
-export const PagedServiceDeskSchema = apiObject({
-  _expands: z.array(z.string()).optional(),
-  _links: PagedLinkSchema.optional(),
-  /** Indicates if this is the last page of records (true) or not (false). */
-  isLastPage: z.boolean().optional(),
-  /** Number of items to be returned per page, up to the maximum set for these objects in the current implementation. */
-  limit: z.number().optional(),
-  /** Number of items returned in the page. */
-  size: z.number().optional(),
-  /** Index of the first item returned in the page. */
-  start: z.number().optional(),
-  /** Details of the items included in the page. */
-  values: z.array(ServiceDeskSchema).optional(),
-});
+export const PagedServiceDeskSchema = pageSchema(ServiceDeskSchema);
 
-export type PagedServiceDesk = z.infer<typeof PagedServiceDeskSchema>;
+/** @deprecated Use `Page<ServiceDesk>`, which describes the same shape. This alias is removed in the next major version. */
+export type PagedServiceDesk = Page<ServiceDesk>;

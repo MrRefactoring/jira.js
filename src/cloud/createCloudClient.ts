@@ -538,7 +538,8 @@ import type {
 } from './parameters';
 import type {
   AnnouncementBannerConfiguration,
-  PageContextualConfiguration,
+  Page,
+  ContextualConfiguration,
   ApplicationProperty,
   Configuration,
   ApplicationRole,
@@ -560,55 +561,52 @@ import type {
   PageOfCreateMetaIssueTypes,
   PageOfCreateMetaIssueTypeWithField,
   Issue,
-  PageChangelog,
+  Changelog,
   PageOfChangelogs,
   IssueUpdateMetadata,
   Transitions,
-  PageComment,
-  PageOfComments,
   Comment,
+  PageOfComments,
   PropertyKeys,
   EntityProperty,
-  Page2ComponentJson,
+  ComponentJson,
   ProjectComponent,
   ComponentIssuesCount,
-  PageComponentWithIssueCount,
+  ComponentWithIssueCount,
   TimeTrackingProvider,
   TimeTrackingConfiguration,
   CustomFieldOption,
-  PageCustomFieldContextOption,
+  CustomFieldContextOption,
   CustomFieldCreatedContextOptionsList,
   CustomFieldUpdatedContextOptionsList,
   TaskProgressRemoveOptionFromIssuesResult,
   PageOfDashboards,
-  PageDashboard,
   Dashboard,
   WorkspaceDataPolicy,
   ProjectDataPolicies,
   JiraExpressionsAnalysis,
   JExpEvaluateJiraExpressionResult,
   FieldDetails,
-  PageField,
+  Field,
   TaskProgressObject,
-  PageCustomFieldContext,
+  CustomFieldContext,
   CreateCustomFieldContext as CreateCustomFieldContextModel,
-  PageContextDefaultValues,
-  PageIssueTypeToContextMapping,
-  PageContextForProjectAndIssueType,
-  PageCustomFieldContextProjectMapping,
-  PageScreenWithTab,
-  PageScreen,
+  ContextDefaultValues,
+  IssueTypeToContextMapping,
+  ContextForProjectAndIssueType,
+  CustomFieldContextProjectMapping,
+  ScreenWithTab,
+  Screen,
   ScreenableField,
-  PageIssueFieldOption,
   IssueFieldOption,
   Filter,
-  PageFilterDetails,
+  FilterDetails,
   ColumnItem,
   DefaultShareScope,
   SharePermission,
   ForgePanelProjectPinAsyncResponse,
   Group,
-  PageUserDetails,
+  UserDetails,
   FoundGroups,
   FoundUsersAndGroups,
   IssuePickerSuggestions,
@@ -629,23 +627,23 @@ import type {
   IssueLinkType,
   SecuritySchemes,
   SecurityScheme,
-  PageIssueSecurityLevelMember,
+  IssueSecurityLevelMember,
   SecurityLevel,
   IssueTypeDetails,
-  PageIssueTypeScheme,
+  IssueTypeScheme,
   IssueTypeSchemeID,
-  PageIssueTypeSchemeMapping,
-  PageIssueTypeSchemeProjects,
-  PageIssueTypeScreenScheme,
+  IssueTypeSchemeMapping,
+  IssueTypeSchemeProjects,
+  IssueTypeScreenScheme,
   IssueTypeScreenSchemeId,
-  PageIssueTypeScreenSchemeItem,
-  PageIssueTypeScreenSchemesProjects,
-  PageProjectDetails,
+  IssueTypeScreenSchemeItem,
+  IssueTypeScreenSchemesProjects,
+  ProjectDetails,
   JQLReferenceData,
   AutoCompleteSuggestions,
   ParsedJqlQueries,
   ConvertedJQLQueries,
-  PageJqlFunctionPrecomputation,
+  JqlFunctionPrecomputation,
   JqlFunctionPrecomputationGetByIdResponse,
   PageString,
   Permissions,
@@ -653,18 +651,15 @@ import type {
   PermittedProjects,
   Locale,
   DashboardUser,
-  PageNotificationScheme,
-  NotificationSchemeAndProjectMappingPage,
   NotificationScheme,
+  NotificationSchemeAndProjectMappingJson,
   PermissionSchemes,
   PermissionScheme,
   PermissionGrants,
   PermissionGrant,
   PriorityId,
-  PagePriority,
   Priority,
   ProjectIdentifiers,
-  PageProject,
   Project,
   IssueTypeWithStatus,
   ProjectIssueTypeHierarchy,
@@ -674,7 +669,6 @@ import type {
   GetProjectRoles as GetProjectRolesModel,
   ProjectRole,
   ProjectRoleDetails,
-  PageVersion,
   Version,
   VersionIssueCounts,
   VersionRelatedWork,
@@ -687,7 +681,7 @@ import type {
   RedactionJobStatusResponse,
   Resolution,
   ScreenableTab,
-  PageScreenScheme,
+  ScreenScheme,
   ScreenSchemeId,
   ServerInformation,
   StatusDetails,
@@ -697,14 +691,13 @@ import type {
   StatusProjectIssueTypeUsageDTO,
   StatusProjectUsageDTO,
   StatusWorkflowUsageDTO,
-  PageUiModificationDetails,
+  UiModificationDetails,
   UiModificationIdentifiers,
   UnrestrictedUserEmail,
   GroupName,
   FoundUsers,
-  PageUser,
-  PageUserKey,
-  PageWebhook,
+  UserKey,
+  Webhook,
   ContainerForRegisteredWebhooks,
   WebhooksExpirationDate,
   WorkflowHistoryReadResponseDTO,
@@ -720,9 +713,8 @@ import type {
   WorkflowPreviewResponse,
   WorkflowSearchResponse,
   WorkflowUpdateResponse,
-  PageWorkflowTransitionRules,
+  WorkflowTransitionRules,
   WorkflowTransitionRulesUpdateErrors,
-  PageWorkflowScheme,
   WorkflowScheme,
   WorkflowSchemeReadResponse,
   WorkflowSchemeUpdateRequiredMappingsResponse,
@@ -755,7 +747,7 @@ export function createCloudClient(clientConfig: ClientConfig | Client) {
         issueCustomFieldValuesApps.updateCustomFieldValue(client, parameters),
     },
     issueCustomFieldConfigurationApps: {
-      getCustomFieldConfiguration: (parameters: GetCustomFieldConfiguration): Promise<PageContextualConfiguration> =>
+      getCustomFieldConfiguration: (parameters: GetCustomFieldConfiguration): Promise<Page<ContextualConfiguration>> =>
         issueCustomFieldConfigurationApps.getCustomFieldConfiguration(client, parameters),
       updateCustomFieldConfiguration: (parameters: UpdateCustomFieldConfiguration): Promise<void> =>
         issueCustomFieldConfigurationApps.updateCustomFieldConfiguration(client, parameters),
@@ -839,7 +831,7 @@ export function createCloudClient(clientConfig: ClientConfig | Client) {
       editIssue: (parameters: EditIssue): Promise<void> => issues.editIssue(client, parameters),
       deleteIssue: (parameters: DeleteIssue): Promise<void> => issues.deleteIssue(client, parameters),
       assignIssue: (parameters: AssignIssue): Promise<void> => issues.assignIssue(client, parameters),
-      getChangeLogs: (parameters: GetChangeLogs): Promise<PageChangelog> => issues.getChangeLogs(client, parameters),
+      getChangeLogs: (parameters: GetChangeLogs): Promise<Page<Changelog>> => issues.getChangeLogs(client, parameters),
       getChangeLogsByIds: (parameters: GetChangeLogsByIds): Promise<PageOfChangelogs> =>
         issues.getChangeLogsByIds(client, parameters),
       getEditIssueMeta: (parameters: GetEditIssueMeta): Promise<IssueUpdateMetadata> =>
@@ -849,7 +841,7 @@ export function createCloudClient(clientConfig: ClientConfig | Client) {
       doTransition: (parameters: DoTransition): Promise<void> => issues.doTransition(client, parameters),
     },
     issueComments: {
-      getCommentsByIds: (parameters: GetCommentsByIds): Promise<PageComment> =>
+      getCommentsByIds: (parameters: GetCommentsByIds): Promise<Page<Comment>> =>
         issueComments.getCommentsByIds(client, parameters),
       getComments: (parameters: GetComments): Promise<PageOfComments> => issueComments.getComments(client, parameters),
       addComment: (parameters: AddComment): Promise<Comment> => issueComments.addComment(client, parameters),
@@ -868,7 +860,7 @@ export function createCloudClient(clientConfig: ClientConfig | Client) {
         issueCommentProperties.deleteCommentProperty(client, parameters),
     },
     projectComponents: {
-      findComponentsForProjects: (parameters?: FindComponentsForProjects): Promise<Page2ComponentJson> =>
+      findComponentsForProjects: (parameters?: FindComponentsForProjects): Promise<Page<ComponentJson>> =>
         projectComponents.findComponentsForProjects(client, parameters),
       createComponent: (parameters: CreateComponent): Promise<ProjectComponent> =>
         projectComponents.createComponent(client, parameters),
@@ -882,7 +874,7 @@ export function createCloudClient(clientConfig: ClientConfig | Client) {
         projectComponents.getComponentRelatedIssues(client, parameters),
       getProjectComponentsPaginated: (
         parameters: GetProjectComponentsPaginated,
-      ): Promise<PageComponentWithIssueCount> => projectComponents.getProjectComponentsPaginated(client, parameters),
+      ): Promise<Page<ComponentWithIssueCount>> => projectComponents.getProjectComponentsPaginated(client, parameters),
       getProjectComponents: (parameters: GetProjectComponents): Promise<ProjectComponent[]> =>
         projectComponents.getProjectComponents(client, parameters),
     },
@@ -902,7 +894,7 @@ export function createCloudClient(clientConfig: ClientConfig | Client) {
     issueCustomFieldOptions: {
       getCustomFieldOption: (parameters: GetCustomFieldOption): Promise<CustomFieldOption> =>
         issueCustomFieldOptions.getCustomFieldOption(client, parameters),
-      getOptionsForContext: (parameters: GetOptionsForContext): Promise<PageCustomFieldContextOption> =>
+      getOptionsForContext: (parameters: GetOptionsForContext): Promise<Page<CustomFieldContextOption>> =>
         issueCustomFieldOptions.getOptionsForContext(client, parameters),
       createCustomFieldOption: (parameters: CreateCustomFieldOption): Promise<CustomFieldCreatedContextOptionsList> =>
         issueCustomFieldOptions.createCustomFieldOption(client, parameters),
@@ -920,7 +912,7 @@ export function createCloudClient(clientConfig: ClientConfig | Client) {
     dashboards: {
       getAllDashboards: (parameters?: GetAllDashboards): Promise<PageOfDashboards> =>
         dashboards.getAllDashboards(client, parameters),
-      getDashboardsPaginated: (parameters?: GetDashboardsPaginated): Promise<PageDashboard> =>
+      getDashboardsPaginated: (parameters?: GetDashboardsPaginated): Promise<Page<Dashboard>> =>
         dashboards.getDashboardsPaginated(client, parameters),
       getDashboardItemPropertyKeys: (parameters: GetDashboardItemPropertyKeys): Promise<PropertyKeys> =>
         dashboards.getDashboardItemPropertyKeys(client, parameters),
@@ -947,9 +939,9 @@ export function createCloudClient(clientConfig: ClientConfig | Client) {
       getFields: (): Promise<FieldDetails[]> => issueFields.getFields(client),
       createCustomField: (parameters: CreateCustomField): Promise<FieldDetails> =>
         issueFields.createCustomField(client, parameters),
-      getFieldsPaginated: (parameters?: GetFieldsPaginated): Promise<PageField> =>
+      getFieldsPaginated: (parameters?: GetFieldsPaginated): Promise<Page<Field>> =>
         issueFields.getFieldsPaginated(client, parameters),
-      getTrashedFieldsPaginated: (parameters?: GetTrashedFieldsPaginated): Promise<PageField> =>
+      getTrashedFieldsPaginated: (parameters?: GetTrashedFieldsPaginated): Promise<Page<Field>> =>
         issueFields.getTrashedFieldsPaginated(client, parameters),
       updateCustomField: (parameters: UpdateCustomField): Promise<void> =>
         issueFields.updateCustomField(client, parameters),
@@ -967,21 +959,23 @@ export function createCloudClient(clientConfig: ClientConfig | Client) {
         issueCustomFieldAssociations.removeAssociations(client, parameters),
     },
     issueCustomFieldContexts: {
-      getContextsForField: (parameters: GetContextsForField): Promise<PageCustomFieldContext> =>
+      getContextsForField: (parameters: GetContextsForField): Promise<Page<CustomFieldContext>> =>
         issueCustomFieldContexts.getContextsForField(client, parameters),
       createCustomFieldContext: (parameters: CreateCustomFieldContext): Promise<CreateCustomFieldContextModel> =>
         issueCustomFieldContexts.createCustomFieldContext(client, parameters),
-      getContextDefaultValues: (parameters: GetContextDefaultValues): Promise<PageContextDefaultValues> =>
+      getContextDefaultValues: (parameters: GetContextDefaultValues): Promise<Page<ContextDefaultValues>> =>
         issueCustomFieldContexts.getContextDefaultValues(client, parameters),
       getIssueTypeMappingsForContexts: (
         parameters: GetIssueTypeMappingsForContexts,
-      ): Promise<PageIssueTypeToContextMapping> =>
+      ): Promise<Page<IssueTypeToContextMapping>> =>
         issueCustomFieldContexts.getIssueTypeMappingsForContexts(client, parameters),
       getCustomFieldContextsForProjectsAndIssueTypes: (
         parameters: GetCustomFieldContextsForProjectsAndIssueTypes,
-      ): Promise<PageContextForProjectAndIssueType> =>
+      ): Promise<Page<ContextForProjectAndIssueType>> =>
         issueCustomFieldContexts.getCustomFieldContextsForProjectsAndIssueTypes(client, parameters),
-      getProjectContextMapping: (parameters: GetProjectContextMapping): Promise<PageCustomFieldContextProjectMapping> =>
+      getProjectContextMapping: (
+        parameters: GetProjectContextMapping,
+      ): Promise<Page<CustomFieldContextProjectMapping>> =>
         issueCustomFieldContexts.getProjectContextMapping(client, parameters),
       updateCustomFieldContext: (parameters: UpdateCustomFieldContext): Promise<void> =>
         issueCustomFieldContexts.updateCustomFieldContext(client, parameters),
@@ -997,22 +991,22 @@ export function createCloudClient(clientConfig: ClientConfig | Client) {
         issueCustomFieldContexts.removeCustomFieldContextFromProjects(client, parameters),
     },
     screens: {
-      getScreensForField: (parameters: GetScreensForField): Promise<PageScreenWithTab> =>
+      getScreensForField: (parameters: GetScreensForField): Promise<Page<ScreenWithTab>> =>
         screens.getScreensForField(client, parameters),
-      getScreens: (parameters?: GetScreens): Promise<PageScreen> => screens.getScreens(client, parameters),
+      getScreens: (parameters?: GetScreens): Promise<Page<Screen>> => screens.getScreens(client, parameters),
       addFieldToDefaultScreen: (parameters: AddFieldToDefaultScreen): Promise<void> =>
         screens.addFieldToDefaultScreen(client, parameters),
       getAvailableScreenFields: (parameters: GetAvailableScreenFields): Promise<ScreenableField[]> =>
         screens.getAvailableScreenFields(client, parameters),
     },
     issueCustomFieldOptionsApps: {
-      getAllIssueFieldOptions: (parameters: GetAllIssueFieldOptions): Promise<PageIssueFieldOption> =>
+      getAllIssueFieldOptions: (parameters: GetAllIssueFieldOptions): Promise<Page<IssueFieldOption>> =>
         issueCustomFieldOptionsApps.getAllIssueFieldOptions(client, parameters),
       createIssueFieldOption: (parameters: CreateIssueFieldOption): Promise<IssueFieldOption> =>
         issueCustomFieldOptionsApps.createIssueFieldOption(client, parameters),
-      getSelectableIssueFieldOptions: (parameters: GetSelectableIssueFieldOptions): Promise<PageIssueFieldOption> =>
+      getSelectableIssueFieldOptions: (parameters: GetSelectableIssueFieldOptions): Promise<Page<IssueFieldOption>> =>
         issueCustomFieldOptionsApps.getSelectableIssueFieldOptions(client, parameters),
-      getVisibleIssueFieldOptions: (parameters: GetVisibleIssueFieldOptions): Promise<PageIssueFieldOption> =>
+      getVisibleIssueFieldOptions: (parameters: GetVisibleIssueFieldOptions): Promise<Page<IssueFieldOption>> =>
         issueCustomFieldOptionsApps.getVisibleIssueFieldOptions(client, parameters),
       getIssueFieldOption: (parameters: GetIssueFieldOption): Promise<IssueFieldOption> =>
         issueCustomFieldOptionsApps.getIssueFieldOption(client, parameters),
@@ -1030,7 +1024,7 @@ export function createCloudClient(clientConfig: ClientConfig | Client) {
       getFavouriteFilters: (parameters?: GetFavouriteFilters): Promise<Filter[]> =>
         filters.getFavouriteFilters(client, parameters),
       getMyFilters: (parameters?: GetMyFilters): Promise<Filter[]> => filters.getMyFilters(client, parameters),
-      getFiltersPaginated: (parameters?: GetFiltersPaginated): Promise<PageFilterDetails> =>
+      getFiltersPaginated: (parameters?: GetFiltersPaginated): Promise<Page<FilterDetails>> =>
         filters.getFiltersPaginated(client, parameters),
       getFilter: (parameters: GetFilter): Promise<Filter> => filters.getFilter(client, parameters),
       updateFilter: (parameters: UpdateFilter): Promise<Filter> => filters.updateFilter(client, parameters),
@@ -1063,7 +1057,7 @@ export function createCloudClient(clientConfig: ClientConfig | Client) {
     groups: {
       createGroup: (parameters: CreateGroup): Promise<Group> => groups.createGroup(client, parameters),
       removeGroup: (parameters: RemoveGroup): Promise<void> => groups.removeGroup(client, parameters),
-      getUsersFromGroup: (parameters?: GetUsersFromGroup): Promise<PageUserDetails> =>
+      getUsersFromGroup: (parameters?: GetUsersFromGroup): Promise<Page<UserDetails>> =>
         groups.getUsersFromGroup(client, parameters),
       addUserToGroup: (parameters: AddUserToGroup): Promise<Group> => groups.addUserToGroup(client, parameters),
       removeUserFromGroup: (parameters: RemoveUserFromGroup): Promise<void> =>
@@ -1177,8 +1171,9 @@ export function createCloudClient(clientConfig: ClientConfig | Client) {
         issueSecuritySchemes.getIssueSecurityScheme(client, parameters),
     },
     issueSecurityLevel: {
-      getIssueSecurityLevelMembers: (parameters: GetIssueSecurityLevelMembers): Promise<PageIssueSecurityLevelMember> =>
-        issueSecurityLevel.getIssueSecurityLevelMembers(client, parameters),
+      getIssueSecurityLevelMembers: (
+        parameters: GetIssueSecurityLevelMembers,
+      ): Promise<Page<IssueSecurityLevelMember>> => issueSecurityLevel.getIssueSecurityLevelMembers(client, parameters),
       getIssueSecurityLevel: (parameters: GetIssueSecurityLevel): Promise<SecurityLevel> =>
         issueSecurityLevel.getIssueSecurityLevel(client, parameters),
     },
@@ -1207,15 +1202,15 @@ export function createCloudClient(clientConfig: ClientConfig | Client) {
         issueTypeProperties.deleteIssueTypeProperty(client, parameters),
     },
     issueTypeSchemes: {
-      getAllIssueTypeSchemes: (parameters?: GetAllIssueTypeSchemes): Promise<PageIssueTypeScheme> =>
+      getAllIssueTypeSchemes: (parameters?: GetAllIssueTypeSchemes): Promise<Page<IssueTypeScheme>> =>
         issueTypeSchemes.getAllIssueTypeSchemes(client, parameters),
       createIssueTypeScheme: (parameters: CreateIssueTypeScheme): Promise<IssueTypeSchemeID> =>
         issueTypeSchemes.createIssueTypeScheme(client, parameters),
-      getIssueTypeSchemesMapping: (parameters?: GetIssueTypeSchemesMapping): Promise<PageIssueTypeSchemeMapping> =>
+      getIssueTypeSchemesMapping: (parameters?: GetIssueTypeSchemesMapping): Promise<Page<IssueTypeSchemeMapping>> =>
         issueTypeSchemes.getIssueTypeSchemesMapping(client, parameters),
       getIssueTypeSchemeForProjects: (
         parameters: GetIssueTypeSchemeForProjects,
-      ): Promise<PageIssueTypeSchemeProjects> => issueTypeSchemes.getIssueTypeSchemeForProjects(client, parameters),
+      ): Promise<Page<IssueTypeSchemeProjects>> => issueTypeSchemes.getIssueTypeSchemeForProjects(client, parameters),
       assignIssueTypeSchemeToProject: (parameters: AssignIssueTypeSchemeToProject): Promise<void> =>
         issueTypeSchemes.assignIssueTypeSchemeToProject(client, parameters),
       updateIssueTypeScheme: (parameters: UpdateIssueTypeScheme): Promise<void> =>
@@ -1230,17 +1225,17 @@ export function createCloudClient(clientConfig: ClientConfig | Client) {
         issueTypeSchemes.removeIssueTypeFromIssueTypeScheme(client, parameters),
     },
     issueTypeScreenSchemes: {
-      getIssueTypeScreenSchemes: (parameters?: GetIssueTypeScreenSchemes): Promise<PageIssueTypeScreenScheme> =>
+      getIssueTypeScreenSchemes: (parameters?: GetIssueTypeScreenSchemes): Promise<Page<IssueTypeScreenScheme>> =>
         issueTypeScreenSchemes.getIssueTypeScreenSchemes(client, parameters),
       createIssueTypeScreenScheme: (parameters: CreateIssueTypeScreenScheme): Promise<IssueTypeScreenSchemeId> =>
         issueTypeScreenSchemes.createIssueTypeScreenScheme(client, parameters),
       getIssueTypeScreenSchemeMappings: (
         parameters?: GetIssueTypeScreenSchemeMappings,
-      ): Promise<PageIssueTypeScreenSchemeItem> =>
+      ): Promise<Page<IssueTypeScreenSchemeItem>> =>
         issueTypeScreenSchemes.getIssueTypeScreenSchemeMappings(client, parameters),
       getIssueTypeScreenSchemeProjectAssociations: (
         parameters: GetIssueTypeScreenSchemeProjectAssociations,
-      ): Promise<PageIssueTypeScreenSchemesProjects> =>
+      ): Promise<Page<IssueTypeScreenSchemesProjects>> =>
         issueTypeScreenSchemes.getIssueTypeScreenSchemeProjectAssociations(client, parameters),
       assignIssueTypeScreenSchemeToProject: (parameters: AssignIssueTypeScreenSchemeToProject): Promise<void> =>
         issueTypeScreenSchemes.assignIssueTypeScreenSchemeToProject(client, parameters),
@@ -1256,7 +1251,8 @@ export function createCloudClient(clientConfig: ClientConfig | Client) {
         issueTypeScreenSchemes.removeMappingsFromIssueTypeScreenScheme(client, parameters),
       getProjectsForIssueTypeScreenScheme: (
         parameters: GetProjectsForIssueTypeScreenScheme,
-      ): Promise<PageProjectDetails> => issueTypeScreenSchemes.getProjectsForIssueTypeScreenScheme(client, parameters),
+      ): Promise<Page<ProjectDetails>> =>
+        issueTypeScreenSchemes.getProjectsForIssueTypeScreenScheme(client, parameters),
     },
     jql: {
       getAutoComplete: (): Promise<JQLReferenceData> => jql.getAutoComplete(client),
@@ -1271,7 +1267,7 @@ export function createCloudClient(clientConfig: ClientConfig | Client) {
         jql.migrateQueries(client, parameters),
     },
     jqlFunctionsApps: {
-      getPrecomputations: (parameters?: GetPrecomputations): Promise<PageJqlFunctionPrecomputation> =>
+      getPrecomputations: (parameters?: GetPrecomputations): Promise<Page<JqlFunctionPrecomputation>> =>
         jqlFunctionsApps.getPrecomputations(client, parameters),
       updatePrecomputations: (parameters: UpdatePrecomputations): Promise<void> =>
         jqlFunctionsApps.updatePrecomputations(client, parameters),
@@ -1299,11 +1295,11 @@ export function createCloudClient(clientConfig: ClientConfig | Client) {
         myself.getCurrentUser(client, parameters),
     },
     issueNotificationSchemes: {
-      getNotificationSchemes: (parameters?: GetNotificationSchemes): Promise<PageNotificationScheme> =>
+      getNotificationSchemes: (parameters?: GetNotificationSchemes): Promise<Page<NotificationScheme>> =>
         issueNotificationSchemes.getNotificationSchemes(client, parameters),
       getNotificationSchemeToProjectMappings: (
         parameters?: GetNotificationSchemeToProjectMappings,
-      ): Promise<NotificationSchemeAndProjectMappingPage> =>
+      ): Promise<Page<NotificationSchemeAndProjectMappingJson>> =>
         issueNotificationSchemes.getNotificationSchemeToProjectMappings(client, parameters),
       getNotificationScheme: (parameters: GetNotificationScheme): Promise<NotificationScheme> =>
         issueNotificationSchemes.getNotificationScheme(client, parameters),
@@ -1338,7 +1334,7 @@ export function createCloudClient(clientConfig: ClientConfig | Client) {
       setDefaultPriority: (parameters: SetDefaultPriority): Promise<void> =>
         issuePriorities.setDefaultPriority(client, parameters),
       movePriorities: (parameters: MovePriorities): Promise<void> => issuePriorities.movePriorities(client, parameters),
-      searchPriorities: (parameters?: SearchPriorities): Promise<PagePriority> =>
+      searchPriorities: (parameters?: SearchPriorities): Promise<Page<Priority>> =>
         issuePriorities.searchPriorities(client, parameters),
       getPriority: (parameters: GetPriority): Promise<Priority> => issuePriorities.getPriority(client, parameters),
       updatePriority: (parameters: UpdatePriority): Promise<void> => issuePriorities.updatePriority(client, parameters),
@@ -1348,7 +1344,7 @@ export function createCloudClient(clientConfig: ClientConfig | Client) {
     projects: {
       createProject: (parameters: CreateProject): Promise<ProjectIdentifiers> =>
         projects.createProject(client, parameters),
-      searchProjects: (parameters?: SearchProjects): Promise<PageProject> =>
+      searchProjects: (parameters?: SearchProjects): Promise<Page<Project>> =>
         projects.searchProjects(client, parameters),
       getProject: (parameters: GetProject): Promise<Project> => projects.getProject(client, parameters),
       updateProject: (parameters: UpdateProject): Promise<Project> => projects.updateProject(client, parameters),
@@ -1431,7 +1427,7 @@ export function createCloudClient(clientConfig: ClientConfig | Client) {
         projectRoleActors.deleteProjectRoleActorsFromRole(client, parameters),
     },
     projectVersions: {
-      getProjectVersionsPaginated: (parameters: GetProjectVersionsPaginated): Promise<PageVersion> =>
+      getProjectVersionsPaginated: (parameters: GetProjectVersionsPaginated): Promise<Page<Version>> =>
         projectVersions.getProjectVersionsPaginated(client, parameters),
       getProjectVersions: (parameters: GetProjectVersions): Promise<Version[]> =>
         projectVersions.getProjectVersions(client, parameters),
@@ -1519,7 +1515,7 @@ export function createCloudClient(clientConfig: ClientConfig | Client) {
         screenTabFields.moveScreenTabField(client, parameters),
     },
     screenSchemes: {
-      getScreenSchemes: (parameters?: GetScreenSchemes): Promise<PageScreenScheme> =>
+      getScreenSchemes: (parameters?: GetScreenSchemes): Promise<Page<ScreenScheme>> =>
         screenSchemes.getScreenSchemes(client, parameters),
       createScreenScheme: (parameters: CreateScreenScheme): Promise<ScreenSchemeId> =>
         screenSchemes.createScreenScheme(client, parameters),
@@ -1568,7 +1564,7 @@ export function createCloudClient(clientConfig: ClientConfig | Client) {
       getTask: (parameters: GetTask): Promise<TaskProgressObject> => tasks.getTask(client, parameters),
     },
     uiModificationsApps: {
-      getUiModifications: (parameters?: GetUiModifications): Promise<PageUiModificationDetails> =>
+      getUiModifications: (parameters?: GetUiModifications): Promise<Page<UiModificationDetails>> =>
         uiModificationsApps.getUiModifications(client, parameters),
       createUiModification: (parameters: CreateUiModification): Promise<UiModificationIdentifiers> =>
         uiModificationsApps.createUiModification(client, parameters),
@@ -1604,9 +1600,9 @@ export function createCloudClient(clientConfig: ClientConfig | Client) {
       findUsersForPicker: (parameters: FindUsersForPicker): Promise<FoundUsers> =>
         userSearch.findUsersForPicker(client, parameters),
       findUsers: (parameters?: FindUsers): Promise<DashboardUser[]> => userSearch.findUsers(client, parameters),
-      findUsersByQuery: (parameters: FindUsersByQuery): Promise<PageUser> =>
+      findUsersByQuery: (parameters: FindUsersByQuery): Promise<Page<DashboardUser>> =>
         userSearch.findUsersByQuery(client, parameters),
-      findUserKeysByQuery: (parameters: FindUserKeysByQuery): Promise<PageUserKey> =>
+      findUserKeysByQuery: (parameters: FindUserKeysByQuery): Promise<Page<UserKey>> =>
         userSearch.findUserKeysByQuery(client, parameters),
       findUsersWithBrowsePermission: (parameters?: FindUsersWithBrowsePermission): Promise<DashboardUser[]> =>
         userSearch.findUsersWithBrowsePermission(client, parameters),
@@ -1622,7 +1618,7 @@ export function createCloudClient(clientConfig: ClientConfig | Client) {
         userProperties.deleteUserProperty(client, parameters),
     },
     webhooks: {
-      getDynamicWebhooksForApp: (parameters?: GetDynamicWebhooksForApp): Promise<PageWebhook> =>
+      getDynamicWebhooksForApp: (parameters?: GetDynamicWebhooksForApp): Promise<Page<Webhook>> =>
         webhooks.getDynamicWebhooksForApp(client, parameters),
       registerDynamicWebhooks: (parameters: RegisterDynamicWebhooks): Promise<ContainerForRegisteredWebhooks> =>
         webhooks.registerDynamicWebhooks(client, parameters),
@@ -1667,7 +1663,7 @@ export function createCloudClient(clientConfig: ClientConfig | Client) {
     workflowTransitionRules: {
       getWorkflowTransitionRuleConfigurations: (
         parameters: GetWorkflowTransitionRuleConfigurations,
-      ): Promise<PageWorkflowTransitionRules> =>
+      ): Promise<Page<WorkflowTransitionRules>> =>
         workflowTransitionRules.getWorkflowTransitionRuleConfigurations(client, parameters),
       updateWorkflowTransitionRuleConfigurations: (
         parameters: UpdateWorkflowTransitionRuleConfigurations,
@@ -1679,7 +1675,7 @@ export function createCloudClient(clientConfig: ClientConfig | Client) {
         workflowTransitionRules.deleteWorkflowTransitionRuleConfigurations(client, parameters),
     },
     workflowSchemes: {
-      getAllWorkflowSchemes: (parameters?: GetAllWorkflowSchemes): Promise<PageWorkflowScheme> =>
+      getAllWorkflowSchemes: (parameters?: GetAllWorkflowSchemes): Promise<Page<WorkflowScheme>> =>
         workflowSchemes.getAllWorkflowSchemes(client, parameters),
       createWorkflowScheme: (parameters: CreateWorkflowScheme): Promise<WorkflowScheme> =>
         workflowSchemes.createWorkflowScheme(client, parameters),

@@ -1,5 +1,8 @@
-import { PageScreenWithTabSchema, type PageScreenWithTab } from '../models/pageScreenWithTab';
-import { PageScreenSchema, type PageScreen } from '../models/pageScreen';
+import { PageScreenWithTabSchema } from '../models/pageScreenWithTab';
+import type { Page } from '../models/page';
+import type { ScreenWithTab } from '../models/screenWithTab';
+import { PageScreenSchema } from '../models/pageScreen';
+import type { Screen } from '../models/screen';
 import { ScreenableFieldSchema, type ScreenableField } from '../models/screenableField';
 import type { GetScreensForField } from '../parameters/getScreensForField';
 import type { GetScreens } from '../parameters/getScreens';
@@ -15,8 +18,8 @@ import { z } from 'zod';
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-export async function getScreensForField(client: Client, parameters: GetScreensForField): Promise<PageScreenWithTab> {
-  const config: SendRequestOptions<PageScreenWithTab> = {
+export async function getScreensForField(client: Client, parameters: GetScreensForField): Promise<Page<ScreenWithTab>> {
+  const config: SendRequestOptions<Page<ScreenWithTab>> = {
     url: `/rest/api/3/field/${parameters.fieldId}/screens`,
     method: 'GET',
     searchParams: {
@@ -37,8 +40,8 @@ export async function getScreensForField(client: Client, parameters: GetScreensF
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-export async function getScreens(client: Client, parameters?: GetScreens): Promise<PageScreen> {
-  const config: SendRequestOptions<PageScreen> = {
+export async function getScreens(client: Client, parameters?: GetScreens): Promise<Page<Screen>> {
+  const config: SendRequestOptions<Page<Screen>> = {
     url: '/rest/api/3/screens',
     method: 'GET',
     searchParams: {

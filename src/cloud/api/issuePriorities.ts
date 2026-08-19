@@ -1,5 +1,6 @@
 import { PriorityIdSchema, type PriorityId } from '../models/priorityId';
-import { PagePrioritySchema, type PagePriority } from '../models/pagePriority';
+import { PagePrioritySchema } from '../models/pagePriority';
+import type { Page } from '../models/page';
 import { PrioritySchema, type Priority } from '../models/priority';
 import { TaskProgressObjectSchema, type TaskProgressObject } from '../models/taskProgressObject';
 import type { CreatePriority } from '../parameters/createPriority';
@@ -94,8 +95,8 @@ export async function movePriorities(client: Client, parameters: MovePriorities)
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** Permission
  * to access Jira.
  */
-export async function searchPriorities(client: Client, parameters?: SearchPriorities): Promise<PagePriority> {
-  const config: SendRequestOptions<PagePriority> = {
+export async function searchPriorities(client: Client, parameters?: SearchPriorities): Promise<Page<Priority>> {
+  const config: SendRequestOptions<Page<Priority>> = {
     url: '/rest/api/3/priority/search',
     method: 'GET',
     searchParams: {

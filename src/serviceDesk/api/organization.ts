@@ -1,8 +1,10 @@
-import { PagedOrganizationSchema, type PagedOrganization } from '../models/pagedOrganization';
+import { PagedOrganizationSchema } from '../models/pagedOrganization';
+import type { Page } from '../models/page';
 import { OrganizationSchema, type Organization } from '../models/organization';
 import { PropertyKeysSchema, type PropertyKeys } from '../models/propertyKeys';
 import { EntityPropertySchema, type EntityProperty } from '../models/entityProperty';
-import { PagedUserSchema, type PagedUser } from '../models/pagedUser';
+import { PagedUserSchema } from '../models/pagedUser';
+import type { User } from '../models/user';
 import type { GetOrganizations } from '../parameters/getOrganizations';
 import type { CreateOrganization } from '../parameters/createOrganization';
 import type { GetOrganization } from '../parameters/getOrganization';
@@ -29,8 +31,8 @@ import type { Client, SendRequestOptions } from '#/core';
  * **Response limitations**: If the user is a customer, only those organizations of which the customer is a member are
  * listed.
  */
-export async function getOrganizations(client: Client, parameters?: GetOrganizations): Promise<PagedOrganization> {
-  const config: SendRequestOptions<PagedOrganization> = {
+export async function getOrganizations(client: Client, parameters?: GetOrganizations): Promise<Page<Organization>> {
+  const config: SendRequestOptions<Page<Organization>> = {
     url: '/rest/servicedeskapi/organization',
     method: 'GET',
     searchParams: {
@@ -210,8 +212,8 @@ export async function deleteProperty(client: Client, parameters: DeleteProperty)
  * **[Permissions](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro#permissions) required**: Service
  * desk administrator or agent.
  */
-export async function getUsersInOrganization(client: Client, parameters: GetUsersInOrganization): Promise<PagedUser> {
-  const config: SendRequestOptions<PagedUser> = {
+export async function getUsersInOrganization(client: Client, parameters: GetUsersInOrganization): Promise<Page<User>> {
+  const config: SendRequestOptions<Page<User>> = {
     url: `/rest/servicedeskapi/organization/${parameters.organizationId}/user`,
     method: 'GET',
     searchParams: {
@@ -274,8 +276,8 @@ export async function removeUsersFromOrganization(
 export async function getServiceDeskOrganizations(
   client: Client,
   parameters: GetServiceDeskOrganizations,
-): Promise<PagedOrganization> {
-  const config: SendRequestOptions<PagedOrganization> = {
+): Promise<Page<Organization>> {
+  const config: SendRequestOptions<Page<Organization>> = {
     url: `/rest/servicedeskapi/servicedesk/${parameters.serviceDeskId}/organization`,
     method: 'GET',
     searchParams: {

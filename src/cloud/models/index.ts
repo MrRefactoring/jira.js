@@ -1070,6 +1070,8 @@ export * from './orderOfCustomFieldOptions';
 
 export * from './orderOfIssueTypes';
 
+export * from './page';
+
 export * from './page2ComponentJson';
 
 export * from './page2FieldAssociationSchemeFieldSearchResult';

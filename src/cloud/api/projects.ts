@@ -1,5 +1,6 @@
 import { ProjectIdentifiersSchema, type ProjectIdentifiers } from '../models/projectIdentifiers';
-import { PageProjectSchema, type PageProject } from '../models/pageProject';
+import { PageProjectSchema } from '../models/pageProject';
+import type { Page } from '../models/page';
 import { ProjectSchema, type Project } from '../models/project';
 import { IssueTypeWithStatusSchema, type IssueTypeWithStatus } from '../models/issueTypeWithStatus';
 import { ProjectIssueTypeHierarchySchema, type ProjectIssueTypeHierarchy } from '../models/projectIssueTypeHierarchy';
@@ -81,8 +82,8 @@ export async function createProject(client: Client, parameters: CreateProject): 
  * - _Administer Projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
  * - _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-export async function searchProjects(client: Client, parameters?: SearchProjects): Promise<PageProject> {
-  const config: SendRequestOptions<PageProject> = {
+export async function searchProjects(client: Client, parameters?: SearchProjects): Promise<Page<Project>> {
+  const config: SendRequestOptions<Page<Project>> = {
     url: '/rest/api/3/project/search',
     method: 'GET',
     searchParams: {

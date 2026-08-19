@@ -1,13 +1,7 @@
-import { z } from 'zod';
-import { apiObject } from '#/core';
-import { BoardSchema } from './board';
+import { pageSchema, type Page } from './page';
+import { BoardSchema, type Board } from './board';
 
-export const PageBoardSchema = apiObject({
-  isLast: z.boolean().optional(),
-  maxResults: z.number().optional(),
-  startAt: z.number().optional(),
-  total: z.number().optional(),
-  values: z.array(BoardSchema).optional(),
-});
+export const PageBoardSchema = pageSchema(BoardSchema);
 
-export type PageBoard = z.infer<typeof PageBoardSchema>;
+/** @deprecated Use `Page<Board>`, which describes the same shape. This alias is removed in the next major version. */
+export type PageBoard = Page<Board>;

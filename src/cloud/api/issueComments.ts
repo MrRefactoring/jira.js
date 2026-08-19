@@ -1,6 +1,7 @@
-import { PageCommentSchema, type PageComment } from '../models/pageComment';
-import { PageOfCommentsSchema, type PageOfComments } from '../models/pageOfComments';
+import { PageCommentSchema } from '../models/pageComment';
+import type { Page } from '../models/page';
 import { CommentSchema, type Comment } from '../models/comment';
+import { PageOfCommentsSchema, type PageOfComments } from '../models/pageOfComments';
 import type { GetCommentsByIds } from '../parameters/getCommentsByIds';
 import type { GetComments } from '../parameters/getComments';
 import type { AddComment } from '../parameters/addComment';
@@ -24,8 +25,8 @@ import type { Client, SendRequestOptions } from '#/core';
  *   to view the issue.
  * - If the comment has visibility restrictions, belongs to the group or has the role visibility is restricted to.
  */
-export async function getCommentsByIds(client: Client, parameters: GetCommentsByIds): Promise<PageComment> {
-  const config: SendRequestOptions<PageComment> = {
+export async function getCommentsByIds(client: Client, parameters: GetCommentsByIds): Promise<Page<Comment>> {
+  const config: SendRequestOptions<Page<Comment>> = {
     url: '/rest/api/3/comment/list',
     method: 'POST',
     searchParams: {

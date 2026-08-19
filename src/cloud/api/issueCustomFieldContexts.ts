@@ -1,18 +1,15 @@
-import { PageCustomFieldContextSchema, type PageCustomFieldContext } from '../models/pageCustomFieldContext';
+import { PageCustomFieldContextSchema } from '../models/pageCustomFieldContext';
+import type { Page } from '../models/page';
+import type { CustomFieldContext } from '../models/customFieldContext';
 import { CreateCustomFieldContextSchema, type CreateCustomFieldContext } from '../models/createCustomFieldContext';
-import { PageContextDefaultValuesSchema, type PageContextDefaultValues } from '../models/pageContextDefaultValues';
-import {
-  PageIssueTypeToContextMappingSchema,
-  type PageIssueTypeToContextMapping,
-} from '../models/pageIssueTypeToContextMapping';
-import {
-  PageContextForProjectAndIssueTypeSchema,
-  type PageContextForProjectAndIssueType,
-} from '../models/pageContextForProjectAndIssueType';
-import {
-  PageCustomFieldContextProjectMappingSchema,
-  type PageCustomFieldContextProjectMapping,
-} from '../models/pageCustomFieldContextProjectMapping';
+import { PageContextDefaultValuesSchema } from '../models/pageContextDefaultValues';
+import type { ContextDefaultValues } from '../models/contextDefaultValues';
+import { PageIssueTypeToContextMappingSchema } from '../models/pageIssueTypeToContextMapping';
+import type { IssueTypeToContextMapping } from '../models/issueTypeToContextMapping';
+import { PageContextForProjectAndIssueTypeSchema } from '../models/pageContextForProjectAndIssueType';
+import type { ContextForProjectAndIssueType } from '../models/contextForProjectAndIssueType';
+import { PageCustomFieldContextProjectMappingSchema } from '../models/pageCustomFieldContextProjectMapping';
+import type { CustomFieldContextProjectMapping } from '../models/customFieldContextProjectMapping';
 import type { GetContextsForField } from '../parameters/getContextsForField';
 import type { CreateCustomFieldContext as CreateCustomFieldContextParameters } from '../parameters/createCustomFieldContext';
 import type { GetContextDefaultValues } from '../parameters/getContextDefaultValues';
@@ -46,8 +43,8 @@ import type { Client, SendRequestOptions } from '#/core';
 export async function getContextsForField(
   client: Client,
   parameters: GetContextsForField,
-): Promise<PageCustomFieldContext> {
-  const config: SendRequestOptions<PageCustomFieldContext> = {
+): Promise<Page<CustomFieldContext>> {
+  const config: SendRequestOptions<Page<CustomFieldContext>> = {
     url: `/rest/api/3/field/${parameters.fieldId}/context`,
     method: 'GET',
     searchParams: {
@@ -114,8 +111,8 @@ export async function createCustomFieldContext(
 export async function getContextDefaultValues(
   client: Client,
   parameters: GetContextDefaultValues,
-): Promise<PageContextDefaultValues> {
-  const config: SendRequestOptions<PageContextDefaultValues> = {
+): Promise<Page<ContextDefaultValues>> {
+  const config: SendRequestOptions<Page<ContextDefaultValues>> = {
     url: `/rest/api/3/field/${parameters.fieldId}/context/defaultValues`,
     method: 'GET',
     searchParams: {
@@ -141,8 +138,8 @@ export async function getContextDefaultValues(
 export async function getIssueTypeMappingsForContexts(
   client: Client,
   parameters: GetIssueTypeMappingsForContexts,
-): Promise<PageIssueTypeToContextMapping> {
-  const config: SendRequestOptions<PageIssueTypeToContextMapping> = {
+): Promise<Page<IssueTypeToContextMapping>> {
+  const config: SendRequestOptions<Page<IssueTypeToContextMapping>> = {
     url: `/rest/api/3/field/${parameters.fieldId}/context/issuetypemapping`,
     method: 'GET',
     searchParams: {
@@ -175,8 +172,8 @@ export async function getIssueTypeMappingsForContexts(
 export async function getCustomFieldContextsForProjectsAndIssueTypes(
   client: Client,
   parameters: GetCustomFieldContextsForProjectsAndIssueTypes,
-): Promise<PageContextForProjectAndIssueType> {
-  const config: SendRequestOptions<PageContextForProjectAndIssueType> = {
+): Promise<Page<ContextForProjectAndIssueType>> {
+  const config: SendRequestOptions<Page<ContextForProjectAndIssueType>> = {
     url: `/rest/api/3/field/${parameters.fieldId}/context/mapping`,
     method: 'POST',
     searchParams: {
@@ -203,8 +200,8 @@ export async function getCustomFieldContextsForProjectsAndIssueTypes(
 export async function getProjectContextMapping(
   client: Client,
   parameters: GetProjectContextMapping,
-): Promise<PageCustomFieldContextProjectMapping> {
-  const config: SendRequestOptions<PageCustomFieldContextProjectMapping> = {
+): Promise<Page<CustomFieldContextProjectMapping>> {
+  const config: SendRequestOptions<Page<CustomFieldContextProjectMapping>> = {
     url: `/rest/api/3/field/${parameters.fieldId}/context/projectmapping`,
     method: 'GET',
     searchParams: {

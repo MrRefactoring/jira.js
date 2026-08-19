@@ -1,8 +1,9 @@
 import { PageOfDashboardsSchema, type PageOfDashboards } from '../models/pageOfDashboards';
-import { PageDashboardSchema, type PageDashboard } from '../models/pageDashboard';
+import { PageDashboardSchema } from '../models/pageDashboard';
+import type { Page } from '../models/page';
+import { DashboardSchema, type Dashboard } from '../models/dashboard';
 import { PropertyKeysSchema, type PropertyKeys } from '../models/propertyKeys';
 import { EntityPropertySchema, type EntityProperty } from '../models/entityProperty';
-import { DashboardSchema, type Dashboard } from '../models/dashboard';
 import type { GetAllDashboards } from '../parameters/getAllDashboards';
 import type { GetDashboardsPaginated } from '../parameters/getDashboardsPaginated';
 import type { GetDashboardItemPropertyKeys } from '../parameters/getDashboardItemPropertyKeys';
@@ -56,8 +57,8 @@ export async function getAllDashboards(client: Client, parameters?: GetAllDashbo
 export async function getDashboardsPaginated(
   client: Client,
   parameters?: GetDashboardsPaginated,
-): Promise<PageDashboard> {
-  const config: SendRequestOptions<PageDashboard> = {
+): Promise<Page<Dashboard>> {
+  const config: SendRequestOptions<Page<Dashboard>> = {
     url: '/rest/api/3/dashboard/search',
     method: 'GET',
     searchParams: {
