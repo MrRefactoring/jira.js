@@ -1,13 +1,13 @@
-import { z } from 'zod';
-import { apiObject } from '#/core';
-import { BoardFilterSchema } from './boardFilter';
+import { PageBoardFilterSchema, type PageBoardFilter } from './pageBoardFilter';
 
-export const GetBoardByFilterIdSchema = apiObject({
-  isLast: z.boolean().optional(),
-  maxResults: z.number().optional(),
-  startAt: z.number().optional(),
-  total: z.number().optional(),
-  values: z.array(BoardFilterSchema).optional(),
-});
+/**
+ * @deprecated Renamed to `PageBoardFilterSchema`, which describes the same shape. This alias is removed in the next
+ *   major version.
+ */
+export const GetBoardByFilterIdSchema = PageBoardFilterSchema;
 
-export type GetBoardByFilterId = z.infer<typeof GetBoardByFilterIdSchema>;
+/**
+ * @deprecated Renamed to `PageBoardFilter`, which describes the same shape. This alias is removed in the next major
+ *   version.
+ */
+export type GetBoardByFilterId = PageBoardFilter;

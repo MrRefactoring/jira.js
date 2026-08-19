@@ -1,41 +1,10 @@
-import { z } from 'zod';
-import { apiObject } from '#/core';
-import { GroupSchema } from './group';
-import { UserSchema } from './user';
-import { BoardLocationSchema } from './boardLocation';
+import { PageBoardSchema, type PageBoard } from './pageBoard';
 
-export const GetAllBoardsSchema = apiObject({
-  isLast: z.boolean().optional(),
-  maxResults: z.number().optional(),
-  startAt: z.number().optional(),
-  total: z.number().optional(),
-  values: z
-    .array(
-      apiObject({
-        /** The users and groups who own the board. */
-        admins: apiObject({
-          groups: z.array(GroupSchema).optional(),
-          users: z.array(UserSchema).optional(),
-        }).optional(),
-        /** Whether the board can be edited. */
-        canEdit: z.boolean().optional(),
-        /** Whether the board is selected as a favorite. */
-        favourite: z.boolean().optional(),
-        /** The ID of the board. */
-        id: z.number().optional(),
-        /** Whether the board is private. */
-        isPrivate: z.boolean().optional(),
-        /** The container that the board is located in. */
-        location: BoardLocationSchema.optional(),
-        /** The name of the board. */
-        name: z.string().optional(),
-        /** The URL of the board. */
-        self: z.url().optional(),
-        /** The type the board. */
-        type: z.string().optional(),
-      }),
-    )
-    .optional(),
-});
+/**
+ * @deprecated Renamed to `PageBoardSchema`, which describes the same shape. This alias is removed in the next major
+ *   version.
+ */
+export const GetAllBoardsSchema = PageBoardSchema;
 
-export type GetAllBoards = z.infer<typeof GetAllBoardsSchema>;
+/** @deprecated Renamed to `PageBoard`, which describes the same shape. This alias is removed in the next major version. */
+export type GetAllBoards = PageBoard;

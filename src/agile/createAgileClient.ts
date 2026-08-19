@@ -111,10 +111,9 @@ import type {
   DeleteComponentById,
 } from './parameters';
 import type {
-  GetAllBoards as GetAllBoardsModel,
-  CreateBoard as CreateBoardModel,
-  GetBoardByFilterId as GetBoardByFilterIdModel,
-  GetBoard as GetBoardModel,
+  PageBoard,
+  Board,
+  PageBoardFilter,
   SoftwareIssueResults,
   IssueCount,
   GetConfiguration as GetConfigurationModel,
@@ -125,7 +124,7 @@ import type {
   GetProjectsFull as GetProjectsFullModel,
   PropertyKeys,
   EntityProperty,
-  GetAllQuickFilters as GetAllQuickFiltersModel,
+  PageQuickFilter,
   QuickFilter,
   GetReportsForBoard as GetReportsForBoardModel,
   GetAllSprints as GetAllSprintsModel,
@@ -171,11 +170,11 @@ export function createAgileClient(clientConfig: ClientConfig | Client) {
         backlog.moveIssuesToBacklogForBoard(client, parameters),
     },
     board: {
-      getAllBoards: (parameters?: GetAllBoards): Promise<GetAllBoardsModel> => board.getAllBoards(client, parameters),
-      createBoard: (parameters: CreateBoard): Promise<CreateBoardModel> => board.createBoard(client, parameters),
-      getBoardByFilterId: (parameters: GetBoardByFilterId): Promise<GetBoardByFilterIdModel> =>
+      getAllBoards: (parameters?: GetAllBoards): Promise<PageBoard> => board.getAllBoards(client, parameters),
+      createBoard: (parameters: CreateBoard): Promise<Board> => board.createBoard(client, parameters),
+      getBoardByFilterId: (parameters: GetBoardByFilterId): Promise<PageBoardFilter> =>
         board.getBoardByFilterId(client, parameters),
-      getBoard: (parameters: GetBoard): Promise<GetBoardModel> => board.getBoard(client, parameters),
+      getBoard: (parameters: GetBoard): Promise<Board> => board.getBoard(client, parameters),
       deleteBoard: (parameters: DeleteBoard): Promise<void> => board.deleteBoard(client, parameters),
       getIssuesForBacklog: (parameters: GetIssuesForBacklog): Promise<SoftwareIssueResults> =>
         board.getIssuesForBacklog(client, parameters),
@@ -207,7 +206,7 @@ export function createAgileClient(clientConfig: ClientConfig | Client) {
       setBoardProperty: (parameters: SetBoardProperty): Promise<void> => board.setBoardProperty(client, parameters),
       deleteBoardProperty: (parameters: DeleteBoardProperty): Promise<void> =>
         board.deleteBoardProperty(client, parameters),
-      getAllQuickFilters: (parameters: GetAllQuickFilters): Promise<GetAllQuickFiltersModel> =>
+      getAllQuickFilters: (parameters: GetAllQuickFilters): Promise<PageQuickFilter> =>
         board.getAllQuickFilters(client, parameters),
       getQuickFilter: (parameters: GetQuickFilter): Promise<QuickFilter> => board.getQuickFilter(client, parameters),
       getReportsForBoard: (parameters: GetReportsForBoard): Promise<GetReportsForBoardModel> =>
