@@ -1,7 +1,9 @@
 import { DashboardUserSchema, type DashboardUser } from '../models/dashboardUser';
 import { FoundUsersSchema, type FoundUsers } from '../models/foundUsers';
-import { PageUserSchema, type PageUser } from '../models/pageUser';
-import { PageUserKeySchema, type PageUserKey } from '../models/pageUserKey';
+import { PageUserSchema } from '../models/pageUser';
+import type { Page } from '../models/page';
+import { PageUserKeySchema } from '../models/pageUserKey';
+import type { UserKey } from '../models/userKey';
 import type { FindBulkAssignableUsers } from '../parameters/findBulkAssignableUsers';
 import type { FindAssignableUsers } from '../parameters/findAssignableUsers';
 import type { FindUsersWithAllPermissions } from '../parameters/findUsersWithAllPermissions';
@@ -262,8 +264,8 @@ export async function findUsers(client: Client, parameters?: FindUsers): Promise
  *
  * `is assignee of PROJ AND [propertyKey].entity.property.path is "property value"`
  */
-export async function findUsersByQuery(client: Client, parameters: FindUsersByQuery): Promise<PageUser> {
-  const config: SendRequestOptions<PageUser> = {
+export async function findUsersByQuery(client: Client, parameters: FindUsersByQuery): Promise<Page<DashboardUser>> {
+  const config: SendRequestOptions<Page<DashboardUser>> = {
     url: '/rest/api/3/user/search/query',
     method: 'GET',
     searchParams: {
@@ -308,8 +310,8 @@ export async function findUsersByQuery(client: Client, parameters: FindUsersByQu
  *
  * `is assignee of PROJ AND [propertyKey].entity.property.path is "property value"`
  */
-export async function findUserKeysByQuery(client: Client, parameters: FindUserKeysByQuery): Promise<PageUserKey> {
-  const config: SendRequestOptions<PageUserKey> = {
+export async function findUserKeysByQuery(client: Client, parameters: FindUserKeysByQuery): Promise<Page<UserKey>> {
+  const config: SendRequestOptions<Page<UserKey>> = {
     url: '/rest/api/3/user/search/query/key',
     method: 'GET',
     searchParams: {

@@ -1,6 +1,8 @@
-import { PageBoardSchema, type PageBoard } from '../models/pageBoard';
+import { PageBoardSchema } from '../models/pageBoard';
+import type { Page } from '../models/page';
 import { BoardSchema, type Board } from '../models/board';
-import { PageBoardFilterSchema, type PageBoardFilter } from '../models/pageBoardFilter';
+import { PageBoardFilterSchema } from '../models/pageBoardFilter';
+import type { BoardFilter } from '../models/boardFilter';
 import { SoftwareIssueResultsSchema, type SoftwareIssueResults } from '../models/softwareIssueResults';
 import { IssueCountSchema, type IssueCount } from '../models/issueCount';
 import { GetConfigurationSchema, type GetConfiguration } from '../models/getConfiguration';
@@ -11,7 +13,7 @@ import { GetProjectsSchema, type GetProjects } from '../models/getProjects';
 import { GetProjectsFullSchema, type GetProjectsFull } from '../models/getProjectsFull';
 import { PropertyKeysSchema, type PropertyKeys } from '../models/propertyKeys';
 import { EntityPropertySchema, type EntityProperty } from '../models/entityProperty';
-import { PageQuickFilterSchema, type PageQuickFilter } from '../models/pageQuickFilter';
+import { PageQuickFilterSchema } from '../models/pageQuickFilter';
 import { QuickFilterSchema, type QuickFilter } from '../models/quickFilter';
 import { GetReportsForBoardSchema, type GetReportsForBoard } from '../models/getReportsForBoard';
 import { GetAllSprintsSchema, type GetAllSprints } from '../models/getAllSprints';
@@ -53,8 +55,8 @@ import type { Client, SendRequestOptions } from '#/core';
  *
  * - `read:board-scope:jira-software`, `read:project:jira`
  */
-export async function getAllBoards(client: Client, parameters?: GetAllBoards): Promise<PageBoard> {
-  const config: SendRequestOptions<PageBoard> = {
+export async function getAllBoards(client: Client, parameters?: GetAllBoards): Promise<Page<Board>> {
+  const config: SendRequestOptions<Page<Board>> = {
     url: '/rest/agile/1.0/board',
     method: 'GET',
     searchParams: {
@@ -124,8 +126,8 @@ export async function createBoard(client: Client, parameters: CreateBoard): Prom
  * Returns any boards which use the provided filter id. This method can be executed by users without a valid software
  * license in order to find which boards are using a particular filter.
  */
-export async function getBoardByFilterId(client: Client, parameters: GetBoardByFilterId): Promise<PageBoardFilter> {
-  const config: SendRequestOptions<PageBoardFilter> = {
+export async function getBoardByFilterId(client: Client, parameters: GetBoardByFilterId): Promise<Page<BoardFilter>> {
+  const config: SendRequestOptions<Page<BoardFilter>> = {
     url: `/rest/agile/1.0/board/filter/${parameters.filterId}`,
     method: 'GET',
     searchParams: {
@@ -527,8 +529,8 @@ export async function deleteBoardProperty(client: Client, parameters: DeleteBoar
 }
 
 /** Returns all quick filters from a board, for a given board ID. */
-export async function getAllQuickFilters(client: Client, parameters: GetAllQuickFilters): Promise<PageQuickFilter> {
-  const config: SendRequestOptions<PageQuickFilter> = {
+export async function getAllQuickFilters(client: Client, parameters: GetAllQuickFilters): Promise<Page<QuickFilter>> {
+  const config: SendRequestOptions<Page<QuickFilter>> = {
     url: `/rest/agile/1.0/board/${parameters.boardId}/quickfilter`,
     method: 'GET',
     searchParams: {

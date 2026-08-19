@@ -1,4 +1,6 @@
-import { PageScreenSchemeSchema, type PageScreenScheme } from '../models/pageScreenScheme';
+import { PageScreenSchemeSchema } from '../models/pageScreenScheme';
+import type { Page } from '../models/page';
+import type { ScreenScheme } from '../models/screenScheme';
 import { ScreenSchemeIdSchema, type ScreenSchemeId } from '../models/screenSchemeId';
 import type { GetScreenSchemes } from '../parameters/getScreenSchemes';
 import type { CreateScreenScheme } from '../parameters/createScreenScheme';
@@ -15,8 +17,8 @@ import type { Client, SendRequestOptions } from '#/core';
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-export async function getScreenSchemes(client: Client, parameters?: GetScreenSchemes): Promise<PageScreenScheme> {
-  const config: SendRequestOptions<PageScreenScheme> = {
+export async function getScreenSchemes(client: Client, parameters?: GetScreenSchemes): Promise<Page<ScreenScheme>> {
+  const config: SendRequestOptions<Page<ScreenScheme>> = {
     url: '/rest/api/3/screenscheme',
     method: 'GET',
     searchParams: {

@@ -1,4 +1,6 @@
-import { PageWebhookSchema, type PageWebhook } from '../models/pageWebhook';
+import { PageWebhookSchema } from '../models/pageWebhook';
+import type { Page } from '../models/page';
+import type { Webhook } from '../models/webhook';
 import {
   ContainerForRegisteredWebhooksSchema,
   type ContainerForRegisteredWebhooks,
@@ -21,8 +23,8 @@ import type { Client, SendRequestOptions } from '#/core';
 export async function getDynamicWebhooksForApp(
   client: Client,
   parameters?: GetDynamicWebhooksForApp,
-): Promise<PageWebhook> {
-  const config: SendRequestOptions<PageWebhook> = {
+): Promise<Page<Webhook>> {
+  const config: SendRequestOptions<Page<Webhook>> = {
     url: '/rest/api/3/webhook',
     method: 'GET',
     searchParams: {

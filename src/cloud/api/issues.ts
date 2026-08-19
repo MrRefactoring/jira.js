@@ -11,7 +11,9 @@ import {
   type PageOfCreateMetaIssueTypeWithField,
 } from '../models/pageOfCreateMetaIssueTypeWithField';
 import { IssueSchema, type Issue } from '../models/issue';
-import { PageChangelogSchema, type PageChangelog } from '../models/pageChangelog';
+import { PageChangelogSchema } from '../models/pageChangelog';
+import type { Page } from '../models/page';
+import type { Changelog } from '../models/changelog';
 import { PageOfChangelogsSchema, type PageOfChangelogs } from '../models/pageOfChangelogs';
 import { IssueUpdateMetadataSchema, type IssueUpdateMetadata } from '../models/issueUpdateMetadata';
 import { TransitionsSchema, type Transitions } from '../models/transitions';
@@ -428,8 +430,8 @@ export async function assignIssue(client: Client, parameters: AssignIssue): Prom
  * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
  *   to view the issue.
  */
-export async function getChangeLogs(client: Client, parameters: GetChangeLogs): Promise<PageChangelog> {
-  const config: SendRequestOptions<PageChangelog> = {
+export async function getChangeLogs(client: Client, parameters: GetChangeLogs): Promise<Page<Changelog>> {
+  const config: SendRequestOptions<Page<Changelog>> = {
     url: `/rest/api/3/issue/${parameters.issueIdOrKey}/changelog`,
     method: 'GET',
     searchParams: {

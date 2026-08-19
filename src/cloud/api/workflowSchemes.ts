@@ -1,4 +1,5 @@
-import { PageWorkflowSchemeSchema, type PageWorkflowScheme } from '../models/pageWorkflowScheme';
+import { PageWorkflowSchemeSchema } from '../models/pageWorkflowScheme';
+import type { Page } from '../models/page';
 import { WorkflowSchemeSchema, type WorkflowScheme } from '../models/workflowScheme';
 import {
   WorkflowSchemeReadResponseSchema,
@@ -47,8 +48,8 @@ import { z } from 'zod';
 export async function getAllWorkflowSchemes(
   client: Client,
   parameters?: GetAllWorkflowSchemes,
-): Promise<PageWorkflowScheme> {
-  const config: SendRequestOptions<PageWorkflowScheme> = {
+): Promise<Page<WorkflowScheme>> {
+  const config: SendRequestOptions<Page<WorkflowScheme>> = {
     url: '/rest/api/3/workflowscheme',
     method: 'GET',
     searchParams: {

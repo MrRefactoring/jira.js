@@ -1,13 +1,7 @@
-import { z } from 'zod';
-import { apiObject } from '#/core';
-import { QuickFilterSchema } from './quickFilter';
+import { pageSchema, type Page } from './page';
+import { QuickFilterSchema, type QuickFilter } from './quickFilter';
 
-export const PageQuickFilterSchema = apiObject({
-  isLast: z.boolean().optional(),
-  maxResults: z.number().optional(),
-  startAt: z.number().optional(),
-  total: z.number().optional(),
-  values: z.array(QuickFilterSchema).optional(),
-});
+export const PageQuickFilterSchema = pageSchema(QuickFilterSchema);
 
-export type PageQuickFilter = z.infer<typeof PageQuickFilterSchema>;
+/** @deprecated Use `Page<QuickFilter>`, which describes the same shape. This alias is removed in the next major version. */
+export type PageQuickFilter = Page<QuickFilter>;

@@ -1,10 +1,10 @@
-import { Page2ComponentJsonSchema, type Page2ComponentJson } from '../models/page2ComponentJson';
+import { Page2ComponentJsonSchema } from '../models/page2ComponentJson';
+import type { Page } from '../models/page';
+import type { ComponentJson } from '../models/componentJson';
 import { ProjectComponentSchema, type ProjectComponent } from '../models/projectComponent';
 import { ComponentIssuesCountSchema, type ComponentIssuesCount } from '../models/componentIssuesCount';
-import {
-  PageComponentWithIssueCountSchema,
-  type PageComponentWithIssueCount,
-} from '../models/pageComponentWithIssueCount';
+import { PageComponentWithIssueCountSchema } from '../models/pageComponentWithIssueCount';
+import type { ComponentWithIssueCount } from '../models/componentWithIssueCount';
 import type { FindComponentsForProjects } from '../parameters/findComponentsForProjects';
 import type { CreateComponent } from '../parameters/createComponent';
 import type { GetComponent } from '../parameters/getComponent';
@@ -28,8 +28,8 @@ import { z } from 'zod';
 export async function findComponentsForProjects(
   client: Client,
   parameters?: FindComponentsForProjects,
-): Promise<Page2ComponentJson> {
-  const config: SendRequestOptions<Page2ComponentJson> = {
+): Promise<Page<ComponentJson>> {
+  const config: SendRequestOptions<Page<ComponentJson>> = {
     url: '/rest/api/3/component',
     method: 'GET',
     searchParams: {
@@ -184,8 +184,8 @@ export async function getComponentRelatedIssues(
 export async function getProjectComponentsPaginated(
   client: Client,
   parameters: GetProjectComponentsPaginated,
-): Promise<PageComponentWithIssueCount> {
-  const config: SendRequestOptions<PageComponentWithIssueCount> = {
+): Promise<Page<ComponentWithIssueCount>> {
+  const config: SendRequestOptions<Page<ComponentWithIssueCount>> = {
     url: `/rest/api/3/project/${parameters.projectIdOrKey}/component`,
     method: 'GET',
     searchParams: {

@@ -1,7 +1,6 @@
-import {
-  PageJqlFunctionPrecomputationSchema,
-  type PageJqlFunctionPrecomputation,
-} from '../models/pageJqlFunctionPrecomputation';
+import { PageJqlFunctionPrecomputationSchema } from '../models/pageJqlFunctionPrecomputation';
+import type { Page } from '../models/page';
+import type { JqlFunctionPrecomputation } from '../models/jqlFunctionPrecomputation';
 import {
   JqlFunctionPrecomputationGetByIdResponseSchema,
   type JqlFunctionPrecomputationGetByIdResponse,
@@ -24,8 +23,8 @@ import type { Client, SendRequestOptions } from '#/core';
 export async function getPrecomputations(
   client: Client,
   parameters?: GetPrecomputations,
-): Promise<PageJqlFunctionPrecomputation> {
-  const config: SendRequestOptions<PageJqlFunctionPrecomputation> = {
+): Promise<Page<JqlFunctionPrecomputation>> {
+  const config: SendRequestOptions<Page<JqlFunctionPrecomputation>> = {
     url: '/rest/api/3/jql/function/computation',
     method: 'GET',
     searchParams: {

@@ -1,5 +1,7 @@
 import { FilterSchema, type Filter } from '../models/filter';
-import { PageFilterDetailsSchema, type PageFilterDetails } from '../models/pageFilterDetails';
+import { PageFilterDetailsSchema } from '../models/pageFilterDetails';
+import type { Page } from '../models/page';
+import type { FilterDetails } from '../models/filterDetails';
 import { ColumnItemSchema, type ColumnItem } from '../models/columnItem';
 import type { CreateFilter } from '../parameters/createFilter';
 import type { GetFavouriteFilters } from '../parameters/getFavouriteFilters';
@@ -141,8 +143,8 @@ export async function getMyFilters(client: Client, parameters?: GetMyFilters): P
 export async function getFiltersPaginated(
   client: Client,
   parameters?: GetFiltersPaginated,
-): Promise<PageFilterDetails> {
-  const config: SendRequestOptions<PageFilterDetails> = {
+): Promise<Page<FilterDetails>> {
+  const config: SendRequestOptions<Page<FilterDetails>> = {
     url: '/rest/api/3/filter/search',
     method: 'GET',
     searchParams: {

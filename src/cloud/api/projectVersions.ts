@@ -1,4 +1,5 @@
-import { PageVersionSchema, type PageVersion } from '../models/pageVersion';
+import { PageVersionSchema } from '../models/pageVersion';
+import type { Page } from '../models/page';
 import { VersionSchema, type Version } from '../models/version';
 import { VersionIssueCountsSchema, type VersionIssueCounts } from '../models/versionIssueCounts';
 import { VersionRelatedWorkSchema, type VersionRelatedWork } from '../models/versionRelatedWork';
@@ -37,8 +38,8 @@ import { z } from 'zod';
 export async function getProjectVersionsPaginated(
   client: Client,
   parameters: GetProjectVersionsPaginated,
-): Promise<PageVersion> {
-  const config: SendRequestOptions<PageVersion> = {
+): Promise<Page<Version>> {
+  const config: SendRequestOptions<Page<Version>> = {
     url: `/rest/api/3/project/${parameters.projectIdOrKey}/version`,
     method: 'GET',
     searchParams: {
