@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { IssueUpdateDetailsSchema } from '../models';
 
-export const DoTransitionSchema = z.object({}).extend(IssueUpdateDetailsSchema.shape).extend({
+export const DoTransitionSchema = z.object(IssueUpdateDetailsSchema.shape).extend({
   /** The ID or key of the issue. */
   issueIdOrKey: z.string(),
 });

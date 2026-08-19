@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { UpdateScreenSchemeDetailsSchema } from '../models';
 
-export const UpdateScreenSchemeSchema = z.object({}).extend(UpdateScreenSchemeDetailsSchema.shape).extend({
+export const UpdateScreenSchemeSchema = z.object(UpdateScreenSchemeDetailsSchema.shape).extend({
   /** The ID of the screen scheme. */
   screenSchemeId: z.string(),
 });

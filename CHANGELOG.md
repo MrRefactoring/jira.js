@@ -43,6 +43,7 @@ Avatars moved bytes in both directions and the specification described both as J
 
 ### General
 
+* **A parameter type built on a model is written as one call.** 139 of them read `z.object({}).extend(BoardCreateSchema.shape)` — an empty object, then everything merged onto it. They are `z.object(BoardCreateSchema.shape)` now. The schema is the same object either way, and nothing about the types changes; it is the generated sources that were harder to read than the thing they describe.
 * **The writes are covered live now.** All three uploads store an image against the test site and delete it again, the filter, account and site-wide column endpoints are set and restored, and the avatar just uploaded is read back through `getAvatarImageByID` — the two halves proving each other. None of this had a single test before, which is how a body typed as an object survived a major release.
 * **The live test for these endpoints was passing without testing anything.** It looked for `avatarId=` in a project's `avatarUrls`, which give the path form and carry no such parameter, so the match failed, the test returned on its second line, and every assertion below it — including the one a `SchemaMismatchError` would have failed — was unreachable. That is why this shipped. The test now takes its avatar id from `getAllSystemAvatars`, asserted non-empty by the test above it, and has no branch that can turn it off; the two remaining image endpoints are covered as well.
 

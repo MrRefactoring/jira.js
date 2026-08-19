@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { IssueFieldOptionSchema } from '../models';
 
-export const UpdateIssueFieldOptionSchema = z.object({}).extend(IssueFieldOptionSchema.shape).extend({
+export const UpdateIssueFieldOptionSchema = z.object(IssueFieldOptionSchema.shape).extend({
   /**
    * The field key is specified in the following format: **$(app-key)__$(field-key)**. For example,
    * _example-add-on__example-issue-field_. To determine the `fieldKey` value, do one of the following:

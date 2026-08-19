@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { UpdateUserToGroupSchema } from '../models';
 
-export const AddUserToGroupSchema = z.object({}).extend(UpdateUserToGroupSchema.shape).extend({
+export const AddUserToGroupSchema = z.object(UpdateUserToGroupSchema.shape).extend({
   /**
    * As a group's name can change, use of `groupId` is recommended to identify a group. The name of the group. This
    * parameter cannot be used with the `groupId` parameter.

@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { IssueTypeIdsSchema } from '../models';
 
-export const RemoveIssueTypesFromContextSchema = z.object({}).extend(IssueTypeIdsSchema.shape).extend({
+export const RemoveIssueTypesFromContextSchema = z.object(IssueTypeIdsSchema.shape).extend({
   /** The ID of the custom field. */
   fieldId: z.string(),
   /** The ID of the context. */

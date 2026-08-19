@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { IssueRankRequestSchema } from '../models';
 
-export const MoveIssuesToSprintAndRankSchema = z.object({}).extend(IssueRankRequestSchema.shape).extend({
+export const MoveIssuesToSprintAndRankSchema = z.object(IssueRankRequestSchema.shape).extend({
   /** The ID of the sprint that you want to assign issues to. */
   sprintId: z.number(),
 });

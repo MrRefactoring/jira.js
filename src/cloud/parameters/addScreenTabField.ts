@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { AddFieldSchema } from '../models';
 
-export const AddScreenTabFieldSchema = z.object({}).extend(AddFieldSchema.shape).extend({
+export const AddScreenTabFieldSchema = z.object(AddFieldSchema.shape).extend({
   /** The ID of the screen. */
   screenId: z.number(),
   /** The ID of the screen tab. */

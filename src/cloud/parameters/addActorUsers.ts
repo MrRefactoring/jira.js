@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { ActorsMapSchema } from '../models';
 
-export const AddActorUsersSchema = z.object({}).extend(ActorsMapSchema.shape).extend({
+export const AddActorUsersSchema = z.object(ActorsMapSchema.shape).extend({
   /** The project ID or project key (case sensitive). */
   projectIdOrKey: z.string(),
   /**
