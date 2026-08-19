@@ -79,6 +79,26 @@ Avatars moved bytes in both directions and the specification described both as J
 
   Reading a page is only ever safer for the change. Constructing one is not: a `Page<T>` written by hand — a fixture, a mock, a stub returned from a wrapper — now has to carry all five fields, and `PageBoardSchema.parse()` over such an object fails where it used to pass.
 
+* **Eleven cloud models lose the name of the serializer that made them.** `Page2ComponentJsonSchema` read like an implementation detail because it was one: the `2` is the version of Atlassian's own Java class, and `Json` and `Jackson1` name the serializer that produced it. Neither describes anything a caller can act on — `PageBean2X` and `PageBeanX` carry the same seven fields, and no page is declared in both forms.
+
+  | was | is |
+  |---|---|
+  | `Page2ComponentJson` | `PageComponent` |
+  | `Page2FieldAssociationSchemeFieldSearchResult` | `PageFieldAssociationSchemeFieldSearchResult` |
+  | `Page2FieldAssociationSchemeProjectSearchResult` | `PageFieldAssociationSchemeProjectSearchResult` |
+  | `Page2GetFieldAssociationSchemeResponse` | `PageGetFieldAssociationSchemeResponse` |
+  | `Page2GetProjectsWithFieldSchemesResponse` | `PageGetProjectsWithFieldSchemesResponse` |
+  | `Page2ProjectField` | `PageProjectField` |
+  | `ComponentJson` | `Component` |
+  | `CustomFieldDefinitionJson` | `CustomFieldDefinition` |
+  | `LinkIssueRequestJson` | `LinkIssueRequest` |
+  | `NotificationSchemeAndProjectMappingJson` | `NotificationSchemeAndProjectMapping` |
+  | `JiraLabelPropertiesInputJackson1` | `JiraLabelProperties` |
+
+  Every retired name is still exported, as a `@deprecated` alias of its replacement — both the schema and the type — assignable in both directions and going at the next major version. Nothing has to change today. `Page2JqlFunctionPrecomputation` had been renamed by hand some releases ago, which is what suggested the rest were an oversight rather than a decision.
+
+  Two names keep their `Json` on purpose. `ResolutionJson` would collide with the `Resolution` that describes a different shape, and `TaskProgressJsonNode` is one of four models that differ only in their `result` field — it wants the treatment the pages just had, not a new name. `JsonNode`, `JsonType` and `JsonContextVariable` are named after JSON for a reason and are untouched.
+
 ### General
 
 * **A parameter type built on a model is written as one call.** 139 of them read `z.object({}).extend(BoardCreateSchema.shape)` — an empty object, then everything merged onto it. They are `z.object(BoardCreateSchema.shape)` now. The schema is the same object either way, and nothing about the types changes; it is the generated sources that were harder to read than the thing they describe.

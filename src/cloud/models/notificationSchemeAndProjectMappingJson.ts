@@ -1,9 +1,16 @@
-import { z } from 'zod';
-import { apiObject } from '#/core';
+import {
+  NotificationSchemeAndProjectMappingSchema,
+  type NotificationSchemeAndProjectMapping,
+} from './notificationSchemeAndProjectMapping';
 
-export const NotificationSchemeAndProjectMappingJsonSchema = apiObject({
-  notificationSchemeId: z.string().optional(),
-  projectId: z.string().optional(),
-});
+/**
+ * @deprecated Renamed to `NotificationSchemeAndProjectMappingSchema`, which describes the same shape. This alias is
+ *   removed in the next major version.
+ */
+export const NotificationSchemeAndProjectMappingJsonSchema = NotificationSchemeAndProjectMappingSchema;
 
-export type NotificationSchemeAndProjectMappingJson = z.infer<typeof NotificationSchemeAndProjectMappingJsonSchema>;
+/**
+ * @deprecated Renamed to `NotificationSchemeAndProjectMapping`, which describes the same shape. This alias is removed
+ *   in the next major version.
+ */
+export type NotificationSchemeAndProjectMappingJson = NotificationSchemeAndProjectMapping;

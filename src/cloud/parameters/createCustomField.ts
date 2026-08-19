@@ -1,6 +1,6 @@
 import { z } from 'zod';
-import { CustomFieldDefinitionJsonSchema } from '../models';
+import { CustomFieldDefinitionSchema } from '../models';
 
-export const CreateCustomFieldSchema = z.object(CustomFieldDefinitionJsonSchema.shape);
+export const CreateCustomFieldSchema = z.object(CustomFieldDefinitionSchema.shape);
 
 export type CreateCustomField = z.input<typeof CreateCustomFieldSchema>;

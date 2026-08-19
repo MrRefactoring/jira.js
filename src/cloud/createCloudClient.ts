@@ -569,7 +569,7 @@ import type {
   PageOfComments,
   PropertyKeys,
   EntityProperty,
-  ComponentJson,
+  Component,
   ProjectComponent,
   ComponentIssuesCount,
   ComponentWithIssueCount,
@@ -652,7 +652,7 @@ import type {
   Locale,
   DashboardUser,
   NotificationScheme,
-  NotificationSchemeAndProjectMappingJson,
+  NotificationSchemeAndProjectMapping,
   PermissionSchemes,
   PermissionScheme,
   PermissionGrants,
@@ -860,7 +860,7 @@ export function createCloudClient(clientConfig: ClientConfig | Client) {
         issueCommentProperties.deleteCommentProperty(client, parameters),
     },
     projectComponents: {
-      findComponentsForProjects: (parameters?: FindComponentsForProjects): Promise<Page<ComponentJson>> =>
+      findComponentsForProjects: (parameters?: FindComponentsForProjects): Promise<Page<Component>> =>
         projectComponents.findComponentsForProjects(client, parameters),
       createComponent: (parameters: CreateComponent): Promise<ProjectComponent> =>
         projectComponents.createComponent(client, parameters),
@@ -1299,7 +1299,7 @@ export function createCloudClient(clientConfig: ClientConfig | Client) {
         issueNotificationSchemes.getNotificationSchemes(client, parameters),
       getNotificationSchemeToProjectMappings: (
         parameters?: GetNotificationSchemeToProjectMappings,
-      ): Promise<Page<NotificationSchemeAndProjectMappingJson>> =>
+      ): Promise<Page<NotificationSchemeAndProjectMapping>> =>
         issueNotificationSchemes.getNotificationSchemeToProjectMappings(client, parameters),
       getNotificationScheme: (parameters: GetNotificationScheme): Promise<NotificationScheme> =>
         issueNotificationSchemes.getNotificationScheme(client, parameters),

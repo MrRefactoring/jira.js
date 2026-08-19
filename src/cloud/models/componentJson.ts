@@ -1,13 +1,10 @@
-import { z } from 'zod';
-import { apiObject } from '#/core';
+import { ComponentSchema, type Component } from './component';
 
-export const ComponentJsonSchema = apiObject({
-  ari: z.string().optional(),
-  description: z.string().optional(),
-  id: z.string().optional(),
-  metadata: z.record(z.string(), z.any()).optional(),
-  name: z.string().optional(),
-  self: z.string().optional(),
-});
+/**
+ * @deprecated Renamed to `ComponentSchema`, which describes the same shape. This alias is removed in the next major
+ *   version.
+ */
+export const ComponentJsonSchema = ComponentSchema;
 
-export type ComponentJson = z.infer<typeof ComponentJsonSchema>;
+/** @deprecated Renamed to `Component`, which describes the same shape. This alias is removed in the next major version. */
+export type ComponentJson = Component;

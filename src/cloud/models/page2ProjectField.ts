@@ -1,10 +1,13 @@
-import { pageSchema, type Page } from './page';
-import { ProjectFieldSchema, type ProjectField } from './projectField';
-
-export const Page2ProjectFieldSchema = pageSchema(ProjectFieldSchema);
+import { PageProjectFieldSchema, type PageProjectField } from './pageProjectField';
 
 /**
- * @deprecated Use `Page<ProjectField>`, which describes the same shape. This alias is removed in the next major
+ * @deprecated Renamed to `PageProjectFieldSchema`, which describes the same shape. This alias is removed in the next
+ *   major version.
+ */
+export const Page2ProjectFieldSchema = PageProjectFieldSchema;
+
+/**
+ * @deprecated Renamed to `PageProjectField`, which describes the same shape. This alias is removed in the next major
  *   version.
  */
-export type Page2ProjectField = Page<ProjectField>;
+export type Page2ProjectField = PageProjectField;

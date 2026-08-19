@@ -1,10 +1,13 @@
-import { pageSchema, type Page } from './page';
-import { ComponentJsonSchema, type ComponentJson } from './componentJson';
-
-export const Page2ComponentJsonSchema = pageSchema(ComponentJsonSchema);
+import { PageComponentSchema, type PageComponent } from './pageComponent';
 
 /**
- * @deprecated Use `Page<ComponentJson>`, which describes the same shape. This alias is removed in the next major
+ * @deprecated Renamed to `PageComponentSchema`, which describes the same shape. This alias is removed in the next major
  *   version.
  */
-export type Page2ComponentJson = Page<ComponentJson>;
+export const Page2ComponentJsonSchema = PageComponentSchema;
+
+/**
+ * @deprecated Renamed to `PageComponent`, which describes the same shape. This alias is removed in the next major
+ *   version.
+ */
+export type Page2ComponentJson = PageComponent;

@@ -1,13 +1,13 @@
 import { pageSchema, type Page } from './page';
 import {
-  NotificationSchemeAndProjectMappingJsonSchema,
-  type NotificationSchemeAndProjectMappingJson,
-} from './notificationSchemeAndProjectMappingJson';
+  NotificationSchemeAndProjectMappingSchema,
+  type NotificationSchemeAndProjectMapping,
+} from './notificationSchemeAndProjectMapping';
 
-export const NotificationSchemeAndProjectMappingPageSchema = pageSchema(NotificationSchemeAndProjectMappingJsonSchema);
+export const NotificationSchemeAndProjectMappingPageSchema = pageSchema(NotificationSchemeAndProjectMappingSchema);
 
 /**
- * @deprecated Use `Page<NotificationSchemeAndProjectMappingJson>`, which describes the same shape. This alias is
- *   removed in the next major version.
+ * @deprecated Use `Page<NotificationSchemeAndProjectMapping>`, which describes the same shape. This alias is removed in
+ *   the next major version.
  */
-export type NotificationSchemeAndProjectMappingPage = Page<NotificationSchemeAndProjectMappingJson>;
+export type NotificationSchemeAndProjectMappingPage = Page<NotificationSchemeAndProjectMapping>;

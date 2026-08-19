@@ -1,15 +1,16 @@
-import { pageSchema, type Page } from './page';
 import {
-  FieldAssociationSchemeFieldSearchResultSchema,
-  type FieldAssociationSchemeFieldSearchResult,
-} from './fieldAssociationSchemeFieldSearchResult';
-
-export const Page2FieldAssociationSchemeFieldSearchResultSchema = pageSchema(
-  FieldAssociationSchemeFieldSearchResultSchema,
-);
+  PageFieldAssociationSchemeFieldSearchResultSchema,
+  type PageFieldAssociationSchemeFieldSearchResult,
+} from './pageFieldAssociationSchemeFieldSearchResult';
 
 /**
- * @deprecated Use `Page<FieldAssociationSchemeFieldSearchResult>`, which describes the same shape. This alias is
+ * @deprecated Renamed to `PageFieldAssociationSchemeFieldSearchResultSchema`, which describes the same shape. This
+ *   alias is removed in the next major version.
+ */
+export const Page2FieldAssociationSchemeFieldSearchResultSchema = PageFieldAssociationSchemeFieldSearchResultSchema;
+
+/**
+ * @deprecated Renamed to `PageFieldAssociationSchemeFieldSearchResult`, which describes the same shape. This alias is
  *   removed in the next major version.
  */
-export type Page2FieldAssociationSchemeFieldSearchResult = Page<FieldAssociationSchemeFieldSearchResult>;
+export type Page2FieldAssociationSchemeFieldSearchResult = PageFieldAssociationSchemeFieldSearchResult;

@@ -1,60 +1,13 @@
-import { z } from 'zod';
-import { apiObject, openEnum } from '#/core';
+import { JiraLabelPropertiesSchema, type JiraLabelProperties } from './jiraLabelProperties';
 
-export const JiraLabelPropertiesInputJackson1Schema = apiObject({
-  color: openEnum([
-    'GREY_LIGHTEST',
-    'GREY_LIGHTER',
-    'GREY',
-    'GREY_DARKER',
-    'GREY_DARKEST',
-    'PURPLE_LIGHTEST',
-    'PURPLE_LIGHTER',
-    'PURPLE',
-    'PURPLE_DARKER',
-    'PURPLE_DARKEST',
-    'BLUE_LIGHTEST',
-    'BLUE_LIGHTER',
-    'BLUE',
-    'BLUE_DARKER',
-    'BLUE_DARKEST',
-    'TEAL_LIGHTEST',
-    'TEAL_LIGHTER',
-    'TEAL',
-    'TEAL_DARKER',
-    'TEAL_DARKEST',
-    'GREEN_LIGHTEST',
-    'GREEN_LIGHTER',
-    'GREEN',
-    'GREEN_DARKER',
-    'GREEN_DARKEST',
-    'LIME_LIGHTEST',
-    'LIME_LIGHTER',
-    'LIME',
-    'LIME_DARKER',
-    'LIME_DARKEST',
-    'YELLOW_LIGHTEST',
-    'YELLOW_LIGHTER',
-    'YELLOW',
-    'YELLOW_DARKER',
-    'YELLOW_DARKEST',
-    'ORANGE_LIGHTEST',
-    'ORANGE_LIGHTER',
-    'ORANGE',
-    'ORANGE_DARKER',
-    'ORANGE_DARKEST',
-    'RED_LIGHTEST',
-    'RED_LIGHTER',
-    'RED',
-    'RED_DARKER',
-    'RED_DARKEST',
-    'MAGENTA_LIGHTEST',
-    'MAGENTA_LIGHTER',
-    'MAGENTA',
-    'MAGENTA_DARKER',
-    'MAGENTA_DARKEST',
-  ]).optional(),
-  name: z.string().optional(),
-});
+/**
+ * @deprecated Renamed to `JiraLabelPropertiesSchema`, which describes the same shape. This alias is removed in the next
+ *   major version.
+ */
+export const JiraLabelPropertiesInputJackson1Schema = JiraLabelPropertiesSchema;
 
-export type JiraLabelPropertiesInputJackson1 = z.infer<typeof JiraLabelPropertiesInputJackson1Schema>;
+/**
+ * @deprecated Renamed to `JiraLabelProperties`, which describes the same shape. This alias is removed in the next major
+ *   version.
+ */
+export type JiraLabelPropertiesInputJackson1 = JiraLabelProperties;
