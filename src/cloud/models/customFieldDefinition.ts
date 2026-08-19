@@ -100,7 +100,29 @@ export const CustomFieldDefinitionSchema = apiObject({
    * use the ID of the Forge custom field type as the value. For example,
    * `ari:cloud:ecosystem::extension/e62f20a2-4b61-4dbe-bfb9-9a88b5e3ac84/548c5df1-24aa-4f7c-bbbb-3038d947cb05/static/my-cf-type-key`.
    */
-  type: z.string(),
+  type: openEnum([
+    'com.atlassian.jira.plugin.system.customfieldtypes:cascadingselect',
+    'com.atlassian.jira.plugin.system.customfieldtypes:datepicker',
+    'com.atlassian.jira.plugin.system.customfieldtypes:datetime',
+    'com.atlassian.jira.plugin.system.customfieldtypes:float',
+    'com.atlassian.jira.plugin.system.customfieldtypes:grouppicker',
+    'com.atlassian.jira.plugin.system.customfieldtypes:importid',
+    'com.atlassian.jira.plugin.system.customfieldtypes:labels',
+    'com.atlassian.jira.plugin.system.customfieldtypes:multicheckboxes',
+    'com.atlassian.jira.plugin.system.customfieldtypes:multigrouppicker',
+    'com.atlassian.jira.plugin.system.customfieldtypes:multiselect',
+    'com.atlassian.jira.plugin.system.customfieldtypes:multiuserpicker',
+    'com.atlassian.jira.plugin.system.customfieldtypes:multiversion',
+    'com.atlassian.jira.plugin.system.customfieldtypes:project',
+    'com.atlassian.jira.plugin.system.customfieldtypes:radiobuttons',
+    'com.atlassian.jira.plugin.system.customfieldtypes:readonlyfield',
+    'com.atlassian.jira.plugin.system.customfieldtypes:select',
+    'com.atlassian.jira.plugin.system.customfieldtypes:textarea',
+    'com.atlassian.jira.plugin.system.customfieldtypes:textfield',
+    'com.atlassian.jira.plugin.system.customfieldtypes:url',
+    'com.atlassian.jira.plugin.system.customfieldtypes:userpicker',
+    'com.atlassian.jira.plugin.system.customfieldtypes:version',
+  ]),
 });
 
 export type CustomFieldDefinition = z.infer<typeof CustomFieldDefinitionSchema>;
