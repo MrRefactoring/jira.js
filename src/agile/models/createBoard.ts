@@ -1,32 +1,10 @@
-import { z } from 'zod';
-import { apiObject } from '#/core';
-import { GroupSchema } from './group';
-import { UserSchema } from './user';
-import { BoardLocationSchema } from './boardLocation';
-/** Details about a board. */
+import { BoardSchema, type Board } from './board';
 
-export const CreateBoardSchema = apiObject({
-  /** The users and groups who own the board. */
-  admins: apiObject({
-    groups: z.array(GroupSchema).optional(),
-    users: z.array(UserSchema).optional(),
-  }).optional(),
-  /** Whether the board can be edited. */
-  canEdit: z.boolean().optional(),
-  /** Whether the board is selected as a favorite. */
-  favourite: z.boolean().optional(),
-  /** The ID of the board. */
-  id: z.number().optional(),
-  /** Whether the board is private. */
-  isPrivate: z.boolean().optional(),
-  /** The container that the board is located in. */
-  location: BoardLocationSchema.optional(),
-  /** The name of the board. */
-  name: z.string().optional(),
-  /** The URL of the board. */
-  self: z.url().optional(),
-  /** The type the board. */
-  type: z.string().optional(),
-});
+/**
+ * @deprecated Renamed to `BoardSchema`, which describes the same shape. This alias is removed in the next major
+ *   version.
+ */
+export const CreateBoardSchema = BoardSchema;
 
-export type CreateBoard = z.infer<typeof CreateBoardSchema>;
+/** @deprecated Renamed to `Board`, which describes the same shape. This alias is removed in the next major version. */
+export type CreateBoard = Board;

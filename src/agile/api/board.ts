@@ -1,7 +1,6 @@
-import { GetAllBoardsSchema, type GetAllBoards } from '../models/getAllBoards';
-import { CreateBoardSchema, type CreateBoard } from '../models/createBoard';
-import { GetBoardByFilterIdSchema, type GetBoardByFilterId } from '../models/getBoardByFilterId';
-import { GetBoardSchema, type GetBoard } from '../models/getBoard';
+import { PageBoardSchema, type PageBoard } from '../models/pageBoard';
+import { BoardSchema, type Board } from '../models/board';
+import { PageBoardFilterSchema, type PageBoardFilter } from '../models/pageBoardFilter';
 import { SoftwareIssueResultsSchema, type SoftwareIssueResults } from '../models/softwareIssueResults';
 import { IssueCountSchema, type IssueCount } from '../models/issueCount';
 import { GetConfigurationSchema, type GetConfiguration } from '../models/getConfiguration';
@@ -12,15 +11,15 @@ import { GetProjectsSchema, type GetProjects } from '../models/getProjects';
 import { GetProjectsFullSchema, type GetProjectsFull } from '../models/getProjectsFull';
 import { PropertyKeysSchema, type PropertyKeys } from '../models/propertyKeys';
 import { EntityPropertySchema, type EntityProperty } from '../models/entityProperty';
-import { GetAllQuickFiltersSchema, type GetAllQuickFilters } from '../models/getAllQuickFilters';
+import { PageQuickFilterSchema, type PageQuickFilter } from '../models/pageQuickFilter';
 import { QuickFilterSchema, type QuickFilter } from '../models/quickFilter';
 import { GetReportsForBoardSchema, type GetReportsForBoard } from '../models/getReportsForBoard';
 import { GetAllSprintsSchema, type GetAllSprints } from '../models/getAllSprints';
 import { GetAllVersionsSchema, type GetAllVersions } from '../models/getAllVersions';
-import type { GetAllBoards as GetAllBoardsParameters } from '../parameters/getAllBoards';
-import type { CreateBoard as CreateBoardParameters } from '../parameters/createBoard';
-import type { GetBoardByFilterId as GetBoardByFilterIdParameters } from '../parameters/getBoardByFilterId';
-import type { GetBoard as GetBoardParameters } from '../parameters/getBoard';
+import type { GetAllBoards } from '../parameters/getAllBoards';
+import type { CreateBoard } from '../parameters/createBoard';
+import type { GetBoardByFilterId } from '../parameters/getBoardByFilterId';
+import type { GetBoard } from '../parameters/getBoard';
 import type { DeleteBoard } from '../parameters/deleteBoard';
 import type { GetIssuesForBacklog } from '../parameters/getIssuesForBacklog';
 import type { GetApproximateIssueCountForBacklog } from '../parameters/getApproximateIssueCountForBacklog';
@@ -39,7 +38,7 @@ import type { GetBoardPropertyKeys } from '../parameters/getBoardPropertyKeys';
 import type { GetBoardProperty } from '../parameters/getBoardProperty';
 import type { SetBoardProperty } from '../parameters/setBoardProperty';
 import type { DeleteBoardProperty } from '../parameters/deleteBoardProperty';
-import type { GetAllQuickFilters as GetAllQuickFiltersParameters } from '../parameters/getAllQuickFilters';
+import type { GetAllQuickFilters } from '../parameters/getAllQuickFilters';
 import type { GetQuickFilter } from '../parameters/getQuickFilter';
 import type { GetReportsForBoard as GetReportsForBoardParameters } from '../parameters/getReportsForBoard';
 import type { GetAllSprints as GetAllSprintsParameters } from '../parameters/getAllSprints';
@@ -54,8 +53,8 @@ import type { Client, SendRequestOptions } from '#/core';
  *
  * - `read:board-scope:jira-software`, `read:project:jira`
  */
-export async function getAllBoards(client: Client, parameters?: GetAllBoardsParameters): Promise<GetAllBoards> {
-  const config: SendRequestOptions<GetAllBoards> = {
+export async function getAllBoards(client: Client, parameters?: GetAllBoards): Promise<PageBoard> {
+  const config: SendRequestOptions<PageBoard> = {
     url: '/rest/agile/1.0/board',
     method: 'GET',
     searchParams: {
@@ -73,7 +72,7 @@ export async function getAllBoards(client: Client, parameters?: GetAllBoardsPara
       projectTypeLocation: parameters?.projectTypeLocation,
       filterId: parameters?.filterId,
     },
-    schema: GetAllBoardsSchema,
+    schema: PageBoardSchema,
   };
 
   return await client.sendRequest(config);
@@ -105,8 +104,8 @@ export async function getAllBoards(client: Client, parameters?: GetAllBoardsPara
  * - If you do not ORDER BY the Rank field for the filter of your board, you will not be able to reorder issues on the
  *   board.
  */
-export async function createBoard(client: Client, parameters: CreateBoardParameters): Promise<CreateBoard> {
-  const config: SendRequestOptions<CreateBoard> = {
+export async function createBoard(client: Client, parameters: CreateBoard): Promise<Board> {
+  const config: SendRequestOptions<Board> = {
     url: '/rest/agile/1.0/board',
     method: 'POST',
     body: {
@@ -115,7 +114,7 @@ export async function createBoard(client: Client, parameters: CreateBoardParamet
       name: parameters.name,
       type: parameters.type,
     },
-    schema: CreateBoardSchema,
+    schema: BoardSchema,
   };
 
   return await client.sendRequest(config);
@@ -125,18 +124,15 @@ export async function createBoard(client: Client, parameters: CreateBoardParamet
  * Returns any boards which use the provided filter id. This method can be executed by users without a valid software
  * license in order to find which boards are using a particular filter.
  */
-export async function getBoardByFilterId(
-  client: Client,
-  parameters: GetBoardByFilterIdParameters,
-): Promise<GetBoardByFilterId> {
-  const config: SendRequestOptions<GetBoardByFilterId> = {
+export async function getBoardByFilterId(client: Client, parameters: GetBoardByFilterId): Promise<PageBoardFilter> {
+  const config: SendRequestOptions<PageBoardFilter> = {
     url: `/rest/agile/1.0/board/filter/${parameters.filterId}`,
     method: 'GET',
     searchParams: {
       startAt: parameters.startAt,
       maxResults: parameters.maxResults,
     },
-    schema: GetBoardByFilterIdSchema,
+    schema: PageBoardFilterSchema,
   };
 
   return await client.sendRequest(config);
@@ -147,11 +143,11 @@ export async function getBoardByFilterId(
  * Admins without the view permission will see the board as a private one, so will see only a subset of the board's data
  * (board location for instance).
  */
-export async function getBoard(client: Client, parameters: GetBoardParameters): Promise<GetBoard> {
-  const config: SendRequestOptions<GetBoard> = {
+export async function getBoard(client: Client, parameters: GetBoard): Promise<Board> {
+  const config: SendRequestOptions<Board> = {
     url: `/rest/agile/1.0/board/${parameters.boardId}`,
     method: 'GET',
-    schema: GetBoardSchema,
+    schema: BoardSchema,
   };
 
   return await client.sendRequest(config);
@@ -531,18 +527,15 @@ export async function deleteBoardProperty(client: Client, parameters: DeleteBoar
 }
 
 /** Returns all quick filters from a board, for a given board ID. */
-export async function getAllQuickFilters(
-  client: Client,
-  parameters: GetAllQuickFiltersParameters,
-): Promise<GetAllQuickFilters> {
-  const config: SendRequestOptions<GetAllQuickFilters> = {
+export async function getAllQuickFilters(client: Client, parameters: GetAllQuickFilters): Promise<PageQuickFilter> {
+  const config: SendRequestOptions<PageQuickFilter> = {
     url: `/rest/agile/1.0/board/${parameters.boardId}/quickfilter`,
     method: 'GET',
     searchParams: {
       startAt: parameters.startAt,
       maxResults: parameters.maxResults,
     },
-    schema: GetAllQuickFiltersSchema,
+    schema: PageQuickFilterSchema,
   };
 
   return await client.sendRequest(config);
