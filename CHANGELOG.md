@@ -99,6 +99,19 @@ Avatars moved bytes in both directions and the specification described both as J
 
   Two names keep their `Json` on purpose. `ResolutionJson` would collide with the `Resolution` that describes a different shape, and `TaskProgressJsonNode` is one of four models that differ only in their `result` field — it wants the treatment the pages just had, not a new name. `JsonNode`, `JsonType` and `JsonContextVariable` are named after JSON for a reason and are untouched.
 
+* **`createCustomField` lists the field types it accepts.** `type` was `string` while its own documentation named all twenty-one built-in types, and `searcherKey` beside it had been an enum all along — the difference being that Atlassian put that one's values in the specification and this one's only in prose:
+
+  ```ts
+  await jira.issueFields.createCustomField({
+    name: 'Story points',
+    type: 'com.atlassian.jira.plugin.system.customfieldtypes:float',
+  });
+  ```
+
+  The type stays open, which here is not a formality: a site carries plugin and Forge field types — `com.atlassian.jpo:jpo-custom-field-parent`, `com.pyxis.greenhopper.jira:gh-sprint` — that no list of Atlassian's will ever name, and every one of them still compiles.
+
+  Two of the twenty-one are in the list only because the description was read twice. Atlassian's own bullets leave the value of `multicheckboxes` and `multigrouppicker` empty and give `multiselect` and `multiuserpicker` their neighbours' values, so reading the stated values alone drops two real types — one of which, `multiuserpicker`, a live site answers with.
+
 ### General
 
 * **A parameter type built on a model is written as one call.** 139 of them read `z.object({}).extend(BoardCreateSchema.shape)` — an empty object, then everything merged onto it. They are `z.object(BoardCreateSchema.shape)` now. The schema is the same object either way, and nothing about the types changes; it is the generated sources that were harder to read than the thing they describe.
