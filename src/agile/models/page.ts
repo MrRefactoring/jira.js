@@ -3,11 +3,11 @@ import { apiObject } from '#/core';
 
 export function pageSchema<T extends z.ZodType>(item: T) {
   return apiObject({
-    isLast: z.boolean().optional(),
-    maxResults: z.number().optional(),
-    startAt: z.number().optional(),
-    total: z.number().optional(),
-    values: z.array(item).optional(),
+    isLast: z.boolean(),
+    maxResults: z.number(),
+    startAt: z.number(),
+    total: z.number(),
+    values: z.array(item),
   });
 }
 

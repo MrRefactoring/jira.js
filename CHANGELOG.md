@@ -65,6 +65,20 @@ Avatars moved bytes in both directions and the specification described both as J
 
   The browser bundle drops from 481 kB to 471 kB, and the generated sources by a thousand lines: 82 copies of an envelope became three.
 
+* **A page's own fields are no longer optional.** `isLast`, `maxResults`, `startAt`, `total` and `values` were all typed `T | undefined`, so reading a page meant reaching past a `?? []` and a `?? 0` that never fire:
+
+  ```ts
+  const page = await jira.projects.searchProjects();
+
+  for (const project of page.values) { /* was: page.values ?? [] */ }
+  ```
+
+  Atlassian marks the whole envelope optional, and that is what the generator had to go on. Measured against a live site instead, those five came back on all 32 page responses across 23 platform endpoints and the agile board listings. The two that genuinely are conditional stay optional: `self` is absent from five of those endpoints, and `nextPage` appears only while a next page exists.
+
+  Service Desk's pages are untouched — all seven of their fields stay optional. They cannot be reached from the test site, which holds no Service Management licence, and the only real captures to be found show `_expands` present on one endpoint and absent on its neighbour. Guessing from Atlassian's examples is what this change is getting away from.
+
+  Reading a page is only ever safer for the change. Constructing one is not: a `Page<T>` written by hand — a fixture, a mock, a stub returned from a wrapper — now has to carry all five fields, and `PageBoardSchema.parse()` over such an object fails where it used to pass.
+
 ### General
 
 * **A parameter type built on a model is written as one call.** 139 of them read `z.object({}).extend(BoardCreateSchema.shape)` — an empty object, then everything merged onto it. They are `z.object(BoardCreateSchema.shape)` now. The schema is the same object either way, and nothing about the types changes; it is the generated sources that were harder to read than the thing they describe.

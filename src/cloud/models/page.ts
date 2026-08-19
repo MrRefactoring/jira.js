@@ -5,19 +5,19 @@ import { apiObject } from '#/core';
 export function pageSchema<T extends z.ZodType>(item: T) {
   return apiObject({
     /** Whether this is the last page. */
-    isLast: z.boolean().optional(),
+    isLast: z.boolean(),
     /** The maximum number of items that could be returned. */
-    maxResults: z.number().optional(),
+    maxResults: z.number(),
     /** If there is another page of results, the URL of the next page. */
     nextPage: z.url().optional(),
     /** The URL of the page. */
     self: z.url().optional(),
     /** The index of the first item returned. */
-    startAt: z.number().optional(),
+    startAt: z.number(),
     /** The number of items returned. */
-    total: z.number().optional(),
+    total: z.number(),
     /** The list of items. */
-    values: z.array(item).optional(),
+    values: z.array(item),
   });
 }
 
