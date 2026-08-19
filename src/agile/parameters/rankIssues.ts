@@ -1,10 +1,6 @@
 import { z } from 'zod';
+import { IssueRankRequestSchema } from '../models';
 
-export const RankIssuesSchema = z.object({
-  issues: z.array(z.string()).optional(),
-  rankAfterIssue: z.string().optional(),
-  rankBeforeIssue: z.string().optional(),
-  rankCustomFieldId: z.number().optional(),
-});
+export const RankIssuesSchema = z.object({}).extend(IssueRankRequestSchema.shape);
 
 export type RankIssues = z.input<typeof RankIssuesSchema>;

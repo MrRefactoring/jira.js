@@ -1,8 +1,9 @@
 import { z } from 'zod';
+import { FeatureToggleRequestSchema } from '../models';
 
 export const ToggleFeaturesSchema = z.object({
   boardId: z.number(),
-  body: z.record(z.string(), z.any()),
+  body: FeatureToggleRequestSchema,
 });
 
 export type ToggleFeatures = z.input<typeof ToggleFeaturesSchema>;

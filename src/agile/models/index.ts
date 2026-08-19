@@ -96,8 +96,6 @@ export * from './getProjects';
 
 export * from './getProjectsFull';
 
-export * from './getQuickFilter';
-
 export * from './getRemoteLinkById';
 
 export * from './getReportsForBoard';

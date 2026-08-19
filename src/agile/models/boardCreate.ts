@@ -1,12 +1,10 @@
 import { z } from 'zod';
 import { apiObject, openEnum } from '#/core';
+import { LocationSchema } from './location';
 
 export const BoardCreateSchema = apiObject({
   filterId: z.number().optional(),
-  location: apiObject({
-    projectKeyOrId: z.string().optional(),
-    type: openEnum(['project', 'user']).optional(),
-  }).optional(),
+  location: LocationSchema.optional(),
   name: z.string().optional(),
   type: openEnum(['kanban', 'scrum', 'agility']).optional(),
 });

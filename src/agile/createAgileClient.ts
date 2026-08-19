@@ -126,7 +126,7 @@ import type {
   PropertyKeys,
   EntityProperty,
   GetAllQuickFilters as GetAllQuickFiltersModel,
-  GetQuickFilter as GetQuickFilterModel,
+  QuickFilter,
   GetReportsForBoard as GetReportsForBoardModel,
   GetAllSprints as GetAllSprintsModel,
   GetAllVersions as GetAllVersionsModel,
@@ -209,8 +209,7 @@ export function createAgileClient(clientConfig: ClientConfig | Client) {
         board.deleteBoardProperty(client, parameters),
       getAllQuickFilters: (parameters: GetAllQuickFilters): Promise<GetAllQuickFiltersModel> =>
         board.getAllQuickFilters(client, parameters),
-      getQuickFilter: (parameters: GetQuickFilter): Promise<GetQuickFilterModel> =>
-        board.getQuickFilter(client, parameters),
+      getQuickFilter: (parameters: GetQuickFilter): Promise<QuickFilter> => board.getQuickFilter(client, parameters),
       getReportsForBoard: (parameters: GetReportsForBoard): Promise<GetReportsForBoardModel> =>
         board.getReportsForBoard(client, parameters),
       getAllSprints: (parameters: GetAllSprints): Promise<GetAllSprintsModel> =>
