@@ -13,7 +13,7 @@ import { GetProjectsFullSchema, type GetProjectsFull } from '../models/getProjec
 import { PropertyKeysSchema, type PropertyKeys } from '../models/propertyKeys';
 import { EntityPropertySchema, type EntityProperty } from '../models/entityProperty';
 import { GetAllQuickFiltersSchema, type GetAllQuickFilters } from '../models/getAllQuickFilters';
-import { GetQuickFilterSchema, type GetQuickFilter } from '../models/getQuickFilter';
+import { QuickFilterSchema, type QuickFilter } from '../models/quickFilter';
 import { GetReportsForBoardSchema, type GetReportsForBoard } from '../models/getReportsForBoard';
 import { GetAllSprintsSchema, type GetAllSprints } from '../models/getAllSprints';
 import { GetAllVersionsSchema, type GetAllVersions } from '../models/getAllVersions';
@@ -40,7 +40,7 @@ import type { GetBoardProperty } from '../parameters/getBoardProperty';
 import type { SetBoardProperty } from '../parameters/setBoardProperty';
 import type { DeleteBoardProperty } from '../parameters/deleteBoardProperty';
 import type { GetAllQuickFilters as GetAllQuickFiltersParameters } from '../parameters/getAllQuickFilters';
-import type { GetQuickFilter as GetQuickFilterParameters } from '../parameters/getQuickFilter';
+import type { GetQuickFilter } from '../parameters/getQuickFilter';
 import type { GetReportsForBoard as GetReportsForBoardParameters } from '../parameters/getReportsForBoard';
 import type { GetAllSprints as GetAllSprintsParameters } from '../parameters/getAllSprints';
 import type { GetBoardIssuesForSprint } from '../parameters/getBoardIssuesForSprint';
@@ -552,11 +552,11 @@ export async function getAllQuickFilters(
  * Returns the quick filter for a given quick filter ID. The quick filter will only be returned if the user can view the
  * board that the quick filter belongs to.
  */
-export async function getQuickFilter(client: Client, parameters: GetQuickFilterParameters): Promise<GetQuickFilter> {
-  const config: SendRequestOptions<GetQuickFilter> = {
+export async function getQuickFilter(client: Client, parameters: GetQuickFilter): Promise<QuickFilter> {
+  const config: SendRequestOptions<QuickFilter> = {
     url: `/rest/agile/1.0/board/${parameters.boardId}/quickfilter/${parameters.quickFilterId}`,
     method: 'GET',
-    schema: GetQuickFilterSchema,
+    schema: QuickFilterSchema,
   };
 
   return await client.sendRequest(config);

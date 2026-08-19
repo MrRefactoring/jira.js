@@ -1,43 +1,16 @@
 import { z } from 'zod';
-import { apiObject, openEnum } from '#/core';
+import { apiObject } from '#/core';
+import { ColumnConfigSchema } from './columnConfig';
+import { EstimationConfigSchema } from './estimationConfig';
+import { RelationSchema } from './relation';
+import { LocationSchema } from './location';
 
 export const BoardConfigSchema = apiObject({
-  columnConfig: apiObject({
-    columns: z
-      .array(
-        apiObject({
-          max: z.number().optional(),
-          min: z.number().optional(),
-          name: z.string().optional(),
-          statuses: z
-            .array(
-              apiObject({
-                id: z.string().optional(),
-                self: z.url().optional(),
-              }),
-            )
-            .optional(),
-        }),
-      )
-      .optional(),
-    constraintType: z.string().optional(),
-  }).optional(),
-  estimation: apiObject({
-    field: apiObject({
-      displayName: z.string().optional(),
-      fieldId: z.string().optional(),
-    }).optional(),
-    type: z.string().optional(),
-  }).optional(),
-  filter: apiObject({
-    id: z.string().optional(),
-    self: z.url().optional(),
-  }).optional(),
+  columnConfig: ColumnConfigSchema.optional(),
+  estimation: EstimationConfigSchema.optional(),
+  filter: RelationSchema.optional(),
   id: z.number().optional(),
-  location: apiObject({
-    projectKeyOrId: z.string().optional(),
-    type: openEnum(['project', 'user']).optional(),
-  }).optional(),
+  location: LocationSchema.optional(),
   name: z.string().optional(),
   ranking: apiObject({
     rankCustomFieldId: z.number().optional(),

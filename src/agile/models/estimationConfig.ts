@@ -1,11 +1,9 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
+import { EstimationFieldSchema } from './estimationField';
 
 export const EstimationConfigSchema = apiObject({
-  field: apiObject({
-    displayName: z.string().optional(),
-    fieldId: z.string().optional(),
-  }).optional(),
+  field: EstimationFieldSchema.optional(),
   type: z.string().optional(),
 });
 
