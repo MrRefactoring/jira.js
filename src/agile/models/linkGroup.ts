@@ -14,6 +14,7 @@ export interface LinkGroup {
 
 export const LinkGroupSchema: z.ZodType<LinkGroup> = apiObject({
   groups: z.array(z.lazy(() => LinkGroupSchema)).optional(),
+  /** Details about the operations available in this version. */
   header: SimpleLinkSchema.optional(),
   id: z.string().optional(),
   links: z.array(SimpleLinkSchema).optional(),

@@ -19,6 +19,7 @@ export const CreateBoardSchema = apiObject({
   id: z.number().optional(),
   /** Whether the board is private. */
   isPrivate: z.boolean().optional(),
+  /** The container that the board is located in. */
   location: BoardLocationSchema.optional(),
   /** The name of the board. */
   name: z.string().optional(),
