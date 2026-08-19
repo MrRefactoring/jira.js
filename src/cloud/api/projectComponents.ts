@@ -1,6 +1,6 @@
-import { Page2ComponentJsonSchema } from '../models/page2ComponentJson';
+import { PageComponentSchema } from '../models/pageComponent';
 import type { Page } from '../models/page';
-import type { ComponentJson } from '../models/componentJson';
+import type { Component } from '../models/component';
 import { ProjectComponentSchema, type ProjectComponent } from '../models/projectComponent';
 import { ComponentIssuesCountSchema, type ComponentIssuesCount } from '../models/componentIssuesCount';
 import { PageComponentWithIssueCountSchema } from '../models/pageComponentWithIssueCount';
@@ -28,8 +28,8 @@ import { z } from 'zod';
 export async function findComponentsForProjects(
   client: Client,
   parameters?: FindComponentsForProjects,
-): Promise<Page<ComponentJson>> {
-  const config: SendRequestOptions<Page<ComponentJson>> = {
+): Promise<Page<Component>> {
+  const config: SendRequestOptions<Page<Component>> = {
     url: '/rest/api/3/component',
     method: 'GET',
     searchParams: {
@@ -39,7 +39,7 @@ export async function findComponentsForProjects(
       orderBy: parameters?.orderBy,
       query: parameters?.query,
     },
-    schema: Page2ComponentJsonSchema,
+    schema: PageComponentSchema,
   };
 
   return await client.sendRequest(config);

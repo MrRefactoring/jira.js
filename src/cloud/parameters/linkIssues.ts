@@ -1,6 +1,6 @@
 import { z } from 'zod';
-import { LinkIssueRequestJsonSchema } from '../models';
+import { LinkIssueRequestSchema } from '../models';
 
-export const LinkIssuesSchema = z.object(LinkIssueRequestJsonSchema.shape);
+export const LinkIssuesSchema = z.object(LinkIssueRequestSchema.shape);
 
 export type LinkIssues = z.input<typeof LinkIssuesSchema>;

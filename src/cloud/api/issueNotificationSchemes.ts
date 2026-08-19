@@ -2,7 +2,7 @@ import { PageNotificationSchemeSchema } from '../models/pageNotificationScheme';
 import type { Page } from '../models/page';
 import { NotificationSchemeSchema, type NotificationScheme } from '../models/notificationScheme';
 import { NotificationSchemeAndProjectMappingPageSchema } from '../models/notificationSchemeAndProjectMappingPage';
-import type { NotificationSchemeAndProjectMappingJson } from '../models/notificationSchemeAndProjectMappingJson';
+import type { NotificationSchemeAndProjectMapping } from '../models/notificationSchemeAndProjectMapping';
 import type { GetNotificationSchemes } from '../parameters/getNotificationSchemes';
 import type { GetNotificationSchemeToProjectMappings } from '../parameters/getNotificationSchemeToProjectMappings';
 import type { GetNotificationScheme } from '../parameters/getNotificationScheme';
@@ -54,8 +54,8 @@ export async function getNotificationSchemes(
 export async function getNotificationSchemeToProjectMappings(
   client: Client,
   parameters?: GetNotificationSchemeToProjectMappings,
-): Promise<Page<NotificationSchemeAndProjectMappingJson>> {
-  const config: SendRequestOptions<Page<NotificationSchemeAndProjectMappingJson>> = {
+): Promise<Page<NotificationSchemeAndProjectMapping>> {
+  const config: SendRequestOptions<Page<NotificationSchemeAndProjectMapping>> = {
     url: '/rest/api/3/notificationscheme/project',
     method: 'GET',
     searchParams: {

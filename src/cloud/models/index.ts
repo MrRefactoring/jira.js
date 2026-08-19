@@ -172,6 +172,8 @@ export * from './comment';
 
 export * from './commentInput';
 
+export * from './component';
+
 export * from './componentIssuesCount';
 
 export * from './componentJson';
@@ -341,6 +343,8 @@ export * from './customFieldContextSingleUserPickerDefaults';
 export * from './customFieldContextUpdateDetails';
 
 export * from './customFieldCreatedContextOptionsList';
+
+export * from './customFieldDefinition';
 
 export * from './customFieldDefinitionJson';
 
@@ -846,6 +850,8 @@ export * from './jiraIssueFields';
 
 export * from './jiraIssueTypeField';
 
+export * from './jiraLabelProperties';
+
 export * from './jiraLabelPropertiesInputJackson1';
 
 export * from './jiraLabelsField';
@@ -986,6 +992,8 @@ export * from './licensedApplication';
 
 export * from './linkGroup';
 
+export * from './linkIssueRequest';
+
 export * from './linkIssueRequestJson';
 
 export * from './linkedIssue';
@@ -1037,6 +1045,8 @@ export * from './notificationRecipients';
 export * from './notificationRecipientsRestrictions';
 
 export * from './notificationScheme';
+
+export * from './notificationSchemeAndProjectMapping';
 
 export * from './notificationSchemeAndProjectMappingJson';
 
@@ -1090,6 +1100,8 @@ export * from './pageChangelog';
 
 export * from './pageComment';
 
+export * from './pageComponent';
+
 export * from './pageComponentWithIssueCount';
 
 export * from './pageContext';
@@ -1112,6 +1124,10 @@ export * from './pageDashboard';
 
 export * from './pageField';
 
+export * from './pageFieldAssociationSchemeFieldSearchResult';
+
+export * from './pageFieldAssociationSchemeProjectSearchResult';
+
 export * from './pageFieldConfigurationDetails';
 
 export * from './pageFieldConfigurationIssueTypeItem';
@@ -1125,6 +1141,10 @@ export * from './pageFieldConfigurationSchemeProjects';
 export * from './pageFieldProjectAssociation';
 
 export * from './pageFilterDetails';
+
+export * from './pageGetFieldAssociationSchemeResponse';
+
+export * from './pageGetProjectsWithFieldSchemesResponse';
 
 export * from './pageGroupDetails';
 
@@ -1175,6 +1195,8 @@ export * from './pagePriorityWithSequence';
 export * from './pageProject';
 
 export * from './pageProjectDetails';
+
+export * from './pageProjectField';
 
 export * from './pageResolutionJson';
 
