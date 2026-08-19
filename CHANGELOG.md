@@ -50,6 +50,20 @@ Avatars moved bytes in both directions and the specification described both as J
 * **Five more agile models are deprecated in favour of the components they were copies of.** `createBoard` and `getBoard` answer with `Board`, `getAllBoards` with `PageBoard`, `getBoardByFilterId` with `PageBoardFilter`, and `getAllQuickFilters` with `PageQuickFilter`. Each of those responses is declared inline in the specification, field for field the component sitting beside it, so the generator had nothing to name it after but the operation — and the component it duplicated went unused: no agile model referenced `Board` at all, while six of them wrote a board out in full. The retired names are still exported as `@deprecated` aliases of the new ones, assignable in both directions, and go at the next major version. Nothing has to change today.
 
   A board reports its type properly now, as a side effect worth naming. `Board.type` is `'scrum' | 'kanban' | 'simple' | (string & {})`; every copy of it was a plain `string`, and since each of these methods returned a copy, the narrowing reached none of them. `getBoard()` and the boards inside `getAllBoards().values` carry it now.
+* **A page of things is typed `Page<T>`.** Atlassian restates the pagination envelope once per item type — `PageBoard`, `PageUser`, `PagedArticle`, ninety-odd of them across the three APIs, identical but for what sits in `values` — and each generated a model of its own. So a page of boards and a page of users were two unrelated shapes with the same seven fields, and nothing said they were the same idea. Each API now has one `Page<T>`, and the endpoints answering with a page are typed with it:
+
+  ```ts
+  const boards: Page<Board> = await agile.board.getAllBoards();
+  const comments: Page<Comment> = await jira.issueComments.getCommentsByIds({ ids: [10000, 10001] });
+  ```
+
+  Three generics, not one: the envelopes genuinely differ. Cloud's carries `nextPage` and `self`, Agile's does not, and Service Desk's is `_expands`/`_links`/`isLastPage`/`limit`/`size`/`start` — giving Agile cloud's would document two fields Jira Software never sends. Each is exported from its own entry point, all three under the name `Page`.
+
+  Nothing is removed and nothing changes shape: the 82 retired names — 62 in cloud, 17 in Service Desk, 3 in Agile — remain exported as `@deprecated` aliases of the generic (`type PageBoard = Page<Board>`), assignable in both directions, going at the next major version. The schemas keep their own names, since `PageBoardSchema` is the only handle on the runtime schema. Every page type was compared against the one it replaces, in both directions, before this shipped.
+
+  Only exact matches folded. A page that differs by a field, a description or a format — the cursor-based pages, `PageOfChangelogs`, `PageOfComments`, `PageOfWorklogs`, `PagedLink` — generates exactly as it did.
+
+  The browser bundle drops from 481 kB to 471 kB, and the generated sources by a thousand lines: 82 copies of an envelope became three.
 
 ### General
 

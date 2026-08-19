@@ -1,23 +1,10 @@
-import { z } from 'zod';
-import { apiObject } from '#/core';
-import { UiModificationDetailsSchema } from './uiModificationDetails';
-/** A page of items. */
+import { pageSchema, type Page } from './page';
+import { UiModificationDetailsSchema, type UiModificationDetails } from './uiModificationDetails';
 
-export const PageUiModificationDetailsSchema = apiObject({
-  /** Whether this is the last page. */
-  isLast: z.boolean().optional(),
-  /** The maximum number of items that could be returned. */
-  maxResults: z.number().optional(),
-  /** If there is another page of results, the URL of the next page. */
-  nextPage: z.url().optional(),
-  /** The URL of the page. */
-  self: z.url().optional(),
-  /** The index of the first item returned. */
-  startAt: z.number().optional(),
-  /** The number of items returned. */
-  total: z.number().optional(),
-  /** The list of items. */
-  values: z.array(UiModificationDetailsSchema).optional(),
-});
+export const PageUiModificationDetailsSchema = pageSchema(UiModificationDetailsSchema);
 
-export type PageUiModificationDetails = z.infer<typeof PageUiModificationDetailsSchema>;
+/**
+ * @deprecated Use `Page<UiModificationDetails>`, which describes the same shape. This alias is removed in the next
+ *   major version.
+ */
+export type PageUiModificationDetails = Page<UiModificationDetails>;

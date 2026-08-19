@@ -67,39 +67,31 @@ import type {
   GetRequestTypeGroups,
 } from './parameters';
 import type {
-  PagedAssetsWorkspace,
-  PagedInsightWorkspace,
+  Page,
+  AssetsWorkspace,
+  InsightWorkspace,
   User,
   SoftwareInfo,
-  PagedArticle,
-  PagedOrganization,
+  Article,
   Organization,
   PropertyKeys,
   EntityProperty,
-  PagedUser,
-  PagedCustomerRequest,
   CustomerRequest,
-  PagedApproval,
   Approval,
-  PagedAttachment,
+  Attachment,
   AttachmentCreateResult,
-  PagedComment,
   Comment,
   RequestNotificationSubscription,
-  PagedSlaInformation,
   SlaInformation,
-  PagedCustomerRequestStatus,
-  PagedCustomerTransition,
-  PagedServiceDesk,
+  CustomerRequestStatus,
+  CustomerTransition,
   ServiceDesk,
   AttachTemporaryFile as AttachTemporaryFileModel,
-  PagedQueue,
   Queue,
-  PagedIssue,
-  PagedRequestType,
+  Issue,
   RequestType,
   CustomerRequestCreateMeta,
-  PagedRequestTypeGroup,
+  RequestTypeGroup,
 } from './models';
 
 export function createServiceDeskClient(clientConfig: ClientConfig | Client) {
@@ -107,9 +99,9 @@ export function createServiceDeskClient(clientConfig: ClientConfig | Client) {
 
   return {
     assets: {
-      getAssetsWorkspaces: (parameters?: GetAssetsWorkspaces): Promise<PagedAssetsWorkspace> =>
+      getAssetsWorkspaces: (parameters?: GetAssetsWorkspaces): Promise<Page<AssetsWorkspace>> =>
         assets.getAssetsWorkspaces(client, parameters),
-      getInsightWorkspaces: (parameters?: GetInsightWorkspaces): Promise<PagedInsightWorkspace> =>
+      getInsightWorkspaces: (parameters?: GetInsightWorkspaces): Promise<Page<InsightWorkspace>> =>
         assets.getInsightWorkspaces(client, parameters),
     },
     customer: {
@@ -123,11 +115,11 @@ export function createServiceDeskClient(clientConfig: ClientConfig | Client) {
       getInfo: (): Promise<SoftwareInfo> => info.getInfo(client),
     },
     knowledgebase: {
-      getArticles: (parameters: GetArticles): Promise<PagedArticle> => knowledgebase.getArticles(client, parameters),
+      getArticles: (parameters: GetArticles): Promise<Page<Article>> => knowledgebase.getArticles(client, parameters),
       viewArticle: (parameters: ViewArticle): Promise<string> => knowledgebase.viewArticle(client, parameters),
     },
     organization: {
-      getOrganizations: (parameters?: GetOrganizations): Promise<PagedOrganization> =>
+      getOrganizations: (parameters?: GetOrganizations): Promise<Page<Organization>> =>
         organization.getOrganizations(client, parameters),
       createOrganization: (parameters: CreateOrganization): Promise<Organization> =>
         organization.createOrganization(client, parameters),
@@ -140,29 +132,29 @@ export function createServiceDeskClient(clientConfig: ClientConfig | Client) {
       getProperty: (parameters: GetProperty): Promise<EntityProperty> => organization.getProperty(client, parameters),
       setProperty: (parameters: SetProperty): Promise<void> => organization.setProperty(client, parameters),
       deleteProperty: (parameters: DeleteProperty): Promise<void> => organization.deleteProperty(client, parameters),
-      getUsersInOrganization: (parameters: GetUsersInOrganization): Promise<PagedUser> =>
+      getUsersInOrganization: (parameters: GetUsersInOrganization): Promise<Page<User>> =>
         organization.getUsersInOrganization(client, parameters),
       addUsersToOrganization: (parameters: AddUsersToOrganization): Promise<void> =>
         organization.addUsersToOrganization(client, parameters),
       removeUsersFromOrganization: (parameters: RemoveUsersFromOrganization): Promise<void> =>
         organization.removeUsersFromOrganization(client, parameters),
-      getServiceDeskOrganizations: (parameters: GetServiceDeskOrganizations): Promise<PagedOrganization> =>
+      getServiceDeskOrganizations: (parameters: GetServiceDeskOrganizations): Promise<Page<Organization>> =>
         organization.getServiceDeskOrganizations(client, parameters),
       addOrganization: (parameters: AddOrganization): Promise<void> => organization.addOrganization(client, parameters),
       removeOrganization: (parameters: RemoveOrganization): Promise<void> =>
         organization.removeOrganization(client, parameters),
     },
     request: {
-      getCustomerRequests: (parameters?: GetCustomerRequests): Promise<PagedCustomerRequest> =>
+      getCustomerRequests: (parameters?: GetCustomerRequests): Promise<Page<CustomerRequest>> =>
         request.getCustomerRequests(client, parameters),
       createCustomerRequest: (parameters: CreateCustomerRequest): Promise<CustomerRequest> =>
         request.createCustomerRequest(client, parameters),
       getCustomerRequestByIdOrKey: (parameters: GetCustomerRequestByIdOrKey): Promise<CustomerRequest> =>
         request.getCustomerRequestByIdOrKey(client, parameters),
-      getApprovals: (parameters: GetApprovals): Promise<PagedApproval> => request.getApprovals(client, parameters),
+      getApprovals: (parameters: GetApprovals): Promise<Page<Approval>> => request.getApprovals(client, parameters),
       getApprovalById: (parameters: GetApprovalById): Promise<Approval> => request.getApprovalById(client, parameters),
       answerApproval: (parameters: AnswerApproval): Promise<Approval> => request.answerApproval(client, parameters),
-      getAttachmentsForRequest: (parameters: GetAttachmentsForRequest): Promise<PagedAttachment> =>
+      getAttachmentsForRequest: (parameters: GetAttachmentsForRequest): Promise<Page<Attachment>> =>
         request.getAttachmentsForRequest(client, parameters),
       createCommentWithAttachment: (parameters: CreateCommentWithAttachment): Promise<AttachmentCreateResult> =>
         request.createCommentWithAttachment(client, parameters),
@@ -170,7 +162,7 @@ export function createServiceDeskClient(clientConfig: ClientConfig | Client) {
         request.getAttachmentContent(client, parameters),
       getAttachmentThumbnail: (parameters: GetAttachmentThumbnail): Promise<Buffer> =>
         request.getAttachmentThumbnail(client, parameters),
-      getRequestComments: (parameters: GetRequestComments): Promise<PagedComment> =>
+      getRequestComments: (parameters: GetRequestComments): Promise<Page<Comment>> =>
         request.getRequestComments(client, parameters),
       createRequestComment: (parameters: CreateRequestComment): Promise<Comment> =>
         request.createRequestComment(client, parameters),
@@ -180,25 +172,25 @@ export function createServiceDeskClient(clientConfig: ClientConfig | Client) {
         request.getSubscriptionStatus(client, parameters),
       subscribe: (parameters: Subscribe): Promise<void> => request.subscribe(client, parameters),
       unsubscribe: (parameters: Unsubscribe): Promise<void> => request.unsubscribe(client, parameters),
-      getRequestParticipants: (parameters: GetRequestParticipants): Promise<PagedUser> =>
+      getRequestParticipants: (parameters: GetRequestParticipants): Promise<Page<User>> =>
         request.getRequestParticipants(client, parameters),
-      addRequestParticipants: (parameters: AddRequestParticipants): Promise<PagedUser> =>
+      addRequestParticipants: (parameters: AddRequestParticipants): Promise<Page<User>> =>
         request.addRequestParticipants(client, parameters),
-      removeRequestParticipants: (parameters: RemoveRequestParticipants): Promise<PagedUser> =>
+      removeRequestParticipants: (parameters: RemoveRequestParticipants): Promise<Page<User>> =>
         request.removeRequestParticipants(client, parameters),
-      getSlaInformation: (parameters: GetSlaInformation): Promise<PagedSlaInformation> =>
+      getSlaInformation: (parameters: GetSlaInformation): Promise<Page<SlaInformation>> =>
         request.getSlaInformation(client, parameters),
       getSlaInformationById: (parameters: GetSlaInformationById): Promise<SlaInformation> =>
         request.getSlaInformationById(client, parameters),
-      getCustomerRequestStatus: (parameters: GetCustomerRequestStatus): Promise<PagedCustomerRequestStatus> =>
+      getCustomerRequestStatus: (parameters: GetCustomerRequestStatus): Promise<Page<CustomerRequestStatus>> =>
         request.getCustomerRequestStatus(client, parameters),
-      getCustomerTransitions: (parameters: GetCustomerTransitions): Promise<PagedCustomerTransition> =>
+      getCustomerTransitions: (parameters: GetCustomerTransitions): Promise<Page<CustomerTransition>> =>
         request.getCustomerTransitions(client, parameters),
       performCustomerTransition: (parameters: PerformCustomerTransition): Promise<void> =>
         request.performCustomerTransition(client, parameters),
     },
     servicedesk: {
-      getServiceDesks: (parameters?: GetServiceDesks): Promise<PagedServiceDesk> =>
+      getServiceDesks: (parameters?: GetServiceDesks): Promise<Page<ServiceDesk>> =>
         servicedesk.getServiceDesks(client, parameters),
       getServiceDeskById: (parameters: GetServiceDeskById): Promise<ServiceDesk> =>
         servicedesk.getServiceDeskById(client, parameters),
@@ -207,19 +199,19 @@ export function createServiceDeskClient(clientConfig: ClientConfig | Client) {
       addCustomers: (parameters: AddCustomers): Promise<void> => servicedesk.addCustomers(client, parameters),
       addCustomersSkippingPermissionCheck: (parameters: AddCustomersSkippingPermissionCheck): Promise<void> =>
         servicedesk.addCustomersSkippingPermissionCheck(client, parameters),
-      getServiceDeskArticles: (parameters: GetServiceDeskArticles): Promise<PagedArticle> =>
+      getServiceDeskArticles: (parameters: GetServiceDeskArticles): Promise<Page<Article>> =>
         servicedesk.getServiceDeskArticles(client, parameters),
-      getQueues: (parameters: GetQueues): Promise<PagedQueue> => servicedesk.getQueues(client, parameters),
+      getQueues: (parameters: GetQueues): Promise<Page<Queue>> => servicedesk.getQueues(client, parameters),
       getQueue: (parameters: GetQueue): Promise<Queue> => servicedesk.getQueue(client, parameters),
-      getIssuesInQueue: (parameters: GetIssuesInQueue): Promise<PagedIssue> =>
+      getIssuesInQueue: (parameters: GetIssuesInQueue): Promise<Page<Issue>> =>
         servicedesk.getIssuesInQueue(client, parameters),
-      getRequestTypes: (parameters: GetRequestTypes): Promise<PagedRequestType> =>
+      getRequestTypes: (parameters: GetRequestTypes): Promise<Page<RequestType>> =>
         servicedesk.getRequestTypes(client, parameters),
       getRequestTypeById: (parameters: GetRequestTypeById): Promise<RequestType> =>
         servicedesk.getRequestTypeById(client, parameters),
       getRequestTypeFields: (parameters: GetRequestTypeFields): Promise<CustomerRequestCreateMeta> =>
         servicedesk.getRequestTypeFields(client, parameters),
-      getRequestTypeGroups: (parameters: GetRequestTypeGroups): Promise<PagedRequestTypeGroup> =>
+      getRequestTypeGroups: (parameters: GetRequestTypeGroups): Promise<Page<RequestTypeGroup>> =>
         servicedesk.getRequestTypeGroups(client, parameters),
     },
   };

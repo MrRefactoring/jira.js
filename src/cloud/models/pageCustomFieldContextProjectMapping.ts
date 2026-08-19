@@ -1,23 +1,13 @@
-import { z } from 'zod';
-import { apiObject } from '#/core';
-import { CustomFieldContextProjectMappingSchema } from './customFieldContextProjectMapping';
-/** A page of items. */
+import { pageSchema, type Page } from './page';
+import {
+  CustomFieldContextProjectMappingSchema,
+  type CustomFieldContextProjectMapping,
+} from './customFieldContextProjectMapping';
 
-export const PageCustomFieldContextProjectMappingSchema = apiObject({
-  /** Whether this is the last page. */
-  isLast: z.boolean().optional(),
-  /** The maximum number of items that could be returned. */
-  maxResults: z.number().optional(),
-  /** If there is another page of results, the URL of the next page. */
-  nextPage: z.url().optional(),
-  /** The URL of the page. */
-  self: z.url().optional(),
-  /** The index of the first item returned. */
-  startAt: z.number().optional(),
-  /** The number of items returned. */
-  total: z.number().optional(),
-  /** The list of items. */
-  values: z.array(CustomFieldContextProjectMappingSchema).optional(),
-});
+export const PageCustomFieldContextProjectMappingSchema = pageSchema(CustomFieldContextProjectMappingSchema);
 
-export type PageCustomFieldContextProjectMapping = z.infer<typeof PageCustomFieldContextProjectMappingSchema>;
+/**
+ * @deprecated Use `Page<CustomFieldContextProjectMapping>`, which describes the same shape. This alias is removed in
+ *   the next major version.
+ */
+export type PageCustomFieldContextProjectMapping = Page<CustomFieldContextProjectMapping>;

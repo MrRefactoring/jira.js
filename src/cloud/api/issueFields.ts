@@ -1,5 +1,7 @@
 import { FieldDetailsSchema, type FieldDetails } from '../models/fieldDetails';
-import { PageFieldSchema, type PageField } from '../models/pageField';
+import { PageFieldSchema } from '../models/pageField';
+import type { Page } from '../models/page';
+import type { Field } from '../models/field';
 import { TaskProgressObjectSchema, type TaskProgressObject } from '../models/taskProgressObject';
 import type { CreateCustomField } from '../parameters/createCustomField';
 import type { GetFieldsPaginated } from '../parameters/getFieldsPaginated';
@@ -73,8 +75,8 @@ export async function createCustomField(client: Client, parameters: CreateCustom
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** Permission
  * to access Jira.
  */
-export async function getFieldsPaginated(client: Client, parameters?: GetFieldsPaginated): Promise<PageField> {
-  const config: SendRequestOptions<PageField> = {
+export async function getFieldsPaginated(client: Client, parameters?: GetFieldsPaginated): Promise<Page<Field>> {
+  const config: SendRequestOptions<Page<Field>> = {
     url: '/rest/api/3/field/search',
     method: 'GET',
     searchParams: {
@@ -105,8 +107,8 @@ export async function getFieldsPaginated(client: Client, parameters?: GetFieldsP
 export async function getTrashedFieldsPaginated(
   client: Client,
   parameters?: GetTrashedFieldsPaginated,
-): Promise<PageField> {
-  const config: SendRequestOptions<PageField> = {
+): Promise<Page<Field>> {
+  const config: SendRequestOptions<Page<Field>> = {
     url: '/rest/api/3/field/search/trashed',
     method: 'GET',
     searchParams: {

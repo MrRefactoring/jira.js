@@ -142,6 +142,8 @@ export * from './moveIssuesToBoard';
 
 export * from './operations';
 
+export * from './page';
+
 export * from './pageBoard';
 
 export * from './pageBoardFilter';

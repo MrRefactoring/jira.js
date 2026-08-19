@@ -1,5 +1,7 @@
 import { GroupSchema, type Group } from '../models/group';
-import { PageUserDetailsSchema, type PageUserDetails } from '../models/pageUserDetails';
+import { PageUserDetailsSchema } from '../models/pageUserDetails';
+import type { Page } from '../models/page';
+import type { UserDetails } from '../models/userDetails';
 import { FoundGroupsSchema, type FoundGroups } from '../models/foundGroups';
 import type { CreateGroup } from '../parameters/createGroup';
 import type { RemoveGroup } from '../parameters/removeGroup';
@@ -60,8 +62,8 @@ export async function removeGroup(client: Client, parameters: RemoveGroup): Prom
  * - _Browse users and groups_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  * - _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-export async function getUsersFromGroup(client: Client, parameters?: GetUsersFromGroup): Promise<PageUserDetails> {
-  const config: SendRequestOptions<PageUserDetails> = {
+export async function getUsersFromGroup(client: Client, parameters?: GetUsersFromGroup): Promise<Page<UserDetails>> {
+  const config: SendRequestOptions<Page<UserDetails>> = {
     url: '/rest/api/3/group/member',
     method: 'GET',
     searchParams: {

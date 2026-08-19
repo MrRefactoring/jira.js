@@ -1,4 +1,6 @@
-import { PageUiModificationDetailsSchema, type PageUiModificationDetails } from '../models/pageUiModificationDetails';
+import { PageUiModificationDetailsSchema } from '../models/pageUiModificationDetails';
+import type { Page } from '../models/page';
+import type { UiModificationDetails } from '../models/uiModificationDetails';
 import { UiModificationIdentifiersSchema, type UiModificationIdentifiers } from '../models/uiModificationIdentifiers';
 import type { GetUiModifications } from '../parameters/getUiModifications';
 import type { CreateUiModification } from '../parameters/createUiModification';
@@ -17,8 +19,8 @@ import type { Client, SendRequestOptions } from '#/core';
 export async function getUiModifications(
   client: Client,
   parameters?: GetUiModifications,
-): Promise<PageUiModificationDetails> {
-  const config: SendRequestOptions<PageUiModificationDetails> = {
+): Promise<Page<UiModificationDetails>> {
+  const config: SendRequestOptions<Page<UiModificationDetails>> = {
     url: '/rest/api/3/uiModifications',
     method: 'GET',
     searchParams: {

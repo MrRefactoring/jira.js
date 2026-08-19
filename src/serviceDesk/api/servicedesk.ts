@@ -1,14 +1,18 @@
-import { PagedServiceDeskSchema, type PagedServiceDesk } from '../models/pagedServiceDesk';
+import { PagedServiceDeskSchema } from '../models/pagedServiceDesk';
+import type { Page } from '../models/page';
 import { ServiceDeskSchema, type ServiceDesk } from '../models/serviceDesk';
 import { AttachTemporaryFileSchema, type AttachTemporaryFile } from '../models/attachTemporaryFile';
-import { PagedArticleSchema, type PagedArticle } from '../models/pagedArticle';
-import { PagedQueueSchema, type PagedQueue } from '../models/pagedQueue';
+import { PagedArticleSchema } from '../models/pagedArticle';
+import type { Article } from '../models/article';
+import { PagedQueueSchema } from '../models/pagedQueue';
 import { QueueSchema, type Queue } from '../models/queue';
-import { PagedIssueSchema, type PagedIssue } from '../models/pagedIssue';
-import { PagedRequestTypeSchema, type PagedRequestType } from '../models/pagedRequestType';
+import { PagedIssueSchema } from '../models/pagedIssue';
+import type { Issue } from '../models/issue';
+import { PagedRequestTypeSchema } from '../models/pagedRequestType';
 import { RequestTypeSchema, type RequestType } from '../models/requestType';
 import { CustomerRequestCreateMetaSchema, type CustomerRequestCreateMeta } from '../models/customerRequestCreateMeta';
-import { PagedRequestTypeGroupSchema, type PagedRequestTypeGroup } from '../models/pagedRequestTypeGroup';
+import { PagedRequestTypeGroupSchema } from '../models/pagedRequestTypeGroup';
+import type { RequestTypeGroup } from '../models/requestTypeGroup';
 import type { GetServiceDesks } from '../parameters/getServiceDesks';
 import type { GetServiceDeskById } from '../parameters/getServiceDeskById';
 import type { AttachTemporaryFile as AttachTemporaryFileParameters } from '../parameters/attachTemporaryFile';
@@ -35,8 +39,8 @@ import type { Client, SendRequestOptions } from '#/core';
  *
  * **[Permissions](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro#permissions) required**: Any
  */
-export async function getServiceDesks(client: Client, parameters?: GetServiceDesks): Promise<PagedServiceDesk> {
-  const config: SendRequestOptions<PagedServiceDesk> = {
+export async function getServiceDesks(client: Client, parameters?: GetServiceDesks): Promise<Page<ServiceDesk>> {
+  const config: SendRequestOptions<Page<ServiceDesk>> = {
     url: '/rest/servicedeskapi/servicedesk',
     method: 'GET',
     searchParams: {
@@ -164,8 +168,8 @@ export async function addCustomersSkippingPermissionCheck(
 export async function getServiceDeskArticles(
   client: Client,
   parameters: GetServiceDeskArticles,
-): Promise<PagedArticle> {
-  const config: SendRequestOptions<PagedArticle> = {
+): Promise<Page<Article>> {
+  const config: SendRequestOptions<Page<Article>> = {
     url: `/rest/servicedeskapi/servicedesk/${parameters.serviceDeskId}/knowledgebase/article`,
     method: 'GET',
     searchParams: {
@@ -189,8 +193,8 @@ export async function getServiceDeskArticles(
  * **[Permissions](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro#permissions) required**: service
  * desk's Agent.
  */
-export async function getQueues(client: Client, parameters: GetQueues): Promise<PagedQueue> {
-  const config: SendRequestOptions<PagedQueue> = {
+export async function getQueues(client: Client, parameters: GetQueues): Promise<Page<Queue>> {
+  const config: SendRequestOptions<Page<Queue>> = {
     url: `/rest/servicedeskapi/servicedesk/${parameters.serviceDeskId}/queue`,
     method: 'GET',
     searchParams: {
@@ -232,8 +236,8 @@ export async function getQueue(client: Client, parameters: GetQueue): Promise<Qu
  * **[Permissions](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro#permissions) required**: Service
  * desk's agent.
  */
-export async function getIssuesInQueue(client: Client, parameters: GetIssuesInQueue): Promise<PagedIssue> {
-  const config: SendRequestOptions<PagedIssue> = {
+export async function getIssuesInQueue(client: Client, parameters: GetIssuesInQueue): Promise<Page<Issue>> {
+  const config: SendRequestOptions<Page<Issue>> = {
     url: `/rest/servicedeskapi/servicedesk/${parameters.serviceDeskId}/queue/${parameters.queueId}/issue`,
     method: 'GET',
     searchParams: {
@@ -262,8 +266,8 @@ export async function getIssuesInQueue(client: Client, parameters: GetIssuesInQu
  * **[Permissions](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro#permissions) required**:
  * Permission to access the service desk.
  */
-export async function getRequestTypes(client: Client, parameters: GetRequestTypes): Promise<PagedRequestType> {
-  const config: SendRequestOptions<PagedRequestType> = {
+export async function getRequestTypes(client: Client, parameters: GetRequestTypes): Promise<Page<RequestType>> {
+  const config: SendRequestOptions<Page<RequestType>> = {
     url: `/rest/servicedeskapi/servicedesk/${parameters.serviceDeskId}/requesttype`,
     method: 'GET',
     searchParams: {
@@ -342,8 +346,8 @@ export async function getRequestTypeFields(
 export async function getRequestTypeGroups(
   client: Client,
   parameters: GetRequestTypeGroups,
-): Promise<PagedRequestTypeGroup> {
-  const config: SendRequestOptions<PagedRequestTypeGroup> = {
+): Promise<Page<RequestTypeGroup>> {
+  const config: SendRequestOptions<Page<RequestTypeGroup>> = {
     url: `/rest/servicedeskapi/servicedesk/${parameters.serviceDeskId}/requesttypegroup`,
     method: 'GET',
     searchParams: {

@@ -1,7 +1,6 @@
-import {
-  PageWorkflowTransitionRulesSchema,
-  type PageWorkflowTransitionRules,
-} from '../models/pageWorkflowTransitionRules';
+import { PageWorkflowTransitionRulesSchema } from '../models/pageWorkflowTransitionRules';
+import type { Page } from '../models/page';
+import type { WorkflowTransitionRules } from '../models/workflowTransitionRules';
 import {
   WorkflowTransitionRulesUpdateErrorsSchema,
   type WorkflowTransitionRulesUpdateErrors,
@@ -33,8 +32,8 @@ import type { Client, SendRequestOptions } from '#/core';
 export async function getWorkflowTransitionRuleConfigurations(
   client: Client,
   parameters: GetWorkflowTransitionRuleConfigurations,
-): Promise<PageWorkflowTransitionRules> {
-  const config: SendRequestOptions<PageWorkflowTransitionRules> = {
+): Promise<Page<WorkflowTransitionRules>> {
+  const config: SendRequestOptions<Page<WorkflowTransitionRules>> = {
     url: '/rest/api/3/workflow/rule/config',
     method: 'GET',
     searchParams: {

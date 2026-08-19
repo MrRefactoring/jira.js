@@ -1,23 +1,7 @@
-import { z } from 'zod';
-import { apiObject } from '#/core';
-import { WorkflowSchema } from './workflow';
-/** A page of items. */
+import { pageSchema, type Page } from './page';
+import { WorkflowSchema, type Workflow } from './workflow';
 
-export const PageWorkflowSchema = apiObject({
-  /** Whether this is the last page. */
-  isLast: z.boolean().optional(),
-  /** The maximum number of items that could be returned. */
-  maxResults: z.number().optional(),
-  /** If there is another page of results, the URL of the next page. */
-  nextPage: z.url().optional(),
-  /** The URL of the page. */
-  self: z.url().optional(),
-  /** The index of the first item returned. */
-  startAt: z.number().optional(),
-  /** The number of items returned. */
-  total: z.number().optional(),
-  /** The list of items. */
-  values: z.array(WorkflowSchema).optional(),
-});
+export const PageWorkflowSchema = pageSchema(WorkflowSchema);
 
-export type PageWorkflow = z.infer<typeof PageWorkflowSchema>;
+/** @deprecated Use `Page<Workflow>`, which describes the same shape. This alias is removed in the next major version. */
+export type PageWorkflow = Page<Workflow>;

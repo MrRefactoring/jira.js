@@ -120,6 +120,8 @@ export * from './organizationCreate';
 
 export * from './organizationServiceDeskUpdate';
 
+export * from './page';
+
 export * from './pageOfChangelogs';
 
 export * from './pagedApproval';

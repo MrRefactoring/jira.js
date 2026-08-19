@@ -1,7 +1,6 @@
-import {
-  PageContextualConfigurationSchema,
-  type PageContextualConfiguration,
-} from '../models/pageContextualConfiguration';
+import { PageContextualConfigurationSchema } from '../models/pageContextualConfiguration';
+import type { Page } from '../models/page';
+import type { ContextualConfiguration } from '../models/contextualConfiguration';
 import type { GetCustomFieldConfiguration } from '../parameters/getCustomFieldConfiguration';
 import type { UpdateCustomFieldConfiguration } from '../parameters/updateCustomFieldConfiguration';
 import type { Client, SendRequestOptions } from '#/core';
@@ -28,8 +27,8 @@ import type { Client, SendRequestOptions } from '#/core';
 export async function getCustomFieldConfiguration(
   client: Client,
   parameters: GetCustomFieldConfiguration,
-): Promise<PageContextualConfiguration> {
-  const config: SendRequestOptions<PageContextualConfiguration> = {
+): Promise<Page<ContextualConfiguration>> {
+  const config: SendRequestOptions<Page<ContextualConfiguration>> = {
     url: `/rest/api/3/app/field/${parameters.fieldIdOrKey}/context/configuration`,
     method: 'GET',
     searchParams: {

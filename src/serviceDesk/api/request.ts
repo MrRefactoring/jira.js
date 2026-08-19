@@ -1,23 +1,25 @@
-import { PagedCustomerRequestSchema, type PagedCustomerRequest } from '../models/pagedCustomerRequest';
+import { PagedCustomerRequestSchema } from '../models/pagedCustomerRequest';
+import type { Page } from '../models/page';
 import { CustomerRequestSchema, type CustomerRequest } from '../models/customerRequest';
-import { PagedApprovalSchema, type PagedApproval } from '../models/pagedApproval';
+import { PagedApprovalSchema } from '../models/pagedApproval';
 import { ApprovalSchema, type Approval } from '../models/approval';
-import { PagedAttachmentSchema, type PagedAttachment } from '../models/pagedAttachment';
+import { PagedAttachmentSchema } from '../models/pagedAttachment';
+import type { Attachment } from '../models/attachment';
 import { AttachmentCreateResultSchema, type AttachmentCreateResult } from '../models/attachmentCreateResult';
-import { PagedCommentSchema, type PagedComment } from '../models/pagedComment';
+import { PagedCommentSchema } from '../models/pagedComment';
 import { CommentSchema, type Comment } from '../models/comment';
 import {
   RequestNotificationSubscriptionSchema,
   type RequestNotificationSubscription,
 } from '../models/requestNotificationSubscription';
-import { PagedUserSchema, type PagedUser } from '../models/pagedUser';
-import { PagedSlaInformationSchema, type PagedSlaInformation } from '../models/pagedSlaInformation';
+import { PagedUserSchema } from '../models/pagedUser';
+import type { User } from '../models/user';
+import { PagedSlaInformationSchema } from '../models/pagedSlaInformation';
 import { SlaInformationSchema, type SlaInformation } from '../models/slaInformation';
-import {
-  PagedCustomerRequestStatusSchema,
-  type PagedCustomerRequestStatus,
-} from '../models/pagedCustomerRequestStatus';
-import { PagedCustomerTransitionSchema, type PagedCustomerTransition } from '../models/pagedCustomerTransition';
+import { PagedCustomerRequestStatusSchema } from '../models/pagedCustomerRequestStatus';
+import type { CustomerRequestStatus } from '../models/customerRequestStatus';
+import { PagedCustomerTransitionSchema } from '../models/pagedCustomerTransition';
+import type { CustomerTransition } from '../models/customerTransition';
 import type { GetCustomerRequests } from '../parameters/getCustomerRequests';
 import type { CreateCustomerRequest } from '../parameters/createCustomerRequest';
 import type { GetCustomerRequestByIdOrKey } from '../parameters/getCustomerRequestByIdOrKey';
@@ -59,8 +61,8 @@ import { type Client, type SendRequestOptions, BufferSchema, type Buffer } from 
 export async function getCustomerRequests(
   client: Client,
   parameters?: GetCustomerRequests,
-): Promise<PagedCustomerRequest> {
-  const config: SendRequestOptions<PagedCustomerRequest> = {
+): Promise<Page<CustomerRequest>> {
+  const config: SendRequestOptions<Page<CustomerRequest>> = {
     url: '/rest/servicedeskapi/request',
     method: 'GET',
     searchParams: {
@@ -159,8 +161,8 @@ export async function getCustomerRequestByIdOrKey(
  * **[Permissions](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro#permissions) required**:
  * Permission to view the customer request.
  */
-export async function getApprovals(client: Client, parameters: GetApprovals): Promise<PagedApproval> {
-  const config: SendRequestOptions<PagedApproval> = {
+export async function getApprovals(client: Client, parameters: GetApprovals): Promise<Page<Approval>> {
+  const config: SendRequestOptions<Page<Approval>> = {
     url: `/rest/servicedeskapi/request/${parameters.issueIdOrKey}/approval`,
     method: 'GET',
     searchParams: {
@@ -220,8 +222,8 @@ export async function answerApproval(client: Client, parameters: AnswerApproval)
 export async function getAttachmentsForRequest(
   client: Client,
   parameters: GetAttachmentsForRequest,
-): Promise<PagedAttachment> {
-  const config: SendRequestOptions<PagedAttachment> = {
+): Promise<Page<Attachment>> {
+  const config: SendRequestOptions<Page<Attachment>> = {
     url: `/rest/servicedeskapi/request/${parameters.issueIdOrKey}/attachment`,
     method: 'GET',
     searchParams: {
@@ -324,8 +326,8 @@ export async function getAttachmentThumbnail(client: Client, parameters: GetAtta
  *
  * **Response limitations**: Customers are returned public comments only.
  */
-export async function getRequestComments(client: Client, parameters: GetRequestComments): Promise<PagedComment> {
-  const config: SendRequestOptions<PagedComment> = {
+export async function getRequestComments(client: Client, parameters: GetRequestComments): Promise<Page<Comment>> {
+  const config: SendRequestOptions<Page<Comment>> = {
     url: `/rest/servicedeskapi/request/${parameters.issueIdOrKey}/comment`,
     method: 'GET',
     searchParams: {
@@ -442,8 +444,8 @@ export async function unsubscribe(client: Client, parameters: Unsubscribe): Prom
  * **[Permissions](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro#permissions) required**:
  * Permission to view the customer request.
  */
-export async function getRequestParticipants(client: Client, parameters: GetRequestParticipants): Promise<PagedUser> {
-  const config: SendRequestOptions<PagedUser> = {
+export async function getRequestParticipants(client: Client, parameters: GetRequestParticipants): Promise<Page<User>> {
+  const config: SendRequestOptions<Page<User>> = {
     url: `/rest/servicedeskapi/request/${parameters.issueIdOrKey}/participant`,
     method: 'GET',
     searchParams: {
@@ -466,8 +468,8 @@ export async function getRequestParticipants(client: Client, parameters: GetRequ
  * [request](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro#api-request-post) resource, by defining
  * the participants in the `requestParticipants` field.
  */
-export async function addRequestParticipants(client: Client, parameters: AddRequestParticipants): Promise<PagedUser> {
-  const config: SendRequestOptions<PagedUser> = {
+export async function addRequestParticipants(client: Client, parameters: AddRequestParticipants): Promise<Page<User>> {
+  const config: SendRequestOptions<Page<User>> = {
     url: `/rest/servicedeskapi/request/${parameters.issueIdOrKey}/participant`,
     method: 'POST',
     body: {
@@ -489,8 +491,8 @@ export async function addRequestParticipants(client: Client, parameters: AddRequ
 export async function removeRequestParticipants(
   client: Client,
   parameters: RemoveRequestParticipants,
-): Promise<PagedUser> {
-  const config: SendRequestOptions<PagedUser> = {
+): Promise<Page<User>> {
+  const config: SendRequestOptions<Page<User>> = {
     url: `/rest/servicedeskapi/request/${parameters.issueIdOrKey}/participant`,
     method: 'DELETE',
     body: {
@@ -514,8 +516,8 @@ export async function removeRequestParticipants(
  * - Browse Projects permission on the project containing the customer request, including any restrictions imposed by
  *   issue security schemes or custom permission schemes on the specific issue.
  */
-export async function getSlaInformation(client: Client, parameters: GetSlaInformation): Promise<PagedSlaInformation> {
-  const config: SendRequestOptions<PagedSlaInformation> = {
+export async function getSlaInformation(client: Client, parameters: GetSlaInformation): Promise<Page<SlaInformation>> {
+  const config: SendRequestOptions<Page<SlaInformation>> = {
     url: `/rest/servicedeskapi/request/${parameters.issueIdOrKey}/sla`,
     method: 'GET',
     searchParams: {
@@ -561,8 +563,8 @@ export async function getSlaInformationById(
 export async function getCustomerRequestStatus(
   client: Client,
   parameters: GetCustomerRequestStatus,
-): Promise<PagedCustomerRequestStatus> {
-  const config: SendRequestOptions<PagedCustomerRequestStatus> = {
+): Promise<Page<CustomerRequestStatus>> {
+  const config: SendRequestOptions<Page<CustomerRequestStatus>> = {
     url: `/rest/servicedeskapi/request/${parameters.issueIdOrKey}/status`,
     method: 'GET',
     searchParams: {
@@ -586,8 +588,8 @@ export async function getCustomerRequestStatus(
 export async function getCustomerTransitions(
   client: Client,
   parameters: GetCustomerTransitions,
-): Promise<PagedCustomerTransition> {
-  const config: SendRequestOptions<PagedCustomerTransition> = {
+): Promise<Page<CustomerTransition>> {
+  const config: SendRequestOptions<Page<CustomerTransition>> = {
     url: `/rest/servicedeskapi/request/${parameters.issueIdOrKey}/transition`,
     method: 'GET',
     searchParams: {

@@ -1,8 +1,7 @@
 import { CustomFieldOptionSchema, type CustomFieldOption } from '../models/customFieldOption';
-import {
-  PageCustomFieldContextOptionSchema,
-  type PageCustomFieldContextOption,
-} from '../models/pageCustomFieldContextOption';
+import { PageCustomFieldContextOptionSchema } from '../models/pageCustomFieldContextOption';
+import type { Page } from '../models/page';
+import type { CustomFieldContextOption } from '../models/customFieldContextOption';
 import {
   CustomFieldCreatedContextOptionsListSchema,
   type CustomFieldCreatedContextOptionsList,
@@ -72,8 +71,8 @@ export async function getCustomFieldOption(
 export async function getOptionsForContext(
   client: Client,
   parameters: GetOptionsForContext,
-): Promise<PageCustomFieldContextOption> {
-  const config: SendRequestOptions<PageCustomFieldContextOption> = {
+): Promise<Page<CustomFieldContextOption>> {
+  const config: SendRequestOptions<Page<CustomFieldContextOption>> = {
     url: `/rest/api/3/field/${parameters.fieldId}/context/${parameters.contextId}/option`,
     method: 'GET',
     searchParams: {

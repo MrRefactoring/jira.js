@@ -1,9 +1,8 @@
-import { PageNotificationSchemeSchema, type PageNotificationScheme } from '../models/pageNotificationScheme';
-import {
-  NotificationSchemeAndProjectMappingPageSchema,
-  type NotificationSchemeAndProjectMappingPage,
-} from '../models/notificationSchemeAndProjectMappingPage';
+import { PageNotificationSchemeSchema } from '../models/pageNotificationScheme';
+import type { Page } from '../models/page';
 import { NotificationSchemeSchema, type NotificationScheme } from '../models/notificationScheme';
+import { NotificationSchemeAndProjectMappingPageSchema } from '../models/notificationSchemeAndProjectMappingPage';
+import type { NotificationSchemeAndProjectMappingJson } from '../models/notificationSchemeAndProjectMappingJson';
 import type { GetNotificationSchemes } from '../parameters/getNotificationSchemes';
 import type { GetNotificationSchemeToProjectMappings } from '../parameters/getNotificationSchemeToProjectMappings';
 import type { GetNotificationScheme } from '../parameters/getNotificationScheme';
@@ -24,8 +23,8 @@ import type { Client, SendRequestOptions } from '#/core';
 export async function getNotificationSchemes(
   client: Client,
   parameters?: GetNotificationSchemes,
-): Promise<PageNotificationScheme> {
-  const config: SendRequestOptions<PageNotificationScheme> = {
+): Promise<Page<NotificationScheme>> {
+  const config: SendRequestOptions<Page<NotificationScheme>> = {
     url: '/rest/api/3/notificationscheme',
     method: 'GET',
     searchParams: {
@@ -55,8 +54,8 @@ export async function getNotificationSchemes(
 export async function getNotificationSchemeToProjectMappings(
   client: Client,
   parameters?: GetNotificationSchemeToProjectMappings,
-): Promise<NotificationSchemeAndProjectMappingPage> {
-  const config: SendRequestOptions<NotificationSchemeAndProjectMappingPage> = {
+): Promise<Page<NotificationSchemeAndProjectMappingJson>> {
+  const config: SendRequestOptions<Page<NotificationSchemeAndProjectMappingJson>> = {
     url: '/rest/api/3/notificationscheme/project',
     method: 'GET',
     searchParams: {
