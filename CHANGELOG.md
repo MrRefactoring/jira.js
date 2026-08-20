@@ -1,6 +1,8 @@
 # Jira.js changelog
 
-## 6.2.0
+## 6.2.0-rc.1
+
+Release candidate for 6.2.0, published under the `next` tag: `npm i jira.js@next`. `npm i jira.js` still installs 6.1.0.
 
 Avatars moved bytes in both directions and the specification described both as JSON, so neither direction worked. Reading an image threw before the response reached the caller; uploading one had no way to send an image at all. Both are fixed here, along with two column endpoints broken by the same reading of the same specification.
 
