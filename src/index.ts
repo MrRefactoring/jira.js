@@ -65,6 +65,12 @@ export {
 export { createAssetsServerClient, type AssetsServerClient } from './assetsServer/createAssetsServerClient.js';
 
 export {
+  createAssetsClient,
+  type AssetsClient,
+  type AssetsClientConfig,
+} from './assets/createAssetsClient.js';
+
+export {
   ApiError,
   AuthError,
   ForbiddenError,
