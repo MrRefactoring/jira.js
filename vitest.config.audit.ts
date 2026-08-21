@@ -16,7 +16,10 @@ const repoRoot = import.meta.dirname;
  */
 export default defineConfig(({ mode }) => ({
   test: {
+    // Not `tests/live/server` — those run against a container that has to be brought up first, under their own
+    // config and their own global setup. Left in, every one of them fails with a connection refused.
     include: ['tests/live/**/*.test.ts'],
+    exclude: ['tests/live/server/**'],
     environment: 'node',
     reporters: ['default'],
     env: {
