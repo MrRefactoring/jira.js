@@ -16,11 +16,12 @@
 
 ## About
 
-**Jira.js** is a TypeScript client for the Atlassian Jira Cloud REST APIs, for [Node.js](https://nodejs.org/) and browsers. It covers three surfaces:
+**Jira.js** is a TypeScript client for the Atlassian Jira REST APIs, for [Node.js](https://nodejs.org/) and browsers. It covers four surfaces:
 
 - **[Jira Cloud platform API](https://developer.atlassian.com/cloud/jira/platform/rest/)** - issues, projects, fields, workflows
 - **[Jira Agile API](https://developer.atlassian.com/cloud/jira/software/rest/intro/)** - sprints, boards, backlog
 - **[Jira Service Management API](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro/)** - requests, queues, organizations
+- **[Jira Data Center API](https://developer.atlassian.com/server/jira/platform/rest/)** - self-hosted Jira 10.0 and later, platform and Agile in one client
 
 > **6.0 is a rewrite, not a refresh.** `npm install jira.js` now installs 6.x. Read [MIGRATION.md](./MIGRATION.md) before upgrading — it says plainly who should stay on `jira.js@5`, which is supported until the end of 2026.
 
@@ -132,6 +133,7 @@ The documentation includes:
 - **Jira Cloud platform API**: issues, projects, users, fields, workflows, schemes
 - **Jira Software (Agile) API**: sprint management, boards, backlogs, agile workflows
 - **Jira Service Management API**: request handling, queues, customers, organizations
+- **Jira Data Center API**: self-hosted Jira, `/rest/api/2` plus the Agile endpoints, from one `createServerClient`
 
 There is one platform surface, generated from Jira's v3 specification. `Version2Client` and `Version3Client` are gone — the difference between them was never the endpoints, it was rich text. Rich-text fields still accept a wiki-markup **string**: that write is routed through Jira's v2 endpoint, which parses the markup server-side, and the result is read back so what you get is a real [Atlassian Document Format](https://developer.atlassian.com/cloud/jira/platform/apis/document/structure/) document.
 
@@ -438,11 +440,12 @@ Every function takes the client as its first argument — the same client the fa
 
 | Import | Contents |
 | --- | --- |
-| `jira.js` | The three factories, error types and predicates, OAuth helpers |
+| `jira.js` | The four factories, error types and predicates, OAuth helpers |
 | `jira.js/core` | `createClient`, transport, errors, OAuth, multipart helpers |
 | `jira.js/cloud` | Platform API functions, parameters and response types |
 | `jira.js/agile` | Agile API functions, parameters and response types |
 | `jira.js/serviceDesk` | Service Management functions, parameters and response types |
+| `jira.js/server` | Data Center functions, parameters and response types |
 | `jira.js/browser` | Prebuilt browser bundle |
 
 The surface subpaths carry the types alongside the functions, so a type-only import costs nothing at runtime:
@@ -472,7 +475,7 @@ Jira.js is perfect for:
 ## Common Questions (FAQ)
 
 **Q: Does this work with Jira Server/Data Center?**  
-A: No, Jira.js is designed specifically for Jira Cloud. For on-premise Jira, consider using the REST API directly.
+A: Yes, since 6.3. Use `createServerClient` for self-hosted Jira 10.0 and later — see the [Data Center guide](https://mrrefactoring.github.io/jira.js/guide/data-center). It is a separate surface from the Cloud one, because the two APIs differ in more than their host. Jira 9.x is not supported: Atlassian never published a specification for it, and the line reached end of life in June 2026.
 
 **Q: Is TypeScript required?**  
 A: No, but TypeScript is fully supported with comprehensive type definitions. You can use Jira.js with plain JavaScript too.
