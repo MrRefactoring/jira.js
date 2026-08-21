@@ -2,7 +2,7 @@
 
 ## 6.3.0
 
-Jira Data Center gets a client. `createServerClient` is a fourth surface alongside Cloud, Agile and Service Management — not the Cloud client pointed elsewhere, because the two APIs differ in more than their address: `/rest/api/2` against `/rest/api/3`, wiki markup against Atlassian Document Format, `name` and `key` against `accountId`. Of four hundred and thirty-five operations, a hundred and seventy-four share a name with a Cloud one and thirty-seven share a schema name; nothing else is common but the transport.
+Jira Data Center gets a client. `createServerClient` is a fourth surface alongside Cloud, Agile and Service Management — not the Cloud client pointed elsewhere, because the two APIs differ in more than their address: `/rest/api/2` against `/rest/api/3`, wiki markup against Atlassian Document Format, `name` and `key` against `accountId`. Of four hundred and thirty-five operations, two hundred and six share a name with a Cloud one and eighty-seven share a model name; nothing else is common but the transport.
 
 Every one of those operations has been called against a running Jira Data Center instance. That is what the rest of these notes are: Atlassian generates the Data Center document from Java annotations rather than writing it, and it is wrong in ways reading cannot reveal.
 
