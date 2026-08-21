@@ -1,4 +1,4 @@
-import { type ClientConfig, type Client, createClient } from '#/core';
+import { type ClientConfig, type Client, createClient, type Buffer } from '#/core';
 import * as backlog from './api/backlog';
 import * as board from './api/board';
 import * as epic from './api/epic';
@@ -852,7 +852,7 @@ export function createServerClient(clientConfig: ClientConfig | Client) {
       getDashboard: (parameters: GetDashboard): Promise<Dashboard> => dashboards.getDashboard(client, parameters),
     },
     emailTemplates: {
-      downloadEmailTemplates: (): Promise<void> => emailTemplates.downloadEmailTemplates(client),
+      downloadEmailTemplates: (): Promise<Buffer> => emailTemplates.downloadEmailTemplates(client),
       uploadEmailTemplates: (parameters: UploadEmailTemplates): Promise<void> =>
         emailTemplates.uploadEmailTemplates(client, parameters),
       applyEmailTemplates: (): Promise<void> => emailTemplates.applyEmailTemplates(client),

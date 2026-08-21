@@ -19,13 +19,27 @@ describe('the instance', () => {
   const jira: ServerClient = connect();
   const fixtures = inject('serverFixtures');
 
+  /**
+   * The write is asserted rather than touched, which is the whole point of it being here.
+   *
+   * The document declares this operation with a path parameter and no request body, so the generated call used to send
+   * none — and Jira answered 400, which `touch` accepted as one of the refusals a single node is entitled to make. It
+   * took a caller outside these suites to notice. `serverMissingRequestBodyPatch` gives the body back; reading the
+   * value out of the response is what proves the body arrived.
+   */
   it('reads and writes an application property', async () => {
-    const properties = await jira.applicationProperties.getApplicationProperties({});
+    const properties = await jira.applicationProperties.getApplicationProperties({ keyFilter: 'jira.clone.prefix' });
     const property = properties[0];
 
-    expect(property?.id).toBeDefined();
+    expect(property?.id).toBe('jira.clone.prefix');
 
-    await touch(() => jira.applicationProperties.setPropertyViaRestfulTable({ id: property!.id! }));
+    const written = await jira.applicationProperties.setPropertyViaRestfulTable({
+      id: property!.id!,
+      body: { id: property!.id!, value: 'DUPLICATE - ' },
+    });
+
+    expect(written.value).toBe('DUPLICATE - ');
+
     await jira.applicationProperties.getAdvancedSettings();
   });
 
@@ -95,6 +109,15 @@ describe('the instance', () => {
   });
 
   it('handles the email templates', async () => {
+    // "Creates a zip file containing email templates at local home and returns the file", and then the document
+    // describes no body — so the call was typed `void` and threw the zip away. The magic number is the assertion: a
+    // zip begins `PK\x03\x04`, and nothing else this API returns does.
+    const templates = await jira.emailTemplates.downloadEmailTemplates();
+    const bytes = new Uint8Array(templates as ArrayBufferLike & Uint8Array);
+
+    expect(bytes.byteLength).toBeGreaterThan(0);
+    expect([...bytes.slice(0, 4)]).toEqual([0x50, 0x4b, 0x03, 0x04]);
+
     await touch(() => jira.emailTemplates.uploadEmailTemplates({ body: new Blob([new Uint8Array([1, 2, 3])]) }));
     await touch(() => jira.emailTemplates.applyEmailTemplates());
     await touch(() => jira.emailTemplates.revertEmailTemplatesToDefault());

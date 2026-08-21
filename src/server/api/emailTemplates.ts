@@ -1,12 +1,16 @@
 import { EmailTemplateTypesSchema, type EmailTemplateTypes } from '../models/emailTemplateTypes';
 import type { UploadEmailTemplates } from '../parameters/uploadEmailTemplates';
-import type { Client, SendRequestOptions } from '#/core';
+import { type Client, type SendRequestOptions, BufferSchema, type Buffer } from '#/core';
 
 /** Creates a zip file containing email templates at local home and returns the file. */
-export async function downloadEmailTemplates(client: Client): Promise<void> {
-  const config: SendRequestOptions<void> = {
+export async function downloadEmailTemplates(client: Client): Promise<Buffer> {
+  const config: SendRequestOptions<Buffer> = {
     url: '/rest/api/2/email-templates',
     method: 'GET',
+    headers: {
+      Accept: 'application/zip',
+    },
+    schema: BufferSchema,
   };
 
   return await client.sendRequest(config);
