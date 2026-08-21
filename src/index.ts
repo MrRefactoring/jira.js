@@ -58,6 +58,13 @@ export { createServiceDeskClient, type ServiceDeskClient } from './serviceDesk/c
 export { createServerClient, type ServerClient } from './server/createServerClient.js';
 
 export {
+  createServiceDeskServerClient,
+  type ServiceDeskServerClient,
+} from './serviceDeskServer/createServiceDeskServerClient.js';
+
+export { createAssetsServerClient, type AssetsServerClient } from './assetsServer/createAssetsServerClient.js';
+
+export {
   ApiError,
   AuthError,
   ForbiddenError,

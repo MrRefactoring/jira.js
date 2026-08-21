@@ -17,7 +17,7 @@
  * Runs on bare `node`; keep the types erasable.
  */
 import { execFileSync } from 'node:child_process';
-import { mkdtempSync, rmSync, writeFileSync, existsSync } from 'node:fs';
+import { mkdtempSync, readFileSync, rmSync, writeFileSync, existsSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -60,7 +60,10 @@ try {
 
   run('npm', ['install', '--no-audit', '--no-fund', '--silent', tarball], workspace);
 
-  const SUBPATHS = ['jira.js', 'jira.js/core', 'jira.js/cloud', 'jira.js/agile', 'jira.js/serviceDesk'];
+  // Read off the manifest rather than listed here, so a new surface is covered by adding its export and nothing else.
+  const SUBPATHS = Object.keys(JSON.parse(readFileSync(join(root, 'package.json'), 'utf8')).exports)
+    .filter(entry => entry !== './browser' && entry !== './package.json')
+    .map(entry => (entry === '.' ? 'jira.js' : `jira.js/${entry.slice(2)}`));
 
   const runtimeProbe = [
     ...SUBPATHS.map((subpath, index) => `import * as m${index} from '${subpath}';`),
