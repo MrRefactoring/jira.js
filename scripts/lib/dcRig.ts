@@ -293,5 +293,8 @@ export async function runRigCommand(rig: Rig, command: string): Promise<void> {
     console.log('▸ already set up');
   }
 
-  console.log(`✔ ready at ${rig.baseUrl} — sign in as ${rig.adminUsername} / ${rig.adminPassword}`);
+  // The password is not printed. It is a fixed credential for a container that lives three hours and is then
+  // deleted, so it is no secret — but a line that logs something read from `adminPassword` is one CodeQL flags on
+  // every pull request afterwards, and the two scripts export the constant for a reader who wants it.
+  console.log(`✔ ready at ${rig.baseUrl} — sign in as ${rig.adminUsername}, with the password its script exports`);
 }
