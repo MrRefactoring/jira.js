@@ -55,6 +55,10 @@
     "./assetsServer": {
       "types": "./dist/assetsServer/index.d.ts",
       "import": "./dist/assetsServer/index.js"
+    },
+    "./assets": {
+      "types": "./dist/assets/index.d.ts",
+      "import": "./dist/assets/index.js"
     }
   },
   "keywords": [
