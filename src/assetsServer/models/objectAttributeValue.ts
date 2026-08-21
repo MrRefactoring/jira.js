@@ -16,10 +16,10 @@ export interface ObjectAttributeValue {
   version?: Version;
   project?: Project;
   status?: StatusType;
-  value?: Record<string, unknown>;
+  value?: string;
   additionalValue?: string;
-  displayValue?: Record<string, unknown>;
-  searchValue?: Record<string, unknown>;
+  displayValue?: string;
+  searchValue?: string;
   referencedType?: boolean;
 }
 
@@ -31,9 +31,9 @@ export const ObjectAttributeValueSchema: z.ZodType<ObjectAttributeValue> = apiOb
   version: VersionSchema.optional(),
   project: ProjectSchema.optional(),
   status: StatusTypeSchema.optional(),
-  value: z.record(z.string(), z.any()).optional(),
+  value: z.string().optional(),
   additionalValue: z.string().optional(),
-  displayValue: z.record(z.string(), z.any()).optional(),
-  searchValue: z.record(z.string(), z.any()).optional(),
+  displayValue: z.string().optional(),
+  searchValue: z.string().optional(),
   referencedType: z.boolean().optional(),
 });

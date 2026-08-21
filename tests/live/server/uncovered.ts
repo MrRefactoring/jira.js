@@ -1,7 +1,7 @@
 /**
  * The Data Center endpoints no run against a single-node instance can reach, and why.
  *
- * The ledger in `scripts/serverCoverage.ts` fails when an endpoint is neither called by a suite nor listed here, which
+ * The ledger in `scripts/lib/liveCoverage.ts` fails when an endpoint is neither called by a suite nor listed here, which
  * is the point: a regenerated surface cannot quietly gain an untested operation, and an endpoint that stops being
  * exercised has to be justified in writing rather than simply disappearing from the count.
  *
@@ -9,11 +9,7 @@
  * to ruin it, so the only entries that belong here are the ones a fresh, unclustered, correctly-versioned Jira cannot
  * answer at all.
  */
-export interface Uncovered {
-  /** `METHOD /path` exactly as the generated function spells it, placeholders and all. */
-  endpoint: string;
-  reason: string;
-}
+import type { Uncovered } from '../../../scripts/lib/liveCoverage.ts';
 
 export const UNCOVERED: Uncovered[] = [
   {

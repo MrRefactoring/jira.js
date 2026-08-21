@@ -2,6 +2,7 @@ import { CommentSchema, type Comment } from '../models/comment';
 import type { CreateComment } from '../parameters/createComment';
 import type { GetComments } from '../parameters/getComments';
 import type { Client, SendRequestOptions } from '#/core';
+import { z } from 'zod';
 
 /** Add a comment to an object. */
 export async function createComment(client: Client, parameters: CreateComment): Promise<Comment> {
@@ -27,14 +28,14 @@ export async function createComment(client: Client, parameters: CreateComment): 
 }
 
 /** Get the comments for an object by object ID. */
-export async function getComments(client: Client, parameters: GetComments): Promise<Comment> {
-  const config: SendRequestOptions<Comment> = {
+export async function getComments(client: Client, parameters: GetComments): Promise<Comment[]> {
+  const config: SendRequestOptions<Comment[]> = {
     url: `/rest/assets/1.0/comment/object/${parameters.objectId}`,
     method: 'GET',
     searchParams: {
       asc: parameters.asc,
     },
-    schema: CommentSchema,
+    schema: z.array(CommentSchema),
   };
 
   return await client.sendRequest(config);

@@ -11,7 +11,7 @@ import { ApiError } from '#/core';
 import { serverTestEnv } from './env';
 import { connect } from './client';
 import { createFixtures, type Fixtures } from './fixtures';
-import { flushRecordedCalls } from './recordCalls';
+import { flushRecordedCalls } from '../../setup/recordCalls';
 
 declare module 'vitest' {
   interface ProvidedContext {

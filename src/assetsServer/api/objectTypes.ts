@@ -7,6 +7,7 @@ import type { UpdateObjectType } from '../parameters/updateObjectType';
 import type { DeleteObjectType } from '../parameters/deleteObjectType';
 import type { FindObjectTypeAttributes } from '../parameters/findObjectTypeAttributes';
 import type { Client, SendRequestOptions } from '#/core';
+import { z } from 'zod';
 
 /** Change the position of an object type in the object type hierarchy tree. */
 export async function changeOrderObjectType(client: Client, parameters: ChangeOrderObjectType): Promise<ObjectType> {
@@ -82,8 +83,8 @@ export async function deleteObjectType(client: Client, parameters: DeleteObjectT
 export async function findObjectTypeAttributes(
   client: Client,
   parameters: FindObjectTypeAttributes,
-): Promise<ObjectTypeAttribute> {
-  const config: SendRequestOptions<ObjectTypeAttribute> = {
+): Promise<ObjectTypeAttribute[]> {
+  const config: SendRequestOptions<ObjectTypeAttribute[]> = {
     url: `/rest/assets/1.0/objecttype/${parameters.id}/attributes`,
     method: 'GET',
     searchParams: {
@@ -95,7 +96,7 @@ export async function findObjectTypeAttributes(
       includeValueExist: parameters.includeValueExist,
       onlyValueEditable: parameters.onlyValueEditable,
     },
-    schema: ObjectTypeAttributeSchema,
+    schema: z.array(ObjectTypeAttributeSchema),
   };
 
   return await client.sendRequest(config);

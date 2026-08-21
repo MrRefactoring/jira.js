@@ -2,7 +2,7 @@ import { z } from 'zod';
 import { ObjectSchemaSchema } from '../models';
 
 export const UpdateSchemaSchema = z.object({
-  id: z.number(),
+  id: z.string(),
   body: ObjectSchemaSchema.optional(),
 });
 

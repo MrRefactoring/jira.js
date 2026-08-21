@@ -1,4 +1,5 @@
 import { AttachmentSchema, type Attachment } from '../models/attachment';
+import { UploadedAttachmentSchema, type UploadedAttachment } from '../models/uploadedAttachment';
 import type { GetAttachments } from '../parameters/getAttachments';
 import type { AddAttachments } from '../parameters/addAttachments';
 import type { DeleteAttachment } from '../parameters/deleteAttachment';
@@ -17,7 +18,7 @@ export async function getAttachments(client: Client, parameters: GetAttachments)
 }
 
 /** Add an attachment to an object by object ID. */
-export async function addAttachments(client: Client, parameters: AddAttachments): Promise<Attachment[]> {
+export async function addAttachments(client: Client, parameters: AddAttachments): Promise<UploadedAttachment[]> {
   const formData = new FormData();
   const items = Array.isArray(parameters.attachments) ? parameters.attachments : [parameters.attachments];
 
@@ -25,14 +26,14 @@ export async function addAttachments(client: Client, parameters: AddAttachments)
     formData.append('file', await toFormDataFile(attachment), attachment.filename);
   }
 
-  const config: SendRequestOptions<Attachment[]> = {
+  const config: SendRequestOptions<UploadedAttachment[]> = {
     url: `/rest/assets/1.0/attachments/object/${parameters.objectId}`,
     method: 'POST',
     headers: {
       'X-Atlassian-Token': 'no-check',
     },
     body: formData,
-    schema: z.array(AttachmentSchema),
+    schema: z.array(UploadedAttachmentSchema),
   };
 
   return await client.sendRequest(config);

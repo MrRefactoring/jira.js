@@ -19,7 +19,7 @@ import type {
   GetArchivedObjects,
   ArchiveObject,
   ArchiveObjectsByFilter,
-  ArchiveObjectsByIds,
+  ArchiveObjectsByKeys,
   RestoreObject,
   RestoreObjectsByFilter,
   RestoreObjectsByIds,
@@ -71,12 +71,14 @@ import type {
 import type {
   SchemaStats,
   ObjectListResult,
+  ArchivedObjectsPage,
   AssetObject,
   ProgressOut,
   ObjectAttribute,
   ObjectHistory,
   ReferenceTypeObjectInfo,
   Attachment,
+  UploadedAttachment,
   Comment,
   Icon,
   IndexIntegrityOut,
@@ -95,19 +97,19 @@ export function createAssetsServerClient(clientConfig: ClientConfig | Client) {
 
   return {
     analytics: {
-      getSchemaAnalytics: (): Promise<SchemaStats> => analytics.getSchemaAnalytics(client),
+      getSchemaAnalytics: (): Promise<SchemaStats[]> => analytics.getSchemaAnalytics(client),
     },
     aql: {
       findObjects: (parameters?: FindObjects): Promise<ObjectListResult> => aql.findObjects(client, parameters),
     },
     objects: {
-      getArchivedObjects: (parameters?: GetArchivedObjects): Promise<AssetObject> =>
+      getArchivedObjects: (parameters?: GetArchivedObjects): Promise<ArchivedObjectsPage> =>
         objects.getArchivedObjects(client, parameters),
       archiveObject: (parameters: ArchiveObject): Promise<AssetObject> => objects.archiveObject(client, parameters),
       archiveObjectsByFilter: (parameters: ArchiveObjectsByFilter): Promise<ProgressOut> =>
         objects.archiveObjectsByFilter(client, parameters),
-      archiveObjectsByIds: (parameters: ArchiveObjectsByIds): Promise<ProgressOut> =>
-        objects.archiveObjectsByIds(client, parameters),
+      archiveObjectsByKeys: (parameters: ArchiveObjectsByKeys): Promise<ProgressOut> =>
+        objects.archiveObjectsByKeys(client, parameters),
       restoreObject: (parameters: RestoreObject): Promise<AssetObject> => objects.restoreObject(client, parameters),
       restoreObjectsByFilter: (parameters: RestoreObjectsByFilter): Promise<ProgressOut> =>
         objects.restoreObjectsByFilter(client, parameters),
@@ -126,28 +128,28 @@ export function createAssetsServerClient(clientConfig: ClientConfig | Client) {
       updateObject: (parameters: UpdateObject): Promise<AssetObject> => objects.updateObject(client, parameters),
       deleteObject: (parameters: DeleteObject): Promise<AssetObject> => objects.deleteObject(client, parameters),
       findObject: (parameters: FindObject): Promise<ObjectListResult> => objects.findObject(client, parameters),
-      findObjectAttributes: (parameters: FindObjectAttributes): Promise<ObjectAttribute> =>
+      findObjectAttributes: (parameters: FindObjectAttributes): Promise<ObjectAttribute[]> =>
         objects.findObjectAttributes(client, parameters),
-      findObjectHistory: (parameters: FindObjectHistory): Promise<ObjectHistory> =>
+      findObjectHistory: (parameters: FindObjectHistory): Promise<ObjectHistory[]> =>
         objects.findObjectHistory(client, parameters),
-      findObjectReferenceInfo: (parameters: FindObjectReferenceInfo): Promise<ReferenceTypeObjectInfo> =>
+      findObjectReferenceInfo: (parameters: FindObjectReferenceInfo): Promise<ReferenceTypeObjectInfo[]> =>
         objects.findObjectReferenceInfo(client, parameters),
     },
     attachments: {
       getAttachments: (parameters: GetAttachments): Promise<Attachment[]> =>
         attachments.getAttachments(client, parameters),
-      addAttachments: (parameters: AddAttachments): Promise<Attachment[]> =>
+      addAttachments: (parameters: AddAttachments): Promise<UploadedAttachment[]> =>
         attachments.addAttachments(client, parameters),
       deleteAttachment: (parameters: DeleteAttachment): Promise<Attachment> =>
         attachments.deleteAttachment(client, parameters),
     },
     comments: {
       createComment: (parameters: CreateComment): Promise<Comment> => comments.createComment(client, parameters),
-      getComments: (parameters: GetComments): Promise<Comment> => comments.getComments(client, parameters),
+      getComments: (parameters: GetComments): Promise<Comment[]> => comments.getComments(client, parameters),
     },
     icons: {
-      findGlobalIcons: (): Promise<Icon> => icons.findGlobalIcons(client),
-      findIcons: (parameters: FindIcons): Promise<Icon> => icons.findIcons(client, parameters),
+      findGlobalIcons: (): Promise<Icon[]> => icons.findGlobalIcons(client),
+      findIcons: (parameters: FindIcons): Promise<Icon[]> => icons.findIcons(client, parameters),
       getIcon: (parameters: GetIcon): Promise<Icon> => icons.getIcon(client, parameters),
     },
     indexConfiguration: {
@@ -169,7 +171,7 @@ export function createAssetsServerClient(clientConfig: ClientConfig | Client) {
       deleteSchema: (parameters: DeleteSchema): Promise<ObjectSchema> => objectSchemas.deleteSchema(client, parameters),
       findSchemas: (parameters?: FindSchemas): Promise<ObjectSchemaList> =>
         objectSchemas.findSchemas(client, parameters),
-      findObjectTypeFlatList: (parameters: FindObjectTypeFlatList): Promise<ObjectType> =>
+      findObjectTypeFlatList: (parameters: FindObjectTypeFlatList): Promise<ObjectType[]> =>
         objectSchemas.findObjectTypeFlatList(client, parameters),
     },
     connectedTickets: {
@@ -187,7 +189,7 @@ export function createAssetsServerClient(clientConfig: ClientConfig | Client) {
         objectTypes.updateObjectType(client, parameters),
       deleteObjectType: (parameters: DeleteObjectType): Promise<ObjectType> =>
         objectTypes.deleteObjectType(client, parameters),
-      findObjectTypeAttributes: (parameters: FindObjectTypeAttributes): Promise<ObjectTypeAttribute> =>
+      findObjectTypeAttributes: (parameters: FindObjectTypeAttributes): Promise<ObjectTypeAttribute[]> =>
         objectTypes.findObjectTypeAttributes(client, parameters),
     },
     objectTypeAttributes: {
@@ -211,7 +213,7 @@ export function createAssetsServerClient(clientConfig: ClientConfig | Client) {
         statusTypes.updateStatusType(client, parameters),
       deleteStatusType: (parameters: DeleteStatusType): Promise<void> =>
         statusTypes.deleteStatusType(client, parameters),
-      findStatusTypes: (parameters?: FindStatusTypes): Promise<StatusType> =>
+      findStatusTypes: (parameters?: FindStatusTypes): Promise<StatusType[]> =>
         statusTypes.findStatusTypes(client, parameters),
       storeStatusType: (parameters: StoreStatusType): Promise<StatusType> =>
         statusTypes.storeStatusType(client, parameters),

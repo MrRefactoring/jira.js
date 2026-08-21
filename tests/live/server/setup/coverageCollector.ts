@@ -5,6 +5,6 @@
  * a good sixteen write endpoints — in the main process, where `afterAll` does not exist.
  */
 import { afterAll } from 'vitest';
-import { flushRecordedCalls } from './recordCalls';
+import { flushRecordedCalls } from '../../setup/recordCalls';
 
 afterAll(flushRecordedCalls);

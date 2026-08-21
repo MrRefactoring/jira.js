@@ -8,6 +8,7 @@ import type { DeleteSchema } from '../parameters/deleteSchema';
 import type { FindSchemas } from '../parameters/findSchemas';
 import type { FindObjectTypeFlatList } from '../parameters/findObjectTypeFlatList';
 import type { Client, SendRequestOptions } from '#/core';
+import { z } from 'zod';
 
 /** Create a new object schema. */
 export async function createSchema(client: Client, parameters: CreateSchema): Promise<ObjectSchema> {
@@ -75,8 +76,11 @@ export async function findSchemas(client: Client, parameters?: FindSchemas): Pro
 }
 
 /** Get a flat list of all object types belonging to a certain object schema. */
-export async function findObjectTypeFlatList(client: Client, parameters: FindObjectTypeFlatList): Promise<ObjectType> {
-  const config: SendRequestOptions<ObjectType> = {
+export async function findObjectTypeFlatList(
+  client: Client,
+  parameters: FindObjectTypeFlatList,
+): Promise<ObjectType[]> {
+  const config: SendRequestOptions<ObjectType[]> = {
     url: `/rest/assets/1.0/objectschema/${parameters.id}/objecttypes/flat`,
     method: 'GET',
     searchParams: {
@@ -84,7 +88,7 @@ export async function findObjectTypeFlatList(client: Client, parameters: FindObj
       query: parameters.query,
       exclude: parameters.exclude,
     },
-    schema: ObjectTypeSchema,
+    schema: z.array(ObjectTypeSchema),
   };
 
   return await client.sendRequest(config);

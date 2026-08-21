@@ -1,10 +1,10 @@
 /**
- * Records which Data Center endpoints a run actually called.
+ * Records which endpoints a live run actually called.
  *
- * The suites drive the surface through the generated functions, and there is no way from the outside to tell which of
- * the four hundred and thirty-five were reached — so a domain that quietly stops being exercised looks exactly like
- * one that passes. Wrapping `fetch` is what makes the difference visible: every request the client sends leaves a
- * line, and `scripts/serverCoverage.ts` matches those lines back against the endpoints the library ships.
+ * The suites drive a surface through its generated functions, and there is no way from the outside to tell which of
+ * its hundreds of endpoints were reached — so a domain that quietly stops being exercised looks exactly like one that
+ * passes. Wrapping `fetch` is what makes the difference visible: every request the client sends leaves a line, and
+ * `scripts/lib/liveCoverage.ts` matches those lines back against the endpoints the library ships.
  *
  * `fetch` rather than the client, because `src/core` ships to browsers and cannot reach the filesystem, and because a
  * request that never goes out is not coverage regardless of which function was called.
@@ -15,7 +15,7 @@
  */
 import { appendFileSync } from 'node:fs';
 
-const OUTPUT = process.env.SERVER_COVERAGE_OUTPUT;
+const OUTPUT = process.env.LIVE_COVERAGE_OUTPUT;
 
 const calls: string[] = [];
 

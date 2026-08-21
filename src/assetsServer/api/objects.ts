@@ -1,3 +1,4 @@
+import { ArchivedObjectsPageSchema, type ArchivedObjectsPage } from '../models/archivedObjectsPage';
 import { AssetObjectSchema, type AssetObject } from '../models/assetObject';
 import { ProgressOutSchema, type ProgressOut } from '../models/progressOut';
 import { ObjectListResultSchema, type ObjectListResult } from '../models/objectListResult';
@@ -7,7 +8,7 @@ import { ReferenceTypeObjectInfoSchema, type ReferenceTypeObjectInfo } from '../
 import type { GetArchivedObjects } from '../parameters/getArchivedObjects';
 import type { ArchiveObject } from '../parameters/archiveObject';
 import type { ArchiveObjectsByFilter } from '../parameters/archiveObjectsByFilter';
-import type { ArchiveObjectsByIds } from '../parameters/archiveObjectsByIds';
+import type { ArchiveObjectsByKeys } from '../parameters/archiveObjectsByKeys';
 import type { RestoreObject } from '../parameters/restoreObject';
 import type { RestoreObjectsByFilter } from '../parameters/restoreObjectsByFilter';
 import type { RestoreObjectsByIds } from '../parameters/restoreObjectsByIds';
@@ -24,10 +25,14 @@ import type { FindObjectAttributes } from '../parameters/findObjectAttributes';
 import type { FindObjectHistory } from '../parameters/findObjectHistory';
 import type { FindObjectReferenceInfo } from '../parameters/findObjectReferenceInfo';
 import type { Client, SendRequestOptions } from '#/core';
+import { z } from 'zod';
 
 /** Retrieve archived objects. */
-export async function getArchivedObjects(client: Client, parameters?: GetArchivedObjects): Promise<AssetObject> {
-  const config: SendRequestOptions<AssetObject> = {
+export async function getArchivedObjects(
+  client: Client,
+  parameters?: GetArchivedObjects,
+): Promise<ArchivedObjectsPage> {
+  const config: SendRequestOptions<ArchivedObjectsPage> = {
     url: '/rest/assets/1.0/object/archived',
     method: 'GET',
     searchParams: {
@@ -39,7 +44,7 @@ export async function getArchivedObjects(client: Client, parameters?: GetArchive
       archivedToDate: parameters?.archivedToDate,
       archivedBy: parameters?.archivedBy,
     },
-    schema: AssetObjectSchema,
+    schema: ArchivedObjectsPageSchema,
   };
 
   return await client.sendRequest(config);
@@ -79,7 +84,7 @@ export async function archiveObjectsByFilter(client: Client, parameters: Archive
 }
 
 /** Bulk archive objects across object schemas by object keys asynchronously. */
-export async function archiveObjectsByIds(client: Client, parameters: ArchiveObjectsByIds): Promise<ProgressOut> {
+export async function archiveObjectsByKeys(client: Client, parameters: ArchiveObjectsByKeys): Promise<ProgressOut> {
   const config: SendRequestOptions<ProgressOut> = {
     url: '/rest/assets/1.0/object/archive/by-keys',
     method: 'POST',
@@ -259,19 +264,22 @@ export async function findObject(client: Client, parameters: FindObject): Promis
 }
 
 /** Get all attributes for the given object. */
-export async function findObjectAttributes(client: Client, parameters: FindObjectAttributes): Promise<ObjectAttribute> {
-  const config: SendRequestOptions<ObjectAttribute> = {
+export async function findObjectAttributes(
+  client: Client,
+  parameters: FindObjectAttributes,
+): Promise<ObjectAttribute[]> {
+  const config: SendRequestOptions<ObjectAttribute[]> = {
     url: `/rest/assets/1.0/object/${parameters.id}/attributes`,
     method: 'GET',
-    schema: ObjectAttributeSchema,
+    schema: z.array(ObjectAttributeSchema),
   };
 
   return await client.sendRequest(config);
 }
 
 /** Retrieve the history entries for this object. */
-export async function findObjectHistory(client: Client, parameters: FindObjectHistory): Promise<ObjectHistory> {
-  const config: SendRequestOptions<ObjectHistory> = {
+export async function findObjectHistory(client: Client, parameters: FindObjectHistory): Promise<ObjectHistory[]> {
+  const config: SendRequestOptions<ObjectHistory[]> = {
     url: `/rest/assets/1.0/object/${parameters.id}/history`,
     method: 'GET',
     searchParams: {
@@ -279,7 +287,7 @@ export async function findObjectHistory(client: Client, parameters: FindObjectHi
       abbreviate: parameters.abbreviate,
       orderAsc: parameters.orderAsc,
     },
-    schema: ObjectHistorySchema,
+    schema: z.array(ObjectHistorySchema),
   };
 
   return await client.sendRequest(config);
@@ -289,11 +297,11 @@ export async function findObjectHistory(client: Client, parameters: FindObjectHi
 export async function findObjectReferenceInfo(
   client: Client,
   parameters: FindObjectReferenceInfo,
-): Promise<ReferenceTypeObjectInfo> {
-  const config: SendRequestOptions<ReferenceTypeObjectInfo> = {
+): Promise<ReferenceTypeObjectInfo[]> {
+  const config: SendRequestOptions<ReferenceTypeObjectInfo[]> = {
     url: `/rest/assets/1.0/object/${parameters.id}/referenceinfo`,
     method: 'GET',
-    schema: ReferenceTypeObjectInfoSchema,
+    schema: z.array(ReferenceTypeObjectInfoSchema),
   };
 
   return await client.sendRequest(config);
