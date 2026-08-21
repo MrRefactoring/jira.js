@@ -1,5 +1,9 @@
 export * from './applicationLink';
 
+export * from './archivedObject';
+
+export * from './archivedObjectsPage';
+
 export * from './assetObject';
 
 export * from './assetObjectExtended';
@@ -91,6 +95,8 @@ export * from './ticketStatus';
 export * from './ticketType';
 
 export * from './tickets';
+
+export * from './uploadedAttachment';
 
 export * from './user';
 

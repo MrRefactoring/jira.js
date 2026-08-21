@@ -105,6 +105,8 @@
     "test:live": "vitest run --config vitest.config.live.ts",
     "test:live:server": "vitest run --config vitest.config.server.ts",
     "coverage:server": "node scripts/serverCoverage.ts",
+    "test:live:jsm": "vitest run --config vitest.config.jsm.ts",
+    "coverage:jsm": "node scripts/jsmCoverage.ts",
     "jira-dc:up": "node scripts/jiraDc.ts up",
     "jira-dc:status": "node scripts/jiraDc.ts status",
     "jira-dc:down": "node scripts/jiraDc.ts down",

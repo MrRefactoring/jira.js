@@ -4,7 +4,7 @@ export * from './archiveObject';
 
 export * from './archiveObjectsByFilter';
 
-export * from './archiveObjectsByIds';
+export * from './archiveObjectsByKeys';
 
 export * from './bulkSetObjectImportSource';
 

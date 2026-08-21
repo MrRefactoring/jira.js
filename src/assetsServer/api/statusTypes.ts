@@ -5,6 +5,7 @@ import type { DeleteStatusType } from '../parameters/deleteStatusType';
 import type { FindStatusTypes } from '../parameters/findStatusTypes';
 import type { StoreStatusType } from '../parameters/storeStatusType';
 import type { Client, SendRequestOptions } from '#/core';
+import { z } from 'zod';
 
 /** Get details on a given status. */
 export async function getStatusType(client: Client, parameters: GetStatusType): Promise<StatusType> {
@@ -40,14 +41,14 @@ export async function deleteStatusType(client: Client, parameters: DeleteStatusT
 }
 
 /** Find status types for a given object schema ID. */
-export async function findStatusTypes(client: Client, parameters?: FindStatusTypes): Promise<StatusType> {
-  const config: SendRequestOptions<StatusType> = {
+export async function findStatusTypes(client: Client, parameters?: FindStatusTypes): Promise<StatusType[]> {
+  const config: SendRequestOptions<StatusType[]> = {
     url: '/rest/assets/1.0/config/statustype',
     method: 'GET',
     searchParams: {
       objectSchemaId: parameters?.objectSchemaId,
     },
-    schema: StatusTypeSchema,
+    schema: z.array(StatusTypeSchema),
   };
 
   return await client.sendRequest(config);
