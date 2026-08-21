@@ -1,9 +1,9 @@
 /**
  * Jira REST API client for Node.js and browsers.
  *
- * Three surfaces, one client: the Jira Cloud platform API, the Agile (software) API, and Jira Service Management. Each
- * has its own factory, and all of them take the same bare site URL — the API path belongs to the request, not to
- * `host`:
+ * Four surfaces, one client: the Jira Cloud platform API, the Agile (software) API, Jira Service Management, and the
+ * self-hosted Data Center API. Each has its own factory, and all of them take the same bare site URL — the API path
+ * belongs to the request, not to `host`:
  *
  * ```ts
  * import { createCloudClient } from 'jira.js';
@@ -29,8 +29,21 @@
  * const agile = createAgileClient(client);
  * ```
  *
- * For a smaller bundle, import the flat functions from `jira.js/cloud`, `jira.js/agile` or `jira.js/serviceDesk` and
- * drive them with that same client.
+ * Data Center is a separate surface rather than a mode of the Cloud one, because the two APIs are not variants of each
+ * other: `/rest/api/2` against `/rest/api/3`, wiki markup against ADF, `name` and `key` against `accountId`. Only the
+ * client underneath is shared.
+ *
+ * ```ts
+ * import { createServerClient } from 'jira.js';
+ *
+ * const jira = createServerClient({
+ *   host: 'https://jira.your-company.com',
+ *   auth: { type: 'bearer', token: personalAccessToken },
+ * });
+ * ```
+ *
+ * For a smaller bundle, import the flat functions from `jira.js/cloud`, `jira.js/agile`, `jira.js/serviceDesk` or
+ * `jira.js/server` and drive them with that same client.
  *
  * Those entry points also expose every request parameter and response type. They are not re-exported here: the surfaces
  * collide on a handful of names.
@@ -41,6 +54,8 @@ export { createCloudClient, type CloudClient } from './cloud/createCloudClient.j
 export { createAgileClient, type AgileClient } from './agile/createAgileClient.js';
 
 export { createServiceDeskClient, type ServiceDeskClient } from './serviceDesk/createServiceDeskClient.js';
+
+export { createServerClient, type ServerClient } from './server/createServerClient.js';
 
 export {
   ApiError,
@@ -87,6 +102,14 @@ export type {
   OnTokenRefresh,
   CallbackParams,
 } from './core/index.js';
+
+export {
+  generateServerAuthorizationUrl,
+  exchangeServerAuthorizationCode,
+  refreshServerOAuth2Token,
+} from './core/index.js';
+
+export type { ServerOAuth2Scope } from './core/index.js';
 
 export { createMultipartRequestBody, toFormDataFile } from './core/index.js';
 

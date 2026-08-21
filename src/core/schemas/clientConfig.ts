@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import { authSchema } from './auth.js';
-import type { AuthBasic, AuthBearer, AuthOAuth2 } from './auth.js';
+import type { AuthBasic, AuthBearer, AuthOAuth2, AuthOAuth2Server } from './auth.js';
 import type { SchemaMismatchBehavior } from '../schemaMismatch.js';
 
 export const transientRetrySchema = z.object({
@@ -60,4 +60,4 @@ export type CommonClientConfig = Omit<ParsedClientConfig, 'host' | 'auth'>;
  */
 export type ClientConfig =
   | (CommonClientConfig & { host?: string; auth: AuthOAuth2 })
-  | (CommonClientConfig & { host: string; auth?: AuthBasic | AuthBearer });
+  | (CommonClientConfig & { host: string; auth?: AuthBasic | AuthBearer | AuthOAuth2Server });

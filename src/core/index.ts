@@ -47,6 +47,7 @@ export {
   type AuthBasic,
   type AuthBearer,
   type AuthOAuth2,
+  type AuthOAuth2Server,
   type SendRequestOptions,
 } from './schemas/index.js';
 
@@ -58,6 +59,15 @@ export {
   parseCallbackUrl,
   createOAuth2Manager,
 } from './oauth/index.js';
+
+export {
+  generateServerAuthorizationUrl,
+  exchangeServerAuthorizationCode,
+  refreshServerOAuth2Token,
+  createServerOAuth2Manager,
+} from './oauthServer/index.js';
+
+export type { ServerOAuth2Scope, ServerOAuth2ManagerOptions } from './oauthServer/index.js';
 
 export type {
   CallbackParams,

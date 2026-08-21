@@ -17,6 +17,7 @@ import type { SchemaMismatchReport } from './schemaMismatch.js';
 import { buildUrlWithSearchParams } from './serializeSearchParams.js';
 import { clientConfigSchema } from './schemas/index.js';
 import { createOAuth2Manager } from './oauth/index.js';
+import { createServerOAuth2Manager } from './oauthServer/index.js';
 
 /**
  * Whether this 401 means "missing scope" rather than "stale token".
@@ -48,8 +49,8 @@ function describeValue(value: unknown): string {
  * The value the API sent where the schema listed a set, as text for the report.
  *
  * Audit-only, like everything else on this path, and the value is the whole finding: an enum that grew is repaired by
- * adding the value it grew by, which a type name does not carry. Anything that is not a string is described rather than
- * quoted — a set of numbers or booleans is rare enough that naming its shape is answer enough.
+ * adding the value it grew by, which a type name does not carry. Anything that is not a string is described rather
+ * than quoted — a set of numbers or booleans is rare enough that naming its shape is answer enough.
  */
 function describeValueAtPath(body: unknown, path: readonly PropertyKey[]): string {
   let target = body;
@@ -73,11 +74,7 @@ function describeValueAtPath(body: unknown, path: readonly PropertyKey[]): strin
  * `path` is a zod issue path, so every segment is an object key or an array index, and anything no longer there is
  * simply skipped — the walk describes a body that was just parsed, not an arbitrary structure.
  */
-function takeKeyTypes(
-  body: unknown,
-  path: readonly PropertyKey[],
-  keys: readonly PropertyKey[],
-): Record<string, string> {
+function takeKeyTypes(body: unknown, path: readonly PropertyKey[], keys: readonly PropertyKey[]): Record<string, string> {
   let target = body;
 
   for (const segment of path) {
@@ -99,8 +96,8 @@ function takeKeyTypes(
 }
 
 type DriftFinding =
-  | { kind: 'keys'; path: PropertyKey[]; keys: PropertyKey[] }
-  | { kind: 'value'; path: PropertyKey[]; documented: string[] };
+  | { kind: 'keys', path: PropertyKey[], keys: PropertyKey[] }
+  | { kind: 'value', path: PropertyKey[], documented: string[] };
 
 /**
  * Reads a validation failure as pure schema drift, or decides it is not.
@@ -110,8 +107,8 @@ type DriftFinding =
  *
  * Two kinds count. An undocumented key is a field the specification never described. A value outside a documented set
  * is the same gap one level down: the field is described, its list of values is not complete. Both are the vendor's
- * documentation falling behind the vendor's API, and reporting either as breakage sends the reader after a fault in the
- * wrong codebase.
+ * documentation falling behind the vendor's API, and reporting either as breakage sends the reader after a fault in
+ * the wrong codebase.
  *
  * Unions need the recursion. Zod reports each branch it tried, and branches that failed for their own reasons are
  * simply the wrong branch; what identifies the right one is a branch whose only complaint is undocumented keys. Without
@@ -181,12 +178,18 @@ function base64Encode(value: string): string {
 }
 
 async function getAuthHeaders(auth: Auth): Promise<Record<string, string>> {
-  if (auth.type === 'oauth2') {
+  // Both OAuth strategies normally have their header supplied by a manager, which refreshes first. This path is
+  // reached only through `getAuthOn401`, where a caller hands over a fresh credential mid-flight.
+  if (auth.type === 'oauth2' || auth.type === 'oauth2Server') {
     return auth.accessToken ? { Authorization: `Bearer ${auth.accessToken}` } : {};
   }
 
   if (auth.type === 'basic') {
-    const encoded = base64Encode(`${auth.email}:${auth.apiToken}`);
+    // Cloud pairs an account address with an API token, Data Center a username with a password. The wire format is the
+    // same; only the two halves differ.
+    const encoded = 'email' in auth
+      ? base64Encode(`${auth.email}:${auth.apiToken}`)
+      : base64Encode(`${auth.username}:${auth.password}`);
 
     return { Authorization: `Basic ${encoded}` };
   }
@@ -221,7 +224,15 @@ export function createClient(config: ClientConfig | Client): Client {
   const retryInitialDelayMs = retry?.initialDelayMs ?? 500;
   const retryBackoffFactor = retry?.backoffFactor ?? 2;
 
-  const oauth2Manager: OAuth2Manager | undefined = auth?.type === 'oauth2' ? createOAuth2Manager(auth) : undefined;
+  // Both strategies produce the same three things the transport needs — a header, a base URL and a way to refresh —
+  // so they share one variable and the request loop below never learns which deployment it is talking to. `host` is
+  // non-null for the Data Center branch: the config schema requires it for every strategy except Cloud 3LO.
+  const oauth2Manager: OAuth2Manager | undefined =
+    auth?.type === 'oauth2'
+      ? createOAuth2Manager(auth)
+      : auth?.type === 'oauth2Server'
+        ? createServerOAuth2Manager({ ...auth, host: host! })
+        : undefined;
 
   return {
     async sendRequest<T>(requestConfig: SendRequestOptions<T>): Promise<T> {
@@ -233,12 +244,17 @@ export function createClient(config: ClientConfig | Client): Client {
       const fullUrl = buildUrlWithSearchParams(url, requestConfig.searchParams);
 
       const rawBody = requestConfig.body;
-      const body = rawBody === undefined || rawBody === null ? undefined : bodyToFetchBody(rawBody);
+      const requestContentType = requestConfig.contentType;
+      const body = rawBody === undefined || rawBody === null ? undefined : bodyToFetchBody(rawBody, requestContentType);
 
       const doRequest = async (authHeaders: Record<string, string>): Promise<Response> => {
         const headers: Record<string, string> = {
           Accept: 'application/json',
-          ...(shouldSetJsonContentType(rawBody, requestConfig.method) ? { 'Content-Type': 'application/json' } : {}),
+          // A declared media type wins outright. `URLSearchParams` is the one body that states its own — `fetch` sets
+          // the form header for it — so naming it again would be harmless but redundant.
+          ...(requestContentType !== undefined
+            ? (body instanceof URLSearchParams ? {} : { 'Content-Type': requestContentType })
+            : shouldSetJsonContentType(rawBody, requestConfig.method) ? { 'Content-Type': 'application/json' } : {}),
           ...authHeaders,
           ...configHeaders,
           ...requestConfig.headers,

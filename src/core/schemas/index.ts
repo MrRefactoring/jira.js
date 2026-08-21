@@ -2,9 +2,9 @@ export { httpMethodSchema } from './httpMethod.js';
 
 export type { HttpMethod } from './httpMethod.js';
 
-export { authSchema, authOAuth2Schema } from './auth.js';
+export { authSchema, authOAuth2Schema, authOAuth2ServerSchema } from './auth.js';
 
-export type { Auth, AuthBasic, AuthBearer, AuthOAuth2 } from './auth.js';
+export type { Auth, AuthBasic, AuthBearer, AuthOAuth2, AuthOAuth2Server } from './auth.js';
 
 export { clientConfigSchema } from './clientConfig.js';
 
