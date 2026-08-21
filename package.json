@@ -47,6 +47,14 @@
     "./server": {
       "types": "./dist/server/index.d.ts",
       "import": "./dist/server/index.js"
+    },
+    "./serviceDeskServer": {
+      "types": "./dist/serviceDeskServer/index.d.ts",
+      "import": "./dist/serviceDeskServer/index.js"
+    },
+    "./assetsServer": {
+      "types": "./dist/assetsServer/index.d.ts",
+      "import": "./dist/assetsServer/index.js"
     }
   },
   "keywords": [
