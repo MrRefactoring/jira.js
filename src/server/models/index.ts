@@ -228,6 +228,8 @@ export * from './getReactionsRequest';
 
 export * from './getUsersFromGroup';
 
+export * from './getWebhookStatisticsSummary';
+
 export * from './getWorkflow';
 
 export * from './grantToPermissionInput';
@@ -673,6 +675,12 @@ export * from './vote';
 export * from './voteWatchResult';
 
 export * from './watchers';
+
+export * from './webhook';
+
+export * from './webhookInput';
+
+export * from './webhookStatistics';
 
 export * from './workflow';
 

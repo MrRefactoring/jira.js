@@ -106,6 +106,8 @@ export * from './createUserAvatarFromTemporary';
 
 export * from './createVersion';
 
+export * from './createWebhook';
+
 export * from './defaultColumns';
 
 export * from './deleteActor';
@@ -193,6 +195,8 @@ export * from './deleteUserAvatar';
 export * from './deleteUserProperty';
 
 export * from './deleteVersionAndSwap';
+
+export * from './deleteWebhook';
 
 export * from './deleteWorkflowMapping';
 
@@ -390,6 +394,8 @@ export * from './getIssuesWithoutEpicForBoard';
 
 export * from './getIssuesecuritylevel';
 
+export * from './getLatestWebhookInvocation';
+
 export * from './getNotificationScheme';
 
 export * from './getNotificationSchemes';
@@ -525,6 +531,16 @@ export * from './getVersionRelatedIssues';
 export * from './getVersionUnresolvedIssues';
 
 export * from './getVotes';
+
+export * from './getWebhook';
+
+export * from './getWebhookStatistics';
+
+export * from './getWebhookStatisticsSummary';
+
+export * from './getWebhookTransitions';
+
+export * from './getWebhooks';
 
 export * from './getWorkflow';
 
@@ -743,6 +759,8 @@ export * from './updateUser';
 export * from './updateUserAvatar';
 
 export * from './updateVersion';
+
+export * from './updateWebhook';
 
 export * from './updateWorkflowMapping';
 

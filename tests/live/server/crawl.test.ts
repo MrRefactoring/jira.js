@@ -109,6 +109,7 @@ const SOURCES: Source[] = [
   { from: 'getAllProjectRoles', parameter: 'id', scope: '/rest/api/2/role' },
   { from: 'getAll', parameter: 'key', field: 'key', scope: '/rest/api/2/applicationrole' },
   { from: 'getPrioritySchemes', parameter: 'schemeId', scope: '/rest/api/2/priorityschemes' },
+  { from: 'getWebhooks', parameter: 'webhookId' },
 ];
 
 const mismatches: SchemaMismatchReport[] = [];

@@ -2,13 +2,13 @@
 
 ## 6.3.0
 
-Jira Data Center gets a client. `createServerClient` is a fourth surface alongside Cloud, Agile and Service Management — not the Cloud client pointed elsewhere, because the two APIs differ in more than their address: `/rest/api/2` against `/rest/api/3`, wiki markup against Atlassian Document Format, `name` and `key` against `accountId`. Of four hundred and thirty-five operations, two hundred and six share a name with a Cloud one and eighty-seven share a model name; nothing else is common but the transport.
+Jira Data Center gets a client. `createServerClient` is a fourth surface alongside Cloud, Agile and Service Management — not the Cloud client pointed elsewhere, because the two APIs differ in more than their address: `/rest/api/2` against `/rest/api/3`, wiki markup against Atlassian Document Format, `name` and `key` against `accountId`. Of four hundred and forty-four operations, two hundred and six share a name with a Cloud one and eighty-seven share a model name; nothing else is common but the transport.
 
 Every one of those operations has been called against a running Jira Data Center instance. That is what the rest of these notes are: Atlassian generates the Data Center document from Java annotations rather than writing it, and it is wrong in ways reading cannot reveal.
 
 ### Features
 
-* **`createServerClient` and `jira.js/server`.** Four hundred and thirty-five operations across sixty modules, generated from the Jira Data Center 11.3 LTS specification and usable against **Jira Data Center 10.0 and later**. Data Center publishes its platform, Agile and session endpoints as one document, so unlike Cloud there is no separate Agile factory — boards and sprints sit in the same client as issues.
+* **`createServerClient` and `jira.js/server`.** Four hundred and forty-four operations across sixty-one modules, generated from the Jira Data Center 11.3 LTS specification and usable against **Jira Data Center 10.0 and later**. Data Center publishes its platform, Agile and session endpoints as one document, so unlike Cloud there is no separate Agile factory — boards and sprints sit in the same client as issues.
 
   ```ts
   import { createServerClient } from 'jira.js';
@@ -22,6 +22,10 @@ Every one of those operations has been called against a running Jira Data Center
   ```
 
   The nine operations that arrived after 10.0 carry an `@since` note naming the release each can be relied on from. Jira 9.x is not supported: Atlassian never published an OpenAPI document for it, and the line reached end of life on 26 June 2026.
+
+* **Webhooks.** `createWebhook`, `getWebhooks`, `updateWebhook`, `deleteWebhook` and the five reads beside them, under `jira.webhooks`. They are the one part of this surface Atlassian describes in prose and in no specification, so they were written from the Jersey WADL a running instance serves at `/rest/jira-webhook/1.0/application.wadl` — which describes the requests and, its `grammars` element being empty, nothing about the bodies — and from calling each one against a live Data Center 10.3. The live suite exercises all nine.
+
+  Note the path. `/rest/webhooks/1.0/webhook` served Jira 9 and earlier and answers 404 on every 10.x; these use `/rest/jira-webhook/1.0/webhooks`, which is where Jira 10 moved them.
 
 * **Basic authentication accepts a username and password.** A self-hosted account has no Atlassian address and no API token, so `auth: { type: 'basic', ... }` now takes either pair. The Cloud form is unchanged, and mixing the two halves is a validation error rather than a 401 an hour later.
 

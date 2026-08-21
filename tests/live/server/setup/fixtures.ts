@@ -49,6 +49,7 @@ async function waitForBoard(jira: ServerClient): Promise<number> {
 
 export interface Fixtures {
   projectId: string;
+  webhookId: number;
   attachmentId: string;
   workflowSchemeId: number;
   boardId: number;
@@ -177,6 +178,14 @@ export async function createFixtures(jira: ServerClient, projectKey: string): Pr
   await jira.board.setBoardProperty({ boardId, propertyKey, body: PROPERTY_VALUE });
   await jira.sprint.setSprintProperty({ sprintId: sprint.id!, propertyKey, body: PROPERTY_VALUE });
 
+  // Webhooks are the one part of the surface Atlassian describes in prose rather than in the document, so a fixture
+  // is what proves the endpoints written from a WADL and a measurement actually answer.
+  const webhook = await jira.webhooks.createWebhook({
+    name: testName('webhook'),
+    url: 'https://example.com/jira-js',
+    events: ['jira:issue_created'],
+  });
+
   await jira.permissionSchemes.setSchemeAttribute({
     permissionSchemeId: 10000,
     key: FIXTURE.schemeAttributeKey,
@@ -189,6 +198,7 @@ export async function createFixtures(jira: ServerClient, projectKey: string): Pr
 
   return {
     projectId: String(project.id),
+    webhookId: webhook.id!,
     attachmentId: String(attachmentId),
     workflowSchemeId: workflowScheme.id!,
     boardId,

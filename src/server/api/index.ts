@@ -108,6 +108,8 @@ export * from './upgrade';
 
 export * from './users';
 
+export * from './webhooks';
+
 export * from './websudo';
 
 export * from './workflowSchemes';
