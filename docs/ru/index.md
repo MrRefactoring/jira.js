@@ -21,7 +21,7 @@ hero:
 features:
   - icon: 🧩
     title: Cloud и Data Center
-    details: Платформенный API Jira Cloud, Agile и Service Management, а также self-hosted API Data Center — почти все эндпоинты, один клиент.
+    details: Платформенный API Jira Cloud, Agile, Service Management и Assets, а также self-hosted API Data Center, Service Management и Assets — почти все эндпоинты, один клиент.
   - icon: 🔒
     title: TypeScript в первую очередь
     details: Типизированы все эндпоинты, параметры и модели, а исходники входят в пакет — «перейти к определению» приводит в настоящий код.

@@ -21,7 +21,7 @@ hero:
 features:
   - icon: 🧩
     title: Cloud and Data Center
-    details: The Jira Cloud platform API, Agile and Service Management, and the self-hosted Data Center API — nearly every endpoint, one client.
+    details: The Jira Cloud platform API, Agile, Service Management and Assets, and the self-hosted Data Center, Service Management and Assets APIs — nearly every endpoint, one client.
   - icon: 🔒
     title: TypeScript-first
     details: Every endpoint, parameter and model is typed, and the published package ships its sources so "go to definition" lands on the real thing.

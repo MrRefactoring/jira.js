@@ -6,7 +6,32 @@ Jira Data Center gets a client. `createServerClient` is a fourth surface alongsi
 
 Every one of those operations has been called against a running Jira Data Center instance. That is what the rest of these notes are: Atlassian generates the Data Center document from Java annotations rather than writing it, and it is wrong in ways reading cannot reveal.
 
+Three more surfaces arrive with it: Service Management and Assets on Data Center, and Assets on Cloud — which closes [#266](https://github.com/MrRefactoring/jira.js/issues/266), open since May 2023.
+
 ### Features
+
+* **`createAssetsClient` and `jira.js/assets`.** Sixty operations of the [Assets Cloud REST API](https://developer.atlassian.com/cloud/assets/rest/) across thirteen modules: objects and their schemas, types and attributes, AQL, icons, status and reference types, and the import sources a third-party integration feeds data through.
+
+  Assets is the one surface in this library that does not answer on your site's own host, so its client is built from its own configuration rather than shared with the others:
+
+  ```ts
+  import { createServiceDeskClient, createAssetsClient } from 'jira.js';
+
+  const serviceDesk = createServiceDeskClient({ host, auth });
+  const [workspace] = (await serviceDesk.assets.getAssetsWorkspaces()).values ?? [];
+
+  const assets = createAssetsClient({ workspaceId: workspace.workspaceId, auth });
+
+  await assets.objects.loadObject({ id: '42' });
+  ```
+
+  `workspaceId` is required and explicit: a site has one, `getAssetsWorkspaces` returns it, and it does not change. Under OAuth 2.0 the client resolves the gateway itself as it does everywhere else; under every other strategy it goes to `api.atlassian.com`. Assets needs Jira Service Management Premium, without which the workspace list comes back empty.
+
+* **`createServiceDeskServerClient` and `jira.js/serviceDeskServer`.** Sixty-one operations across fourteen modules — customer requests with their comments, participants and SLAs, queues, request types and their permissions, organizations, portals, approvals and customer transitions — generated from the Jira Service Management Data Center 11.3 specification. The `serviceDesk` client was Cloud-only; this is its self-hosted counterpart, and it takes the same client every other Data Center surface does.
+
+* **`createAssetsServerClient` and `jira.js/assetsServer`.** Fifty-eight operations across fifteen modules: everything Assets Cloud has except imports, plus the attachments, comments, archiving, QR codes and index control that only the self-hosted product offers. Assets ships with Service Management rather than as a separate app, so any licensed instance has it.
+
+  Every one of the fifty-eight is called against a running instance on each run of the live suite. The Service Desk half needs a Service Management licence, without which all sixty-one of its endpoints answer 403 with an HTML page — `getInfo` is the one that answers regardless, and how to tell.
 
 * **`createServerClient` and `jira.js/server`.** Four hundred and forty-four operations across sixty-one modules, generated from the Jira Data Center 11.3 LTS specification and usable against **Jira Data Center 10.0 and later**. Data Center publishes its platform, Agile and session endpoints as one document, so unlike Cloud there is no separate Agile factory — boards and sprints sit in the same client as issues.
 
@@ -34,6 +59,17 @@ Every one of those operations has been called against a running Jira Data Center
   Note that Jira 11.0 disables basic authentication by default and rejects `/rest/auth/1/session` as well; on a default Jira 11 instance a personal access token is the only way in.
 
 ### Bug Fixes
+
+* **Six things the Assets Data Center specification gets wrong.** Found the same way as the rest of these, by calling each endpoint against a running instance:
+
+  - ten endpoints answer with an array while the document names a single item;
+  - `getArchivedObjects` answers with a page of a shape the document does not describe at all — its items carry `key` where an object carries `objectKey`, and `archived`, `archivedDate` and `archivedBy` besides;
+  - `archiveObjectsByKeys`, named `archiveObjectsByIds` and declared with a string body, archives by key and takes an array of them;
+  - an attribute's `value`, `displayValue` and `searchValue` are typed as objects and are strings on the wire — which failed validation on most of the surface, since every response carrying an object's attributes has them;
+  - an attachment's `created` is the documented date when listed and `{ seconds, nanos }` when uploaded, so the upload has a response type of its own;
+  - an object schema's id is a string for reading and an integer for writing, so `loadSchema` and `updateSchema` took the same schema under two types.
+
+* **Data Center writes its pages inside the response.** Eighteen Service Management operations answered with one envelope and generated eighteen models of it, named after the operation rather than after what it holds — `GetRequestComments` where the rest of the library returns `Page<Comment>`. They are `Page<T>` now.
 
 * **Thirty-seven responses that arrive as a list were typed as a single item.** `getAllProjects`, `getStatuses`, `getFields`, `getProjectVersions`, `getAllScreens`, `getSubTasks`, `getRemoteIssueLinks` and thirty more declare one object and answer with an array of them — the Java method returns a collection and the annotation names the element. Every entry was measured against a live instance rather than reasoned about, because a document cannot tell the two apart.
 
