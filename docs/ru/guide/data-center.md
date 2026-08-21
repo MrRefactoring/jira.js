@@ -22,7 +22,7 @@ const issue = await jira.issues.getIssue({ issueIdOrKey: 'PROJ-1' });
 ## Поддерживаемые версии
 
 Сгенерировано из спецификации Jira Data Center 11.3 LTS и работает начиная с **Jira Data Center 10.0**. Между
-этими выпусками разница в девять операций из четырёхсот тридцати пяти; у каждой из них в документации стоит
+этими выпусками разница в девять операций из четырёхсот сорока четырёх; у каждой из них в документации стоит
 пометка `@since`, а на более старом инстансе такой вызов отвечает 404.
 
 Jira 9.x не поддерживается: Atlassian никогда не публиковала для неё OpenAPI-документ, а вся ветка завершила
@@ -109,6 +109,30 @@ const jira = createServerClient({
 
 `redirectUri` относится к набору для обновления, а не только к первичному обмену: провайдер Data Center проверяет
 его и на refresh-гранте, и без него приходит `invalid_grant`, который ничего не объясняет.
+
+## Вебхуки
+
+Единственная часть этой поверхности, которую Atlassian не описывает спецификацией. `createWebhook` и восемь
+операций рядом написаны по Jersey WADL, который отдаёт живой инстанс по адресу
+`/rest/jira-webhook/1.0/application.wadl` — он описывает запросы и, при пустом элементе `grammars`, ничего не
+говорит о телах, — и по вызовам каждой из них на живом инстансе Data Center.
+
+```typescript
+const webhook = await jira.webhooks.createWebhook({
+  name: 'issue created',
+  url: 'https://example.com/hooks/jira',
+  events: ['jira:issue_created'],
+});
+
+const statistics = await jira.webhooks.getWebhookStatistics({ webhookId: webhook.id });
+```
+
+Живут они по `/rest/jira-webhook/1.0/` — туда их перенесла Jira 10. Старый `/rest/webhooks/1.0/webhook`
+обслуживал Jira 9 и раньше и отвечает 404 на любом выпуске, который поддерживает этот клиент.
+
+`getWebhookTransitions` и `getLatestWebhookInvocation` возвращают `unknown`: инстанс, который ни разу не
+доставил вебхук, отвечает пустым списком и 204 — описывать было нечего, а догадка была бы хуже, чем оставить
+уточнение типа вызывающему.
 
 ## Переход с облака
 

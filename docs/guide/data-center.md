@@ -22,7 +22,7 @@ publishes them as a single document, so unlike Cloud there is no separate Agile 
 ## Supported versions
 
 Generated from the Jira Data Center 11.3 LTS specification, and usable against **Jira Data Center 10.0 and
-later**. The two releases differ by nine operations out of four hundred and thirty-five; each of those carries
+later**. The two releases differ by nine operations out of four hundred and forty-four; each of those carries
 an `@since` note in its documentation, and calling one on an older instance answers 404.
 
 Jira 9.x is not supported. Atlassian never published an OpenAPI document for it, and the whole line reached end
@@ -110,6 +110,30 @@ The scopes are `READ`, `WRITE`, `ADMIN` and `SYSTEM_ADMIN`, each implying the on
 
 `redirectUri` belongs with the refresh credentials, not only with the initial exchange: the Data Center provider
 validates it on the refresh grant too, and omitting it earns an `invalid_grant` that explains nothing.
+
+## Webhooks
+
+The one part of this surface Atlassian does not describe in a specification. `createWebhook` and the eight
+operations beside it were written from the Jersey WADL a running instance serves at
+`/rest/jira-webhook/1.0/application.wadl`, which describes the requests and — its `grammars` element being
+empty — nothing about the bodies, and from calling each one against a live Data Center instance.
+
+```typescript
+const webhook = await jira.webhooks.createWebhook({
+  name: 'issue created',
+  url: 'https://example.com/hooks/jira',
+  events: ['jira:issue_created'],
+});
+
+const statistics = await jira.webhooks.getWebhookStatistics({ webhookId: webhook.id });
+```
+
+They live under `/rest/jira-webhook/1.0/`, which is where Jira 10 moved them. The older
+`/rest/webhooks/1.0/webhook` served Jira 9 and earlier and answers 404 on every release this client supports.
+
+`getWebhookTransitions` and `getLatestWebhookInvocation` return `unknown`: an instance that has never
+delivered a webhook answers with an empty list and a 204, so there was nothing to describe, and guessing
+would have been worse than leaving the narrowing to the caller.
 
 ## Coming from Cloud
 

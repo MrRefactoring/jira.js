@@ -59,6 +59,7 @@ import * as workflowSchemes from './api/workflowSchemes';
 import * as issueWorklogs from './api/issueWorklogs';
 import * as session from './api/session';
 import * as websudo from './api/websudo';
+import * as webhooks from './api/webhooks';
 import type {
   MoveIssuesToBacklog,
   GetAllBoards,
@@ -441,6 +442,15 @@ import type {
   GetIdsOfWorklogsModifiedSince,
   Login,
   Release,
+  GetWebhooks,
+  CreateWebhook,
+  GetWebhook,
+  UpdateWebhook,
+  DeleteWebhook,
+  GetWebhookStatistics,
+  GetWebhookStatisticsSummary,
+  GetWebhookTransitions,
+  GetLatestWebhookInvocation,
 } from './parameters';
 import type {
   Page,
@@ -578,6 +588,9 @@ import type {
   WorklogChangedSince,
   CurrentUser,
   AuthSuccess,
+  Webhook,
+  WebhookStatistics,
+  GetWebhookStatisticsSummary as GetWebhookStatisticsSummaryModel,
 } from './models';
 
 export function createServerClient(clientConfig: ClientConfig | Client) {
@@ -1408,6 +1421,22 @@ export function createServerClient(clientConfig: ClientConfig | Client) {
     },
     websudo: {
       release: (parameters: Release): Promise<void> => websudo.release(client, parameters),
+    },
+    webhooks: {
+      getWebhooks: (parameters?: GetWebhooks): Promise<Webhook[]> => webhooks.getWebhooks(client, parameters),
+      createWebhook: (parameters: CreateWebhook): Promise<Webhook> => webhooks.createWebhook(client, parameters),
+      getWebhook: (parameters: GetWebhook): Promise<Webhook> => webhooks.getWebhook(client, parameters),
+      updateWebhook: (parameters: UpdateWebhook): Promise<Webhook> => webhooks.updateWebhook(client, parameters),
+      deleteWebhook: (parameters: DeleteWebhook): Promise<void> => webhooks.deleteWebhook(client, parameters),
+      getWebhookStatistics: (parameters: GetWebhookStatistics): Promise<WebhookStatistics> =>
+        webhooks.getWebhookStatistics(client, parameters),
+      getWebhookStatisticsSummary: (
+        parameters: GetWebhookStatisticsSummary,
+      ): Promise<GetWebhookStatisticsSummaryModel> => webhooks.getWebhookStatisticsSummary(client, parameters),
+      getWebhookTransitions: (parameters: GetWebhookTransitions): Promise<unknown> =>
+        webhooks.getWebhookTransitions(client, parameters),
+      getLatestWebhookInvocation: (parameters: GetLatestWebhookInvocation): Promise<unknown> =>
+        webhooks.getLatestWebhookInvocation(client, parameters),
     },
   };
 }
