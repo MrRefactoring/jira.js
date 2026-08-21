@@ -29,11 +29,12 @@ where it does.
 
 | Import | Contents |
 | --- | --- |
-| `jira.js` | The three factories, the error types and their predicates, the OAuth helpers |
+| `jira.js` | The four factories, the error types and their predicates, the OAuth helpers |
 | `jira.js/core` | `createClient`, the transport, errors, OAuth, multipart helpers |
 | `jira.js/cloud` | Platform API functions, parameters and response types |
 | `jira.js/agile` | Agile API functions, parameters and response types |
 | `jira.js/serviceDesk` | Service Management functions, parameters and response types |
+| `jira.js/server` | Data Center functions, parameters and response types |
 | `jira.js/browser` | Prebuilt browser bundle |
 
 The surface subpaths carry the types alongside the functions, so a type-only import costs nothing at
@@ -44,8 +45,9 @@ import type { Issue } from 'jira.js/cloud';
 import type { GetIssue } from 'jira.js/cloud';
 ```
 
-The three surfaces are not re-exported from the root, because they collide on a handful of names — import
-from the surface you mean.
+The four surfaces are not re-exported from the root, because they collide on a handful of names — import
+from the surface you mean. Data Center collides hardest: eighty-seven of its models share a name with a
+Cloud one and describe something else.
 
 > Deep imports need an `exports`-aware resolver: `moduleResolution: "bundler"`, `"node16"` or
 > `"nodenext"`. The legacy `"node"` resolution cannot see them, and cannot load an ESM-only package

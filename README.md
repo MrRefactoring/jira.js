@@ -454,7 +454,7 @@ The surface subpaths carry the types alongside the functions, so a type-only imp
 import type { Issue, GetIssue } from 'jira.js/cloud';
 ```
 
-The three surfaces are not re-exported from the root — they collide on a handful of names, so import from the one you mean.
+The four surfaces are not re-exported from the root — they collide on a handful of names, so import from the one you mean.
 
 > Deep imports need an `exports`-aware resolver: `moduleResolution: "bundler"`, `"node16"` or `"nodenext"`. The legacy `"node"` resolution cannot see them, and cannot load an ESM-only package either.
 

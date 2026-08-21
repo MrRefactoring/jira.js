@@ -4,7 +4,7 @@ title: jira.js — клиент Jira REST API для Node.js и TypeScript
 hero:
   name: jira.js
   text: Клиент Jira REST API
-  tagline: Типобезопасный клиент для платформы Jira Cloud, Agile и Service Management — Node.js и браузеры, ESM, каждый ответ валидируется.
+  tagline: Типобезопасный клиент для Jira — облачной или self-hosted. Node.js и браузеры, ESM, каждый ответ валидируется.
   image:
     src: /logo.svg
     alt: jira.js
@@ -20,8 +20,8 @@ hero:
       link: https://github.com/MrRefactoring/jira.js
 features:
   - icon: 🧩
-    title: Полное покрытие Cloud
-    details: Платформенный API Jira Cloud, Agile (доски, спринты, бэклог) и Jira Service Management — почти все эндпоинты, один клиент.
+    title: Cloud и Data Center
+    details: Платформенный API Jira Cloud, Agile и Service Management, а также self-hosted API Data Center — почти все эндпоинты, один клиент.
   - icon: 🔒
     title: TypeScript в первую очередь
     details: Типизированы все эндпоинты, параметры и модели, а исходники входят в пакет — «перейти к определению» приводит в настоящий код.

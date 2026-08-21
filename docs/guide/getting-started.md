@@ -1,11 +1,15 @@
 # Getting Started
 
-`jira.js` is a TypeScript client for the Atlassian Jira Cloud REST APIs, for [Node.js](https://nodejs.org/)
-and browsers. It covers three surfaces:
+`jira.js` is a TypeScript client for the Atlassian Jira REST APIs, for [Node.js](https://nodejs.org/)
+and browsers. It covers four surfaces:
 
 - **[Jira Cloud platform](https://developer.atlassian.com/cloud/jira/platform/rest/)** — issues, projects, fields, workflows
 - **[Jira Agile](https://developer.atlassian.com/cloud/jira/software/rest/intro/)** — boards, sprints, backlog
 - **[Jira Service Management](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro/)** — requests, queues, organizations
+- **[Jira Data Center](https://developer.atlassian.com/server/jira/platform/rest/)** — the self-hosted API, platform and agile in one client
+
+The first three are Cloud. Data Center is a surface of its own rather than the Cloud one pointed at another
+host — see [Jira Data Center](./data-center).
 
 ## Install
 

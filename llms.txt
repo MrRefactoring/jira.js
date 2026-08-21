@@ -1,8 +1,10 @@
 # jira.js
 
-> Modern Jira REST API client for JavaScript and TypeScript. Covers the Jira Cloud platform REST API, the Jira Agile API and the Jira Service Management API. Runs in Node.js 22+ and browsers, ESM-only, promise-based and fully typed, with every response validated at runtime against a schema.
+> Modern Jira REST API client for JavaScript and TypeScript. Covers the Jira Cloud platform REST API, the Jira Agile API, the Jira Service Management API and the self-hosted Jira Data Center API. Runs in Node.js 22+ and browsers, ESM-only, promise-based and fully typed, with every response validated at runtime against a schema.
 
-jira.js is an npm package (`npm install jira.js`) that wraps the Atlassian Jira Cloud REST APIs. Clients are built with factory functions — `createCloudClient`, `createAgileClient`, `createServiceDeskClient` — or composed from flat per-endpoint functions for smaller bundles. It supports Email + API token, bearer token, and OAuth 2.0 (3LO) authentication with automatic token refresh and cloud id resolution. Failures arrive as typed errors with predicates (`isNotFoundError`, `isRateLimitError`, …) rather than as transport errors.
+jira.js is an npm package (`npm install jira.js`) that wraps the Atlassian Jira REST APIs, cloud and self-hosted. Clients are built with factory functions — `createCloudClient`, `createAgileClient`, `createServiceDeskClient`, `createServerClient` — or composed from flat per-endpoint functions for smaller bundles. Failures arrive as typed errors with predicates (`isNotFoundError`, `isRateLimitError`, …) rather than as transport errors.
+
+Cloud authenticates with an email and API token, a bearer token, or OAuth 2.0 (3LO) with automatic token refresh and cloud id resolution. Data Center is a surface of its own rather than the Cloud client pointed at another host — `/rest/api/2` rather than `/rest/api/3`, wiki markup rather than Atlassian Document Format, `name` and `key` rather than `accountId` — and authenticates with a personal access token, a username and password, or OAuth 2.0 against the instance itself, which is its own authorization server.
 
 Version 6.0 is a rewrite: one platform surface instead of v2/v3, `fetch` instead of axios, ESM only, and no JWT (Atlassian Connect) support. It is what `npm install jira.js` gives you. Integrations that need JWT stay on `jira.js@5`, which is supported until the end of 2026.
 
@@ -11,6 +13,7 @@ Version 6.0 is a rewrite: one platform surface instead of v2/v3, `fetch` instead
 - [API reference](https://mrrefactoring.github.io/jira.js/): Full TypeDoc reference for every endpoint, parameter, and model.
 - [Getting started](https://mrrefactoring.github.io/jira.js/guide/getting-started): Install, build a client, make a first request.
 - [Authentication](https://mrrefactoring.github.io/jira.js/guide/authentication): API token, bearer token, OAuth 2.0 (3LO).
+- [Jira Data Center](https://mrrefactoring.github.io/jira.js/guide/data-center): The self-hosted surface — supported versions, its three authentication mechanisms, and what a Cloud user trips over.
 - [OAuth 2.0 (3LO) guide](https://mrrefactoring.github.io/jira.js/guide/oauth2-authentication): Step-by-step setup with auto-refresh and cloudId resolution.
 - [Error handling](https://mrrefactoring.github.io/jira.js/guide/error-handling): The typed error hierarchy and its predicates.
 - [Response validation](https://mrrefactoring.github.io/jira.js/guide/response-validation): What happens when Jira sends a shape the schema does not describe, and how to configure it.
