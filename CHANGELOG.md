@@ -1,5 +1,52 @@
 # Jira.js changelog
 
+## 6.3.0
+
+Jira Data Center gets a client. `createServerClient` is a fourth surface alongside Cloud, Agile and Service Management — not the Cloud client pointed elsewhere, because the two APIs differ in more than their address: `/rest/api/2` against `/rest/api/3`, wiki markup against Atlassian Document Format, `name` and `key` against `accountId`. Of four hundred and thirty-five operations, a hundred and seventy-four share a name with a Cloud one and thirty-seven share a schema name; nothing else is common but the transport.
+
+Every one of those operations has been called against a running Jira Data Center instance. That is what the rest of these notes are: Atlassian generates the Data Center document from Java annotations rather than writing it, and it is wrong in ways reading cannot reveal.
+
+### Features
+
+* **`createServerClient` and `jira.js/server`.** Four hundred and thirty-five operations across sixty modules, generated from the Jira Data Center 11.3 LTS specification and usable against **Jira Data Center 10.0 and later**. Data Center publishes its platform, Agile and session endpoints as one document, so unlike Cloud there is no separate Agile factory — boards and sprints sit in the same client as issues.
+
+  ```ts
+  import { createServerClient } from 'jira.js';
+
+  const jira = createServerClient({
+    host: 'https://jira.your-company.com',
+    auth: { type: 'bearer', token: personalAccessToken },
+  });
+
+  await jira.issues.getIssue({ issueIdOrKey: 'PROJ-1' });
+  ```
+
+  The nine operations that arrived after 10.0 carry an `@since` note naming the release each can be relied on from. Jira 9.x is not supported: Atlassian never published an OpenAPI document for it, and the line reached end of life on 26 June 2026.
+
+* **Basic authentication accepts a username and password.** A self-hosted account has no Atlassian address and no API token, so `auth: { type: 'basic', ... }` now takes either pair. The Cloud form is unchanged, and mixing the two halves is a validation error rather than a 401 an hour later.
+
+* **OAuth 2.0 against a Data Center instance.** `generateServerAuthorizationUrl`, `exchangeServerAuthorizationCode` and `refreshServerOAuth2Token`, plus `auth: { type: 'oauth2Server' }` for a client that refreshes on its own. A self-hosted instance is its own authorization server, so none of this goes near `auth.atlassian.com` or the Atlassian gateway, and there is no cloud id to resolve.
+
+  Note that Jira 11.0 disables basic authentication by default and rejects `/rest/auth/1/session` as well; on a default Jira 11 instance a personal access token is the only way in.
+
+### Bug Fixes
+
+* **Thirty-seven responses that arrive as a list were typed as a single item.** `getAllProjects`, `getStatuses`, `getFields`, `getProjectVersions`, `getAllScreens`, `getSubTasks`, `getRemoteIssueLinks` and thirty more declare one object and answer with an array of them — the Java method returns a collection and the annotation names the element. Every entry was measured against a live instance rather than reasoned about, because a document cannot tell the two apart.
+
+* **Nine agile endpoints answered with a page and were typed as its contents.** `getAllBoards` said `Board`, `getAllSprints` said `Sprint`, `getIssuesForBacklog` said `Issue`. The declared types have no required fields, so a page validated against them cleanly with every one of its own fields ignored — the caller got something typed `Board` with no `id` and no `name`. They are now `Page<Board>`, `Page<Sprint>` and, for the four that answer with search results, `SearchResults`.
+
+* **Entity properties can be written, and read back as what they are.** The eight endpoints that store arbitrary JSON against an issue, a project, a board, a sprint, a comment, an issue type, a user and a dashboard item were described five different ways; four declared no request body at all, so the property could not be set. `value` was typed a string on the way back, with a JSON document as its own example.
+
+* **`getSharePermission` is in the library.** The document spells one path `{permission-id}` and the one beside it `{permissionId}`; camel-casing collapsed the first onto the second, and the read was silently overwritten by the delete. The generator now counts what it started with and fails the build rather than shipping four hundred and thirty-four operations where four hundred and thirty-five went in.
+
+* **Seven endpoints that do not take JSON now send what they take.** `setSchemeAttribute` and `archiveIssues` want `text/plain`, the three column setters want a form encoding, and email templates want a zip; all of them were sent JSON and answered 415. The five multipart uploads — an attachment and four avatars — were generated as a JSON body of the Java method's field names, which no upload could be made from.
+
+* **Ten operations that answer with a body were typed `void`.** `createIssueType`, `createIssueLinkType`, `createScheme` and the rest describe their response in a sentence and name no schema, so the only way to see what was created was to ask for it again. `getAllWorkflows` and `getAllScreens` return things the document describes nowhere at all.
+
+* **One id, one type.** `boardId` and `sprintId` were integers on the endpoints that read them and strings on the ones that read their properties; a filter's share permission was a string when read and an integer when deleted. `fields` and `expand` accept the strings they always accepted — seventeen parameters typed through `StringList`, a component declared as an object with no properties, so `fields: ['summary']` did not type-check against the endpoint it is most often passed to.
+
+* **Twenty-eight more responses match what Jira sends.** `getAutoComplete` types its field and function lists as arrays of strings when both are arrays of objects. `getAvailableMetrics` and `getPasswordPolicy` declare a string and answer with an array. `SearchResults` returns `null` for `expand`, `names`, `schema` and `warningMessages`, and every issue read carries `renderedFields: null`. A project's roles, its avatars, a group's members and the eighty-five application properties were each declared as something they contain.
+
 ## 6.2.0
 
 Avatars moved bytes in both directions and the specification described both as JSON, so neither direction worked. Reading an image threw before the response reached the caller; uploading one had no way to send an image at all. Both are fixed here, along with two column endpoints broken by the same reading of the same specification.

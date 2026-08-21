@@ -16,11 +16,12 @@
 
 ## О библиотеке
 
-**Jira.js** — TypeScript-клиент к REST API Atlassian Jira Cloud для [Node.js](https://nodejs.org/) и браузеров. Покрывает три поверхности:
+**Jira.js** — TypeScript-клиент к REST API Atlassian Jira для [Node.js](https://nodejs.org/) и браузеров. Покрывает четыре поверхности:
 
 - **[Платформенный API Jira Cloud](https://developer.atlassian.com/cloud/jira/platform/rest/)** — задачи, проекты, поля, воркфлоу
 - **[Jira Agile API](https://developer.atlassian.com/cloud/jira/software/rest/intro/)** — спринты, доски, бэклог
 - **[Jira Service Management API](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro/)** — обращения, очереди, организации
+- **[API Jira Data Center](https://developer.atlassian.com/server/jira/platform/rest/)** — самостоятельно размещённая Jira 10.0 и новее, платформа и Agile одним клиентом
 
 > **6.0 — это переписывание, а не обновление.** `npm install jira.js` теперь ставит 6.x. Перед обновлением прочитайте [MIGRATION.md](./MIGRATION.md): там прямо сказано, кому стоит остаться на `jira.js@5`, который поддерживается до конца 2026 года.
 
@@ -129,6 +130,7 @@ const agile = createAgileClient(client);
 - **Платформенный API Jira Cloud**: задачи, проекты, пользователи, поля, воркфлоу, схемы
 - **Jira Software (Agile) API**: спринты, доски, бэклоги, agile-процессы
 - **Jira Service Management API**: обращения, очереди, клиенты, организации
+- **API Jira Data Center**: самостоятельно размещённая Jira, `/rest/api/2` и эндпоинты Agile из одного `createServerClient`
 
 Платформенная поверхность одна, сгенерированная из v3-спецификации Jira. `Version2Client` и `Version3Client` убраны: разница между ними была не в эндпоинтах, а в форматированном тексте. Такие поля по-прежнему принимают **строку** с wiki-разметкой — запись уходит через v2-эндпоинт, Jira разбирает разметку у себя, после чего результат перечитывается, и вы получаете настоящий документ [Atlassian Document Format](https://developer.atlassian.com/cloud/jira/platform/apis/document/structure/).
 
@@ -435,11 +437,12 @@ const issue = await getIssue(client, { issueIdOrKey: 'KEY-1' });
 
 | Импорт | Что внутри |
 | --- | --- |
-| `jira.js` | Три фабрики, типы ошибок и предикаты, помощники OAuth |
+| `jira.js` | Четыре фабрики, типы ошибок и предикаты, помощники OAuth |
 | `jira.js/core` | `createClient`, транспорт, ошибки, OAuth, multipart |
 | `jira.js/cloud` | Функции платформенного API, параметры и типы ответов |
 | `jira.js/agile` | Функции Agile API, параметры и типы ответов |
 | `jira.js/serviceDesk` | Функции Service Management, параметры и типы ответов |
+| `jira.js/server` | Функции Data Center, параметры и типы ответов |
 | `jira.js/browser` | Готовая браузерная сборка |
 
 Подпути поверхностей несут типы вместе с функциями, поэтому импорт только типа ничего не стоит в рантайме:
@@ -469,7 +472,7 @@ Jira.js идеально подходит для:
 ## Частые вопросы (FAQ)
 
 **В: Работает ли это с Jira Server/Data Center?**  
-О: Нет, Jira.js разработана специально для Jira Cloud. Для локальной (on-premise) Jira рассмотрите прямое использование REST API.
+О: Да, начиная с 6.3. Для самостоятельно размещённой Jira 10.0 и новее используйте `createServerClient` — см. [руководство по Data Center](https://mrrefactoring.github.io/jira.js/ru/guide/data-center). Это отдельная поверхность от облачной, потому что различия между двумя API не сводятся к адресу. Jira 9.x не поддерживается: спецификацию для неё Atlassian не публиковала, а ветка завершила жизненный цикл в июне 2026 года.
 
 **В: Обязателен ли TypeScript?**  
 О: Нет, но TypeScript полностью поддерживается с исчерпывающими определениями типов. Вы также можете использовать Jira.js с обычным JavaScript.
