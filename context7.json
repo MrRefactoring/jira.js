@@ -1,7 +1,7 @@
 {
   "$schema": "https://context7.com/schema/context7.json",
   "projectTitle": "jira.js",
-  "description": "Modern Jira REST API client for JavaScript and TypeScript — the Jira Cloud platform, Agile, and Service Management APIs, with every response validated at runtime.",
+  "description": "Modern Jira REST API client for JavaScript and TypeScript — the Jira Cloud platform, Agile, Service Management and Assets APIs, and the self-hosted Data Center ones, with every response validated at runtime.",
   "branch": "master",
   "excludeFolders": [
     "dist",
@@ -19,7 +19,7 @@
   ],
   "rules": [
     "Install with `npm install jira.js`, which gives you version 6. The package is ESM-only and requires Node.js 22+; there is no CommonJS build, so `require('jira.js')` does not work.",
-    "Build a client with a factory: `createCloudClient` for the Jira Cloud platform API, `createAgileClient` for boards/sprints/backlog, `createServiceDeskClient` for Jira Service Management. The `Version2Client`/`Version3Client` classes were removed in 6.0 and have no direct replacement — there is one platform surface now.",
+    "Build a client with a factory: `createCloudClient` for the Jira Cloud platform API, `createAgileClient` for boards/sprints/backlog, `createServiceDeskClient` for Jira Service Management, `createServerClient`, `createServiceDeskServerClient` and `createAssetsServerClient` for the self-hosted ones, and `createAssetsClient` for Assets on Cloud. The `Version2Client`/`Version3Client` classes were removed in 6.0 and have no direct replacement — there is one platform surface now.",
     "Need more than one surface? Build the client once with `createClient` from `jira.js/core` and pass that same client to each factory. Two clients mean two OAuth token states, and because Atlassian rotates the refresh token, whichever refreshes first invalidates the other.",
     "Provide `host` as the bare site URL (e.g. `https://your-domain.atlassian.net`) — the API path belongs to the request, not to `host`. It is required for basic and bearer auth. With OAuth 2.0 it is optional and ignored: the cloudId is resolved automatically and requests route through `https://api.atlassian.com/ex/jira/{cloudId}`.",
     "Authentication is the `auth` field, a discriminated union on `type`: `{ type: 'basic', email, apiToken }`, `{ type: 'bearer', token }`, or `{ type: 'oauth2', clientId, clientSecret, refreshToken, onTokenRefresh }`. Use an Atlassian API token, never an account password.",
