@@ -60,6 +60,26 @@ describe('auth headers', () => {
     expect((calls[0].init.headers as Record<string, string>).Authorization).toBe(expected);
   });
 
+  it('base64-encodes username and password for Data Center basic auth', async () => {
+    const calls = mockFetch([json({})]);
+
+    await createClient({ host: HOST, auth: { type: 'basic', username: 'jdoe', password: 'hunter2' } })
+      .sendRequest({ url: '/x', method: 'GET' });
+
+    const expected = `Basic ${Buffer.from('jdoe:hunter2').toString('base64')}`;
+
+    expect((calls[0].init.headers as Record<string, string>).Authorization).toBe(expected);
+  });
+
+  it('rejects a basic credential that mixes the two forms', async () => {
+    mockFetch([json({})]);
+
+    // Half a Cloud credential and half a Data Center one authenticates against neither, and the 401 it would earn
+    // arrives far from the mistake.
+    expect(() => createClient({ host: HOST, auth: { email: 'a@b.co', password: 'hunter2' } as never }))
+      .toThrow();
+  });
+
   it('sends a static bearer token', async () => {
     const calls = mockFetch([json({})]);
 
