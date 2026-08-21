@@ -149,9 +149,9 @@ export async function getIssueEstimationForBoard(
  * a issue. Note that this resource changes the estimation field of the issue regardless of appearance the field on the
  * screen. Original time tracking estimation field accepts estimation in formats like "1w", "2d", "3h", "20m" or number
  * which represent number of minutes. However, internally the field stores and returns the estimation as a number of
- * seconds. The field used for estimation on the given board can be obtained from <a
- * href="#agile/1.0/board-getConfiguration">board configuration resource</a>. More information about the field are
- * returned by edit meta resource or field resource.
+ * seconds. The field used for estimation on the given board can be obtained from [board configuration
+ * resource](https://developer.atlassian.com/server/jira/platform/rest/v11003/intro#agile/1.0/board-getConfiguration).
+ * More information about the field are returned by edit meta resource or field resource.
  */
 export async function estimateIssueForBoard(client: Client, parameters: EstimateIssueForBoard): Promise<FieldValue> {
   const config: SendRequestOptions<FieldValue> = {
