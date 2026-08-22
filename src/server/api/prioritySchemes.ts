@@ -9,7 +9,7 @@ import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /**
  * Returns all priority schemes. All project keys associated with the priority scheme will only be returned if
- * additional query parameter is provided <code>expand=schemes.projectKeys</code>
+ * additional query parameter is provided `expand=schemes.projectKeys`
  */
 export async function getPrioritySchemes(
   client: Client,

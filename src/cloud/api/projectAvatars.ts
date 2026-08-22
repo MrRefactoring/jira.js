@@ -70,7 +70,7 @@ export async function deleteProjectAvatar(
  *
  * For example: `curl --request POST `
  *
- * `--user email@example.com:<api_token> `
+ * `--user email@example.com: `
  *
  * `--header 'X-Atlassian-Token: no-check' `
  *

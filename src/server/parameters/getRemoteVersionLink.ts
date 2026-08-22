@@ -8,7 +8,7 @@ export const GetRemoteVersionLinkSchema = z.object({
    * Remote version links follow the same general rules that Issue Links do, except that they are permitted to use any
    * arbitrary well-formed JSON data format with no restrictions imposed. It is recommended, but not required, that they
    * follow the same format used for Remote Issue Links, as described at
-   * https://developer.atlassian.com/server/jira/platform/using-fields-in-remote-issue-links/.
+   * [https://developer.atlassian.com/display/JIRADEV/Fields+in+Remote+Issue+Links](https://developer.atlassian.com/display/JIRADEV/Fields+in+Remote+Issue+Links).
    */
   globalId: z.string(),
 });

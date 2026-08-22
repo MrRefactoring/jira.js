@@ -171,7 +171,7 @@ export async function getAccessibleProjectTypeByKey(
 
 /**
  * Returns a full representation of a project in JSON format. All project keys associated with the project will only be
- * returned if <code>expand=projectKeys</code>.
+ * returned if `expand=projectKeys`.
  */
 export async function getProject(client: Client, parameters: GetProject, options?: RequestOptions): Promise<Project> {
   const config: SendRequestOptions<Project> = {
