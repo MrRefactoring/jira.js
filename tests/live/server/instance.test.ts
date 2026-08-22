@@ -116,7 +116,7 @@ describe('the instance', () => {
     const bytes = new Uint8Array(templates as ArrayBufferLike & Uint8Array);
 
     expect(bytes.byteLength).toBeGreaterThan(0);
-    expect([...bytes.slice(0, 4)]).toEqual([0x50, 0x4b, 0x03, 0x04]);
+    expect(Array.from(bytes.subarray(0, 4))).toEqual([0x50, 0x4b, 0x03, 0x04]);
 
     await touch(() => jira.emailTemplates.uploadEmailTemplates({ body: new Blob([new Uint8Array([1, 2, 3])]) }));
     await touch(() => jira.emailTemplates.applyEmailTemplates());

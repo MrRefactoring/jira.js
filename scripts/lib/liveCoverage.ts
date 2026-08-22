@@ -81,9 +81,8 @@ function attribute(endpoints: Endpoint[], method: string, path: string): Endpoin
     .sort((left, right) => left.placeholders - right.placeholders)[0];
 }
 
-export function reportLiveCoverage(run: CoverageRun): void {
-  const recorded = join(run.repoRoot, 'node_modules', '.cache', run.recordFile);
-
+/** Runs the live suites with recording turned on, and returns the status they exited with. */
+function runSuites(run: CoverageRun, recorded: string): number {
   mkdirSync(dirname(recorded), { recursive: true });
   rmSync(recorded, { force: true });
 
@@ -93,33 +92,52 @@ export function reportLiveCoverage(run: CoverageRun): void {
     env: { ...process.env, LIVE_COVERAGE_OUTPUT: recorded },
   });
 
-  const endpoints = readInventory(run.apiDirs);
+  return suites.status ?? 1;
+}
+
+/** The endpoints the recorded requests reached, by generated function name. */
+function readCalled(recorded: string, endpoints: Endpoint[]): Set<string> {
   const called = new Set<string>();
 
-  if (existsSync(recorded)) {
-    for (const line of readFileSync(recorded, 'utf8').split('\n')) {
-      const [method, path] = line.split(' ');
+  if (!existsSync(recorded)) return called;
 
-      if (!method || !path) continue;
+  for (const line of readFileSync(recorded, 'utf8').split('\n')) {
+    const [method, path] = line.split(' ');
 
-      const endpoint = attribute(endpoints, method, path);
+    if (!method || !path) continue;
 
-      if (endpoint) called.add(endpoint.name);
-    }
+    const endpoint = attribute(endpoints, method, path);
+
+    if (endpoint) called.add(endpoint.name);
   }
 
+  return called;
+}
+
+interface Verdict {
+  excusedNames: Set<string>;
+  missing: Endpoint[];
+  /** Entries in `uncovered.ts` that no longer name an endpoint the surface ships. */
+  stale: string[];
+  /** The missing endpoints grouped by the module their URL sits under. */
+  byModule: Map<string, string[]>;
+  covered: number;
+}
+
+/** What the run amounts to: which endpoints are accounted for, which are not, and which excuses have expired. */
+function judge(run: CoverageRun, endpoints: Endpoint[], called: Set<string>): Verdict {
   /** How `uncovered.ts` spells an endpoint: the generated URL without its prefix, placeholders in braces. */
   const spell = (endpoint: Endpoint): string =>
     `${endpoint.method} ${endpoint.url.replace(run.urlPrefix, '').replace(/\$\{parameters\.([A-Za-z0-9_]+)\}/g, '{$1}')}`;
 
-  const excused = new Map(run.uncovered.map(entry => [entry.endpoint, entry.reason]));
+  const excused = new Set(run.uncovered.map(entry => entry.endpoint));
   const excusedNames = new Set<string>();
 
   for (const endpoint of endpoints) {
     if (excused.has(spell(endpoint))) excusedNames.add(endpoint.name);
   }
 
-  const stale = [...excused.keys()].filter(entry => !endpoints.some(endpoint => spell(endpoint) === entry));
+  const stale = [...excused].filter(entry => !endpoints.some(endpoint => spell(endpoint) === entry));
   const missing = endpoints.filter(endpoint => !called.has(endpoint.name) && !excusedNames.has(endpoint.name));
   const byModule = new Map<string, string[]>();
 
@@ -132,6 +150,16 @@ export function reportLiveCoverage(run: CoverageRun): void {
   // A union rather than a sum: an endpoint can be listed as unreachable and still be called, and counting it
   // twice would put the total above the number of endpoints that exist.
   const covered = new Set([...called, ...excusedNames]).size;
+
+  return { excusedNames, missing, stale, byModule, covered };
+}
+
+export function reportLiveCoverage(run: CoverageRun): void {
+  const recorded = join(run.repoRoot, 'node_modules', '.cache', run.recordFile);
+  const status = runSuites(run, recorded);
+  const endpoints = readInventory(run.apiDirs);
+  const called = readCalled(recorded, endpoints);
+  const { excusedNames, missing, stale, byModule, covered } = judge(run, endpoints, called);
 
   console.log(
     `\n${run.label} coverage: ${called.size} of ${endpoints.length} endpoints called, `
@@ -150,9 +178,9 @@ export function reportLiveCoverage(run: CoverageRun): void {
     console.error(`\nListed as unreachable but no longer in the surface:\n  ${stale.join('\n  ')}`);
   }
 
-  if (suites.status !== 0) {
+  if (status !== 0) {
     console.error('\nThe suites themselves failed. The coverage above is what was reached before they stopped.');
-    process.exit(suites.status ?? 1);
+    process.exit(status);
   }
 
   if (missing.length > 0 || stale.length > 0) process.exit(1);
