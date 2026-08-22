@@ -24,7 +24,7 @@ see not-yet-published features. So, before running any scenario, build the root 
 ```bash
 # from the repository root
 pnpm install
-pnpm build:src
+pnpm build
 ```
 
 Then go into the scenario you want and follow its `README.md`.
