@@ -12,8 +12,7 @@ docker/jsm-dc/timebomb-license.txt
 docs/.vitepress/cache/
 docs/.vitepress/.temp/
 docs/.vitepress/dist/
-docs/api/
-docs/ru/api/
+docs/public/api/
 
 yarn.lock
 yarn-error.log

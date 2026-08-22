@@ -1,5 +1,4 @@
 import { defineConfig } from 'vitepress';
-import typedocSidebar from '../api/typedoc-sidebar.json' with { type: 'json' };
 
 const SITE_URL = 'https://mrrefactoring.github.io';
 const BASE = '/jira.js/';
@@ -31,7 +30,6 @@ const guideSidebar = (prefix = '') => [
   },
 ];
 
-const apiSidebar = [{ text: 'API Reference', items: typedocSidebar }];
 
 export default defineConfig({
   title: SITE_TITLE,
@@ -138,7 +136,6 @@ export default defineConfig({
         ],
         sidebar: {
           '/guide/': guideSidebar(),
-          '/api/': apiSidebar,
         },
         editLink: {
           pattern: 'https://github.com/MrRefactoring/jira.js/edit/master/docs/:path',
@@ -160,7 +157,6 @@ export default defineConfig({
         ],
         sidebar: {
           '/ru/guide/': guideSidebar('/ru'),
-          '/api/': apiSidebar,
         },
         editLink: {
           pattern: 'https://github.com/MrRefactoring/jira.js/edit/master/docs/:path',
