@@ -7,7 +7,7 @@ on:
     paths:
       - 'docs/**'
       - 'src/**'
-      - 'typedoc.json'
+      - 'typedoc.config.mjs'
       - 'package.json'
       - 'pnpm-lock.yaml'
       - '.github/workflows/docs.yml'
