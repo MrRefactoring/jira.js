@@ -43,18 +43,18 @@ export async function getNotificationSchemes(
  * - Current user - the value of the notificationType is CurrentUser
  * - Project lead - the value of the notificationType is ProjectLead
  * - Component lead - the value of the notificationType is ComponentLead
- * - All watchers - the value of the notification type is AllWatchers<li>configured user - the value of the notification
- *   type is User. Parameter will contain key of the user. Information about the user will be provided if <b>user</b>
- *   expand parameter is used.
+ * - All watchers - the value of the notification type is AllWatchers
+ * - Configured user - the value of the notification type is User. Parameter will contain key of the user. Information
+ *   about the user will be provided if **user** expand parameter is used.
  * - Configured group - the value of the notification type is Group. Parameter will contain name of the group. Information
- *   about the group will be provided if <b>group</b> expand parameter is used.
+ *   about the group will be provided if **group** expand parameter is used.
  * - Configured email address - the value of the notification type is EmailAddress, additionally information about the
  *   email will be provided.
  * - Users or users in groups in the configured custom fields - the value of the notification type is UserCustomField or
  *   GroupCustomField. Parameter will contain id of the custom field. Information about the field will be provided if
- *   <b>field</b> expand parameter is used.
+ *   **field** expand parameter is used.
  * - Configured project role - the value of the notification type is ProjectRole. Parameter will contain project role id.
- *   Information about the project role will be provided if <b>projectRole</b> expand parameter is used. Please see the
+ *   Information about the project role will be provided if **projectRole** expand parameter is used. Please see the
  *   example for reference. The events can be Jira system events or events configured by administrator. In case of the
  *   system events, data about theirs ids, names and descriptions is provided. In case of custom events, the template
  *   event is included as well.

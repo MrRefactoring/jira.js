@@ -134,6 +134,8 @@ Three long-standing requests, all of them the same shape: the client had no seam
 
 ### Bug Fixes
 
+* **The HTML Atlassian leaves in its descriptions reaches the documentation as markdown.** These specifications are generated from Java annotations whose javadoc was written for an HTML page, so a handful of descriptions carried `<b>`, `<code>` and anchor tags into the published types. One of them, in the Data Center notification schemes, opened a list item it never closed — which stopped the documentation site building rather than merely rendering oddly.
+
 * **Four request bodies that are not objects are typed as what they are.** A body the specification declares as a bare string or as an array was generated as `Record<string, any>`, which is a shape no such call can be made from.
 
   | Operation | Was | Is |
