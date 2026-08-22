@@ -183,6 +183,23 @@ function credentialsRejected(response: Response, hasAuth: boolean): boolean {
 }
 
 /**
+ * The headers that were actually given.
+ *
+ * An optional header parameter the caller left out reaches here as `undefined`. Dropping it before the merge does two
+ * things: it keeps the literal text `undefined` off the wire, and it stops an omitted parameter from shadowing a
+ * header the client itself was configured with.
+ */
+function definedHeaders(headers: Record<string, string | undefined> | undefined): Record<string, string> {
+  const defined: Record<string, string> = {};
+
+  for (const [name, value] of Object.entries(headers ?? {})) {
+    if (value !== undefined) defined[name] = value;
+  }
+
+  return defined;
+}
+
+/**
  * `setTimeout` as a promise the signal can cut short.
  *
  * Without this an abort would still wait out the whole back-off before anyone noticed it.
@@ -325,7 +342,7 @@ export function createClient(config: ClientConfig | Client): Client {
             : shouldSetJsonContentType(rawBody, requestConfig.method) ? { 'Content-Type': 'application/json' } : {}),
           ...authHeaders,
           ...configHeaders,
-          ...requestConfig.headers,
+          ...definedHeaders(requestConfig.headers),
         };
 
         const init: RequestInit & { duplex?: 'half' } = {

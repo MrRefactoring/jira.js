@@ -4,7 +4,13 @@ import { httpMethodSchema } from './httpMethod.js';
 export const sendRequestOptionsSchema = z.object({
   url: z.string(),
   method: httpMethodSchema.optional(),
-  headers: z.record(z.string(), z.string()).optional(),
+  /**
+   * The headers to send.
+   *
+   * A value of `undefined` is a header the caller left out — every optional header parameter arrives that way — and is
+   * dropped rather than sent, exactly as an absent `searchParams` entry or body field is.
+   */
+  headers: z.record(z.string(), z.string().optional()).optional(),
   body: z.unknown().optional(),
   searchParams: z.record(z.string(), z.unknown()).optional(),
   /**

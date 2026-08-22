@@ -28,7 +28,7 @@ export async function putBulk(client: Client, parameters: PutBulk, options?: Req
     url: '/rest/api/2/applicationrole',
     method: 'PUT',
     headers: {
-      ...(parameters['If-Match'] === undefined ? {} : { 'If-Match': parameters['If-Match'] }),
+      'If-Match': parameters['If-Match'],
     },
     body: {
       defaultGroups: parameters.defaultGroups,
@@ -80,8 +80,8 @@ export async function updateApplicationRole(
     url: `/rest/api/2/applicationrole/${parameters.key}`,
     method: 'PUT',
     headers: {
-      ...(parameters['If-Match'] === undefined ? {} : { 'If-Match': parameters['If-Match'] }),
-      ...(parameters.versionHash === undefined ? {} : { versionHash: parameters.versionHash }),
+      'If-Match': parameters['If-Match'],
+      versionHash: parameters.versionHash,
     },
     body: parameters.body,
     schema: ApplicationRoleSchema,
