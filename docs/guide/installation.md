@@ -3,20 +3,20 @@
 `jira.js` is **ESM-only** and ships TypeScript declarations. It requires **Node.js 22 or newer** and runs in modern browsers.
 
 ::: warning 6.0 is a rewrite
-`npm install jira.js` still installs 5.x. 6.0 is in release candidate: `npm install jira.js@next`. It is not a drop-in upgrade — read [Migrating to 6.0](https://github.com/MrRefactoring/jira.js/blob/master/MIGRATION.md) first.
+`npm install jira.js` installs 6.x. It is not a drop-in upgrade from 5.x — read [Migrating to 6.0](https://github.com/MrRefactoring/jira.js/blob/master/MIGRATION.md) first, and note who it says should stay on `jira.js@5`.
 :::
 
 ## Package managers
 
 ```bash
 # npm
-npm install jira.js@next
+npm install jira.js
 
 # yarn
-yarn add jira.js@next
+yarn add jira.js
 
 # pnpm
-pnpm add jira.js@next
+pnpm add jira.js
 ```
 
 ## Importing

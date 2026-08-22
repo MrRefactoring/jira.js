@@ -8,6 +8,8 @@ Cloud authenticates with an email and API token, a bearer token, or OAuth 2.0 (3
 
 Version 6.0 is a rewrite: one platform surface instead of v2/v3, `fetch` instead of axios, ESM only, and no JWT (Atlassian Connect) support. It is what `npm install jira.js` gives you. Integrations that need JWT stay on `jira.js@5`, which is supported until the end of 2026.
 
+Every call takes an optional `RequestOptions` after its parameters — `{ signal }` today — so a request can be cancelled, and the abort reason reaches the caller unwrapped. The transport itself is replaceable through `fetch` in the client configuration, which is also what the OAuth 2.0 token calls go through. Request parameter types are imported from a subpath of the surface (`jira.js/cloud/parameters`); response types come from the surface itself.
+
 ## Documentation
 
 - [API reference](https://mrrefactoring.github.io/jira.js/): Full TypeDoc reference for every endpoint, parameter, and model.

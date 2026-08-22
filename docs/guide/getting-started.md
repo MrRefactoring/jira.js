@@ -14,7 +14,7 @@ host — see [Jira Data Center](./data-center).
 ## Install
 
 ```bash
-npm install jira.js@next
+npm install jira.js
 ```
 
 See [Installation](./installation) for requirements and the 6.0 status.

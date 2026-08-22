@@ -133,7 +133,7 @@ Use the predicates rather than `instanceof`. They read a branded symbol instead 
 ## Everything else that was removed
 
 - **Callbacks.** Every method is promise-only. `client.issues.getIssue(params, callback)` → `await client.issues.getIssue(params)`.
-- **`middlewares`, `baseRequestConfig`, `newErrorHandling`.** The transport is `fetch`; there is no axios config to pass through.
+- **`middlewares`, `baseRequestConfig`, `newErrorHandling`.** The transport is `fetch`; there is no axios config to pass through. What the interceptors were used for has somewhere to go: `fetch` in the client configuration wraps the transport itself (logging, tracing, a proxy), `withRetry` retries the failures worth retrying, and `getAuthOn401` swaps in fresh credentials when the ones you gave are refused.
 - **Namespace re-exports.** `Version3.Models.Issue` → import from `jira.js/cloud`.
 - **The CJS build.** The package is ESM-only.
 - **`mime-types`.** Attachment content types come from a built-in table now; an unknown extension is `application/octet-stream`, as before.
