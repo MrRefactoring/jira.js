@@ -69,6 +69,6 @@ describe('assets content', () => {
     const png = await api.qrCode.getObjectQrCode({ id: String(fixtures.objectId) });
     const bytes = new Uint8Array(png as unknown as ArrayBufferLike);
 
-    expect([...bytes.slice(0, 4)]).toEqual([0x89, 0x50, 0x4e, 0x47]);
+    expect(Array.from(bytes.subarray(0, 4))).toEqual([0x89, 0x50, 0x4e, 0x47]);
   });
 });
