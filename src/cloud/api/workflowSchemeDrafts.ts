@@ -16,7 +16,7 @@ import type { PublishDraftWorkflowScheme } from '../parameters/publishDraftWorkf
 import type { GetDraftWorkflow } from '../parameters/getDraftWorkflow';
 import type { UpdateDraftWorkflowMapping } from '../parameters/updateDraftWorkflowMapping';
 import type { DeleteDraftWorkflowMapping } from '../parameters/deleteDraftWorkflowMapping';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /**
  * Create a draft workflow scheme from an active workflow scheme, by copying the active workflow scheme. Note that an
@@ -28,11 +28,13 @@ import type { Client, SendRequestOptions } from '#/core';
 export async function createWorkflowSchemeDraftFromParent(
   client: Client,
   parameters: CreateWorkflowSchemeDraftFromParent,
+  options?: RequestOptions,
 ): Promise<WorkflowScheme> {
   const config: SendRequestOptions<WorkflowScheme> = {
     url: `/rest/api/3/workflowscheme/${parameters.id}/createdraft`,
     method: 'POST',
     schema: WorkflowSchemeSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -53,11 +55,13 @@ export async function createWorkflowSchemeDraftFromParent(
 export async function getWorkflowSchemeDraft(
   client: Client,
   parameters: GetWorkflowSchemeDraft,
+  options?: RequestOptions,
 ): Promise<WorkflowScheme> {
   const config: SendRequestOptions<WorkflowScheme> = {
     url: `/rest/api/3/workflowscheme/${parameters.id}/draft`,
     method: 'GET',
     schema: WorkflowSchemeSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -73,12 +77,14 @@ export async function getWorkflowSchemeDraft(
 export async function updateWorkflowSchemeDraft(
   client: Client,
   parameters: UpdateWorkflowSchemeDraft,
+  options?: RequestOptions,
 ): Promise<WorkflowScheme> {
   const config: SendRequestOptions<WorkflowScheme> = {
     url: `/rest/api/3/workflowscheme/${parameters.id}/draft`,
     method: 'PUT',
     body: parameters.body,
     schema: WorkflowSchemeSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -90,10 +96,15 @@ export async function updateWorkflowSchemeDraft(
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-export async function deleteWorkflowSchemeDraft(client: Client, parameters: DeleteWorkflowSchemeDraft): Promise<void> {
+export async function deleteWorkflowSchemeDraft(
+  client: Client,
+  parameters: DeleteWorkflowSchemeDraft,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/workflowscheme/${parameters.id}/draft`,
     method: 'DELETE',
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -110,11 +121,13 @@ export async function deleteWorkflowSchemeDraft(client: Client, parameters: Dele
 export async function getDraftDefaultWorkflow(
   client: Client,
   parameters: GetDraftDefaultWorkflow,
+  options?: RequestOptions,
 ): Promise<DefaultWorkflow> {
   const config: SendRequestOptions<DefaultWorkflow> = {
     url: `/rest/api/3/workflowscheme/${parameters.id}/draft/default`,
     method: 'GET',
     schema: DefaultWorkflowSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -129,6 +142,7 @@ export async function getDraftDefaultWorkflow(
 export async function updateDraftDefaultWorkflow(
   client: Client,
   parameters: UpdateDraftDefaultWorkflow,
+  options?: RequestOptions,
 ): Promise<WorkflowScheme> {
   const config: SendRequestOptions<WorkflowScheme> = {
     url: `/rest/api/3/workflowscheme/${parameters.id}/draft/default`,
@@ -138,6 +152,7 @@ export async function updateDraftDefaultWorkflow(
       workflow: parameters.workflow,
     },
     schema: WorkflowSchemeSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -153,11 +168,13 @@ export async function updateDraftDefaultWorkflow(
 export async function deleteDraftDefaultWorkflow(
   client: Client,
   parameters: DeleteDraftDefaultWorkflow,
+  options?: RequestOptions,
 ): Promise<WorkflowScheme> {
   const config: SendRequestOptions<WorkflowScheme> = {
     url: `/rest/api/3/workflowscheme/${parameters.id}/draft/default`,
     method: 'DELETE',
     schema: WorkflowSchemeSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -172,11 +189,13 @@ export async function deleteDraftDefaultWorkflow(
 export async function getWorkflowSchemeDraftIssueType(
   client: Client,
   parameters: GetWorkflowSchemeDraftIssueType,
+  options?: RequestOptions,
 ): Promise<IssueTypeWorkflowMapping> {
   const config: SendRequestOptions<IssueTypeWorkflowMapping> = {
     url: `/rest/api/3/workflowscheme/${parameters.id}/draft/issuetype/${parameters.issueType}`,
     method: 'GET',
     schema: IssueTypeWorkflowMappingSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -191,12 +210,14 @@ export async function getWorkflowSchemeDraftIssueType(
 export async function setWorkflowSchemeDraftIssueType(
   client: Client,
   parameters: SetWorkflowSchemeDraftIssueType,
+  options?: RequestOptions,
 ): Promise<WorkflowScheme> {
   const config: SendRequestOptions<WorkflowScheme> = {
     url: `/rest/api/3/workflowscheme/${parameters.id}/draft/issuetype/${parameters.issueType}`,
     method: 'PUT',
     body: parameters.body,
     schema: WorkflowSchemeSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -211,11 +232,13 @@ export async function setWorkflowSchemeDraftIssueType(
 export async function deleteWorkflowSchemeDraftIssueType(
   client: Client,
   parameters: DeleteWorkflowSchemeDraftIssueType,
+  options?: RequestOptions,
 ): Promise<WorkflowScheme> {
   const config: SendRequestOptions<WorkflowScheme> = {
     url: `/rest/api/3/workflowscheme/${parameters.id}/draft/issuetype/${parameters.issueType}`,
     method: 'DELETE',
     schema: WorkflowSchemeSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -238,6 +261,7 @@ export async function deleteWorkflowSchemeDraftIssueType(
 export async function publishDraftWorkflowScheme(
   client: Client,
   parameters: PublishDraftWorkflowScheme,
+  options?: RequestOptions,
 ): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/workflowscheme/${parameters.id}/draft/publish`,
@@ -248,6 +272,7 @@ export async function publishDraftWorkflowScheme(
     body: {
       statusMappings: parameters.statusMappings,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -262,6 +287,7 @@ export async function publishDraftWorkflowScheme(
 export async function getDraftWorkflow(
   client: Client,
   parameters: GetDraftWorkflow,
+  options?: RequestOptions,
 ): Promise<IssueTypesWorkflowMapping> {
   const config: SendRequestOptions<IssueTypesWorkflowMapping> = {
     url: `/rest/api/3/workflowscheme/${parameters.id}/draft/workflow`,
@@ -270,6 +296,7 @@ export async function getDraftWorkflow(
       workflowName: parameters.workflowName,
     },
     schema: IssueTypesWorkflowMappingSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -285,6 +312,7 @@ export async function getDraftWorkflow(
 export async function updateDraftWorkflowMapping(
   client: Client,
   parameters: UpdateDraftWorkflowMapping,
+  options?: RequestOptions,
 ): Promise<WorkflowScheme> {
   const config: SendRequestOptions<WorkflowScheme> = {
     url: `/rest/api/3/workflowscheme/${parameters.id}/draft/workflow`,
@@ -299,6 +327,7 @@ export async function updateDraftWorkflowMapping(
       workflow: parameters.workflow,
     },
     schema: WorkflowSchemeSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -313,6 +342,7 @@ export async function updateDraftWorkflowMapping(
 export async function deleteDraftWorkflowMapping(
   client: Client,
   parameters: DeleteDraftWorkflowMapping,
+  options?: RequestOptions,
 ): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/workflowscheme/${parameters.id}/draft/workflow`,
@@ -320,6 +350,7 @@ export async function deleteDraftWorkflowMapping(
     searchParams: {
       workflowName: parameters.workflowName,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

@@ -4,11 +4,15 @@ node_modules/
 dist/
 coverage/
 
+# The Jira Data Center rig's licence. Atlassian publishes these for testing; redistributing one is still not ours to do.
+docker/jira-dc/timebomb-license.txt
+docker/jsm-dc/timebomb-license.txt
+
 # VitePress docs: generated API + build artifacts (authored docs/**/*.md ARE committed)
 docs/.vitepress/cache/
+docs/.vitepress/.temp/
 docs/.vitepress/dist/
-docs/api/
-docs/ru/api/
+docs/public/api/
 
 yarn.lock
 yarn-error.log

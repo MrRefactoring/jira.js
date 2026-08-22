@@ -8,7 +8,7 @@ import type { AddComment } from '../parameters/addComment';
 import type { GetComment } from '../parameters/getComment';
 import type { UpdateComment } from '../parameters/updateComment';
 import type { DeleteComment } from '../parameters/deleteComment';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /**
  * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#pagination) list of comments
@@ -25,7 +25,11 @@ import type { Client, SendRequestOptions } from '#/core';
  *   to view the issue.
  * - If the comment has visibility restrictions, belongs to the group or has the role visibility is restricted to.
  */
-export async function getCommentsByIds(client: Client, parameters: GetCommentsByIds): Promise<Page<Comment>> {
+export async function getCommentsByIds(
+  client: Client,
+  parameters: GetCommentsByIds,
+  options?: RequestOptions,
+): Promise<Page<Comment>> {
   const config: SendRequestOptions<Page<Comment>> = {
     url: '/rest/api/3/comment/list',
     method: 'POST',
@@ -36,6 +40,7 @@ export async function getCommentsByIds(client: Client, parameters: GetCommentsBy
       ids: parameters.ids,
     },
     schema: PageCommentSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -56,7 +61,11 @@ export async function getCommentsByIds(client: Client, parameters: GetCommentsBy
  * - If the comment has visibility restrictions, belongs to the group or has the role visibility is role visibility is
  *   restricted to.
  */
-export async function getComments(client: Client, parameters: GetComments): Promise<PageOfComments> {
+export async function getComments(
+  client: Client,
+  parameters: GetComments,
+  options?: RequestOptions,
+): Promise<PageOfComments> {
   const config: SendRequestOptions<PageOfComments> = {
     url: `/rest/api/3/issue/${parameters.issueIdOrKey}/comment`,
     method: 'GET',
@@ -67,6 +76,7 @@ export async function getComments(client: Client, parameters: GetComments): Prom
       expand: parameters.expand,
     },
     schema: PageOfCommentsSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -84,19 +94,24 @@ export async function getComments(client: Client, parameters: GetComments): Prom
  * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
  *   to view the issue.
  */
-export async function addComment(client: Client, parameters: AddComment): Promise<Comment> {
+export async function addComment(client: Client, parameters: AddComment, options?: RequestOptions): Promise<Comment> {
   if (typeof parameters.body === 'string') {
     const created = await client.sendRequest<{ id: string }>({
       url: `/rest/api/2/issue/${parameters.issueIdOrKey}/comment`,
       method: 'POST',
       body: { body: parameters.body, visibility: parameters.visibility },
+      signal: options?.signal,
     });
 
-    return getComment(client, {
-      issueIdOrKey: parameters.issueIdOrKey,
-      id: created.id,
-      expand: parameters.expand,
-    });
+    return getComment(
+      client,
+      {
+        issueIdOrKey: parameters.issueIdOrKey,
+        id: created.id,
+        expand: parameters.expand,
+      },
+      options,
+    );
   }
 
   const config: SendRequestOptions<Comment> = {
@@ -120,6 +135,7 @@ export async function addComment(client: Client, parameters: AddComment): Promis
       visibility: parameters.visibility,
     },
     schema: CommentSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -139,7 +155,7 @@ export async function addComment(client: Client, parameters: AddComment): Promis
  * - If the comment has visibility restrictions, the user belongs to the group or has the role visibility is restricted
  *   to.
  */
-export async function getComment(client: Client, parameters: GetComment): Promise<Comment> {
+export async function getComment(client: Client, parameters: GetComment, options?: RequestOptions): Promise<Comment> {
   const config: SendRequestOptions<Comment> = {
     url: `/rest/api/3/issue/${parameters.issueIdOrKey}/comment/${parameters.id}`,
     method: 'GET',
@@ -147,6 +163,7 @@ export async function getComment(client: Client, parameters: GetComment): Promis
       expand: parameters.expand,
     },
     schema: CommentSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -171,19 +188,28 @@ export async function getComment(client: Client, parameters: GetComment): Promis
  * **WARNING:** Child comments inherit visibility from their parent comment. Attempting to update a child comment's
  * visibility will result in a 400 (Bad Request) error.
  */
-export async function updateComment(client: Client, parameters: UpdateComment): Promise<Comment> {
+export async function updateComment(
+  client: Client,
+  parameters: UpdateComment,
+  options?: RequestOptions,
+): Promise<Comment> {
   if (typeof parameters.body.body === 'string') {
     await client.sendRequest<unknown>({
       url: `/rest/api/2/issue/${parameters.issueIdOrKey}/comment/${parameters.id}`,
       method: 'PUT',
       body: { body: parameters.body.body, visibility: parameters.body.visibility },
+      signal: options?.signal,
     });
 
-    return getComment(client, {
-      issueIdOrKey: parameters.issueIdOrKey,
-      id: parameters.id,
-      expand: parameters.expand,
-    });
+    return getComment(
+      client,
+      {
+        issueIdOrKey: parameters.issueIdOrKey,
+        id: parameters.id,
+        expand: parameters.expand,
+      },
+      options,
+    );
   }
 
   const config: SendRequestOptions<Comment> = {
@@ -196,6 +222,7 @@ export async function updateComment(client: Client, parameters: UpdateComment): 
     },
     body: parameters.body,
     schema: CommentSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -215,10 +242,15 @@ export async function updateComment(client: Client, parameters: UpdateComment): 
  * - If the comment has visibility restrictions, the user belongs to the group or has the role visibility is restricted
  *   to.
  */
-export async function deleteComment(client: Client, parameters: DeleteComment): Promise<void> {
+export async function deleteComment(
+  client: Client,
+  parameters: DeleteComment,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/issue/${parameters.issueIdOrKey}/comment/${parameters.id}`,
     method: 'DELETE',
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

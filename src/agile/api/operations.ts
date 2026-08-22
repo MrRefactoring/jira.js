@@ -15,7 +15,7 @@ import type { GetIncidentById as GetIncidentByIdParameters } from '../parameters
 import type { DeleteIncidentById } from '../parameters/deleteIncidentById';
 import type { GetReviewById as GetReviewByIdParameters } from '../parameters/getReviewById';
 import type { DeleteReviewById } from '../parameters/deleteReviewById';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /**
  * Insert Operations Workspace IDs to establish a relationship between them and the Jira site the app is installed in.
@@ -28,6 +28,7 @@ import type { Client, SendRequestOptions } from '#/core';
 export async function submitOperationsWorkspaces(
   client: Client,
   parameters: SubmitOperationsWorkspacesParameters,
+  options?: RequestOptions,
 ): Promise<SubmitOperationsWorkspaces> {
   const config: SendRequestOptions<SubmitOperationsWorkspaces> = {
     url: '/rest/operations/1.0/linkedWorkspaces/bulk',
@@ -36,6 +37,7 @@ export async function submitOperationsWorkspaces(
       workspaceIds: parameters.workspaceIds,
     },
     schema: SubmitOperationsWorkspacesSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -49,13 +51,18 @@ export async function submitOperationsWorkspaces(
  *
  * E.g. DELETE /bulk?workspaceIds=111-222-333,444-555-666
  */
-export async function deleteWorkspaces(client: Client, parameters: DeleteWorkspaces): Promise<void> {
+export async function deleteWorkspaces(
+  client: Client,
+  parameters: DeleteWorkspaces,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: '/rest/operations/1.0/linkedWorkspaces/bulk',
     method: 'DELETE',
     searchParams: {
       workspaceIds: parameters.workspaceIds,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -72,7 +79,11 @@ export async function deleteWorkspaces(client: Client, parameters: DeleteWorkspa
  * Only Connect apps that define the `jiraOperationsInfoProvider` module can access this resource. This resource
  * requires the 'READ' scope for Connect apps.
  */
-export async function getWorkspaces(client: Client, parameters?: GetWorkspacesParameters): Promise<GetWorkspaces> {
+export async function getWorkspaces(
+  client: Client,
+  parameters?: GetWorkspacesParameters,
+  options?: RequestOptions,
+): Promise<GetWorkspaces> {
   const config: SendRequestOptions<GetWorkspaces> = {
     url: '/rest/operations/1.0/linkedWorkspaces',
     method: 'GET',
@@ -80,6 +91,7 @@ export async function getWorkspaces(client: Client, parameters?: GetWorkspacesPa
       workspaceId: parameters?.workspaceId,
     },
     schema: GetWorkspacesSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -104,12 +116,17 @@ export async function getWorkspaces(client: Client, parameters?: GetWorkspacesPa
  * Only Connect apps that define the `jiraOperationsInfoProvider` module can access this resource. This resource
  * requires the 'WRITE' scope for Connect apps.
  */
-export async function submitEntity(client: Client, parameters: SubmitEntityParameters): Promise<SubmitEntity> {
+export async function submitEntity(
+  client: Client,
+  parameters: SubmitEntityParameters,
+  options?: RequestOptions,
+): Promise<SubmitEntity> {
   const config: SendRequestOptions<SubmitEntity> = {
     url: '/rest/operations/1.0/bulk',
     method: 'POST',
     body: parameters.body,
     schema: SubmitEntitySchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -130,7 +147,11 @@ export async function submitEntity(client: Client, parameters: SubmitEntityParam
  * Only Connect apps that define the `jiraOperationsInfoProvider` module can access this resource. This resource
  * requires the 'DELETE' scope for Connect apps.
  */
-export async function deleteEntityByProperty(client: Client, parameters: DeleteEntityByProperty): Promise<void> {
+export async function deleteEntityByProperty(
+  client: Client,
+  parameters: DeleteEntityByProperty,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: '/rest/operations/1.0/bulkByProperties',
     method: 'DELETE',
@@ -138,6 +159,7 @@ export async function deleteEntityByProperty(client: Client, parameters: DeleteE
       accountId: parameters.accountId,
       createdBy: parameters.createdBy,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -151,11 +173,16 @@ export async function deleteEntityByProperty(client: Client, parameters: DeleteE
  * Only Connect apps that define the `jiraOperationsInfoProvider` module can access this resource. This resource
  * requires the 'READ' scope for Connect apps.
  */
-export async function getIncidentById(client: Client, parameters: GetIncidentByIdParameters): Promise<GetIncidentById> {
+export async function getIncidentById(
+  client: Client,
+  parameters: GetIncidentByIdParameters,
+  options?: RequestOptions,
+): Promise<GetIncidentById> {
   const config: SendRequestOptions<GetIncidentById> = {
     url: `/rest/operations/1.0/incidents/${parameters.incidentId}`,
     method: 'GET',
     schema: GetIncidentByIdSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -170,10 +197,15 @@ export async function getIncidentById(client: Client, parameters: GetIncidentByI
  * Only Connect apps that define the `jiraOperationsInfoProvider` module can access this resource. This resource
  * requires the 'DELETE' scope for Connect apps.
  */
-export async function deleteIncidentById(client: Client, parameters: DeleteIncidentById): Promise<void> {
+export async function deleteIncidentById(
+  client: Client,
+  parameters: DeleteIncidentById,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/operations/1.0/incidents/${parameters.incidentId}`,
     method: 'DELETE',
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -187,11 +219,16 @@ export async function deleteIncidentById(client: Client, parameters: DeleteIncid
  * Only Connect apps that define the `jiraOperationsInfoProvider` module can access this resource. This resource
  * requires the 'READ' scope for Connect apps.
  */
-export async function getReviewById(client: Client, parameters: GetReviewByIdParameters): Promise<GetReviewById> {
+export async function getReviewById(
+  client: Client,
+  parameters: GetReviewByIdParameters,
+  options?: RequestOptions,
+): Promise<GetReviewById> {
   const config: SendRequestOptions<GetReviewById> = {
     url: `/rest/operations/1.0/post-incident-reviews/${parameters.reviewId}`,
     method: 'GET',
     schema: GetReviewByIdSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -206,10 +243,15 @@ export async function getReviewById(client: Client, parameters: GetReviewByIdPar
  * Only Connect apps that define the `jiraOperationsInfoProvider` module can access this resource. This resource
  * requires the 'DELETE' scope for Connect apps.
  */
-export async function deleteReviewById(client: Client, parameters: DeleteReviewById): Promise<void> {
+export async function deleteReviewById(
+  client: Client,
+  parameters: DeleteReviewById,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/operations/1.0/post-incident-reviews/${parameters.reviewId}`,
     method: 'DELETE',
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

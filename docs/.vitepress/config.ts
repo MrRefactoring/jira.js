@@ -1,5 +1,4 @@
 import { defineConfig } from 'vitepress';
-import typedocSidebar from '../api/typedoc-sidebar.json' with { type: 'json' };
 
 const SITE_URL = 'https://mrrefactoring.github.io';
 const BASE = '/jira.js/';
@@ -19,6 +18,12 @@ const guideSidebar = (prefix = '') => [
       { text: prefix ? 'Установка' : 'Installation', link: `${prefix}/guide/installation` },
       { text: prefix ? 'Аутентификация' : 'Authentication', link: `${prefix}/guide/authentication` },
       { text: 'OAuth 2.0 (3LO)', link: `${prefix}/guide/oauth2-authentication` },
+      { text: 'Jira Data Center', link: `${prefix}/guide/data-center` },
+      { text: prefix ? 'Jira Service Management Data Center' : 'Service Management Data Center', link: `${prefix}/guide/service-management-data-center` },
+      { text: 'Assets', link: `${prefix}/guide/assets` },
+      { text: 'Teams', link: `${prefix}/guide/teams` },
+      { text: prefix ? 'Контекст тенанта' : 'Tenant Context', link: `${prefix}/guide/tenant-context` },
+      { text: prefix ? 'Вебхуки' : 'Webhooks', link: `${prefix}/guide/webhooks` },
       { text: prefix ? 'Обработка ошибок' : 'Error Handling', link: `${prefix}/guide/error-handling` },
       { text: prefix ? 'Валидация ответов' : 'Response Validation', link: `${prefix}/guide/response-validation` },
       { text: 'Tree-Shaking', link: `${prefix}/guide/tree-shaking` },
@@ -26,7 +31,6 @@ const guideSidebar = (prefix = '') => [
   },
 ];
 
-const apiSidebar = [{ text: 'API Reference', items: typedocSidebar }];
 
 export default defineConfig({
   title: SITE_TITLE,
@@ -133,7 +137,6 @@ export default defineConfig({
         ],
         sidebar: {
           '/guide/': guideSidebar(),
-          '/api/': apiSidebar,
         },
         editLink: {
           pattern: 'https://github.com/MrRefactoring/jira.js/edit/master/docs/:path',
@@ -155,7 +158,6 @@ export default defineConfig({
         ],
         sidebar: {
           '/ru/guide/': guideSidebar('/ru'),
-          '/api/': apiSidebar,
         },
         editLink: {
           pattern: 'https://github.com/MrRefactoring/jira.js/edit/master/docs/:path',

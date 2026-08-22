@@ -1,6 +1,6 @@
 import { TaskProgressObjectSchema, type TaskProgressObject } from '../models/taskProgressObject';
 import type { GetTask } from '../parameters/getTask';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /**
  * Returns the status of a [long-running asynchronous
@@ -19,11 +19,16 @@ import type { Client, SendRequestOptions } from '#/core';
  * - _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  * - Creator of the task.
  */
-export async function getTask(client: Client, parameters: GetTask): Promise<TaskProgressObject> {
+export async function getTask(
+  client: Client,
+  parameters: GetTask,
+  options?: RequestOptions,
+): Promise<TaskProgressObject> {
   const config: SendRequestOptions<TaskProgressObject> = {
     url: `/rest/api/3/task/${parameters.taskId}`,
     method: 'GET',
     schema: TaskProgressObjectSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

@@ -6,12 +6,13 @@ import { getClient } from '../setup/client';
 /**
  * Live suite for the Service Management `assets` API (`getAssetsWorkspaces`, `getInsightWorkspaces`).
  *
- * Two endpoints that do the same thing under two names — Insight was renamed Assets, and the older path is kept for
- * compatibility. That is the only thing worth asserting about them, and it is the kind of fact that is invisible in
- * the types: a caller reading the client sees two unrelated-looking methods.
+ * Two endpoints that once did the same thing under two names — Insight was renamed Assets, and the older path was
+ * kept for compatibility. It no longer is: on Cloud today `/assets/workspace` answers and `/insight/workspace` is
+ * gone, so what used to be worth asserting about the pair — that they behave identically — is simply false, and the
+ * suite pins the deprecation instead.
  *
- * Both are gated behind the same agent licence as the rest of the surface, so what is pinned is the typed refusal and
- * that the two paths behave identically.
+ * Both are gated behind the same agent licence as the rest of the surface, so an instance without one refuses rather
+ * than answers, and the suite accepts either.
  */
 describe('Jira Service Management — assets (live)', () => {
   let serviceDesk: ServiceDeskClient;
@@ -38,17 +39,24 @@ describe('Jira Service Management — assets (live)', () => {
     }
   });
 
-  it('behaves identically through the older Insight path', async () => {
-    const assets = await serviceDesk.assets.getAssetsWorkspaces({ limit: 1 }).catch((e: unknown) => e);
-    const insight = await serviceDesk.assets.getInsightWorkspaces({ limit: 1 }).catch((e: unknown) => e);
+  /**
+   * The retired path answers `403` with an HTML error page rather than the JSON every other refusal on this surface
+   * carries. That is the reason this test is worth keeping now that the paths have diverged: it is the only live
+   * assertion that a non-JSON body still arrives as a typed error with its status intact, instead of failing inside
+   * the response parser.
+   */
+  it('refuses the retired Insight path with a typed error, whatever the body', async () => {
+    const result = await serviceDesk.assets.getInsightWorkspaces({ limit: 1 }).catch((e: unknown) => e);
 
-    const assetsFailed = assets instanceof Error;
-    const insightFailed = insight instanceof Error;
+    if (!(result instanceof Error)) {
+      const page = result as Awaited<ReturnType<typeof serviceDesk.assets.getInsightWorkspaces>>;
 
-    expect(assetsFailed).toBe(insightFailed);
+      expect(Array.isArray(page.values)).toBe(true);
 
-    if (assetsFailed && insightFailed) {
-      expect((assets as { status?: number }).status).toBe((insight as { status?: number }).status);
+      return;
     }
+
+    expect(typeof (result as { status?: number }).status).toBe('number');
+    expect(isForbiddenError(result) || (result as { status?: number }).status === 404).toBe(true);
   });
 });

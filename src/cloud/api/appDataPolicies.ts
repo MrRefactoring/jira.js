@@ -1,21 +1,26 @@
 import { WorkspaceDataPolicySchema, type WorkspaceDataPolicy } from '../models/workspaceDataPolicy';
 import { ProjectDataPoliciesSchema, type ProjectDataPolicies } from '../models/projectDataPolicies';
 import type { GetPolicies } from '../parameters/getPolicies';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /** Returns data policy for the workspace. */
-export async function getPolicy(client: Client): Promise<WorkspaceDataPolicy> {
+export async function getPolicy(client: Client, options?: RequestOptions): Promise<WorkspaceDataPolicy> {
   const config: SendRequestOptions<WorkspaceDataPolicy> = {
     url: '/rest/api/3/data-policy',
     method: 'GET',
     schema: WorkspaceDataPolicySchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Returns data policies for the projects specified in the request. */
-export async function getPolicies(client: Client, parameters?: GetPolicies): Promise<ProjectDataPolicies> {
+export async function getPolicies(
+  client: Client,
+  parameters?: GetPolicies,
+  options?: RequestOptions,
+): Promise<ProjectDataPolicies> {
   const config: SendRequestOptions<ProjectDataPolicies> = {
     url: '/rest/api/3/data-policy/project',
     method: 'GET',
@@ -23,6 +28,7 @@ export async function getPolicies(client: Client, parameters?: GetPolicies): Pro
       ids: parameters?.ids,
     },
     schema: ProjectDataPoliciesSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

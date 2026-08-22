@@ -8,7 +8,7 @@ import type { GetScreensForField } from '../parameters/getScreensForField';
 import type { GetScreens } from '../parameters/getScreens';
 import type { AddFieldToDefaultScreen } from '../parameters/addFieldToDefaultScreen';
 import type { GetAvailableScreenFields } from '../parameters/getAvailableScreenFields';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 import { z } from 'zod';
 
 /**
@@ -18,7 +18,11 @@ import { z } from 'zod';
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-export async function getScreensForField(client: Client, parameters: GetScreensForField): Promise<Page<ScreenWithTab>> {
+export async function getScreensForField(
+  client: Client,
+  parameters: GetScreensForField,
+  options?: RequestOptions,
+): Promise<Page<ScreenWithTab>> {
   const config: SendRequestOptions<Page<ScreenWithTab>> = {
     url: `/rest/api/3/field/${parameters.fieldId}/screens`,
     method: 'GET',
@@ -28,6 +32,7 @@ export async function getScreensForField(client: Client, parameters: GetScreensF
       expand: parameters.expand,
     },
     schema: PageScreenWithTabSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -40,7 +45,11 @@ export async function getScreensForField(client: Client, parameters: GetScreensF
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-export async function getScreens(client: Client, parameters?: GetScreens): Promise<Page<Screen>> {
+export async function getScreens(
+  client: Client,
+  parameters?: GetScreens,
+  options?: RequestOptions,
+): Promise<Page<Screen>> {
   const config: SendRequestOptions<Page<Screen>> = {
     url: '/rest/api/3/screens',
     method: 'GET',
@@ -53,6 +62,7 @@ export async function getScreens(client: Client, parameters?: GetScreens): Promi
       orderBy: parameters?.orderBy,
     },
     schema: PageScreenSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -64,10 +74,15 @@ export async function getScreens(client: Client, parameters?: GetScreens): Promi
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-export async function addFieldToDefaultScreen(client: Client, parameters: AddFieldToDefaultScreen): Promise<void> {
+export async function addFieldToDefaultScreen(
+  client: Client,
+  parameters: AddFieldToDefaultScreen,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/screens/addToDefault/${parameters.fieldId}`,
     method: 'POST',
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -82,11 +97,13 @@ export async function addFieldToDefaultScreen(client: Client, parameters: AddFie
 export async function getAvailableScreenFields(
   client: Client,
   parameters: GetAvailableScreenFields,
+  options?: RequestOptions,
 ): Promise<ScreenableField[]> {
   const config: SendRequestOptions<ScreenableField[]> = {
     url: `/rest/api/3/screens/${parameters.screenId}/availableFields`,
     method: 'GET',
     schema: z.array(ScreenableFieldSchema),
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

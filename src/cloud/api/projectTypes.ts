@@ -1,7 +1,7 @@
 import { ProjectTypeSchema, type ProjectType } from '../models/projectType';
 import type { GetProjectTypeByKey } from '../parameters/getProjectTypeByKey';
 import type { GetAccessibleProjectTypeByKey } from '../parameters/getAccessibleProjectTypeByKey';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 import { z } from 'zod';
 
 /**
@@ -12,22 +12,24 @@ import { z } from 'zod';
  *
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** None.
  */
-export async function getAllProjectTypes(client: Client): Promise<ProjectType[]> {
+export async function getAllProjectTypes(client: Client, options?: RequestOptions): Promise<ProjectType[]> {
   const config: SendRequestOptions<ProjectType[]> = {
     url: '/rest/api/3/project/type',
     method: 'GET',
     schema: z.array(ProjectTypeSchema),
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Returns all [project types](https://confluence.atlassian.com/x/Var1Nw) with a valid license. */
-export async function getAllAccessibleProjectTypes(client: Client): Promise<ProjectType[]> {
+export async function getAllAccessibleProjectTypes(client: Client, options?: RequestOptions): Promise<ProjectType[]> {
   const config: SendRequestOptions<ProjectType[]> = {
     url: '/rest/api/3/project/type/accessible',
     method: 'GET',
     schema: z.array(ProjectTypeSchema),
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -40,11 +42,16 @@ export async function getAllAccessibleProjectTypes(client: Client): Promise<Proj
  *
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** None.
  */
-export async function getProjectTypeByKey(client: Client, parameters: GetProjectTypeByKey): Promise<ProjectType> {
+export async function getProjectTypeByKey(
+  client: Client,
+  parameters: GetProjectTypeByKey,
+  options?: RequestOptions,
+): Promise<ProjectType> {
   const config: SendRequestOptions<ProjectType> = {
     url: `/rest/api/3/project/type/${parameters.projectTypeKey}`,
     method: 'GET',
     schema: ProjectTypeSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -59,11 +66,13 @@ export async function getProjectTypeByKey(client: Client, parameters: GetProject
 export async function getAccessibleProjectTypeByKey(
   client: Client,
   parameters: GetAccessibleProjectTypeByKey,
+  options?: RequestOptions,
 ): Promise<ProjectType> {
   const config: SendRequestOptions<ProjectType> = {
     url: `/rest/api/3/project/type/${parameters.projectTypeKey}/accessible`,
     method: 'GET',
     schema: ProjectTypeSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

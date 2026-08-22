@@ -4,17 +4,19 @@ import {
 } from '../models/containerForProjectFeatures';
 import type { GetFeaturesForProject } from '../parameters/getFeaturesForProject';
 import type { ToggleFeatureForProject } from '../parameters/toggleFeatureForProject';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /** Returns the list of features for a project. */
 export async function getFeaturesForProject(
   client: Client,
   parameters: GetFeaturesForProject,
+  options?: RequestOptions,
 ): Promise<ContainerForProjectFeatures> {
   const config: SendRequestOptions<ContainerForProjectFeatures> = {
     url: `/rest/api/3/project/${parameters.projectIdOrKey}/features`,
     method: 'GET',
     schema: ContainerForProjectFeaturesSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -24,6 +26,7 @@ export async function getFeaturesForProject(
 export async function toggleFeatureForProject(
   client: Client,
   parameters: ToggleFeatureForProject,
+  options?: RequestOptions,
 ): Promise<ContainerForProjectFeatures> {
   const config: SendRequestOptions<ContainerForProjectFeatures> = {
     url: `/rest/api/3/project/${parameters.projectIdOrKey}/features/${parameters.featureKey}`,
@@ -32,6 +35,7 @@ export async function toggleFeatureForProject(
       state: parameters.state,
     },
     schema: ContainerForProjectFeaturesSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

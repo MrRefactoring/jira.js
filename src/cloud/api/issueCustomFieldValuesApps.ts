@@ -1,6 +1,6 @@
 import type { UpdateMultipleCustomFieldValues } from '../parameters/updateMultipleCustomFieldValues';
 import type { UpdateCustomFieldValue } from '../parameters/updateCustomFieldValue';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /**
  * Updates the value of one or more custom fields on one or more issues. Combinations of custom field and issue should
@@ -20,6 +20,7 @@ import type { Client, SendRequestOptions } from '#/core';
 export async function updateMultipleCustomFieldValues(
   client: Client,
   parameters: UpdateMultipleCustomFieldValues,
+  options?: RequestOptions,
 ): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: '/rest/api/3/app/field/value',
@@ -31,6 +32,7 @@ export async function updateMultipleCustomFieldValues(
     body: {
       updates: parameters.updates,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -50,7 +52,11 @@ export async function updateMultipleCustomFieldValues(
  * The new `write:app-data:jira` OAuth scope is 100% optional now, and not using it won't break your app. However, we
  * recommend adding it to your app's scope list because we will eventually make it mandatory.
  */
-export async function updateCustomFieldValue(client: Client, parameters: UpdateCustomFieldValue): Promise<void> {
+export async function updateCustomFieldValue(
+  client: Client,
+  parameters: UpdateCustomFieldValue,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/app/field/${parameters.fieldIdOrKey}/value`,
     method: 'PUT',
@@ -61,6 +67,7 @@ export async function updateCustomFieldValue(client: Client, parameters: UpdateC
     body: {
       updates: parameters.updates,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

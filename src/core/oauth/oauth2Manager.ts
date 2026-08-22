@@ -1,4 +1,5 @@
 import type { AccessibleResource, OnTokenRefresh } from './types.js';
+import type { FetchLike } from '../schemas/clientConfig.js';
 import { getAccessibleResources, refreshOAuth2Token } from './helpers.js';
 import { isOAuthError, OAuthError } from '../errors/index.js';
 import { PRODUCT } from '../productInfo.js';
@@ -17,6 +18,8 @@ export interface OAuth2ManagerOptions {
   cloudId?: string;
   siteUrl?: string;
   onTokenRefresh?: OnTokenRefresh;
+  /** The `fetch` the client was configured with, so a proxy or a log covers the token calls too. */
+  fetch?: FetchLike;
 }
 
 export interface OAuth2Manager {
@@ -46,7 +49,7 @@ function normalizeUrl(url: string): string {
  * produce one token call, not N.
  */
 export function createOAuth2Manager(options: OAuth2ManagerOptions): OAuth2Manager {
-  const { clientId, clientSecret, siteUrl, onTokenRefresh } = options;
+  const { clientId, clientSecret, siteUrl, onTokenRefresh, fetch: fetchImpl } = options;
 
   let accessToken = options.accessToken;
   let refreshToken = options.refreshToken;
@@ -79,6 +82,7 @@ export function createOAuth2Manager(options: OAuth2ManagerOptions): OAuth2Manage
       clientId: clientId!,
       clientSecret: clientSecret!,
       refreshToken: refreshToken!,
+      fetch: fetchImpl,
     });
 
     accessToken = response.accessToken;
@@ -124,21 +128,21 @@ export function createOAuth2Manager(options: OAuth2ManagerOptions): OAuth2Manage
    */
   const listResources = async (): Promise<AccessibleResource[]> => {
     try {
-      return await getAccessibleResources(await ensureAccessToken());
+      return await getAccessibleResources(await ensureAccessToken(), fetchImpl);
     } catch (err) {
       if (!isOAuthError(err) || err.status !== 401 || !canRefresh()) throw err;
 
       await refresh();
 
-      return getAccessibleResources(await ensureAccessToken());
+      return getAccessibleResources(await ensureAccessToken(), fetchImpl);
     }
   };
 
   const selectResource = (resources: AccessibleResource[]): AccessibleResource => {
     if (resources.length === 0) {
       throw new OAuthError(
-        'No accessible Confluence resources were returned for this OAuth 2.0 token. Check the granted scopes and ' +
-          'that the user has access to at least one Confluence site.',
+        'No accessible resources were returned for this OAuth 2.0 token. Check the granted scopes and that the ' +
+          'user has access to at least one site.',
       );
     }
 
@@ -157,7 +161,7 @@ export function createOAuth2Manager(options: OAuth2ManagerOptions): OAuth2Manage
 
     if (resources.length > 1) {
       throw new OAuthError(
-        'Multiple accessible Confluence resources found; pass `cloudId` or `siteUrl` to disambiguate. Available: ' +
+        'Multiple accessible resources found; pass `cloudId` or `siteUrl` to disambiguate. Available: ' +
           `${resources.map(r => r.url).join(', ')}.`,
       );
     }

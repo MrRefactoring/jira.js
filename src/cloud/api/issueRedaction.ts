@@ -4,7 +4,7 @@ import {
 } from '../models/redactionJobStatusResponse';
 import type { Redact } from '../parameters/redact';
 import type { GetRedactionStatus } from '../parameters/getRedactionStatus';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 import { z } from 'zod';
 
 /**
@@ -13,7 +13,7 @@ import { z } from 'zod';
  *
  * The redaction status can be polled using the job id.
  */
-export async function redact(client: Client, parameters: Redact): Promise<string> {
+export async function redact(client: Client, parameters: Redact, options?: RequestOptions): Promise<string> {
   const config: SendRequestOptions<string> = {
     url: '/rest/api/3/redact',
     method: 'POST',
@@ -21,6 +21,7 @@ export async function redact(client: Client, parameters: Redact): Promise<string
       redactions: parameters.redactions,
     },
     schema: z.string(),
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -38,11 +39,13 @@ export async function redact(client: Client, parameters: Redact): Promise<string
 export async function getRedactionStatus(
   client: Client,
   parameters: GetRedactionStatus,
+  options?: RequestOptions,
 ): Promise<RedactionJobStatusResponse> {
   const config: SendRequestOptions<RedactionJobStatusResponse> = {
     url: `/rest/api/3/redact/status/${parameters.jobId}`,
     method: 'GET',
     schema: RedactionJobStatusResponseSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

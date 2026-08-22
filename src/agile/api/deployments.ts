@@ -9,7 +9,7 @@ import type { DeleteDeploymentsByProperty } from '../parameters/deleteDeployment
 import type { GetDeploymentByKey as GetDeploymentByKeyParameters } from '../parameters/getDeploymentByKey';
 import type { DeleteDeploymentByKey } from '../parameters/deleteDeploymentByKey';
 import type { GetDeploymentGatingStatusByKey as GetDeploymentGatingStatusByKeyParameters } from '../parameters/getDeploymentGatingStatusByKey';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /**
  * Update / insert deployment data.
@@ -28,6 +28,7 @@ import type { Client, SendRequestOptions } from '#/core';
 export async function submitDeployments(
   client: Client,
   parameters: SubmitDeploymentsParameters,
+  options?: RequestOptions,
 ): Promise<SubmitDeployments> {
   const config: SendRequestOptions<SubmitDeployments> = {
     url: '/rest/deployments/0.1/bulk',
@@ -38,6 +39,7 @@ export async function submitDeployments(
       providerMetadata: parameters.providerMetadata,
     },
     schema: SubmitDeploymentsSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -59,6 +61,7 @@ export async function submitDeployments(
 export async function deleteDeploymentsByProperty(
   client: Client,
   parameters: DeleteDeploymentsByProperty,
+  options?: RequestOptions,
 ): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: '/rest/deployments/0.1/bulkByProperties',
@@ -67,6 +70,7 @@ export async function deleteDeploymentsByProperty(
       accountId: parameters.accountId,
       createdBy: parameters.createdBy,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -81,11 +85,13 @@ export async function deleteDeploymentsByProperty(
 export async function getDeploymentByKey(
   client: Client,
   parameters: GetDeploymentByKeyParameters,
+  options?: RequestOptions,
 ): Promise<GetDeploymentByKey> {
   const config: SendRequestOptions<GetDeploymentByKey> = {
     url: `/rest/deployments/0.1/pipelines/${parameters.pipelineId}/environments/${parameters.environmentId}/deployments/${parameters.deploymentSequenceNumber}`,
     method: 'GET',
     schema: GetDeploymentByKeySchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -98,10 +104,15 @@ export async function getDeploymentByKey(
  * Deletion is performed asynchronously. The `getDeploymentByKey` operation can be used to confirm that data has been
  * deleted successfully (if needed).
  */
-export async function deleteDeploymentByKey(client: Client, parameters: DeleteDeploymentByKey): Promise<void> {
+export async function deleteDeploymentByKey(
+  client: Client,
+  parameters: DeleteDeploymentByKey,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/deployments/0.1/pipelines/${parameters.pipelineId}/environments/${parameters.environmentId}/deployments/${parameters.deploymentSequenceNumber}`,
     method: 'DELETE',
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -115,11 +126,13 @@ export async function deleteDeploymentByKey(client: Client, parameters: DeleteDe
 export async function getDeploymentGatingStatusByKey(
   client: Client,
   parameters: GetDeploymentGatingStatusByKeyParameters,
+  options?: RequestOptions,
 ): Promise<GetDeploymentGatingStatusByKey> {
   const config: SendRequestOptions<GetDeploymentGatingStatusByKey> = {
     url: `/rest/deployments/0.1/pipelines/${parameters.pipelineId}/environments/${parameters.environmentId}/deployments/${parameters.deploymentSequenceNumber}/gating-status`,
     method: 'GET',
     schema: GetDeploymentGatingStatusByKeySchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

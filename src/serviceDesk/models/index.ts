@@ -172,6 +172,8 @@ export * from './renderedValue';
 
 export * from './requestCreate';
 
+export * from './requestFieldValidationError';
+
 export * from './requestNotificationSubscription';
 
 export * from './requestParticipantUpdate';
@@ -193,6 +195,8 @@ export * from './requestTypeIconLink';
 export * from './requestTypePermissionCheckRequest';
 
 export * from './requestTypePermissionCheckResponse';
+
+export * from './requestValidationResult';
 
 export * from './resource';
 

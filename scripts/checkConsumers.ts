@@ -17,7 +17,7 @@
  * Runs on bare `node`; keep the types erasable.
  */
 import { execFileSync } from 'node:child_process';
-import { mkdtempSync, rmSync, writeFileSync, existsSync } from 'node:fs';
+import { mkdtempSync, readFileSync, rmSync, writeFileSync, existsSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -60,15 +60,28 @@ try {
 
   run('npm', ['install', '--no-audit', '--no-fund', '--silent', tarball], workspace);
 
-  const SUBPATHS = ['jira.js', 'jira.js/core', 'jira.js/cloud', 'jira.js/agile', 'jira.js/serviceDesk'];
+  // Read off the manifest rather than listed here, so a new surface is covered by adding its export and nothing else.
+  const SUBPATHS = Object.keys(JSON.parse(readFileSync(join(root, 'package.json'), 'utf8')).exports)
+    .filter(entry => entry !== './browser' && entry !== './package.json')
+    .map(entry => (entry === '.' ? 'jira.js' : `jira.js/${entry.slice(2)}`));
+
+  // `jira.js/webhooks` describes what Jira posts to a server of yours; there is nothing to call, so it compiles to
+  // `export {}`. An empty namespace is the right answer there, and a populated one would mean runtime code crept in.
+  const TYPES_ONLY = ['jira.js/webhooks'];
 
   const runtimeProbe = [
     ...SUBPATHS.map((subpath, index) => `import * as m${index} from '${subpath}';`),
     `const surfaces = [${SUBPATHS.map((_, index) => `m${index}`).join(', ')}];`,
     `const names = ${JSON.stringify(SUBPATHS)};`,
+    `const typesOnly = ${JSON.stringify(TYPES_ONLY)};`,
     'surfaces.forEach((surface, index) => {',
-    '  if (Object.keys(surface).length === 0) {',
+    '  const empty = Object.keys(surface).length === 0;',
+    '  if (empty && !typesOnly.includes(names[index])) {',
     "    console.error(`empty namespace from ${names[index]}`);",
+    '    process.exitCode = 1;',
+    '  }',
+    '  if (!empty && typesOnly.includes(names[index])) {',
+    "    console.error(`${names[index]} is types only but exports runtime values`);",
     '    process.exitCode = 1;',
     '  }',
     '});',
@@ -90,10 +103,13 @@ try {
     "import { createCloudClient, isNotFoundError } from 'jira.js';",
     "import { createClient } from 'jira.js/core';",
     "import type { Client } from 'jira.js/core';",
+    "import type { WebhookHeaders, WebhookPayload } from 'jira.js/webhooks';",
     '',
     "const client: Client = createClient({ host: 'https://example.atlassian.net' });",
     'export const jira = createCloudClient(client);',
     'export const predicate: (value: unknown) => boolean = isNotFoundError;',
+    'export const identify = (headers: WebhookHeaders, payload: WebhookPayload): string =>',
+    "  `${payload.webhookEvent} ${headers['x-atlassian-webhook-identifier']}`;",
   ].join('\n');
 
   writeFileSync(join(workspace, 'probe.ts'), `${typeProbe}\n`);

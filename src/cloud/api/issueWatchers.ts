@@ -4,7 +4,7 @@ import type { GetIsWatchingIssueBulk } from '../parameters/getIsWatchingIssueBul
 import type { GetIssueWatchers } from '../parameters/getIssueWatchers';
 import type { AddWatcher } from '../parameters/addWatcher';
 import type { RemoveWatcher } from '../parameters/removeWatcher';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /**
  * Returns, for the user, details of the watched status of issues from a list. If an issue ID is invalid, the returned
@@ -24,6 +24,7 @@ import type { Client, SendRequestOptions } from '#/core';
 export async function getIsWatchingIssueBulk(
   client: Client,
   parameters: GetIsWatchingIssueBulk,
+  options?: RequestOptions,
 ): Promise<BulkIssueIsWatching> {
   const config: SendRequestOptions<BulkIssueIsWatching> = {
     url: '/rest/api/3/issue/watching',
@@ -32,6 +33,7 @@ export async function getIsWatchingIssueBulk(
       issueIds: parameters.issueIds,
     },
     schema: BulkIssueIsWatchingSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -55,11 +57,16 @@ export async function getIsWatchingIssueBulk(
  * - To see details of users on the watchlist other than themselves, _View voters and watchers_ [project
  *   permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.
  */
-export async function getIssueWatchers(client: Client, parameters: GetIssueWatchers): Promise<Watchers> {
+export async function getIssueWatchers(
+  client: Client,
+  parameters: GetIssueWatchers,
+  options?: RequestOptions,
+): Promise<Watchers> {
   const config: SendRequestOptions<Watchers> = {
     url: `/rest/api/3/issue/${parameters.issueIdOrKey}/watchers`,
     method: 'GET',
     schema: WatchersSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -82,11 +89,12 @@ export async function getIssueWatchers(client: Client, parameters: GetIssueWatch
  * - To add users other than themselves to the watchlist, _Manage watcher list_ [project
  *   permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.
  */
-export async function addWatcher(client: Client, parameters: AddWatcher): Promise<void> {
+export async function addWatcher(client: Client, parameters: AddWatcher, options?: RequestOptions): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/issue/${parameters.issueIdOrKey}/watchers`,
     method: 'POST',
     body: parameters.body,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -108,13 +116,18 @@ export async function addWatcher(client: Client, parameters: AddWatcher): Promis
  * - To remove users other than themselves from the watchlist, _Manage watcher list_ [project
  *   permission](https://confluence.atlassian.com/x/yodKLg) for the project that the issue is in.
  */
-export async function removeWatcher(client: Client, parameters: RemoveWatcher): Promise<void> {
+export async function removeWatcher(
+  client: Client,
+  parameters: RemoveWatcher,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/issue/${parameters.issueIdOrKey}/watchers`,
     method: 'DELETE',
     searchParams: {
       accountId: parameters.accountId,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

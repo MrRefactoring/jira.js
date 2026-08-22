@@ -1,6 +1,6 @@
 import { BulkWorklogKeyResponseSchema, type BulkWorklogKeyResponse } from '../models/bulkWorklogKeyResponse';
 import type { GetWorklogsByIssueIdAndWorklogId } from '../parameters/getWorklogsByIssueIdAndWorklogId';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /**
  * Returns worklog details for a list of issue ID and worklog ID pairs.
@@ -17,6 +17,7 @@ import type { Client, SendRequestOptions } from '#/core';
 export async function getWorklogsByIssueIdAndWorklogId(
   client: Client,
   parameters: GetWorklogsByIssueIdAndWorklogId,
+  options?: RequestOptions,
 ): Promise<BulkWorklogKeyResponse> {
   const config: SendRequestOptions<BulkWorklogKeyResponse> = {
     url: '/rest/internal/api/latest/worklog/bulk',
@@ -25,6 +26,7 @@ export async function getWorklogsByIssueIdAndWorklogId(
       requests: parameters.requests,
     },
     schema: BulkWorklogKeyResponseSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
