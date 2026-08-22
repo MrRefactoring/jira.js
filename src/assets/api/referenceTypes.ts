@@ -1,11 +1,15 @@
 import { ReferenceTypeSchema, type ReferenceType } from '../models/referenceType';
 import type { FindReferenceTypes } from '../parameters/findReferenceTypes';
 import type { CreateReferenceType } from '../parameters/createReferenceType';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 import { z } from 'zod';
 
 /** Get reference type */
-export async function findReferenceTypes(client: Client, parameters?: FindReferenceTypes): Promise<ReferenceType[]> {
+export async function findReferenceTypes(
+  client: Client,
+  parameters?: FindReferenceTypes,
+  options?: RequestOptions,
+): Promise<ReferenceType[]> {
   const config: SendRequestOptions<ReferenceType[]> = {
     url: '/config/referencetype',
     method: 'GET',
@@ -14,13 +18,18 @@ export async function findReferenceTypes(client: Client, parameters?: FindRefere
       includeAll: parameters?.includeAll,
     },
     schema: z.array(ReferenceTypeSchema),
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Update a reference type */
-export async function createReferenceType(client: Client, parameters: CreateReferenceType): Promise<ReferenceType> {
+export async function createReferenceType(
+  client: Client,
+  parameters: CreateReferenceType,
+  options?: RequestOptions,
+): Promise<ReferenceType> {
   const config: SendRequestOptions<ReferenceType> = {
     url: '/config/referencetype',
     method: 'POST',
@@ -31,6 +40,7 @@ export async function createReferenceType(client: Client, parameters: CreateRefe
       objectSchemaId: parameters.objectSchemaId,
     },
     schema: ReferenceTypeSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

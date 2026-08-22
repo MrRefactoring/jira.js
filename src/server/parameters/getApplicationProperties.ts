@@ -3,7 +3,7 @@ import { z } from 'zod';
 export const GetApplicationPropertiesSchema = z.object({
   /**
    * When fetching a list specifies the permission level of all items in the list see
-   * {@link com.atlassian.jira.bc.admin.ApplicationPropertiesService.EditPermissionLevel}
+   * [ApplicationPropertiesService.EditPermissionLevel](https://docs.atlassian.com/software/jira/docs/api/latest/com/atlassian/jira/bc/admin/ApplicationPropertiesService.EditPermissionLevel.html)
    */
   permissionLevel: z.string().optional(),
   /**

@@ -1,9 +1,13 @@
 import { ErrorCollectionSchema, type ErrorCollection } from '../models/errorCollection';
 import type { ValidateProjectKey } from '../parameters/validateProjectKey';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /** Validates a project key. */
-export async function validateProjectKey(client: Client, parameters?: ValidateProjectKey): Promise<ErrorCollection> {
+export async function validateProjectKey(
+  client: Client,
+  parameters?: ValidateProjectKey,
+  options?: RequestOptions,
+): Promise<ErrorCollection> {
   const config: SendRequestOptions<ErrorCollection> = {
     url: '/rest/api/2/projectvalidate/key',
     method: 'GET',
@@ -11,6 +15,7 @@ export async function validateProjectKey(client: Client, parameters?: ValidatePr
       key: parameters?.key,
     },
     schema: ErrorCollectionSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

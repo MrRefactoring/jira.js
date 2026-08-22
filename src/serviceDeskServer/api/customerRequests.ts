@@ -21,7 +21,7 @@ import type { RemoveRequestParticipants } from '../parameters/removeRequestParti
 import type { GetSlaInformation } from '../parameters/getSlaInformation';
 import type { GetSlaInformationById } from '../parameters/getSlaInformationById';
 import type { GetCustomerRequestStatus } from '../parameters/getCustomerRequestStatus';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /**
  * Returns all comments on a customer request, for a given request Id/key.
@@ -30,7 +30,11 @@ import type { Client, SendRequestOptions } from '#/core';
  *
  * Only comments that the calling user can see are returned.
  */
-export async function getRequestComments(client: Client, parameters: GetRequestComments): Promise<Page<Comment>> {
+export async function getRequestComments(
+  client: Client,
+  parameters: GetRequestComments,
+  options?: RequestOptions,
+): Promise<Page<Comment>> {
   const config: SendRequestOptions<Page<Comment>> = {
     url: `/rest/servicedeskapi/request/${parameters.issueIdOrKey}/comment`,
     method: 'GET',
@@ -41,6 +45,7 @@ export async function getRequestComments(client: Client, parameters: GetRequestC
       limit: parameters.limit,
     },
     schema: PagedCommentSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -56,7 +61,11 @@ export async function getRequestComments(client: Client, parameters: GetRequestC
  * internal comments, Unlicensed users can only create internal comments, and Customers can only create public
  * comments.
  */
-export async function createRequestComment(client: Client, parameters: CreateRequestComment): Promise<Comment> {
+export async function createRequestComment(
+  client: Client,
+  parameters: CreateRequestComment,
+  options?: RequestOptions,
+): Promise<Comment> {
   const config: SendRequestOptions<Comment> = {
     url: `/rest/servicedeskapi/request/${parameters.issueIdOrKey}/comment`,
     method: 'POST',
@@ -65,6 +74,7 @@ export async function createRequestComment(client: Client, parameters: CreateReq
       public: parameters.public,
     },
     schema: CommentSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -78,11 +88,16 @@ export async function createRequestComment(client: Client, parameters: CreateReq
  * The calling user must have permission to view the comment. For example, customers can only view public comments on
  * requests where they are the reporter or a participant whereas agents can see both internal and public comments.
  */
-export async function getRequestCommentById(client: Client, parameters: GetRequestCommentById): Promise<Comment> {
+export async function getRequestCommentById(
+  client: Client,
+  parameters: GetRequestCommentById,
+  options?: RequestOptions,
+): Promise<Comment> {
   const config: SendRequestOptions<Comment> = {
     url: `/rest/servicedeskapi/request/${parameters.issueIdOrKey}/comment/${parameters.commentId}`,
     method: 'GET',
     schema: CommentSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -102,6 +117,7 @@ export async function getRequestCommentById(client: Client, parameters: GetReque
 export async function getMyCustomerRequests(
   client: Client,
   parameters?: GetMyCustomerRequests,
+  options?: RequestOptions,
 ): Promise<Page<CustomerRequest>> {
   const config: SendRequestOptions<Page<CustomerRequest>> = {
     url: '/rest/servicedeskapi/request',
@@ -117,6 +133,7 @@ export async function getMyCustomerRequests(
       limit: parameters?.limit,
     },
     schema: PagedCustomerRequestSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -145,6 +162,7 @@ export async function getMyCustomerRequests(
 export async function createCustomerRequest(
   client: Client,
   parameters: CreateCustomerRequest,
+  options?: RequestOptions,
 ): Promise<CustomerRequest> {
   const config: SendRequestOptions<CustomerRequest> = {
     url: '/rest/servicedeskapi/request',
@@ -157,6 +175,7 @@ export async function createCustomerRequest(
       raiseOnBehalfOf: parameters.raiseOnBehalfOf,
     },
     schema: CustomerRequestSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -166,6 +185,7 @@ export async function createCustomerRequest(
 export async function getCustomerRequestByIdOrKey(
   client: Client,
   parameters: GetCustomerRequestByIdOrKey,
+  options?: RequestOptions,
 ): Promise<CustomerRequest> {
   const config: SendRequestOptions<CustomerRequest> = {
     url: `/rest/servicedeskapi/request/${parameters.issueIdOrKey}`,
@@ -174,13 +194,18 @@ export async function getCustomerRequestByIdOrKey(
       expand: parameters.expand,
     },
     schema: CustomerRequestSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Returns all users participating in a customer request, for a given request Id/key. */
-export async function getRequestParticipants(client: Client, parameters: GetRequestParticipants): Promise<Page<User>> {
+export async function getRequestParticipants(
+  client: Client,
+  parameters: GetRequestParticipants,
+  options?: RequestOptions,
+): Promise<Page<User>> {
   const config: SendRequestOptions<Page<User>> = {
     url: `/rest/servicedeskapi/request/${parameters.issueIdOrKey}/participant`,
     method: 'GET',
@@ -189,6 +214,7 @@ export async function getRequestParticipants(client: Client, parameters: GetRequ
       limit: parameters.limit,
     },
     schema: PagedUserSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -204,7 +230,11 @@ export async function getRequestParticipants(client: Client, parameters: GetRequ
  *
  * The calling user must have permission to manage participants for this customer request.
  */
-export async function addRequestParticipants(client: Client, parameters: AddRequestParticipants): Promise<Page<User>> {
+export async function addRequestParticipants(
+  client: Client,
+  parameters: AddRequestParticipants,
+  options?: RequestOptions,
+): Promise<Page<User>> {
   const config: SendRequestOptions<Page<User>> = {
     url: `/rest/servicedeskapi/request/${parameters.issueIdOrKey}/participant`,
     method: 'POST',
@@ -216,6 +246,7 @@ export async function addRequestParticipants(client: Client, parameters: AddRequ
       usernames: parameters.usernames,
     },
     schema: PagedUserSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -231,6 +262,7 @@ export async function addRequestParticipants(client: Client, parameters: AddRequ
 export async function removeRequestParticipants(
   client: Client,
   parameters: RemoveRequestParticipants,
+  options?: RequestOptions,
 ): Promise<Page<User>> {
   const config: SendRequestOptions<Page<User>> = {
     url: `/rest/servicedeskapi/request/${parameters.issueIdOrKey}/participant`,
@@ -243,6 +275,7 @@ export async function removeRequestParticipants(
       usernames: parameters.usernames,
     },
     schema: PagedUserSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -257,7 +290,11 @@ export async function removeRequestParticipants(
  *
  * The calling user must be an agent.
  */
-export async function getSlaInformation(client: Client, parameters: GetSlaInformation): Promise<Page<SlaInformation>> {
+export async function getSlaInformation(
+  client: Client,
+  parameters: GetSlaInformation,
+  options?: RequestOptions,
+): Promise<Page<SlaInformation>> {
   const config: SendRequestOptions<Page<SlaInformation>> = {
     url: `/rest/servicedeskapi/request/${parameters.issueIdOrKey}/sla`,
     method: 'GET',
@@ -266,6 +303,7 @@ export async function getSlaInformation(client: Client, parameters: GetSlaInform
       limit: parameters.limit,
     },
     schema: PagedSlaInformationSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -283,11 +321,13 @@ export async function getSlaInformation(client: Client, parameters: GetSlaInform
 export async function getSlaInformationById(
   client: Client,
   parameters: GetSlaInformationById,
+  options?: RequestOptions,
 ): Promise<SlaInformation> {
   const config: SendRequestOptions<SlaInformation> = {
     url: `/rest/servicedeskapi/request/${parameters.issueIdOrKey}/sla/${parameters.slaMetricId}`,
     method: 'GET',
     schema: SlaInformationSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -300,6 +340,7 @@ export async function getSlaInformationById(
 export async function getCustomerRequestStatus(
   client: Client,
   parameters: GetCustomerRequestStatus,
+  options?: RequestOptions,
 ): Promise<Page<CustomerRequestStatus>> {
   const config: SendRequestOptions<Page<CustomerRequestStatus>> = {
     url: `/rest/servicedeskapi/request/${parameters.issueIdOrKey}/status`,
@@ -309,6 +350,7 @@ export async function getCustomerRequestStatus(
       limit: parameters.limit,
     },
     schema: PagedCustomerRequestStatusSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

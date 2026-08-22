@@ -24,13 +24,14 @@ import type { FindObject } from '../parameters/findObject';
 import type { FindObjectAttributes } from '../parameters/findObjectAttributes';
 import type { FindObjectHistory } from '../parameters/findObjectHistory';
 import type { FindObjectReferenceInfo } from '../parameters/findObjectReferenceInfo';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 import { z } from 'zod';
 
 /** Retrieve archived objects. */
 export async function getArchivedObjects(
   client: Client,
   parameters?: GetArchivedObjects,
+  options?: RequestOptions,
 ): Promise<ArchivedObjectsPage> {
   const config: SendRequestOptions<ArchivedObjectsPage> = {
     url: '/rest/assets/1.0/object/archived',
@@ -45,24 +46,34 @@ export async function getArchivedObjects(
       archivedBy: parameters?.archivedBy,
     },
     schema: ArchivedObjectsPageSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Archive the referenced object. */
-export async function archiveObject(client: Client, parameters: ArchiveObject): Promise<AssetObject> {
+export async function archiveObject(
+  client: Client,
+  parameters: ArchiveObject,
+  options?: RequestOptions,
+): Promise<AssetObject> {
   const config: SendRequestOptions<AssetObject> = {
     url: `/rest/assets/1.0/object/archive/${parameters.objectIdentifier}`,
     method: 'PUT',
     schema: AssetObjectSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Bulk archive objects of an object type by filter. */
-export async function archiveObjectsByFilter(client: Client, parameters: ArchiveObjectsByFilter): Promise<ProgressOut> {
+export async function archiveObjectsByFilter(
+  client: Client,
+  parameters: ArchiveObjectsByFilter,
+  options?: RequestOptions,
+): Promise<ProgressOut> {
   const config: SendRequestOptions<ProgressOut> = {
     url: '/rest/assets/1.0/object/archive/by-filter',
     method: 'POST',
@@ -78,36 +89,51 @@ export async function archiveObjectsByFilter(client: Client, parameters: Archive
       iqlParams: parameters.iqlParams,
     },
     schema: ProgressOutSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Bulk archive objects across object schemas by object keys asynchronously. */
-export async function archiveObjectsByKeys(client: Client, parameters: ArchiveObjectsByKeys): Promise<ProgressOut> {
+export async function archiveObjectsByKeys(
+  client: Client,
+  parameters: ArchiveObjectsByKeys,
+  options?: RequestOptions,
+): Promise<ProgressOut> {
   const config: SendRequestOptions<ProgressOut> = {
     url: '/rest/assets/1.0/object/archive/by-keys',
     method: 'POST',
     body: parameters.body,
     schema: ProgressOutSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Restore the referenced object. */
-export async function restoreObject(client: Client, parameters: RestoreObject): Promise<AssetObject> {
+export async function restoreObject(
+  client: Client,
+  parameters: RestoreObject,
+  options?: RequestOptions,
+): Promise<AssetObject> {
   const config: SendRequestOptions<AssetObject> = {
     url: `/rest/assets/1.0/object/restore/${parameters.objectIdentifier}`,
     method: 'PUT',
     schema: AssetObjectSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Bulk restore objects by archive search filter. */
-export async function restoreObjectsByFilter(client: Client, parameters: RestoreObjectsByFilter): Promise<ProgressOut> {
+export async function restoreObjectsByFilter(
+  client: Client,
+  parameters: RestoreObjectsByFilter,
+  options?: RequestOptions,
+): Promise<ProgressOut> {
   const config: SendRequestOptions<ProgressOut> = {
     url: '/rest/assets/1.0/object/restore/by-filter',
     method: 'POST',
@@ -119,71 +145,101 @@ export async function restoreObjectsByFilter(client: Client, parameters: Restore
       archivedBy: parameters.archivedBy,
     },
     schema: ProgressOutSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Bulk restore objects by object ids. */
-export async function restoreObjectsByIds(client: Client, parameters: RestoreObjectsByIds): Promise<ProgressOut> {
+export async function restoreObjectsByIds(
+  client: Client,
+  parameters: RestoreObjectsByIds,
+  options?: RequestOptions,
+): Promise<ProgressOut> {
   const config: SendRequestOptions<ProgressOut> = {
     url: '/rest/assets/1.0/object/restore/by-ids',
     method: 'POST',
     body: parameters.body,
     schema: ProgressOutSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Bulk restore objects across object schemas by object keys asynchronously. */
-export async function restoreObjectsByKeys(client: Client, parameters: RestoreObjectsByKeys): Promise<ProgressOut> {
+export async function restoreObjectsByKeys(
+  client: Client,
+  parameters: RestoreObjectsByKeys,
+  options?: RequestOptions,
+): Promise<ProgressOut> {
   const config: SendRequestOptions<ProgressOut> = {
     url: '/rest/assets/1.0/object/restore/by-keys',
     method: 'POST',
     body: parameters.body,
     schema: ProgressOutSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Set the import source for all objects matching the given IQL criteria. */
-export async function bulkSetObjectImportSource(client: Client, parameters: BulkSetObjectImportSource): Promise<void> {
+export async function bulkSetObjectImportSource(
+  client: Client,
+  parameters: BulkSetObjectImportSource,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: '/rest/assets/1.0/object/bulk/importSource',
     method: 'POST',
     body: parameters.body,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Get the current import source ID for an object. */
-export async function getObjectImportSource(client: Client, parameters: GetObjectImportSource): Promise<void> {
+export async function getObjectImportSource(
+  client: Client,
+  parameters: GetObjectImportSource,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/assets/1.0/object/${parameters.id}/importSource`,
     method: 'GET',
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Clear the import source association for an object. */
-export async function clearObjectImportSource(client: Client, parameters: ClearObjectImportSource): Promise<void> {
+export async function clearObjectImportSource(
+  client: Client,
+  parameters: ClearObjectImportSource,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/assets/1.0/object/${parameters.id}/importSource`,
     method: 'DELETE',
     searchParams: {
       previousName: parameters.previousName,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Create a new object in Assets. */
-export async function createObject(client: Client, parameters: CreateObject): Promise<AssetObject> {
+export async function createObject(
+  client: Client,
+  parameters: CreateObject,
+  options?: RequestOptions,
+): Promise<AssetObject> {
   const config: SendRequestOptions<AssetObject> = {
     url: '/rest/assets/1.0/object/create',
     method: 'POST',
@@ -192,13 +248,18 @@ export async function createObject(client: Client, parameters: CreateObject): Pr
       attributes: parameters.attributes,
     },
     schema: AssetObjectSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Get an object. */
-export async function loadObject(client: Client, parameters: LoadObject): Promise<AssetObject> {
+export async function loadObject(
+  client: Client,
+  parameters: LoadObject,
+  options?: RequestOptions,
+): Promise<AssetObject> {
   const config: SendRequestOptions<AssetObject> = {
     url: `/rest/assets/1.0/object/${parameters.id}`,
     method: 'GET',
@@ -208,13 +269,18 @@ export async function loadObject(client: Client, parameters: LoadObject): Promis
       includeExtendedInfo: parameters.includeExtendedInfo,
     },
     schema: AssetObjectSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Update an existing object in Assets. */
-export async function updateObject(client: Client, parameters: UpdateObject): Promise<AssetObject> {
+export async function updateObject(
+  client: Client,
+  parameters: UpdateObject,
+  options?: RequestOptions,
+): Promise<AssetObject> {
   const config: SendRequestOptions<AssetObject> = {
     url: `/rest/assets/1.0/object/${parameters.id}`,
     method: 'PUT',
@@ -223,24 +289,34 @@ export async function updateObject(client: Client, parameters: UpdateObject): Pr
       attributes: parameters.attributes,
     },
     schema: AssetObjectSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Delete the referenced object. */
-export async function deleteObject(client: Client, parameters: DeleteObject): Promise<AssetObject> {
+export async function deleteObject(
+  client: Client,
+  parameters: DeleteObject,
+  options?: RequestOptions,
+): Promise<AssetObject> {
   const config: SendRequestOptions<AssetObject> = {
     url: `/rest/assets/1.0/object/${parameters.id}`,
     method: 'DELETE',
     schema: AssetObjectSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Retrieve a list of objects based on an AQL query. */
-export async function findObject(client: Client, parameters: FindObject): Promise<ObjectListResult> {
+export async function findObject(
+  client: Client,
+  parameters: FindObject,
+  options?: RequestOptions,
+): Promise<ObjectListResult> {
   const config: SendRequestOptions<ObjectListResult> = {
     url: '/rest/assets/1.0/object/navlist/aql',
     method: 'POST',
@@ -258,6 +334,7 @@ export async function findObject(client: Client, parameters: FindObject): Promis
       iql: parameters.iql,
     },
     schema: ObjectListResultSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -267,18 +344,24 @@ export async function findObject(client: Client, parameters: FindObject): Promis
 export async function findObjectAttributes(
   client: Client,
   parameters: FindObjectAttributes,
+  options?: RequestOptions,
 ): Promise<ObjectAttribute[]> {
   const config: SendRequestOptions<ObjectAttribute[]> = {
     url: `/rest/assets/1.0/object/${parameters.id}/attributes`,
     method: 'GET',
     schema: z.array(ObjectAttributeSchema),
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Retrieve the history entries for this object. */
-export async function findObjectHistory(client: Client, parameters: FindObjectHistory): Promise<ObjectHistory[]> {
+export async function findObjectHistory(
+  client: Client,
+  parameters: FindObjectHistory,
+  options?: RequestOptions,
+): Promise<ObjectHistory[]> {
   const config: SendRequestOptions<ObjectHistory[]> = {
     url: `/rest/assets/1.0/object/${parameters.id}/history`,
     method: 'GET',
@@ -288,6 +371,7 @@ export async function findObjectHistory(client: Client, parameters: FindObjectHi
       orderAsc: parameters.orderAsc,
     },
     schema: z.array(ObjectHistorySchema),
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -297,11 +381,13 @@ export async function findObjectHistory(client: Client, parameters: FindObjectHi
 export async function findObjectReferenceInfo(
   client: Client,
   parameters: FindObjectReferenceInfo,
+  options?: RequestOptions,
 ): Promise<ReferenceTypeObjectInfo[]> {
   const config: SendRequestOptions<ReferenceTypeObjectInfo[]> = {
     url: `/rest/assets/1.0/object/${parameters.id}/referenceinfo`,
     method: 'GET',
     schema: z.array(ReferenceTypeObjectInfoSchema),
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

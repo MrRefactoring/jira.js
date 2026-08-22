@@ -21,24 +21,33 @@ import type { CreateImportSchedule } from '../parameters/createImportSchedule';
 import type { GetImportSchedule } from '../parameters/getImportSchedule';
 import type { UpdateImportSchedule } from '../parameters/updateImportSchedule';
 import type { DeleteImportSchedule } from '../parameters/deleteImportSchedule';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /**
  * Retrieves a specific import source configuration by its ID. If scheduled imports are enabled, the response includes
  * scheduling information.
  */
-export async function getImportSource(client: Client, parameters: GetImportSource): Promise<ImportSourceResponse> {
+export async function getImportSource(
+  client: Client,
+  parameters: GetImportSource,
+  options?: RequestOptions,
+): Promise<ImportSourceResponse> {
   const config: SendRequestOptions<ImportSourceResponse> = {
     url: `/importsource/${parameters.id}`,
     method: 'GET',
     schema: ImportSourceResponseSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Provide object schema and mapping configuration for the external import */
-export async function submitSchemaAndMapping(client: Client, parameters: SubmitSchemaAndMapping): Promise<void> {
+export async function submitSchemaAndMapping(
+  client: Client,
+  parameters: SubmitSchemaAndMapping,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/importsource/${parameters.importSourceId}/mapping`,
     method: 'PUT',
@@ -49,13 +58,18 @@ export async function submitSchemaAndMapping(client: Client, parameters: SubmitS
       schema: parameters.schema,
       mapping: parameters.mapping,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Update object schema and mapping configuration for the external import */
-export async function updateSchemaAndMapping(client: Client, parameters: UpdateSchemaAndMapping): Promise<void> {
+export async function updateSchemaAndMapping(
+  client: Client,
+  parameters: UpdateSchemaAndMapping,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/importsource/${parameters.importSourceId}/mapping`,
     method: 'PATCH',
@@ -66,6 +80,7 @@ export async function updateSchemaAndMapping(client: Client, parameters: UpdateS
       schema: parameters.schema,
       mapping: parameters.mapping,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -75,10 +90,12 @@ export async function updateSchemaAndMapping(client: Client, parameters: UpdateS
 export async function getSchemaAndMappingProgress(
   client: Client,
   parameters: GetSchemaAndMappingProgress,
+  options?: RequestOptions,
 ): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/importsource/${parameters.importSourceId}/mapping/progress/${parameters.resourceId}`,
     method: 'GET',
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -88,10 +105,12 @@ export async function getSchemaAndMappingProgress(
 export async function getImportConfigurationStatus(
   client: Client,
   parameters: GetImportConfigurationStatus,
+  options?: RequestOptions,
 ): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/importsource/${parameters.importSourceId}/configstatus`,
     method: 'GET',
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -101,31 +120,43 @@ export async function getImportConfigurationStatus(
 export async function getSchemaAndMapping(
   client: Client,
   parameters: GetSchemaAndMapping,
+  options?: RequestOptions,
 ): Promise<ImportSchemaAndMapping> {
   const config: SendRequestOptions<ImportSchemaAndMapping> = {
     url: `/importsource/${parameters.importSourceId}/schema-and-mapping`,
     method: 'GET',
     schema: ImportSchemaAndMappingSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Move to the data ingestion steps of external imports */
-export async function startImportExecution(client: Client, parameters: StartImportExecution): Promise<void> {
+export async function startImportExecution(
+  client: Client,
+  parameters: StartImportExecution,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/importsource/${parameters.importSourceId}/executions`,
     method: 'POST',
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Cancel current on-going import */
-export async function cancelImportExecution(client: Client, parameters: CancelImportExecution): Promise<void> {
+export async function cancelImportExecution(
+  client: Client,
+  parameters: CancelImportExecution,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/importsource/${parameters.importSourceId}/executions/${parameters.importExecutionId}`,
     method: 'DELETE',
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -135,32 +166,44 @@ export async function cancelImportExecution(client: Client, parameters: CancelIm
 export async function submitImportExecutionProgress(
   client: Client,
   parameters: SubmitImportExecutionProgress,
+  options?: RequestOptions,
 ): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/importsource/${parameters.importSourceId}/executions/${parameters.importExecutionId}/progress`,
     method: 'PUT',
     body: parameters.body,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Providing data to be ingested */
-export async function submitImportExecutionData(client: Client, parameters: SubmitImportExecutionData): Promise<void> {
+export async function submitImportExecutionData(
+  client: Client,
+  parameters: SubmitImportExecutionData,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/importsource/${parameters.importSourceId}/executions/${parameters.importExecutionId}/data`,
     method: 'POST',
     body: parameters.body,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Get the status of the import */
-export async function getImportExecutionStatus(client: Client, parameters: GetImportExecutionStatus): Promise<void> {
+export async function getImportExecutionStatus(
+  client: Client,
+  parameters: GetImportExecutionStatus,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/importsource/${parameters.importSourceId}/executions/${parameters.importExecutionId}/status`,
     method: 'GET',
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -170,21 +213,28 @@ export async function getImportExecutionStatus(client: Client, parameters: GetIm
 export async function getLatestImportExecutionStatus(
   client: Client,
   parameters: GetLatestImportExecutionStatus,
+  options?: RequestOptions,
 ): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/importsource/${parameters.importSourceId}/executions/status`,
     method: 'GET',
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Creates a failed import history record for the specified import source and execution with the given failure reason */
-export async function createFailedImportHistory(client: Client, parameters: CreateFailedImportHistory): Promise<void> {
+export async function createFailedImportHistory(
+  client: Client,
+  parameters: CreateFailedImportHistory,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/importsource/${parameters.importSourceId}/executions/${parameters.executionId}/history/failed`,
     method: 'POST',
     body: parameters.body,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -194,10 +244,15 @@ export async function createFailedImportHistory(client: Client, parameters: Crea
  * Generate a Bearer token which can be used to authenticate against Assets `/importsource/` APIs, to take actions
  * against the specified import source.
  */
-export async function generateImportSourceToken(client: Client, parameters: GenerateImportSourceToken): Promise<void> {
+export async function generateImportSourceToken(
+  client: Client,
+  parameters: GenerateImportSourceToken,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/importsource/${parameters.importSourceId}/token`,
     method: 'POST',
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -211,11 +266,13 @@ export async function generateImportSourceToken(client: Client, parameters: Gene
 export async function getImportScheduleLinks(
   client: Client,
   parameters: GetImportScheduleLinksParameters,
+  options?: RequestOptions,
 ): Promise<GetImportScheduleLinks> {
   const config: SendRequestOptions<GetImportScheduleLinks> = {
     url: `/importsource/${parameters.importSourceId}/schedule`,
     method: 'GET',
     schema: GetImportScheduleLinksSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -228,6 +285,7 @@ export async function getImportScheduleLinks(
 export async function createImportSchedule(
   client: Client,
   parameters: CreateImportSchedule,
+  options?: RequestOptions,
 ): Promise<ImportScheduleResponse> {
   const config: SendRequestOptions<ImportScheduleResponse> = {
     url: `/importsource/${parameters.importSourceId}/importschedule`,
@@ -238,6 +296,7 @@ export async function createImportSchedule(
       callbackUrl: parameters.callbackUrl,
     },
     schema: ImportScheduleResponseSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -247,11 +306,13 @@ export async function createImportSchedule(
 export async function getImportSchedule(
   client: Client,
   parameters: GetImportSchedule,
+  options?: RequestOptions,
 ): Promise<ImportScheduleResponse> {
   const config: SendRequestOptions<ImportScheduleResponse> = {
     url: `/importsource/${parameters.importSourceId}/importschedule/${parameters.importScheduleId}`,
     method: 'GET',
     schema: ImportScheduleResponseSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -261,6 +322,7 @@ export async function getImportSchedule(
 export async function updateImportSchedule(
   client: Client,
   parameters: UpdateImportSchedule,
+  options?: RequestOptions,
 ): Promise<ImportScheduleResponse> {
   const config: SendRequestOptions<ImportScheduleResponse> = {
     url: `/importsource/${parameters.importSourceId}/importschedule/${parameters.importScheduleId}`,
@@ -271,16 +333,22 @@ export async function updateImportSchedule(
       callbackUrl: parameters.callbackUrl,
     },
     schema: ImportScheduleResponseSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Deletes a scheduled import configuration. The import source will remain, but will no longer execute on a schedule. */
-export async function deleteImportSchedule(client: Client, parameters: DeleteImportSchedule): Promise<void> {
+export async function deleteImportSchedule(
+  client: Client,
+  parameters: DeleteImportSchedule,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/importsource/${parameters.importSourceId}/importschedule/${parameters.importScheduleId}`,
     method: 'DELETE',
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

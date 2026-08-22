@@ -14,11 +14,15 @@ import type { RemoveField } from '../parameters/removeField';
 import type { MoveField } from '../parameters/moveField';
 import type { UpdateShowWhenEmptyIndicator } from '../parameters/updateShowWhenEmptyIndicator';
 import type { MoveTab } from '../parameters/moveTab';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 import { z } from 'zod';
 
 /** Adds field or custom field to the default tab. */
-export async function getAllScreens(client: Client, parameters?: GetAllScreens): Promise<Screen[]> {
+export async function getAllScreens(
+  client: Client,
+  parameters?: GetAllScreens,
+  options?: RequestOptions,
+): Promise<Screen[]> {
   const config: SendRequestOptions<Screen[]> = {
     url: '/rest/api/2/screens',
     method: 'GET',
@@ -29,34 +33,49 @@ export async function getAllScreens(client: Client, parameters?: GetAllScreens):
       startAt: parameters?.startAt,
     },
     schema: z.array(ScreenSchema),
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Moves field on the given tab. */
-export async function addFieldToDefaultScreen(client: Client, parameters: AddFieldToDefaultScreen): Promise<void> {
+export async function addFieldToDefaultScreen(
+  client: Client,
+  parameters: AddFieldToDefaultScreen,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/2/screens/addToDefault/${parameters.fieldId}`,
     method: 'POST',
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Gets available fields for screen. i.e ones that haven't already been added. */
-export async function getFieldsToAdd(client: Client, parameters: GetFieldsToAdd): Promise<ScreenableField[]> {
+export async function getFieldsToAdd(
+  client: Client,
+  parameters: GetFieldsToAdd,
+  options?: RequestOptions,
+): Promise<ScreenableField[]> {
   const config: SendRequestOptions<ScreenableField[]> = {
     url: `/rest/api/2/screens/${parameters.screenId}/availableFields`,
     method: 'GET',
     schema: z.array(ScreenableFieldSchema),
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Returns a list of all tabs for the given screen. */
-export async function getAllTabs(client: Client, parameters: GetAllTabs): Promise<ScreenableTab[]> {
+export async function getAllTabs(
+  client: Client,
+  parameters: GetAllTabs,
+  options?: RequestOptions,
+): Promise<ScreenableTab[]> {
   const config: SendRequestOptions<ScreenableTab[]> = {
     url: `/rest/api/2/screens/${parameters.screenId}/tabs`,
     method: 'GET',
@@ -64,13 +83,14 @@ export async function getAllTabs(client: Client, parameters: GetAllTabs): Promis
       projectKey: parameters.projectKey,
     },
     schema: z.array(ScreenableTabSchema),
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Creates tab for given screen. */
-export async function addTab(client: Client, parameters: AddTab): Promise<ScreenableTab> {
+export async function addTab(client: Client, parameters: AddTab, options?: RequestOptions): Promise<ScreenableTab> {
   const config: SendRequestOptions<ScreenableTab> = {
     url: `/rest/api/2/screens/${parameters.screenId}/tabs`,
     method: 'POST',
@@ -79,13 +99,18 @@ export async function addTab(client: Client, parameters: AddTab): Promise<Screen
       name: parameters.name,
     },
     schema: ScreenableTabSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Renames tab on given screen. */
-export async function renameTab(client: Client, parameters: RenameTab): Promise<ScreenableTab> {
+export async function renameTab(
+  client: Client,
+  parameters: RenameTab,
+  options?: RequestOptions,
+): Promise<ScreenableTab> {
   const config: SendRequestOptions<ScreenableTab> = {
     url: `/rest/api/2/screens/${parameters.screenId}/tabs/${parameters.tabId}`,
     method: 'PUT',
@@ -94,23 +119,29 @@ export async function renameTab(client: Client, parameters: RenameTab): Promise<
       name: parameters.name,
     },
     schema: ScreenableTabSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Deletes tab from given screen. */
-export async function deleteTab(client: Client, parameters: DeleteTab): Promise<void> {
+export async function deleteTab(client: Client, parameters: DeleteTab, options?: RequestOptions): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/2/screens/${parameters.screenId}/tabs/${parameters.tabId}`,
     method: 'DELETE',
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Gets all fields for a given tab. */
-export async function getAllFields(client: Client, parameters: GetAllFields): Promise<ScreenableField[]> {
+export async function getAllFields(
+  client: Client,
+  parameters: GetAllFields,
+  options?: RequestOptions,
+): Promise<ScreenableField[]> {
   const config: SendRequestOptions<ScreenableField[]> = {
     url: `/rest/api/2/screens/${parameters.screenId}/tabs/${parameters.tabId}/fields`,
     method: 'GET',
@@ -118,13 +149,18 @@ export async function getAllFields(client: Client, parameters: GetAllFields): Pr
       projectKey: parameters.projectKey,
     },
     schema: z.array(ScreenableFieldSchema),
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Adds field to the given tab. */
-export async function addField(client: Client, parameters: AddField): Promise<ScreenableField> {
+export async function addField(
+  client: Client,
+  parameters: AddField,
+  options?: RequestOptions,
+): Promise<ScreenableField> {
   const config: SendRequestOptions<ScreenableField> = {
     url: `/rest/api/2/screens/${parameters.screenId}/tabs/${parameters.tabId}/fields`,
     method: 'POST',
@@ -132,23 +168,25 @@ export async function addField(client: Client, parameters: AddField): Promise<Sc
       fieldId: parameters.fieldId,
     },
     schema: ScreenableFieldSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Removes field from given tab. */
-export async function removeField(client: Client, parameters: RemoveField): Promise<void> {
+export async function removeField(client: Client, parameters: RemoveField, options?: RequestOptions): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/2/screens/${parameters.screenId}/tabs/${parameters.tabId}/fields/${parameters.id}`,
     method: 'DELETE',
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Moves field on the given tab. */
-export async function moveField(client: Client, parameters: MoveField): Promise<void> {
+export async function moveField(client: Client, parameters: MoveField, options?: RequestOptions): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/2/screens/${parameters.screenId}/tabs/${parameters.tabId}/fields/${parameters.id}/move`,
     method: 'POST',
@@ -156,6 +194,7 @@ export async function moveField(client: Client, parameters: MoveField): Promise<
       after: parameters.after,
       position: parameters.position,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -165,20 +204,23 @@ export async function moveField(client: Client, parameters: MoveField): Promise<
 export async function updateShowWhenEmptyIndicator(
   client: Client,
   parameters: UpdateShowWhenEmptyIndicator,
+  options?: RequestOptions,
 ): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/2/screens/${parameters.screenId}/tabs/${parameters.tabId}/fields/${parameters.id}/updateShowWhenEmptyIndicator/${parameters.newValue}`,
     method: 'PUT',
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Moves tab position. */
-export async function moveTab(client: Client, parameters: MoveTab): Promise<void> {
+export async function moveTab(client: Client, parameters: MoveTab, options?: RequestOptions): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/2/screens/${parameters.screenId}/tabs/${parameters.tabId}/move/${parameters.pos}`,
     method: 'POST',
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

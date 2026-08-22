@@ -1,7 +1,7 @@
 import { TaskProgressSchema, type TaskProgress } from '../models/taskProgress';
 import type { FetchMigrationTask } from '../parameters/fetchMigrationTask';
 import type { SubmitTask } from '../parameters/submitTask';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /**
  * Returns the details of a Connect issue field's migration to Forge.
@@ -19,11 +19,16 @@ import type { Client, SendRequestOptions } from '#/core';
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** Only
  * Connect and Forge apps can make this request.
  */
-export async function fetchMigrationTask(client: Client, parameters: FetchMigrationTask): Promise<TaskProgress> {
+export async function fetchMigrationTask(
+  client: Client,
+  parameters: FetchMigrationTask,
+  options?: RequestOptions,
+): Promise<TaskProgress> {
   const config: SendRequestOptions<TaskProgress> = {
     url: `/rest/atlassian-connect/1/migration/${parameters.connectKey}/${parameters.jiraIssueFieldsKey}/task`,
     method: 'GET',
     schema: TaskProgressSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -44,13 +49,14 @@ export async function fetchMigrationTask(client: Client, parameters: FetchMigrat
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** Only
  * Connect and Forge apps can make this request.
  */
-export async function submitTask(client: Client, parameters: SubmitTask): Promise<void> {
+export async function submitTask(client: Client, parameters: SubmitTask, options?: RequestOptions): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/atlassian-connect/1/migration/${parameters.connectKey}/${parameters.jiraIssueFieldsKey}/task`,
     method: 'POST',
     searchParams: {
       retriggerCompletedMigration: parameters.retriggerCompletedMigration,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

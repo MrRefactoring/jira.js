@@ -1,6 +1,6 @@
 import { FoundUsersAndGroupsSchema, type FoundUsersAndGroups } from '../models/foundUsersAndGroups';
 import type { FindUsersAndGroups } from '../parameters/findUsersAndGroups';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /**
  * Returns a list of users and groups matching a string. The string is used:
@@ -37,7 +37,11 @@ import type { Client, SendRequestOptions } from '#/core';
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** _Browse
  * users and groups_ [global permission](https://confluence.atlassian.com/x/yodKLg).
  */
-export async function findUsersAndGroups(client: Client, parameters: FindUsersAndGroups): Promise<FoundUsersAndGroups> {
+export async function findUsersAndGroups(
+  client: Client,
+  parameters: FindUsersAndGroups,
+  options?: RequestOptions,
+): Promise<FoundUsersAndGroups> {
   const config: SendRequestOptions<FoundUsersAndGroups> = {
     url: '/rest/api/3/groupuserpicker',
     method: 'GET',
@@ -54,6 +58,7 @@ export async function findUsersAndGroups(client: Client, parameters: FindUsersAn
       includeAiAgents: parameters.includeAiAgents,
     },
     schema: FoundUsersAndGroupsSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

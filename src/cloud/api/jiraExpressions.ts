@@ -5,7 +5,7 @@ import {
 } from '../models/jExpEvaluateJiraExpressionResult';
 import type { AnalyseExpression } from '../parameters/analyseExpression';
 import type { EvaluateJSISJiraExpression } from '../parameters/evaluateJSISJiraExpression';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /**
  * Analyses and validates Jira expressions.
@@ -20,6 +20,7 @@ import type { Client, SendRequestOptions } from '#/core';
 export async function analyseExpression(
   client: Client,
   parameters: AnalyseExpression,
+  options?: RequestOptions,
 ): Promise<JiraExpressionsAnalysis> {
   const config: SendRequestOptions<JiraExpressionsAnalysis> = {
     url: '/rest/api/3/expression/analyse',
@@ -32,6 +33,7 @@ export async function analyseExpression(
       expressions: parameters.expressions,
     },
     schema: JiraExpressionsAnalysisSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -98,6 +100,7 @@ export async function analyseExpression(
 export async function evaluateJSISJiraExpression(
   client: Client,
   parameters: EvaluateJSISJiraExpression,
+  options?: RequestOptions,
 ): Promise<JExpEvaluateJiraExpressionResult> {
   const config: SendRequestOptions<JExpEvaluateJiraExpressionResult> = {
     url: '/rest/api/3/expression/evaluate',
@@ -110,6 +113,7 @@ export async function evaluateJSISJiraExpression(
       expression: parameters.expression,
     },
     schema: JExpEvaluateJiraExpressionResultSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

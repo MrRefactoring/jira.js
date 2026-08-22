@@ -14,15 +14,16 @@ import type { GetIssueTypePropertyKeys } from '../parameters/getIssueTypePropert
 import type { GetIssueTypeProperty } from '../parameters/getIssueTypeProperty';
 import type { SetIssueTypeProperty } from '../parameters/setIssueTypeProperty';
 import type { DeleteIssueTypeProperty } from '../parameters/deleteIssueTypeProperty';
-import { type Client, type SendRequestOptions, toFormDataFile } from '#/core';
+import { type Client, type RequestOptions, type SendRequestOptions, toFormDataFile } from '#/core';
 import { z } from 'zod';
 
 /** Returns a list of all issue types visible to the user */
-export async function getIssueAllTypes(client: Client): Promise<IssueTypeJson[]> {
+export async function getIssueAllTypes(client: Client, options?: RequestOptions): Promise<IssueTypeJson[]> {
   const config: SendRequestOptions<IssueTypeJson[]> = {
     url: '/rest/api/2/issuetype',
     method: 'GET',
     schema: z.array(IssueTypeJsonSchema),
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -32,7 +33,11 @@ export async function getIssueAllTypes(client: Client): Promise<IssueTypeJson[]>
  * Creates an issue type from a JSON representation and adds the issue newly created issue type to the default issue
  * type scheme.
  */
-export async function createIssueType(client: Client, parameters: CreateIssueType): Promise<IssueTypeJson> {
+export async function createIssueType(
+  client: Client,
+  parameters: CreateIssueType,
+  options?: RequestOptions,
+): Promise<IssueTypeJson> {
   const config: SendRequestOptions<IssueTypeJson> = {
     url: '/rest/api/2/issuetype',
     method: 'POST',
@@ -42,6 +47,7 @@ export async function createIssueType(client: Client, parameters: CreateIssueTyp
       type: parameters.type,
     },
     schema: IssueTypeJsonSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -51,6 +57,7 @@ export async function createIssueType(client: Client, parameters: CreateIssueTyp
 export async function getPaginatedIssueTypes(
   client: Client,
   parameters?: GetPaginatedIssueTypes,
+  options?: RequestOptions,
 ): Promise<IssueTypeJson> {
   const config: SendRequestOptions<IssueTypeJson> = {
     url: '/rest/api/2/issuetype/page',
@@ -65,24 +72,34 @@ export async function getPaginatedIssueTypes(
       startAt: parameters?.startAt,
     },
     schema: IssueTypeJsonSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Returns a full representation of the issue type that has the given id. */
-export async function getIssueType(client: Client, parameters: GetIssueType): Promise<IssueTypeJson> {
+export async function getIssueType(
+  client: Client,
+  parameters: GetIssueType,
+  options?: RequestOptions,
+): Promise<IssueTypeJson> {
   const config: SendRequestOptions<IssueTypeJson> = {
     url: `/rest/api/2/issuetype/${parameters.id}`,
     method: 'GET',
     schema: IssueTypeJsonSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Updates the specified issue type from a JSON representation. */
-export async function updateIssueType(client: Client, parameters: UpdateIssueType): Promise<IssueTypeJson> {
+export async function updateIssueType(
+  client: Client,
+  parameters: UpdateIssueType,
+  options?: RequestOptions,
+): Promise<IssueTypeJson> {
   const config: SendRequestOptions<IssueTypeJson> = {
     url: `/rest/api/2/issuetype/${parameters.id}`,
     method: 'PUT',
@@ -92,6 +109,7 @@ export async function updateIssueType(client: Client, parameters: UpdateIssueTyp
       name: parameters.name,
     },
     schema: IssueTypeJsonSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -101,13 +119,18 @@ export async function updateIssueType(client: Client, parameters: UpdateIssueTyp
  * Deletes the specified issue type. If the issue type has any associated issues, these issues will be migrated to the
  * alternative issue type specified in the parameter.
  */
-export async function deleteIssueType(client: Client, parameters: DeleteIssueType): Promise<void> {
+export async function deleteIssueType(
+  client: Client,
+  parameters: DeleteIssueType,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/2/issuetype/${parameters.id}`,
     method: 'DELETE',
     searchParams: {
       alternativeIssueTypeId: parameters.alternativeIssueTypeId,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -117,11 +140,13 @@ export async function deleteIssueType(client: Client, parameters: DeleteIssueTyp
 export async function getAlternativeIssueTypes(
   client: Client,
   parameters: GetAlternativeIssueTypes,
+  options?: RequestOptions,
 ): Promise<IssueTypeJson[]> {
   const config: SendRequestOptions<IssueTypeJson[]> = {
     url: `/rest/api/2/issuetype/${parameters.id}/alternatives`,
     method: 'GET',
     schema: z.array(IssueTypeJsonSchema),
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -131,6 +156,7 @@ export async function getAlternativeIssueTypes(
 export async function createIssueTypeAvatarFromTemporary(
   client: Client,
   parameters: CreateIssueTypeAvatarFromTemporary,
+  options?: RequestOptions,
 ): Promise<Avatar> {
   const config: SendRequestOptions<Avatar> = {
     url: `/rest/api/2/issuetype/${parameters.id}/avatar`,
@@ -143,6 +169,7 @@ export async function createIssueTypeAvatarFromTemporary(
       url: parameters.url,
     },
     schema: AvatarSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -161,6 +188,7 @@ export async function createIssueTypeAvatarFromTemporary(
 export async function storeTemporaryIssueTypeAvatarUsingMultiPart(
   client: Client,
   parameters: StoreTemporaryIssueTypeAvatarUsingMultiPart,
+  options?: RequestOptions,
 ): Promise<unknown> {
   const formData = new FormData();
   const items = Array.isArray(parameters.avatar) ? parameters.avatar : [parameters.avatar];
@@ -176,6 +204,7 @@ export async function storeTemporaryIssueTypeAvatarUsingMultiPart(
       'X-Atlassian-Token': 'no-check',
     },
     body: formData,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -185,43 +214,60 @@ export async function storeTemporaryIssueTypeAvatarUsingMultiPart(
 export async function getIssueTypePropertyKeys(
   client: Client,
   parameters: GetIssueTypePropertyKeys,
+  options?: RequestOptions,
 ): Promise<EntityPropertiesKeys> {
   const config: SendRequestOptions<EntityPropertiesKeys> = {
     url: `/rest/api/2/issuetype/${parameters.issueTypeId}/properties`,
     method: 'GET',
     schema: EntityPropertiesKeysSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Returns the value of the property with a given key from the issue type identified by the id */
-export async function getIssueTypeProperty(client: Client, parameters: GetIssueTypeProperty): Promise<EntityProperty> {
+export async function getIssueTypeProperty(
+  client: Client,
+  parameters: GetIssueTypeProperty,
+  options?: RequestOptions,
+): Promise<EntityProperty> {
   const config: SendRequestOptions<EntityProperty> = {
     url: `/rest/api/2/issuetype/${parameters.issueTypeId}/properties/${parameters.propertyKey}`,
     method: 'GET',
     schema: EntityPropertySchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Sets the value of the specified issue type's property */
-export async function setIssueTypeProperty(client: Client, parameters: SetIssueTypeProperty): Promise<void> {
+export async function setIssueTypeProperty(
+  client: Client,
+  parameters: SetIssueTypeProperty,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/2/issuetype/${parameters.issueTypeId}/properties/${parameters.propertyKey}`,
     method: 'PUT',
     body: parameters.body,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Removes the property from the issue type identified by the id */
-export async function deleteIssueTypeProperty(client: Client, parameters: DeleteIssueTypeProperty): Promise<void> {
+export async function deleteIssueTypeProperty(
+  client: Client,
+  parameters: DeleteIssueTypeProperty,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/2/issuetype/${parameters.issueTypeId}/properties/${parameters.propertyKey}`,
     method: 'DELETE',
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

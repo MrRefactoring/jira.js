@@ -4,7 +4,7 @@ import type { IssueSecurityLevelMember } from '../models/issueSecurityLevelMembe
 import { SecurityLevelSchema, type SecurityLevel } from '../models/securityLevel';
 import type { GetIssueSecurityLevelMembers } from '../parameters/getIssueSecurityLevelMembers';
 import type { GetIssueSecurityLevel } from '../parameters/getIssueSecurityLevel';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /**
  * Returns issue security level members.
@@ -17,6 +17,7 @@ import type { Client, SendRequestOptions } from '#/core';
 export async function getIssueSecurityLevelMembers(
   client: Client,
   parameters: GetIssueSecurityLevelMembers,
+  options?: RequestOptions,
 ): Promise<Page<IssueSecurityLevelMember>> {
   const config: SendRequestOptions<Page<IssueSecurityLevelMember>> = {
     url: `/rest/api/3/issuesecurityschemes/${parameters.issueSecuritySchemeId}/members`,
@@ -28,6 +29,7 @@ export async function getIssueSecurityLevelMembers(
       expand: parameters.expand,
     },
     schema: PageIssueSecurityLevelMemberSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -44,11 +46,16 @@ export async function getIssueSecurityLevelMembers(
  *
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** None.
  */
-export async function getIssueSecurityLevel(client: Client, parameters: GetIssueSecurityLevel): Promise<SecurityLevel> {
+export async function getIssueSecurityLevel(
+  client: Client,
+  parameters: GetIssueSecurityLevel,
+  options?: RequestOptions,
+): Promise<SecurityLevel> {
   const config: SendRequestOptions<SecurityLevel> = {
     url: `/rest/api/3/securitylevel/${parameters.id}`,
     method: 'GET',
     schema: SecurityLevelSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

@@ -1,6 +1,6 @@
 import type { CreateAssociations } from '../parameters/createAssociations';
 import type { RemoveAssociations } from '../parameters/removeAssociations';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /**
  * Associates fields with projects.
@@ -20,7 +20,11 @@ import type { Client, SendRequestOptions } from '#/core';
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-export async function createAssociations(client: Client, parameters: CreateAssociations): Promise<void> {
+export async function createAssociations(
+  client: Client,
+  parameters: CreateAssociations,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: '/rest/api/3/field/association',
     method: 'PUT',
@@ -28,6 +32,7 @@ export async function createAssociations(client: Client, parameters: CreateAssoc
       associationContexts: parameters.associationContexts,
       fields: parameters.fields,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -50,7 +55,11 @@ export async function createAssociations(client: Client, parameters: CreateAssoc
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-export async function removeAssociations(client: Client, parameters: RemoveAssociations): Promise<void> {
+export async function removeAssociations(
+  client: Client,
+  parameters: RemoveAssociations,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: '/rest/api/3/field/association',
     method: 'DELETE',
@@ -58,6 +67,7 @@ export async function removeAssociations(client: Client, parameters: RemoveAssoc
       associationContexts: parameters.associationContexts,
       fields: parameters.fields,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

@@ -39,8 +39,8 @@ function timingSafeEquals(a: string, b: string): boolean {
  * - `state` is missing or does not match the one you issued;
  * - The URL is simply not a callback — no code, no error.
  *
- * Each throws an {@link OAuthError}; for a decline, `error` is `access_denied`, which
- * {@link core/errors/predicates!isReauthorizationRequired} recognises.
+ * Each throws an {@link OAuthError}; for a decline, `error` is `access_denied`, which {@link core/errors/predicates!isReauthorizationRequired}
+ * recognises.
  *
  * @example
  *   ```typescript

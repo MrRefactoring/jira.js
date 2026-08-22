@@ -10,7 +10,7 @@ import type { DeleteRepository } from '../parameters/deleteRepository';
 import type { DeleteByProperties } from '../parameters/deleteByProperties';
 import type { ExistsByProperties as ExistsByPropertiesParameters } from '../parameters/existsByProperties';
 import type { DeleteEntity } from '../parameters/deleteEntity';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /**
  * Stores development information provided in the request to make it available when viewing issues in Jira. Existing
@@ -22,6 +22,7 @@ import type { Client, SendRequestOptions } from '#/core';
 export async function storeDevelopmentInformation(
   client: Client,
   parameters: StoreDevelopmentInformationParameters,
+  options?: RequestOptions,
 ): Promise<StoreDevelopmentInformation> {
   const config: SendRequestOptions<StoreDevelopmentInformation> = {
     url: '/rest/devinfo/0.10/bulk',
@@ -34,6 +35,7 @@ export async function storeDevelopmentInformation(
       providerMetadata: parameters.providerMetadata,
     },
     schema: StoreDevelopmentInformationSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -43,11 +45,16 @@ export async function storeDevelopmentInformation(
  * For the specified repository ID, retrieves the repository and the most recent 400 development information entities.
  * The result will be what is currently stored, ignoring any pending updates or deletes.
  */
-export async function getRepository(client: Client, parameters: GetRepositoryParameters): Promise<GetRepository> {
+export async function getRepository(
+  client: Client,
+  parameters: GetRepositoryParameters,
+  options?: RequestOptions,
+): Promise<GetRepository> {
   const config: SendRequestOptions<GetRepository> = {
     url: `/rest/devinfo/0.10/repository/${parameters.repositoryId}`,
     method: 'GET',
     schema: GetRepositorySchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -57,13 +64,18 @@ export async function getRepository(client: Client, parameters: GetRepositoryPar
  * Deletes the repository data stored by the given ID and all related development information entities. Deletion is
  * performed asynchronously.
  */
-export async function deleteRepository(client: Client, parameters: DeleteRepository): Promise<void> {
+export async function deleteRepository(
+  client: Client,
+  parameters: DeleteRepository,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/devinfo/0.10/repository/${parameters.repositoryId}`,
     method: 'DELETE',
     searchParams: {
       _updateSequenceId: parameters.updateSequenceId,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -77,13 +89,18 @@ export async function deleteRepository(client: Client, parameters: DeleteReposit
  * Optional param `_updateSequenceId` is no longer supported. Deletion is performed asynchronously: specified entities
  * will eventually be removed from Jira.
  */
-export async function deleteByProperties(client: Client, parameters: DeleteByProperties): Promise<void> {
+export async function deleteByProperties(
+  client: Client,
+  parameters: DeleteByProperties,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: '/rest/devinfo/0.10/bulkByProperties',
     method: 'DELETE',
     searchParams: {
       _updateSequenceId: parameters.updateSequenceId,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -99,6 +116,7 @@ export async function deleteByProperties(client: Client, parameters: DeleteByPro
 export async function existsByProperties(
   client: Client,
   parameters?: ExistsByPropertiesParameters,
+  options?: RequestOptions,
 ): Promise<ExistsByProperties> {
   const config: SendRequestOptions<ExistsByProperties> = {
     url: '/rest/devinfo/0.10/existsByProperties',
@@ -107,19 +125,21 @@ export async function existsByProperties(
       _updateSequenceId: parameters?.updateSequenceId,
     },
     schema: ExistsByPropertiesSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Deletes particular development information entity. Deletion is performed asynchronously. */
-export async function deleteEntity(client: Client, parameters: DeleteEntity): Promise<void> {
+export async function deleteEntity(client: Client, parameters: DeleteEntity, options?: RequestOptions): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/devinfo/0.10/repository/${parameters.repositoryId}/${parameters.entityType}/${parameters.entityId}`,
     method: 'DELETE',
     searchParams: {
       _updateSequenceId: parameters.updateSequenceId,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

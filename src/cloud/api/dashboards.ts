@@ -11,7 +11,7 @@ import type { GetDashboardItemProperty } from '../parameters/getDashboardItemPro
 import type { SetDashboardItemProperty } from '../parameters/setDashboardItemProperty';
 import type { DeleteDashboardItemProperty } from '../parameters/deleteDashboardItemProperty';
 import type { GetDashboard } from '../parameters/getDashboard';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /**
  * Returns a list of dashboards owned by or shared with the user. The list may be filtered to include only favorite or
@@ -21,7 +21,11 @@ import type { Client, SendRequestOptions } from '#/core';
  *
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** None.
  */
-export async function getAllDashboards(client: Client, parameters?: GetAllDashboards): Promise<PageOfDashboards> {
+export async function getAllDashboards(
+  client: Client,
+  parameters?: GetAllDashboards,
+  options?: RequestOptions,
+): Promise<PageOfDashboards> {
   const config: SendRequestOptions<PageOfDashboards> = {
     url: '/rest/api/3/dashboard',
     method: 'GET',
@@ -31,6 +35,7 @@ export async function getAllDashboards(client: Client, parameters?: GetAllDashbo
       maxResults: parameters?.maxResults,
     },
     schema: PageOfDashboardsSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -57,6 +62,7 @@ export async function getAllDashboards(client: Client, parameters?: GetAllDashbo
 export async function getDashboardsPaginated(
   client: Client,
   parameters?: GetDashboardsPaginated,
+  options?: RequestOptions,
 ): Promise<Page<Dashboard>> {
   const config: SendRequestOptions<Page<Dashboard>> = {
     url: '/rest/api/3/dashboard/search',
@@ -74,6 +80,7 @@ export async function getDashboardsPaginated(
       expand: parameters?.expand,
     },
     schema: PageDashboardSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -90,11 +97,13 @@ export async function getDashboardsPaginated(
 export async function getDashboardItemPropertyKeys(
   client: Client,
   parameters: GetDashboardItemPropertyKeys,
+  options?: RequestOptions,
 ): Promise<PropertyKeys> {
   const config: SendRequestOptions<PropertyKeys> = {
     url: `/rest/api/3/dashboard/${parameters.dashboardId}/items/${parameters.itemId}/properties`,
     method: 'GET',
     schema: PropertyKeysSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -124,11 +133,13 @@ export async function getDashboardItemPropertyKeys(
 export async function getDashboardItemProperty(
   client: Client,
   parameters: GetDashboardItemProperty,
+  options?: RequestOptions,
 ): Promise<EntityProperty> {
   const config: SendRequestOptions<EntityProperty> = {
     url: `/rest/api/3/dashboard/${parameters.dashboardId}/items/${parameters.itemId}/properties/${parameters.propertyKey}`,
     method: 'GET',
     schema: EntityPropertySchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -158,11 +169,16 @@ export async function getDashboardItemProperty(
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** The user
  * must have edit permisson of the dashboard.
  */
-export async function setDashboardItemProperty(client: Client, parameters: SetDashboardItemProperty): Promise<void> {
+export async function setDashboardItemProperty(
+  client: Client,
+  parameters: SetDashboardItemProperty,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/dashboard/${parameters.dashboardId}/items/${parameters.itemId}/properties/${parameters.propertyKey}`,
     method: 'PUT',
     body: parameters.body,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -179,10 +195,12 @@ export async function setDashboardItemProperty(client: Client, parameters: SetDa
 export async function deleteDashboardItemProperty(
   client: Client,
   parameters: DeleteDashboardItemProperty,
+  options?: RequestOptions,
 ): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/dashboard/${parameters.dashboardId}/items/${parameters.itemId}/properties/${parameters.propertyKey}`,
     method: 'DELETE',
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -199,11 +217,16 @@ export async function deleteDashboardItemProperty(
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg) are considered owners of the System
  * dashboard. The System dashboard is considered to be shared with all other users.
  */
-export async function getDashboard(client: Client, parameters: GetDashboard): Promise<Dashboard> {
+export async function getDashboard(
+  client: Client,
+  parameters: GetDashboard,
+  options?: RequestOptions,
+): Promise<Dashboard> {
   const config: SendRequestOptions<Dashboard> = {
     url: `/rest/api/3/dashboard/${parameters.id}`,
     method: 'GET',
     schema: DashboardSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

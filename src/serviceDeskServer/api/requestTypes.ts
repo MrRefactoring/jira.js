@@ -11,7 +11,7 @@ import type { CreateRequestType } from '../parameters/createRequestType';
 import type { UpdateRequestType } from '../parameters/updateRequestType';
 import type { GetRequestTypeById } from '../parameters/getRequestTypeById';
 import type { DeleteRequestType } from '../parameters/deleteRequestType';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /**
  * Returns the fields for a request type, for a given request type Id and service project Id. These are the fields that
@@ -26,11 +26,13 @@ import type { Client, SendRequestOptions } from '#/core';
 export async function getRequestTypeFields(
   client: Client,
   parameters: GetRequestTypeFields,
+  options?: RequestOptions,
 ): Promise<CustomerRequestCreateMeta> {
   const config: SendRequestOptions<CustomerRequestCreateMeta> = {
     url: `/rest/servicedeskapi/servicedesk/${parameters.serviceDeskId}/requesttype/${parameters.requestTypeId}/field`,
     method: 'GET',
     schema: CustomerRequestCreateMetaSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -43,6 +45,7 @@ export async function getRequestTypeFields(
 export async function getRequestTypeGroups(
   client: Client,
   parameters: GetRequestTypeGroups,
+  options?: RequestOptions,
 ): Promise<Page<RequestTypeGroup>> {
   const config: SendRequestOptions<Page<RequestTypeGroup>> = {
     url: `/rest/servicedeskapi/servicedesk/${parameters.serviceDeskId}/requesttypegroup`,
@@ -52,13 +55,18 @@ export async function getRequestTypeGroups(
       limit: parameters.limit,
     },
     schema: PagedRequestTypeGroupSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Returns all request types from a service project, for a given service project Id. */
-export async function getRequestTypes(client: Client, parameters: GetRequestTypes): Promise<Page<RequestType>> {
+export async function getRequestTypes(
+  client: Client,
+  parameters: GetRequestTypes,
+  options?: RequestOptions,
+): Promise<Page<RequestType>> {
   const config: SendRequestOptions<Page<RequestType>> = {
     url: `/rest/servicedeskapi/servicedesk/${parameters.serviceDeskId}/requesttype`,
     method: 'GET',
@@ -69,6 +77,7 @@ export async function getRequestTypes(client: Client, parameters: GetRequestType
       limit: parameters.limit,
     },
     schema: PagedRequestTypeSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -92,7 +101,11 @@ export async function getRequestTypes(client: Client, parameters: GetRequestType
  *
  * The calling user must be a project administrator for the service project project.
  */
-export async function createRequestType(client: Client, parameters: CreateRequestType): Promise<RequestType> {
+export async function createRequestType(
+  client: Client,
+  parameters: CreateRequestType,
+  options?: RequestOptions,
+): Promise<RequestType> {
   const config: SendRequestOptions<RequestType> = {
     url: `/rest/servicedeskapi/servicedesk/${parameters.serviceDeskId}/requesttype`,
     method: 'POST',
@@ -103,6 +116,7 @@ export async function createRequestType(client: Client, parameters: CreateReques
       helpText: parameters.helpText,
     },
     schema: RequestTypeSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -115,7 +129,11 @@ export async function createRequestType(client: Client, parameters: CreateReques
  *
  * The calling user must be a project administrator for the service project project.
  */
-export async function updateRequestType(client: Client, parameters: UpdateRequestType): Promise<RequestType> {
+export async function updateRequestType(
+  client: Client,
+  parameters: UpdateRequestType,
+  options?: RequestOptions,
+): Promise<RequestType> {
   const config: SendRequestOptions<RequestType> = {
     url: `/rest/servicedeskapi/servicedesk/${parameters.serviceDeskId}/requesttype`,
     method: 'PUT',
@@ -126,13 +144,18 @@ export async function updateRequestType(client: Client, parameters: UpdateReques
       requestTypeId: parameters.requestTypeId,
     },
     schema: RequestTypeSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Returns a request type for a given request type Id. */
-export async function getRequestTypeById(client: Client, parameters: GetRequestTypeById): Promise<RequestType> {
+export async function getRequestTypeById(
+  client: Client,
+  parameters: GetRequestTypeById,
+  options?: RequestOptions,
+): Promise<RequestType> {
   const config: SendRequestOptions<RequestType> = {
     url: `/rest/servicedeskapi/servicedesk/${parameters.serviceDeskId}/requesttype/${parameters.requestTypeId}`,
     method: 'GET',
@@ -140,6 +163,7 @@ export async function getRequestTypeById(client: Client, parameters: GetRequestT
       restrictionStatus: parameters.restrictionStatus,
     },
     schema: RequestTypeSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -152,10 +176,15 @@ export async function getRequestTypeById(client: Client, parameters: GetRequestT
  *
  * The calling user must be a project administrator for the service project project.
  */
-export async function deleteRequestType(client: Client, parameters: DeleteRequestType): Promise<void> {
+export async function deleteRequestType(
+  client: Client,
+  parameters: DeleteRequestType,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/servicedeskapi/servicedesk/${parameters.serviceDeskId}/requesttype/${parameters.requestTypeId}`,
     method: 'DELETE',
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

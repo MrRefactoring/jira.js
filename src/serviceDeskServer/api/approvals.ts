@@ -6,21 +6,30 @@ import type { GetApprovalById } from '../parameters/getApprovalById';
 import type { AnswerApproval } from '../parameters/answerApproval';
 import type { GetApprovalCommentConfig } from '../parameters/getApprovalCommentConfig';
 import type { GetApprovals } from '../parameters/getApprovals';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /** Returns an approval for a given approval ID. */
-export async function getApprovalById(client: Client, parameters: GetApprovalById): Promise<Approval> {
+export async function getApprovalById(
+  client: Client,
+  parameters: GetApprovalById,
+  options?: RequestOptions,
+): Promise<Approval> {
   const config: SendRequestOptions<Approval> = {
     url: `/rest/servicedeskapi/request/${parameters.issueIdOrKey}/approval/${parameters.approvalId}`,
     method: 'GET',
     schema: ApprovalSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Answer a pending approval. */
-export async function answerApproval(client: Client, parameters: AnswerApproval): Promise<Approval> {
+export async function answerApproval(
+  client: Client,
+  parameters: AnswerApproval,
+  options?: RequestOptions,
+): Promise<Approval> {
   const config: SendRequestOptions<Approval> = {
     url: `/rest/servicedeskapi/request/${parameters.issueIdOrKey}/approval/${parameters.approvalId}`,
     method: 'POST',
@@ -30,6 +39,7 @@ export async function answerApproval(client: Client, parameters: AnswerApproval)
       commentPublic: parameters.commentPublic,
     },
     schema: ApprovalSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -39,18 +49,24 @@ export async function answerApproval(client: Client, parameters: AnswerApproval)
 export async function getApprovalCommentConfig(
   client: Client,
   parameters: GetApprovalCommentConfig,
+  options?: RequestOptions,
 ): Promise<ApprovalCommentConfig> {
   const config: SendRequestOptions<ApprovalCommentConfig> = {
     url: `/rest/servicedeskapi/request/${parameters.issueIdOrKey}/approval/${parameters.approvalId}/config`,
     method: 'GET',
     schema: ApprovalCommentConfigSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Returns all approvals on a request, for a given request Id/key. */
-export async function getApprovals(client: Client, parameters: GetApprovals): Promise<Page<Approval>> {
+export async function getApprovals(
+  client: Client,
+  parameters: GetApprovals,
+  options?: RequestOptions,
+): Promise<Page<Approval>> {
   const config: SendRequestOptions<Page<Approval>> = {
     url: `/rest/servicedeskapi/request/${parameters.issueIdOrKey}/approval`,
     method: 'GET',
@@ -59,6 +75,7 @@ export async function getApprovals(client: Client, parameters: GetApprovals): Pr
       limit: parameters.limit,
     },
     schema: PagedApprovalSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

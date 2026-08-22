@@ -40,7 +40,7 @@ import type { ReadWorkflowPreviews } from '../parameters/readWorkflowPreviews';
 import type { SearchWorkflows } from '../parameters/searchWorkflows';
 import type { UpdateWorkflows } from '../parameters/updateWorkflows';
 import type { ValidateUpdateWorkflows } from '../parameters/validateUpdateWorkflows';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /**
  * Returns a workflow and related statuses for a specified workflow id and version number.
@@ -57,6 +57,7 @@ import type { Client, SendRequestOptions } from '#/core';
 export async function readWorkflowFromHistory(
   client: Client,
   parameters: ReadWorkflowFromHistory,
+  options?: RequestOptions,
 ): Promise<WorkflowHistoryReadResponseDTO> {
   const config: SendRequestOptions<WorkflowHistoryReadResponseDTO> = {
     url: '/rest/api/3/workflow/history',
@@ -66,6 +67,7 @@ export async function readWorkflowFromHistory(
       workflowId: parameters.workflowId,
     },
     schema: WorkflowHistoryReadResponseDTOSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -86,6 +88,7 @@ export async function readWorkflowFromHistory(
 export async function listWorkflowHistory(
   client: Client,
   parameters: ListWorkflowHistory,
+  options?: RequestOptions,
 ): Promise<WorkflowHistoryListResponseDTO> {
   const config: SendRequestOptions<WorkflowHistoryListResponseDTO> = {
     url: '/rest/api/3/workflow/history/list',
@@ -97,6 +100,7 @@ export async function listWorkflowHistory(
       workflowId: parameters.workflowId,
     },
     schema: WorkflowHistoryListResponseDTOSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -115,10 +119,15 @@ export async function listWorkflowHistory(
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-export async function deleteInactiveWorkflow(client: Client, parameters: DeleteInactiveWorkflow): Promise<void> {
+export async function deleteInactiveWorkflow(
+  client: Client,
+  parameters: DeleteInactiveWorkflow,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/workflow/${parameters.entityId}`,
     method: 'DELETE',
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -128,6 +137,7 @@ export async function deleteInactiveWorkflow(client: Client, parameters: DeleteI
 export async function getWorkflowProjectIssueTypeUsages(
   client: Client,
   parameters: GetWorkflowProjectIssueTypeUsages,
+  options?: RequestOptions,
 ): Promise<WorkflowProjectIssueTypeUsageDTO> {
   const config: SendRequestOptions<WorkflowProjectIssueTypeUsageDTO> = {
     url: `/rest/api/3/workflow/${parameters.workflowId}/project/${parameters.projectId}/issueTypeUsages`,
@@ -137,6 +147,7 @@ export async function getWorkflowProjectIssueTypeUsages(
       maxResults: parameters.maxResults,
     },
     schema: WorkflowProjectIssueTypeUsageDTOSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -146,6 +157,7 @@ export async function getWorkflowProjectIssueTypeUsages(
 export async function getProjectUsagesForWorkflow(
   client: Client,
   parameters: GetProjectUsagesForWorkflow,
+  options?: RequestOptions,
 ): Promise<WorkflowProjectUsageDTO> {
   const config: SendRequestOptions<WorkflowProjectUsageDTO> = {
     url: `/rest/api/3/workflow/${parameters.workflowId}/projectUsages`,
@@ -155,6 +167,7 @@ export async function getProjectUsagesForWorkflow(
       maxResults: parameters.maxResults,
     },
     schema: WorkflowProjectUsageDTOSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -164,6 +177,7 @@ export async function getProjectUsagesForWorkflow(
 export async function getWorkflowSchemeUsagesForWorkflow(
   client: Client,
   parameters: GetWorkflowSchemeUsagesForWorkflow,
+  options?: RequestOptions,
 ): Promise<WorkflowSchemeUsageDTO> {
   const config: SendRequestOptions<WorkflowSchemeUsageDTO> = {
     url: `/rest/api/3/workflow/${parameters.workflowId}/workflowSchemes`,
@@ -173,6 +187,7 @@ export async function getWorkflowSchemeUsagesForWorkflow(
       maxResults: parameters.maxResults,
     },
     schema: WorkflowSchemeUsageDTOSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -188,7 +203,11 @@ export async function getWorkflowSchemeUsagesForWorkflow(
  * - At least one of the _Administer projects_ and _View (read-only) workflow_ project permissions to access
  *   project-scoped workflows
  */
-export async function readWorkflows(client: Client, parameters: ReadWorkflows): Promise<WorkflowReadResponse> {
+export async function readWorkflows(
+  client: Client,
+  parameters: ReadWorkflows,
+  options?: RequestOptions,
+): Promise<WorkflowReadResponse> {
   const config: SendRequestOptions<WorkflowReadResponse> = {
     url: '/rest/api/3/workflows',
     method: 'POST',
@@ -198,6 +217,7 @@ export async function readWorkflows(client: Client, parameters: ReadWorkflows): 
       workflowNames: parameters.workflowNames,
     },
     schema: WorkflowReadResponseSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -796,6 +816,7 @@ export async function readWorkflows(client: Client, parameters: ReadWorkflows): 
 export async function workflowCapabilities(
   client: Client,
   parameters?: WorkflowCapabilitiesParameters,
+  options?: RequestOptions,
 ): Promise<WorkflowCapabilities> {
   const config: SendRequestOptions<WorkflowCapabilities> = {
     url: '/rest/api/3/workflows/capabilities',
@@ -806,6 +827,7 @@ export async function workflowCapabilities(
       issueTypeId: parameters?.issueTypeId,
     },
     schema: WorkflowCapabilitiesSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -819,7 +841,11 @@ export async function workflowCapabilities(
  * - _Administer Jira_ project permission to create all, including global-scoped, workflows
  * - _Administer projects_ project permissions to create project-scoped workflows
  */
-export async function createWorkflows(client: Client, parameters: CreateWorkflows): Promise<WorkflowCreateResponse> {
+export async function createWorkflows(
+  client: Client,
+  parameters: CreateWorkflows,
+  options?: RequestOptions,
+): Promise<WorkflowCreateResponse> {
   const config: SendRequestOptions<WorkflowCreateResponse> = {
     url: '/rest/api/3/workflows/create',
     method: 'POST',
@@ -829,6 +855,7 @@ export async function createWorkflows(client: Client, parameters: CreateWorkflow
       workflows: parameters.workflows,
     },
     schema: WorkflowCreateResponseSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -845,6 +872,7 @@ export async function createWorkflows(client: Client, parameters: CreateWorkflow
 export async function validateCreateWorkflows(
   client: Client,
   parameters: ValidateCreateWorkflows,
+  options?: RequestOptions,
 ): Promise<WorkflowValidationErrorList> {
   const config: SendRequestOptions<WorkflowValidationErrorList> = {
     url: '/rest/api/3/workflows/create/validation',
@@ -854,17 +882,22 @@ export async function validateCreateWorkflows(
       validationOptions: parameters.validationOptions,
     },
     schema: WorkflowValidationErrorListSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Get the user's default workflow editor. This can be either the new editor or the legacy editor. */
-export async function getDefaultEditor(client: Client): Promise<DefaultWorkflowEditorResponse> {
+export async function getDefaultEditor(
+  client: Client,
+  options?: RequestOptions,
+): Promise<DefaultWorkflowEditorResponse> {
   const config: SendRequestOptions<DefaultWorkflowEditorResponse> = {
     url: '/rest/api/3/workflows/defaultEditor',
     method: 'GET',
     schema: DefaultWorkflowEditorResponseSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -881,6 +914,7 @@ export async function getDefaultEditor(client: Client): Promise<DefaultWorkflowE
 export async function readWorkflowPreviews(
   client: Client,
   parameters: ReadWorkflowPreviews,
+  options?: RequestOptions,
 ): Promise<WorkflowPreviewResponse> {
   const config: SendRequestOptions<WorkflowPreviewResponse> = {
     url: '/rest/api/3/workflows/preview',
@@ -892,6 +926,7 @@ export async function readWorkflowPreviews(
       workflowNames: parameters.workflowNames,
     },
     schema: WorkflowPreviewResponseSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -908,7 +943,11 @@ export async function readWorkflowPreviews(
  * - At least one of the _Administer projects_ and _View (read-only) workflow_ project permissions to access
  *   project-scoped workflows
  */
-export async function searchWorkflows(client: Client, parameters?: SearchWorkflows): Promise<WorkflowSearchResponse> {
+export async function searchWorkflows(
+  client: Client,
+  parameters?: SearchWorkflows,
+  options?: RequestOptions,
+): Promise<WorkflowSearchResponse> {
   const config: SendRequestOptions<WorkflowSearchResponse> = {
     url: '/rest/api/3/workflows/search',
     method: 'GET',
@@ -923,6 +962,7 @@ export async function searchWorkflows(client: Client, parameters?: SearchWorkflo
       projectId: parameters?.projectId,
     },
     schema: WorkflowSearchResponseSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -936,7 +976,11 @@ export async function searchWorkflows(client: Client, parameters?: SearchWorkflo
  * - _Administer Jira_ project permission to create all, including global-scoped, workflows
  * - _Administer projects_ project permissions to create project-scoped workflows
  */
-export async function updateWorkflows(client: Client, parameters: UpdateWorkflows): Promise<WorkflowUpdateResponse> {
+export async function updateWorkflows(
+  client: Client,
+  parameters: UpdateWorkflows,
+  options?: RequestOptions,
+): Promise<WorkflowUpdateResponse> {
   const config: SendRequestOptions<WorkflowUpdateResponse> = {
     url: '/rest/api/3/workflows/update',
     method: 'POST',
@@ -945,6 +989,7 @@ export async function updateWorkflows(client: Client, parameters: UpdateWorkflow
       workflows: parameters.workflows,
     },
     schema: WorkflowUpdateResponseSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -961,6 +1006,7 @@ export async function updateWorkflows(client: Client, parameters: UpdateWorkflow
 export async function validateUpdateWorkflows(
   client: Client,
   parameters: ValidateUpdateWorkflows,
+  options?: RequestOptions,
 ): Promise<WorkflowValidationErrorList> {
   const config: SendRequestOptions<WorkflowValidationErrorList> = {
     url: '/rest/api/3/workflows/update/validation',
@@ -970,6 +1016,7 @@ export async function validateUpdateWorkflows(
       validationOptions: parameters.validationOptions,
     },
     schema: WorkflowValidationErrorListSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

@@ -1,9 +1,13 @@
 import { ObjectListResultSchema, type ObjectListResult } from '../models/objectListResult';
 import type { FindObjects } from '../parameters/findObjects';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /** Find objects using AQL. */
-export async function findObjects(client: Client, parameters?: FindObjects): Promise<ObjectListResult> {
+export async function findObjects(
+  client: Client,
+  parameters?: FindObjects,
+  options?: RequestOptions,
+): Promise<ObjectListResult> {
   const config: SendRequestOptions<ObjectListResult> = {
     url: '/rest/assets/1.0/aql/objects',
     method: 'GET',
@@ -18,6 +22,7 @@ export async function findObjects(client: Client, parameters?: FindObjects): Pro
       includeExtendedInfo: parameters?.includeExtendedInfo,
     },
     schema: ObjectListResultSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

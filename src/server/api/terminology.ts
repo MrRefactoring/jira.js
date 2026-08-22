@@ -1,15 +1,19 @@
 import { TerminologyResponseSchema, type TerminologyResponse } from '../models/terminologyResponse';
 import type { SetTerminologyEntries } from '../parameters/setTerminologyEntries';
 import type { GetTerminologyEntry } from '../parameters/getTerminologyEntry';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 import { z } from 'zod';
 
 /** Returns a list of all defined names for the default words 'epic' and 'sprint' */
-export async function getAllTerminologyEntries(client: Client): Promise<TerminologyResponse[]> {
+export async function getAllTerminologyEntries(
+  client: Client,
+  options?: RequestOptions,
+): Promise<TerminologyResponse[]> {
   const config: SendRequestOptions<TerminologyResponse[]> = {
     url: '/rest/api/2/terminology/entries',
     method: 'GET',
     schema: z.array(TerminologyResponseSchema),
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -23,7 +27,11 @@ export async function getAllTerminologyEntries(client: Client): Promise<Terminol
  * restricted JQL words. To reset {"newName"} to the default value, enter the {"originalName"} value as the value for
  * {"newName"}. For example, if you want to return to {"originalName": "sprint"}, enter {"newName": "sprint"}.
  */
-export async function setTerminologyEntries(client: Client, parameters: SetTerminologyEntries): Promise<unknown> {
+export async function setTerminologyEntries(
+  client: Client,
+  parameters: SetTerminologyEntries,
+  options?: RequestOptions,
+): Promise<unknown> {
   const config: SendRequestOptions<unknown> = {
     url: '/rest/api/2/terminology/entries',
     method: 'POST',
@@ -32,6 +40,7 @@ export async function setTerminologyEntries(client: Client, parameters: SetTermi
       newNamePlural: parameters.newNamePlural,
       originalName: parameters.originalName,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -41,11 +50,13 @@ export async function setTerminologyEntries(client: Client, parameters: SetTermi
 export async function getTerminologyEntry(
   client: Client,
   parameters: GetTerminologyEntry,
+  options?: RequestOptions,
 ): Promise<TerminologyResponse> {
   const config: SendRequestOptions<TerminologyResponse> = {
     url: `/rest/api/2/terminology/entries/${parameters.originalName}`,
     method: 'GET',
     schema: TerminologyResponseSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

@@ -1,4 +1,4 @@
-import { type ClientConfig, type Client, createClient } from '#/core';
+import { type ClientConfig, type Client, type RequestOptions, createClient } from '#/core';
 import * as backlog from './api/backlog';
 import * as board from './api/board';
 import * as epic from './api/epic';
@@ -163,202 +163,271 @@ export function createAgileClient(clientConfig: ClientConfig | Client) {
 
   return {
     backlog: {
-      moveIssuesToBacklog: (parameters: MoveIssuesToBacklog): Promise<void> =>
-        backlog.moveIssuesToBacklog(client, parameters),
-      moveIssuesToBacklogForBoard: (parameters: MoveIssuesToBacklogForBoard): Promise<void> =>
-        backlog.moveIssuesToBacklogForBoard(client, parameters),
+      moveIssuesToBacklog: (parameters: MoveIssuesToBacklog, options?: RequestOptions): Promise<void> =>
+        backlog.moveIssuesToBacklog(client, parameters, options),
+      moveIssuesToBacklogForBoard: (parameters: MoveIssuesToBacklogForBoard, options?: RequestOptions): Promise<void> =>
+        backlog.moveIssuesToBacklogForBoard(client, parameters, options),
     },
     board: {
-      getAllBoards: (parameters?: GetAllBoards): Promise<Page<Board>> => board.getAllBoards(client, parameters),
-      createBoard: (parameters: CreateBoard): Promise<Board> => board.createBoard(client, parameters),
-      getBoardByFilterId: (parameters: GetBoardByFilterId): Promise<Page<BoardFilter>> =>
-        board.getBoardByFilterId(client, parameters),
-      getBoard: (parameters: GetBoard): Promise<Board> => board.getBoard(client, parameters),
-      deleteBoard: (parameters: DeleteBoard): Promise<void> => board.deleteBoard(client, parameters),
-      getIssuesForBacklog: (parameters: GetIssuesForBacklog): Promise<SoftwareIssueResults> =>
-        board.getIssuesForBacklog(client, parameters),
-      getApproximateIssueCountForBacklog: (parameters: GetApproximateIssueCountForBacklog): Promise<IssueCount> =>
-        board.getApproximateIssueCountForBacklog(client, parameters),
-      getConfiguration: (parameters: GetConfiguration): Promise<GetConfigurationModel> =>
-        board.getConfiguration(client, parameters),
-      getEpics: (parameters: GetEpics): Promise<GetEpicsModel> => board.getEpics(client, parameters),
-      getIssuesWithoutEpicForBoard: (parameters: GetIssuesWithoutEpicForBoard): Promise<SoftwareIssueResults> =>
-        board.getIssuesWithoutEpicForBoard(client, parameters),
-      getBoardIssuesForEpic: (parameters: GetBoardIssuesForEpic): Promise<SoftwareIssueResults> =>
-        board.getBoardIssuesForEpic(client, parameters),
-      getFeaturesForBoard: (parameters: GetFeaturesForBoard): Promise<GetFeaturesForBoardModel> =>
-        board.getFeaturesForBoard(client, parameters),
-      toggleFeatures: (parameters: ToggleFeatures): Promise<ToggleFeaturesModel> =>
-        board.toggleFeatures(client, parameters),
-      moveIssuesToBoard: (parameters: MoveIssuesToBoard): Promise<void> => board.moveIssuesToBoard(client, parameters),
-      getIssuesForBoard: (parameters: GetIssuesForBoard): Promise<SoftwareIssueResults> =>
-        board.getIssuesForBoard(client, parameters),
-      getApproximateIssueCountForBoard: (parameters: GetApproximateIssueCountForBoard): Promise<IssueCount> =>
-        board.getApproximateIssueCountForBoard(client, parameters),
-      getProjects: (parameters: GetProjects): Promise<GetProjectsModel> => board.getProjects(client, parameters),
-      getProjectsFull: (parameters: GetProjectsFull): Promise<GetProjectsFullModel> =>
-        board.getProjectsFull(client, parameters),
-      getBoardPropertyKeys: (parameters: GetBoardPropertyKeys): Promise<PropertyKeys> =>
-        board.getBoardPropertyKeys(client, parameters),
-      getBoardProperty: (parameters: GetBoardProperty): Promise<EntityProperty> =>
-        board.getBoardProperty(client, parameters),
-      setBoardProperty: (parameters: SetBoardProperty): Promise<void> => board.setBoardProperty(client, parameters),
-      deleteBoardProperty: (parameters: DeleteBoardProperty): Promise<void> =>
-        board.deleteBoardProperty(client, parameters),
-      getAllQuickFilters: (parameters: GetAllQuickFilters): Promise<Page<QuickFilter>> =>
-        board.getAllQuickFilters(client, parameters),
-      getQuickFilter: (parameters: GetQuickFilter): Promise<QuickFilter> => board.getQuickFilter(client, parameters),
-      getReportsForBoard: (parameters: GetReportsForBoard): Promise<GetReportsForBoardModel> =>
-        board.getReportsForBoard(client, parameters),
-      getAllSprints: (parameters: GetAllSprints): Promise<GetAllSprintsModel> =>
-        board.getAllSprints(client, parameters),
-      getBoardIssuesForSprint: (parameters: GetBoardIssuesForSprint): Promise<SoftwareIssueResults> =>
-        board.getBoardIssuesForSprint(client, parameters),
-      getAllVersions: (parameters: GetAllVersions): Promise<GetAllVersionsModel> =>
-        board.getAllVersions(client, parameters),
+      getAllBoards: (parameters?: GetAllBoards, options?: RequestOptions): Promise<Page<Board>> =>
+        board.getAllBoards(client, parameters, options),
+      createBoard: (parameters: CreateBoard, options?: RequestOptions): Promise<Board> =>
+        board.createBoard(client, parameters, options),
+      getBoardByFilterId: (parameters: GetBoardByFilterId, options?: RequestOptions): Promise<Page<BoardFilter>> =>
+        board.getBoardByFilterId(client, parameters, options),
+      getBoard: (parameters: GetBoard, options?: RequestOptions): Promise<Board> =>
+        board.getBoard(client, parameters, options),
+      deleteBoard: (parameters: DeleteBoard, options?: RequestOptions): Promise<void> =>
+        board.deleteBoard(client, parameters, options),
+      getIssuesForBacklog: (parameters: GetIssuesForBacklog, options?: RequestOptions): Promise<SoftwareIssueResults> =>
+        board.getIssuesForBacklog(client, parameters, options),
+      getApproximateIssueCountForBacklog: (
+        parameters: GetApproximateIssueCountForBacklog,
+        options?: RequestOptions,
+      ): Promise<IssueCount> => board.getApproximateIssueCountForBacklog(client, parameters, options),
+      getConfiguration: (parameters: GetConfiguration, options?: RequestOptions): Promise<GetConfigurationModel> =>
+        board.getConfiguration(client, parameters, options),
+      getEpics: (parameters: GetEpics, options?: RequestOptions): Promise<GetEpicsModel> =>
+        board.getEpics(client, parameters, options),
+      getIssuesWithoutEpicForBoard: (
+        parameters: GetIssuesWithoutEpicForBoard,
+        options?: RequestOptions,
+      ): Promise<SoftwareIssueResults> => board.getIssuesWithoutEpicForBoard(client, parameters, options),
+      getBoardIssuesForEpic: (
+        parameters: GetBoardIssuesForEpic,
+        options?: RequestOptions,
+      ): Promise<SoftwareIssueResults> => board.getBoardIssuesForEpic(client, parameters, options),
+      getFeaturesForBoard: (
+        parameters: GetFeaturesForBoard,
+        options?: RequestOptions,
+      ): Promise<GetFeaturesForBoardModel> => board.getFeaturesForBoard(client, parameters, options),
+      toggleFeatures: (parameters: ToggleFeatures, options?: RequestOptions): Promise<ToggleFeaturesModel> =>
+        board.toggleFeatures(client, parameters, options),
+      moveIssuesToBoard: (parameters: MoveIssuesToBoard, options?: RequestOptions): Promise<void> =>
+        board.moveIssuesToBoard(client, parameters, options),
+      getIssuesForBoard: (parameters: GetIssuesForBoard, options?: RequestOptions): Promise<SoftwareIssueResults> =>
+        board.getIssuesForBoard(client, parameters, options),
+      getApproximateIssueCountForBoard: (
+        parameters: GetApproximateIssueCountForBoard,
+        options?: RequestOptions,
+      ): Promise<IssueCount> => board.getApproximateIssueCountForBoard(client, parameters, options),
+      getProjects: (parameters: GetProjects, options?: RequestOptions): Promise<GetProjectsModel> =>
+        board.getProjects(client, parameters, options),
+      getProjectsFull: (parameters: GetProjectsFull, options?: RequestOptions): Promise<GetProjectsFullModel> =>
+        board.getProjectsFull(client, parameters, options),
+      getBoardPropertyKeys: (parameters: GetBoardPropertyKeys, options?: RequestOptions): Promise<PropertyKeys> =>
+        board.getBoardPropertyKeys(client, parameters, options),
+      getBoardProperty: (parameters: GetBoardProperty, options?: RequestOptions): Promise<EntityProperty> =>
+        board.getBoardProperty(client, parameters, options),
+      setBoardProperty: (parameters: SetBoardProperty, options?: RequestOptions): Promise<void> =>
+        board.setBoardProperty(client, parameters, options),
+      deleteBoardProperty: (parameters: DeleteBoardProperty, options?: RequestOptions): Promise<void> =>
+        board.deleteBoardProperty(client, parameters, options),
+      getAllQuickFilters: (parameters: GetAllQuickFilters, options?: RequestOptions): Promise<Page<QuickFilter>> =>
+        board.getAllQuickFilters(client, parameters, options),
+      getQuickFilter: (parameters: GetQuickFilter, options?: RequestOptions): Promise<QuickFilter> =>
+        board.getQuickFilter(client, parameters, options),
+      getReportsForBoard: (
+        parameters: GetReportsForBoard,
+        options?: RequestOptions,
+      ): Promise<GetReportsForBoardModel> => board.getReportsForBoard(client, parameters, options),
+      getAllSprints: (parameters: GetAllSprints, options?: RequestOptions): Promise<GetAllSprintsModel> =>
+        board.getAllSprints(client, parameters, options),
+      getBoardIssuesForSprint: (
+        parameters: GetBoardIssuesForSprint,
+        options?: RequestOptions,
+      ): Promise<SoftwareIssueResults> => board.getBoardIssuesForSprint(client, parameters, options),
+      getAllVersions: (parameters: GetAllVersions, options?: RequestOptions): Promise<GetAllVersionsModel> =>
+        board.getAllVersions(client, parameters, options),
     },
     epic: {
-      removeIssuesFromEpic: (parameters: RemoveIssuesFromEpic): Promise<void> =>
-        epic.removeIssuesFromEpic(client, parameters),
-      getIssuesWithoutEpic: (parameters?: GetIssuesWithoutEpic): Promise<SoftwareIssueResults> =>
-        epic.getIssuesWithoutEpic(client, parameters),
-      getEpic: (parameters: GetEpic): Promise<Epic> => epic.getEpic(client, parameters),
-      partiallyUpdateEpic: (parameters: PartiallyUpdateEpic): Promise<Epic> =>
-        epic.partiallyUpdateEpic(client, parameters),
-      moveIssuesToEpic: (parameters: MoveIssuesToEpic): Promise<void> => epic.moveIssuesToEpic(client, parameters),
-      getIssuesForEpic: (parameters: GetIssuesForEpic): Promise<SoftwareIssueResults> =>
-        epic.getIssuesForEpic(client, parameters),
-      rankEpics: (parameters: RankEpics): Promise<void> => epic.rankEpics(client, parameters),
+      removeIssuesFromEpic: (parameters: RemoveIssuesFromEpic, options?: RequestOptions): Promise<void> =>
+        epic.removeIssuesFromEpic(client, parameters, options),
+      getIssuesWithoutEpic: (
+        parameters?: GetIssuesWithoutEpic,
+        options?: RequestOptions,
+      ): Promise<SoftwareIssueResults> => epic.getIssuesWithoutEpic(client, parameters, options),
+      getEpic: (parameters: GetEpic, options?: RequestOptions): Promise<Epic> =>
+        epic.getEpic(client, parameters, options),
+      partiallyUpdateEpic: (parameters: PartiallyUpdateEpic, options?: RequestOptions): Promise<Epic> =>
+        epic.partiallyUpdateEpic(client, parameters, options),
+      moveIssuesToEpic: (parameters: MoveIssuesToEpic, options?: RequestOptions): Promise<void> =>
+        epic.moveIssuesToEpic(client, parameters, options),
+      getIssuesForEpic: (parameters: GetIssuesForEpic, options?: RequestOptions): Promise<SoftwareIssueResults> =>
+        epic.getIssuesForEpic(client, parameters, options),
+      rankEpics: (parameters: RankEpics, options?: RequestOptions): Promise<void> =>
+        epic.rankEpics(client, parameters, options),
     },
     issue: {
-      rankIssues: (parameters: RankIssues): Promise<void> => issue.rankIssues(client, parameters),
-      getIssue: (parameters: GetIssue): Promise<Issue> => issue.getIssue(client, parameters),
-      getIssueEstimationForBoard: (parameters: GetIssueEstimationForBoard): Promise<GetIssueEstimationForBoardModel> =>
-        issue.getIssueEstimationForBoard(client, parameters),
-      estimateIssueForBoard: (parameters: EstimateIssueForBoard): Promise<EstimateIssueForBoardModel> =>
-        issue.estimateIssueForBoard(client, parameters),
+      rankIssues: (parameters: RankIssues, options?: RequestOptions): Promise<void> =>
+        issue.rankIssues(client, parameters, options),
+      getIssue: (parameters: GetIssue, options?: RequestOptions): Promise<Issue> =>
+        issue.getIssue(client, parameters, options),
+      getIssueEstimationForBoard: (
+        parameters: GetIssueEstimationForBoard,
+        options?: RequestOptions,
+      ): Promise<GetIssueEstimationForBoardModel> => issue.getIssueEstimationForBoard(client, parameters, options),
+      estimateIssueForBoard: (
+        parameters: EstimateIssueForBoard,
+        options?: RequestOptions,
+      ): Promise<EstimateIssueForBoardModel> => issue.estimateIssueForBoard(client, parameters, options),
     },
     sprint: {
-      createSprint: (parameters: CreateSprint): Promise<Sprint> => sprint.createSprint(client, parameters),
-      getSprint: (parameters: GetSprint): Promise<Sprint> => sprint.getSprint(client, parameters),
-      partiallyUpdateSprint: (parameters: PartiallyUpdateSprint): Promise<Sprint> =>
-        sprint.partiallyUpdateSprint(client, parameters),
-      updateSprint: (parameters: UpdateSprint): Promise<Sprint> => sprint.updateSprint(client, parameters),
-      deleteSprint: (parameters: DeleteSprint): Promise<void> => sprint.deleteSprint(client, parameters),
-      moveIssuesToSprintAndRank: (parameters: MoveIssuesToSprintAndRank): Promise<void> =>
-        sprint.moveIssuesToSprintAndRank(client, parameters),
-      getIssuesForSprint: (parameters: GetIssuesForSprint): Promise<SoftwareIssueResults> =>
-        sprint.getIssuesForSprint(client, parameters),
-      getPropertiesKeys: (parameters: GetPropertiesKeys): Promise<PropertyKeys> =>
-        sprint.getPropertiesKeys(client, parameters),
-      getProperty: (parameters: GetProperty): Promise<EntityProperty> => sprint.getProperty(client, parameters),
-      setProperty: (parameters: SetProperty): Promise<void> => sprint.setProperty(client, parameters),
-      deleteProperty: (parameters: DeleteProperty): Promise<void> => sprint.deleteProperty(client, parameters),
-      swapSprint: (parameters: SwapSprint): Promise<void> => sprint.swapSprint(client, parameters),
+      createSprint: (parameters: CreateSprint, options?: RequestOptions): Promise<Sprint> =>
+        sprint.createSprint(client, parameters, options),
+      getSprint: (parameters: GetSprint, options?: RequestOptions): Promise<Sprint> =>
+        sprint.getSprint(client, parameters, options),
+      partiallyUpdateSprint: (parameters: PartiallyUpdateSprint, options?: RequestOptions): Promise<Sprint> =>
+        sprint.partiallyUpdateSprint(client, parameters, options),
+      updateSprint: (parameters: UpdateSprint, options?: RequestOptions): Promise<Sprint> =>
+        sprint.updateSprint(client, parameters, options),
+      deleteSprint: (parameters: DeleteSprint, options?: RequestOptions): Promise<void> =>
+        sprint.deleteSprint(client, parameters, options),
+      moveIssuesToSprintAndRank: (parameters: MoveIssuesToSprintAndRank, options?: RequestOptions): Promise<void> =>
+        sprint.moveIssuesToSprintAndRank(client, parameters, options),
+      getIssuesForSprint: (parameters: GetIssuesForSprint, options?: RequestOptions): Promise<SoftwareIssueResults> =>
+        sprint.getIssuesForSprint(client, parameters, options),
+      getPropertiesKeys: (parameters: GetPropertiesKeys, options?: RequestOptions): Promise<PropertyKeys> =>
+        sprint.getPropertiesKeys(client, parameters, options),
+      getProperty: (parameters: GetProperty, options?: RequestOptions): Promise<EntityProperty> =>
+        sprint.getProperty(client, parameters, options),
+      setProperty: (parameters: SetProperty, options?: RequestOptions): Promise<void> =>
+        sprint.setProperty(client, parameters, options),
+      deleteProperty: (parameters: DeleteProperty, options?: RequestOptions): Promise<void> =>
+        sprint.deleteProperty(client, parameters, options),
+      swapSprint: (parameters: SwapSprint, options?: RequestOptions): Promise<void> =>
+        sprint.swapSprint(client, parameters, options),
     },
     developmentInformation: {
       storeDevelopmentInformation: (
         parameters: StoreDevelopmentInformation,
+        options?: RequestOptions,
       ): Promise<StoreDevelopmentInformationModel> =>
-        developmentInformation.storeDevelopmentInformation(client, parameters),
-      getRepository: (parameters: GetRepository): Promise<GetRepositoryModel> =>
-        developmentInformation.getRepository(client, parameters),
-      deleteRepository: (parameters: DeleteRepository): Promise<void> =>
-        developmentInformation.deleteRepository(client, parameters),
-      deleteByProperties: (parameters: DeleteByProperties): Promise<void> =>
-        developmentInformation.deleteByProperties(client, parameters),
-      existsByProperties: (parameters?: ExistsByProperties): Promise<ExistsByPropertiesModel> =>
-        developmentInformation.existsByProperties(client, parameters),
-      deleteEntity: (parameters: DeleteEntity): Promise<void> =>
-        developmentInformation.deleteEntity(client, parameters),
+        developmentInformation.storeDevelopmentInformation(client, parameters, options),
+      getRepository: (parameters: GetRepository, options?: RequestOptions): Promise<GetRepositoryModel> =>
+        developmentInformation.getRepository(client, parameters, options),
+      deleteRepository: (parameters: DeleteRepository, options?: RequestOptions): Promise<void> =>
+        developmentInformation.deleteRepository(client, parameters, options),
+      deleteByProperties: (parameters: DeleteByProperties, options?: RequestOptions): Promise<void> =>
+        developmentInformation.deleteByProperties(client, parameters, options),
+      existsByProperties: (
+        parameters?: ExistsByProperties,
+        options?: RequestOptions,
+      ): Promise<ExistsByPropertiesModel> => developmentInformation.existsByProperties(client, parameters, options),
+      deleteEntity: (parameters: DeleteEntity, options?: RequestOptions): Promise<void> =>
+        developmentInformation.deleteEntity(client, parameters, options),
     },
     featureFlags: {
-      submitFeatureFlags: (parameters: SubmitFeatureFlags): Promise<SubmitFeatureFlagsModel> =>
-        featureFlags.submitFeatureFlags(client, parameters),
-      deleteFeatureFlagsByProperty: (parameters: DeleteFeatureFlagsByProperty): Promise<void> =>
-        featureFlags.deleteFeatureFlagsByProperty(client, parameters),
-      getFeatureFlagById: (parameters: GetFeatureFlagById): Promise<GetFeatureFlagByIdModel> =>
-        featureFlags.getFeatureFlagById(client, parameters),
-      deleteFeatureFlagById: (parameters: DeleteFeatureFlagById): Promise<void> =>
-        featureFlags.deleteFeatureFlagById(client, parameters),
+      submitFeatureFlags: (
+        parameters: SubmitFeatureFlags,
+        options?: RequestOptions,
+      ): Promise<SubmitFeatureFlagsModel> => featureFlags.submitFeatureFlags(client, parameters, options),
+      deleteFeatureFlagsByProperty: (
+        parameters: DeleteFeatureFlagsByProperty,
+        options?: RequestOptions,
+      ): Promise<void> => featureFlags.deleteFeatureFlagsByProperty(client, parameters, options),
+      getFeatureFlagById: (
+        parameters: GetFeatureFlagById,
+        options?: RequestOptions,
+      ): Promise<GetFeatureFlagByIdModel> => featureFlags.getFeatureFlagById(client, parameters, options),
+      deleteFeatureFlagById: (parameters: DeleteFeatureFlagById, options?: RequestOptions): Promise<void> =>
+        featureFlags.deleteFeatureFlagById(client, parameters, options),
     },
     deployments: {
-      submitDeployments: (parameters: SubmitDeployments): Promise<SubmitDeploymentsModel> =>
-        deployments.submitDeployments(client, parameters),
-      deleteDeploymentsByProperty: (parameters: DeleteDeploymentsByProperty): Promise<void> =>
-        deployments.deleteDeploymentsByProperty(client, parameters),
-      getDeploymentByKey: (parameters: GetDeploymentByKey): Promise<GetDeploymentByKeyModel> =>
-        deployments.getDeploymentByKey(client, parameters),
-      deleteDeploymentByKey: (parameters: DeleteDeploymentByKey): Promise<void> =>
-        deployments.deleteDeploymentByKey(client, parameters),
+      submitDeployments: (parameters: SubmitDeployments, options?: RequestOptions): Promise<SubmitDeploymentsModel> =>
+        deployments.submitDeployments(client, parameters, options),
+      deleteDeploymentsByProperty: (parameters: DeleteDeploymentsByProperty, options?: RequestOptions): Promise<void> =>
+        deployments.deleteDeploymentsByProperty(client, parameters, options),
+      getDeploymentByKey: (
+        parameters: GetDeploymentByKey,
+        options?: RequestOptions,
+      ): Promise<GetDeploymentByKeyModel> => deployments.getDeploymentByKey(client, parameters, options),
+      deleteDeploymentByKey: (parameters: DeleteDeploymentByKey, options?: RequestOptions): Promise<void> =>
+        deployments.deleteDeploymentByKey(client, parameters, options),
       getDeploymentGatingStatusByKey: (
         parameters: GetDeploymentGatingStatusByKey,
-      ): Promise<GetDeploymentGatingStatusByKeyModel> => deployments.getDeploymentGatingStatusByKey(client, parameters),
+        options?: RequestOptions,
+      ): Promise<GetDeploymentGatingStatusByKeyModel> =>
+        deployments.getDeploymentGatingStatusByKey(client, parameters, options),
     },
     builds: {
-      submitBuilds: (parameters: SubmitBuilds): Promise<SubmitBuildsModel> => builds.submitBuilds(client, parameters),
-      deleteBuildsByProperty: (parameters: DeleteBuildsByProperty): Promise<void> =>
-        builds.deleteBuildsByProperty(client, parameters),
-      getBuildByKey: (parameters: GetBuildByKey): Promise<GetBuildByKeyModel> =>
-        builds.getBuildByKey(client, parameters),
-      deleteBuildByKey: (parameters: DeleteBuildByKey): Promise<void> => builds.deleteBuildByKey(client, parameters),
+      submitBuilds: (parameters: SubmitBuilds, options?: RequestOptions): Promise<SubmitBuildsModel> =>
+        builds.submitBuilds(client, parameters, options),
+      deleteBuildsByProperty: (parameters: DeleteBuildsByProperty, options?: RequestOptions): Promise<void> =>
+        builds.deleteBuildsByProperty(client, parameters, options),
+      getBuildByKey: (parameters: GetBuildByKey, options?: RequestOptions): Promise<GetBuildByKeyModel> =>
+        builds.getBuildByKey(client, parameters, options),
+      deleteBuildByKey: (parameters: DeleteBuildByKey, options?: RequestOptions): Promise<void> =>
+        builds.deleteBuildByKey(client, parameters, options),
     },
     remoteLinks: {
-      submitRemoteLinks: (parameters: SubmitRemoteLinks): Promise<SubmitRemoteLinksModel> =>
-        remoteLinks.submitRemoteLinks(client, parameters),
-      deleteRemoteLinksByProperty: (parameters: DeleteRemoteLinksByProperty): Promise<void> =>
-        remoteLinks.deleteRemoteLinksByProperty(client, parameters),
-      getRemoteLinkById: (parameters: GetRemoteLinkById): Promise<GetRemoteLinkByIdModel> =>
-        remoteLinks.getRemoteLinkById(client, parameters),
-      deleteRemoteLinkById: (parameters: DeleteRemoteLinkById): Promise<void> =>
-        remoteLinks.deleteRemoteLinkById(client, parameters),
+      submitRemoteLinks: (parameters: SubmitRemoteLinks, options?: RequestOptions): Promise<SubmitRemoteLinksModel> =>
+        remoteLinks.submitRemoteLinks(client, parameters, options),
+      deleteRemoteLinksByProperty: (parameters: DeleteRemoteLinksByProperty, options?: RequestOptions): Promise<void> =>
+        remoteLinks.deleteRemoteLinksByProperty(client, parameters, options),
+      getRemoteLinkById: (parameters: GetRemoteLinkById, options?: RequestOptions): Promise<GetRemoteLinkByIdModel> =>
+        remoteLinks.getRemoteLinkById(client, parameters, options),
+      deleteRemoteLinkById: (parameters: DeleteRemoteLinkById, options?: RequestOptions): Promise<void> =>
+        remoteLinks.deleteRemoteLinkById(client, parameters, options),
     },
     securityInformation: {
-      submitWorkspaces: (parameters: SubmitWorkspaces): Promise<void> =>
-        securityInformation.submitWorkspaces(client, parameters),
-      deleteLinkedWorkspaces: (parameters: DeleteLinkedWorkspaces): Promise<void> =>
-        securityInformation.deleteLinkedWorkspaces(client, parameters),
-      getLinkedWorkspaces: (): Promise<GetLinkedWorkspaces> => securityInformation.getLinkedWorkspaces(client),
-      getLinkedWorkspaceById: (parameters: GetLinkedWorkspaceById): Promise<GetLinkedWorkspaceByIdModel> =>
-        securityInformation.getLinkedWorkspaceById(client, parameters),
-      submitVulnerabilities: (parameters: SubmitVulnerabilities): Promise<SubmitVulnerabilitiesModel> =>
-        securityInformation.submitVulnerabilities(client, parameters),
-      deleteVulnerabilitiesByProperty: (parameters: DeleteVulnerabilitiesByProperty): Promise<void> =>
-        securityInformation.deleteVulnerabilitiesByProperty(client, parameters),
-      getVulnerabilityById: (parameters: GetVulnerabilityById): Promise<GetVulnerabilityByIdModel> =>
-        securityInformation.getVulnerabilityById(client, parameters),
-      deleteVulnerabilityById: (parameters: DeleteVulnerabilityById): Promise<void> =>
-        securityInformation.deleteVulnerabilityById(client, parameters),
+      submitWorkspaces: (parameters: SubmitWorkspaces, options?: RequestOptions): Promise<void> =>
+        securityInformation.submitWorkspaces(client, parameters, options),
+      deleteLinkedWorkspaces: (parameters: DeleteLinkedWorkspaces, options?: RequestOptions): Promise<void> =>
+        securityInformation.deleteLinkedWorkspaces(client, parameters, options),
+      getLinkedWorkspaces: (options?: RequestOptions): Promise<GetLinkedWorkspaces> =>
+        securityInformation.getLinkedWorkspaces(client, options),
+      getLinkedWorkspaceById: (
+        parameters: GetLinkedWorkspaceById,
+        options?: RequestOptions,
+      ): Promise<GetLinkedWorkspaceByIdModel> =>
+        securityInformation.getLinkedWorkspaceById(client, parameters, options),
+      submitVulnerabilities: (
+        parameters: SubmitVulnerabilities,
+        options?: RequestOptions,
+      ): Promise<SubmitVulnerabilitiesModel> => securityInformation.submitVulnerabilities(client, parameters, options),
+      deleteVulnerabilitiesByProperty: (
+        parameters: DeleteVulnerabilitiesByProperty,
+        options?: RequestOptions,
+      ): Promise<void> => securityInformation.deleteVulnerabilitiesByProperty(client, parameters, options),
+      getVulnerabilityById: (
+        parameters: GetVulnerabilityById,
+        options?: RequestOptions,
+      ): Promise<GetVulnerabilityByIdModel> => securityInformation.getVulnerabilityById(client, parameters, options),
+      deleteVulnerabilityById: (parameters: DeleteVulnerabilityById, options?: RequestOptions): Promise<void> =>
+        securityInformation.deleteVulnerabilityById(client, parameters, options),
     },
     operations: {
-      submitOperationsWorkspaces: (parameters: SubmitOperationsWorkspaces): Promise<SubmitOperationsWorkspacesModel> =>
-        operations.submitOperationsWorkspaces(client, parameters),
-      deleteWorkspaces: (parameters: DeleteWorkspaces): Promise<void> =>
-        operations.deleteWorkspaces(client, parameters),
-      getWorkspaces: (parameters?: GetWorkspaces): Promise<GetWorkspacesModel> =>
-        operations.getWorkspaces(client, parameters),
-      submitEntity: (parameters: SubmitEntity): Promise<SubmitEntityModel> =>
-        operations.submitEntity(client, parameters),
-      deleteEntityByProperty: (parameters: DeleteEntityByProperty): Promise<void> =>
-        operations.deleteEntityByProperty(client, parameters),
-      getIncidentById: (parameters: GetIncidentById): Promise<GetIncidentByIdModel> =>
-        operations.getIncidentById(client, parameters),
-      deleteIncidentById: (parameters: DeleteIncidentById): Promise<void> =>
-        operations.deleteIncidentById(client, parameters),
-      getReviewById: (parameters: GetReviewById): Promise<GetReviewByIdModel> =>
-        operations.getReviewById(client, parameters),
-      deleteReviewById: (parameters: DeleteReviewById): Promise<void> =>
-        operations.deleteReviewById(client, parameters),
+      submitOperationsWorkspaces: (
+        parameters: SubmitOperationsWorkspaces,
+        options?: RequestOptions,
+      ): Promise<SubmitOperationsWorkspacesModel> => operations.submitOperationsWorkspaces(client, parameters, options),
+      deleteWorkspaces: (parameters: DeleteWorkspaces, options?: RequestOptions): Promise<void> =>
+        operations.deleteWorkspaces(client, parameters, options),
+      getWorkspaces: (parameters?: GetWorkspaces, options?: RequestOptions): Promise<GetWorkspacesModel> =>
+        operations.getWorkspaces(client, parameters, options),
+      submitEntity: (parameters: SubmitEntity, options?: RequestOptions): Promise<SubmitEntityModel> =>
+        operations.submitEntity(client, parameters, options),
+      deleteEntityByProperty: (parameters: DeleteEntityByProperty, options?: RequestOptions): Promise<void> =>
+        operations.deleteEntityByProperty(client, parameters, options),
+      getIncidentById: (parameters: GetIncidentById, options?: RequestOptions): Promise<GetIncidentByIdModel> =>
+        operations.getIncidentById(client, parameters, options),
+      deleteIncidentById: (parameters: DeleteIncidentById, options?: RequestOptions): Promise<void> =>
+        operations.deleteIncidentById(client, parameters, options),
+      getReviewById: (parameters: GetReviewById, options?: RequestOptions): Promise<GetReviewByIdModel> =>
+        operations.getReviewById(client, parameters, options),
+      deleteReviewById: (parameters: DeleteReviewById, options?: RequestOptions): Promise<void> =>
+        operations.deleteReviewById(client, parameters, options),
     },
     devopsComponents: {
-      submitComponents: (parameters: SubmitComponents): Promise<SubmitComponentsModel> =>
-        devopsComponents.submitComponents(client, parameters),
-      deleteComponentsByProperty: (parameters: DeleteComponentsByProperty): Promise<void> =>
-        devopsComponents.deleteComponentsByProperty(client, parameters),
-      getComponentById: (parameters: GetComponentById): Promise<GetComponentByIdModel> =>
-        devopsComponents.getComponentById(client, parameters),
-      deleteComponentById: (parameters: DeleteComponentById): Promise<void> =>
-        devopsComponents.deleteComponentById(client, parameters),
+      submitComponents: (parameters: SubmitComponents, options?: RequestOptions): Promise<SubmitComponentsModel> =>
+        devopsComponents.submitComponents(client, parameters, options),
+      deleteComponentsByProperty: (parameters: DeleteComponentsByProperty, options?: RequestOptions): Promise<void> =>
+        devopsComponents.deleteComponentsByProperty(client, parameters, options),
+      getComponentById: (parameters: GetComponentById, options?: RequestOptions): Promise<GetComponentByIdModel> =>
+        devopsComponents.getComponentById(client, parameters, options),
+      deleteComponentById: (parameters: DeleteComponentById, options?: RequestOptions): Promise<void> =>
+        devopsComponents.deleteComponentById(client, parameters, options),
     },
   };
 }

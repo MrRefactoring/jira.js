@@ -6,21 +6,26 @@ import type { GetIssueLinkType } from '../parameters/getIssueLinkType';
 import type { UpdateIssueLinkType } from '../parameters/updateIssueLinkType';
 import type { DeleteIssueLinkType } from '../parameters/deleteIssueLinkType';
 import type { MoveIssueLinkType } from '../parameters/moveIssueLinkType';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /** Returns a list of available issue link types, if issue linking is enabled. */
-export async function getIssueLinkTypes(client: Client): Promise<IssueLinkTypes> {
+export async function getIssueLinkTypes(client: Client, options?: RequestOptions): Promise<IssueLinkTypes> {
   const config: SendRequestOptions<IssueLinkTypes> = {
     url: '/rest/api/2/issueLinkType',
     method: 'GET',
     schema: IssueLinkTypesSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Create a new issue link type. */
-export async function createIssueLinkType(client: Client, parameters: CreateIssueLinkType): Promise<IssueLinkTypeJson> {
+export async function createIssueLinkType(
+  client: Client,
+  parameters: CreateIssueLinkType,
+  options?: RequestOptions,
+): Promise<IssueLinkTypeJson> {
   const config: SendRequestOptions<IssueLinkTypeJson> = {
     url: '/rest/api/2/issueLinkType',
     method: 'POST',
@@ -32,6 +37,7 @@ export async function createIssueLinkType(client: Client, parameters: CreateIssu
       self: parameters.self,
     },
     schema: IssueLinkTypeJsonSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -42,7 +48,11 @@ export async function createIssueLinkType(client: Client, parameters: CreateIssu
  *
  * Available since Jira Data Center 10.4.
  */
-export async function resetOrder(client: Client, parameters: ResetOrder): Promise<IssueLinkTypes> {
+export async function resetOrder(
+  client: Client,
+  parameters: ResetOrder,
+  options?: RequestOptions,
+): Promise<IssueLinkTypes> {
   const config: SendRequestOptions<IssueLinkTypes> = {
     url: '/rest/api/2/issueLinkType/order',
     method: 'PUT',
@@ -50,24 +60,34 @@ export async function resetOrder(client: Client, parameters: ResetOrder): Promis
       direction: parameters.direction,
     },
     schema: IssueLinkTypesSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Returns for a given issue link type id all information about this issue link type. */
-export async function getIssueLinkType(client: Client, parameters: GetIssueLinkType): Promise<IssueLinkTypeJson> {
+export async function getIssueLinkType(
+  client: Client,
+  parameters: GetIssueLinkType,
+  options?: RequestOptions,
+): Promise<IssueLinkTypeJson> {
   const config: SendRequestOptions<IssueLinkTypeJson> = {
     url: `/rest/api/2/issueLinkType/${parameters.issueLinkTypeId}`,
     method: 'GET',
     schema: IssueLinkTypeJsonSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Update the specified issue link type. */
-export async function updateIssueLinkType(client: Client, parameters: UpdateIssueLinkType): Promise<IssueLinkTypeJson> {
+export async function updateIssueLinkType(
+  client: Client,
+  parameters: UpdateIssueLinkType,
+  options?: RequestOptions,
+): Promise<IssueLinkTypeJson> {
   const config: SendRequestOptions<IssueLinkTypeJson> = {
     url: `/rest/api/2/issueLinkType/${parameters.issueLinkTypeId}`,
     method: 'PUT',
@@ -79,16 +99,22 @@ export async function updateIssueLinkType(client: Client, parameters: UpdateIssu
       self: parameters.self,
     },
     schema: IssueLinkTypeJsonSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Delete the specified issue link type. */
-export async function deleteIssueLinkType(client: Client, parameters: DeleteIssueLinkType): Promise<void> {
+export async function deleteIssueLinkType(
+  client: Client,
+  parameters: DeleteIssueLinkType,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/2/issueLinkType/${parameters.issueLinkTypeId}`,
     method: 'DELETE',
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -99,7 +125,11 @@ export async function deleteIssueLinkType(client: Client, parameters: DeleteIssu
  *
  * Available since Jira Data Center 10.4.
  */
-export async function moveIssueLinkType(client: Client, parameters: MoveIssueLinkType): Promise<IssueLinkTypeJson> {
+export async function moveIssueLinkType(
+  client: Client,
+  parameters: MoveIssueLinkType,
+  options?: RequestOptions,
+): Promise<IssueLinkTypeJson> {
   const config: SendRequestOptions<IssueLinkTypeJson> = {
     url: `/rest/api/2/issueLinkType/${parameters.issueLinkTypeId}/order`,
     method: 'PUT',
@@ -107,6 +137,7 @@ export async function moveIssueLinkType(client: Client, parameters: MoveIssueLin
       newPosition: parameters.newPosition,
     },
     schema: IssueLinkTypeJsonSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

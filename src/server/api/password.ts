@@ -1,19 +1,24 @@
 import type { GetPasswordPolicy } from '../parameters/getPasswordPolicy';
 import type { PolicyCheckCreateUser } from '../parameters/policyCheckCreateUser';
 import type { PolicyCheckUpdateUser } from '../parameters/policyCheckUpdateUser';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /**
  * Returns the list of requirements for the current password policy. For example, "The password must have at least 10
  * characters.", "The password must not be similar to the user's name or email address.", etc.
  */
-export async function getPasswordPolicy(client: Client, parameters?: GetPasswordPolicy): Promise<unknown> {
+export async function getPasswordPolicy(
+  client: Client,
+  parameters?: GetPasswordPolicy,
+  options?: RequestOptions,
+): Promise<unknown> {
   const config: SendRequestOptions<unknown> = {
     url: '/rest/api/2/password/policy',
     method: 'GET',
     searchParams: {
       hasOldPassword: parameters?.hasOldPassword,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -29,7 +34,11 @@ export async function getPasswordPolicy(client: Client, parameters?: GetPassword
  * validate against the policy only. It won't check any other validations that might be performed when creating a new
  * user, e.g. checking whether a user with the same name already exists.
  */
-export async function policyCheckCreateUser(client: Client, parameters: PolicyCheckCreateUser): Promise<unknown> {
+export async function policyCheckCreateUser(
+  client: Client,
+  parameters: PolicyCheckCreateUser,
+  options?: RequestOptions,
+): Promise<unknown> {
   const config: SendRequestOptions<unknown> = {
     url: '/rest/api/2/password/policy/createUser',
     method: 'POST',
@@ -39,6 +48,7 @@ export async function policyCheckCreateUser(client: Client, parameters: PolicyCh
       password: parameters.password,
       username: parameters.username,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -53,7 +63,11 @@ export async function policyCheckCreateUser(client: Client, parameters: PolicyCh
  * will help you validate against the policy only. It won't check any other validations that might be performed when
  * submitting a password change/reset request, e.g. verifying whether the old password is valid.
  */
-export async function policyCheckUpdateUser(client: Client, parameters: PolicyCheckUpdateUser): Promise<unknown> {
+export async function policyCheckUpdateUser(
+  client: Client,
+  parameters: PolicyCheckUpdateUser,
+  options?: RequestOptions,
+): Promise<unknown> {
   const config: SendRequestOptions<unknown> = {
     url: '/rest/api/2/password/policy/updateUser',
     method: 'POST',
@@ -62,6 +76,7 @@ export async function policyCheckUpdateUser(client: Client, parameters: PolicyCh
       oldPassword: parameters.oldPassword,
       username: parameters.username,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

@@ -6,22 +6,31 @@ import type { DeleteObjectType } from '../parameters/deleteObjectType';
 import type { FindObjectTypeAttributes } from '../parameters/findObjectTypeAttributes';
 import type { ChangeObjectTypePosition } from '../parameters/changeObjectTypePosition';
 import type { CreateObjectType } from '../parameters/createObjectType';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 import { z } from 'zod';
 
 /** Find an object type by id */
-export async function loadObjectType(client: Client, parameters: LoadObjectType): Promise<ObjectType> {
+export async function loadObjectType(
+  client: Client,
+  parameters: LoadObjectType,
+  options?: RequestOptions,
+): Promise<ObjectType> {
   const config: SendRequestOptions<ObjectType> = {
     url: `/objecttype/${parameters.id}`,
     method: 'GET',
     schema: ObjectTypeSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Update an existing object type */
-export async function updateObjectType(client: Client, parameters: UpdateObjectType): Promise<ObjectType> {
+export async function updateObjectType(
+  client: Client,
+  parameters: UpdateObjectType,
+  options?: RequestOptions,
+): Promise<ObjectType> {
   const config: SendRequestOptions<ObjectType> = {
     url: `/objecttype/${parameters.id}`,
     method: 'PUT',
@@ -33,17 +42,23 @@ export async function updateObjectType(client: Client, parameters: UpdateObjectT
       abstractObjectType: parameters.abstractObjectType,
     },
     schema: ObjectTypeSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Delete an object type */
-export async function deleteObjectType(client: Client, parameters: DeleteObjectType): Promise<ObjectType> {
+export async function deleteObjectType(
+  client: Client,
+  parameters: DeleteObjectType,
+  options?: RequestOptions,
+): Promise<ObjectType> {
   const config: SendRequestOptions<ObjectType> = {
     url: `/objecttype/${parameters.id}`,
     method: 'DELETE',
     schema: ObjectTypeSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -53,6 +68,7 @@ export async function deleteObjectType(client: Client, parameters: DeleteObjectT
 export async function findObjectTypeAttributes(
   client: Client,
   parameters: FindObjectTypeAttributes,
+  options?: RequestOptions,
 ): Promise<ObjectTypeAttribute[]> {
   const config: SendRequestOptions<ObjectTypeAttribute[]> = {
     url: `/objecttype/${parameters.id}/attributes`,
@@ -67,6 +83,7 @@ export async function findObjectTypeAttributes(
       orderByRequired: parameters.orderByRequired,
     },
     schema: z.array(ObjectTypeAttributeSchema),
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -76,6 +93,7 @@ export async function findObjectTypeAttributes(
 export async function changeObjectTypePosition(
   client: Client,
   parameters: ChangeObjectTypePosition,
+  options?: RequestOptions,
 ): Promise<ObjectType> {
   const config: SendRequestOptions<ObjectType> = {
     url: `/objecttype/${parameters.id}/position`,
@@ -85,13 +103,18 @@ export async function changeObjectTypePosition(
       position: parameters.position,
     },
     schema: ObjectTypeSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Create a new object type */
-export async function createObjectType(client: Client, parameters: CreateObjectType): Promise<ObjectType> {
+export async function createObjectType(
+  client: Client,
+  parameters: CreateObjectType,
+  options?: RequestOptions,
+): Promise<ObjectType> {
   const config: SendRequestOptions<ObjectType> = {
     url: '/objecttype/create',
     method: 'POST',
@@ -105,6 +128,7 @@ export async function createObjectType(client: Client, parameters: CreateObjectT
       abstractObjectType: parameters.abstractObjectType,
     },
     schema: ObjectTypeSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

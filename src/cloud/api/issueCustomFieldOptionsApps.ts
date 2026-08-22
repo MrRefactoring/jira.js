@@ -13,7 +13,7 @@ import type { GetIssueFieldOption } from '../parameters/getIssueFieldOption';
 import type { UpdateIssueFieldOption } from '../parameters/updateIssueFieldOption';
 import type { DeleteIssueFieldOption } from '../parameters/deleteIssueFieldOption';
 import type { ReplaceIssueFieldOption } from '../parameters/replaceIssueFieldOption';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /**
  * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#pagination) list of all the
@@ -33,6 +33,7 @@ import type { Client, SendRequestOptions } from '#/core';
 export async function getAllIssueFieldOptions(
   client: Client,
   parameters: GetAllIssueFieldOptions,
+  options?: RequestOptions,
 ): Promise<Page<IssueFieldOption>> {
   const config: SendRequestOptions<Page<IssueFieldOption>> = {
     url: `/rest/api/3/field/${parameters.fieldKey}/option`,
@@ -42,6 +43,7 @@ export async function getAllIssueFieldOptions(
       maxResults: parameters.maxResults,
     },
     schema: PageIssueFieldOptionSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -64,6 +66,7 @@ export async function getAllIssueFieldOptions(
 export async function createIssueFieldOption(
   client: Client,
   parameters: CreateIssueFieldOption,
+  options?: RequestOptions,
 ): Promise<IssueFieldOption> {
   const config: SendRequestOptions<IssueFieldOption> = {
     url: `/rest/api/3/field/${parameters.fieldKey}/option`,
@@ -74,6 +77,7 @@ export async function createIssueFieldOption(
       value: parameters.value,
     },
     schema: IssueFieldOptionSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -94,6 +98,7 @@ export async function createIssueFieldOption(
 export async function getSelectableIssueFieldOptions(
   client: Client,
   parameters: GetSelectableIssueFieldOptions,
+  options?: RequestOptions,
 ): Promise<Page<IssueFieldOption>> {
   const config: SendRequestOptions<Page<IssueFieldOption>> = {
     url: `/rest/api/3/field/${parameters.fieldKey}/option/suggestions/edit`,
@@ -104,6 +109,7 @@ export async function getSelectableIssueFieldOptions(
       projectId: parameters.projectId,
     },
     schema: PageIssueFieldOptionSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -124,6 +130,7 @@ export async function getSelectableIssueFieldOptions(
 export async function getVisibleIssueFieldOptions(
   client: Client,
   parameters: GetVisibleIssueFieldOptions,
+  options?: RequestOptions,
 ): Promise<Page<IssueFieldOption>> {
   const config: SendRequestOptions<Page<IssueFieldOption>> = {
     url: `/rest/api/3/field/${parameters.fieldKey}/option/suggestions/search`,
@@ -134,6 +141,7 @@ export async function getVisibleIssueFieldOptions(
       projectId: parameters.projectId,
     },
     schema: PageIssueFieldOptionSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -151,11 +159,16 @@ export async function getVisibleIssueFieldOptions(
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg). Jira permissions are not required
  * for the app providing the field.
  */
-export async function getIssueFieldOption(client: Client, parameters: GetIssueFieldOption): Promise<IssueFieldOption> {
+export async function getIssueFieldOption(
+  client: Client,
+  parameters: GetIssueFieldOption,
+  options?: RequestOptions,
+): Promise<IssueFieldOption> {
   const config: SendRequestOptions<IssueFieldOption> = {
     url: `/rest/api/3/field/${parameters.fieldKey}/option/${parameters.optionId}`,
     method: 'GET',
     schema: IssueFieldOptionSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -178,6 +191,7 @@ export async function getIssueFieldOption(client: Client, parameters: GetIssueFi
 export async function updateIssueFieldOption(
   client: Client,
   parameters: UpdateIssueFieldOption,
+  options?: RequestOptions,
 ): Promise<IssueFieldOption> {
   const config: SendRequestOptions<IssueFieldOption> = {
     url: `/rest/api/3/field/${parameters.fieldKey}/option/${parameters.optionId}`,
@@ -189,6 +203,7 @@ export async function updateIssueFieldOption(
       value: parameters.value,
     },
     schema: IssueFieldOptionSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -206,10 +221,15 @@ export async function updateIssueFieldOption(
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg). Jira permissions are not required
  * for the app providing the field.
  */
-export async function deleteIssueFieldOption(client: Client, parameters: DeleteIssueFieldOption): Promise<void> {
+export async function deleteIssueFieldOption(
+  client: Client,
+  parameters: DeleteIssueFieldOption,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/field/${parameters.fieldKey}/option/${parameters.optionId}`,
     method: 'DELETE',
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -237,6 +257,7 @@ export async function deleteIssueFieldOption(client: Client, parameters: DeleteI
 export async function replaceIssueFieldOption(
   client: Client,
   parameters: ReplaceIssueFieldOption,
+  options?: RequestOptions,
 ): Promise<TaskProgressRemoveOptionFromIssuesResult> {
   const config: SendRequestOptions<TaskProgressRemoveOptionFromIssuesResult> = {
     url: `/rest/api/3/field/${parameters.fieldKey}/option/${parameters.optionId}/issue`,
@@ -248,6 +269,7 @@ export async function replaceIssueFieldOption(
       overrideEditableFlag: parameters.overrideEditableFlag,
     },
     schema: TaskProgressRemoveOptionFromIssuesResultSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

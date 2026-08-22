@@ -8,7 +8,7 @@ import {
 import type { GetWorkflowTransitionRuleConfigurations } from '../parameters/getWorkflowTransitionRuleConfigurations';
 import type { UpdateWorkflowTransitionRuleConfigurations } from '../parameters/updateWorkflowTransitionRuleConfigurations';
 import type { DeleteWorkflowTransitionRuleConfigurations } from '../parameters/deleteWorkflowTransitionRuleConfigurations';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /**
  * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#pagination) list of workflows
@@ -32,6 +32,7 @@ import type { Client, SendRequestOptions } from '#/core';
 export async function getWorkflowTransitionRuleConfigurations(
   client: Client,
   parameters: GetWorkflowTransitionRuleConfigurations,
+  options?: RequestOptions,
 ): Promise<Page<WorkflowTransitionRules>> {
   const config: SendRequestOptions<Page<WorkflowTransitionRules>> = {
     url: '/rest/api/3/workflow/rule/config',
@@ -47,6 +48,7 @@ export async function getWorkflowTransitionRuleConfigurations(
       expand: parameters.expand,
     },
     schema: PageWorkflowTransitionRulesSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -80,6 +82,7 @@ export async function getWorkflowTransitionRuleConfigurations(
 export async function updateWorkflowTransitionRuleConfigurations(
   client: Client,
   parameters: UpdateWorkflowTransitionRuleConfigurations,
+  options?: RequestOptions,
 ): Promise<WorkflowTransitionRulesUpdateErrors> {
   const config: SendRequestOptions<WorkflowTransitionRulesUpdateErrors> = {
     url: '/rest/api/3/workflow/rule/config',
@@ -88,6 +91,7 @@ export async function updateWorkflowTransitionRuleConfigurations(
       workflows: parameters.workflows,
     },
     schema: WorkflowTransitionRulesUpdateErrorsSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -111,6 +115,7 @@ export async function updateWorkflowTransitionRuleConfigurations(
 export async function deleteWorkflowTransitionRuleConfigurations(
   client: Client,
   parameters: DeleteWorkflowTransitionRuleConfigurations,
+  options?: RequestOptions,
 ): Promise<WorkflowTransitionRulesUpdateErrors> {
   const config: SendRequestOptions<WorkflowTransitionRulesUpdateErrors> = {
     url: '/rest/api/3/workflow/rule/config/delete',
@@ -119,6 +124,7 @@ export async function deleteWorkflowTransitionRuleConfigurations(
       workflows: parameters.workflows,
     },
     schema: WorkflowTransitionRulesUpdateErrorsSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

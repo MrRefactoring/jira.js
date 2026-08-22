@@ -8,7 +8,7 @@ import type { GetProjectIssueSecurityScheme } from '../parameters/getProjectIssu
 import type { GetAssignedPermissionScheme } from '../parameters/getAssignedPermissionScheme';
 import type { AssignPermissionScheme } from '../parameters/assignPermissionScheme';
 import type { GetSecurityLevelsForProject } from '../parameters/getSecurityLevelsForProject';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /**
  * Returns the [issue security scheme](https://confluence.atlassian.com/x/J4lKLg) associated with the project.
@@ -20,11 +20,13 @@ import type { Client, SendRequestOptions } from '#/core';
 export async function getProjectIssueSecurityScheme(
   client: Client,
   parameters: GetProjectIssueSecurityScheme,
+  options?: RequestOptions,
 ): Promise<SecurityScheme> {
   const config: SendRequestOptions<SecurityScheme> = {
     url: `/rest/api/3/project/${parameters.projectKeyOrId}/issuesecuritylevelscheme`,
     method: 'GET',
     schema: SecuritySchemeSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -40,6 +42,7 @@ export async function getProjectIssueSecurityScheme(
 export async function getAssignedPermissionScheme(
   client: Client,
   parameters: GetAssignedPermissionScheme,
+  options?: RequestOptions,
 ): Promise<PermissionScheme> {
   const config: SendRequestOptions<PermissionScheme> = {
     url: `/rest/api/3/project/${parameters.projectKeyOrId}/permissionscheme`,
@@ -48,6 +51,7 @@ export async function getAssignedPermissionScheme(
       expand: parameters.expand,
     },
     schema: PermissionSchemeSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -63,6 +67,7 @@ export async function getAssignedPermissionScheme(
 export async function assignPermissionScheme(
   client: Client,
   parameters: AssignPermissionScheme,
+  options?: RequestOptions,
 ): Promise<PermissionScheme> {
   const config: SendRequestOptions<PermissionScheme> = {
     url: `/rest/api/3/project/${parameters.projectKeyOrId}/permissionscheme`,
@@ -74,6 +79,7 @@ export async function assignPermissionScheme(
       id: parameters.id,
     },
     schema: PermissionSchemeSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -93,11 +99,13 @@ export async function assignPermissionScheme(
 export async function getSecurityLevelsForProject(
   client: Client,
   parameters: GetSecurityLevelsForProject,
+  options?: RequestOptions,
 ): Promise<ProjectIssueSecurityLevels> {
   const config: SendRequestOptions<ProjectIssueSecurityLevels> = {
     url: `/rest/api/3/project/${parameters.projectKeyOrId}/securitylevel`,
     method: 'GET',
     schema: ProjectIssueSecurityLevelsSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

@@ -1,4 +1,5 @@
 import type { OAuth2TokenResponse } from '../oauth/types.js';
+import type { FetchLike } from '../schemas/clientConfig.js';
 import { OAuthError } from '../errors/index.js';
 
 /**
@@ -40,17 +41,24 @@ function mapTokenResponse(data: RawTokenResponse): OAuth2TokenResponse {
 }
 
 /** `fetch` does not reject on a non-2xx status, so the status is checked here and turned into an `OAuthError`. */
-async function requestToken(url: string, form: Record<string, string>): Promise<OAuth2TokenResponse> {
+async function requestToken(
+  url: string,
+  form: Record<string, string>,
+  fetchImpl?: FetchLike,
+): Promise<OAuth2TokenResponse> {
   let response: Response;
 
+  // Form-encoded rather than JSON, unlike the Cloud helpers: this endpoint is a Java servlet reading request
+  // parameters, and a form body keeps the client secret out of the URL that proxies and access logs record.
+  const init: RequestInit = {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded', Accept: 'application/json' },
+    body: new URLSearchParams(form).toString(),
+  };
+
   try {
-    // Form-encoded rather than JSON, unlike the Cloud helpers: this endpoint is a Java servlet reading request
-    // parameters, and a form body keeps the client secret out of the URL that proxies and access logs record.
-    response = await fetch(url, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded', Accept: 'application/json' },
-      body: new URLSearchParams(form).toString(),
-    });
+    // By name, not through a variable: a detached `window.fetch` throws "Illegal invocation" in a browser.
+    response = await (fetchImpl ? fetchImpl(url, init) : fetch(url, init));
   } catch (err) {
     throw new OAuthError(`Request to ${url} failed before a response arrived`, { cause: err });
   }
@@ -111,6 +119,8 @@ export async function exchangeServerAuthorizationCode(params: {
   clientSecret: string;
   code: string;
   redirectUri: string;
+  /** The `fetch` to reach the instance by. Defaults to the global one. */
+  fetch?: FetchLike;
 }): Promise<OAuth2TokenResponse> {
   return requestToken(`${normalizeHost(params.host)}${TOKEN_PATH}`, {
     grant_type: 'authorization_code',
@@ -118,7 +128,7 @@ export async function exchangeServerAuthorizationCode(params: {
     client_secret: params.clientSecret,
     code: params.code,
     redirect_uri: params.redirectUri,
-  });
+  }, params.fetch);
 }
 
 /**
@@ -135,6 +145,8 @@ export async function refreshServerOAuth2Token(params: {
   clientSecret: string;
   refreshToken: string;
   redirectUri: string;
+  /** The `fetch` to reach the instance by. Defaults to the global one. */
+  fetch?: FetchLike;
 }): Promise<OAuth2TokenResponse> {
   return requestToken(`${normalizeHost(params.host)}${TOKEN_PATH}`, {
     grant_type: 'refresh_token',
@@ -142,5 +154,5 @@ export async function refreshServerOAuth2Token(params: {
     client_secret: params.clientSecret,
     refresh_token: params.refreshToken,
     redirect_uri: params.redirectUri,
-  });
+  }, params.fetch);
 }

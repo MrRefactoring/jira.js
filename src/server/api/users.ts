@@ -45,11 +45,11 @@ import type { DeleteUserProperty } from '../parameters/deleteUserProperty';
 import type { FindUsers } from '../parameters/findUsers';
 import type { DeleteSession } from '../parameters/deleteSession';
 import type { FindUsersWithBrowsePermission } from '../parameters/findUsersWithBrowsePermission';
-import { type Client, type SendRequestOptions, toFormDataFile } from '#/core';
+import { type Client, type RequestOptions, type SendRequestOptions, toFormDataFile } from '#/core';
 import { z } from 'zod';
 
 /** Returns a user. */
-export async function getUser(client: Client, parameters?: GetUser): Promise<User> {
+export async function getUser(client: Client, parameters?: GetUser, options?: RequestOptions): Promise<User> {
   const config: SendRequestOptions<User> = {
     url: '/rest/api/2/user',
     method: 'GET',
@@ -59,6 +59,7 @@ export async function getUser(client: Client, parameters?: GetUser): Promise<Use
       username: parameters?.username,
     },
     schema: UserSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -68,7 +69,7 @@ export async function getUser(client: Client, parameters?: GetUser): Promise<Use
  * Create user. By default created user will not be notified with email. If password field is not set then password will
  * be randomly generated.
  */
-export async function createUser(client: Client, parameters: CreateUser): Promise<UserWrite> {
+export async function createUser(client: Client, parameters: CreateUser, options?: RequestOptions): Promise<UserWrite> {
   const config: SendRequestOptions<UserWrite> = {
     url: '/rest/api/2/user',
     method: 'POST',
@@ -84,6 +85,7 @@ export async function createUser(client: Client, parameters: CreateUser): Promis
       self: parameters.self,
     },
     schema: UserWriteSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -93,7 +95,7 @@ export async function createUser(client: Client, parameters: CreateUser): Promis
  * Modify user. The 'value' fields present will override the existing value. Fields skipped in request will not be
  * changed.
  */
-export async function updateUser(client: Client, parameters: UpdateUser): Promise<UserWrite> {
+export async function updateUser(client: Client, parameters: UpdateUser, options?: RequestOptions): Promise<UserWrite> {
   const config: SendRequestOptions<UserWrite> = {
     url: '/rest/api/2/user',
     method: 'PUT',
@@ -103,6 +105,7 @@ export async function updateUser(client: Client, parameters: UpdateUser): Promis
     },
     body: parameters.body,
     schema: UserWriteSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -113,7 +116,7 @@ export async function updateUser(client: Client, parameters: UpdateUser): Promis
  * be removed if multiple User Directories are used and there is a user with the same name existing in another directory
  * (shadowing user).
  */
-export async function removeUser(client: Client, parameters: RemoveUser): Promise<void> {
+export async function removeUser(client: Client, parameters: RemoveUser, options?: RequestOptions): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: '/rest/api/2/user',
     method: 'DELETE',
@@ -121,6 +124,7 @@ export async function removeUser(client: Client, parameters: RemoveUser): Promis
       key: parameters.key,
       username: parameters.username,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -130,11 +134,15 @@ export async function removeUser(client: Client, parameters: RemoveUser): Promis
  * Returns available accessibility personal settings along with `enabled` property that indicates the currently
  * logged-in user preference.
  */
-export async function getA11yPersonalSettings(client: Client): Promise<A11yPersonalSetting[]> {
+export async function getA11yPersonalSettings(
+  client: Client,
+  options?: RequestOptions,
+): Promise<A11yPersonalSetting[]> {
   const config: SendRequestOptions<A11yPersonalSetting[]> = {
     url: '/rest/api/2/user/a11y/personal-settings',
     method: 'GET',
     schema: z.array(A11yPersonalSettingSchema),
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -144,6 +152,7 @@ export async function getA11yPersonalSettings(client: Client): Promise<A11yPerso
 export async function validateUserAnonymization(
   client: Client,
   parameters?: ValidateUserAnonymization,
+  options?: RequestOptions,
 ): Promise<UserAnonymizationValidation> {
   const config: SendRequestOptions<UserAnonymizationValidation> = {
     url: '/rest/api/2/user/anonymization',
@@ -153,13 +162,18 @@ export async function validateUserAnonymization(
       userKey: parameters?.userKey,
     },
     schema: UserAnonymizationValidationSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Schedules a user anonymization process. Requires system admin permission. */
-export async function scheduleUserAnonymization(client: Client, parameters: ScheduleUserAnonymization): Promise<void> {
+export async function scheduleUserAnonymization(
+  client: Client,
+  parameters: ScheduleUserAnonymization,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: '/rest/api/2/user/anonymization',
     method: 'POST',
@@ -167,6 +181,7 @@ export async function scheduleUserAnonymization(client: Client, parameters: Sche
       newOwnerKey: parameters.newOwnerKey,
       userKey: parameters.userKey,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -176,6 +191,7 @@ export async function scheduleUserAnonymization(client: Client, parameters: Sche
 export async function getUserAnonymizationProgress(
   client: Client,
   parameters?: GetUserAnonymizationProgress,
+  options?: RequestOptions,
 ): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: '/rest/api/2/user/anonymization/progress',
@@ -183,6 +199,7 @@ export async function getUserAnonymizationProgress(
     searchParams: {
       taskId: parameters?.taskId,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -192,6 +209,7 @@ export async function getUserAnonymizationProgress(
 export async function validateUserAnonymizationRerun(
   client: Client,
   parameters?: ValidateUserAnonymizationRerun,
+  options?: RequestOptions,
 ): Promise<UserAnonymizationValidation> {
   const config: SendRequestOptions<UserAnonymizationValidation> = {
     url: '/rest/api/2/user/anonymization/rerun',
@@ -203,6 +221,7 @@ export async function validateUserAnonymizationRerun(
       userKey: parameters?.userKey,
     },
     schema: UserAnonymizationValidationSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -212,6 +231,7 @@ export async function validateUserAnonymizationRerun(
 export async function scheduleUserAnonymizationRerun(
   client: Client,
   parameters: ScheduleUserAnonymizationRerun,
+  options?: RequestOptions,
 ): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: '/rest/api/2/user/anonymization/rerun',
@@ -222,6 +242,7 @@ export async function scheduleUserAnonymizationRerun(
       oldUserName: parameters.oldUserName,
       userKey: parameters.userKey,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -231,17 +252,22 @@ export async function scheduleUserAnonymizationRerun(
  * Removes stale user anonymization task, for scenarios when the node that was executing it is no longer alive. Use it
  * only after making sure that the parent node of the task is actually down, and not just having connectivity issues.
  */
-export async function unlockAnonymization(client: Client): Promise<void> {
+export async function unlockAnonymization(client: Client, options?: RequestOptions): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: '/rest/api/2/user/anonymization/unlock',
     method: 'DELETE',
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Add user to given application. Admin permission will be required to perform this operation. */
-export async function addUserToApplication(client: Client, parameters: AddUserToApplication): Promise<void> {
+export async function addUserToApplication(
+  client: Client,
+  parameters: AddUserToApplication,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: '/rest/api/2/user/application',
     method: 'POST',
@@ -249,13 +275,18 @@ export async function addUserToApplication(client: Client, parameters: AddUserTo
       applicationKey: parameters.applicationKey,
       username: parameters.username,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Remove user from given application. Admin permission will be required to perform this operation. */
-export async function removeUserFromApplication(client: Client, parameters: RemoveUserFromApplication): Promise<void> {
+export async function removeUserFromApplication(
+  client: Client,
+  parameters: RemoveUserFromApplication,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: '/rest/api/2/user/application',
     method: 'DELETE',
@@ -263,13 +294,18 @@ export async function removeUserFromApplication(client: Client, parameters: Remo
       applicationKey: parameters.applicationKey,
       username: parameters.username,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Returns a list of users that match the search string and can be assigned issues for all the given projects. */
-export async function findBulkAssignableUsers(client: Client, parameters?: FindBulkAssignableUsers): Promise<User> {
+export async function findBulkAssignableUsers(
+  client: Client,
+  parameters?: FindBulkAssignableUsers,
+  options?: RequestOptions,
+): Promise<User> {
   const config: SendRequestOptions<User> = {
     url: '/rest/api/2/user/assignable/multiProjectSearch',
     method: 'GET',
@@ -279,6 +315,7 @@ export async function findBulkAssignableUsers(client: Client, parameters?: FindB
       username: parameters?.username,
     },
     schema: UserSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -290,7 +327,11 @@ export async function findBulkAssignableUsers(client: Client, parameters?: FindB
  * project key should be supplied. The list of assignable users may be incorrect if it's called with the project key for
  * editing.
  */
-export async function findAssignableUsers(client: Client, parameters?: FindAssignableUsers): Promise<User> {
+export async function findAssignableUsers(
+  client: Client,
+  parameters?: FindAssignableUsers,
+  options?: RequestOptions,
+): Promise<User> {
   const config: SendRequestOptions<User> = {
     url: '/rest/api/2/user/assignable/search',
     method: 'GET',
@@ -302,6 +343,7 @@ export async function findAssignableUsers(client: Client, parameters?: FindAssig
       username: parameters?.username,
     },
     schema: UserSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -311,6 +353,7 @@ export async function findAssignableUsers(client: Client, parameters?: FindAssig
 export async function createUserAvatarFromTemporary(
   client: Client,
   parameters: CreateUserAvatarFromTemporary,
+  options?: RequestOptions,
 ): Promise<Avatar> {
   const config: SendRequestOptions<Avatar> = {
     url: '/rest/api/2/user/avatar',
@@ -326,13 +369,18 @@ export async function createUserAvatarFromTemporary(
       url: parameters.url,
     },
     schema: AvatarSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Updates the avatar for the user. */
-export async function updateUserAvatar(client: Client, parameters: UpdateUserAvatar): Promise<Avatar> {
+export async function updateUserAvatar(
+  client: Client,
+  parameters: UpdateUserAvatar,
+  options?: RequestOptions,
+): Promise<Avatar> {
   const config: SendRequestOptions<Avatar> = {
     url: '/rest/api/2/user/avatar',
     method: 'PUT',
@@ -350,6 +398,7 @@ export async function updateUserAvatar(client: Client, parameters: UpdateUserAva
       urls: parameters.urls,
     },
     schema: AvatarSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -368,6 +417,7 @@ export async function updateUserAvatar(client: Client, parameters: UpdateUserAva
 export async function storeTemporaryUserAvatarUsingMultiPart(
   client: Client,
   parameters: StoreTemporaryUserAvatarUsingMultiPart,
+  options?: RequestOptions,
 ): Promise<unknown> {
   const formData = new FormData();
   const items = Array.isArray(parameters.avatar) ? parameters.avatar : [parameters.avatar];
@@ -386,19 +436,25 @@ export async function storeTemporaryUserAvatarUsingMultiPart(
       username: parameters.username,
     },
     body: formData,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Deletes avatar */
-export async function deleteUserAvatar(client: Client, parameters: DeleteUserAvatar): Promise<void> {
+export async function deleteUserAvatar(
+  client: Client,
+  parameters: DeleteUserAvatar,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/2/user/avatar/${parameters.id}`,
     method: 'DELETE',
     searchParams: {
       username: parameters.username,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -408,6 +464,7 @@ export async function deleteUserAvatar(client: Client, parameters: DeleteUserAva
 export async function getAllUserAvatars(
   client: Client,
   parameters?: GetAllUserAvatarsParameters,
+  options?: RequestOptions,
 ): Promise<GetAllUserAvatars> {
   const config: SendRequestOptions<GetAllUserAvatars> = {
     url: '/rest/api/2/user/avatars',
@@ -416,6 +473,7 @@ export async function getAllUserAvatars(
       username: parameters?.username,
     },
     schema: GetAllUserAvatarsSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -425,7 +483,11 @@ export async function getAllUserAvatars(
  * Returns the default columns for the given user. Admin permission will be required to get columns for a user other
  * than the currently logged in user.
  */
-export async function defaultColumns(client: Client, parameters?: DefaultColumns): Promise<ColumnOptions[]> {
+export async function defaultColumns(
+  client: Client,
+  parameters?: DefaultColumns,
+  options?: RequestOptions,
+): Promise<ColumnOptions[]> {
   const config: SendRequestOptions<ColumnOptions[]> = {
     url: '/rest/api/2/user/columns',
     method: 'GET',
@@ -433,6 +495,7 @@ export async function defaultColumns(client: Client, parameters?: DefaultColumns
       username: parameters?.username,
     },
     schema: z.array(ColumnOptionsSchema),
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -442,7 +505,11 @@ export async function defaultColumns(client: Client, parameters?: DefaultColumns
  * Sets the default columns for the given user. Admin permission will be required to get columns for a user other than
  * the currently logged in user.
  */
-export async function setColumnsUrlEncoded(client: Client, parameters: SetColumnsUrlEncoded): Promise<void> {
+export async function setColumnsUrlEncoded(
+  client: Client,
+  parameters: SetColumnsUrlEncoded,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: '/rest/api/2/user/columns',
     method: 'PUT',
@@ -451,6 +518,7 @@ export async function setColumnsUrlEncoded(client: Client, parameters: SetColumn
       columns: parameters.columns,
     },
     contentType: 'application/x-www-form-urlencoded',
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -460,13 +528,18 @@ export async function setColumnsUrlEncoded(client: Client, parameters: SetColumn
  * Reset the default columns for the given user to the system default. Admin permission will be required to get columns
  * for a user other than the currently logged in user.
  */
-export async function resetUserColumns(client: Client, parameters: ResetUserColumns): Promise<void> {
+export async function resetUserColumns(
+  client: Client,
+  parameters: ResetUserColumns,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: '/rest/api/2/user/columns',
     method: 'DELETE',
     searchParams: {
       username: parameters.username,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -480,7 +553,11 @@ export async function resetUserColumns(client: Client, parameters: ResetUserColu
  * System Administrator can also flush the cache manually. Related JAC ticket:
  * https://jira.atlassian.com/browse/JRASERVER-68797
  */
-export async function getDuplicatedUsersCount(client: Client, parameters?: GetDuplicatedUsersCount): Promise<User> {
+export async function getDuplicatedUsersCount(
+  client: Client,
+  parameters?: GetDuplicatedUsersCount,
+  options?: RequestOptions,
+): Promise<User> {
   const config: SendRequestOptions<User> = {
     url: '/rest/api/2/user/duplicated/count',
     method: 'GET',
@@ -488,6 +565,7 @@ export async function getDuplicatedUsersCount(client: Client, parameters?: GetDu
       flush: parameters?.flush,
     },
     schema: UserSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -504,6 +582,7 @@ export async function getDuplicatedUsersCount(client: Client, parameters?: GetDu
 export async function getDuplicatedUsersMapping(
   client: Client,
   parameters?: GetDuplicatedUsersMapping,
+  options?: RequestOptions,
 ): Promise<Avatar> {
   const config: SendRequestOptions<Avatar> = {
     url: '/rest/api/2/user/duplicated/list',
@@ -512,6 +591,7 @@ export async function getDuplicatedUsersMapping(
       flush: parameters?.flush,
     },
     schema: AvatarSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -529,7 +609,11 @@ export async function getDuplicatedUsersMapping(
  *
  * Available since Jira Data Center 11.0, and in 10.3 LTS.
  */
-export async function getUserList(client: Client, parameters?: GetUserList): Promise<StreamPage> {
+export async function getUserList(
+  client: Client,
+  parameters?: GetUserList,
+  options?: RequestOptions,
+): Promise<StreamPage> {
   const config: SendRequestOptions<StreamPage> = {
     url: '/rest/api/2/user/list',
     method: 'GET',
@@ -538,13 +622,18 @@ export async function getUserList(client: Client, parameters?: GetUserList): Pro
       maxResults: parameters?.maxResults,
     },
     schema: StreamPageSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Modify user password. */
-export async function changeUserPassword(client: Client, parameters: ChangeUserPassword): Promise<void> {
+export async function changeUserPassword(
+  client: Client,
+  parameters: ChangeUserPassword,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: '/rest/api/2/user/password',
     method: 'PUT',
@@ -556,13 +645,18 @@ export async function changeUserPassword(client: Client, parameters: ChangeUserP
       currentPassword: parameters.currentPassword,
       password: parameters.password,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Returns a list of users matching query with highlighting. */
-export async function findUsersForPicker(client: Client, parameters?: FindUsersForPicker): Promise<UserPickerResults> {
+export async function findUsersForPicker(
+  client: Client,
+  parameters?: FindUsersForPicker,
+  options?: RequestOptions,
+): Promise<UserPickerResults> {
   const config: SendRequestOptions<UserPickerResults> = {
     url: '/rest/api/2/user/picker',
     method: 'GET',
@@ -573,6 +667,7 @@ export async function findUsersForPicker(client: Client, parameters?: FindUsersF
       showAvatar: parameters?.showAvatar,
     },
     schema: UserPickerResultsSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -582,6 +677,7 @@ export async function findUsersForPicker(client: Client, parameters?: FindUsersF
 export async function getUserPropertyKeys(
   client: Client,
   parameters?: GetUserPropertyKeys,
+  options?: RequestOptions,
 ): Promise<EntityPropertiesKeys> {
   const config: SendRequestOptions<EntityPropertiesKeys> = {
     url: '/rest/api/2/user/properties',
@@ -591,13 +687,18 @@ export async function getUserPropertyKeys(
       username: parameters?.username,
     },
     schema: EntityPropertiesKeysSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Returns the value of the property with a given key from the user identified by the key or by the id. */
-export async function getUserProperty(client: Client, parameters: GetUserProperty): Promise<EntityProperty> {
+export async function getUserProperty(
+  client: Client,
+  parameters: GetUserProperty,
+  options?: RequestOptions,
+): Promise<EntityProperty> {
   const config: SendRequestOptions<EntityProperty> = {
     url: `/rest/api/2/user/properties/${parameters.propertyKey}`,
     method: 'GET',
@@ -606,6 +707,7 @@ export async function getUserProperty(client: Client, parameters: GetUserPropert
       username: parameters.username,
     },
     schema: EntityPropertySchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -616,7 +718,11 @@ export async function getUserProperty(client: Client, parameters: GetUserPropert
  * identified by the key or by the id. The user who stores the data is required to have permissions to administer the
  * user.
  */
-export async function setUserProperty(client: Client, parameters: SetUserProperty): Promise<void> {
+export async function setUserProperty(
+  client: Client,
+  parameters: SetUserProperty,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/2/user/properties/${parameters.propertyKey}`,
     method: 'PUT',
@@ -625,6 +731,7 @@ export async function setUserProperty(client: Client, parameters: SetUserPropert
       username: parameters.username,
     },
     body: parameters.body,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -634,7 +741,11 @@ export async function setUserProperty(client: Client, parameters: SetUserPropert
  * Removes the property from the user identified by the key or by the id. The user who removes the property is required
  * to have permissions to administer the user.
  */
-export async function deleteUserProperty(client: Client, parameters: DeleteUserProperty): Promise<void> {
+export async function deleteUserProperty(
+  client: Client,
+  parameters: DeleteUserProperty,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/2/user/properties/${parameters.propertyKey}`,
     method: 'DELETE',
@@ -642,13 +753,14 @@ export async function deleteUserProperty(client: Client, parameters: DeleteUserP
       userKey: parameters.userKey,
       username: parameters.username,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Finds users. */
-export async function findUsers(client: Client, parameters?: FindUsers): Promise<User> {
+export async function findUsers(client: Client, parameters?: FindUsers, options?: RequestOptions): Promise<User> {
   const config: SendRequestOptions<User> = {
     url: '/rest/api/2/user/search',
     method: 'GET',
@@ -660,16 +772,22 @@ export async function findUsers(client: Client, parameters?: FindUsers): Promise
       username: parameters?.username,
     },
     schema: UserSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Invalidates session of given user. */
-export async function deleteSession(client: Client, parameters: DeleteSession): Promise<void> {
+export async function deleteSession(
+  client: Client,
+  parameters: DeleteSession,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/2/user/session/${parameters.username}`,
     method: 'DELETE',
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -683,6 +801,7 @@ export async function deleteSession(client: Client, parameters: DeleteSession): 
 export async function findUsersWithBrowsePermission(
   client: Client,
   parameters?: FindUsersWithBrowsePermission,
+  options?: RequestOptions,
 ): Promise<User> {
   const config: SendRequestOptions<User> = {
     url: '/rest/api/2/user/viewissue/search',
@@ -694,6 +813,7 @@ export async function findUsersWithBrowsePermission(
       username: parameters?.username,
     },
     schema: UserSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

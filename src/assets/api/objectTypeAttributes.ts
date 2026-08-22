@@ -2,12 +2,13 @@ import { ObjectTypeAttributeSchema, type ObjectTypeAttribute } from '../models/o
 import type { CreateObjectTypeAttribute } from '../parameters/createObjectTypeAttribute';
 import type { UpdateObjectTypeAttribute } from '../parameters/updateObjectTypeAttribute';
 import type { DeleteObjectTypeAttribute } from '../parameters/deleteObjectTypeAttribute';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /** Create a new attribute on the given object type */
 export async function createObjectTypeAttribute(
   client: Client,
   parameters: CreateObjectTypeAttribute,
+  options?: RequestOptions,
 ): Promise<ObjectTypeAttribute> {
   const config: SendRequestOptions<ObjectTypeAttribute> = {
     url: `/objecttypeattribute/${parameters.objectTypeId}`,
@@ -33,6 +34,7 @@ export async function createObjectTypeAttribute(
       options: parameters.options,
     },
     schema: ObjectTypeAttributeSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -42,6 +44,7 @@ export async function createObjectTypeAttribute(
 export async function updateObjectTypeAttribute(
   client: Client,
   parameters: UpdateObjectTypeAttribute,
+  options?: RequestOptions,
 ): Promise<ObjectTypeAttribute> {
   const config: SendRequestOptions<ObjectTypeAttribute> = {
     url: `/objecttypeattribute/${parameters.objectTypeId}/${parameters.id}`,
@@ -67,16 +70,22 @@ export async function updateObjectTypeAttribute(
       options: parameters.options,
     },
     schema: ObjectTypeAttributeSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Delete an existing object type attribute */
-export async function deleteObjectTypeAttribute(client: Client, parameters: DeleteObjectTypeAttribute): Promise<void> {
+export async function deleteObjectTypeAttribute(
+  client: Client,
+  parameters: DeleteObjectTypeAttribute,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/objecttypeattribute/${parameters.id}`,
     method: 'DELETE',
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

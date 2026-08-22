@@ -1,4 +1,4 @@
-import { type ClientConfig, type Client, createClient } from '#/core';
+import { type ClientConfig, type Client, type RequestOptions, createClient } from '#/core';
 import * as approvals from './api/approvals';
 import * as requestAttachments from './api/requestAttachments';
 import * as customerRequests from './api/customerRequests';
@@ -105,141 +105,191 @@ export function createServiceDeskServerClient(clientConfig: ClientConfig | Clien
 
   return {
     approvals: {
-      getApprovalById: (parameters: GetApprovalById): Promise<Approval> =>
-        approvals.getApprovalById(client, parameters),
-      answerApproval: (parameters: AnswerApproval): Promise<Approval> => approvals.answerApproval(client, parameters),
-      getApprovalCommentConfig: (parameters: GetApprovalCommentConfig): Promise<ApprovalCommentConfig> =>
-        approvals.getApprovalCommentConfig(client, parameters),
-      getApprovals: (parameters: GetApprovals): Promise<Page<Approval>> => approvals.getApprovals(client, parameters),
+      getApprovalById: (parameters: GetApprovalById, options?: RequestOptions): Promise<Approval> =>
+        approvals.getApprovalById(client, parameters, options),
+      answerApproval: (parameters: AnswerApproval, options?: RequestOptions): Promise<Approval> =>
+        approvals.answerApproval(client, parameters, options),
+      getApprovalCommentConfig: (
+        parameters: GetApprovalCommentConfig,
+        options?: RequestOptions,
+      ): Promise<ApprovalCommentConfig> => approvals.getApprovalCommentConfig(client, parameters, options),
+      getApprovals: (parameters: GetApprovals, options?: RequestOptions): Promise<Page<Approval>> =>
+        approvals.getApprovals(client, parameters, options),
     },
     requestAttachments: {
-      createAttachment: (parameters: CreateAttachment): Promise<AttachmentCreateResult> =>
-        requestAttachments.createAttachment(client, parameters),
-      attachTemporaryFile: (parameters: AttachTemporaryFile): Promise<CreateTemporaryWebAttachmentResult> =>
-        requestAttachments.attachTemporaryFile(client, parameters),
+      createAttachment: (parameters: CreateAttachment, options?: RequestOptions): Promise<AttachmentCreateResult> =>
+        requestAttachments.createAttachment(client, parameters, options),
+      attachTemporaryFile: (
+        parameters: AttachTemporaryFile,
+        options?: RequestOptions,
+      ): Promise<CreateTemporaryWebAttachmentResult> =>
+        requestAttachments.attachTemporaryFile(client, parameters, options),
     },
     customerRequests: {
-      getRequestComments: (parameters: GetRequestComments): Promise<Page<Comment>> =>
-        customerRequests.getRequestComments(client, parameters),
-      createRequestComment: (parameters: CreateRequestComment): Promise<Comment> =>
-        customerRequests.createRequestComment(client, parameters),
-      getRequestCommentById: (parameters: GetRequestCommentById): Promise<Comment> =>
-        customerRequests.getRequestCommentById(client, parameters),
-      getMyCustomerRequests: (parameters?: GetMyCustomerRequests): Promise<Page<CustomerRequest>> =>
-        customerRequests.getMyCustomerRequests(client, parameters),
-      createCustomerRequest: (parameters: CreateCustomerRequest): Promise<CustomerRequest> =>
-        customerRequests.createCustomerRequest(client, parameters),
-      getCustomerRequestByIdOrKey: (parameters: GetCustomerRequestByIdOrKey): Promise<CustomerRequest> =>
-        customerRequests.getCustomerRequestByIdOrKey(client, parameters),
-      getRequestParticipants: (parameters: GetRequestParticipants): Promise<Page<User>> =>
-        customerRequests.getRequestParticipants(client, parameters),
-      addRequestParticipants: (parameters: AddRequestParticipants): Promise<Page<User>> =>
-        customerRequests.addRequestParticipants(client, parameters),
-      removeRequestParticipants: (parameters: RemoveRequestParticipants): Promise<Page<User>> =>
-        customerRequests.removeRequestParticipants(client, parameters),
-      getSlaInformation: (parameters: GetSlaInformation): Promise<Page<SlaInformation>> =>
-        customerRequests.getSlaInformation(client, parameters),
-      getSlaInformationById: (parameters: GetSlaInformationById): Promise<SlaInformation> =>
-        customerRequests.getSlaInformationById(client, parameters),
-      getCustomerRequestStatus: (parameters: GetCustomerRequestStatus): Promise<Page<CustomerRequestStatus>> =>
-        customerRequests.getCustomerRequestStatus(client, parameters),
+      getRequestComments: (parameters: GetRequestComments, options?: RequestOptions): Promise<Page<Comment>> =>
+        customerRequests.getRequestComments(client, parameters, options),
+      createRequestComment: (parameters: CreateRequestComment, options?: RequestOptions): Promise<Comment> =>
+        customerRequests.createRequestComment(client, parameters, options),
+      getRequestCommentById: (parameters: GetRequestCommentById, options?: RequestOptions): Promise<Comment> =>
+        customerRequests.getRequestCommentById(client, parameters, options),
+      getMyCustomerRequests: (
+        parameters?: GetMyCustomerRequests,
+        options?: RequestOptions,
+      ): Promise<Page<CustomerRequest>> => customerRequests.getMyCustomerRequests(client, parameters, options),
+      createCustomerRequest: (parameters: CreateCustomerRequest, options?: RequestOptions): Promise<CustomerRequest> =>
+        customerRequests.createCustomerRequest(client, parameters, options),
+      getCustomerRequestByIdOrKey: (
+        parameters: GetCustomerRequestByIdOrKey,
+        options?: RequestOptions,
+      ): Promise<CustomerRequest> => customerRequests.getCustomerRequestByIdOrKey(client, parameters, options),
+      getRequestParticipants: (parameters: GetRequestParticipants, options?: RequestOptions): Promise<Page<User>> =>
+        customerRequests.getRequestParticipants(client, parameters, options),
+      addRequestParticipants: (parameters: AddRequestParticipants, options?: RequestOptions): Promise<Page<User>> =>
+        customerRequests.addRequestParticipants(client, parameters, options),
+      removeRequestParticipants: (
+        parameters: RemoveRequestParticipants,
+        options?: RequestOptions,
+      ): Promise<Page<User>> => customerRequests.removeRequestParticipants(client, parameters, options),
+      getSlaInformation: (parameters: GetSlaInformation, options?: RequestOptions): Promise<Page<SlaInformation>> =>
+        customerRequests.getSlaInformation(client, parameters, options),
+      getSlaInformationById: (parameters: GetSlaInformationById, options?: RequestOptions): Promise<SlaInformation> =>
+        customerRequests.getSlaInformationById(client, parameters, options),
+      getCustomerRequestStatus: (
+        parameters: GetCustomerRequestStatus,
+        options?: RequestOptions,
+      ): Promise<Page<CustomerRequestStatus>> => customerRequests.getCustomerRequestStatus(client, parameters, options),
     },
     customers: {
-      createCustomer: (parameters: CreateCustomer): Promise<User> => customers.createCustomer(client, parameters),
-      addCustomers: (parameters: AddCustomers): Promise<User> => customers.addCustomers(client, parameters),
+      createCustomer: (parameters: CreateCustomer, options?: RequestOptions): Promise<User> =>
+        customers.createCustomer(client, parameters, options),
+      addCustomers: (parameters: AddCustomers, options?: RequestOptions): Promise<User> =>
+        customers.addCustomers(client, parameters, options),
     },
     customerTransitions: {
-      getCustomerTransitions: (parameters: GetCustomerTransitions): Promise<Page<CustomerTransition>> =>
-        customerTransitions.getCustomerTransitions(client, parameters),
-      performCustomerTransition: (parameters: PerformCustomerTransition): Promise<void> =>
-        customerTransitions.performCustomerTransition(client, parameters),
+      getCustomerTransitions: (
+        parameters: GetCustomerTransitions,
+        options?: RequestOptions,
+      ): Promise<Page<CustomerTransition>> => customerTransitions.getCustomerTransitions(client, parameters, options),
+      performCustomerTransition: (parameters: PerformCustomerTransition, options?: RequestOptions): Promise<void> =>
+        customerTransitions.performCustomerTransition(client, parameters, options),
     },
     organizations: {
-      getUsersInOrganization: (parameters: GetUsersInOrganization): Promise<Page<User>> =>
-        organizations.getUsersInOrganization(client, parameters),
-      addUsersToOrganization: (parameters: AddUsersToOrganization): Promise<void> =>
-        organizations.addUsersToOrganization(client, parameters),
-      removeUsersFromOrganization: (parameters: RemoveUsersFromOrganization): Promise<void> =>
-        organizations.removeUsersFromOrganization(client, parameters),
-      previewCleanUpOrganizations: (parameters?: PreviewCleanUpOrganizations): Promise<CustomerOrganization[]> =>
-        organizations.previewCleanUpOrganizations(client, parameters),
-      cleanUpOrganizations: (parameters: CleanUpOrganizations): Promise<unknown> =>
-        organizations.cleanUpOrganizations(client, parameters),
-      getOrganizations: (parameters?: GetOrganizations): Promise<Page<Organization>> =>
-        organizations.getOrganizations(client, parameters),
-      createOrganization: (parameters: CreateOrganization): Promise<Organization> =>
-        organizations.createOrganization(client, parameters),
-      getOrganization: (parameters: GetOrganization): Promise<Organization> =>
-        organizations.getOrganization(client, parameters),
-      deleteOrganization: (parameters: DeleteOrganization): Promise<void> =>
-        organizations.deleteOrganization(client, parameters),
+      getUsersInOrganization: (parameters: GetUsersInOrganization, options?: RequestOptions): Promise<Page<User>> =>
+        organizations.getUsersInOrganization(client, parameters, options),
+      addUsersToOrganization: (parameters: AddUsersToOrganization, options?: RequestOptions): Promise<void> =>
+        organizations.addUsersToOrganization(client, parameters, options),
+      removeUsersFromOrganization: (parameters: RemoveUsersFromOrganization, options?: RequestOptions): Promise<void> =>
+        organizations.removeUsersFromOrganization(client, parameters, options),
+      previewCleanUpOrganizations: (
+        parameters?: PreviewCleanUpOrganizations,
+        options?: RequestOptions,
+      ): Promise<CustomerOrganization[]> => organizations.previewCleanUpOrganizations(client, parameters, options),
+      cleanUpOrganizations: (parameters: CleanUpOrganizations, options?: RequestOptions): Promise<unknown> =>
+        organizations.cleanUpOrganizations(client, parameters, options),
+      getOrganizations: (parameters?: GetOrganizations, options?: RequestOptions): Promise<Page<Organization>> =>
+        organizations.getOrganizations(client, parameters, options),
+      createOrganization: (parameters: CreateOrganization, options?: RequestOptions): Promise<Organization> =>
+        organizations.createOrganization(client, parameters, options),
+      getOrganization: (parameters: GetOrganization, options?: RequestOptions): Promise<Organization> =>
+        organizations.getOrganization(client, parameters, options),
+      deleteOrganization: (parameters: DeleteOrganization, options?: RequestOptions): Promise<void> =>
+        organizations.deleteOrganization(client, parameters, options),
     },
     serviceDeskOrganizations: {
-      getServiceDeskOrganizations: (parameters: GetServiceDeskOrganizations): Promise<Page<Organization>> =>
-        serviceDeskOrganizations.getServiceDeskOrganizations(client, parameters),
-      addOrganization: (parameters: AddOrganization): Promise<void> =>
-        serviceDeskOrganizations.addOrganization(client, parameters),
-      removeOrganization: (parameters: RemoveOrganization): Promise<void> =>
-        serviceDeskOrganizations.removeOrganization(client, parameters),
+      getServiceDeskOrganizations: (
+        parameters: GetServiceDeskOrganizations,
+        options?: RequestOptions,
+      ): Promise<Page<Organization>> =>
+        serviceDeskOrganizations.getServiceDeskOrganizations(client, parameters, options),
+      addOrganization: (parameters: AddOrganization, options?: RequestOptions): Promise<void> =>
+        serviceDeskOrganizations.addOrganization(client, parameters, options),
+      removeOrganization: (parameters: RemoveOrganization, options?: RequestOptions): Promise<void> =>
+        serviceDeskOrganizations.removeOrganization(client, parameters, options),
     },
     portals: {
-      getPortal: (parameters: GetPortal): Promise<Portal> => portals.getPortal(client, parameters),
-      getPortalByProjectKey: (parameters: GetPortalByProjectKey): Promise<Portal> =>
-        portals.getPortalByProjectKey(client, parameters),
-      getPortals: (parameters?: GetPortals): Promise<Page<Portal>> => portals.getPortals(client, parameters),
+      getPortal: (parameters: GetPortal, options?: RequestOptions): Promise<Portal> =>
+        portals.getPortal(client, parameters, options),
+      getPortalByProjectKey: (parameters: GetPortalByProjectKey, options?: RequestOptions): Promise<Portal> =>
+        portals.getPortalByProjectKey(client, parameters, options),
+      getPortals: (parameters?: GetPortals, options?: RequestOptions): Promise<Page<Portal>> =>
+        portals.getPortals(client, parameters, options),
     },
     queues: {
-      getQueues: (parameters: GetQueues): Promise<Page<Queue>> => queues.getQueues(client, parameters),
-      createQueue: (parameters: CreateQueue): Promise<Queue> => queues.createQueue(client, parameters),
-      getQueue: (parameters: GetQueue): Promise<Queue> => queues.getQueue(client, parameters),
-      updateQueue: (parameters: UpdateQueue): Promise<Queue> => queues.updateQueue(client, parameters),
-      deleteQueue: (parameters: DeleteQueue): Promise<void> => queues.deleteQueue(client, parameters),
-      getIssuesInQueue: (parameters: GetIssuesInQueue): Promise<Page<Issue>> =>
-        queues.getIssuesInQueue(client, parameters),
-      reorderQueues: (parameters: ReorderQueues): Promise<Queue> => queues.reorderQueues(client, parameters),
+      getQueues: (parameters: GetQueues, options?: RequestOptions): Promise<Page<Queue>> =>
+        queues.getQueues(client, parameters, options),
+      createQueue: (parameters: CreateQueue, options?: RequestOptions): Promise<Queue> =>
+        queues.createQueue(client, parameters, options),
+      getQueue: (parameters: GetQueue, options?: RequestOptions): Promise<Queue> =>
+        queues.getQueue(client, parameters, options),
+      updateQueue: (parameters: UpdateQueue, options?: RequestOptions): Promise<Queue> =>
+        queues.updateQueue(client, parameters, options),
+      deleteQueue: (parameters: DeleteQueue, options?: RequestOptions): Promise<void> =>
+        queues.deleteQueue(client, parameters, options),
+      getIssuesInQueue: (parameters: GetIssuesInQueue, options?: RequestOptions): Promise<Page<Issue>> =>
+        queues.getIssuesInQueue(client, parameters, options),
+      reorderQueues: (parameters: ReorderQueues, options?: RequestOptions): Promise<Queue> =>
+        queues.reorderQueues(client, parameters, options),
     },
     requestTypes: {
-      getRequestTypeFields: (parameters: GetRequestTypeFields): Promise<CustomerRequestCreateMeta> =>
-        requestTypes.getRequestTypeFields(client, parameters),
-      getRequestTypeGroups: (parameters: GetRequestTypeGroups): Promise<Page<RequestTypeGroup>> =>
-        requestTypes.getRequestTypeGroups(client, parameters),
-      getRequestTypes: (parameters: GetRequestTypes): Promise<Page<RequestType>> =>
-        requestTypes.getRequestTypes(client, parameters),
-      createRequestType: (parameters: CreateRequestType): Promise<RequestType> =>
-        requestTypes.createRequestType(client, parameters),
-      updateRequestType: (parameters: UpdateRequestType): Promise<RequestType> =>
-        requestTypes.updateRequestType(client, parameters),
-      getRequestTypeById: (parameters: GetRequestTypeById): Promise<RequestType> =>
-        requestTypes.getRequestTypeById(client, parameters),
-      deleteRequestType: (parameters: DeleteRequestType): Promise<void> =>
-        requestTypes.deleteRequestType(client, parameters),
+      getRequestTypeFields: (
+        parameters: GetRequestTypeFields,
+        options?: RequestOptions,
+      ): Promise<CustomerRequestCreateMeta> => requestTypes.getRequestTypeFields(client, parameters, options),
+      getRequestTypeGroups: (
+        parameters: GetRequestTypeGroups,
+        options?: RequestOptions,
+      ): Promise<Page<RequestTypeGroup>> => requestTypes.getRequestTypeGroups(client, parameters, options),
+      getRequestTypes: (parameters: GetRequestTypes, options?: RequestOptions): Promise<Page<RequestType>> =>
+        requestTypes.getRequestTypes(client, parameters, options),
+      createRequestType: (parameters: CreateRequestType, options?: RequestOptions): Promise<RequestType> =>
+        requestTypes.createRequestType(client, parameters, options),
+      updateRequestType: (parameters: UpdateRequestType, options?: RequestOptions): Promise<RequestType> =>
+        requestTypes.updateRequestType(client, parameters, options),
+      getRequestTypeById: (parameters: GetRequestTypeById, options?: RequestOptions): Promise<RequestType> =>
+        requestTypes.getRequestTypeById(client, parameters, options),
+      deleteRequestType: (parameters: DeleteRequestType, options?: RequestOptions): Promise<void> =>
+        requestTypes.deleteRequestType(client, parameters, options),
     },
     requestTypePermissions: {
-      getPermissionsByRequestTypeId: (parameters: GetPermissionsByRequestTypeId): Promise<RequestTypePermission> =>
-        requestTypePermissions.getPermissionsByRequestTypeId(client, parameters),
-      upsertRequestTypePermission: (parameters: UpsertRequestTypePermission): Promise<RequestTypePermission> =>
-        requestTypePermissions.upsertRequestTypePermission(client, parameters),
+      getPermissionsByRequestTypeId: (
+        parameters: GetPermissionsByRequestTypeId,
+        options?: RequestOptions,
+      ): Promise<RequestTypePermission> =>
+        requestTypePermissions.getPermissionsByRequestTypeId(client, parameters, options),
+      upsertRequestTypePermission: (
+        parameters: UpsertRequestTypePermission,
+        options?: RequestOptions,
+      ): Promise<RequestTypePermission> =>
+        requestTypePermissions.upsertRequestTypePermission(client, parameters, options),
     },
     serviceDesks: {
-      getServiceDeskById: (parameters: GetServiceDeskById): Promise<ServiceDesk> =>
-        serviceDesks.getServiceDeskById(client, parameters),
-      getServiceDesks: (parameters?: GetServiceDesks): Promise<Page<ServiceDesk>> =>
-        serviceDesks.getServiceDesks(client, parameters),
+      getServiceDeskById: (parameters: GetServiceDeskById, options?: RequestOptions): Promise<ServiceDesk> =>
+        serviceDesks.getServiceDeskById(client, parameters, options),
+      getServiceDesks: (parameters?: GetServiceDesks, options?: RequestOptions): Promise<Page<ServiceDesk>> =>
+        serviceDesks.getServiceDesks(client, parameters, options),
     },
     info: {
-      getInfo: (): Promise<SoftwareInfo> => info.getInfo(client),
+      getInfo: (options?: RequestOptions): Promise<SoftwareInfo> => info.getInfo(client, options),
     },
     queueSettings: {
-      getQueueSettingsOnProject: (parameters: GetQueueSettingsOnProject): Promise<void> =>
-        queueSettings.getQueueSettingsOnProject(client, parameters),
-      setShouldQueuesIncludeCountGlobally: (parameters: SetShouldQueuesIncludeCountGlobally): Promise<void> =>
-        queueSettings.setShouldQueuesIncludeCountGlobally(client, parameters),
-      setShouldQueuesIncludeCountOnProject: (parameters: SetShouldQueuesIncludeCountOnProject): Promise<void> =>
-        queueSettings.setShouldQueuesIncludeCountOnProject(client, parameters),
-      setShouldQueuesUseCountCacheGlobally: (parameters: SetShouldQueuesUseCountCacheGlobally): Promise<void> =>
-        queueSettings.setShouldQueuesUseCountCacheGlobally(client, parameters),
-      setShouldQueuesUseCountCacheOnProject: (parameters: SetShouldQueuesUseCountCacheOnProject): Promise<void> =>
-        queueSettings.setShouldQueuesUseCountCacheOnProject(client, parameters),
+      getQueueSettingsOnProject: (parameters: GetQueueSettingsOnProject, options?: RequestOptions): Promise<void> =>
+        queueSettings.getQueueSettingsOnProject(client, parameters, options),
+      setShouldQueuesIncludeCountGlobally: (
+        parameters: SetShouldQueuesIncludeCountGlobally,
+        options?: RequestOptions,
+      ): Promise<void> => queueSettings.setShouldQueuesIncludeCountGlobally(client, parameters, options),
+      setShouldQueuesIncludeCountOnProject: (
+        parameters: SetShouldQueuesIncludeCountOnProject,
+        options?: RequestOptions,
+      ): Promise<void> => queueSettings.setShouldQueuesIncludeCountOnProject(client, parameters, options),
+      setShouldQueuesUseCountCacheGlobally: (
+        parameters: SetShouldQueuesUseCountCacheGlobally,
+        options?: RequestOptions,
+      ): Promise<void> => queueSettings.setShouldQueuesUseCountCacheGlobally(client, parameters, options),
+      setShouldQueuesUseCountCacheOnProject: (
+        parameters: SetShouldQueuesUseCountCacheOnProject,
+        options?: RequestOptions,
+      ): Promise<void> => queueSettings.setShouldQueuesUseCountCacheOnProject(client, parameters, options),
     },
   };
 }

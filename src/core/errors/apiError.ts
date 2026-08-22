@@ -6,7 +6,7 @@ export interface ApiErrorOptions {
 }
 
 /**
- * Thrown when Confluence returns a non-2xx HTTP response.
+ * Thrown when the API returns a non-2xx HTTP response.
  *
  * The subclasses below cover the statuses worth branching on. Catch this one to catch them all, or a subclass — or use
  * the predicates, which survive a duplicated install of this package.
@@ -36,16 +36,29 @@ export class ApiError extends Error {
   }
 }
 
+export interface AuthErrorOptions extends ApiErrorOptions {
+  /**
+   * The status the response actually carried. Defaults to 401.
+   *
+   * Overridden where the credentials were refused behind a status that says otherwise: an endpoint permitting
+   * anonymous access answers `200` with an anonymous-scope body and reports the refusal in `X-Seraph-LoginReason`.
+   * Recording 401 there would name a status that never crossed the wire.
+   */
+  status?: number;
+}
+
 /**
- * 401 — the credentials are missing, expired or rejected.
+ * The credentials are missing, expired or rejected.
+ *
+ * Usually a 401. Not always: see {@link AuthErrorOptions.status}.
  *
  * @public
  */
 export class AuthError extends ApiError {
   override readonly [ERROR_KINDS]: readonly ErrorKind[] = ['api', 'auth'];
 
-  constructor(message: string, statusText: string, body: unknown, options?: ApiErrorOptions) {
-    super(message, 401, statusText, body, options);
+  constructor(message: string, statusText: string, body: unknown, options?: AuthErrorOptions) {
+    super(message, options?.status ?? 401, statusText, body, options);
     this.name = 'AuthError';
   }
 
@@ -62,9 +75,8 @@ export class AuthError extends ApiError {
  * so the client does not try. The app needs the scope added in the developer console and the user has to consent
  * again.
  *
- * Under 3LO this is also how the two API versions bite: v2 endpoints want granular scopes (`read:page:confluence`), v1
- * endpoints want classic ones (`read:confluence-content.all`). An app that holds only one family gets this error from
- * the other.
+ * Which scope is missing is the operation's own business, and its API documentation names it. `PRODUCT.scopeHint`
+ * carries whatever else is worth saying for this product, and the thrown message repeats it.
  *
  * @public
  */
@@ -82,7 +94,7 @@ export class ScopeError extends AuthError {
 }
 
 /**
- * 403 — authenticated, but not allowed. Usually a Confluence permission rather than a scope.
+ * 403 — authenticated, but not allowed. Usually a product permission rather than a scope.
  *
  * @public
  */
@@ -102,7 +114,7 @@ export class ForbiddenError extends ApiError {
 /**
  * 404 — no such thing, or no permission to know it exists.
  *
- * Confluence returns 404 for both, deliberately: telling the two apart would leak the existence of restricted content.
+ * The API returns 404 for both, deliberately: telling the two apart would leak the existence of restricted content.
  *
  * @public
  */
@@ -120,7 +132,7 @@ export class NotFoundError extends ApiError {
 }
 
 export interface RateLimitErrorOptions extends ApiErrorOptions {
-  /** How long to wait before retrying, in ms, when Confluence said so. */
+  /** How long to wait before retrying, in ms, when the API said so. */
   retryAfterMs?: number;
 }
 
@@ -150,7 +162,7 @@ export class RateLimitError extends ApiError {
 }
 
 /**
- * 5xx — Confluence failed on its own side.
+ * 5xx — the API failed on its own side.
  *
  * @public
  */

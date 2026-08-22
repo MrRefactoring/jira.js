@@ -3,7 +3,7 @@ import type { GetAllScreenTabFields } from '../parameters/getAllScreenTabFields'
 import type { AddScreenTabField } from '../parameters/addScreenTabField';
 import type { RemoveScreenTabField } from '../parameters/removeScreenTabField';
 import type { MoveScreenTabField } from '../parameters/moveScreenTabField';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 import { z } from 'zod';
 
 /**
@@ -19,6 +19,7 @@ import { z } from 'zod';
 export async function getAllScreenTabFields(
   client: Client,
   parameters: GetAllScreenTabFields,
+  options?: RequestOptions,
 ): Promise<ScreenableField[]> {
   const config: SendRequestOptions<ScreenableField[]> = {
     url: `/rest/api/3/screens/${parameters.screenId}/tabs/${parameters.tabId}/fields`,
@@ -27,6 +28,7 @@ export async function getAllScreenTabFields(
       projectKey: parameters.projectKey,
     },
     schema: z.array(ScreenableFieldSchema),
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -38,7 +40,11 @@ export async function getAllScreenTabFields(
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-export async function addScreenTabField(client: Client, parameters: AddScreenTabField): Promise<ScreenableField> {
+export async function addScreenTabField(
+  client: Client,
+  parameters: AddScreenTabField,
+  options?: RequestOptions,
+): Promise<ScreenableField> {
   const config: SendRequestOptions<ScreenableField> = {
     url: `/rest/api/3/screens/${parameters.screenId}/tabs/${parameters.tabId}/fields`,
     method: 'POST',
@@ -49,6 +55,7 @@ export async function addScreenTabField(client: Client, parameters: AddScreenTab
       fieldId: parameters.fieldId,
     },
     schema: ScreenableFieldSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -60,10 +67,15 @@ export async function addScreenTabField(client: Client, parameters: AddScreenTab
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-export async function removeScreenTabField(client: Client, parameters: RemoveScreenTabField): Promise<void> {
+export async function removeScreenTabField(
+  client: Client,
+  parameters: RemoveScreenTabField,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/screens/${parameters.screenId}/tabs/${parameters.tabId}/fields/${parameters.id}`,
     method: 'DELETE',
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -77,7 +89,11 @@ export async function removeScreenTabField(client: Client, parameters: RemoveScr
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-export async function moveScreenTabField(client: Client, parameters: MoveScreenTabField): Promise<void> {
+export async function moveScreenTabField(
+  client: Client,
+  parameters: MoveScreenTabField,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/screens/${parameters.screenId}/tabs/${parameters.tabId}/fields/${parameters.id}/move`,
     method: 'POST',
@@ -85,6 +101,7 @@ export async function moveScreenTabField(client: Client, parameters: MoveScreenT
       after: parameters.after,
       position: parameters.position,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

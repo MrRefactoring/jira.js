@@ -7,10 +7,10 @@ import type { GetUsersFromGroup as GetUsersFromGroupParameters } from '../parame
 import type { AddUserToGroup } from '../parameters/addUserToGroup';
 import type { RemoveUserFromGroup } from '../parameters/removeUserFromGroup';
 import type { FindGroups } from '../parameters/findGroups';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /** Creates a group by given group parameter */
-export async function createGroup(client: Client, parameters: CreateGroup): Promise<Group> {
+export async function createGroup(client: Client, parameters: CreateGroup, options?: RequestOptions): Promise<Group> {
   const config: SendRequestOptions<Group> = {
     url: '/rest/api/2/group',
     method: 'POST',
@@ -18,13 +18,14 @@ export async function createGroup(client: Client, parameters: CreateGroup): Prom
       name: parameters.name,
     },
     schema: GroupSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Deletes a group by given group parameter */
-export async function removeGroup(client: Client, parameters: RemoveGroup): Promise<void> {
+export async function removeGroup(client: Client, parameters: RemoveGroup, options?: RequestOptions): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: '/rest/api/2/group',
     method: 'DELETE',
@@ -32,6 +33,7 @@ export async function removeGroup(client: Client, parameters: RemoveGroup): Prom
       groupname: parameters.groupname,
       swapGroup: parameters.swapGroup,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -41,6 +43,7 @@ export async function removeGroup(client: Client, parameters: RemoveGroup): Prom
 export async function getUsersFromGroup(
   client: Client,
   parameters: GetUsersFromGroupParameters,
+  options?: RequestOptions,
 ): Promise<GetUsersFromGroup> {
   const config: SendRequestOptions<GetUsersFromGroup> = {
     url: '/rest/api/2/group/member',
@@ -52,13 +55,18 @@ export async function getUsersFromGroup(
       startAt: parameters.startAt,
     },
     schema: GetUsersFromGroupSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Adds given user to a group */
-export async function addUserToGroup(client: Client, parameters: AddUserToGroup): Promise<Group> {
+export async function addUserToGroup(
+  client: Client,
+  parameters: AddUserToGroup,
+  options?: RequestOptions,
+): Promise<Group> {
   const config: SendRequestOptions<Group> = {
     url: '/rest/api/2/group/user',
     method: 'POST',
@@ -69,13 +77,18 @@ export async function addUserToGroup(client: Client, parameters: AddUserToGroup)
       name: parameters.name,
     },
     schema: GroupSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Removes given user from a group */
-export async function removeUserFromGroup(client: Client, parameters: RemoveUserFromGroup): Promise<void> {
+export async function removeUserFromGroup(
+  client: Client,
+  parameters: RemoveUserFromGroup,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: '/rest/api/2/group/user',
     method: 'DELETE',
@@ -83,13 +96,18 @@ export async function removeUserFromGroup(client: Client, parameters: RemoveUser
       groupname: parameters.groupname,
       username: parameters.username,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Returns groups with substrings matching a given query */
-export async function findGroups(client: Client, parameters?: FindGroups): Promise<GroupSuggestions> {
+export async function findGroups(
+  client: Client,
+  parameters?: FindGroups,
+  options?: RequestOptions,
+): Promise<GroupSuggestions> {
   const config: SendRequestOptions<GroupSuggestions> = {
     url: '/rest/api/2/groups/picker',
     method: 'GET',
@@ -100,6 +118,7 @@ export async function findGroups(client: Client, parameters?: FindGroups): Promi
       userName: parameters?.userName,
     },
     schema: GroupSuggestionsSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

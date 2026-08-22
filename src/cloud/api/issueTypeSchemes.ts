@@ -16,7 +16,7 @@ import type { DeleteIssueTypeScheme } from '../parameters/deleteIssueTypeScheme'
 import type { AddIssueTypesToIssueTypeScheme } from '../parameters/addIssueTypesToIssueTypeScheme';
 import type { ReorderIssueTypesInIssueTypeScheme } from '../parameters/reorderIssueTypesInIssueTypeScheme';
 import type { RemoveIssueTypeFromIssueTypeScheme } from '../parameters/removeIssueTypeFromIssueTypeScheme';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /**
  * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#pagination) list of issue
@@ -30,6 +30,7 @@ import type { Client, SendRequestOptions } from '#/core';
 export async function getAllIssueTypeSchemes(
   client: Client,
   parameters?: GetAllIssueTypeSchemes,
+  options?: RequestOptions,
 ): Promise<Page<IssueTypeScheme>> {
   const config: SendRequestOptions<Page<IssueTypeScheme>> = {
     url: '/rest/api/3/issuetypescheme',
@@ -43,6 +44,7 @@ export async function getAllIssueTypeSchemes(
       queryString: parameters?.queryString,
     },
     schema: PageIssueTypeSchemeSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -57,6 +59,7 @@ export async function getAllIssueTypeSchemes(
 export async function createIssueTypeScheme(
   client: Client,
   parameters: CreateIssueTypeScheme,
+  options?: RequestOptions,
 ): Promise<IssueTypeSchemeID> {
   const config: SendRequestOptions<IssueTypeSchemeID> = {
     url: '/rest/api/3/issuetypescheme',
@@ -68,6 +71,7 @@ export async function createIssueTypeScheme(
       name: parameters.name,
     },
     schema: IssueTypeSchemeIDSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -85,6 +89,7 @@ export async function createIssueTypeScheme(
 export async function getIssueTypeSchemesMapping(
   client: Client,
   parameters?: GetIssueTypeSchemesMapping,
+  options?: RequestOptions,
 ): Promise<Page<IssueTypeSchemeMapping>> {
   const config: SendRequestOptions<Page<IssueTypeSchemeMapping>> = {
     url: '/rest/api/3/issuetypescheme/mapping',
@@ -95,6 +100,7 @@ export async function getIssueTypeSchemesMapping(
       issueTypeSchemeId: parameters?.issueTypeSchemeId,
     },
     schema: PageIssueTypeSchemeMappingSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -112,6 +118,7 @@ export async function getIssueTypeSchemesMapping(
 export async function getIssueTypeSchemeForProjects(
   client: Client,
   parameters: GetIssueTypeSchemeForProjects,
+  options?: RequestOptions,
 ): Promise<Page<IssueTypeSchemeProjects>> {
   const config: SendRequestOptions<Page<IssueTypeSchemeProjects>> = {
     url: '/rest/api/3/issuetypescheme/project',
@@ -122,6 +129,7 @@ export async function getIssueTypeSchemeForProjects(
       projectId: parameters.projectId,
     },
     schema: PageIssueTypeSchemeProjectsSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -141,6 +149,7 @@ export async function getIssueTypeSchemeForProjects(
 export async function assignIssueTypeSchemeToProject(
   client: Client,
   parameters: AssignIssueTypeSchemeToProject,
+  options?: RequestOptions,
 ): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: '/rest/api/3/issuetypescheme/project',
@@ -149,6 +158,7 @@ export async function assignIssueTypeSchemeToProject(
       issueTypeSchemeId: parameters.issueTypeSchemeId,
       projectId: parameters.projectId,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -160,7 +170,11 @@ export async function assignIssueTypeSchemeToProject(
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-export async function updateIssueTypeScheme(client: Client, parameters: UpdateIssueTypeScheme): Promise<void> {
+export async function updateIssueTypeScheme(
+  client: Client,
+  parameters: UpdateIssueTypeScheme,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/issuetypescheme/${parameters.issueTypeSchemeId}`,
     method: 'PUT',
@@ -169,6 +183,7 @@ export async function updateIssueTypeScheme(client: Client, parameters: UpdateIs
       description: parameters.description,
       name: parameters.name,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -191,10 +206,15 @@ export async function updateIssueTypeScheme(client: Client, parameters: UpdateIs
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-export async function deleteIssueTypeScheme(client: Client, parameters: DeleteIssueTypeScheme): Promise<void> {
+export async function deleteIssueTypeScheme(
+  client: Client,
+  parameters: DeleteIssueTypeScheme,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/issuetypescheme/${parameters.issueTypeSchemeId}`,
     method: 'DELETE',
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -213,6 +233,7 @@ export async function deleteIssueTypeScheme(client: Client, parameters: DeleteIs
 export async function addIssueTypesToIssueTypeScheme(
   client: Client,
   parameters: AddIssueTypesToIssueTypeScheme,
+  options?: RequestOptions,
 ): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/issuetypescheme/${parameters.issueTypeSchemeId}/issuetype`,
@@ -220,6 +241,7 @@ export async function addIssueTypesToIssueTypeScheme(
     body: {
       issueTypeIds: parameters.issueTypeIds,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -240,6 +262,7 @@ export async function addIssueTypesToIssueTypeScheme(
 export async function reorderIssueTypesInIssueTypeScheme(
   client: Client,
   parameters: ReorderIssueTypesInIssueTypeScheme,
+  options?: RequestOptions,
 ): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/issuetypescheme/${parameters.issueTypeSchemeId}/issuetype/move`,
@@ -249,6 +272,7 @@ export async function reorderIssueTypesInIssueTypeScheme(
       issueTypeIds: parameters.issueTypeIds,
       position: parameters.position,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -269,10 +293,12 @@ export async function reorderIssueTypesInIssueTypeScheme(
 export async function removeIssueTypeFromIssueTypeScheme(
   client: Client,
   parameters: RemoveIssueTypeFromIssueTypeScheme,
+  options?: RequestOptions,
 ): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/issuetypescheme/${parameters.issueTypeSchemeId}/issuetype/${parameters.issueTypeId}`,
     method: 'DELETE',
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

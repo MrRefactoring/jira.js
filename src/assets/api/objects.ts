@@ -16,22 +16,31 @@ import type { FindObjectReferenceInfo } from '../parameters/findObjectReferenceI
 import type { CreateObject } from '../parameters/createObject';
 import type { FindObjectsByAql } from '../parameters/findObjectsByAql';
 import type { CountObjectsByAql } from '../parameters/countObjectsByAql';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 import { z } from 'zod';
 
 /** Load one object */
-export async function loadObject(client: Client, parameters: LoadObject): Promise<AssetObject> {
+export async function loadObject(
+  client: Client,
+  parameters: LoadObject,
+  options?: RequestOptions,
+): Promise<AssetObject> {
   const config: SendRequestOptions<AssetObject> = {
     url: `/object/${parameters.id}`,
     method: 'GET',
     schema: AssetObjectSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Update an existing object in Assets */
-export async function updateObject(client: Client, parameters: UpdateObject): Promise<AssetObject> {
+export async function updateObject(
+  client: Client,
+  parameters: UpdateObject,
+  options?: RequestOptions,
+): Promise<AssetObject> {
   const config: SendRequestOptions<AssetObject> = {
     url: `/object/${parameters.id}`,
     method: 'PUT',
@@ -42,16 +51,22 @@ export async function updateObject(client: Client, parameters: UpdateObject): Pr
       avatarUUID: parameters.avatarUUID,
     },
     schema: AssetObjectSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Delete the referenced object */
-export async function deleteObject(client: Client, parameters: DeleteObject): Promise<unknown> {
+export async function deleteObject(
+  client: Client,
+  parameters: DeleteObject,
+  options?: RequestOptions,
+): Promise<unknown> {
   const config: SendRequestOptions<unknown> = {
     url: `/object/${parameters.id}`,
     method: 'DELETE',
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -61,18 +76,24 @@ export async function deleteObject(client: Client, parameters: DeleteObject): Pr
 export async function findObjectAttributes(
   client: Client,
   parameters: FindObjectAttributes,
+  options?: RequestOptions,
 ): Promise<ObjectAttribute[]> {
   const config: SendRequestOptions<ObjectAttribute[]> = {
     url: `/object/${parameters.id}/attributes`,
     method: 'GET',
     schema: z.array(ObjectAttributeSchema),
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Retrieve the history entries for this object */
-export async function findObjectHistory(client: Client, parameters: FindObjectHistory): Promise<ObjectHistory[]> {
+export async function findObjectHistory(
+  client: Client,
+  parameters: FindObjectHistory,
+  options?: RequestOptions,
+): Promise<ObjectHistory[]> {
   const config: SendRequestOptions<ObjectHistory[]> = {
     url: `/object/${parameters.id}/history`,
     method: 'GET',
@@ -80,6 +101,7 @@ export async function findObjectHistory(client: Client, parameters: FindObjectHi
       asc: parameters.asc,
     },
     schema: z.array(ObjectHistorySchema),
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -89,18 +111,24 @@ export async function findObjectHistory(client: Client, parameters: FindObjectHi
 export async function findObjectReferenceInfo(
   client: Client,
   parameters: FindObjectReferenceInfo,
+  options?: RequestOptions,
 ): Promise<ObjectReferenceTypeInfo[]> {
   const config: SendRequestOptions<ObjectReferenceTypeInfo[]> = {
     url: `/object/${parameters.id}/referenceinfo`,
     method: 'GET',
     schema: z.array(ObjectReferenceTypeInfoSchema),
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Create a new object in Assets */
-export async function createObject(client: Client, parameters: CreateObject): Promise<AssetObject> {
+export async function createObject(
+  client: Client,
+  parameters: CreateObject,
+  options?: RequestOptions,
+): Promise<AssetObject> {
   const config: SendRequestOptions<AssetObject> = {
     url: '/object/create',
     method: 'POST',
@@ -111,6 +139,7 @@ export async function createObject(client: Client, parameters: CreateObject): Pr
       avatarUUID: parameters.avatarUUID,
     },
     schema: AssetObjectSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -120,6 +149,7 @@ export async function createObject(client: Client, parameters: CreateObject): Pr
 export async function findObjectsByAql(
   client: Client,
   parameters: FindObjectsByAql,
+  options?: RequestOptions,
 ): Promise<ObjectListInclTypeAttributesEntryResult> {
   const config: SendRequestOptions<ObjectListInclTypeAttributesEntryResult> = {
     url: '/object/aql',
@@ -133,6 +163,7 @@ export async function findObjectsByAql(
       qlQuery: parameters.qlQuery,
     },
     schema: ObjectListInclTypeAttributesEntryResultSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -145,6 +176,7 @@ export async function findObjectsByAql(
 export async function countObjectsByAql(
   client: Client,
   parameters: CountObjectsByAql,
+  options?: RequestOptions,
 ): Promise<ObjectAQLTotalCountResult> {
   const config: SendRequestOptions<ObjectAQLTotalCountResult> = {
     url: '/object/aql/totalcount',
@@ -153,6 +185,7 @@ export async function countObjectsByAql(
       qlQuery: parameters.qlQuery,
     },
     schema: ObjectAQLTotalCountResultSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

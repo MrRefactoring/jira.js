@@ -59,14 +59,18 @@ import type { UnassignPriorityScheme } from '../parameters/unassignPrioritySchem
 import type { GetSecurityLevelsForProject } from '../parameters/getSecurityLevelsForProject';
 import type { GetWorkflowSchemeForProject } from '../parameters/getWorkflowSchemeForProject';
 import type { SearchForProjects } from '../parameters/searchForProjects';
-import { type Client, type SendRequestOptions, toFormDataFile } from '#/core';
+import { type Client, type RequestOptions, type SendRequestOptions, toFormDataFile } from '#/core';
 import { z } from 'zod';
 
 /**
  * Returns all projects which are visible for the currently logged in user. If no user is logged in, it returns the list
  * of projects that are visible when using anonymous access.
  */
-export async function getAllProjects(client: Client, parameters?: GetAllProjects): Promise<Project[]> {
+export async function getAllProjects(
+  client: Client,
+  parameters?: GetAllProjects,
+  options?: RequestOptions,
+): Promise<Project[]> {
   const config: SendRequestOptions<Project[]> = {
     url: '/rest/api/2/project',
     method: 'GET',
@@ -77,13 +81,18 @@ export async function getAllProjects(client: Client, parameters?: GetAllProjects
       browseArchive: parameters?.browseArchive,
     },
     schema: z.array(ProjectSchema),
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Creates a new project */
-export async function createProject(client: Client, parameters: CreateProject): Promise<ProjectIdentity> {
+export async function createProject(
+  client: Client,
+  parameters: CreateProject,
+  options?: RequestOptions,
+): Promise<ProjectIdentity> {
   const config: SendRequestOptions<ProjectIdentity> = {
     url: '/rest/api/2/project',
     method: 'POST',
@@ -104,6 +113,7 @@ export async function createProject(client: Client, parameters: CreateProject): 
       workflowSchemeId: parameters.workflowSchemeId,
     },
     schema: ProjectIdentitySchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -113,22 +123,28 @@ export async function createProject(client: Client, parameters: CreateProject): 
  * Returns all the project types defined on the Jira instance, not taking into account whether the license to use those
  * project types is valid or not. In case of anonymous checks if they can access at least one project.
  */
-export async function getAllProjectTypes(client: Client): Promise<ProjectType[]> {
+export async function getAllProjectTypes(client: Client, options?: RequestOptions): Promise<ProjectType[]> {
   const config: SendRequestOptions<ProjectType[]> = {
     url: '/rest/api/2/project/type',
     method: 'GET',
     schema: z.array(ProjectTypeSchema),
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Returns the project type with the given key. In case of anonymous checks if they can access at least one project. */
-export async function getProjectTypeByKey(client: Client, parameters: GetProjectTypeByKey): Promise<ProjectType> {
+export async function getProjectTypeByKey(
+  client: Client,
+  parameters: GetProjectTypeByKey,
+  options?: RequestOptions,
+): Promise<ProjectType> {
   const config: SendRequestOptions<ProjectType> = {
     url: `/rest/api/2/project/type/${parameters.projectTypeKey}`,
     method: 'GET',
     schema: ProjectTypeSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -141,11 +157,13 @@ export async function getProjectTypeByKey(client: Client, parameters: GetProject
 export async function getAccessibleProjectTypeByKey(
   client: Client,
   parameters: GetAccessibleProjectTypeByKey,
+  options?: RequestOptions,
 ): Promise<ProjectType> {
   const config: SendRequestOptions<ProjectType> = {
     url: `/rest/api/2/project/type/${parameters.projectTypeKey}/accessible`,
     method: 'GET',
     schema: ProjectTypeSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -155,7 +173,7 @@ export async function getAccessibleProjectTypeByKey(
  * Returns a full representation of a project in JSON format. All project keys associated with the project will only be
  * returned if <code>expand=projectKeys</code>.
  */
-export async function getProject(client: Client, parameters: GetProject): Promise<Project> {
+export async function getProject(client: Client, parameters: GetProject, options?: RequestOptions): Promise<Project> {
   const config: SendRequestOptions<Project> = {
     url: `/rest/api/2/project/${parameters.projectIdOrKey}`,
     method: 'GET',
@@ -163,6 +181,7 @@ export async function getProject(client: Client, parameters: GetProject): Promis
       expand: parameters.expand,
     },
     schema: ProjectSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -172,7 +191,11 @@ export async function getProject(client: Client, parameters: GetProject): Promis
  * Updates a project. Only non null values sent in JSON will be updated in the project. Values available for the
  * assigneeType field are: "PROJECT_LEAD" and "UNASSIGNED".
  */
-export async function updateProject(client: Client, parameters: UpdateProject): Promise<Project> {
+export async function updateProject(
+  client: Client,
+  parameters: UpdateProject,
+  options?: RequestOptions,
+): Promise<Project> {
   const config: SendRequestOptions<Project> = {
     url: `/rest/api/2/project/${parameters.projectIdOrKey}`,
     method: 'PUT',
@@ -195,26 +218,37 @@ export async function updateProject(client: Client, parameters: UpdateProject): 
       url: parameters.url,
     },
     schema: ProjectSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Deletes a project */
-export async function deleteProject(client: Client, parameters: DeleteProject): Promise<void> {
+export async function deleteProject(
+  client: Client,
+  parameters: DeleteProject,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/2/project/${parameters.projectIdOrKey}`,
     method: 'DELETE',
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Archives a project */
-export async function archiveProject(client: Client, parameters: ArchiveProject): Promise<void> {
+export async function archiveProject(
+  client: Client,
+  parameters: ArchiveProject,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/2/project/${parameters.projectIdOrKey}/archive`,
     method: 'PUT',
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -230,6 +264,7 @@ export async function archiveProject(client: Client, parameters: ArchiveProject)
 export async function createProjectAvatarFromTemporary(
   client: Client,
   parameters: CreateProjectAvatarFromTemporary,
+  options?: RequestOptions,
 ): Promise<Avatar> {
   const config: SendRequestOptions<Avatar> = {
     url: `/rest/api/2/project/${parameters.projectIdOrKey}/avatar`,
@@ -242,13 +277,18 @@ export async function createProjectAvatarFromTemporary(
       url: parameters.url,
     },
     schema: AvatarSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Updates an avatar for a project. This is step 3/3 of changing an avatar for a project. */
-export async function updateProjectAvatar(client: Client, parameters: UpdateProjectAvatar): Promise<void> {
+export async function updateProjectAvatar(
+  client: Client,
+  parameters: UpdateProjectAvatar,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/2/project/${parameters.projectIdOrKey}/avatar`,
     method: 'PUT',
@@ -262,6 +302,7 @@ export async function updateProjectAvatar(client: Client, parameters: UpdateProj
       fileName: parameters.fileName,
       urls: parameters.urls,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -275,6 +316,7 @@ export async function updateProjectAvatar(client: Client, parameters: UpdateProj
 export async function storeTemporaryProjectAvatarUsingMultiPart(
   client: Client,
   parameters: StoreTemporaryProjectAvatarUsingMultiPart,
+  options?: RequestOptions,
 ): Promise<unknown> {
   const formData = new FormData();
   const items = Array.isArray(parameters.avatar) ? parameters.avatar : [parameters.avatar];
@@ -290,16 +332,22 @@ export async function storeTemporaryProjectAvatarUsingMultiPart(
       'X-Atlassian-Token': 'no-check',
     },
     body: formData,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Deletes avatar */
-export async function deleteProjectAvatar(client: Client, parameters: DeleteProjectAvatar): Promise<void> {
+export async function deleteProjectAvatar(
+  client: Client,
+  parameters: DeleteProjectAvatar,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/2/project/${parameters.projectIdOrKey}/avatar/${parameters.id}`,
     method: 'DELETE',
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -312,22 +360,29 @@ export async function deleteProjectAvatar(client: Client, parameters: DeleteProj
 export async function getAllProjectAvatars(
   client: Client,
   parameters: GetAllProjectAvatarsParameters,
+  options?: RequestOptions,
 ): Promise<GetAllProjectAvatars> {
   const config: SendRequestOptions<GetAllProjectAvatars> = {
     url: `/rest/api/2/project/${parameters.projectIdOrKey}/avatars`,
     method: 'GET',
     schema: GetAllProjectAvatarsSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Contains a full representation of the specified project's components. */
-export async function getProjectComponents(client: Client, parameters: GetProjectComponents): Promise<Component[]> {
+export async function getProjectComponents(
+  client: Client,
+  parameters: GetProjectComponents,
+  options?: RequestOptions,
+): Promise<Component[]> {
   const config: SendRequestOptions<Component[]> = {
     url: `/rest/api/2/project/${parameters.projectIdOrKey}/components`,
     method: 'GET',
     schema: z.array(ComponentSchema),
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -337,22 +392,29 @@ export async function getProjectComponents(client: Client, parameters: GetProjec
 export async function getProjectPropertyKeys(
   client: Client,
   parameters: GetProjectPropertyKeys,
+  options?: RequestOptions,
 ): Promise<EntityPropertiesKeys> {
   const config: SendRequestOptions<EntityPropertiesKeys> = {
     url: `/rest/api/2/project/${parameters.projectIdOrKey}/properties`,
     method: 'GET',
     schema: EntityPropertiesKeysSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Returns the value of the property with a given key from the project identified by the key or by the id. */
-export async function getProjectProperty(client: Client, parameters: GetProjectProperty): Promise<EntityProperty> {
+export async function getProjectProperty(
+  client: Client,
+  parameters: GetProjectProperty,
+  options?: RequestOptions,
+): Promise<EntityProperty> {
   const config: SendRequestOptions<EntityProperty> = {
     url: `/rest/api/2/project/${parameters.projectIdOrKey}/properties/${parameters.propertyKey}`,
     method: 'GET',
     schema: EntityPropertySchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -363,60 +425,89 @@ export async function getProjectProperty(client: Client, parameters: GetProjectP
  * project identified by the key or by the id. The user who stores the data is required to have permissions to
  * administer the project.
  */
-export async function setProjectProperty(client: Client, parameters: SetProjectProperty): Promise<void> {
+export async function setProjectProperty(
+  client: Client,
+  parameters: SetProjectProperty,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/2/project/${parameters.projectIdOrKey}/properties/${parameters.propertyKey}`,
     method: 'PUT',
     body: parameters.body,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Removes the property from the project identified by the key or by the id. */
-export async function deleteProjectProperty(client: Client, parameters: DeleteProjectProperty): Promise<void> {
+export async function deleteProjectProperty(
+  client: Client,
+  parameters: DeleteProjectProperty,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/2/project/${parameters.projectIdOrKey}/properties/${parameters.propertyKey}`,
     method: 'DELETE',
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Restores an archived project. In case of success restored project should be re-indexed. */
-export async function restoreProject(client: Client, parameters: RestoreProject): Promise<void> {
+export async function restoreProject(
+  client: Client,
+  parameters: RestoreProject,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/2/project/${parameters.projectIdOrKey}/restore`,
     method: 'PUT',
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Returns all roles in the given project Id or key, with links to full details on each role. */
-export async function getProjectRoles(client: Client, parameters: GetProjectRolesParameters): Promise<GetProjectRoles> {
+export async function getProjectRoles(
+  client: Client,
+  parameters: GetProjectRolesParameters,
+  options?: RequestOptions,
+): Promise<GetProjectRoles> {
   const config: SendRequestOptions<GetProjectRoles> = {
     url: `/rest/api/2/project/${parameters.projectIdOrKey}/role`,
     method: 'GET',
     schema: GetProjectRolesSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Returns the details for a given project role in a project. */
-export async function getProjectRole(client: Client, parameters: GetProjectRole): Promise<ProjectRole> {
+export async function getProjectRole(
+  client: Client,
+  parameters: GetProjectRole,
+  options?: RequestOptions,
+): Promise<ProjectRole> {
   const config: SendRequestOptions<ProjectRole> = {
     url: `/rest/api/2/project/${parameters.projectIdOrKey}/role/${parameters.id}`,
     method: 'GET',
     schema: ProjectRoleSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Adds an actor (user or group) to a project role. For user actors, their usernames should be used. */
-export async function addActorUsers(client: Client, parameters: AddActorUsers): Promise<ProjectRole> {
+export async function addActorUsers(
+  client: Client,
+  parameters: AddActorUsers,
+  options?: RequestOptions,
+): Promise<ProjectRole> {
   const config: SendRequestOptions<ProjectRole> = {
     url: `/rest/api/2/project/${parameters.projectIdOrKey}/role/${parameters.id}`,
     method: 'POST',
@@ -425,6 +516,7 @@ export async function addActorUsers(client: Client, parameters: AddActorUsers): 
       group: parameters.group,
     },
     schema: ProjectRoleSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -434,19 +526,20 @@ export async function addActorUsers(client: Client, parameters: AddActorUsers): 
  * Updates a project role to include the specified actors (users or groups). Can be also used to clear roles to not
  * include any users or groups. For user actors, their usernames should be used.
  */
-export async function setActors(client: Client, parameters: SetActors): Promise<ProjectRole> {
+export async function setActors(client: Client, parameters: SetActors, options?: RequestOptions): Promise<ProjectRole> {
   const config: SendRequestOptions<ProjectRole> = {
     url: `/rest/api/2/project/${parameters.projectIdOrKey}/role/${parameters.id}`,
     method: 'PUT',
     body: parameters.body,
     schema: ProjectRoleSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Deletes actors (users or groups) from a project role. */
-export async function deleteActor(client: Client, parameters: DeleteActor): Promise<void> {
+export async function deleteActor(client: Client, parameters: DeleteActor, options?: RequestOptions): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/2/project/${parameters.projectIdOrKey}/role/${parameters.id}`,
     method: 'DELETE',
@@ -454,28 +547,39 @@ export async function deleteActor(client: Client, parameters: DeleteActor): Prom
       user: parameters.user,
       group: parameters.group,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Get all issue types with valid status values for a project */
-export async function getAllStatuses(client: Client, parameters: GetAllStatuses): Promise<IssueTypeWithStatusJson[]> {
+export async function getAllStatuses(
+  client: Client,
+  parameters: GetAllStatuses,
+  options?: RequestOptions,
+): Promise<IssueTypeWithStatusJson[]> {
   const config: SendRequestOptions<IssueTypeWithStatusJson[]> = {
     url: `/rest/api/2/project/${parameters.projectIdOrKey}/statuses`,
     method: 'GET',
     schema: z.array(IssueTypeWithStatusJsonSchema),
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Updates the type of a project */
-export async function updateProjectType(client: Client, parameters: UpdateProjectType): Promise<Project> {
+export async function updateProjectType(
+  client: Client,
+  parameters: UpdateProjectType,
+  options?: RequestOptions,
+): Promise<Project> {
   const config: SendRequestOptions<Project> = {
     url: `/rest/api/2/project/${parameters.projectIdOrKey}/type/${parameters.newProjectTypeKey}`,
     method: 'PUT',
     schema: ProjectSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -488,6 +592,7 @@ export async function updateProjectType(client: Client, parameters: UpdateProjec
 export async function getProjectVersionsPaginated(
   client: Client,
   parameters: GetProjectVersionsPaginated,
+  options?: RequestOptions,
 ): Promise<PagedResults> {
   const config: SendRequestOptions<PagedResults> = {
     url: `/rest/api/2/project/${parameters.projectIdOrKey}/version`,
@@ -499,13 +604,18 @@ export async function getProjectVersionsPaginated(
       startAt: parameters.startAt,
     },
     schema: PagedResultsSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Contains a full representation of a the specified project's versions. */
-export async function getProjectVersions(client: Client, parameters: GetProjectVersions): Promise<Version[]> {
+export async function getProjectVersions(
+  client: Client,
+  parameters: GetProjectVersions,
+  options?: RequestOptions,
+): Promise<Version[]> {
   const config: SendRequestOptions<Version[]> = {
     url: `/rest/api/2/project/${parameters.projectIdOrKey}/versions`,
     method: 'GET',
@@ -513,6 +623,7 @@ export async function getProjectVersions(client: Client, parameters: GetProjectV
       expand: parameters.expand,
     },
     schema: z.array(VersionSchema),
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -522,11 +633,13 @@ export async function getProjectVersions(client: Client, parameters: GetProjectV
 export async function getProjectIssueSecurityScheme(
   client: Client,
   parameters: GetProjectIssueSecurityScheme,
+  options?: RequestOptions,
 ): Promise<SecuritySchemeJson> {
   const config: SendRequestOptions<SecuritySchemeJson> = {
     url: `/rest/api/2/project/${parameters.projectKeyOrId}/issuesecuritylevelscheme`,
     method: 'GET',
     schema: SecuritySchemeJsonSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -539,6 +652,7 @@ export async function getProjectIssueSecurityScheme(
 export async function getProjectNotificationScheme(
   client: Client,
   parameters: GetProjectNotificationScheme,
+  options?: RequestOptions,
 ): Promise<NotificationScheme> {
   const config: SendRequestOptions<NotificationScheme> = {
     url: `/rest/api/2/project/${parameters.projectKeyOrId}/notificationscheme`,
@@ -547,6 +661,7 @@ export async function getProjectNotificationScheme(
       expand: parameters.expand,
     },
     schema: NotificationSchemeSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -556,6 +671,7 @@ export async function getProjectNotificationScheme(
 export async function getAssignedPermissionScheme(
   client: Client,
   parameters: GetAssignedPermissionScheme,
+  options?: RequestOptions,
 ): Promise<PermissionScheme> {
   const config: SendRequestOptions<PermissionScheme> = {
     url: `/rest/api/2/project/${parameters.projectKeyOrId}/permissionscheme`,
@@ -564,6 +680,7 @@ export async function getAssignedPermissionScheme(
       expand: parameters.expand,
     },
     schema: PermissionSchemeSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -573,6 +690,7 @@ export async function getAssignedPermissionScheme(
 export async function assignPermissionScheme(
   client: Client,
   parameters: AssignPermissionScheme,
+  options?: RequestOptions,
 ): Promise<PermissionScheme> {
   const config: SendRequestOptions<PermissionScheme> = {
     url: `/rest/api/2/project/${parameters.projectKeyOrId}/permissionscheme`,
@@ -584,6 +702,7 @@ export async function assignPermissionScheme(
       id: parameters.id,
     },
     schema: PermissionSchemeSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -597,11 +716,13 @@ export async function assignPermissionScheme(
 export async function getAssignedPriorityScheme(
   client: Client,
   parameters: GetAssignedPriorityScheme,
+  options?: RequestOptions,
 ): Promise<PriorityScheme> {
   const config: SendRequestOptions<PriorityScheme> = {
     url: `/rest/api/2/project/${parameters.projectKeyOrId}/priorityscheme`,
     method: 'GET',
     schema: PrioritySchemeSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -613,7 +734,11 @@ export async function getAssignedPriorityScheme(
  * scheme. All project keys associated with the priority scheme will only be returned if additional query parameter is
  * provided expand=projectKeys.
  */
-export async function assignPriorityScheme(client: Client, parameters: AssignPriorityScheme): Promise<PriorityScheme> {
+export async function assignPriorityScheme(
+  client: Client,
+  parameters: AssignPriorityScheme,
+  options?: RequestOptions,
+): Promise<PriorityScheme> {
   const config: SendRequestOptions<PriorityScheme> = {
     url: `/rest/api/2/project/${parameters.projectKeyOrId}/priorityscheme`,
     method: 'PUT',
@@ -621,6 +746,7 @@ export async function assignPriorityScheme(client: Client, parameters: AssignPri
       id: parameters.id,
     },
     schema: PrioritySchemeSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -634,11 +760,13 @@ export async function assignPriorityScheme(client: Client, parameters: AssignPri
 export async function unassignPriorityScheme(
   client: Client,
   parameters: UnassignPriorityScheme,
+  options?: RequestOptions,
 ): Promise<PriorityScheme> {
   const config: SendRequestOptions<PriorityScheme> = {
     url: `/rest/api/2/project/${parameters.projectKeyOrId}/priorityscheme/${parameters.schemeId}`,
     method: 'DELETE',
     schema: PrioritySchemeSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -651,11 +779,13 @@ export async function unassignPriorityScheme(
 export async function getSecurityLevelsForProject(
   client: Client,
   parameters: GetSecurityLevelsForProject,
+  options?: RequestOptions,
 ): Promise<SecurityListLevelJson> {
   const config: SendRequestOptions<SecurityListLevelJson> = {
     url: `/rest/api/2/project/${parameters.projectKeyOrId}/securitylevel`,
     method: 'GET',
     schema: SecurityListLevelJsonSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -665,11 +795,13 @@ export async function getSecurityLevelsForProject(
 export async function getWorkflowSchemeForProject(
   client: Client,
   parameters: GetWorkflowSchemeForProject,
+  options?: RequestOptions,
 ): Promise<WorkflowScheme> {
   const config: SendRequestOptions<WorkflowScheme> = {
     url: `/rest/api/2/project/${parameters.projectKeyOrId}/workflowscheme`,
     method: 'GET',
     schema: WorkflowSchemeSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -686,6 +818,7 @@ export async function getWorkflowSchemeForProject(
 export async function searchForProjects(
   client: Client,
   parameters?: SearchForProjects,
+  options?: RequestOptions,
 ): Promise<ProjectPickerResultWrapper> {
   const config: SendRequestOptions<ProjectPickerResultWrapper> = {
     url: '/rest/api/2/projects/picker',
@@ -696,6 +829,7 @@ export async function searchForProjects(
       allowEmptyQuery: parameters?.allowEmptyQuery,
     },
     schema: ProjectPickerResultWrapperSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

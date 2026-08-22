@@ -2,15 +2,16 @@ import { ApplicationRoleSchema, type ApplicationRole } from '../models/applicati
 import type { PutBulk } from '../parameters/putBulk';
 import type { GetApplicationRole } from '../parameters/getApplicationRole';
 import type { UpdateApplicationRole } from '../parameters/updateApplicationRole';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 import { z } from 'zod';
 
 /** Returns all application roles in the system. */
-export async function getAll(client: Client): Promise<ApplicationRole[]> {
+export async function getAll(client: Client, options?: RequestOptions): Promise<ApplicationRole[]> {
   const config: SendRequestOptions<ApplicationRole[]> = {
     url: '/rest/api/2/applicationrole',
     method: 'GET',
     schema: z.array(ApplicationRoleSchema),
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -22,7 +23,7 @@ export async function getAll(client: Client): Promise<ApplicationRole[]> {
  * silently ignored. It is acceptable to pass only the roles that are updated as roles that are present in the server
  * but not in data to update with, will not be deleted.
  */
-export async function putBulk(client: Client, parameters: PutBulk): Promise<ApplicationRole> {
+export async function putBulk(client: Client, parameters: PutBulk, options?: RequestOptions): Promise<ApplicationRole> {
   const config: SendRequestOptions<ApplicationRole> = {
     url: '/rest/api/2/applicationrole',
     method: 'PUT',
@@ -44,17 +45,23 @@ export async function putBulk(client: Client, parameters: PutBulk): Promise<Appl
       userCountDescription: parameters.userCountDescription,
     },
     schema: ApplicationRoleSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Returns the ApplicationRole with passed key if it exists. */
-export async function getApplicationRole(client: Client, parameters: GetApplicationRole): Promise<ApplicationRole> {
+export async function getApplicationRole(
+  client: Client,
+  parameters: GetApplicationRole,
+  options?: RequestOptions,
+): Promise<ApplicationRole> {
   const config: SendRequestOptions<ApplicationRole> = {
     url: `/rest/api/2/applicationrole/${parameters.key}`,
     method: 'GET',
     schema: ApplicationRoleSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -67,6 +74,7 @@ export async function getApplicationRole(client: Client, parameters: GetApplicat
 export async function updateApplicationRole(
   client: Client,
   parameters: UpdateApplicationRole,
+  options?: RequestOptions,
 ): Promise<ApplicationRole> {
   const config: SendRequestOptions<ApplicationRole> = {
     url: `/rest/api/2/applicationrole/${parameters.key}`,
@@ -77,6 +85,7 @@ export async function updateApplicationRole(
     },
     body: parameters.body,
     schema: ApplicationRoleSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

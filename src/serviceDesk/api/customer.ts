@@ -2,7 +2,7 @@ import { UserSchema, type User } from '../models/user';
 import type { CreateCustomer } from '../parameters/createCustomer';
 import type { CreateCustomerSkippingPermissionCheck } from '../parameters/createCustomerSkippingPermissionCheck';
 import type { RevokePortalOnlyAccessForUser } from '../parameters/revokePortalOnlyAccessForUser';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /**
  * This method adds a customer to the Jira Service Management instance by passing a JSON file including an email address
@@ -12,7 +12,11 @@ import type { Client, SendRequestOptions } from '#/core';
  * **[Permissions](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro#permissions) required**: Jira
  * Administrator Global permission
  */
-export async function createCustomer(client: Client, parameters: CreateCustomer): Promise<User> {
+export async function createCustomer(
+  client: Client,
+  parameters: CreateCustomer,
+  options?: RequestOptions,
+): Promise<User> {
   const config: SendRequestOptions<User> = {
     url: '/rest/servicedeskapi/customer',
     method: 'POST',
@@ -25,6 +29,7 @@ export async function createCustomer(client: Client, parameters: CreateCustomer)
       fullName: parameters.fullName,
     },
     schema: UserSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -43,6 +48,7 @@ export async function createCustomer(client: Client, parameters: CreateCustomer)
 export async function createCustomerSkippingPermissionCheck(
   client: Client,
   parameters: CreateCustomerSkippingPermissionCheck,
+  options?: RequestOptions,
 ): Promise<User> {
   const config: SendRequestOptions<User> = {
     url: '/rest/servicedeskapi/customer/skip-permission-check',
@@ -56,6 +62,7 @@ export async function createCustomerSkippingPermissionCheck(
       fullName: parameters.fullName,
     },
     schema: UserSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -72,10 +79,12 @@ export async function createCustomerSkippingPermissionCheck(
 export async function revokePortalOnlyAccessForUser(
   client: Client,
   parameters: RevokePortalOnlyAccessForUser,
+  options?: RequestOptions,
 ): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/servicedeskapi/customer/user/${parameters.accountId}/revoke-portal-only-access`,
     method: 'PUT',
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

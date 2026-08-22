@@ -1,9 +1,13 @@
 import { TicketsSchema, type Tickets } from '../models/tickets';
 import type { FindObjectTickets } from '../parameters/findObjectTickets';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /** Retrieve all tickets connected to the specified object. */
-export async function findObjectTickets(client: Client, parameters: FindObjectTickets): Promise<Tickets> {
+export async function findObjectTickets(
+  client: Client,
+  parameters: FindObjectTickets,
+  options?: RequestOptions,
+): Promise<Tickets> {
   const config: SendRequestOptions<Tickets> = {
     url: `/rest/assets/1.0/objectconnectedtickets/${parameters.id}/tickets`,
     method: 'GET',
@@ -13,6 +17,7 @@ export async function findObjectTickets(client: Client, parameters: FindObjectTi
       limit: parameters.limit,
     },
     schema: TicketsSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

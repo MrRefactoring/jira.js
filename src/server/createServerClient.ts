@@ -1,4 +1,4 @@
-import { type ClientConfig, type Client, createClient, type Buffer } from '#/core';
+import { type ClientConfig, type Client, type RequestOptions, createClient, type Buffer } from '#/core';
 import * as backlog from './api/backlog';
 import * as board from './api/board';
 import * as epic from './api/epic';
@@ -598,845 +598,1170 @@ export function createServerClient(clientConfig: ClientConfig | Client) {
 
   return {
     backlog: {
-      moveIssuesToBacklog: (parameters: MoveIssuesToBacklog): Promise<void> =>
-        backlog.moveIssuesToBacklog(client, parameters),
+      moveIssuesToBacklog: (parameters: MoveIssuesToBacklog, options?: RequestOptions): Promise<void> =>
+        backlog.moveIssuesToBacklog(client, parameters, options),
     },
     board: {
-      getAllBoards: (parameters?: GetAllBoards): Promise<Page<Board>> => board.getAllBoards(client, parameters),
-      createBoard: (parameters: CreateBoard): Promise<Board> => board.createBoard(client, parameters),
-      getBoard: (parameters: GetBoard): Promise<Board> => board.getBoard(client, parameters),
-      deleteBoard: (parameters: DeleteBoard): Promise<void> => board.deleteBoard(client, parameters),
-      getIssuesForBacklog: (parameters: GetIssuesForBacklog): Promise<SearchResults> =>
-        board.getIssuesForBacklog(client, parameters),
-      getBoardConfiguration: (parameters: GetBoardConfiguration): Promise<BoardConfig> =>
-        board.getBoardConfiguration(client, parameters),
-      getEpics: (parameters: GetEpics): Promise<Page<Epic>> => board.getEpics(client, parameters),
-      getIssuesWithoutEpicForBoard: (parameters: GetIssuesWithoutEpicForBoard): Promise<SearchResults> =>
-        board.getIssuesWithoutEpicForBoard(client, parameters),
-      getIssuesForBoardEpic: (parameters: GetIssuesForBoardEpic): Promise<SearchResults> =>
-        board.getIssuesForBoardEpic(client, parameters),
-      getIssuesForBoard: (parameters: GetIssuesForBoard): Promise<SearchResults> =>
-        board.getIssuesForBoard(client, parameters),
-      getProjects: (parameters: GetProjects): Promise<Page<ProjectJson>> => board.getProjects(client, parameters),
-      getBoardPropertyKeys: (parameters: GetBoardPropertyKeys): Promise<EntityPropertiesKeys> =>
-        board.getBoardPropertyKeys(client, parameters),
-      getBoardProperty: (parameters: GetBoardProperty): Promise<EntityProperty> =>
-        board.getBoardProperty(client, parameters),
-      setBoardProperty: (parameters: SetBoardProperty): Promise<EntityPropertiesKeys> =>
-        board.setBoardProperty(client, parameters),
-      deleteBoardProperty: (parameters: DeleteBoardProperty): Promise<void> =>
-        board.deleteBoardProperty(client, parameters),
-      getRefinedVelocity: (parameters: GetRefinedVelocity): Promise<BooleanSetting> =>
-        board.getRefinedVelocity(client, parameters),
-      setRefinedVelocity: (parameters: SetRefinedVelocity): Promise<void> =>
-        board.setRefinedVelocity(client, parameters),
-      getAllSprints: (parameters: GetAllSprints): Promise<Page<Sprint>> => board.getAllSprints(client, parameters),
-      getIssuesForBoardSprint: (parameters: GetIssuesForBoardSprint): Promise<SearchResults> =>
-        board.getIssuesForBoardSprint(client, parameters),
-      getAllVersions: (parameters: GetAllVersions): Promise<Page<AgileVersion>> =>
-        board.getAllVersions(client, parameters),
+      getAllBoards: (parameters?: GetAllBoards, options?: RequestOptions): Promise<Page<Board>> =>
+        board.getAllBoards(client, parameters, options),
+      createBoard: (parameters: CreateBoard, options?: RequestOptions): Promise<Board> =>
+        board.createBoard(client, parameters, options),
+      getBoard: (parameters: GetBoard, options?: RequestOptions): Promise<Board> =>
+        board.getBoard(client, parameters, options),
+      deleteBoard: (parameters: DeleteBoard, options?: RequestOptions): Promise<void> =>
+        board.deleteBoard(client, parameters, options),
+      getIssuesForBacklog: (parameters: GetIssuesForBacklog, options?: RequestOptions): Promise<SearchResults> =>
+        board.getIssuesForBacklog(client, parameters, options),
+      getBoardConfiguration: (parameters: GetBoardConfiguration, options?: RequestOptions): Promise<BoardConfig> =>
+        board.getBoardConfiguration(client, parameters, options),
+      getEpics: (parameters: GetEpics, options?: RequestOptions): Promise<Page<Epic>> =>
+        board.getEpics(client, parameters, options),
+      getIssuesWithoutEpicForBoard: (
+        parameters: GetIssuesWithoutEpicForBoard,
+        options?: RequestOptions,
+      ): Promise<SearchResults> => board.getIssuesWithoutEpicForBoard(client, parameters, options),
+      getIssuesForBoardEpic: (parameters: GetIssuesForBoardEpic, options?: RequestOptions): Promise<SearchResults> =>
+        board.getIssuesForBoardEpic(client, parameters, options),
+      getIssuesForBoard: (parameters: GetIssuesForBoard, options?: RequestOptions): Promise<SearchResults> =>
+        board.getIssuesForBoard(client, parameters, options),
+      getProjects: (parameters: GetProjects, options?: RequestOptions): Promise<Page<ProjectJson>> =>
+        board.getProjects(client, parameters, options),
+      getBoardPropertyKeys: (
+        parameters: GetBoardPropertyKeys,
+        options?: RequestOptions,
+      ): Promise<EntityPropertiesKeys> => board.getBoardPropertyKeys(client, parameters, options),
+      getBoardProperty: (parameters: GetBoardProperty, options?: RequestOptions): Promise<EntityProperty> =>
+        board.getBoardProperty(client, parameters, options),
+      setBoardProperty: (parameters: SetBoardProperty, options?: RequestOptions): Promise<EntityPropertiesKeys> =>
+        board.setBoardProperty(client, parameters, options),
+      deleteBoardProperty: (parameters: DeleteBoardProperty, options?: RequestOptions): Promise<void> =>
+        board.deleteBoardProperty(client, parameters, options),
+      getRefinedVelocity: (parameters: GetRefinedVelocity, options?: RequestOptions): Promise<BooleanSetting> =>
+        board.getRefinedVelocity(client, parameters, options),
+      setRefinedVelocity: (parameters: SetRefinedVelocity, options?: RequestOptions): Promise<void> =>
+        board.setRefinedVelocity(client, parameters, options),
+      getAllSprints: (parameters: GetAllSprints, options?: RequestOptions): Promise<Page<Sprint>> =>
+        board.getAllSprints(client, parameters, options),
+      getIssuesForBoardSprint: (
+        parameters: GetIssuesForBoardSprint,
+        options?: RequestOptions,
+      ): Promise<SearchResults> => board.getIssuesForBoardSprint(client, parameters, options),
+      getAllVersions: (parameters: GetAllVersions, options?: RequestOptions): Promise<Page<AgileVersion>> =>
+        board.getAllVersions(client, parameters, options),
     },
     epic: {
-      getIssuesWithoutEpic: (parameters?: GetIssuesWithoutEpic): Promise<SearchResults> =>
-        epic.getIssuesWithoutEpic(client, parameters),
-      removeIssuesFromEpic: (parameters: RemoveIssuesFromEpic): Promise<void> =>
-        epic.removeIssuesFromEpic(client, parameters),
-      getEpic: (parameters: GetEpic): Promise<Epic> => epic.getEpic(client, parameters),
-      partiallyUpdateEpic: (parameters: PartiallyUpdateEpic): Promise<Epic> =>
-        epic.partiallyUpdateEpic(client, parameters),
-      getIssuesForEpic: (parameters: GetIssuesForEpic): Promise<SearchResults> =>
-        epic.getIssuesForEpic(client, parameters),
-      moveIssuesToEpic: (parameters: MoveIssuesToEpic): Promise<void> => epic.moveIssuesToEpic(client, parameters),
-      rankEpics: (parameters: RankEpics): Promise<void> => epic.rankEpics(client, parameters),
+      getIssuesWithoutEpic: (parameters?: GetIssuesWithoutEpic, options?: RequestOptions): Promise<SearchResults> =>
+        epic.getIssuesWithoutEpic(client, parameters, options),
+      removeIssuesFromEpic: (parameters: RemoveIssuesFromEpic, options?: RequestOptions): Promise<void> =>
+        epic.removeIssuesFromEpic(client, parameters, options),
+      getEpic: (parameters: GetEpic, options?: RequestOptions): Promise<Epic> =>
+        epic.getEpic(client, parameters, options),
+      partiallyUpdateEpic: (parameters: PartiallyUpdateEpic, options?: RequestOptions): Promise<Epic> =>
+        epic.partiallyUpdateEpic(client, parameters, options),
+      getIssuesForEpic: (parameters: GetIssuesForEpic, options?: RequestOptions): Promise<SearchResults> =>
+        epic.getIssuesForEpic(client, parameters, options),
+      moveIssuesToEpic: (parameters: MoveIssuesToEpic, options?: RequestOptions): Promise<void> =>
+        epic.moveIssuesToEpic(client, parameters, options),
+      rankEpics: (parameters: RankEpics, options?: RequestOptions): Promise<void> =>
+        epic.rankEpics(client, parameters, options),
     },
     issues: {
-      rankIssues: (parameters: RankIssues): Promise<void> => issues.rankIssues(client, parameters),
-      getAgileIssue: (parameters: GetAgileIssue): Promise<Issue> => issues.getAgileIssue(client, parameters),
-      getIssueEstimationForBoard: (parameters: GetIssueEstimationForBoard): Promise<FieldValue> =>
-        issues.getIssueEstimationForBoard(client, parameters),
-      estimateIssueForBoard: (parameters: EstimateIssueForBoard): Promise<FieldValue> =>
-        issues.estimateIssueForBoard(client, parameters),
-      createIssue: (parameters: CreateIssue): Promise<IssueCreateResponse> => issues.createIssue(client, parameters),
-      archiveIssues: (parameters: ArchiveIssues): Promise<unknown> => issues.archiveIssues(client, parameters),
-      createIssues: (parameters: CreateIssues): Promise<IssuesCreateResponse> =>
-        issues.createIssues(client, parameters),
+      rankIssues: (parameters: RankIssues, options?: RequestOptions): Promise<void> =>
+        issues.rankIssues(client, parameters, options),
+      getAgileIssue: (parameters: GetAgileIssue, options?: RequestOptions): Promise<Issue> =>
+        issues.getAgileIssue(client, parameters, options),
+      getIssueEstimationForBoard: (
+        parameters: GetIssueEstimationForBoard,
+        options?: RequestOptions,
+      ): Promise<FieldValue> => issues.getIssueEstimationForBoard(client, parameters, options),
+      estimateIssueForBoard: (parameters: EstimateIssueForBoard, options?: RequestOptions): Promise<FieldValue> =>
+        issues.estimateIssueForBoard(client, parameters, options),
+      createIssue: (parameters: CreateIssue, options?: RequestOptions): Promise<IssueCreateResponse> =>
+        issues.createIssue(client, parameters, options),
+      archiveIssues: (parameters: ArchiveIssues, options?: RequestOptions): Promise<unknown> =>
+        issues.archiveIssues(client, parameters, options),
+      createIssues: (parameters: CreateIssues, options?: RequestOptions): Promise<IssuesCreateResponse> =>
+        issues.createIssues(client, parameters, options),
       getCreateIssueMetaProjectIssueTypes: (
         parameters: GetCreateIssueMetaProjectIssueTypes,
-      ): Promise<CreateMetaIssueType> => issues.getCreateIssueMetaProjectIssueTypes(client, parameters),
-      getCreateIssueMetaFields: (parameters: GetCreateIssueMetaFields): Promise<FieldMeta> =>
-        issues.getCreateIssueMetaFields(client, parameters),
-      getIssuePickerResource: (parameters?: GetIssuePickerResource): Promise<IssuePickerResult> =>
-        issues.getIssuePickerResource(client, parameters),
+        options?: RequestOptions,
+      ): Promise<CreateMetaIssueType> => issues.getCreateIssueMetaProjectIssueTypes(client, parameters, options),
+      getCreateIssueMetaFields: (parameters: GetCreateIssueMetaFields, options?: RequestOptions): Promise<FieldMeta> =>
+        issues.getCreateIssueMetaFields(client, parameters, options),
+      getIssuePickerResource: (
+        parameters?: GetIssuePickerResource,
+        options?: RequestOptions,
+      ): Promise<IssuePickerResult> => issues.getIssuePickerResource(client, parameters, options),
       createReciprocalRemoteIssueLink: (
         parameters: CreateReciprocalRemoteIssueLink,
-      ): Promise<RemoteReciprocalIssueLinkCreateResponse> => issues.createReciprocalRemoteIssueLink(client, parameters),
-      getIssue: (parameters: GetIssue): Promise<Issue> => issues.getIssue(client, parameters),
-      editIssue: (parameters: EditIssue): Promise<void> => issues.editIssue(client, parameters),
-      deleteIssue: (parameters: DeleteIssue): Promise<void> => issues.deleteIssue(client, parameters),
-      archiveIssue: (parameters: ArchiveIssue): Promise<void> => issues.archiveIssue(client, parameters),
-      assign: (parameters: Assign): Promise<void> => issues.assign(client, parameters),
-      addAttachment: (parameters: AddAttachment): Promise<AttachmentJson[]> => issues.addAttachment(client, parameters),
-      getComments: (parameters: GetComments): Promise<CommentsWithPaginationJson> =>
-        issues.getComments(client, parameters),
-      addComment: (parameters: AddComment): Promise<CommentJson> => issues.addComment(client, parameters),
-      getComment: (parameters: GetComment): Promise<CommentJson> => issues.getComment(client, parameters),
-      updateComment: (parameters: UpdateComment): Promise<CommentJson> => issues.updateComment(client, parameters),
-      deleteComment: (parameters: DeleteComment): Promise<void> => issues.deleteComment(client, parameters),
-      setPinComment: (parameters: SetPinComment): Promise<void> => issues.setPinComment(client, parameters),
-      getEditIssueMeta: (parameters: GetEditIssueMeta): Promise<EditMeta> =>
-        issues.getEditIssueMeta(client, parameters),
-      notify: (parameters: Notify): Promise<void> => issues.notify(client, parameters),
-      getPinnedComments: (parameters: GetPinnedComments): Promise<PinnedCommentJson[]> =>
-        issues.getPinnedComments(client, parameters),
-      getIssuePropertyKeys: (parameters: GetIssuePropertyKeys): Promise<EntityPropertiesKeys> =>
-        issues.getIssuePropertyKeys(client, parameters),
-      getIssueProperty: (parameters: GetIssueProperty): Promise<EntityProperty> =>
-        issues.getIssueProperty(client, parameters),
-      setIssueProperty: (parameters: SetIssueProperty): Promise<void> => issues.setIssueProperty(client, parameters),
-      deleteIssueProperty: (parameters: DeleteIssueProperty): Promise<void> =>
-        issues.deleteIssueProperty(client, parameters),
-      getRemoteIssueLinks: (parameters: GetRemoteIssueLinks): Promise<RemoteIssueLink[]> =>
-        issues.getRemoteIssueLinks(client, parameters),
-      createOrUpdateRemoteIssueLink: (parameters: CreateOrUpdateRemoteIssueLink): Promise<RemoteIssueLink> =>
-        issues.createOrUpdateRemoteIssueLink(client, parameters),
-      deleteRemoteIssueLinkByGlobalId: (parameters: DeleteRemoteIssueLinkByGlobalId): Promise<void> =>
-        issues.deleteRemoteIssueLinkByGlobalId(client, parameters),
-      getRemoteIssueLinkById: (parameters: GetRemoteIssueLinkById): Promise<RemoteIssueLink> =>
-        issues.getRemoteIssueLinkById(client, parameters),
-      updateRemoteIssueLink: (parameters: UpdateRemoteIssueLink): Promise<void> =>
-        issues.updateRemoteIssueLink(client, parameters),
-      deleteRemoteIssueLinkById: (parameters: DeleteRemoteIssueLinkById): Promise<void> =>
-        issues.deleteRemoteIssueLinkById(client, parameters),
-      restoreIssue: (parameters: RestoreIssue): Promise<void> => issues.restoreIssue(client, parameters),
-      getSubTasks: (parameters: GetSubTasks): Promise<IssueRefJson[]> => issues.getSubTasks(client, parameters),
-      canMoveSubTask: (parameters: CanMoveSubTask): Promise<unknown> => issues.canMoveSubTask(client, parameters),
-      moveSubTasks: (parameters: MoveSubTasks): Promise<void> => issues.moveSubTasks(client, parameters),
-      getTransitions: (parameters: GetTransitions): Promise<TransitionsMeta> =>
-        issues.getTransitions(client, parameters),
-      doTransition: (parameters: DoTransition): Promise<void> => issues.doTransition(client, parameters),
-      getVotes: (parameters: GetVotes): Promise<Vote> => issues.getVotes(client, parameters),
-      addVote: (parameters: AddVote): Promise<void> => issues.addVote(client, parameters),
-      removeVote: (parameters: RemoveVote): Promise<void> => issues.removeVote(client, parameters),
-      getIssueWatchers: (parameters: GetIssueWatchers): Promise<Watchers> =>
-        issues.getIssueWatchers(client, parameters),
-      addWatcher: (parameters: AddWatcher): Promise<void> => issues.addWatcher(client, parameters),
-      removeWatcher: (parameters: RemoveWatcher): Promise<void> => issues.removeWatcher(client, parameters),
-      getIssueWorklog: (parameters: GetIssueWorklog): Promise<WorklogWithPagination> =>
-        issues.getIssueWorklog(client, parameters),
-      addWorklog: (parameters: AddWorklog): Promise<Worklog> => issues.addWorklog(client, parameters),
-      getWorklog: (parameters: GetWorklog): Promise<Worklog> => issues.getWorklog(client, parameters),
-      updateWorklog: (parameters: UpdateWorklog): Promise<Worklog> => issues.updateWorklog(client, parameters),
-      deleteWorklog: (parameters: DeleteWorklog): Promise<void> => issues.deleteWorklog(client, parameters),
+        options?: RequestOptions,
+      ): Promise<RemoteReciprocalIssueLinkCreateResponse> =>
+        issues.createReciprocalRemoteIssueLink(client, parameters, options),
+      getIssue: (parameters: GetIssue, options?: RequestOptions): Promise<Issue> =>
+        issues.getIssue(client, parameters, options),
+      editIssue: (parameters: EditIssue, options?: RequestOptions): Promise<void> =>
+        issues.editIssue(client, parameters, options),
+      deleteIssue: (parameters: DeleteIssue, options?: RequestOptions): Promise<void> =>
+        issues.deleteIssue(client, parameters, options),
+      archiveIssue: (parameters: ArchiveIssue, options?: RequestOptions): Promise<void> =>
+        issues.archiveIssue(client, parameters, options),
+      assign: (parameters: Assign, options?: RequestOptions): Promise<void> =>
+        issues.assign(client, parameters, options),
+      addAttachment: (parameters: AddAttachment, options?: RequestOptions): Promise<AttachmentJson[]> =>
+        issues.addAttachment(client, parameters, options),
+      getComments: (parameters: GetComments, options?: RequestOptions): Promise<CommentsWithPaginationJson> =>
+        issues.getComments(client, parameters, options),
+      addComment: (parameters: AddComment, options?: RequestOptions): Promise<CommentJson> =>
+        issues.addComment(client, parameters, options),
+      getComment: (parameters: GetComment, options?: RequestOptions): Promise<CommentJson> =>
+        issues.getComment(client, parameters, options),
+      updateComment: (parameters: UpdateComment, options?: RequestOptions): Promise<CommentJson> =>
+        issues.updateComment(client, parameters, options),
+      deleteComment: (parameters: DeleteComment, options?: RequestOptions): Promise<void> =>
+        issues.deleteComment(client, parameters, options),
+      setPinComment: (parameters: SetPinComment, options?: RequestOptions): Promise<void> =>
+        issues.setPinComment(client, parameters, options),
+      getEditIssueMeta: (parameters: GetEditIssueMeta, options?: RequestOptions): Promise<EditMeta> =>
+        issues.getEditIssueMeta(client, parameters, options),
+      notify: (parameters: Notify, options?: RequestOptions): Promise<void> =>
+        issues.notify(client, parameters, options),
+      getPinnedComments: (parameters: GetPinnedComments, options?: RequestOptions): Promise<PinnedCommentJson[]> =>
+        issues.getPinnedComments(client, parameters, options),
+      getIssuePropertyKeys: (
+        parameters: GetIssuePropertyKeys,
+        options?: RequestOptions,
+      ): Promise<EntityPropertiesKeys> => issues.getIssuePropertyKeys(client, parameters, options),
+      getIssueProperty: (parameters: GetIssueProperty, options?: RequestOptions): Promise<EntityProperty> =>
+        issues.getIssueProperty(client, parameters, options),
+      setIssueProperty: (parameters: SetIssueProperty, options?: RequestOptions): Promise<void> =>
+        issues.setIssueProperty(client, parameters, options),
+      deleteIssueProperty: (parameters: DeleteIssueProperty, options?: RequestOptions): Promise<void> =>
+        issues.deleteIssueProperty(client, parameters, options),
+      getRemoteIssueLinks: (parameters: GetRemoteIssueLinks, options?: RequestOptions): Promise<RemoteIssueLink[]> =>
+        issues.getRemoteIssueLinks(client, parameters, options),
+      createOrUpdateRemoteIssueLink: (
+        parameters: CreateOrUpdateRemoteIssueLink,
+        options?: RequestOptions,
+      ): Promise<RemoteIssueLink> => issues.createOrUpdateRemoteIssueLink(client, parameters, options),
+      deleteRemoteIssueLinkByGlobalId: (
+        parameters: DeleteRemoteIssueLinkByGlobalId,
+        options?: RequestOptions,
+      ): Promise<void> => issues.deleteRemoteIssueLinkByGlobalId(client, parameters, options),
+      getRemoteIssueLinkById: (
+        parameters: GetRemoteIssueLinkById,
+        options?: RequestOptions,
+      ): Promise<RemoteIssueLink> => issues.getRemoteIssueLinkById(client, parameters, options),
+      updateRemoteIssueLink: (parameters: UpdateRemoteIssueLink, options?: RequestOptions): Promise<void> =>
+        issues.updateRemoteIssueLink(client, parameters, options),
+      deleteRemoteIssueLinkById: (parameters: DeleteRemoteIssueLinkById, options?: RequestOptions): Promise<void> =>
+        issues.deleteRemoteIssueLinkById(client, parameters, options),
+      restoreIssue: (parameters: RestoreIssue, options?: RequestOptions): Promise<void> =>
+        issues.restoreIssue(client, parameters, options),
+      getSubTasks: (parameters: GetSubTasks, options?: RequestOptions): Promise<IssueRefJson[]> =>
+        issues.getSubTasks(client, parameters, options),
+      canMoveSubTask: (parameters: CanMoveSubTask, options?: RequestOptions): Promise<unknown> =>
+        issues.canMoveSubTask(client, parameters, options),
+      moveSubTasks: (parameters: MoveSubTasks, options?: RequestOptions): Promise<void> =>
+        issues.moveSubTasks(client, parameters, options),
+      getTransitions: (parameters: GetTransitions, options?: RequestOptions): Promise<TransitionsMeta> =>
+        issues.getTransitions(client, parameters, options),
+      doTransition: (parameters: DoTransition, options?: RequestOptions): Promise<void> =>
+        issues.doTransition(client, parameters, options),
+      getVotes: (parameters: GetVotes, options?: RequestOptions): Promise<Vote> =>
+        issues.getVotes(client, parameters, options),
+      addVote: (parameters: AddVote, options?: RequestOptions): Promise<void> =>
+        issues.addVote(client, parameters, options),
+      removeVote: (parameters: RemoveVote, options?: RequestOptions): Promise<void> =>
+        issues.removeVote(client, parameters, options),
+      getIssueWatchers: (parameters: GetIssueWatchers, options?: RequestOptions): Promise<Watchers> =>
+        issues.getIssueWatchers(client, parameters, options),
+      addWatcher: (parameters: AddWatcher, options?: RequestOptions): Promise<void> =>
+        issues.addWatcher(client, parameters, options),
+      removeWatcher: (parameters: RemoveWatcher, options?: RequestOptions): Promise<void> =>
+        issues.removeWatcher(client, parameters, options),
+      getIssueWorklog: (parameters: GetIssueWorklog, options?: RequestOptions): Promise<WorklogWithPagination> =>
+        issues.getIssueWorklog(client, parameters, options),
+      addWorklog: (parameters: AddWorklog, options?: RequestOptions): Promise<Worklog> =>
+        issues.addWorklog(client, parameters, options),
+      getWorklog: (parameters: GetWorklog, options?: RequestOptions): Promise<Worklog> =>
+        issues.getWorklog(client, parameters, options),
+      updateWorklog: (parameters: UpdateWorklog, options?: RequestOptions): Promise<Worklog> =>
+        issues.updateWorklog(client, parameters, options),
+      deleteWorklog: (parameters: DeleteWorklog, options?: RequestOptions): Promise<void> =>
+        issues.deleteWorklog(client, parameters, options),
     },
     sprint: {
-      createSprint: (parameters: CreateSprint): Promise<Sprint> => sprint.createSprint(client, parameters),
-      unmapSprints: (parameters: UnmapSprints): Promise<void> => sprint.unmapSprints(client, parameters),
-      unmapAllSprints: (): Promise<void> => sprint.unmapAllSprints(client),
-      getSprint: (parameters: GetSprint): Promise<Sprint> => sprint.getSprint(client, parameters),
-      partiallyUpdateSprint: (parameters: PartiallyUpdateSprint): Promise<Sprint> =>
-        sprint.partiallyUpdateSprint(client, parameters),
-      updateSprint: (parameters: UpdateSprint): Promise<Sprint> => sprint.updateSprint(client, parameters),
-      deleteSprint: (parameters: DeleteSprint): Promise<void> => sprint.deleteSprint(client, parameters),
-      getIssuesForSprint: (parameters: GetIssuesForSprint): Promise<SearchResults> =>
-        sprint.getIssuesForSprint(client, parameters),
-      moveIssuesToSprint: (parameters: MoveIssuesToSprint): Promise<void> =>
-        sprint.moveIssuesToSprint(client, parameters),
-      getSprintPropertyKeys: (parameters: GetSprintPropertyKeys): Promise<EntityPropertiesKeys> =>
-        sprint.getSprintPropertyKeys(client, parameters),
-      getSprintProperty: (parameters: GetSprintProperty): Promise<EntityProperty> =>
-        sprint.getSprintProperty(client, parameters),
-      setSprintProperty: (parameters: SetSprintProperty): Promise<void> => sprint.setSprintProperty(client, parameters),
-      deleteSprintProperty: (parameters: DeleteSprintProperty): Promise<void> =>
-        sprint.deleteSprintProperty(client, parameters),
-      swapSprint: (parameters: SwapSprint): Promise<void> => sprint.swapSprint(client, parameters),
+      createSprint: (parameters: CreateSprint, options?: RequestOptions): Promise<Sprint> =>
+        sprint.createSprint(client, parameters, options),
+      unmapSprints: (parameters: UnmapSprints, options?: RequestOptions): Promise<void> =>
+        sprint.unmapSprints(client, parameters, options),
+      unmapAllSprints: (options?: RequestOptions): Promise<void> => sprint.unmapAllSprints(client, options),
+      getSprint: (parameters: GetSprint, options?: RequestOptions): Promise<Sprint> =>
+        sprint.getSprint(client, parameters, options),
+      partiallyUpdateSprint: (parameters: PartiallyUpdateSprint, options?: RequestOptions): Promise<Sprint> =>
+        sprint.partiallyUpdateSprint(client, parameters, options),
+      updateSprint: (parameters: UpdateSprint, options?: RequestOptions): Promise<Sprint> =>
+        sprint.updateSprint(client, parameters, options),
+      deleteSprint: (parameters: DeleteSprint, options?: RequestOptions): Promise<void> =>
+        sprint.deleteSprint(client, parameters, options),
+      getIssuesForSprint: (parameters: GetIssuesForSprint, options?: RequestOptions): Promise<SearchResults> =>
+        sprint.getIssuesForSprint(client, parameters, options),
+      moveIssuesToSprint: (parameters: MoveIssuesToSprint, options?: RequestOptions): Promise<void> =>
+        sprint.moveIssuesToSprint(client, parameters, options),
+      getSprintPropertyKeys: (
+        parameters: GetSprintPropertyKeys,
+        options?: RequestOptions,
+      ): Promise<EntityPropertiesKeys> => sprint.getSprintPropertyKeys(client, parameters, options),
+      getSprintProperty: (parameters: GetSprintProperty, options?: RequestOptions): Promise<EntityProperty> =>
+        sprint.getSprintProperty(client, parameters, options),
+      setSprintProperty: (parameters: SetSprintProperty, options?: RequestOptions): Promise<void> =>
+        sprint.setSprintProperty(client, parameters, options),
+      deleteSprintProperty: (parameters: DeleteSprintProperty, options?: RequestOptions): Promise<void> =>
+        sprint.deleteSprintProperty(client, parameters, options),
+      swapSprint: (parameters: SwapSprint, options?: RequestOptions): Promise<void> =>
+        sprint.swapSprint(client, parameters, options),
     },
     applicationProperties: {
-      getApplicationProperties: (parameters?: GetApplicationProperties): Promise<ApplicationProperty[]> =>
-        applicationProperties.getApplicationProperties(client, parameters),
-      getAdvancedSettings: (): Promise<ApplicationProperty[]> => applicationProperties.getAdvancedSettings(client),
-      setPropertyViaRestfulTable: (parameters: SetPropertyViaRestfulTable): Promise<ApplicationProperty> =>
-        applicationProperties.setPropertyViaRestfulTable(client, parameters),
+      getApplicationProperties: (
+        parameters?: GetApplicationProperties,
+        options?: RequestOptions,
+      ): Promise<ApplicationProperty[]> => applicationProperties.getApplicationProperties(client, parameters, options),
+      getAdvancedSettings: (options?: RequestOptions): Promise<ApplicationProperty[]> =>
+        applicationProperties.getAdvancedSettings(client, options),
+      setPropertyViaRestfulTable: (
+        parameters: SetPropertyViaRestfulTable,
+        options?: RequestOptions,
+      ): Promise<ApplicationProperty> => applicationProperties.setPropertyViaRestfulTable(client, parameters, options),
     },
     applicationRoles: {
-      getAll: (): Promise<ApplicationRole[]> => applicationRoles.getAll(client),
-      putBulk: (parameters: PutBulk): Promise<ApplicationRole> => applicationRoles.putBulk(client, parameters),
-      getApplicationRole: (parameters: GetApplicationRole): Promise<ApplicationRole> =>
-        applicationRoles.getApplicationRole(client, parameters),
-      updateApplicationRole: (parameters: UpdateApplicationRole): Promise<ApplicationRole> =>
-        applicationRoles.updateApplicationRole(client, parameters),
+      getAll: (options?: RequestOptions): Promise<ApplicationRole[]> => applicationRoles.getAll(client, options),
+      putBulk: (parameters: PutBulk, options?: RequestOptions): Promise<ApplicationRole> =>
+        applicationRoles.putBulk(client, parameters, options),
+      getApplicationRole: (parameters: GetApplicationRole, options?: RequestOptions): Promise<ApplicationRole> =>
+        applicationRoles.getApplicationRole(client, parameters, options),
+      updateApplicationRole: (parameters: UpdateApplicationRole, options?: RequestOptions): Promise<ApplicationRole> =>
+        applicationRoles.updateApplicationRole(client, parameters, options),
     },
     issueAttachments: {
-      getAttachmentMeta: (): Promise<AttachmentMeta> => issueAttachments.getAttachmentMeta(client),
-      getAttachment: (parameters: GetAttachment): Promise<Attachment> =>
-        issueAttachments.getAttachment(client, parameters),
-      removeAttachment: (parameters: RemoveAttachment): Promise<void> =>
-        issueAttachments.removeAttachment(client, parameters),
-      expandForHumans: (parameters: ExpandForHumans): Promise<HumanReadableArchive> =>
-        issueAttachments.expandForHumans(client, parameters),
-      expandForMachines: (parameters: ExpandForMachines): Promise<AttachmentArchiveImpl> =>
-        issueAttachments.expandForMachines(client, parameters),
+      getAttachmentMeta: (options?: RequestOptions): Promise<AttachmentMeta> =>
+        issueAttachments.getAttachmentMeta(client, options),
+      getAttachment: (parameters: GetAttachment, options?: RequestOptions): Promise<Attachment> =>
+        issueAttachments.getAttachment(client, parameters, options),
+      removeAttachment: (parameters: RemoveAttachment, options?: RequestOptions): Promise<void> =>
+        issueAttachments.removeAttachment(client, parameters, options),
+      expandForHumans: (parameters: ExpandForHumans, options?: RequestOptions): Promise<HumanReadableArchive> =>
+        issueAttachments.expandForHumans(client, parameters, options),
+      expandForMachines: (parameters: ExpandForMachines, options?: RequestOptions): Promise<AttachmentArchiveImpl> =>
+        issueAttachments.expandForMachines(client, parameters, options),
     },
     avatars: {
-      getAllSystemAvatars: (parameters: GetAllSystemAvatars): Promise<Avatar> =>
-        avatars.getAllSystemAvatars(client, parameters),
-      getAvatars: (parameters: GetAvatars): Promise<GetAvatarsModel> => avatars.getAvatars(client, parameters),
-      createAvatarFromTemporary: (parameters: CreateAvatarFromTemporary): Promise<Avatar> =>
-        avatars.createAvatarFromTemporary(client, parameters),
-      deleteAvatar: (parameters: DeleteAvatar): Promise<void> => avatars.deleteAvatar(client, parameters),
-      storeTemporaryAvatarUsingMultiPart: (parameters: StoreTemporaryAvatarUsingMultiPart): Promise<AvatarCropping> =>
-        avatars.storeTemporaryAvatarUsingMultiPart(client, parameters),
+      getAllSystemAvatars: (parameters: GetAllSystemAvatars, options?: RequestOptions): Promise<Avatar> =>
+        avatars.getAllSystemAvatars(client, parameters, options),
+      getAvatars: (parameters: GetAvatars, options?: RequestOptions): Promise<GetAvatarsModel> =>
+        avatars.getAvatars(client, parameters, options),
+      createAvatarFromTemporary: (parameters: CreateAvatarFromTemporary, options?: RequestOptions): Promise<Avatar> =>
+        avatars.createAvatarFromTemporary(client, parameters, options),
+      deleteAvatar: (parameters: DeleteAvatar, options?: RequestOptions): Promise<void> =>
+        avatars.deleteAvatar(client, parameters, options),
+      storeTemporaryAvatarUsingMultiPart: (
+        parameters: StoreTemporaryAvatarUsingMultiPart,
+        options?: RequestOptions,
+      ): Promise<AvatarCropping> => avatars.storeTemporaryAvatarUsingMultiPart(client, parameters, options),
     },
     cluster: {
-      deleteNode: (parameters: DeleteNode): Promise<void> => cluster.deleteNode(client, parameters),
-      changeNodeStateToOffline: (parameters: ChangeNodeStateToOffline): Promise<void> =>
-        cluster.changeNodeStateToOffline(client, parameters),
-      getAllNodes: (): Promise<Node[]> => cluster.getAllNodes(client),
-      approveUpgrade: (): Promise<void> => cluster.approveUpgrade(client),
-      cancelUpgrade: (): Promise<void> => cluster.cancelUpgrade(client),
-      acknowledgeErrors: (): Promise<void> => cluster.acknowledgeErrors(client),
-      setReadyToUpgrade: (): Promise<void> => cluster.setReadyToUpgrade(client),
-      getState: (): Promise<ClusterState> => cluster.getState(client),
+      deleteNode: (parameters: DeleteNode, options?: RequestOptions): Promise<void> =>
+        cluster.deleteNode(client, parameters, options),
+      changeNodeStateToOffline: (parameters: ChangeNodeStateToOffline, options?: RequestOptions): Promise<void> =>
+        cluster.changeNodeStateToOffline(client, parameters, options),
+      getAllNodes: (options?: RequestOptions): Promise<Node[]> => cluster.getAllNodes(client, options),
+      approveUpgrade: (options?: RequestOptions): Promise<void> => cluster.approveUpgrade(client, options),
+      cancelUpgrade: (options?: RequestOptions): Promise<void> => cluster.cancelUpgrade(client, options),
+      acknowledgeErrors: (options?: RequestOptions): Promise<void> => cluster.acknowledgeErrors(client, options),
+      setReadyToUpgrade: (options?: RequestOptions): Promise<void> => cluster.setReadyToUpgrade(client, options),
+      getState: (options?: RequestOptions): Promise<ClusterState> => cluster.getState(client, options),
     },
     issueComments: {
-      getCommentPropertyKeys: (parameters: GetCommentPropertyKeys): Promise<EntityPropertiesKeys> =>
-        issueComments.getCommentPropertyKeys(client, parameters),
-      getCommentProperty: (parameters: GetCommentProperty): Promise<EntityProperty> =>
-        issueComments.getCommentProperty(client, parameters),
-      setCommentProperty: (parameters: SetCommentProperty): Promise<void> =>
-        issueComments.setCommentProperty(client, parameters),
-      deleteCommentProperty: (parameters: DeleteCommentProperty): Promise<void> =>
-        issueComments.deleteCommentProperty(client, parameters),
+      getCommentPropertyKeys: (
+        parameters: GetCommentPropertyKeys,
+        options?: RequestOptions,
+      ): Promise<EntityPropertiesKeys> => issueComments.getCommentPropertyKeys(client, parameters, options),
+      getCommentProperty: (parameters: GetCommentProperty, options?: RequestOptions): Promise<EntityProperty> =>
+        issueComments.getCommentProperty(client, parameters, options),
+      setCommentProperty: (parameters: SetCommentProperty, options?: RequestOptions): Promise<void> =>
+        issueComments.setCommentProperty(client, parameters, options),
+      deleteCommentProperty: (parameters: DeleteCommentProperty, options?: RequestOptions): Promise<void> =>
+        issueComments.deleteCommentProperty(client, parameters, options),
     },
     projectComponents: {
-      createComponent: (parameters: CreateComponent): Promise<Component> =>
-        projectComponents.createComponent(client, parameters),
-      getPaginatedComponents: (parameters?: GetPaginatedComponents): Promise<PagedResults> =>
-        projectComponents.getPaginatedComponents(client, parameters),
-      getComponent: (parameters: GetComponent): Promise<Component> =>
-        projectComponents.getComponent(client, parameters),
-      updateComponent: (parameters: UpdateComponent): Promise<Component> =>
-        projectComponents.updateComponent(client, parameters),
-      deleteComponent: (parameters: DeleteComponent): Promise<void> =>
-        projectComponents.deleteComponent(client, parameters),
-      getComponentRelatedIssues: (parameters: GetComponentRelatedIssues): Promise<ComponentIssueCounts> =>
-        projectComponents.getComponentRelatedIssues(client, parameters),
+      createComponent: (parameters: CreateComponent, options?: RequestOptions): Promise<Component> =>
+        projectComponents.createComponent(client, parameters, options),
+      getPaginatedComponents: (parameters?: GetPaginatedComponents, options?: RequestOptions): Promise<PagedResults> =>
+        projectComponents.getPaginatedComponents(client, parameters, options),
+      getComponent: (parameters: GetComponent, options?: RequestOptions): Promise<Component> =>
+        projectComponents.getComponent(client, parameters, options),
+      updateComponent: (parameters: UpdateComponent, options?: RequestOptions): Promise<Component> =>
+        projectComponents.updateComponent(client, parameters, options),
+      deleteComponent: (parameters: DeleteComponent, options?: RequestOptions): Promise<void> =>
+        projectComponents.deleteComponent(client, parameters, options),
+      getComponentRelatedIssues: (
+        parameters: GetComponentRelatedIssues,
+        options?: RequestOptions,
+      ): Promise<ComponentIssueCounts> => projectComponents.getComponentRelatedIssues(client, parameters, options),
     },
     configuration: {
-      getConfiguration: (): Promise<Configuration> => configuration.getConfiguration(client),
+      getConfiguration: (options?: RequestOptions): Promise<Configuration> =>
+        configuration.getConfiguration(client, options),
     },
     issueCustomFieldOptions: {
-      getCustomFieldOption: (parameters: GetCustomFieldOption): Promise<CustomFieldOption> =>
-        issueCustomFieldOptions.getCustomFieldOption(client, parameters),
+      getCustomFieldOption: (parameters: GetCustomFieldOption, options?: RequestOptions): Promise<CustomFieldOption> =>
+        issueCustomFieldOptions.getCustomFieldOption(client, parameters, options),
     },
     issueFields: {
-      getCustomFields: (parameters?: GetCustomFields): Promise<CustomField> =>
-        issueFields.getCustomFields(client, parameters),
-      bulkDeleteCustomFields: (parameters: BulkDeleteCustomFields): Promise<BulkDeleteResponse> =>
-        issueFields.bulkDeleteCustomFields(client, parameters),
-      getCustomFieldOptions: (parameters: GetCustomFieldOptions): Promise<CustomFieldOptions> =>
-        issueFields.getCustomFieldOptions(client, parameters),
-      getFields: (): Promise<Field[]> => issueFields.getFields(client),
-      createCustomField: (parameters: CreateCustomField): Promise<Field> =>
-        issueFields.createCustomField(client, parameters),
+      getCustomFields: (parameters?: GetCustomFields, options?: RequestOptions): Promise<CustomField> =>
+        issueFields.getCustomFields(client, parameters, options),
+      bulkDeleteCustomFields: (
+        parameters: BulkDeleteCustomFields,
+        options?: RequestOptions,
+      ): Promise<BulkDeleteResponse> => issueFields.bulkDeleteCustomFields(client, parameters, options),
+      getCustomFieldOptions: (
+        parameters: GetCustomFieldOptions,
+        options?: RequestOptions,
+      ): Promise<CustomFieldOptions> => issueFields.getCustomFieldOptions(client, parameters, options),
+      getFields: (options?: RequestOptions): Promise<Field[]> => issueFields.getFields(client, options),
+      createCustomField: (parameters: CreateCustomField, options?: RequestOptions): Promise<Field> =>
+        issueFields.createCustomField(client, parameters, options),
     },
     dashboards: {
-      list: (parameters?: List): Promise<Dashboards> => dashboards.list(client, parameters),
-      getDashboardItemPropertyKeys: (parameters: GetDashboardItemPropertyKeys): Promise<EntityPropertiesKeys> =>
-        dashboards.getDashboardItemPropertyKeys(client, parameters),
-      getDashboardItemProperty: (parameters: GetDashboardItemProperty): Promise<EntityProperty> =>
-        dashboards.getDashboardItemProperty(client, parameters),
-      setDashboardItemProperty: (parameters: SetDashboardItemProperty): Promise<void> =>
-        dashboards.setDashboardItemProperty(client, parameters),
-      deleteDashboardItemProperty: (parameters: DeleteDashboardItemProperty): Promise<void> =>
-        dashboards.deleteDashboardItemProperty(client, parameters),
-      getDashboard: (parameters: GetDashboard): Promise<Dashboard> => dashboards.getDashboard(client, parameters),
+      list: (parameters?: List, options?: RequestOptions): Promise<Dashboards> =>
+        dashboards.list(client, parameters, options),
+      getDashboardItemPropertyKeys: (
+        parameters: GetDashboardItemPropertyKeys,
+        options?: RequestOptions,
+      ): Promise<EntityPropertiesKeys> => dashboards.getDashboardItemPropertyKeys(client, parameters, options),
+      getDashboardItemProperty: (
+        parameters: GetDashboardItemProperty,
+        options?: RequestOptions,
+      ): Promise<EntityProperty> => dashboards.getDashboardItemProperty(client, parameters, options),
+      setDashboardItemProperty: (parameters: SetDashboardItemProperty, options?: RequestOptions): Promise<void> =>
+        dashboards.setDashboardItemProperty(client, parameters, options),
+      deleteDashboardItemProperty: (parameters: DeleteDashboardItemProperty, options?: RequestOptions): Promise<void> =>
+        dashboards.deleteDashboardItemProperty(client, parameters, options),
+      getDashboard: (parameters: GetDashboard, options?: RequestOptions): Promise<Dashboard> =>
+        dashboards.getDashboard(client, parameters, options),
     },
     emailTemplates: {
-      downloadEmailTemplates: (): Promise<Buffer> => emailTemplates.downloadEmailTemplates(client),
-      uploadEmailTemplates: (parameters: UploadEmailTemplates): Promise<void> =>
-        emailTemplates.uploadEmailTemplates(client, parameters),
-      applyEmailTemplates: (): Promise<void> => emailTemplates.applyEmailTemplates(client),
-      revertEmailTemplatesToDefault: (): Promise<void> => emailTemplates.revertEmailTemplatesToDefault(client),
-      getEmailTypes: (): Promise<EmailTemplateTypes> => emailTemplates.getEmailTypes(client),
+      downloadEmailTemplates: (options?: RequestOptions): Promise<Buffer> =>
+        emailTemplates.downloadEmailTemplates(client, options),
+      uploadEmailTemplates: (parameters: UploadEmailTemplates, options?: RequestOptions): Promise<void> =>
+        emailTemplates.uploadEmailTemplates(client, parameters, options),
+      applyEmailTemplates: (options?: RequestOptions): Promise<void> =>
+        emailTemplates.applyEmailTemplates(client, options),
+      revertEmailTemplatesToDefault: (options?: RequestOptions): Promise<void> =>
+        emailTemplates.revertEmailTemplatesToDefault(client, options),
+      getEmailTypes: (options?: RequestOptions): Promise<EmailTemplateTypes> =>
+        emailTemplates.getEmailTypes(client, options),
     },
     filters: {
-      createFilter: (parameters: CreateFilter): Promise<Filter> => filters.createFilter(client, parameters),
-      getDefaultShareScope: (): Promise<DefaultShareScope> => filters.getDefaultShareScope(client),
-      setDefaultShareScope: (parameters: SetDefaultShareScope): Promise<DefaultShareScope> =>
-        filters.setDefaultShareScope(client, parameters),
-      getFavouriteFilters: (parameters?: GetFavouriteFilters): Promise<Filter[]> =>
-        filters.getFavouriteFilters(client, parameters),
-      getFilter: (parameters: GetFilter): Promise<Filter> => filters.getFilter(client, parameters),
-      editFilter: (parameters: EditFilter): Promise<Filter> => filters.editFilter(client, parameters),
-      deleteFilter: (parameters: DeleteFilter): Promise<void> => filters.deleteFilter(client, parameters),
-      getFilterColumns: (parameters: GetFilterColumns): Promise<ColumnLayout[]> =>
-        filters.getFilterColumns(client, parameters),
-      setColumns: (parameters: SetColumns): Promise<void> => filters.setColumns(client, parameters),
-      resetColumns: (parameters: ResetColumns): Promise<void> => filters.resetColumns(client, parameters),
-      getSharePermissions: (parameters: GetSharePermissions): Promise<FilterPermission[]> =>
-        filters.getSharePermissions(client, parameters),
-      addSharePermission: (parameters: AddSharePermission): Promise<FilterPermission[]> =>
-        filters.addSharePermission(client, parameters),
-      getSharePermission: (parameters: GetSharePermission): Promise<FilterPermission> =>
-        filters.getSharePermission(client, parameters),
-      deleteSharePermission: (parameters: DeleteSharePermission): Promise<void> =>
-        filters.deleteSharePermission(client, parameters),
+      createFilter: (parameters: CreateFilter, options?: RequestOptions): Promise<Filter> =>
+        filters.createFilter(client, parameters, options),
+      getDefaultShareScope: (options?: RequestOptions): Promise<DefaultShareScope> =>
+        filters.getDefaultShareScope(client, options),
+      setDefaultShareScope: (parameters: SetDefaultShareScope, options?: RequestOptions): Promise<DefaultShareScope> =>
+        filters.setDefaultShareScope(client, parameters, options),
+      getFavouriteFilters: (parameters?: GetFavouriteFilters, options?: RequestOptions): Promise<Filter[]> =>
+        filters.getFavouriteFilters(client, parameters, options),
+      getFilter: (parameters: GetFilter, options?: RequestOptions): Promise<Filter> =>
+        filters.getFilter(client, parameters, options),
+      editFilter: (parameters: EditFilter, options?: RequestOptions): Promise<Filter> =>
+        filters.editFilter(client, parameters, options),
+      deleteFilter: (parameters: DeleteFilter, options?: RequestOptions): Promise<void> =>
+        filters.deleteFilter(client, parameters, options),
+      getFilterColumns: (parameters: GetFilterColumns, options?: RequestOptions): Promise<ColumnLayout[]> =>
+        filters.getFilterColumns(client, parameters, options),
+      setColumns: (parameters: SetColumns, options?: RequestOptions): Promise<void> =>
+        filters.setColumns(client, parameters, options),
+      resetColumns: (parameters: ResetColumns, options?: RequestOptions): Promise<void> =>
+        filters.resetColumns(client, parameters, options),
+      getSharePermissions: (parameters: GetSharePermissions, options?: RequestOptions): Promise<FilterPermission[]> =>
+        filters.getSharePermissions(client, parameters, options),
+      addSharePermission: (parameters: AddSharePermission, options?: RequestOptions): Promise<FilterPermission[]> =>
+        filters.addSharePermission(client, parameters, options),
+      getSharePermission: (parameters: GetSharePermission, options?: RequestOptions): Promise<FilterPermission> =>
+        filters.getSharePermission(client, parameters, options),
+      deleteSharePermission: (parameters: DeleteSharePermission, options?: RequestOptions): Promise<void> =>
+        filters.deleteSharePermission(client, parameters, options),
     },
     groups: {
-      createGroup: (parameters: CreateGroup): Promise<Group> => groups.createGroup(client, parameters),
-      removeGroup: (parameters: RemoveGroup): Promise<void> => groups.removeGroup(client, parameters),
-      getUsersFromGroup: (parameters: GetUsersFromGroup): Promise<GetUsersFromGroupModel> =>
-        groups.getUsersFromGroup(client, parameters),
-      addUserToGroup: (parameters: AddUserToGroup): Promise<Group> => groups.addUserToGroup(client, parameters),
-      removeUserFromGroup: (parameters: RemoveUserFromGroup): Promise<void> =>
-        groups.removeUserFromGroup(client, parameters),
-      findGroups: (parameters?: FindGroups): Promise<GroupSuggestions> => groups.findGroups(client, parameters),
+      createGroup: (parameters: CreateGroup, options?: RequestOptions): Promise<Group> =>
+        groups.createGroup(client, parameters, options),
+      removeGroup: (parameters: RemoveGroup, options?: RequestOptions): Promise<void> =>
+        groups.removeGroup(client, parameters, options),
+      getUsersFromGroup: (parameters: GetUsersFromGroup, options?: RequestOptions): Promise<GetUsersFromGroupModel> =>
+        groups.getUsersFromGroup(client, parameters, options),
+      addUserToGroup: (parameters: AddUserToGroup, options?: RequestOptions): Promise<Group> =>
+        groups.addUserToGroup(client, parameters, options),
+      removeUserFromGroup: (parameters: RemoveUserFromGroup, options?: RequestOptions): Promise<void> =>
+        groups.removeUserFromGroup(client, parameters, options),
+      findGroups: (parameters?: FindGroups, options?: RequestOptions): Promise<GroupSuggestions> =>
+        groups.findGroups(client, parameters, options),
     },
     groupAndUserPicker: {
-      findUsersAndGroups: (parameters?: FindUsersAndGroups): Promise<UsersAndGroups> =>
-        groupAndUserPicker.findUsersAndGroups(client, parameters),
+      findUsersAndGroups: (parameters?: FindUsersAndGroups, options?: RequestOptions): Promise<UsersAndGroups> =>
+        groupAndUserPicker.findUsersAndGroups(client, parameters, options),
     },
     indexing: {
-      listIndexSnapshot: (): Promise<IndexSnapshot[]> => indexing.listIndexSnapshot(client),
-      createIndexSnapshot: (): Promise<IndexSnapshotPromise> => indexing.createIndexSnapshot(client),
-      isIndexSnapshotRunning: (): Promise<IndexSnapshotStatus> => indexing.isIndexSnapshotRunning(client),
-      getIndexSummary: (): Promise<IndexSummary> => indexing.getIndexSummary(client),
-      getReindexInfo: (parameters?: GetReindexInfo): Promise<ReindexModel> =>
-        indexing.getReindexInfo(client, parameters),
-      reindex: (parameters: Reindex): Promise<ReindexModel> => indexing.reindex(client, parameters),
-      reindexIssues: (parameters: ReindexIssues): Promise<ReindexModel> => indexing.reindexIssues(client, parameters),
-      getReindexProgress: (parameters?: GetReindexProgress): Promise<ReindexModel> =>
-        indexing.getReindexProgress(client, parameters),
-      processRequests: (): Promise<unknown> => indexing.processRequests(client),
-      getProgressBulk: (parameters?: GetProgressBulk): Promise<ReindexRequest[]> =>
-        indexing.getProgressBulk(client, parameters),
-      getReindexRequestProgress: (parameters: GetReindexRequestProgress): Promise<ReindexRequest> =>
-        indexing.getReindexRequestProgress(client, parameters),
+      listIndexSnapshot: (options?: RequestOptions): Promise<IndexSnapshot[]> =>
+        indexing.listIndexSnapshot(client, options),
+      createIndexSnapshot: (options?: RequestOptions): Promise<IndexSnapshotPromise> =>
+        indexing.createIndexSnapshot(client, options),
+      isIndexSnapshotRunning: (options?: RequestOptions): Promise<IndexSnapshotStatus> =>
+        indexing.isIndexSnapshotRunning(client, options),
+      getIndexSummary: (options?: RequestOptions): Promise<IndexSummary> => indexing.getIndexSummary(client, options),
+      getReindexInfo: (parameters?: GetReindexInfo, options?: RequestOptions): Promise<ReindexModel> =>
+        indexing.getReindexInfo(client, parameters, options),
+      reindex: (parameters: Reindex, options?: RequestOptions): Promise<ReindexModel> =>
+        indexing.reindex(client, parameters, options),
+      reindexIssues: (parameters: ReindexIssues, options?: RequestOptions): Promise<ReindexModel> =>
+        indexing.reindexIssues(client, parameters, options),
+      getReindexProgress: (parameters?: GetReindexProgress, options?: RequestOptions): Promise<ReindexModel> =>
+        indexing.getReindexProgress(client, parameters, options),
+      processRequests: (options?: RequestOptions): Promise<unknown> => indexing.processRequests(client, options),
+      getProgressBulk: (parameters?: GetProgressBulk, options?: RequestOptions): Promise<ReindexRequest[]> =>
+        indexing.getProgressBulk(client, parameters, options),
+      getReindexRequestProgress: (
+        parameters: GetReindexRequestProgress,
+        options?: RequestOptions,
+      ): Promise<ReindexRequest> => indexing.getReindexRequestProgress(client, parameters, options),
     },
     issueLinks: {
-      linkIssues: (parameters: LinkIssues): Promise<void> => issueLinks.linkIssues(client, parameters),
-      getIssueLink: (parameters: GetIssueLink): Promise<IssueLink> => issueLinks.getIssueLink(client, parameters),
-      deleteIssueLink: (parameters: DeleteIssueLink): Promise<void> => issueLinks.deleteIssueLink(client, parameters),
+      linkIssues: (parameters: LinkIssues, options?: RequestOptions): Promise<void> =>
+        issueLinks.linkIssues(client, parameters, options),
+      getIssueLink: (parameters: GetIssueLink, options?: RequestOptions): Promise<IssueLink> =>
+        issueLinks.getIssueLink(client, parameters, options),
+      deleteIssueLink: (parameters: DeleteIssueLink, options?: RequestOptions): Promise<void> =>
+        issueLinks.deleteIssueLink(client, parameters, options),
     },
     issueLinkTypes: {
-      getIssueLinkTypes: (): Promise<IssueLinkTypes> => issueLinkTypes.getIssueLinkTypes(client),
-      createIssueLinkType: (parameters: CreateIssueLinkType): Promise<IssueLinkTypeJson> =>
-        issueLinkTypes.createIssueLinkType(client, parameters),
-      resetOrder: (parameters: ResetOrder): Promise<IssueLinkTypes> => issueLinkTypes.resetOrder(client, parameters),
-      getIssueLinkType: (parameters: GetIssueLinkType): Promise<IssueLinkTypeJson> =>
-        issueLinkTypes.getIssueLinkType(client, parameters),
-      updateIssueLinkType: (parameters: UpdateIssueLinkType): Promise<IssueLinkTypeJson> =>
-        issueLinkTypes.updateIssueLinkType(client, parameters),
-      deleteIssueLinkType: (parameters: DeleteIssueLinkType): Promise<void> =>
-        issueLinkTypes.deleteIssueLinkType(client, parameters),
-      moveIssueLinkType: (parameters: MoveIssueLinkType): Promise<IssueLinkTypeJson> =>
-        issueLinkTypes.moveIssueLinkType(client, parameters),
+      getIssueLinkTypes: (options?: RequestOptions): Promise<IssueLinkTypes> =>
+        issueLinkTypes.getIssueLinkTypes(client, options),
+      createIssueLinkType: (parameters: CreateIssueLinkType, options?: RequestOptions): Promise<IssueLinkTypeJson> =>
+        issueLinkTypes.createIssueLinkType(client, parameters, options),
+      resetOrder: (parameters: ResetOrder, options?: RequestOptions): Promise<IssueLinkTypes> =>
+        issueLinkTypes.resetOrder(client, parameters, options),
+      getIssueLinkType: (parameters: GetIssueLinkType, options?: RequestOptions): Promise<IssueLinkTypeJson> =>
+        issueLinkTypes.getIssueLinkType(client, parameters, options),
+      updateIssueLinkType: (parameters: UpdateIssueLinkType, options?: RequestOptions): Promise<IssueLinkTypeJson> =>
+        issueLinkTypes.updateIssueLinkType(client, parameters, options),
+      deleteIssueLinkType: (parameters: DeleteIssueLinkType, options?: RequestOptions): Promise<void> =>
+        issueLinkTypes.deleteIssueLinkType(client, parameters, options),
+      moveIssueLinkType: (parameters: MoveIssueLinkType, options?: RequestOptions): Promise<IssueLinkTypeJson> =>
+        issueLinkTypes.moveIssueLinkType(client, parameters, options),
     },
     issueSecuritySchemes: {
-      getIssueSecuritySchemes: (): Promise<SecuritySchemesJson> => issueSecuritySchemes.getIssueSecuritySchemes(client),
-      getIssueSecurityScheme: (parameters: GetIssueSecurityScheme): Promise<SecuritySchemeJson> =>
-        issueSecuritySchemes.getIssueSecurityScheme(client, parameters),
+      getIssueSecuritySchemes: (options?: RequestOptions): Promise<SecuritySchemesJson> =>
+        issueSecuritySchemes.getIssueSecuritySchemes(client, options),
+      getIssueSecurityScheme: (
+        parameters: GetIssueSecurityScheme,
+        options?: RequestOptions,
+      ): Promise<SecuritySchemeJson> => issueSecuritySchemes.getIssueSecurityScheme(client, parameters, options),
     },
     issueTypes: {
-      getIssueAllTypes: (): Promise<IssueTypeJson[]> => issueTypes.getIssueAllTypes(client),
-      createIssueType: (parameters: CreateIssueType): Promise<IssueTypeJson> =>
-        issueTypes.createIssueType(client, parameters),
-      getPaginatedIssueTypes: (parameters?: GetPaginatedIssueTypes): Promise<IssueTypeJson> =>
-        issueTypes.getPaginatedIssueTypes(client, parameters),
-      getIssueType: (parameters: GetIssueType): Promise<IssueTypeJson> => issueTypes.getIssueType(client, parameters),
-      updateIssueType: (parameters: UpdateIssueType): Promise<IssueTypeJson> =>
-        issueTypes.updateIssueType(client, parameters),
-      deleteIssueType: (parameters: DeleteIssueType): Promise<void> => issueTypes.deleteIssueType(client, parameters),
-      getAlternativeIssueTypes: (parameters: GetAlternativeIssueTypes): Promise<IssueTypeJson[]> =>
-        issueTypes.getAlternativeIssueTypes(client, parameters),
-      createIssueTypeAvatarFromTemporary: (parameters: CreateIssueTypeAvatarFromTemporary): Promise<Avatar> =>
-        issueTypes.createIssueTypeAvatarFromTemporary(client, parameters),
+      getIssueAllTypes: (options?: RequestOptions): Promise<IssueTypeJson[]> =>
+        issueTypes.getIssueAllTypes(client, options),
+      createIssueType: (parameters: CreateIssueType, options?: RequestOptions): Promise<IssueTypeJson> =>
+        issueTypes.createIssueType(client, parameters, options),
+      getPaginatedIssueTypes: (parameters?: GetPaginatedIssueTypes, options?: RequestOptions): Promise<IssueTypeJson> =>
+        issueTypes.getPaginatedIssueTypes(client, parameters, options),
+      getIssueType: (parameters: GetIssueType, options?: RequestOptions): Promise<IssueTypeJson> =>
+        issueTypes.getIssueType(client, parameters, options),
+      updateIssueType: (parameters: UpdateIssueType, options?: RequestOptions): Promise<IssueTypeJson> =>
+        issueTypes.updateIssueType(client, parameters, options),
+      deleteIssueType: (parameters: DeleteIssueType, options?: RequestOptions): Promise<void> =>
+        issueTypes.deleteIssueType(client, parameters, options),
+      getAlternativeIssueTypes: (
+        parameters: GetAlternativeIssueTypes,
+        options?: RequestOptions,
+      ): Promise<IssueTypeJson[]> => issueTypes.getAlternativeIssueTypes(client, parameters, options),
+      createIssueTypeAvatarFromTemporary: (
+        parameters: CreateIssueTypeAvatarFromTemporary,
+        options?: RequestOptions,
+      ): Promise<Avatar> => issueTypes.createIssueTypeAvatarFromTemporary(client, parameters, options),
       storeTemporaryIssueTypeAvatarUsingMultiPart: (
         parameters: StoreTemporaryIssueTypeAvatarUsingMultiPart,
-      ): Promise<unknown> => issueTypes.storeTemporaryIssueTypeAvatarUsingMultiPart(client, parameters),
-      getIssueTypePropertyKeys: (parameters: GetIssueTypePropertyKeys): Promise<EntityPropertiesKeys> =>
-        issueTypes.getIssueTypePropertyKeys(client, parameters),
-      getIssueTypeProperty: (parameters: GetIssueTypeProperty): Promise<EntityProperty> =>
-        issueTypes.getIssueTypeProperty(client, parameters),
-      setIssueTypeProperty: (parameters: SetIssueTypeProperty): Promise<void> =>
-        issueTypes.setIssueTypeProperty(client, parameters),
-      deleteIssueTypeProperty: (parameters: DeleteIssueTypeProperty): Promise<void> =>
-        issueTypes.deleteIssueTypeProperty(client, parameters),
+        options?: RequestOptions,
+      ): Promise<unknown> => issueTypes.storeTemporaryIssueTypeAvatarUsingMultiPart(client, parameters, options),
+      getIssueTypePropertyKeys: (
+        parameters: GetIssueTypePropertyKeys,
+        options?: RequestOptions,
+      ): Promise<EntityPropertiesKeys> => issueTypes.getIssueTypePropertyKeys(client, parameters, options),
+      getIssueTypeProperty: (parameters: GetIssueTypeProperty, options?: RequestOptions): Promise<EntityProperty> =>
+        issueTypes.getIssueTypeProperty(client, parameters, options),
+      setIssueTypeProperty: (parameters: SetIssueTypeProperty, options?: RequestOptions): Promise<void> =>
+        issueTypes.setIssueTypeProperty(client, parameters, options),
+      deleteIssueTypeProperty: (parameters: DeleteIssueTypeProperty, options?: RequestOptions): Promise<void> =>
+        issueTypes.deleteIssueTypeProperty(client, parameters, options),
     },
     issueTypeSchemes: {
-      getAllIssueTypeSchemes: (): Promise<IssueTypeSchemeList> => issueTypeSchemes.getAllIssueTypeSchemes(client),
-      createIssueTypeScheme: (parameters: CreateIssueTypeScheme): Promise<IssueTypeScheme> =>
-        issueTypeSchemes.createIssueTypeScheme(client, parameters),
-      getIssueTypeScheme: (parameters: GetIssueTypeScheme): Promise<IssueTypeScheme> =>
-        issueTypeSchemes.getIssueTypeScheme(client, parameters),
-      updateIssueTypeScheme: (parameters: UpdateIssueTypeScheme): Promise<IssueTypeScheme> =>
-        issueTypeSchemes.updateIssueTypeScheme(client, parameters),
-      deleteIssueTypeScheme: (parameters: DeleteIssueTypeScheme): Promise<void> =>
-        issueTypeSchemes.deleteIssueTypeScheme(client, parameters),
-      getAssociatedProjects: (parameters: GetAssociatedProjects): Promise<Project[]> =>
-        issueTypeSchemes.getAssociatedProjects(client, parameters),
-      addProjectAssociationsToScheme: (parameters: AddProjectAssociationsToScheme): Promise<void> =>
-        issueTypeSchemes.addProjectAssociationsToScheme(client, parameters),
-      setProjectAssociationsForScheme: (parameters: SetProjectAssociationsForScheme): Promise<void> =>
-        issueTypeSchemes.setProjectAssociationsForScheme(client, parameters),
-      removeAllProjectAssociations: (parameters: RemoveAllProjectAssociations): Promise<void> =>
-        issueTypeSchemes.removeAllProjectAssociations(client, parameters),
-      removeProjectAssociation: (parameters: RemoveProjectAssociation): Promise<void> =>
-        issueTypeSchemes.removeProjectAssociation(client, parameters),
+      getAllIssueTypeSchemes: (options?: RequestOptions): Promise<IssueTypeSchemeList> =>
+        issueTypeSchemes.getAllIssueTypeSchemes(client, options),
+      createIssueTypeScheme: (parameters: CreateIssueTypeScheme, options?: RequestOptions): Promise<IssueTypeScheme> =>
+        issueTypeSchemes.createIssueTypeScheme(client, parameters, options),
+      getIssueTypeScheme: (parameters: GetIssueTypeScheme, options?: RequestOptions): Promise<IssueTypeScheme> =>
+        issueTypeSchemes.getIssueTypeScheme(client, parameters, options),
+      updateIssueTypeScheme: (parameters: UpdateIssueTypeScheme, options?: RequestOptions): Promise<IssueTypeScheme> =>
+        issueTypeSchemes.updateIssueTypeScheme(client, parameters, options),
+      deleteIssueTypeScheme: (parameters: DeleteIssueTypeScheme, options?: RequestOptions): Promise<void> =>
+        issueTypeSchemes.deleteIssueTypeScheme(client, parameters, options),
+      getAssociatedProjects: (parameters: GetAssociatedProjects, options?: RequestOptions): Promise<Project[]> =>
+        issueTypeSchemes.getAssociatedProjects(client, parameters, options),
+      addProjectAssociationsToScheme: (
+        parameters: AddProjectAssociationsToScheme,
+        options?: RequestOptions,
+      ): Promise<void> => issueTypeSchemes.addProjectAssociationsToScheme(client, parameters, options),
+      setProjectAssociationsForScheme: (
+        parameters: SetProjectAssociationsForScheme,
+        options?: RequestOptions,
+      ): Promise<void> => issueTypeSchemes.setProjectAssociationsForScheme(client, parameters, options),
+      removeAllProjectAssociations: (
+        parameters: RemoveAllProjectAssociations,
+        options?: RequestOptions,
+      ): Promise<void> => issueTypeSchemes.removeAllProjectAssociations(client, parameters, options),
+      removeProjectAssociation: (parameters: RemoveProjectAssociation, options?: RequestOptions): Promise<void> =>
+        issueTypeSchemes.removeProjectAssociation(client, parameters, options),
     },
     jql: {
-      getAutoComplete: (): Promise<AutoCompleteResponse> => jql.getAutoComplete(client),
+      getAutoComplete: (options?: RequestOptions): Promise<AutoCompleteResponse> =>
+        jql.getAutoComplete(client, options),
       getFieldAutoCompleteForQueryString: (
         parameters?: GetFieldAutoCompleteForQueryString,
-      ): Promise<AutoCompleteResultWrapper> => jql.getFieldAutoCompleteForQueryString(client, parameters),
+        options?: RequestOptions,
+      ): Promise<AutoCompleteResultWrapper> => jql.getFieldAutoCompleteForQueryString(client, parameters, options),
     },
     licenseValidator: {
-      validate: (parameters: Validate): Promise<LicenseValidationResults> =>
-        licenseValidator.validate(client, parameters),
+      validate: (parameters: Validate, options?: RequestOptions): Promise<LicenseValidationResults> =>
+        licenseValidator.validate(client, parameters, options),
     },
     monitoring: {
-      isAppMonitoringEnabled: (): Promise<AppMonitoringRestEntity> => monitoring.isAppMonitoringEnabled(client),
-      setAppMonitoringEnabled: (parameters: SetAppMonitoringEnabled): Promise<void> =>
-        monitoring.setAppMonitoringEnabled(client, parameters),
-      isIpdMonitoringEnabled: (): Promise<IpdMonitoringRestEntity> => monitoring.isIpdMonitoringEnabled(client),
-      setIpdMonitoringEnabled: (parameters: SetIpdMonitoringEnabled): Promise<void> =>
-        monitoring.setIpdMonitoringEnabled(client, parameters),
-      areMetricsExposed: (): Promise<unknown> => monitoring.areMetricsExposed(client),
-      getAvailableMetrics: (): Promise<unknown> => monitoring.getAvailableMetrics(client),
-      start: (): Promise<void> => monitoring.start(client),
-      stop: (): Promise<void> => monitoring.stop(client),
+      isAppMonitoringEnabled: (options?: RequestOptions): Promise<AppMonitoringRestEntity> =>
+        monitoring.isAppMonitoringEnabled(client, options),
+      setAppMonitoringEnabled: (parameters: SetAppMonitoringEnabled, options?: RequestOptions): Promise<void> =>
+        monitoring.setAppMonitoringEnabled(client, parameters, options),
+      isIpdMonitoringEnabled: (options?: RequestOptions): Promise<IpdMonitoringRestEntity> =>
+        monitoring.isIpdMonitoringEnabled(client, options),
+      setIpdMonitoringEnabled: (parameters: SetIpdMonitoringEnabled, options?: RequestOptions): Promise<void> =>
+        monitoring.setIpdMonitoringEnabled(client, parameters, options),
+      areMetricsExposed: (options?: RequestOptions): Promise<unknown> => monitoring.areMetricsExposed(client, options),
+      getAvailableMetrics: (options?: RequestOptions): Promise<unknown> =>
+        monitoring.getAvailableMetrics(client, options),
+      start: (options?: RequestOptions): Promise<void> => monitoring.start(client, options),
+      stop: (options?: RequestOptions): Promise<void> => monitoring.stop(client, options),
     },
     permissions: {
-      getPermissions: (parameters?: GetPermissions): Promise<PermissionsJson> =>
-        permissions.getPermissions(client, parameters),
-      getAllPermissions: (): Promise<PermissionsJson> => permissions.getAllPermissions(client),
+      getPermissions: (parameters?: GetPermissions, options?: RequestOptions): Promise<PermissionsJson> =>
+        permissions.getPermissions(client, parameters, options),
+      getAllPermissions: (options?: RequestOptions): Promise<PermissionsJson> =>
+        permissions.getAllPermissions(client, options),
     },
     myPreferences: {
-      getPreference: (parameters?: GetPreference): Promise<string> => myPreferences.getPreference(client, parameters),
-      setPreference: (parameters: SetPreference): Promise<void> => myPreferences.setPreference(client, parameters),
-      removePreference: (parameters: RemovePreference): Promise<void> =>
-        myPreferences.removePreference(client, parameters),
+      getPreference: (parameters?: GetPreference, options?: RequestOptions): Promise<string> =>
+        myPreferences.getPreference(client, parameters, options),
+      setPreference: (parameters: SetPreference, options?: RequestOptions): Promise<void> =>
+        myPreferences.setPreference(client, parameters, options),
+      removePreference: (parameters: RemovePreference, options?: RequestOptions): Promise<void> =>
+        myPreferences.removePreference(client, parameters, options),
     },
     myself: {
-      getCurrentUser: (): Promise<User> => myself.getCurrentUser(client),
-      updateCurrentUser: (parameters: UpdateCurrentUser): Promise<UserWrite> =>
-        myself.updateCurrentUser(client, parameters),
-      changeMyPassword: (parameters: ChangeMyPassword): Promise<void> => myself.changeMyPassword(client, parameters),
+      getCurrentUser: (options?: RequestOptions): Promise<User> => myself.getCurrentUser(client, options),
+      updateCurrentUser: (parameters: UpdateCurrentUser, options?: RequestOptions): Promise<UserWrite> =>
+        myself.updateCurrentUser(client, parameters, options),
+      changeMyPassword: (parameters: ChangeMyPassword, options?: RequestOptions): Promise<void> =>
+        myself.changeMyPassword(client, parameters, options),
     },
     issueNotificationSchemes: {
-      getNotificationSchemes: (parameters?: GetNotificationSchemes): Promise<PagedResults> =>
-        issueNotificationSchemes.getNotificationSchemes(client, parameters),
-      getNotificationScheme: (parameters: GetNotificationScheme): Promise<NotificationScheme> =>
-        issueNotificationSchemes.getNotificationScheme(client, parameters),
+      getNotificationSchemes: (parameters?: GetNotificationSchemes, options?: RequestOptions): Promise<PagedResults> =>
+        issueNotificationSchemes.getNotificationSchemes(client, parameters, options),
+      getNotificationScheme: (
+        parameters: GetNotificationScheme,
+        options?: RequestOptions,
+      ): Promise<NotificationScheme> => issueNotificationSchemes.getNotificationScheme(client, parameters, options),
     },
     password: {
-      getPasswordPolicy: (parameters?: GetPasswordPolicy): Promise<unknown> =>
-        password.getPasswordPolicy(client, parameters),
-      policyCheckCreateUser: (parameters: PolicyCheckCreateUser): Promise<unknown> =>
-        password.policyCheckCreateUser(client, parameters),
-      policyCheckUpdateUser: (parameters: PolicyCheckUpdateUser): Promise<unknown> =>
-        password.policyCheckUpdateUser(client, parameters),
+      getPasswordPolicy: (parameters?: GetPasswordPolicy, options?: RequestOptions): Promise<unknown> =>
+        password.getPasswordPolicy(client, parameters, options),
+      policyCheckCreateUser: (parameters: PolicyCheckCreateUser, options?: RequestOptions): Promise<unknown> =>
+        password.policyCheckCreateUser(client, parameters, options),
+      policyCheckUpdateUser: (parameters: PolicyCheckUpdateUser, options?: RequestOptions): Promise<unknown> =>
+        password.policyCheckUpdateUser(client, parameters, options),
     },
     permissionSchemes: {
-      getPermissionSchemes: (parameters?: GetPermissionSchemes): Promise<PermissionSchemes> =>
-        permissionSchemes.getPermissionSchemes(client, parameters),
-      createPermissionScheme: (parameters: CreatePermissionScheme): Promise<PermissionScheme> =>
-        permissionSchemes.createPermissionScheme(client, parameters),
-      getSchemeAttribute: (parameters: GetSchemeAttribute): Promise<PermissionSchemeAttribute> =>
-        permissionSchemes.getSchemeAttribute(client, parameters),
-      setSchemeAttribute: (parameters: SetSchemeAttribute): Promise<void> =>
-        permissionSchemes.setSchemeAttribute(client, parameters),
-      getPermissionScheme: (parameters: GetPermissionScheme): Promise<PermissionScheme> =>
-        permissionSchemes.getPermissionScheme(client, parameters),
-      updatePermissionScheme: (parameters: UpdatePermissionScheme): Promise<PermissionScheme> =>
-        permissionSchemes.updatePermissionScheme(client, parameters),
-      deletePermissionScheme: (parameters: DeletePermissionScheme): Promise<void> =>
-        permissionSchemes.deletePermissionScheme(client, parameters),
-      getPermissionSchemeGrants: (parameters: GetPermissionSchemeGrants): Promise<PermissionGrants> =>
-        permissionSchemes.getPermissionSchemeGrants(client, parameters),
-      createPermissionGrant: (parameters: CreatePermissionGrant): Promise<PermissionGrant> =>
-        permissionSchemes.createPermissionGrant(client, parameters),
-      getPermissionSchemeGrant: (parameters: GetPermissionSchemeGrant): Promise<PermissionGrant> =>
-        permissionSchemes.getPermissionSchemeGrant(client, parameters),
-      deletePermissionSchemeEntity: (parameters: DeletePermissionSchemeEntity): Promise<void> =>
-        permissionSchemes.deletePermissionSchemeEntity(client, parameters),
+      getPermissionSchemes: (parameters?: GetPermissionSchemes, options?: RequestOptions): Promise<PermissionSchemes> =>
+        permissionSchemes.getPermissionSchemes(client, parameters, options),
+      createPermissionScheme: (
+        parameters: CreatePermissionScheme,
+        options?: RequestOptions,
+      ): Promise<PermissionScheme> => permissionSchemes.createPermissionScheme(client, parameters, options),
+      getSchemeAttribute: (
+        parameters: GetSchemeAttribute,
+        options?: RequestOptions,
+      ): Promise<PermissionSchemeAttribute> => permissionSchemes.getSchemeAttribute(client, parameters, options),
+      setSchemeAttribute: (parameters: SetSchemeAttribute, options?: RequestOptions): Promise<void> =>
+        permissionSchemes.setSchemeAttribute(client, parameters, options),
+      getPermissionScheme: (parameters: GetPermissionScheme, options?: RequestOptions): Promise<PermissionScheme> =>
+        permissionSchemes.getPermissionScheme(client, parameters, options),
+      updatePermissionScheme: (
+        parameters: UpdatePermissionScheme,
+        options?: RequestOptions,
+      ): Promise<PermissionScheme> => permissionSchemes.updatePermissionScheme(client, parameters, options),
+      deletePermissionScheme: (parameters: DeletePermissionScheme, options?: RequestOptions): Promise<void> =>
+        permissionSchemes.deletePermissionScheme(client, parameters, options),
+      getPermissionSchemeGrants: (
+        parameters: GetPermissionSchemeGrants,
+        options?: RequestOptions,
+      ): Promise<PermissionGrants> => permissionSchemes.getPermissionSchemeGrants(client, parameters, options),
+      createPermissionGrant: (parameters: CreatePermissionGrant, options?: RequestOptions): Promise<PermissionGrant> =>
+        permissionSchemes.createPermissionGrant(client, parameters, options),
+      getPermissionSchemeGrant: (
+        parameters: GetPermissionSchemeGrant,
+        options?: RequestOptions,
+      ): Promise<PermissionGrant> => permissionSchemes.getPermissionSchemeGrant(client, parameters, options),
+      deletePermissionSchemeEntity: (
+        parameters: DeletePermissionSchemeEntity,
+        options?: RequestOptions,
+      ): Promise<void> => permissionSchemes.deletePermissionSchemeEntity(client, parameters, options),
     },
     issuePriorities: {
-      getPriorities: (): Promise<PriorityJson[]> => issuePriorities.getPriorities(client),
-      getPrioritiesPaginated: (parameters?: GetPrioritiesPaginated): Promise<PriorityJson> =>
-        issuePriorities.getPrioritiesPaginated(client, parameters),
-      getPriority: (parameters: GetPriority): Promise<PriorityJson> => issuePriorities.getPriority(client, parameters),
+      getPriorities: (options?: RequestOptions): Promise<PriorityJson[]> =>
+        issuePriorities.getPriorities(client, options),
+      getPrioritiesPaginated: (parameters?: GetPrioritiesPaginated, options?: RequestOptions): Promise<PriorityJson> =>
+        issuePriorities.getPrioritiesPaginated(client, parameters, options),
+      getPriority: (parameters: GetPriority, options?: RequestOptions): Promise<PriorityJson> =>
+        issuePriorities.getPriority(client, parameters, options),
     },
     prioritySchemes: {
-      getPrioritySchemes: (parameters?: GetPrioritySchemes): Promise<PrioritySchemeList> =>
-        prioritySchemes.getPrioritySchemes(client, parameters),
-      createPriorityScheme: (parameters: CreatePriorityScheme): Promise<PriorityScheme> =>
-        prioritySchemes.createPriorityScheme(client, parameters),
-      getPriorityScheme: (parameters: GetPriorityScheme): Promise<PriorityScheme> =>
-        prioritySchemes.getPriorityScheme(client, parameters),
-      updatePriorityScheme: (parameters: UpdatePriorityScheme): Promise<PriorityScheme> =>
-        prioritySchemes.updatePriorityScheme(client, parameters),
-      deletePriorityScheme: (parameters: DeletePriorityScheme): Promise<void> =>
-        prioritySchemes.deletePriorityScheme(client, parameters),
+      getPrioritySchemes: (parameters?: GetPrioritySchemes, options?: RequestOptions): Promise<PrioritySchemeList> =>
+        prioritySchemes.getPrioritySchemes(client, parameters, options),
+      createPriorityScheme: (parameters: CreatePriorityScheme, options?: RequestOptions): Promise<PriorityScheme> =>
+        prioritySchemes.createPriorityScheme(client, parameters, options),
+      getPriorityScheme: (parameters: GetPriorityScheme, options?: RequestOptions): Promise<PriorityScheme> =>
+        prioritySchemes.getPriorityScheme(client, parameters, options),
+      updatePriorityScheme: (parameters: UpdatePriorityScheme, options?: RequestOptions): Promise<PriorityScheme> =>
+        prioritySchemes.updatePriorityScheme(client, parameters, options),
+      deletePriorityScheme: (parameters: DeletePriorityScheme, options?: RequestOptions): Promise<void> =>
+        prioritySchemes.deletePriorityScheme(client, parameters, options),
     },
     projects: {
-      getAllProjects: (parameters?: GetAllProjects): Promise<Project[]> => projects.getAllProjects(client, parameters),
-      createProject: (parameters: CreateProject): Promise<ProjectIdentity> =>
-        projects.createProject(client, parameters),
-      getAllProjectTypes: (): Promise<ProjectType[]> => projects.getAllProjectTypes(client),
-      getProjectTypeByKey: (parameters: GetProjectTypeByKey): Promise<ProjectType> =>
-        projects.getProjectTypeByKey(client, parameters),
-      getAccessibleProjectTypeByKey: (parameters: GetAccessibleProjectTypeByKey): Promise<ProjectType> =>
-        projects.getAccessibleProjectTypeByKey(client, parameters),
-      getProject: (parameters: GetProject): Promise<Project> => projects.getProject(client, parameters),
-      updateProject: (parameters: UpdateProject): Promise<Project> => projects.updateProject(client, parameters),
-      deleteProject: (parameters: DeleteProject): Promise<void> => projects.deleteProject(client, parameters),
-      archiveProject: (parameters: ArchiveProject): Promise<void> => projects.archiveProject(client, parameters),
-      createProjectAvatarFromTemporary: (parameters: CreateProjectAvatarFromTemporary): Promise<Avatar> =>
-        projects.createProjectAvatarFromTemporary(client, parameters),
-      updateProjectAvatar: (parameters: UpdateProjectAvatar): Promise<void> =>
-        projects.updateProjectAvatar(client, parameters),
+      getAllProjects: (parameters?: GetAllProjects, options?: RequestOptions): Promise<Project[]> =>
+        projects.getAllProjects(client, parameters, options),
+      createProject: (parameters: CreateProject, options?: RequestOptions): Promise<ProjectIdentity> =>
+        projects.createProject(client, parameters, options),
+      getAllProjectTypes: (options?: RequestOptions): Promise<ProjectType[]> =>
+        projects.getAllProjectTypes(client, options),
+      getProjectTypeByKey: (parameters: GetProjectTypeByKey, options?: RequestOptions): Promise<ProjectType> =>
+        projects.getProjectTypeByKey(client, parameters, options),
+      getAccessibleProjectTypeByKey: (
+        parameters: GetAccessibleProjectTypeByKey,
+        options?: RequestOptions,
+      ): Promise<ProjectType> => projects.getAccessibleProjectTypeByKey(client, parameters, options),
+      getProject: (parameters: GetProject, options?: RequestOptions): Promise<Project> =>
+        projects.getProject(client, parameters, options),
+      updateProject: (parameters: UpdateProject, options?: RequestOptions): Promise<Project> =>
+        projects.updateProject(client, parameters, options),
+      deleteProject: (parameters: DeleteProject, options?: RequestOptions): Promise<void> =>
+        projects.deleteProject(client, parameters, options),
+      archiveProject: (parameters: ArchiveProject, options?: RequestOptions): Promise<void> =>
+        projects.archiveProject(client, parameters, options),
+      createProjectAvatarFromTemporary: (
+        parameters: CreateProjectAvatarFromTemporary,
+        options?: RequestOptions,
+      ): Promise<Avatar> => projects.createProjectAvatarFromTemporary(client, parameters, options),
+      updateProjectAvatar: (parameters: UpdateProjectAvatar, options?: RequestOptions): Promise<void> =>
+        projects.updateProjectAvatar(client, parameters, options),
       storeTemporaryProjectAvatarUsingMultiPart: (
         parameters: StoreTemporaryProjectAvatarUsingMultiPart,
-      ): Promise<unknown> => projects.storeTemporaryProjectAvatarUsingMultiPart(client, parameters),
-      deleteProjectAvatar: (parameters: DeleteProjectAvatar): Promise<void> =>
-        projects.deleteProjectAvatar(client, parameters),
-      getAllProjectAvatars: (parameters: GetAllProjectAvatars): Promise<GetAllProjectAvatarsModel> =>
-        projects.getAllProjectAvatars(client, parameters),
-      getProjectComponents: (parameters: GetProjectComponents): Promise<Component[]> =>
-        projects.getProjectComponents(client, parameters),
-      getProjectPropertyKeys: (parameters: GetProjectPropertyKeys): Promise<EntityPropertiesKeys> =>
-        projects.getProjectPropertyKeys(client, parameters),
-      getProjectProperty: (parameters: GetProjectProperty): Promise<EntityProperty> =>
-        projects.getProjectProperty(client, parameters),
-      setProjectProperty: (parameters: SetProjectProperty): Promise<void> =>
-        projects.setProjectProperty(client, parameters),
-      deleteProjectProperty: (parameters: DeleteProjectProperty): Promise<void> =>
-        projects.deleteProjectProperty(client, parameters),
-      restoreProject: (parameters: RestoreProject): Promise<void> => projects.restoreProject(client, parameters),
-      getProjectRoles: (parameters: GetProjectRoles): Promise<GetProjectRolesModel> =>
-        projects.getProjectRoles(client, parameters),
-      getProjectRole: (parameters: GetProjectRole): Promise<ProjectRole> => projects.getProjectRole(client, parameters),
-      addActorUsers: (parameters: AddActorUsers): Promise<ProjectRole> => projects.addActorUsers(client, parameters),
-      setActors: (parameters: SetActors): Promise<ProjectRole> => projects.setActors(client, parameters),
-      deleteActor: (parameters: DeleteActor): Promise<void> => projects.deleteActor(client, parameters),
-      getAllStatuses: (parameters: GetAllStatuses): Promise<IssueTypeWithStatusJson[]> =>
-        projects.getAllStatuses(client, parameters),
-      updateProjectType: (parameters: UpdateProjectType): Promise<Project> =>
-        projects.updateProjectType(client, parameters),
-      getProjectVersionsPaginated: (parameters: GetProjectVersionsPaginated): Promise<PagedResults> =>
-        projects.getProjectVersionsPaginated(client, parameters),
-      getProjectVersions: (parameters: GetProjectVersions): Promise<Version[]> =>
-        projects.getProjectVersions(client, parameters),
-      getProjectIssueSecurityScheme: (parameters: GetProjectIssueSecurityScheme): Promise<SecuritySchemeJson> =>
-        projects.getProjectIssueSecurityScheme(client, parameters),
-      getProjectNotificationScheme: (parameters: GetProjectNotificationScheme): Promise<NotificationScheme> =>
-        projects.getProjectNotificationScheme(client, parameters),
-      getAssignedPermissionScheme: (parameters: GetAssignedPermissionScheme): Promise<PermissionScheme> =>
-        projects.getAssignedPermissionScheme(client, parameters),
-      assignPermissionScheme: (parameters: AssignPermissionScheme): Promise<PermissionScheme> =>
-        projects.assignPermissionScheme(client, parameters),
-      getAssignedPriorityScheme: (parameters: GetAssignedPriorityScheme): Promise<PriorityScheme> =>
-        projects.getAssignedPriorityScheme(client, parameters),
-      assignPriorityScheme: (parameters: AssignPriorityScheme): Promise<PriorityScheme> =>
-        projects.assignPriorityScheme(client, parameters),
-      unassignPriorityScheme: (parameters: UnassignPriorityScheme): Promise<PriorityScheme> =>
-        projects.unassignPriorityScheme(client, parameters),
-      getSecurityLevelsForProject: (parameters: GetSecurityLevelsForProject): Promise<SecurityListLevelJson> =>
-        projects.getSecurityLevelsForProject(client, parameters),
-      getWorkflowSchemeForProject: (parameters: GetWorkflowSchemeForProject): Promise<WorkflowScheme> =>
-        projects.getWorkflowSchemeForProject(client, parameters),
-      searchForProjects: (parameters?: SearchForProjects): Promise<ProjectPickerResultWrapper> =>
-        projects.searchForProjects(client, parameters),
+        options?: RequestOptions,
+      ): Promise<unknown> => projects.storeTemporaryProjectAvatarUsingMultiPart(client, parameters, options),
+      deleteProjectAvatar: (parameters: DeleteProjectAvatar, options?: RequestOptions): Promise<void> =>
+        projects.deleteProjectAvatar(client, parameters, options),
+      getAllProjectAvatars: (
+        parameters: GetAllProjectAvatars,
+        options?: RequestOptions,
+      ): Promise<GetAllProjectAvatarsModel> => projects.getAllProjectAvatars(client, parameters, options),
+      getProjectComponents: (parameters: GetProjectComponents, options?: RequestOptions): Promise<Component[]> =>
+        projects.getProjectComponents(client, parameters, options),
+      getProjectPropertyKeys: (
+        parameters: GetProjectPropertyKeys,
+        options?: RequestOptions,
+      ): Promise<EntityPropertiesKeys> => projects.getProjectPropertyKeys(client, parameters, options),
+      getProjectProperty: (parameters: GetProjectProperty, options?: RequestOptions): Promise<EntityProperty> =>
+        projects.getProjectProperty(client, parameters, options),
+      setProjectProperty: (parameters: SetProjectProperty, options?: RequestOptions): Promise<void> =>
+        projects.setProjectProperty(client, parameters, options),
+      deleteProjectProperty: (parameters: DeleteProjectProperty, options?: RequestOptions): Promise<void> =>
+        projects.deleteProjectProperty(client, parameters, options),
+      restoreProject: (parameters: RestoreProject, options?: RequestOptions): Promise<void> =>
+        projects.restoreProject(client, parameters, options),
+      getProjectRoles: (parameters: GetProjectRoles, options?: RequestOptions): Promise<GetProjectRolesModel> =>
+        projects.getProjectRoles(client, parameters, options),
+      getProjectRole: (parameters: GetProjectRole, options?: RequestOptions): Promise<ProjectRole> =>
+        projects.getProjectRole(client, parameters, options),
+      addActorUsers: (parameters: AddActorUsers, options?: RequestOptions): Promise<ProjectRole> =>
+        projects.addActorUsers(client, parameters, options),
+      setActors: (parameters: SetActors, options?: RequestOptions): Promise<ProjectRole> =>
+        projects.setActors(client, parameters, options),
+      deleteActor: (parameters: DeleteActor, options?: RequestOptions): Promise<void> =>
+        projects.deleteActor(client, parameters, options),
+      getAllStatuses: (parameters: GetAllStatuses, options?: RequestOptions): Promise<IssueTypeWithStatusJson[]> =>
+        projects.getAllStatuses(client, parameters, options),
+      updateProjectType: (parameters: UpdateProjectType, options?: RequestOptions): Promise<Project> =>
+        projects.updateProjectType(client, parameters, options),
+      getProjectVersionsPaginated: (
+        parameters: GetProjectVersionsPaginated,
+        options?: RequestOptions,
+      ): Promise<PagedResults> => projects.getProjectVersionsPaginated(client, parameters, options),
+      getProjectVersions: (parameters: GetProjectVersions, options?: RequestOptions): Promise<Version[]> =>
+        projects.getProjectVersions(client, parameters, options),
+      getProjectIssueSecurityScheme: (
+        parameters: GetProjectIssueSecurityScheme,
+        options?: RequestOptions,
+      ): Promise<SecuritySchemeJson> => projects.getProjectIssueSecurityScheme(client, parameters, options),
+      getProjectNotificationScheme: (
+        parameters: GetProjectNotificationScheme,
+        options?: RequestOptions,
+      ): Promise<NotificationScheme> => projects.getProjectNotificationScheme(client, parameters, options),
+      getAssignedPermissionScheme: (
+        parameters: GetAssignedPermissionScheme,
+        options?: RequestOptions,
+      ): Promise<PermissionScheme> => projects.getAssignedPermissionScheme(client, parameters, options),
+      assignPermissionScheme: (
+        parameters: AssignPermissionScheme,
+        options?: RequestOptions,
+      ): Promise<PermissionScheme> => projects.assignPermissionScheme(client, parameters, options),
+      getAssignedPriorityScheme: (
+        parameters: GetAssignedPriorityScheme,
+        options?: RequestOptions,
+      ): Promise<PriorityScheme> => projects.getAssignedPriorityScheme(client, parameters, options),
+      assignPriorityScheme: (parameters: AssignPriorityScheme, options?: RequestOptions): Promise<PriorityScheme> =>
+        projects.assignPriorityScheme(client, parameters, options),
+      unassignPriorityScheme: (parameters: UnassignPriorityScheme, options?: RequestOptions): Promise<PriorityScheme> =>
+        projects.unassignPriorityScheme(client, parameters, options),
+      getSecurityLevelsForProject: (
+        parameters: GetSecurityLevelsForProject,
+        options?: RequestOptions,
+      ): Promise<SecurityListLevelJson> => projects.getSecurityLevelsForProject(client, parameters, options),
+      getWorkflowSchemeForProject: (
+        parameters: GetWorkflowSchemeForProject,
+        options?: RequestOptions,
+      ): Promise<WorkflowScheme> => projects.getWorkflowSchemeForProject(client, parameters, options),
+      searchForProjects: (
+        parameters?: SearchForProjects,
+        options?: RequestOptions,
+      ): Promise<ProjectPickerResultWrapper> => projects.searchForProjects(client, parameters, options),
     },
     projectCategories: {
-      getAllProjectCategories: (): Promise<ProjectCategoryJson[]> => projectCategories.getAllProjectCategories(client),
-      createProjectCategory: (parameters: CreateProjectCategory): Promise<ProjectCategoryJson> =>
-        projectCategories.createProjectCategory(client, parameters),
-      getProjectCategoryById: (parameters: GetProjectCategoryById): Promise<ProjectCategoryJson> =>
-        projectCategories.getProjectCategoryById(client, parameters),
-      updateProjectCategory: (parameters: UpdateProjectCategory): Promise<ProjectCategoryJson> =>
-        projectCategories.updateProjectCategory(client, parameters),
-      removeProjectCategory: (parameters: RemoveProjectCategory): Promise<void> =>
-        projectCategories.removeProjectCategory(client, parameters),
+      getAllProjectCategories: (options?: RequestOptions): Promise<ProjectCategoryJson[]> =>
+        projectCategories.getAllProjectCategories(client, options),
+      createProjectCategory: (
+        parameters: CreateProjectCategory,
+        options?: RequestOptions,
+      ): Promise<ProjectCategoryJson> => projectCategories.createProjectCategory(client, parameters, options),
+      getProjectCategoryById: (
+        parameters: GetProjectCategoryById,
+        options?: RequestOptions,
+      ): Promise<ProjectCategoryJson> => projectCategories.getProjectCategoryById(client, parameters, options),
+      updateProjectCategory: (
+        parameters: UpdateProjectCategory,
+        options?: RequestOptions,
+      ): Promise<ProjectCategoryJson> => projectCategories.updateProjectCategory(client, parameters, options),
+      removeProjectCategory: (parameters: RemoveProjectCategory, options?: RequestOptions): Promise<void> =>
+        projectCategories.removeProjectCategory(client, parameters, options),
     },
     projectKeyAndNameValidation: {
-      validateProjectKey: (parameters?: ValidateProjectKey): Promise<ErrorCollection> =>
-        projectKeyAndNameValidation.validateProjectKey(client, parameters),
+      validateProjectKey: (parameters?: ValidateProjectKey, options?: RequestOptions): Promise<ErrorCollection> =>
+        projectKeyAndNameValidation.validateProjectKey(client, parameters, options),
     },
     readOnlyMode: {
-      getReadOnlyMode: (): Promise<ReadOnlyModeStatus> => readOnlyMode.getReadOnlyMode(client),
-      updateReadOnlyMode: (parameters: UpdateReadOnlyMode): Promise<void> =>
-        readOnlyMode.updateReadOnlyMode(client, parameters),
+      getReadOnlyMode: (options?: RequestOptions): Promise<ReadOnlyModeStatus> =>
+        readOnlyMode.getReadOnlyMode(client, options),
+      updateReadOnlyMode: (parameters: UpdateReadOnlyMode, options?: RequestOptions): Promise<void> =>
+        readOnlyMode.updateReadOnlyMode(client, parameters, options),
     },
     issueResolutions: {
-      getResolutions: (): Promise<ResolutionJson[]> => issueResolutions.getResolutions(client),
-      getPaginatedResolutions: (parameters?: GetPaginatedResolutions): Promise<Resolution> =>
-        issueResolutions.getPaginatedResolutions(client, parameters),
-      getResolution: (parameters: GetResolution): Promise<ResolutionJson> =>
-        issueResolutions.getResolution(client, parameters),
+      getResolutions: (options?: RequestOptions): Promise<ResolutionJson[]> =>
+        issueResolutions.getResolutions(client, options),
+      getPaginatedResolutions: (parameters?: GetPaginatedResolutions, options?: RequestOptions): Promise<Resolution> =>
+        issueResolutions.getPaginatedResolutions(client, parameters, options),
+      getResolution: (parameters: GetResolution, options?: RequestOptions): Promise<ResolutionJson> =>
+        issueResolutions.getResolution(client, parameters, options),
     },
     projectRoles: {
-      getAllProjectRoles: (): Promise<ProjectRole[]> => projectRoles.getAllProjectRoles(client),
-      createProjectRole: (parameters: CreateProjectRole): Promise<ProjectRole> =>
-        projectRoles.createProjectRole(client, parameters),
-      getProjectRolesById: (parameters: GetProjectRolesById): Promise<ProjectRole> =>
-        projectRoles.getProjectRolesById(client, parameters),
-      partialUpdateProjectRole: (parameters: PartialUpdateProjectRole): Promise<ProjectRole> =>
-        projectRoles.partialUpdateProjectRole(client, parameters),
-      fullyUpdateProjectRole: (parameters: FullyUpdateProjectRole): Promise<ProjectRole> =>
-        projectRoles.fullyUpdateProjectRole(client, parameters),
-      deleteProjectRole: (parameters: DeleteProjectRole): Promise<void> =>
-        projectRoles.deleteProjectRole(client, parameters),
-      getProjectRoleActorsForRole: (parameters: GetProjectRoleActorsForRole): Promise<ProjectRoleActors> =>
-        projectRoles.getProjectRoleActorsForRole(client, parameters),
-      addProjectRoleActorsToRole: (parameters: AddProjectRoleActorsToRole): Promise<ProjectRoleActors> =>
-        projectRoles.addProjectRoleActorsToRole(client, parameters),
-      deleteProjectRoleActorsFromRole: (parameters: DeleteProjectRoleActorsFromRole): Promise<ProjectRoleActors> =>
-        projectRoles.deleteProjectRoleActorsFromRole(client, parameters),
+      getAllProjectRoles: (options?: RequestOptions): Promise<ProjectRole[]> =>
+        projectRoles.getAllProjectRoles(client, options),
+      createProjectRole: (parameters: CreateProjectRole, options?: RequestOptions): Promise<ProjectRole> =>
+        projectRoles.createProjectRole(client, parameters, options),
+      getProjectRolesById: (parameters: GetProjectRolesById, options?: RequestOptions): Promise<ProjectRole> =>
+        projectRoles.getProjectRolesById(client, parameters, options),
+      partialUpdateProjectRole: (
+        parameters: PartialUpdateProjectRole,
+        options?: RequestOptions,
+      ): Promise<ProjectRole> => projectRoles.partialUpdateProjectRole(client, parameters, options),
+      fullyUpdateProjectRole: (parameters: FullyUpdateProjectRole, options?: RequestOptions): Promise<ProjectRole> =>
+        projectRoles.fullyUpdateProjectRole(client, parameters, options),
+      deleteProjectRole: (parameters: DeleteProjectRole, options?: RequestOptions): Promise<void> =>
+        projectRoles.deleteProjectRole(client, parameters, options),
+      getProjectRoleActorsForRole: (
+        parameters: GetProjectRoleActorsForRole,
+        options?: RequestOptions,
+      ): Promise<ProjectRoleActors> => projectRoles.getProjectRoleActorsForRole(client, parameters, options),
+      addProjectRoleActorsToRole: (
+        parameters: AddProjectRoleActorsToRole,
+        options?: RequestOptions,
+      ): Promise<ProjectRoleActors> => projectRoles.addProjectRoleActorsToRole(client, parameters, options),
+      deleteProjectRoleActorsFromRole: (
+        parameters: DeleteProjectRoleActorsFromRole,
+        options?: RequestOptions,
+      ): Promise<ProjectRoleActors> => projectRoles.deleteProjectRoleActorsFromRole(client, parameters, options),
     },
     screens: {
-      getAllScreens: (parameters?: GetAllScreens): Promise<Screen[]> => screens.getAllScreens(client, parameters),
-      addFieldToDefaultScreen: (parameters: AddFieldToDefaultScreen): Promise<void> =>
-        screens.addFieldToDefaultScreen(client, parameters),
-      getFieldsToAdd: (parameters: GetFieldsToAdd): Promise<ScreenableField[]> =>
-        screens.getFieldsToAdd(client, parameters),
-      getAllTabs: (parameters: GetAllTabs): Promise<ScreenableTab[]> => screens.getAllTabs(client, parameters),
-      addTab: (parameters: AddTab): Promise<ScreenableTab> => screens.addTab(client, parameters),
-      renameTab: (parameters: RenameTab): Promise<ScreenableTab> => screens.renameTab(client, parameters),
-      deleteTab: (parameters: DeleteTab): Promise<void> => screens.deleteTab(client, parameters),
-      getAllFields: (parameters: GetAllFields): Promise<ScreenableField[]> => screens.getAllFields(client, parameters),
-      addField: (parameters: AddField): Promise<ScreenableField> => screens.addField(client, parameters),
-      removeField: (parameters: RemoveField): Promise<void> => screens.removeField(client, parameters),
-      moveField: (parameters: MoveField): Promise<void> => screens.moveField(client, parameters),
-      updateShowWhenEmptyIndicator: (parameters: UpdateShowWhenEmptyIndicator): Promise<void> =>
-        screens.updateShowWhenEmptyIndicator(client, parameters),
-      moveTab: (parameters: MoveTab): Promise<void> => screens.moveTab(client, parameters),
+      getAllScreens: (parameters?: GetAllScreens, options?: RequestOptions): Promise<Screen[]> =>
+        screens.getAllScreens(client, parameters, options),
+      addFieldToDefaultScreen: (parameters: AddFieldToDefaultScreen, options?: RequestOptions): Promise<void> =>
+        screens.addFieldToDefaultScreen(client, parameters, options),
+      getFieldsToAdd: (parameters: GetFieldsToAdd, options?: RequestOptions): Promise<ScreenableField[]> =>
+        screens.getFieldsToAdd(client, parameters, options),
+      getAllTabs: (parameters: GetAllTabs, options?: RequestOptions): Promise<ScreenableTab[]> =>
+        screens.getAllTabs(client, parameters, options),
+      addTab: (parameters: AddTab, options?: RequestOptions): Promise<ScreenableTab> =>
+        screens.addTab(client, parameters, options),
+      renameTab: (parameters: RenameTab, options?: RequestOptions): Promise<ScreenableTab> =>
+        screens.renameTab(client, parameters, options),
+      deleteTab: (parameters: DeleteTab, options?: RequestOptions): Promise<void> =>
+        screens.deleteTab(client, parameters, options),
+      getAllFields: (parameters: GetAllFields, options?: RequestOptions): Promise<ScreenableField[]> =>
+        screens.getAllFields(client, parameters, options),
+      addField: (parameters: AddField, options?: RequestOptions): Promise<ScreenableField> =>
+        screens.addField(client, parameters, options),
+      removeField: (parameters: RemoveField, options?: RequestOptions): Promise<void> =>
+        screens.removeField(client, parameters, options),
+      moveField: (parameters: MoveField, options?: RequestOptions): Promise<void> =>
+        screens.moveField(client, parameters, options),
+      updateShowWhenEmptyIndicator: (
+        parameters: UpdateShowWhenEmptyIndicator,
+        options?: RequestOptions,
+      ): Promise<void> => screens.updateShowWhenEmptyIndicator(client, parameters, options),
+      moveTab: (parameters: MoveTab, options?: RequestOptions): Promise<void> =>
+        screens.moveTab(client, parameters, options),
     },
     issueSearch: {
-      search: (parameters?: Search): Promise<SearchResults> => issueSearch.search(client, parameters),
-      searchUsingSearchRequest: (parameters: SearchUsingSearchRequest): Promise<SearchResults> =>
-        issueSearch.searchUsingSearchRequest(client, parameters),
-      getError: (): Promise<void> => issueSearch.getError(client),
+      search: (parameters?: Search, options?: RequestOptions): Promise<SearchResults> =>
+        issueSearch.search(client, parameters, options),
+      searchUsingSearchRequest: (
+        parameters: SearchUsingSearchRequest,
+        options?: RequestOptions,
+      ): Promise<SearchResults> => issueSearch.searchUsingSearchRequest(client, parameters, options),
+      getError: (options?: RequestOptions): Promise<void> => issueSearch.getError(client, options),
     },
     searchLimits: {
-      getMaxAggregationBuckets: (): Promise<unknown> => searchLimits.getMaxAggregationBuckets(client),
-      getMaxResultWindow: (): Promise<unknown> => searchLimits.getMaxResultWindow(client),
+      getMaxAggregationBuckets: (options?: RequestOptions): Promise<unknown> =>
+        searchLimits.getMaxAggregationBuckets(client, options),
+      getMaxResultWindow: (options?: RequestOptions): Promise<unknown> =>
+        searchLimits.getMaxResultWindow(client, options),
     },
     issueSecurityLevel: {
-      getIssuesecuritylevel: (parameters: GetIssuesecuritylevel): Promise<SecurityLevelJson> =>
-        issueSecurityLevel.getIssuesecuritylevel(client, parameters),
+      getIssuesecuritylevel: (
+        parameters: GetIssuesecuritylevel,
+        options?: RequestOptions,
+      ): Promise<SecurityLevelJson> => issueSecurityLevel.getIssuesecuritylevel(client, parameters, options),
     },
     serverInfo: {
-      getServerInfo: (): Promise<ServerInfo> => serverInfo.getServerInfo(client),
+      getServerInfo: (options?: RequestOptions): Promise<ServerInfo> => serverInfo.getServerInfo(client, options),
     },
     jiraSettings: {
-      setBaseURL: (parameters: SetBaseURL): Promise<void> => jiraSettings.setBaseURL(client, parameters),
-      getIssueNavigatorDefaultColumns: (): Promise<ColumnOptions[]> =>
-        jiraSettings.getIssueNavigatorDefaultColumns(client),
-      setIssueNavigatorDefaultColumnsForm: (parameters: SetIssueNavigatorDefaultColumnsForm): Promise<void> =>
-        jiraSettings.setIssueNavigatorDefaultColumnsForm(client, parameters),
+      setBaseURL: (parameters: SetBaseURL, options?: RequestOptions): Promise<void> =>
+        jiraSettings.setBaseURL(client, parameters, options),
+      getIssueNavigatorDefaultColumns: (options?: RequestOptions): Promise<ColumnOptions[]> =>
+        jiraSettings.getIssueNavigatorDefaultColumns(client, options),
+      setIssueNavigatorDefaultColumnsForm: (
+        parameters: SetIssueNavigatorDefaultColumnsForm,
+        options?: RequestOptions,
+      ): Promise<void> => jiraSettings.setIssueNavigatorDefaultColumnsForm(client, parameters, options),
     },
     workflowStatuses: {
-      getStatuses: (): Promise<StatusJson[]> => workflowStatuses.getStatuses(client),
-      getPaginatedStatuses: (parameters?: GetPaginatedStatuses): Promise<StatusJson> =>
-        workflowStatuses.getPaginatedStatuses(client, parameters),
-      getStatus: (parameters: GetStatus): Promise<StatusJson> => workflowStatuses.getStatus(client, parameters),
+      getStatuses: (options?: RequestOptions): Promise<StatusJson[]> => workflowStatuses.getStatuses(client, options),
+      getPaginatedStatuses: (parameters?: GetPaginatedStatuses, options?: RequestOptions): Promise<StatusJson> =>
+        workflowStatuses.getPaginatedStatuses(client, parameters, options),
+      getStatus: (parameters: GetStatus, options?: RequestOptions): Promise<StatusJson> =>
+        workflowStatuses.getStatus(client, parameters, options),
     },
     workflowStatusCategories: {
-      getStatusCategories: (parameters?: GetStatusCategories): Promise<StatusCategoryJson[]> =>
-        workflowStatusCategories.getStatusCategories(client, parameters),
-      getStatusCategory: (parameters: GetStatusCategory): Promise<StatusCategoryJson> =>
-        workflowStatusCategories.getStatusCategory(client, parameters),
+      getStatusCategories: (
+        parameters?: GetStatusCategories,
+        options?: RequestOptions,
+      ): Promise<StatusCategoryJson[]> => workflowStatusCategories.getStatusCategories(client, parameters, options),
+      getStatusCategory: (parameters: GetStatusCategory, options?: RequestOptions): Promise<StatusCategoryJson> =>
+        workflowStatusCategories.getStatusCategory(client, parameters, options),
     },
     terminology: {
-      getAllTerminologyEntries: (): Promise<TerminologyResponse[]> => terminology.getAllTerminologyEntries(client),
-      setTerminologyEntries: (parameters: SetTerminologyEntries): Promise<unknown> =>
-        terminology.setTerminologyEntries(client, parameters),
-      getTerminologyEntry: (parameters: GetTerminologyEntry): Promise<TerminologyResponse> =>
-        terminology.getTerminologyEntry(client, parameters),
+      getAllTerminologyEntries: (options?: RequestOptions): Promise<TerminologyResponse[]> =>
+        terminology.getAllTerminologyEntries(client, options),
+      setTerminologyEntries: (parameters: SetTerminologyEntries, options?: RequestOptions): Promise<unknown> =>
+        terminology.setTerminologyEntries(client, parameters, options),
+      getTerminologyEntry: (parameters: GetTerminologyEntry, options?: RequestOptions): Promise<TerminologyResponse> =>
+        terminology.getTerminologyEntry(client, parameters, options),
     },
     upgrade: {
-      getUpgradeResult: (): Promise<UpgradeResult> => upgrade.getUpgradeResult(client),
-      runUpgradesNow: (): Promise<void> => upgrade.runUpgradesNow(client),
+      getUpgradeResult: (options?: RequestOptions): Promise<UpgradeResult> => upgrade.getUpgradeResult(client, options),
+      runUpgradesNow: (options?: RequestOptions): Promise<void> => upgrade.runUpgradesNow(client, options),
     },
     users: {
-      getUser: (parameters?: GetUser): Promise<User> => users.getUser(client, parameters),
-      createUser: (parameters: CreateUser): Promise<UserWrite> => users.createUser(client, parameters),
-      updateUser: (parameters: UpdateUser): Promise<UserWrite> => users.updateUser(client, parameters),
-      removeUser: (parameters: RemoveUser): Promise<void> => users.removeUser(client, parameters),
-      getA11yPersonalSettings: (): Promise<A11yPersonalSetting[]> => users.getA11yPersonalSettings(client),
-      validateUserAnonymization: (parameters?: ValidateUserAnonymization): Promise<UserAnonymizationValidation> =>
-        users.validateUserAnonymization(client, parameters),
-      scheduleUserAnonymization: (parameters: ScheduleUserAnonymization): Promise<void> =>
-        users.scheduleUserAnonymization(client, parameters),
-      getUserAnonymizationProgress: (parameters?: GetUserAnonymizationProgress): Promise<void> =>
-        users.getUserAnonymizationProgress(client, parameters),
+      getUser: (parameters?: GetUser, options?: RequestOptions): Promise<User> =>
+        users.getUser(client, parameters, options),
+      createUser: (parameters: CreateUser, options?: RequestOptions): Promise<UserWrite> =>
+        users.createUser(client, parameters, options),
+      updateUser: (parameters: UpdateUser, options?: RequestOptions): Promise<UserWrite> =>
+        users.updateUser(client, parameters, options),
+      removeUser: (parameters: RemoveUser, options?: RequestOptions): Promise<void> =>
+        users.removeUser(client, parameters, options),
+      getA11yPersonalSettings: (options?: RequestOptions): Promise<A11yPersonalSetting[]> =>
+        users.getA11yPersonalSettings(client, options),
+      validateUserAnonymization: (
+        parameters?: ValidateUserAnonymization,
+        options?: RequestOptions,
+      ): Promise<UserAnonymizationValidation> => users.validateUserAnonymization(client, parameters, options),
+      scheduleUserAnonymization: (parameters: ScheduleUserAnonymization, options?: RequestOptions): Promise<void> =>
+        users.scheduleUserAnonymization(client, parameters, options),
+      getUserAnonymizationProgress: (
+        parameters?: GetUserAnonymizationProgress,
+        options?: RequestOptions,
+      ): Promise<void> => users.getUserAnonymizationProgress(client, parameters, options),
       validateUserAnonymizationRerun: (
         parameters?: ValidateUserAnonymizationRerun,
-      ): Promise<UserAnonymizationValidation> => users.validateUserAnonymizationRerun(client, parameters),
-      scheduleUserAnonymizationRerun: (parameters: ScheduleUserAnonymizationRerun): Promise<void> =>
-        users.scheduleUserAnonymizationRerun(client, parameters),
-      unlockAnonymization: (): Promise<void> => users.unlockAnonymization(client),
-      addUserToApplication: (parameters: AddUserToApplication): Promise<void> =>
-        users.addUserToApplication(client, parameters),
-      removeUserFromApplication: (parameters: RemoveUserFromApplication): Promise<void> =>
-        users.removeUserFromApplication(client, parameters),
-      findBulkAssignableUsers: (parameters?: FindBulkAssignableUsers): Promise<User> =>
-        users.findBulkAssignableUsers(client, parameters),
-      findAssignableUsers: (parameters?: FindAssignableUsers): Promise<User> =>
-        users.findAssignableUsers(client, parameters),
-      createUserAvatarFromTemporary: (parameters: CreateUserAvatarFromTemporary): Promise<Avatar> =>
-        users.createUserAvatarFromTemporary(client, parameters),
-      updateUserAvatar: (parameters: UpdateUserAvatar): Promise<Avatar> => users.updateUserAvatar(client, parameters),
-      storeTemporaryUserAvatarUsingMultiPart: (parameters: StoreTemporaryUserAvatarUsingMultiPart): Promise<unknown> =>
-        users.storeTemporaryUserAvatarUsingMultiPart(client, parameters),
-      deleteUserAvatar: (parameters: DeleteUserAvatar): Promise<void> => users.deleteUserAvatar(client, parameters),
-      getAllUserAvatars: (parameters?: GetAllUserAvatars): Promise<GetAllUserAvatarsModel> =>
-        users.getAllUserAvatars(client, parameters),
-      defaultColumns: (parameters?: DefaultColumns): Promise<ColumnOptions[]> =>
-        users.defaultColumns(client, parameters),
-      setColumnsUrlEncoded: (parameters: SetColumnsUrlEncoded): Promise<void> =>
-        users.setColumnsUrlEncoded(client, parameters),
-      resetUserColumns: (parameters: ResetUserColumns): Promise<void> => users.resetUserColumns(client, parameters),
-      getDuplicatedUsersCount: (parameters?: GetDuplicatedUsersCount): Promise<User> =>
-        users.getDuplicatedUsersCount(client, parameters),
-      getDuplicatedUsersMapping: (parameters?: GetDuplicatedUsersMapping): Promise<Avatar> =>
-        users.getDuplicatedUsersMapping(client, parameters),
-      getUserList: (parameters?: GetUserList): Promise<StreamPage> => users.getUserList(client, parameters),
-      changeUserPassword: (parameters: ChangeUserPassword): Promise<void> =>
-        users.changeUserPassword(client, parameters),
-      findUsersForPicker: (parameters?: FindUsersForPicker): Promise<UserPickerResults> =>
-        users.findUsersForPicker(client, parameters),
-      getUserPropertyKeys: (parameters?: GetUserPropertyKeys): Promise<EntityPropertiesKeys> =>
-        users.getUserPropertyKeys(client, parameters),
-      getUserProperty: (parameters: GetUserProperty): Promise<EntityProperty> =>
-        users.getUserProperty(client, parameters),
-      setUserProperty: (parameters: SetUserProperty): Promise<void> => users.setUserProperty(client, parameters),
-      deleteUserProperty: (parameters: DeleteUserProperty): Promise<void> =>
-        users.deleteUserProperty(client, parameters),
-      findUsers: (parameters?: FindUsers): Promise<User> => users.findUsers(client, parameters),
-      deleteSession: (parameters: DeleteSession): Promise<void> => users.deleteSession(client, parameters),
-      findUsersWithBrowsePermission: (parameters?: FindUsersWithBrowsePermission): Promise<User> =>
-        users.findUsersWithBrowsePermission(client, parameters),
+        options?: RequestOptions,
+      ): Promise<UserAnonymizationValidation> => users.validateUserAnonymizationRerun(client, parameters, options),
+      scheduleUserAnonymizationRerun: (
+        parameters: ScheduleUserAnonymizationRerun,
+        options?: RequestOptions,
+      ): Promise<void> => users.scheduleUserAnonymizationRerun(client, parameters, options),
+      unlockAnonymization: (options?: RequestOptions): Promise<void> => users.unlockAnonymization(client, options),
+      addUserToApplication: (parameters: AddUserToApplication, options?: RequestOptions): Promise<void> =>
+        users.addUserToApplication(client, parameters, options),
+      removeUserFromApplication: (parameters: RemoveUserFromApplication, options?: RequestOptions): Promise<void> =>
+        users.removeUserFromApplication(client, parameters, options),
+      findBulkAssignableUsers: (parameters?: FindBulkAssignableUsers, options?: RequestOptions): Promise<User> =>
+        users.findBulkAssignableUsers(client, parameters, options),
+      findAssignableUsers: (parameters?: FindAssignableUsers, options?: RequestOptions): Promise<User> =>
+        users.findAssignableUsers(client, parameters, options),
+      createUserAvatarFromTemporary: (
+        parameters: CreateUserAvatarFromTemporary,
+        options?: RequestOptions,
+      ): Promise<Avatar> => users.createUserAvatarFromTemporary(client, parameters, options),
+      updateUserAvatar: (parameters: UpdateUserAvatar, options?: RequestOptions): Promise<Avatar> =>
+        users.updateUserAvatar(client, parameters, options),
+      storeTemporaryUserAvatarUsingMultiPart: (
+        parameters: StoreTemporaryUserAvatarUsingMultiPart,
+        options?: RequestOptions,
+      ): Promise<unknown> => users.storeTemporaryUserAvatarUsingMultiPart(client, parameters, options),
+      deleteUserAvatar: (parameters: DeleteUserAvatar, options?: RequestOptions): Promise<void> =>
+        users.deleteUserAvatar(client, parameters, options),
+      getAllUserAvatars: (parameters?: GetAllUserAvatars, options?: RequestOptions): Promise<GetAllUserAvatarsModel> =>
+        users.getAllUserAvatars(client, parameters, options),
+      defaultColumns: (parameters?: DefaultColumns, options?: RequestOptions): Promise<ColumnOptions[]> =>
+        users.defaultColumns(client, parameters, options),
+      setColumnsUrlEncoded: (parameters: SetColumnsUrlEncoded, options?: RequestOptions): Promise<void> =>
+        users.setColumnsUrlEncoded(client, parameters, options),
+      resetUserColumns: (parameters: ResetUserColumns, options?: RequestOptions): Promise<void> =>
+        users.resetUserColumns(client, parameters, options),
+      getDuplicatedUsersCount: (parameters?: GetDuplicatedUsersCount, options?: RequestOptions): Promise<User> =>
+        users.getDuplicatedUsersCount(client, parameters, options),
+      getDuplicatedUsersMapping: (parameters?: GetDuplicatedUsersMapping, options?: RequestOptions): Promise<Avatar> =>
+        users.getDuplicatedUsersMapping(client, parameters, options),
+      getUserList: (parameters?: GetUserList, options?: RequestOptions): Promise<StreamPage> =>
+        users.getUserList(client, parameters, options),
+      changeUserPassword: (parameters: ChangeUserPassword, options?: RequestOptions): Promise<void> =>
+        users.changeUserPassword(client, parameters, options),
+      findUsersForPicker: (parameters?: FindUsersForPicker, options?: RequestOptions): Promise<UserPickerResults> =>
+        users.findUsersForPicker(client, parameters, options),
+      getUserPropertyKeys: (
+        parameters?: GetUserPropertyKeys,
+        options?: RequestOptions,
+      ): Promise<EntityPropertiesKeys> => users.getUserPropertyKeys(client, parameters, options),
+      getUserProperty: (parameters: GetUserProperty, options?: RequestOptions): Promise<EntityProperty> =>
+        users.getUserProperty(client, parameters, options),
+      setUserProperty: (parameters: SetUserProperty, options?: RequestOptions): Promise<void> =>
+        users.setUserProperty(client, parameters, options),
+      deleteUserProperty: (parameters: DeleteUserProperty, options?: RequestOptions): Promise<void> =>
+        users.deleteUserProperty(client, parameters, options),
+      findUsers: (parameters?: FindUsers, options?: RequestOptions): Promise<User> =>
+        users.findUsers(client, parameters, options),
+      deleteSession: (parameters: DeleteSession, options?: RequestOptions): Promise<void> =>
+        users.deleteSession(client, parameters, options),
+      findUsersWithBrowsePermission: (
+        parameters?: FindUsersWithBrowsePermission,
+        options?: RequestOptions,
+      ): Promise<User> => users.findUsersWithBrowsePermission(client, parameters, options),
     },
     projectVersions: {
-      getPaginatedVersions: (parameters?: GetPaginatedVersions): Promise<Version> =>
-        projectVersions.getPaginatedVersions(client, parameters),
-      createVersion: (parameters: CreateVersion): Promise<Version> => projectVersions.createVersion(client, parameters),
-      getRemoteVersionLinks: (parameters?: GetRemoteVersionLinks): Promise<RemoteEntityLinksJson> =>
-        projectVersions.getRemoteVersionLinks(client, parameters),
-      getVersion: (parameters: GetVersion): Promise<Version> => projectVersions.getVersion(client, parameters),
-      updateVersion: (parameters: UpdateVersion): Promise<void> => projectVersions.updateVersion(client, parameters),
-      merge: (parameters: Merge): Promise<void> => projectVersions.merge(client, parameters),
-      moveVersion: (parameters: MoveVersion): Promise<Version> => projectVersions.moveVersion(client, parameters),
-      getVersionRelatedIssues: (parameters: GetVersionRelatedIssues): Promise<VersionIssueCounts> =>
-        projectVersions.getVersionRelatedIssues(client, parameters),
-      deleteVersionAndSwap: (parameters: DeleteVersionAndSwap): Promise<void> =>
-        projectVersions.deleteVersionAndSwap(client, parameters),
-      getVersionUnresolvedIssues: (parameters: GetVersionUnresolvedIssues): Promise<VersionUnresolvedIssueCounts> =>
-        projectVersions.getVersionUnresolvedIssues(client, parameters),
+      getPaginatedVersions: (parameters?: GetPaginatedVersions, options?: RequestOptions): Promise<Version> =>
+        projectVersions.getPaginatedVersions(client, parameters, options),
+      createVersion: (parameters: CreateVersion, options?: RequestOptions): Promise<Version> =>
+        projectVersions.createVersion(client, parameters, options),
+      getRemoteVersionLinks: (
+        parameters?: GetRemoteVersionLinks,
+        options?: RequestOptions,
+      ): Promise<RemoteEntityLinksJson> => projectVersions.getRemoteVersionLinks(client, parameters, options),
+      getVersion: (parameters: GetVersion, options?: RequestOptions): Promise<Version> =>
+        projectVersions.getVersion(client, parameters, options),
+      updateVersion: (parameters: UpdateVersion, options?: RequestOptions): Promise<void> =>
+        projectVersions.updateVersion(client, parameters, options),
+      merge: (parameters: Merge, options?: RequestOptions): Promise<void> =>
+        projectVersions.merge(client, parameters, options),
+      moveVersion: (parameters: MoveVersion, options?: RequestOptions): Promise<Version> =>
+        projectVersions.moveVersion(client, parameters, options),
+      getVersionRelatedIssues: (
+        parameters: GetVersionRelatedIssues,
+        options?: RequestOptions,
+      ): Promise<VersionIssueCounts> => projectVersions.getVersionRelatedIssues(client, parameters, options),
+      deleteVersionAndSwap: (parameters: DeleteVersionAndSwap, options?: RequestOptions): Promise<void> =>
+        projectVersions.deleteVersionAndSwap(client, parameters, options),
+      getVersionUnresolvedIssues: (
+        parameters: GetVersionUnresolvedIssues,
+        options?: RequestOptions,
+      ): Promise<VersionUnresolvedIssueCounts> =>
+        projectVersions.getVersionUnresolvedIssues(client, parameters, options),
       getRemoteVersionLinksByVersionId: (
         parameters: GetRemoteVersionLinksByVersionId,
-      ): Promise<RemoteEntityLinksJson> => projectVersions.getRemoteVersionLinksByVersionId(client, parameters),
-      createOrUpdateRemoteVersionLink: (parameters: CreateOrUpdateRemoteVersionLink): Promise<void> =>
-        projectVersions.createOrUpdateRemoteVersionLink(client, parameters),
-      deleteRemoteVersionLinksByVersionId: (parameters: DeleteRemoteVersionLinksByVersionId): Promise<void> =>
-        projectVersions.deleteRemoteVersionLinksByVersionId(client, parameters),
-      getRemoteVersionLink: (parameters: GetRemoteVersionLink): Promise<RemoteEntityLinkJson> =>
-        projectVersions.getRemoteVersionLink(client, parameters),
+        options?: RequestOptions,
+      ): Promise<RemoteEntityLinksJson> =>
+        projectVersions.getRemoteVersionLinksByVersionId(client, parameters, options),
+      createOrUpdateRemoteVersionLink: (
+        parameters: CreateOrUpdateRemoteVersionLink,
+        options?: RequestOptions,
+      ): Promise<void> => projectVersions.createOrUpdateRemoteVersionLink(client, parameters, options),
+      deleteRemoteVersionLinksByVersionId: (
+        parameters: DeleteRemoteVersionLinksByVersionId,
+        options?: RequestOptions,
+      ): Promise<void> => projectVersions.deleteRemoteVersionLinksByVersionId(client, parameters, options),
+      getRemoteVersionLink: (
+        parameters: GetRemoteVersionLink,
+        options?: RequestOptions,
+      ): Promise<RemoteEntityLinkJson> => projectVersions.getRemoteVersionLink(client, parameters, options),
       createOrUpdateRemoteVersionLinkByGlobalId: (
         parameters: CreateOrUpdateRemoteVersionLinkByGlobalId,
-      ): Promise<void> => projectVersions.createOrUpdateRemoteVersionLinkByGlobalId(client, parameters),
-      deleteRemoteVersionLink: (parameters: DeleteRemoteVersionLink): Promise<void> =>
-        projectVersions.deleteRemoteVersionLink(client, parameters),
+        options?: RequestOptions,
+      ): Promise<void> => projectVersions.createOrUpdateRemoteVersionLinkByGlobalId(client, parameters, options),
+      deleteRemoteVersionLink: (parameters: DeleteRemoteVersionLink, options?: RequestOptions): Promise<void> =>
+        projectVersions.deleteRemoteVersionLink(client, parameters, options),
     },
     workflows: {
-      getAllWorkflows: (parameters?: GetAllWorkflows): Promise<Workflow[]> =>
-        workflows.getAllWorkflows(client, parameters),
+      getAllWorkflows: (parameters?: GetAllWorkflows, options?: RequestOptions): Promise<Workflow[]> =>
+        workflows.getAllWorkflows(client, parameters, options),
     },
     workflowSchemes: {
-      createScheme: (parameters: CreateScheme): Promise<WorkflowScheme> =>
-        workflowSchemes.createScheme(client, parameters),
-      getById: (parameters: GetById): Promise<WorkflowScheme> => workflowSchemes.getById(client, parameters),
-      updateWorkflowScheme: (parameters: UpdateWorkflowScheme): Promise<WorkflowScheme> =>
-        workflowSchemes.updateWorkflowScheme(client, parameters),
-      deleteScheme: (parameters: DeleteScheme): Promise<void> => workflowSchemes.deleteScheme(client, parameters),
-      createDraftForParent: (parameters: CreateDraftForParent): Promise<WorkflowScheme> =>
-        workflowSchemes.createDraftForParent(client, parameters),
-      getDefault: (parameters: GetDefault): Promise<WorkflowScheme> => workflowSchemes.getDefault(client, parameters),
-      updateDefault: (parameters: UpdateDefault): Promise<WorkflowScheme> =>
-        workflowSchemes.updateDefault(client, parameters),
-      deleteDefault: (parameters: DeleteDefault): Promise<WorkflowScheme> =>
-        workflowSchemes.deleteDefault(client, parameters),
-      getDraftById: (parameters: GetDraftById): Promise<WorkflowScheme> =>
-        workflowSchemes.getDraftById(client, parameters),
-      updateDraft: (parameters: UpdateDraft): Promise<WorkflowScheme> =>
-        workflowSchemes.updateDraft(client, parameters),
-      deleteDraftById: (parameters: DeleteDraftById): Promise<void> =>
-        workflowSchemes.deleteDraftById(client, parameters),
-      getDraftDefault: (parameters: GetDraftDefault): Promise<WorkflowScheme> =>
-        workflowSchemes.getDraftDefault(client, parameters),
-      updateDraftDefault: (parameters: UpdateDraftDefault): Promise<WorkflowScheme> =>
-        workflowSchemes.updateDraftDefault(client, parameters),
-      deleteDraftDefault: (parameters: DeleteDraftDefault): Promise<WorkflowScheme> =>
-        workflowSchemes.deleteDraftDefault(client, parameters),
-      getDraftIssueType: (parameters: GetDraftIssueType): Promise<IssueTypeMapping> =>
-        workflowSchemes.getDraftIssueType(client, parameters),
-      setDraftIssueType: (parameters: SetDraftIssueType): Promise<WorkflowScheme> =>
-        workflowSchemes.setDraftIssueType(client, parameters),
-      deleteDraftIssueType: (parameters: DeleteDraftIssueType): Promise<WorkflowScheme> =>
-        workflowSchemes.deleteDraftIssueType(client, parameters),
-      getDraftWorkflow: (parameters: GetDraftWorkflow): Promise<WorkflowScheme> =>
-        workflowSchemes.getDraftWorkflow(client, parameters),
-      updateDraftWorkflowMapping: (parameters: UpdateDraftWorkflowMapping): Promise<WorkflowScheme> =>
-        workflowSchemes.updateDraftWorkflowMapping(client, parameters),
-      deleteDraftWorkflowMapping: (parameters: DeleteDraftWorkflowMapping): Promise<WorkflowScheme> =>
-        workflowSchemes.deleteDraftWorkflowMapping(client, parameters),
-      getWorkflowSchemeIssueType: (parameters: GetWorkflowSchemeIssueType): Promise<IssueTypeMapping> =>
-        workflowSchemes.getWorkflowSchemeIssueType(client, parameters),
-      setIssueType: (parameters: SetIssueType): Promise<WorkflowScheme> =>
-        workflowSchemes.setIssueType(client, parameters),
-      deleteWorkflowSchemeIssueType: (parameters: DeleteWorkflowSchemeIssueType): Promise<WorkflowScheme> =>
-        workflowSchemes.deleteWorkflowSchemeIssueType(client, parameters),
-      getWorkflow: (parameters: GetWorkflow): Promise<GetWorkflowModel> =>
-        workflowSchemes.getWorkflow(client, parameters),
-      updateWorkflowMapping: (parameters: UpdateWorkflowMapping): Promise<WorkflowScheme> =>
-        workflowSchemes.updateWorkflowMapping(client, parameters),
-      deleteWorkflowMapping: (parameters: DeleteWorkflowMapping): Promise<WorkflowScheme> =>
-        workflowSchemes.deleteWorkflowMapping(client, parameters),
+      createScheme: (parameters: CreateScheme, options?: RequestOptions): Promise<WorkflowScheme> =>
+        workflowSchemes.createScheme(client, parameters, options),
+      getById: (parameters: GetById, options?: RequestOptions): Promise<WorkflowScheme> =>
+        workflowSchemes.getById(client, parameters, options),
+      updateWorkflowScheme: (parameters: UpdateWorkflowScheme, options?: RequestOptions): Promise<WorkflowScheme> =>
+        workflowSchemes.updateWorkflowScheme(client, parameters, options),
+      deleteScheme: (parameters: DeleteScheme, options?: RequestOptions): Promise<void> =>
+        workflowSchemes.deleteScheme(client, parameters, options),
+      createDraftForParent: (parameters: CreateDraftForParent, options?: RequestOptions): Promise<WorkflowScheme> =>
+        workflowSchemes.createDraftForParent(client, parameters, options),
+      getDefault: (parameters: GetDefault, options?: RequestOptions): Promise<WorkflowScheme> =>
+        workflowSchemes.getDefault(client, parameters, options),
+      updateDefault: (parameters: UpdateDefault, options?: RequestOptions): Promise<WorkflowScheme> =>
+        workflowSchemes.updateDefault(client, parameters, options),
+      deleteDefault: (parameters: DeleteDefault, options?: RequestOptions): Promise<WorkflowScheme> =>
+        workflowSchemes.deleteDefault(client, parameters, options),
+      getDraftById: (parameters: GetDraftById, options?: RequestOptions): Promise<WorkflowScheme> =>
+        workflowSchemes.getDraftById(client, parameters, options),
+      updateDraft: (parameters: UpdateDraft, options?: RequestOptions): Promise<WorkflowScheme> =>
+        workflowSchemes.updateDraft(client, parameters, options),
+      deleteDraftById: (parameters: DeleteDraftById, options?: RequestOptions): Promise<void> =>
+        workflowSchemes.deleteDraftById(client, parameters, options),
+      getDraftDefault: (parameters: GetDraftDefault, options?: RequestOptions): Promise<WorkflowScheme> =>
+        workflowSchemes.getDraftDefault(client, parameters, options),
+      updateDraftDefault: (parameters: UpdateDraftDefault, options?: RequestOptions): Promise<WorkflowScheme> =>
+        workflowSchemes.updateDraftDefault(client, parameters, options),
+      deleteDraftDefault: (parameters: DeleteDraftDefault, options?: RequestOptions): Promise<WorkflowScheme> =>
+        workflowSchemes.deleteDraftDefault(client, parameters, options),
+      getDraftIssueType: (parameters: GetDraftIssueType, options?: RequestOptions): Promise<IssueTypeMapping> =>
+        workflowSchemes.getDraftIssueType(client, parameters, options),
+      setDraftIssueType: (parameters: SetDraftIssueType, options?: RequestOptions): Promise<WorkflowScheme> =>
+        workflowSchemes.setDraftIssueType(client, parameters, options),
+      deleteDraftIssueType: (parameters: DeleteDraftIssueType, options?: RequestOptions): Promise<WorkflowScheme> =>
+        workflowSchemes.deleteDraftIssueType(client, parameters, options),
+      getDraftWorkflow: (parameters: GetDraftWorkflow, options?: RequestOptions): Promise<WorkflowScheme> =>
+        workflowSchemes.getDraftWorkflow(client, parameters, options),
+      updateDraftWorkflowMapping: (
+        parameters: UpdateDraftWorkflowMapping,
+        options?: RequestOptions,
+      ): Promise<WorkflowScheme> => workflowSchemes.updateDraftWorkflowMapping(client, parameters, options),
+      deleteDraftWorkflowMapping: (
+        parameters: DeleteDraftWorkflowMapping,
+        options?: RequestOptions,
+      ): Promise<WorkflowScheme> => workflowSchemes.deleteDraftWorkflowMapping(client, parameters, options),
+      getWorkflowSchemeIssueType: (
+        parameters: GetWorkflowSchemeIssueType,
+        options?: RequestOptions,
+      ): Promise<IssueTypeMapping> => workflowSchemes.getWorkflowSchemeIssueType(client, parameters, options),
+      setIssueType: (parameters: SetIssueType, options?: RequestOptions): Promise<WorkflowScheme> =>
+        workflowSchemes.setIssueType(client, parameters, options),
+      deleteWorkflowSchemeIssueType: (
+        parameters: DeleteWorkflowSchemeIssueType,
+        options?: RequestOptions,
+      ): Promise<WorkflowScheme> => workflowSchemes.deleteWorkflowSchemeIssueType(client, parameters, options),
+      getWorkflow: (parameters: GetWorkflow, options?: RequestOptions): Promise<GetWorkflowModel> =>
+        workflowSchemes.getWorkflow(client, parameters, options),
+      updateWorkflowMapping: (parameters: UpdateWorkflowMapping, options?: RequestOptions): Promise<WorkflowScheme> =>
+        workflowSchemes.updateWorkflowMapping(client, parameters, options),
+      deleteWorkflowMapping: (parameters: DeleteWorkflowMapping, options?: RequestOptions): Promise<WorkflowScheme> =>
+        workflowSchemes.deleteWorkflowMapping(client, parameters, options),
     },
     issueWorklogs: {
-      getIdsOfWorklogsDeletedSince: (parameters?: GetIdsOfWorklogsDeletedSince): Promise<WorklogChangedSince> =>
-        issueWorklogs.getIdsOfWorklogsDeletedSince(client, parameters),
-      getWorklogsForIds: (parameters: GetWorklogsForIds): Promise<Worklog[]> =>
-        issueWorklogs.getWorklogsForIds(client, parameters),
-      getIdsOfWorklogsModifiedSince: (parameters?: GetIdsOfWorklogsModifiedSince): Promise<WorklogChangedSince> =>
-        issueWorklogs.getIdsOfWorklogsModifiedSince(client, parameters),
+      getIdsOfWorklogsDeletedSince: (
+        parameters?: GetIdsOfWorklogsDeletedSince,
+        options?: RequestOptions,
+      ): Promise<WorklogChangedSince> => issueWorklogs.getIdsOfWorklogsDeletedSince(client, parameters, options),
+      getWorklogsForIds: (parameters: GetWorklogsForIds, options?: RequestOptions): Promise<Worklog[]> =>
+        issueWorklogs.getWorklogsForIds(client, parameters, options),
+      getIdsOfWorklogsModifiedSince: (
+        parameters?: GetIdsOfWorklogsModifiedSince,
+        options?: RequestOptions,
+      ): Promise<WorklogChangedSince> => issueWorklogs.getIdsOfWorklogsModifiedSince(client, parameters, options),
     },
     session: {
-      currentUser: (): Promise<CurrentUser> => session.currentUser(client),
-      login: (parameters: Login): Promise<AuthSuccess> => session.login(client, parameters),
-      logout: (): Promise<void> => session.logout(client),
+      currentUser: (options?: RequestOptions): Promise<CurrentUser> => session.currentUser(client, options),
+      login: (parameters: Login, options?: RequestOptions): Promise<AuthSuccess> =>
+        session.login(client, parameters, options),
+      logout: (options?: RequestOptions): Promise<void> => session.logout(client, options),
     },
     websudo: {
-      release: (parameters: Release): Promise<void> => websudo.release(client, parameters),
+      release: (parameters: Release, options?: RequestOptions): Promise<void> =>
+        websudo.release(client, parameters, options),
     },
     webhooks: {
-      getWebhooks: (parameters?: GetWebhooks): Promise<Webhook[]> => webhooks.getWebhooks(client, parameters),
-      createWebhook: (parameters: CreateWebhook): Promise<Webhook> => webhooks.createWebhook(client, parameters),
-      getWebhook: (parameters: GetWebhook): Promise<Webhook> => webhooks.getWebhook(client, parameters),
-      updateWebhook: (parameters: UpdateWebhook): Promise<Webhook> => webhooks.updateWebhook(client, parameters),
-      deleteWebhook: (parameters: DeleteWebhook): Promise<void> => webhooks.deleteWebhook(client, parameters),
-      getWebhookStatistics: (parameters: GetWebhookStatistics): Promise<WebhookStatistics> =>
-        webhooks.getWebhookStatistics(client, parameters),
+      getWebhooks: (parameters?: GetWebhooks, options?: RequestOptions): Promise<Webhook[]> =>
+        webhooks.getWebhooks(client, parameters, options),
+      createWebhook: (parameters: CreateWebhook, options?: RequestOptions): Promise<Webhook> =>
+        webhooks.createWebhook(client, parameters, options),
+      getWebhook: (parameters: GetWebhook, options?: RequestOptions): Promise<Webhook> =>
+        webhooks.getWebhook(client, parameters, options),
+      updateWebhook: (parameters: UpdateWebhook, options?: RequestOptions): Promise<Webhook> =>
+        webhooks.updateWebhook(client, parameters, options),
+      deleteWebhook: (parameters: DeleteWebhook, options?: RequestOptions): Promise<void> =>
+        webhooks.deleteWebhook(client, parameters, options),
+      getWebhookStatistics: (parameters: GetWebhookStatistics, options?: RequestOptions): Promise<WebhookStatistics> =>
+        webhooks.getWebhookStatistics(client, parameters, options),
       getWebhookStatisticsSummary: (
         parameters: GetWebhookStatisticsSummary,
-      ): Promise<GetWebhookStatisticsSummaryModel> => webhooks.getWebhookStatisticsSummary(client, parameters),
-      getWebhookTransitions: (parameters: GetWebhookTransitions): Promise<unknown> =>
-        webhooks.getWebhookTransitions(client, parameters),
-      getLatestWebhookInvocation: (parameters: GetLatestWebhookInvocation): Promise<unknown> =>
-        webhooks.getLatestWebhookInvocation(client, parameters),
+        options?: RequestOptions,
+      ): Promise<GetWebhookStatisticsSummaryModel> => webhooks.getWebhookStatisticsSummary(client, parameters, options),
+      getWebhookTransitions: (parameters: GetWebhookTransitions, options?: RequestOptions): Promise<unknown> =>
+        webhooks.getWebhookTransitions(client, parameters, options),
+      getLatestWebhookInvocation: (
+        parameters: GetLatestWebhookInvocation,
+        options?: RequestOptions,
+      ): Promise<unknown> => webhooks.getLatestWebhookInvocation(client, parameters, options),
     },
   };
 }

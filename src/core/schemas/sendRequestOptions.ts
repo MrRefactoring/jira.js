@@ -18,4 +18,12 @@ export const sendRequestOptionsSchema = z.object({
 
 export type SendRequestOptions<T = unknown> = z.infer<typeof sendRequestOptionsSchema> & {
   schema?: z.ZodType<T>;
+  /**
+   * Aborts the request, and any retry back-off it is waiting out.
+   *
+   * Declared on the type rather than in the schema above: `z.custom<AbortSignal>(v => v instanceof AbortSignal)` is
+   * wrong the moment a signal crosses a realm — jsdom, undici and a worker each have their own constructor — and
+   * nothing here parses these options at runtime anyway.
+   */
+  signal?: AbortSignal;
 };

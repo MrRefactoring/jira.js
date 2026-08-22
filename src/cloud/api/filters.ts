@@ -15,7 +15,7 @@ import type { SetColumns } from '../parameters/setColumns';
 import type { ResetColumns } from '../parameters/resetColumns';
 import type { SetFavouriteForFilter } from '../parameters/setFavouriteForFilter';
 import type { DeleteFavouriteForFilter } from '../parameters/deleteFavouriteForFilter';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 import { z } from 'zod';
 
 /**
@@ -26,7 +26,11 @@ import { z } from 'zod';
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** Permission
  * to access Jira.
  */
-export async function createFilter(client: Client, parameters: CreateFilter): Promise<Filter> {
+export async function createFilter(
+  client: Client,
+  parameters: CreateFilter,
+  options?: RequestOptions,
+): Promise<Filter> {
   const config: SendRequestOptions<Filter> = {
     url: '/rest/api/3/filter',
     method: 'POST',
@@ -53,6 +57,7 @@ export async function createFilter(client: Client, parameters: CreateFilter): Pr
       isWritable: parameters.isWritable,
     },
     schema: FilterSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -76,7 +81,11 @@ export async function createFilter(client: Client, parameters: CreateFilter): Pr
  * For example, if the user favorites a public filter that is subsequently made private that filter is not returned by
  * this operation.
  */
-export async function getFavouriteFilters(client: Client, parameters?: GetFavouriteFilters): Promise<Filter[]> {
+export async function getFavouriteFilters(
+  client: Client,
+  parameters?: GetFavouriteFilters,
+  options?: RequestOptions,
+): Promise<Filter[]> {
   const config: SendRequestOptions<Filter[]> = {
     url: '/rest/api/3/filter/favourite',
     method: 'GET',
@@ -84,6 +93,7 @@ export async function getFavouriteFilters(client: Client, parameters?: GetFavour
       expand: parameters?.expand,
     },
     schema: z.array(FilterSchema),
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -106,7 +116,11 @@ export async function getFavouriteFilters(client: Client, parameters?: GetFavour
  * For example, if the user favorites a public filter that is subsequently made private that filter is not returned by
  * this operation.
  */
-export async function getMyFilters(client: Client, parameters?: GetMyFilters): Promise<Filter[]> {
+export async function getMyFilters(
+  client: Client,
+  parameters?: GetMyFilters,
+  options?: RequestOptions,
+): Promise<Filter[]> {
   const config: SendRequestOptions<Filter[]> = {
     url: '/rest/api/3/filter/my',
     method: 'GET',
@@ -115,6 +129,7 @@ export async function getMyFilters(client: Client, parameters?: GetMyFilters): P
       includeFavourites: parameters?.includeFavourites,
     },
     schema: z.array(FilterSchema),
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -143,6 +158,7 @@ export async function getMyFilters(client: Client, parameters?: GetMyFilters): P
 export async function getFiltersPaginated(
   client: Client,
   parameters?: GetFiltersPaginated,
+  options?: RequestOptions,
 ): Promise<Page<FilterDetails>> {
   const config: SendRequestOptions<Page<FilterDetails>> = {
     url: '/rest/api/3/filter/search',
@@ -162,6 +178,7 @@ export async function getFiltersPaginated(
       isSubstringMatch: parameters?.isSubstringMatch,
     },
     schema: PageFilterDetailsSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -182,7 +199,7 @@ export async function getFiltersPaginated(
  * - Shared with a public project.
  * - Shared with the public.
  */
-export async function getFilter(client: Client, parameters: GetFilter): Promise<Filter> {
+export async function getFilter(client: Client, parameters: GetFilter, options?: RequestOptions): Promise<Filter> {
   const config: SendRequestOptions<Filter> = {
     url: `/rest/api/3/filter/${parameters.id}`,
     method: 'GET',
@@ -191,6 +208,7 @@ export async function getFilter(client: Client, parameters: GetFilter): Promise<
       overrideSharePermissions: parameters.overrideSharePermissions,
     },
     schema: FilterSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -202,7 +220,11 @@ export async function getFilter(client: Client, parameters: GetFilter): Promise<
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** Permission
  * to access Jira, however the user must own the filter.
  */
-export async function updateFilter(client: Client, parameters: UpdateFilter): Promise<Filter> {
+export async function updateFilter(
+  client: Client,
+  parameters: UpdateFilter,
+  options?: RequestOptions,
+): Promise<Filter> {
   const config: SendRequestOptions<Filter> = {
     url: `/rest/api/3/filter/${parameters.id}`,
     method: 'PUT',
@@ -212,6 +234,7 @@ export async function updateFilter(client: Client, parameters: UpdateFilter): Pr
     },
     body: parameters.body,
     schema: FilterSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -224,10 +247,11 @@ export async function updateFilter(client: Client, parameters: UpdateFilter): Pr
  * to access Jira, however filters can only be deleted by the creator of the filter or a user with _Administer Jira_
  * [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-export async function deleteFilter(client: Client, parameters: DeleteFilter): Promise<void> {
+export async function deleteFilter(client: Client, parameters: DeleteFilter, options?: RequestOptions): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/filter/${parameters.id}`,
     method: 'DELETE',
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -249,11 +273,16 @@ export async function deleteFilter(client: Client, parameters: DeleteFilter): Pr
  * - Filters shared with a public project.
  * - Filters shared with the public.
  */
-export async function getColumns(client: Client, parameters: GetColumns): Promise<ColumnItem[]> {
+export async function getColumns(
+  client: Client,
+  parameters: GetColumns,
+  options?: RequestOptions,
+): Promise<ColumnItem[]> {
   const config: SendRequestOptions<ColumnItem[]> = {
     url: `/rest/api/3/filter/${parameters.id}/columns`,
     method: 'GET',
     schema: z.array(ColumnItemSchema),
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -279,13 +308,14 @@ export async function getColumns(client: Client, parameters: GetColumns): Promis
  * - Filters shared with a public project.
  * - Filters shared with the public.
  */
-export async function setColumns(client: Client, parameters: SetColumns): Promise<void> {
+export async function setColumns(client: Client, parameters: SetColumns, options?: RequestOptions): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/filter/${parameters.id}/columns`,
     method: 'PUT',
     body: {
       columns: parameters.columns,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -304,10 +334,11 @@ export async function setColumns(client: Client, parameters: SetColumns): Promis
  * - Filters shared with a public project.
  * - Filters shared with the public.
  */
-export async function resetColumns(client: Client, parameters: ResetColumns): Promise<void> {
+export async function resetColumns(client: Client, parameters: ResetColumns, options?: RequestOptions): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/filter/${parameters.id}/columns`,
     method: 'DELETE',
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -326,7 +357,11 @@ export async function resetColumns(client: Client, parameters: ResetColumns): Pr
  * - Filters shared with a public project.
  * - Filters shared with the public.
  */
-export async function setFavouriteForFilter(client: Client, parameters: SetFavouriteForFilter): Promise<Filter> {
+export async function setFavouriteForFilter(
+  client: Client,
+  parameters: SetFavouriteForFilter,
+  options?: RequestOptions,
+): Promise<Filter> {
   const config: SendRequestOptions<Filter> = {
     url: `/rest/api/3/filter/${parameters.id}/favourite`,
     method: 'PUT',
@@ -334,6 +369,7 @@ export async function setFavouriteForFilter(client: Client, parameters: SetFavou
       expand: parameters.expand,
     },
     schema: FilterSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -347,7 +383,11 @@ export async function setFavouriteForFilter(client: Client, parameters: SetFavou
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** Permission
  * to access Jira.
  */
-export async function deleteFavouriteForFilter(client: Client, parameters: DeleteFavouriteForFilter): Promise<Filter> {
+export async function deleteFavouriteForFilter(
+  client: Client,
+  parameters: DeleteFavouriteForFilter,
+  options?: RequestOptions,
+): Promise<Filter> {
   const config: SendRequestOptions<Filter> = {
     url: `/rest/api/3/filter/${parameters.id}/favourite`,
     method: 'DELETE',
@@ -355,6 +395,7 @@ export async function deleteFavouriteForFilter(client: Client, parameters: Delet
       expand: parameters.expand,
     },
     schema: FilterSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

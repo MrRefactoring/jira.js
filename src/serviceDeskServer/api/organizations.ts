@@ -13,11 +13,15 @@ import type { GetOrganizations } from '../parameters/getOrganizations';
 import type { CreateOrganization } from '../parameters/createOrganization';
 import type { GetOrganization } from '../parameters/getOrganization';
 import type { DeleteOrganization } from '../parameters/deleteOrganization';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 import { z } from 'zod';
 
 /** Returns all the users of a specified organization. */
-export async function getUsersInOrganization(client: Client, parameters: GetUsersInOrganization): Promise<Page<User>> {
+export async function getUsersInOrganization(
+  client: Client,
+  parameters: GetUsersInOrganization,
+  options?: RequestOptions,
+): Promise<Page<User>> {
   const config: SendRequestOptions<Page<User>> = {
     url: `/rest/servicedeskapi/organization/${parameters.organizationId}/user`,
     method: 'GET',
@@ -26,19 +30,25 @@ export async function getUsersInOrganization(client: Client, parameters: GetUser
       limit: parameters.limit,
     },
     schema: PagedUserSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Adds users to an organization. */
-export async function addUsersToOrganization(client: Client, parameters: AddUsersToOrganization): Promise<void> {
+export async function addUsersToOrganization(
+  client: Client,
+  parameters: AddUsersToOrganization,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/servicedeskapi/organization/${parameters.organizationId}/user`,
     method: 'POST',
     body: {
       usernames: parameters.usernames,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -48,6 +58,7 @@ export async function addUsersToOrganization(client: Client, parameters: AddUser
 export async function removeUsersFromOrganization(
   client: Client,
   parameters: RemoveUsersFromOrganization,
+  options?: RequestOptions,
 ): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/servicedeskapi/organization/${parameters.organizationId}/user`,
@@ -55,6 +66,7 @@ export async function removeUsersFromOrganization(
     body: {
       usernames: parameters.usernames,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -64,6 +76,7 @@ export async function removeUsersFromOrganization(
 export async function previewCleanUpOrganizations(
   client: Client,
   parameters?: PreviewCleanUpOrganizations,
+  options?: RequestOptions,
 ): Promise<CustomerOrganization[]> {
   const config: SendRequestOptions<CustomerOrganization[]> = {
     url: '/rest/servicedeskapi/organization/cleanup',
@@ -73,6 +86,7 @@ export async function previewCleanUpOrganizations(
       deleteOrganizationsWithInactiveUsers: parameters?.deleteOrganizationsWithInactiveUsers,
     },
     schema: z.array(CustomerOrganizationSchema),
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -82,7 +96,11 @@ export async function previewCleanUpOrganizations(
  * Deletes empty organizations, optionally delete organizations that have no active users, or are not attached to any
  * projects.
  */
-export async function cleanUpOrganizations(client: Client, parameters: CleanUpOrganizations): Promise<unknown> {
+export async function cleanUpOrganizations(
+  client: Client,
+  parameters: CleanUpOrganizations,
+  options?: RequestOptions,
+): Promise<unknown> {
   const config: SendRequestOptions<unknown> = {
     url: '/rest/servicedeskapi/organization/cleanup',
     method: 'DELETE',
@@ -90,6 +108,7 @@ export async function cleanUpOrganizations(client: Client, parameters: CleanUpOr
       deleteDetachedOrganizations: parameters.deleteDetachedOrganizations,
       deleteOrganizationsWithInactiveUsers: parameters.deleteOrganizationsWithInactiveUsers,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -99,7 +118,11 @@ export async function cleanUpOrganizations(client: Client, parameters: CleanUpOr
  * Returns a list of organizations in the Jira instance.If the user is not an agent, the resource returns a list of
  * organizations the user is a member of.
  */
-export async function getOrganizations(client: Client, parameters?: GetOrganizations): Promise<Page<Organization>> {
+export async function getOrganizations(
+  client: Client,
+  parameters?: GetOrganizations,
+  options?: RequestOptions,
+): Promise<Page<Organization>> {
   const config: SendRequestOptions<Page<Organization>> = {
     url: '/rest/servicedeskapi/organization',
     method: 'GET',
@@ -108,6 +131,7 @@ export async function getOrganizations(client: Client, parameters?: GetOrganizat
       limit: parameters?.limit,
     },
     schema: PagedOrganizationSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -117,7 +141,11 @@ export async function getOrganizations(client: Client, parameters?: GetOrganizat
  * To create an organization Jira administrator global permission or agent permission is required depending on the
  * settings
  */
-export async function createOrganization(client: Client, parameters: CreateOrganization): Promise<Organization> {
+export async function createOrganization(
+  client: Client,
+  parameters: CreateOrganization,
+  options?: RequestOptions,
+): Promise<Organization> {
   const config: SendRequestOptions<Organization> = {
     url: '/rest/servicedeskapi/organization',
     method: 'POST',
@@ -125,27 +153,38 @@ export async function createOrganization(client: Client, parameters: CreateOrgan
       name: parameters.name,
     },
     schema: OrganizationSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Returns an organization for a given organization ID. */
-export async function getOrganization(client: Client, parameters: GetOrganization): Promise<Organization> {
+export async function getOrganization(
+  client: Client,
+  parameters: GetOrganization,
+  options?: RequestOptions,
+): Promise<Organization> {
   const config: SendRequestOptions<Organization> = {
     url: `/rest/servicedeskapi/organization/${parameters.organizationId}`,
     method: 'GET',
     schema: OrganizationSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Deletes an organization for a given organization ID. */
-export async function deleteOrganization(client: Client, parameters: DeleteOrganization): Promise<void> {
+export async function deleteOrganization(
+  client: Client,
+  parameters: DeleteOrganization,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/servicedeskapi/organization/${parameters.organizationId}`,
     method: 'DELETE',
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
