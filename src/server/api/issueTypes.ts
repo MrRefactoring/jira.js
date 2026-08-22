@@ -63,7 +63,7 @@ export async function getPaginatedIssueTypes(
     url: '/rest/api/2/issuetype/page',
     method: 'GET',
     headers: {
-      ...(parameters?.['X-Requested-With'] === undefined ? {} : { 'X-Requested-With': parameters['X-Requested-With'] }),
+      'X-Requested-With': parameters?.['X-Requested-With'],
     },
     searchParams: {
       maxResults: parameters?.maxResults,

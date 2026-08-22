@@ -445,6 +445,23 @@ describe('headers and body', () => {
 
     expect((calls[0].init.headers as Record<string, string>)['X-Trace']).toBe('request');
   });
+
+  it('drops a header the caller left out instead of sending the word undefined', async () => {
+    const calls = mockFetch([json({})]);
+
+    await createClient({ host: HOST }).sendRequest({ url: '/x', method: 'GET', headers: { 'If-Match': undefined } });
+
+    expect(calls[0].init.headers as Record<string, string>).not.toHaveProperty('If-Match');
+  });
+
+  it('does not let an omitted header parameter shadow a client-wide one', async () => {
+    const calls = mockFetch([json({})]);
+
+    await createClient({ host: HOST, headers: { 'X-Trace': 'client' } })
+      .sendRequest({ url: '/x', method: 'GET', headers: { 'X-Trace': undefined } });
+
+    expect((calls[0].init.headers as Record<string, string>)['X-Trace']).toBe('client');
+  });
 });
 
 describe('credentials refused behind a status that says otherwise', () => {

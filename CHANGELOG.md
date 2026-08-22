@@ -56,6 +56,8 @@ Three long-standing requests, all of them the same shape: the client had no seam
 
   A subpath rather than a re-export from the surface, because a parameter and a model share a name in nine places on Cloud and forty-one on Agile, and `export *` cannot resolve that. A subpath rather than `export * as Parameters`, because the parameter modules export zod schemas as values, and a namespace object is what a bundler cannot take apart.
 
+* **A header set to `undefined` is left out rather than sent.** `SendRequestOptions.headers` accepts `string | undefined`, and the transport strips the absent entries before the request is built — the same treatment `searchParams` and a JSON body have always had. An omitted header does not shadow one set in the client configuration either, so a per-request `undefined` falls through to the client-wide value instead of erasing it.
+
 ### Features
 
 * **`createTeamsClient` and `jira.js/teams`.** Fifteen operations of the [Teams REST API](https://developer.atlassian.com/platform/teams/rest/v1/): teams, their members, and links to an external directory. Closes [#364](https://github.com/MrRefactoring/jira.js/issues/364).
