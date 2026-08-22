@@ -1,9 +1,10 @@
 /**
  * Jira REST API client for Node.js and browsers.
  *
- * Four surfaces, one client: the Jira Cloud platform API, the Agile (software) API, Jira Service Management, and the
- * self-hosted Data Center API. Each has its own factory, and all of them take the same bare site URL — the API path
- * belongs to the request, not to `host`:
+ * Eight surfaces, one client: on Cloud, the Jira platform API, the Agile (software) API, Jira Service Management,
+ * Assets and Teams; self-hosted, the Data Center counterparts of the platform — Agile included — Service Management
+ * and Assets. Each has its own factory, and every one but Assets takes the same bare site URL — the API path belongs
+ * to the request, not to `host`:
  *
  * ```ts
  * import { createCloudClient } from 'jira.js';
@@ -71,6 +72,12 @@ export {
   type AssetsClient,
   type AssetsClientConfig,
 } from './assets/createAssetsClient.js';
+
+export {
+  createTeamsClient,
+  type TeamsClient,
+  type TeamsClientConfig,
+} from './teams/createTeamsClient.js';
 
 export {
   ApiError,
