@@ -14,7 +14,7 @@ import type { SubmitBulkTransition } from '../parameters/submitBulkTransition';
 import type { SubmitBulkUnwatch } from '../parameters/submitBulkUnwatch';
 import type { SubmitBulkWatch } from '../parameters/submitBulkWatch';
 import type { GetBulkOperationProgress } from '../parameters/getBulkOperationProgress';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /**
  * Use this API to submit a bulk delete request. You can delete up to 1,000 issues in a single operation.
@@ -31,7 +31,11 @@ import type { Client, SendRequestOptions } from '#/core';
  * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
  *   to view the issue.
  */
-export async function submitBulkDelete(client: Client, parameters: SubmitBulkDelete): Promise<SubmittedBulkOperation> {
+export async function submitBulkDelete(
+  client: Client,
+  parameters: SubmitBulkDelete,
+  options?: RequestOptions,
+): Promise<SubmittedBulkOperation> {
   const config: SendRequestOptions<SubmittedBulkOperation> = {
     url: '/rest/api/3/bulk/issues/delete',
     method: 'POST',
@@ -40,6 +44,7 @@ export async function submitBulkDelete(client: Client, parameters: SubmitBulkDel
       sendBulkNotification: parameters.sendBulkNotification,
     },
     schema: SubmittedBulkOperationSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -63,6 +68,7 @@ export async function submitBulkDelete(client: Client, parameters: SubmitBulkDel
 export async function getBulkEditableFields(
   client: Client,
   parameters: GetBulkEditableFields,
+  options?: RequestOptions,
 ): Promise<BulkEditGetFields> {
   const config: SendRequestOptions<BulkEditGetFields> = {
     url: '/rest/api/3/bulk/issues/fields',
@@ -74,6 +80,7 @@ export async function getBulkEditableFields(
       startingAfter: parameters.startingAfter,
     },
     schema: BulkEditGetFieldsSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -95,7 +102,11 @@ export async function getBulkEditableFields(
  * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
  *   to view the issue.
  */
-export async function submitBulkEdit(client: Client, parameters: SubmitBulkEdit): Promise<SubmittedBulkOperation> {
+export async function submitBulkEdit(
+  client: Client,
+  parameters: SubmitBulkEdit,
+  options?: RequestOptions,
+): Promise<SubmittedBulkOperation> {
   const config: SendRequestOptions<SubmittedBulkOperation> = {
     url: '/rest/api/3/bulk/issues/fields',
     method: 'POST',
@@ -106,6 +117,7 @@ export async function submitBulkEdit(client: Client, parameters: SubmitBulkEdit)
       sendBulkNotification: parameters.sendBulkNotification,
     },
     schema: SubmittedBulkOperationSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -157,7 +169,11 @@ export async function submitBulkEdit(client: Client, parameters: SubmitBulkEdit)
  * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
  *   to view the issue.
  */
-export async function submitBulkMove(client: Client, parameters: SubmitBulkMove): Promise<SubmittedBulkOperation> {
+export async function submitBulkMove(
+  client: Client,
+  parameters: SubmitBulkMove,
+  options?: RequestOptions,
+): Promise<SubmittedBulkOperation> {
   const config: SendRequestOptions<SubmittedBulkOperation> = {
     url: '/rest/api/3/bulk/issues/move',
     method: 'POST',
@@ -166,6 +182,7 @@ export async function submitBulkMove(client: Client, parameters: SubmitBulkMove)
       targetToSourcesMapping: parameters.targetToSourcesMapping,
     },
     schema: SubmittedBulkOperationSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -197,6 +214,7 @@ export async function submitBulkMove(client: Client, parameters: SubmitBulkMove)
 export async function getAvailableTransitions(
   client: Client,
   parameters: GetAvailableTransitions,
+  options?: RequestOptions,
 ): Promise<BulkTransitionGetAvailableTransitions> {
   const config: SendRequestOptions<BulkTransitionGetAvailableTransitions> = {
     url: '/rest/api/3/bulk/issues/transition',
@@ -207,6 +225,7 @@ export async function getAvailableTransitions(
       startingAfter: parameters.startingAfter,
     },
     schema: BulkTransitionGetAvailableTransitionsSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -231,6 +250,7 @@ export async function getAvailableTransitions(
 export async function submitBulkTransition(
   client: Client,
   parameters: SubmitBulkTransition,
+  options?: RequestOptions,
 ): Promise<SubmittedBulkOperation> {
   const config: SendRequestOptions<SubmittedBulkOperation> = {
     url: '/rest/api/3/bulk/issues/transition',
@@ -240,6 +260,7 @@ export async function submitBulkTransition(
       sendBulkNotification: parameters.sendBulkNotification,
     },
     schema: SubmittedBulkOperationSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -260,6 +281,7 @@ export async function submitBulkTransition(
 export async function submitBulkUnwatch(
   client: Client,
   parameters: SubmitBulkUnwatch,
+  options?: RequestOptions,
 ): Promise<SubmittedBulkOperation> {
   const config: SendRequestOptions<SubmittedBulkOperation> = {
     url: '/rest/api/3/bulk/issues/unwatch',
@@ -268,6 +290,7 @@ export async function submitBulkUnwatch(
       selectedIssueIdsOrKeys: parameters.selectedIssueIdsOrKeys,
     },
     schema: SubmittedBulkOperationSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -285,7 +308,11 @@ export async function submitBulkUnwatch(
  * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
  *   to view the issue.
  */
-export async function submitBulkWatch(client: Client, parameters: SubmitBulkWatch): Promise<SubmittedBulkOperation> {
+export async function submitBulkWatch(
+  client: Client,
+  parameters: SubmitBulkWatch,
+  options?: RequestOptions,
+): Promise<SubmittedBulkOperation> {
   const config: SendRequestOptions<SubmittedBulkOperation> = {
     url: '/rest/api/3/bulk/issues/watch',
     method: 'POST',
@@ -293,6 +320,7 @@ export async function submitBulkWatch(client: Client, parameters: SubmitBulkWatc
       selectedIssueIdsOrKeys: parameters.selectedIssueIdsOrKeys,
     },
     schema: SubmittedBulkOperationSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -338,11 +366,13 @@ export async function submitBulkWatch(client: Client, parameters: SubmitBulkWatc
 export async function getBulkOperationProgress(
   client: Client,
   parameters: GetBulkOperationProgress,
+  options?: RequestOptions,
 ): Promise<BulkOperationProgress> {
   const config: SendRequestOptions<BulkOperationProgress> = {
     url: `/rest/api/3/bulk/queue/${parameters.taskId}`,
     method: 'GET',
     schema: BulkOperationProgressSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

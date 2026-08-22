@@ -4,7 +4,7 @@ import type { GetIssueTypePropertyKeys } from '../parameters/getIssueTypePropert
 import type { GetIssueTypeProperty } from '../parameters/getIssueTypeProperty';
 import type { SetIssueTypeProperty } from '../parameters/setIssueTypeProperty';
 import type { DeleteIssueTypeProperty } from '../parameters/deleteIssueTypeProperty';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /**
  * Returns all the [issue type
@@ -23,11 +23,13 @@ import type { Client, SendRequestOptions } from '#/core';
 export async function getIssueTypePropertyKeys(
   client: Client,
   parameters: GetIssueTypePropertyKeys,
+  options?: RequestOptions,
 ): Promise<PropertyKeys> {
   const config: SendRequestOptions<PropertyKeys> = {
     url: `/rest/api/3/issuetype/${parameters.issueTypeId}/properties`,
     method: 'GET',
     schema: PropertyKeysSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -46,11 +48,16 @@ export async function getIssueTypePropertyKeys(
  * - _Browse projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) to get the details of any issue
  *   types associated with the projects the user has permission to browse.
  */
-export async function getIssueTypeProperty(client: Client, parameters: GetIssueTypeProperty): Promise<EntityProperty> {
+export async function getIssueTypeProperty(
+  client: Client,
+  parameters: GetIssueTypeProperty,
+  options?: RequestOptions,
+): Promise<EntityProperty> {
   const config: SendRequestOptions<EntityProperty> = {
     url: `/rest/api/3/issuetype/${parameters.issueTypeId}/properties/${parameters.propertyKey}`,
     method: 'GET',
     schema: EntityPropertySchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -67,11 +74,16 @@ export async function getIssueTypeProperty(client: Client, parameters: GetIssueT
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-export async function setIssueTypeProperty(client: Client, parameters: SetIssueTypeProperty): Promise<void> {
+export async function setIssueTypeProperty(
+  client: Client,
+  parameters: SetIssueTypeProperty,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/issuetype/${parameters.issueTypeId}/properties/${parameters.propertyKey}`,
     method: 'PUT',
     body: parameters.body,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -84,10 +96,15 @@ export async function setIssueTypeProperty(client: Client, parameters: SetIssueT
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-export async function deleteIssueTypeProperty(client: Client, parameters: DeleteIssueTypeProperty): Promise<void> {
+export async function deleteIssueTypeProperty(
+  client: Client,
+  parameters: DeleteIssueTypeProperty,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/issuetype/${parameters.issueTypeId}/properties/${parameters.propertyKey}`,
     method: 'DELETE',
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

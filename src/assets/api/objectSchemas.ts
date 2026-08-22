@@ -10,11 +10,15 @@ import type { DeleteSchema } from '../parameters/deleteSchema';
 import type { FindSchemaAttributes } from '../parameters/findSchemaAttributes';
 import type { FindSchemaObjectTypes } from '../parameters/findSchemaObjectTypes';
 import type { FindSchemaObjectTypesFlat } from '../parameters/findSchemaObjectTypesFlat';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 import { z } from 'zod';
 
 /** Resource to find object schemas in Assets */
-export async function findSchemas(client: Client, parameters?: FindSchemas): Promise<ObjectSchemaList> {
+export async function findSchemas(
+  client: Client,
+  parameters?: FindSchemas,
+  options?: RequestOptions,
+): Promise<ObjectSchemaList> {
   const config: SendRequestOptions<ObjectSchemaList> = {
     url: '/objectschema/list',
     method: 'GET',
@@ -24,13 +28,18 @@ export async function findSchemas(client: Client, parameters?: FindSchemas): Pro
       includeCounts: parameters?.includeCounts,
     },
     schema: ObjectSchemaListSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Create a new object schema */
-export async function createSchema(client: Client, parameters: CreateSchema): Promise<ObjectSchema> {
+export async function createSchema(
+  client: Client,
+  parameters: CreateSchema,
+  options?: RequestOptions,
+): Promise<ObjectSchema> {
   const config: SendRequestOptions<ObjectSchema> = {
     url: '/objectschema/create',
     method: 'POST',
@@ -40,24 +49,34 @@ export async function createSchema(client: Client, parameters: CreateSchema): Pr
       description: parameters.description,
     },
     schema: ObjectSchemaSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Find a schema by id */
-export async function loadSchema(client: Client, parameters: LoadSchema): Promise<ObjectSchema> {
+export async function loadSchema(
+  client: Client,
+  parameters: LoadSchema,
+  options?: RequestOptions,
+): Promise<ObjectSchema> {
   const config: SendRequestOptions<ObjectSchema> = {
     url: `/objectschema/${parameters.id}`,
     method: 'GET',
     schema: ObjectSchemaSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Update an object schema */
-export async function updateSchema(client: Client, parameters: UpdateSchema): Promise<ObjectSchema> {
+export async function updateSchema(
+  client: Client,
+  parameters: UpdateSchema,
+  options?: RequestOptions,
+): Promise<ObjectSchema> {
   const config: SendRequestOptions<ObjectSchema> = {
     url: `/objectschema/${parameters.id}`,
     method: 'PUT',
@@ -67,17 +86,23 @@ export async function updateSchema(client: Client, parameters: UpdateSchema): Pr
       description: parameters.description,
     },
     schema: ObjectSchemaSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Delete a schema */
-export async function deleteSchema(client: Client, parameters: DeleteSchema): Promise<ObjectSchema> {
+export async function deleteSchema(
+  client: Client,
+  parameters: DeleteSchema,
+  options?: RequestOptions,
+): Promise<ObjectSchema> {
   const config: SendRequestOptions<ObjectSchema> = {
     url: `/objectschema/${parameters.id}`,
     method: 'DELETE',
     schema: ObjectSchemaSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -87,6 +112,7 @@ export async function deleteSchema(client: Client, parameters: DeleteSchema): Pr
 export async function findSchemaAttributes(
   client: Client,
   parameters: FindSchemaAttributes,
+  options?: RequestOptions,
 ): Promise<ObjectTypeAttribute[]> {
   const config: SendRequestOptions<ObjectTypeAttribute[]> = {
     url: `/objectschema/${parameters.id}/attributes`,
@@ -97,13 +123,18 @@ export async function findSchemaAttributes(
       query: parameters.query,
     },
     schema: z.array(ObjectTypeAttributeSchema),
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Find all object types for this object schema */
-export async function findSchemaObjectTypes(client: Client, parameters: FindSchemaObjectTypes): Promise<ObjectType[]> {
+export async function findSchemaObjectTypes(
+  client: Client,
+  parameters: FindSchemaObjectTypes,
+  options?: RequestOptions,
+): Promise<ObjectType[]> {
   const config: SendRequestOptions<ObjectType[]> = {
     url: `/objectschema/${parameters.id}/objecttypes`,
     method: 'GET',
@@ -111,6 +142,7 @@ export async function findSchemaObjectTypes(client: Client, parameters: FindSche
       excludeAbstract: parameters.excludeAbstract,
     },
     schema: z.array(ObjectTypeSchema),
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -120,6 +152,7 @@ export async function findSchemaObjectTypes(client: Client, parameters: FindSche
 export async function findSchemaObjectTypesFlat(
   client: Client,
   parameters: FindSchemaObjectTypesFlat,
+  options?: RequestOptions,
 ): Promise<ObjectType[]> {
   const config: SendRequestOptions<ObjectType[]> = {
     url: `/objectschema/${parameters.id}/objecttypes/flat`,
@@ -130,6 +163,7 @@ export async function findSchemaObjectTypesFlat(
       includeObjectCounts: parameters.includeObjectCounts,
     },
     schema: z.array(ObjectTypeSchema),
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

@@ -3,13 +3,18 @@ import type { SetShouldQueuesIncludeCountGlobally } from '../parameters/setShoul
 import type { SetShouldQueuesIncludeCountOnProject } from '../parameters/setShouldQueuesIncludeCountOnProject';
 import type { SetShouldQueuesUseCountCacheGlobally } from '../parameters/setShouldQueuesUseCountCacheGlobally';
 import type { SetShouldQueuesUseCountCacheOnProject } from '../parameters/setShouldQueuesUseCountCacheOnProject';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /** Retrieve the current state of configurable settings for the projects Queue. */
-export async function getQueueSettingsOnProject(client: Client, parameters: GetQueueSettingsOnProject): Promise<void> {
+export async function getQueueSettingsOnProject(
+  client: Client,
+  parameters: GetQueueSettingsOnProject,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/servicedeskapi/admin/queues/${parameters.projectKey}`,
     method: 'GET',
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -25,11 +30,13 @@ export async function getQueueSettingsOnProject(client: Client, parameters: GetQ
 export async function setShouldQueuesIncludeCountGlobally(
   client: Client,
   parameters: SetShouldQueuesIncludeCountGlobally,
+  options?: RequestOptions,
 ): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: '/rest/servicedeskapi/admin/queues/include-count',
     method: 'PUT',
     body: parameters.body,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -46,11 +53,13 @@ export async function setShouldQueuesIncludeCountGlobally(
 export async function setShouldQueuesIncludeCountOnProject(
   client: Client,
   parameters: SetShouldQueuesIncludeCountOnProject,
+  options?: RequestOptions,
 ): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/servicedeskapi/admin/queues/${parameters.projectKey}/include-count`,
     method: 'PUT',
     body: parameters.body,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -71,11 +80,13 @@ export async function setShouldQueuesIncludeCountOnProject(
 export async function setShouldQueuesUseCountCacheGlobally(
   client: Client,
   parameters: SetShouldQueuesUseCountCacheGlobally,
+  options?: RequestOptions,
 ): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: '/rest/servicedeskapi/admin/queues/cache-count',
     method: 'PUT',
     body: parameters.body,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -97,11 +108,13 @@ export async function setShouldQueuesUseCountCacheGlobally(
 export async function setShouldQueuesUseCountCacheOnProject(
   client: Client,
   parameters: SetShouldQueuesUseCountCacheOnProject,
+  options?: RequestOptions,
 ): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/servicedeskapi/admin/queues/${parameters.projectKey}/cache-count`,
     method: 'PUT',
     body: parameters.body,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

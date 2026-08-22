@@ -8,22 +8,27 @@ import type { DeleteProjectRole } from '../parameters/deleteProjectRole';
 import type { GetProjectRoleActorsForRole } from '../parameters/getProjectRoleActorsForRole';
 import type { AddProjectRoleActorsToRole } from '../parameters/addProjectRoleActorsToRole';
 import type { DeleteProjectRoleActorsFromRole } from '../parameters/deleteProjectRoleActorsFromRole';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 import { z } from 'zod';
 
 /** Get all the ProjectRoles available in Jira. Currently this list is global. */
-export async function getAllProjectRoles(client: Client): Promise<ProjectRole[]> {
+export async function getAllProjectRoles(client: Client, options?: RequestOptions): Promise<ProjectRole[]> {
   const config: SendRequestOptions<ProjectRole[]> = {
     url: '/rest/api/2/role',
     method: 'GET',
     schema: z.array(ProjectRoleSchema),
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Creates a new ProjectRole to be available in Jira. The created role does not have any default actors assigned. */
-export async function createProjectRole(client: Client, parameters: CreateProjectRole): Promise<ProjectRole> {
+export async function createProjectRole(
+  client: Client,
+  parameters: CreateProjectRole,
+  options?: RequestOptions,
+): Promise<ProjectRole> {
   const config: SendRequestOptions<ProjectRole> = {
     url: '/rest/api/2/role',
     method: 'POST',
@@ -32,17 +37,23 @@ export async function createProjectRole(client: Client, parameters: CreateProjec
       name: parameters.name,
     },
     schema: ProjectRoleSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Get a specific ProjectRole available in Jira. */
-export async function getProjectRolesById(client: Client, parameters: GetProjectRolesById): Promise<ProjectRole> {
+export async function getProjectRolesById(
+  client: Client,
+  parameters: GetProjectRolesById,
+  options?: RequestOptions,
+): Promise<ProjectRole> {
   const config: SendRequestOptions<ProjectRole> = {
     url: `/rest/api/2/role/${parameters.id}`,
     method: 'GET',
     schema: ProjectRoleSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -52,6 +63,7 @@ export async function getProjectRolesById(client: Client, parameters: GetProject
 export async function partialUpdateProjectRole(
   client: Client,
   parameters: PartialUpdateProjectRole,
+  options?: RequestOptions,
 ): Promise<ProjectRole> {
   const config: SendRequestOptions<ProjectRole> = {
     url: `/rest/api/2/role/${parameters.id}`,
@@ -61,13 +73,18 @@ export async function partialUpdateProjectRole(
       name: parameters.name,
     },
     schema: ProjectRoleSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Fully updates a roles. Both name and description must be given. */
-export async function fullyUpdateProjectRole(client: Client, parameters: FullyUpdateProjectRole): Promise<ProjectRole> {
+export async function fullyUpdateProjectRole(
+  client: Client,
+  parameters: FullyUpdateProjectRole,
+  options?: RequestOptions,
+): Promise<ProjectRole> {
   const config: SendRequestOptions<ProjectRole> = {
     url: `/rest/api/2/role/${parameters.id}`,
     method: 'PUT',
@@ -76,19 +93,25 @@ export async function fullyUpdateProjectRole(client: Client, parameters: FullyUp
       name: parameters.name,
     },
     schema: ProjectRoleSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Deletes a role. May return 403 in the future */
-export async function deleteProjectRole(client: Client, parameters: DeleteProjectRole): Promise<void> {
+export async function deleteProjectRole(
+  client: Client,
+  parameters: DeleteProjectRole,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/2/role/${parameters.id}`,
     method: 'DELETE',
     searchParams: {
       swap: parameters.swap,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -98,11 +121,13 @@ export async function deleteProjectRole(client: Client, parameters: DeleteProjec
 export async function getProjectRoleActorsForRole(
   client: Client,
   parameters: GetProjectRoleActorsForRole,
+  options?: RequestOptions,
 ): Promise<ProjectRoleActors> {
   const config: SendRequestOptions<ProjectRoleActors> = {
     url: `/rest/api/2/role/${parameters.id}/actors`,
     method: 'GET',
     schema: ProjectRoleActorsSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -115,6 +140,7 @@ export async function getProjectRoleActorsForRole(
 export async function addProjectRoleActorsToRole(
   client: Client,
   parameters: AddProjectRoleActorsToRole,
+  options?: RequestOptions,
 ): Promise<ProjectRoleActors> {
   const config: SendRequestOptions<ProjectRoleActors> = {
     url: `/rest/api/2/role/${parameters.id}/actors`,
@@ -124,6 +150,7 @@ export async function addProjectRoleActorsToRole(
       user: parameters.user,
     },
     schema: ProjectRoleActorsSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -133,6 +160,7 @@ export async function addProjectRoleActorsToRole(
 export async function deleteProjectRoleActorsFromRole(
   client: Client,
   parameters: DeleteProjectRoleActorsFromRole,
+  options?: RequestOptions,
 ): Promise<ProjectRoleActors> {
   const config: SendRequestOptions<ProjectRoleActors> = {
     url: `/rest/api/2/role/${parameters.id}/actors`,
@@ -142,6 +170,7 @@ export async function deleteProjectRoleActorsFromRole(
       group: parameters.group,
     },
     schema: ProjectRoleActorsSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

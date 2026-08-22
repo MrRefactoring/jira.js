@@ -23,6 +23,7 @@ export {
   isReauthorizationRequired,
   isScopeError,
   type ApiErrorOptions,
+  type AuthErrorOptions,
   type RateLimitErrorOptions,
   type OAuthErrorOptions,
 } from './errors/index.js';
@@ -43,6 +44,8 @@ export {
   sendRequestOptionsSchema,
   type HttpMethod,
   type ClientConfig,
+  type FetchLike,
+  type RequestOptions,
   type Auth,
   type AuthBasic,
   type AuthBearer,

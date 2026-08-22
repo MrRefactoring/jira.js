@@ -1,7 +1,7 @@
 import { SearchResultsSchema, type SearchResults } from '../models/searchResults';
 import type { Search } from '../parameters/search';
 import type { SearchUsingSearchRequest } from '../parameters/searchUsingSearchRequest';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /**
  * Searches for issues using JQL. Sorting the jql parameter is a full
@@ -18,7 +18,7 @@ import type { Client, SendRequestOptions } from '#/core';
  * changelog for all the issues on the search result, it is necessary to specify changelog as one of the values to
  * expand.
  */
-export async function search(client: Client, parameters?: Search): Promise<SearchResults> {
+export async function search(client: Client, parameters?: Search, options?: RequestOptions): Promise<SearchResults> {
   const config: SendRequestOptions<SearchResults> = {
     url: '/rest/api/2/search',
     method: 'GET',
@@ -31,6 +31,7 @@ export async function search(client: Client, parameters?: Search): Promise<Searc
       startAt: parameters?.startAt,
     },
     schema: SearchResultsSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -40,6 +41,7 @@ export async function search(client: Client, parameters?: Search): Promise<Searc
 export async function searchUsingSearchRequest(
   client: Client,
   parameters: SearchUsingSearchRequest,
+  options?: RequestOptions,
 ): Promise<SearchResults> {
   const config: SendRequestOptions<SearchResults> = {
     url: '/rest/api/2/search',
@@ -53,16 +55,18 @@ export async function searchUsingSearchRequest(
       validateQuery: parameters.validateQuery,
     },
     schema: SearchResultsSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Available since Jira Data Center 11.3. */
-export async function getError(client: Client): Promise<void> {
+export async function getError(client: Client, options?: RequestOptions): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: '/rest/api/2/search/error/lookup',
     method: 'GET',
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

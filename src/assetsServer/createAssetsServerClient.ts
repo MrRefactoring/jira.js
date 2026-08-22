@@ -1,4 +1,4 @@
-import { type ClientConfig, type Client, createClient, type Buffer } from '#/core';
+import { type ClientConfig, type Client, type RequestOptions, createClient, type Buffer } from '#/core';
 import * as analytics from './api/analytics';
 import * as aql from './api/aql';
 import * as objects from './api/objects';
@@ -97,126 +97,158 @@ export function createAssetsServerClient(clientConfig: ClientConfig | Client) {
 
   return {
     analytics: {
-      getSchemaAnalytics: (): Promise<SchemaStats[]> => analytics.getSchemaAnalytics(client),
+      getSchemaAnalytics: (options?: RequestOptions): Promise<SchemaStats[]> =>
+        analytics.getSchemaAnalytics(client, options),
     },
     aql: {
-      findObjects: (parameters?: FindObjects): Promise<ObjectListResult> => aql.findObjects(client, parameters),
+      findObjects: (parameters?: FindObjects, options?: RequestOptions): Promise<ObjectListResult> =>
+        aql.findObjects(client, parameters, options),
     },
     objects: {
-      getArchivedObjects: (parameters?: GetArchivedObjects): Promise<ArchivedObjectsPage> =>
-        objects.getArchivedObjects(client, parameters),
-      archiveObject: (parameters: ArchiveObject): Promise<AssetObject> => objects.archiveObject(client, parameters),
-      archiveObjectsByFilter: (parameters: ArchiveObjectsByFilter): Promise<ProgressOut> =>
-        objects.archiveObjectsByFilter(client, parameters),
-      archiveObjectsByKeys: (parameters: ArchiveObjectsByKeys): Promise<ProgressOut> =>
-        objects.archiveObjectsByKeys(client, parameters),
-      restoreObject: (parameters: RestoreObject): Promise<AssetObject> => objects.restoreObject(client, parameters),
-      restoreObjectsByFilter: (parameters: RestoreObjectsByFilter): Promise<ProgressOut> =>
-        objects.restoreObjectsByFilter(client, parameters),
-      restoreObjectsByIds: (parameters: RestoreObjectsByIds): Promise<ProgressOut> =>
-        objects.restoreObjectsByIds(client, parameters),
-      restoreObjectsByKeys: (parameters: RestoreObjectsByKeys): Promise<ProgressOut> =>
-        objects.restoreObjectsByKeys(client, parameters),
-      bulkSetObjectImportSource: (parameters: BulkSetObjectImportSource): Promise<void> =>
-        objects.bulkSetObjectImportSource(client, parameters),
-      getObjectImportSource: (parameters: GetObjectImportSource): Promise<void> =>
-        objects.getObjectImportSource(client, parameters),
-      clearObjectImportSource: (parameters: ClearObjectImportSource): Promise<void> =>
-        objects.clearObjectImportSource(client, parameters),
-      createObject: (parameters: CreateObject): Promise<AssetObject> => objects.createObject(client, parameters),
-      loadObject: (parameters: LoadObject): Promise<AssetObject> => objects.loadObject(client, parameters),
-      updateObject: (parameters: UpdateObject): Promise<AssetObject> => objects.updateObject(client, parameters),
-      deleteObject: (parameters: DeleteObject): Promise<AssetObject> => objects.deleteObject(client, parameters),
-      findObject: (parameters: FindObject): Promise<ObjectListResult> => objects.findObject(client, parameters),
-      findObjectAttributes: (parameters: FindObjectAttributes): Promise<ObjectAttribute[]> =>
-        objects.findObjectAttributes(client, parameters),
-      findObjectHistory: (parameters: FindObjectHistory): Promise<ObjectHistory[]> =>
-        objects.findObjectHistory(client, parameters),
-      findObjectReferenceInfo: (parameters: FindObjectReferenceInfo): Promise<ReferenceTypeObjectInfo[]> =>
-        objects.findObjectReferenceInfo(client, parameters),
+      getArchivedObjects: (parameters?: GetArchivedObjects, options?: RequestOptions): Promise<ArchivedObjectsPage> =>
+        objects.getArchivedObjects(client, parameters, options),
+      archiveObject: (parameters: ArchiveObject, options?: RequestOptions): Promise<AssetObject> =>
+        objects.archiveObject(client, parameters, options),
+      archiveObjectsByFilter: (parameters: ArchiveObjectsByFilter, options?: RequestOptions): Promise<ProgressOut> =>
+        objects.archiveObjectsByFilter(client, parameters, options),
+      archiveObjectsByKeys: (parameters: ArchiveObjectsByKeys, options?: RequestOptions): Promise<ProgressOut> =>
+        objects.archiveObjectsByKeys(client, parameters, options),
+      restoreObject: (parameters: RestoreObject, options?: RequestOptions): Promise<AssetObject> =>
+        objects.restoreObject(client, parameters, options),
+      restoreObjectsByFilter: (parameters: RestoreObjectsByFilter, options?: RequestOptions): Promise<ProgressOut> =>
+        objects.restoreObjectsByFilter(client, parameters, options),
+      restoreObjectsByIds: (parameters: RestoreObjectsByIds, options?: RequestOptions): Promise<ProgressOut> =>
+        objects.restoreObjectsByIds(client, parameters, options),
+      restoreObjectsByKeys: (parameters: RestoreObjectsByKeys, options?: RequestOptions): Promise<ProgressOut> =>
+        objects.restoreObjectsByKeys(client, parameters, options),
+      bulkSetObjectImportSource: (parameters: BulkSetObjectImportSource, options?: RequestOptions): Promise<void> =>
+        objects.bulkSetObjectImportSource(client, parameters, options),
+      getObjectImportSource: (parameters: GetObjectImportSource, options?: RequestOptions): Promise<void> =>
+        objects.getObjectImportSource(client, parameters, options),
+      clearObjectImportSource: (parameters: ClearObjectImportSource, options?: RequestOptions): Promise<void> =>
+        objects.clearObjectImportSource(client, parameters, options),
+      createObject: (parameters: CreateObject, options?: RequestOptions): Promise<AssetObject> =>
+        objects.createObject(client, parameters, options),
+      loadObject: (parameters: LoadObject, options?: RequestOptions): Promise<AssetObject> =>
+        objects.loadObject(client, parameters, options),
+      updateObject: (parameters: UpdateObject, options?: RequestOptions): Promise<AssetObject> =>
+        objects.updateObject(client, parameters, options),
+      deleteObject: (parameters: DeleteObject, options?: RequestOptions): Promise<AssetObject> =>
+        objects.deleteObject(client, parameters, options),
+      findObject: (parameters: FindObject, options?: RequestOptions): Promise<ObjectListResult> =>
+        objects.findObject(client, parameters, options),
+      findObjectAttributes: (parameters: FindObjectAttributes, options?: RequestOptions): Promise<ObjectAttribute[]> =>
+        objects.findObjectAttributes(client, parameters, options),
+      findObjectHistory: (parameters: FindObjectHistory, options?: RequestOptions): Promise<ObjectHistory[]> =>
+        objects.findObjectHistory(client, parameters, options),
+      findObjectReferenceInfo: (
+        parameters: FindObjectReferenceInfo,
+        options?: RequestOptions,
+      ): Promise<ReferenceTypeObjectInfo[]> => objects.findObjectReferenceInfo(client, parameters, options),
     },
     attachments: {
-      getAttachments: (parameters: GetAttachments): Promise<Attachment[]> =>
-        attachments.getAttachments(client, parameters),
-      addAttachments: (parameters: AddAttachments): Promise<UploadedAttachment[]> =>
-        attachments.addAttachments(client, parameters),
-      deleteAttachment: (parameters: DeleteAttachment): Promise<Attachment> =>
-        attachments.deleteAttachment(client, parameters),
+      getAttachments: (parameters: GetAttachments, options?: RequestOptions): Promise<Attachment[]> =>
+        attachments.getAttachments(client, parameters, options),
+      addAttachments: (parameters: AddAttachments, options?: RequestOptions): Promise<UploadedAttachment[]> =>
+        attachments.addAttachments(client, parameters, options),
+      deleteAttachment: (parameters: DeleteAttachment, options?: RequestOptions): Promise<Attachment> =>
+        attachments.deleteAttachment(client, parameters, options),
     },
     comments: {
-      createComment: (parameters: CreateComment): Promise<Comment> => comments.createComment(client, parameters),
-      getComments: (parameters: GetComments): Promise<Comment[]> => comments.getComments(client, parameters),
+      createComment: (parameters: CreateComment, options?: RequestOptions): Promise<Comment> =>
+        comments.createComment(client, parameters, options),
+      getComments: (parameters: GetComments, options?: RequestOptions): Promise<Comment[]> =>
+        comments.getComments(client, parameters, options),
     },
     icons: {
-      findGlobalIcons: (): Promise<Icon[]> => icons.findGlobalIcons(client),
-      findIcons: (parameters: FindIcons): Promise<Icon[]> => icons.findIcons(client, parameters),
-      getIcon: (parameters: GetIcon): Promise<Icon> => icons.getIcon(client, parameters),
+      findGlobalIcons: (options?: RequestOptions): Promise<Icon[]> => icons.findGlobalIcons(client, options),
+      findIcons: (parameters: FindIcons, options?: RequestOptions): Promise<Icon[]> =>
+        icons.findIcons(client, parameters, options),
+      getIcon: (parameters: GetIcon, options?: RequestOptions): Promise<Icon> =>
+        icons.getIcon(client, parameters, options),
     },
     indexConfiguration: {
-      checkIndexIntegrity: (): Promise<IndexIntegrityOut> => indexConfiguration.checkIndexIntegrity(client),
-      getIndexPath: (): Promise<IndexPath> => indexConfiguration.getIndexPath(client),
-      persistIndexToFile: (): Promise<IndexPersistResponse> => indexConfiguration.persistIndexToFile(client),
-      startReindexCurrentNode: (): Promise<ProgressOut> => indexConfiguration.startReindexCurrentNode(client),
-      startReindexInsight: (parameters: StartReindexInsight): Promise<ProgressOut> =>
-        indexConfiguration.startReindexInsight(client, parameters),
+      checkIndexIntegrity: (options?: RequestOptions): Promise<IndexIntegrityOut> =>
+        indexConfiguration.checkIndexIntegrity(client, options),
+      getIndexPath: (options?: RequestOptions): Promise<IndexPath> => indexConfiguration.getIndexPath(client, options),
+      persistIndexToFile: (options?: RequestOptions): Promise<IndexPersistResponse> =>
+        indexConfiguration.persistIndexToFile(client, options),
+      startReindexCurrentNode: (options?: RequestOptions): Promise<ProgressOut> =>
+        indexConfiguration.startReindexCurrentNode(client, options),
+      startReindexInsight: (parameters: StartReindexInsight, options?: RequestOptions): Promise<ProgressOut> =>
+        indexConfiguration.startReindexInsight(client, parameters, options),
     },
     objectAttributes: {
-      createObjectAttribute: (parameters: CreateObjectAttribute): Promise<ObjectAttribute> =>
-        objectAttributes.createObjectAttribute(client, parameters),
+      createObjectAttribute: (parameters: CreateObjectAttribute, options?: RequestOptions): Promise<ObjectAttribute> =>
+        objectAttributes.createObjectAttribute(client, parameters, options),
     },
     objectSchemas: {
-      createSchema: (parameters: CreateSchema): Promise<ObjectSchema> => objectSchemas.createSchema(client, parameters),
-      loadSchema: (parameters: LoadSchema): Promise<ObjectSchema> => objectSchemas.loadSchema(client, parameters),
-      updateSchema: (parameters: UpdateSchema): Promise<ObjectSchema> => objectSchemas.updateSchema(client, parameters),
-      deleteSchema: (parameters: DeleteSchema): Promise<ObjectSchema> => objectSchemas.deleteSchema(client, parameters),
-      findSchemas: (parameters?: FindSchemas): Promise<ObjectSchemaList> =>
-        objectSchemas.findSchemas(client, parameters),
-      findObjectTypeFlatList: (parameters: FindObjectTypeFlatList): Promise<ObjectType[]> =>
-        objectSchemas.findObjectTypeFlatList(client, parameters),
+      createSchema: (parameters: CreateSchema, options?: RequestOptions): Promise<ObjectSchema> =>
+        objectSchemas.createSchema(client, parameters, options),
+      loadSchema: (parameters: LoadSchema, options?: RequestOptions): Promise<ObjectSchema> =>
+        objectSchemas.loadSchema(client, parameters, options),
+      updateSchema: (parameters: UpdateSchema, options?: RequestOptions): Promise<ObjectSchema> =>
+        objectSchemas.updateSchema(client, parameters, options),
+      deleteSchema: (parameters: DeleteSchema, options?: RequestOptions): Promise<ObjectSchema> =>
+        objectSchemas.deleteSchema(client, parameters, options),
+      findSchemas: (parameters?: FindSchemas, options?: RequestOptions): Promise<ObjectSchemaList> =>
+        objectSchemas.findSchemas(client, parameters, options),
+      findObjectTypeFlatList: (parameters: FindObjectTypeFlatList, options?: RequestOptions): Promise<ObjectType[]> =>
+        objectSchemas.findObjectTypeFlatList(client, parameters, options),
     },
     connectedTickets: {
-      findObjectTickets: (parameters: FindObjectTickets): Promise<Tickets> =>
-        connectedTickets.findObjectTickets(client, parameters),
+      findObjectTickets: (parameters: FindObjectTickets, options?: RequestOptions): Promise<Tickets> =>
+        connectedTickets.findObjectTickets(client, parameters, options),
     },
     objectTypes: {
-      changeOrderObjectType: (parameters: ChangeOrderObjectType): Promise<ObjectType> =>
-        objectTypes.changeOrderObjectType(client, parameters),
-      createObjectType: (parameters: CreateObjectType): Promise<ObjectType> =>
-        objectTypes.createObjectType(client, parameters),
-      loadObjectType: (parameters: LoadObjectType): Promise<ObjectType> =>
-        objectTypes.loadObjectType(client, parameters),
-      updateObjectType: (parameters: UpdateObjectType): Promise<ObjectType> =>
-        objectTypes.updateObjectType(client, parameters),
-      deleteObjectType: (parameters: DeleteObjectType): Promise<ObjectType> =>
-        objectTypes.deleteObjectType(client, parameters),
-      findObjectTypeAttributes: (parameters: FindObjectTypeAttributes): Promise<ObjectTypeAttribute[]> =>
-        objectTypes.findObjectTypeAttributes(client, parameters),
+      changeOrderObjectType: (parameters: ChangeOrderObjectType, options?: RequestOptions): Promise<ObjectType> =>
+        objectTypes.changeOrderObjectType(client, parameters, options),
+      createObjectType: (parameters: CreateObjectType, options?: RequestOptions): Promise<ObjectType> =>
+        objectTypes.createObjectType(client, parameters, options),
+      loadObjectType: (parameters: LoadObjectType, options?: RequestOptions): Promise<ObjectType> =>
+        objectTypes.loadObjectType(client, parameters, options),
+      updateObjectType: (parameters: UpdateObjectType, options?: RequestOptions): Promise<ObjectType> =>
+        objectTypes.updateObjectType(client, parameters, options),
+      deleteObjectType: (parameters: DeleteObjectType, options?: RequestOptions): Promise<ObjectType> =>
+        objectTypes.deleteObjectType(client, parameters, options),
+      findObjectTypeAttributes: (
+        parameters: FindObjectTypeAttributes,
+        options?: RequestOptions,
+      ): Promise<ObjectTypeAttribute[]> => objectTypes.findObjectTypeAttributes(client, parameters, options),
     },
     objectTypeAttributes: {
-      deleteObjectTypeAttribute: (parameters: DeleteObjectTypeAttribute): Promise<void> =>
-        objectTypeAttributes.deleteObjectTypeAttribute(client, parameters),
-      storeObjectTypeAttribute: (parameters: StoreObjectTypeAttribute): Promise<ObjectTypeAttribute> =>
-        objectTypeAttributes.storeObjectTypeAttribute(client, parameters),
-      updateObjectTypeAttribute: (parameters: UpdateObjectTypeAttribute): Promise<ObjectTypeAttribute> =>
-        objectTypeAttributes.updateObjectTypeAttribute(client, parameters),
+      deleteObjectTypeAttribute: (parameters: DeleteObjectTypeAttribute, options?: RequestOptions): Promise<void> =>
+        objectTypeAttributes.deleteObjectTypeAttribute(client, parameters, options),
+      storeObjectTypeAttribute: (
+        parameters: StoreObjectTypeAttribute,
+        options?: RequestOptions,
+      ): Promise<ObjectTypeAttribute> => objectTypeAttributes.storeObjectTypeAttribute(client, parameters, options),
+      updateObjectTypeAttribute: (
+        parameters: UpdateObjectTypeAttribute,
+        options?: RequestOptions,
+      ): Promise<ObjectTypeAttribute> => objectTypeAttributes.updateObjectTypeAttribute(client, parameters, options),
     },
     progress: {
-      getProgressForCategoryAndResourceId: (parameters: GetProgressForCategoryAndResourceId): Promise<ProgressOut> =>
-        progress.getProgressForCategoryAndResourceId(client, parameters),
+      getProgressForCategoryAndResourceId: (
+        parameters: GetProgressForCategoryAndResourceId,
+        options?: RequestOptions,
+      ): Promise<ProgressOut> => progress.getProgressForCategoryAndResourceId(client, parameters, options),
     },
     qrCode: {
-      getObjectQrCode: (parameters: GetObjectQrCode): Promise<Buffer> => qrCode.getObjectQrCode(client, parameters),
+      getObjectQrCode: (parameters: GetObjectQrCode, options?: RequestOptions): Promise<Buffer> =>
+        qrCode.getObjectQrCode(client, parameters, options),
     },
     statusTypes: {
-      getStatusType: (parameters: GetStatusType): Promise<StatusType> => statusTypes.getStatusType(client, parameters),
-      updateStatusType: (parameters: UpdateStatusType): Promise<StatusType> =>
-        statusTypes.updateStatusType(client, parameters),
-      deleteStatusType: (parameters: DeleteStatusType): Promise<void> =>
-        statusTypes.deleteStatusType(client, parameters),
-      findStatusTypes: (parameters?: FindStatusTypes): Promise<StatusType[]> =>
-        statusTypes.findStatusTypes(client, parameters),
-      storeStatusType: (parameters: StoreStatusType): Promise<StatusType> =>
-        statusTypes.storeStatusType(client, parameters),
+      getStatusType: (parameters: GetStatusType, options?: RequestOptions): Promise<StatusType> =>
+        statusTypes.getStatusType(client, parameters, options),
+      updateStatusType: (parameters: UpdateStatusType, options?: RequestOptions): Promise<StatusType> =>
+        statusTypes.updateStatusType(client, parameters, options),
+      deleteStatusType: (parameters: DeleteStatusType, options?: RequestOptions): Promise<void> =>
+        statusTypes.deleteStatusType(client, parameters, options),
+      findStatusTypes: (parameters?: FindStatusTypes, options?: RequestOptions): Promise<StatusType[]> =>
+        statusTypes.findStatusTypes(client, parameters, options),
+      storeStatusType: (parameters: StoreStatusType, options?: RequestOptions): Promise<StatusType> =>
+        statusTypes.storeStatusType(client, parameters, options),
     },
   };
 }

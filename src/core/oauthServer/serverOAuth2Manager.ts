@@ -1,4 +1,5 @@
 import type { OnTokenRefresh } from '../oauth/types.js';
+import type { FetchLike } from '../schemas/clientConfig.js';
 import type { OAuth2Manager } from '../oauth/oauth2Manager.js';
 import { refreshServerOAuth2Token } from './helpers.js';
 import { OAuthError } from '../errors/index.js';
@@ -18,20 +19,22 @@ export interface ServerOAuth2ManagerOptions {
   /** Access-token expiry as epoch milliseconds. */
   expiresAt?: number;
   onTokenRefresh?: OnTokenRefresh;
+  /** The `fetch` the client was configured with, so a proxy or a log covers the token calls too. */
+  fetch?: FetchLike;
 }
 
 /**
  * Holds the OAuth 2.0 token state for one Data Center client.
  *
  * The Cloud manager's counterpart to this file spends most of its length resolving a cloud id and picking between the
- * sites a 3LO token can reach. None of that exists here: a self-hosted instance is the one site, and `getBaseUrl` hands
- * back the host it was given. What remains is the part that is genuinely shared — refresh before expiry, single
+ * sites a 3LO token can reach. None of that exists here: a self-hosted instance is the one site, and `getBaseUrl`
+ * hands back the host it was given. What remains is the part that is genuinely shared — refresh before expiry, single
  * -flighted so N concurrent requests produce one token call, and report the rotated refresh token onwards.
  *
  * Implements the same interface as the Cloud manager so the transport keeps one code path for both.
  */
 export function createServerOAuth2Manager(options: ServerOAuth2ManagerOptions): OAuth2Manager {
-  const { host, clientId, clientSecret, redirectUri, onTokenRefresh } = options;
+  const { host, clientId, clientSecret, redirectUri, onTokenRefresh, fetch: fetchImpl } = options;
 
   let accessToken = options.accessToken;
   let refreshToken = options.refreshToken;
@@ -40,7 +43,10 @@ export function createServerOAuth2Manager(options: ServerOAuth2ManagerOptions): 
   let refreshPromise: Promise<void> | undefined;
 
   const canRefresh = (): boolean =>
-    refreshToken !== undefined && clientId !== undefined && clientSecret !== undefined && redirectUri !== undefined;
+    refreshToken !== undefined
+    && clientId !== undefined
+    && clientSecret !== undefined
+    && redirectUri !== undefined;
 
   const needsRefresh = (): boolean => {
     if (!canRefresh()) return false;
@@ -55,8 +61,8 @@ export function createServerOAuth2Manager(options: ServerOAuth2ManagerOptions): 
   const doRefresh = async (): Promise<void> => {
     if (!canRefresh()) {
       throw new OAuthError(
-        'Cannot refresh the OAuth 2.0 access token: `refreshToken`, `clientId`, `clientSecret` and `redirectUri` ' +
-          'are required.',
+        'Cannot refresh the OAuth 2.0 access token: `refreshToken`, `clientId`, `clientSecret` and `redirectUri` '
+          + 'are required.',
       );
     }
 
@@ -66,6 +72,7 @@ export function createServerOAuth2Manager(options: ServerOAuth2ManagerOptions): 
       clientSecret: clientSecret!,
       refreshToken: refreshToken!,
       redirectUri: redirectUri!,
+      fetch: fetchImpl,
     });
 
     accessToken = response.accessToken;
@@ -94,8 +101,8 @@ export function createServerOAuth2Manager(options: ServerOAuth2ManagerOptions): 
 
     if (accessToken === undefined) {
       throw new OAuthError(
-        'No OAuth 2.0 access token is available and it cannot be refreshed. Provide an `accessToken`, or the full ' +
-          'refresh credentials (`refreshToken`, `clientId`, `clientSecret`, `redirectUri`).',
+        'No OAuth 2.0 access token is available and it cannot be refreshed. Provide an `accessToken`, or the full '
+          + 'refresh credentials (`refreshToken`, `clientId`, `clientSecret`, `redirectUri`).',
       );
     }
 

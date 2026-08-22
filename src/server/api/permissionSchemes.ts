@@ -14,7 +14,7 @@ import type { GetPermissionSchemeGrants } from '../parameters/getPermissionSchem
 import type { CreatePermissionGrant } from '../parameters/createPermissionGrant';
 import type { GetPermissionSchemeGrant } from '../parameters/getPermissionSchemeGrant';
 import type { DeletePermissionSchemeEntity } from '../parameters/deletePermissionSchemeEntity';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /**
  * Returns a list of all permission schemes. By default only shortened beans are returned. If you want to include
@@ -24,6 +24,7 @@ import type { Client, SendRequestOptions } from '#/core';
 export async function getPermissionSchemes(
   client: Client,
   parameters?: GetPermissionSchemes,
+  options?: RequestOptions,
 ): Promise<PermissionSchemes> {
   const config: SendRequestOptions<PermissionSchemes> = {
     url: '/rest/api/2/permissionscheme',
@@ -32,6 +33,7 @@ export async function getPermissionSchemes(
       expand: parameters?.expand,
     },
     schema: PermissionSchemesSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -41,6 +43,7 @@ export async function getPermissionSchemes(
 export async function createPermissionScheme(
   client: Client,
   parameters: CreatePermissionScheme,
+  options?: RequestOptions,
 ): Promise<PermissionScheme> {
   const config: SendRequestOptions<PermissionScheme> = {
     url: '/rest/api/2/permissionscheme',
@@ -50,6 +53,7 @@ export async function createPermissionScheme(
     },
     body: parameters.body,
     schema: PermissionSchemeSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -59,11 +63,13 @@ export async function createPermissionScheme(
 export async function getSchemeAttribute(
   client: Client,
   parameters: GetSchemeAttribute,
+  options?: RequestOptions,
 ): Promise<PermissionSchemeAttribute> {
   const config: SendRequestOptions<PermissionSchemeAttribute> = {
     url: `/rest/api/2/permissionscheme/${parameters.permissionSchemeId}/attribute/${parameters.attributeKey}`,
     method: 'GET',
     schema: PermissionSchemeAttributeSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -73,19 +79,28 @@ export async function getSchemeAttribute(
  * Updates or inserts the attribute for a permission scheme specified by permission scheme id. The attribute consists of
  * the key and the value. The value will be converted to Boolean using Boolean#valueOf.
  */
-export async function setSchemeAttribute(client: Client, parameters: SetSchemeAttribute): Promise<void> {
+export async function setSchemeAttribute(
+  client: Client,
+  parameters: SetSchemeAttribute,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/2/permissionscheme/${parameters.permissionSchemeId}/attribute/${parameters.key}`,
     method: 'PUT',
     body: parameters.body,
     contentType: 'text/plain',
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Returns a permission scheme identified by the given id. */
-export async function getPermissionScheme(client: Client, parameters: GetPermissionScheme): Promise<PermissionScheme> {
+export async function getPermissionScheme(
+  client: Client,
+  parameters: GetPermissionScheme,
+  options?: RequestOptions,
+): Promise<PermissionScheme> {
   const config: SendRequestOptions<PermissionScheme> = {
     url: `/rest/api/2/permissionscheme/${parameters.schemeId}`,
     method: 'GET',
@@ -93,6 +108,7 @@ export async function getPermissionScheme(client: Client, parameters: GetPermiss
       expand: parameters.expand,
     },
     schema: PermissionSchemeSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -108,6 +124,7 @@ export async function getPermissionScheme(client: Client, parameters: GetPermiss
 export async function updatePermissionScheme(
   client: Client,
   parameters: UpdatePermissionScheme,
+  options?: RequestOptions,
 ): Promise<PermissionScheme> {
   const config: SendRequestOptions<PermissionScheme> = {
     url: `/rest/api/2/permissionscheme/${parameters.schemeId}`,
@@ -117,16 +134,22 @@ export async function updatePermissionScheme(
     },
     body: parameters.body,
     schema: PermissionSchemeSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Deletes a permission scheme identified by the given id. */
-export async function deletePermissionScheme(client: Client, parameters: DeletePermissionScheme): Promise<void> {
+export async function deletePermissionScheme(
+  client: Client,
+  parameters: DeletePermissionScheme,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/2/permissionscheme/${parameters.schemeId}`,
     method: 'DELETE',
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -136,6 +159,7 @@ export async function deletePermissionScheme(client: Client, parameters: DeleteP
 export async function getPermissionSchemeGrants(
   client: Client,
   parameters: GetPermissionSchemeGrants,
+  options?: RequestOptions,
 ): Promise<PermissionGrants> {
   const config: SendRequestOptions<PermissionGrants> = {
     url: `/rest/api/2/permissionscheme/${parameters.schemeId}/permission`,
@@ -144,6 +168,7 @@ export async function getPermissionSchemeGrants(
       expand: parameters.expand,
     },
     schema: PermissionGrantsSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -153,6 +178,7 @@ export async function getPermissionSchemeGrants(
 export async function createPermissionGrant(
   client: Client,
   parameters: CreatePermissionGrant,
+  options?: RequestOptions,
 ): Promise<PermissionGrant> {
   const config: SendRequestOptions<PermissionGrant> = {
     url: `/rest/api/2/permissionscheme/${parameters.schemeId}/permission`,
@@ -167,6 +193,7 @@ export async function createPermissionGrant(
       self: parameters.self,
     },
     schema: PermissionGrantSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -176,6 +203,7 @@ export async function createPermissionGrant(
 export async function getPermissionSchemeGrant(
   client: Client,
   parameters: GetPermissionSchemeGrant,
+  options?: RequestOptions,
 ): Promise<PermissionGrant> {
   const config: SendRequestOptions<PermissionGrant> = {
     url: `/rest/api/2/permissionscheme/${parameters.schemeId}/permission/${parameters.permissionId}`,
@@ -184,6 +212,7 @@ export async function getPermissionSchemeGrant(
       expand: parameters.expand,
     },
     schema: PermissionGrantSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -193,10 +222,12 @@ export async function getPermissionSchemeGrant(
 export async function deletePermissionSchemeEntity(
   client: Client,
   parameters: DeletePermissionSchemeEntity,
+  options?: RequestOptions,
 ): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/2/permissionscheme/${parameters.schemeId}/permission/${parameters.permissionId}`,
     method: 'DELETE',
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

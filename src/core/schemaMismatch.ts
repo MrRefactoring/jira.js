@@ -8,8 +8,8 @@ export interface SchemaMismatchIssue {
   /** What the schema expected there. */
   expected: string;
   /**
-   * What arrived, named by its type rather than quoted — except when the schema named a closed set of values, where the
-   * value that was not in the set is quoted instead. See the note on `SchemaMismatchReport`.
+   * What arrived, named by its type rather than quoted — except when the schema named a closed set of values, where
+   * the value that was not in the set is quoted instead. See the note on `SchemaMismatchReport`.
    */
   received: string;
 }
@@ -21,11 +21,11 @@ export interface SchemaMismatchIssue {
  * whoever ran the request — issue summaries, account names, custom field contents. A report that leaks those turns a
  * schema bug into someone else's incident.
  *
- * One value does get quoted: the one that failed a closed set. A field the schema describes with a fixed list of values
- * cannot be holding free text, by construction — free-text fields are declared as plain strings and no list ever
- * rejects them. So quoting it risks nothing, and withholding it costs the reader the whole diagnosis: knowing that
- * `projectTypeKey` was not one of three listed values, without being told it was `product_discovery`, leaves them to go
- * and ask the API themselves.
+ * One value does get quoted: the one that failed a closed set. A field the schema describes with a fixed list of
+ * values cannot be holding free text, by construction — free-text fields are declared as plain strings and no list
+ * ever rejects them. So quoting it risks nothing, and withholding it costs the reader the whole diagnosis: knowing
+ * that `projectTypeKey` was not one of three listed values, without being told it was `product_discovery`, leaves
+ * them to go and ask the API themselves.
  */
 export interface SchemaMismatchReport {
   /** Method and path, without the query string — `GET /rest/api/3/project/{projectIdOrKey}/role`. */
@@ -61,11 +61,11 @@ function describeValue(value: unknown): string {
  * The value sitting at a zod issue's path, walked out of the body that failed.
  *
  * Walked rather than read off `issue.input`: zod declares that field optional and leaves it off the issues it hands
- * back, so it is never there when this runs. Every segment of an issue path is an object key or an array index, so the
- * walk always has an answer, and anything no longer reachable is reported as absent — which is itself the answer when
- * the complaint is a missing field.
+ * back, so it is never there when this runs. Every segment of an issue path is an object key or an array index, so
+ * the walk always has an answer, and anything no longer reachable is reported as absent — which is itself the answer
+ * when the complaint is a missing field.
  */
-function readValueAtPath(body: unknown, path: readonly PropertyKey[]): { reachable: boolean; value: unknown } {
+function readValueAtPath(body: unknown, path: readonly PropertyKey[]): { reachable: boolean, value: unknown } {
   let target = body;
 
   for (const segment of path) {
@@ -147,8 +147,8 @@ function describeExpectation(issue: zodCore.$ZodIssue): string {
  *
  * Union branches are flattened rather than nested: a caller reading this wants to know which field is wrong, and
  * telling them the response failed all four branches of a union is a fact about zod, not about their data. The two
- * container codes are flattened for the same reason — a bad key or element is a problem with what is inside, and zod's
- * own nesting of it says nothing the inner issue does not.
+ * container codes are flattened for the same reason — a bad key or element is a problem with what is inside, and
+ * zod's own nesting of it says nothing the inner issue does not.
  */
 export function describeIssues(
   issues: readonly zodCore.$ZodIssue[],

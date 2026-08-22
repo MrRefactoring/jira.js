@@ -6,11 +6,15 @@ import type { GetCustomFields } from '../parameters/getCustomFields';
 import type { BulkDeleteCustomFields } from '../parameters/bulkDeleteCustomFields';
 import type { GetCustomFieldOptions } from '../parameters/getCustomFieldOptions';
 import type { CreateCustomField } from '../parameters/createCustomField';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 import { z } from 'zod';
 
 /** Returns a list of Custom Fields in the given range. */
-export async function getCustomFields(client: Client, parameters?: GetCustomFields): Promise<CustomField> {
+export async function getCustomFields(
+  client: Client,
+  parameters?: GetCustomFields,
+  options?: RequestOptions,
+): Promise<CustomField> {
   const config: SendRequestOptions<CustomField> = {
     url: '/rest/api/2/customFields',
     method: 'GET',
@@ -26,6 +30,7 @@ export async function getCustomFields(client: Client, parameters?: GetCustomFiel
       startAt: parameters?.startAt,
     },
     schema: CustomFieldSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -35,6 +40,7 @@ export async function getCustomFields(client: Client, parameters?: GetCustomFiel
 export async function bulkDeleteCustomFields(
   client: Client,
   parameters: BulkDeleteCustomFields,
+  options?: RequestOptions,
 ): Promise<BulkDeleteResponse> {
   const config: SendRequestOptions<BulkDeleteResponse> = {
     url: '/rest/api/2/customFields',
@@ -43,6 +49,7 @@ export async function bulkDeleteCustomFields(
       ids: parameters.ids,
     },
     schema: BulkDeleteResponseSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -52,6 +59,7 @@ export async function bulkDeleteCustomFields(
 export async function getCustomFieldOptions(
   client: Client,
   parameters: GetCustomFieldOptions,
+  options?: RequestOptions,
 ): Promise<CustomFieldOptions> {
   const config: SendRequestOptions<CustomFieldOptions> = {
     url: `/rest/api/2/customFields/${parameters.customFieldId}/options`,
@@ -66,24 +74,30 @@ export async function getCustomFieldOptions(
       projectIds: parameters.projectIds,
     },
     schema: CustomFieldOptionsSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Returns a list of all fields, both System and Custom */
-export async function getFields(client: Client): Promise<Field[]> {
+export async function getFields(client: Client, options?: RequestOptions): Promise<Field[]> {
   const config: SendRequestOptions<Field[]> = {
     url: '/rest/api/2/field',
     method: 'GET',
     schema: z.array(FieldSchema),
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Creates a custom field using a definition */
-export async function createCustomField(client: Client, parameters: CreateCustomField): Promise<Field> {
+export async function createCustomField(
+  client: Client,
+  parameters: CreateCustomField,
+  options?: RequestOptions,
+): Promise<Field> {
   const config: SendRequestOptions<Field> = {
     url: '/rest/api/2/field',
     method: 'POST',
@@ -98,6 +112,7 @@ export async function createCustomField(client: Client, parameters: CreateCustom
       type: parameters.type,
     },
     schema: FieldSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

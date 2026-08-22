@@ -6,7 +6,7 @@ import type { GetAutoCompletePost } from '../parameters/getAutoCompletePost';
 import type { GetFieldAutoCompleteForQueryString } from '../parameters/getFieldAutoCompleteForQueryString';
 import type { ParseJqlQueries } from '../parameters/parseJqlQueries';
 import type { MigrateQueries } from '../parameters/migrateQueries';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /**
  * Returns reference data for JQL searches. This is a downloadable version of the documentation provided in [Advanced
@@ -23,11 +23,12 @@ import type { Client, SendRequestOptions } from '#/core';
  *
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** None.
  */
-export async function getAutoComplete(client: Client): Promise<JQLReferenceData> {
+export async function getAutoComplete(client: Client, options?: RequestOptions): Promise<JQLReferenceData> {
   const config: SendRequestOptions<JQLReferenceData> = {
     url: '/rest/api/3/jql/autocompletedata',
     method: 'GET',
     schema: JQLReferenceDataSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -50,7 +51,11 @@ export async function getAutoComplete(client: Client): Promise<JQLReferenceData>
  *
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** None.
  */
-export async function getAutoCompletePost(client: Client, parameters: GetAutoCompletePost): Promise<JQLReferenceData> {
+export async function getAutoCompletePost(
+  client: Client,
+  parameters: GetAutoCompletePost,
+  options?: RequestOptions,
+): Promise<JQLReferenceData> {
   const config: SendRequestOptions<JQLReferenceData> = {
     url: '/rest/api/3/jql/autocompletedata',
     method: 'POST',
@@ -59,6 +64,7 @@ export async function getAutoCompletePost(client: Client, parameters: GetAutoCom
       projectIds: parameters.projectIds,
     },
     schema: JQLReferenceDataSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -82,6 +88,7 @@ export async function getAutoCompletePost(client: Client, parameters: GetAutoCom
 export async function getFieldAutoCompleteForQueryString(
   client: Client,
   parameters?: GetFieldAutoCompleteForQueryString,
+  options?: RequestOptions,
 ): Promise<AutoCompleteSuggestions> {
   const config: SendRequestOptions<AutoCompleteSuggestions> = {
     url: '/rest/api/3/jql/autocompletedata/suggestions',
@@ -93,6 +100,7 @@ export async function getFieldAutoCompleteForQueryString(
       predicateValue: parameters?.predicateValue,
     },
     schema: AutoCompleteSuggestionsSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -107,7 +115,11 @@ export async function getFieldAutoCompleteForQueryString(
  *
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** None.
  */
-export async function parseJqlQueries(client: Client, parameters: ParseJqlQueries): Promise<ParsedJqlQueries> {
+export async function parseJqlQueries(
+  client: Client,
+  parameters: ParseJqlQueries,
+  options?: RequestOptions,
+): Promise<ParsedJqlQueries> {
   const config: SendRequestOptions<ParsedJqlQueries> = {
     url: '/rest/api/3/jql/parse',
     method: 'POST',
@@ -118,6 +130,7 @@ export async function parseJqlQueries(client: Client, parameters: ParseJqlQuerie
       queries: parameters.queries,
     },
     schema: ParsedJqlQueriesSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -134,7 +147,11 @@ export async function parseJqlQueries(client: Client, parameters: ParseJqlQuerie
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** Permission
  * to access Jira.
  */
-export async function migrateQueries(client: Client, parameters: MigrateQueries): Promise<ConvertedJQLQueries> {
+export async function migrateQueries(
+  client: Client,
+  parameters: MigrateQueries,
+  options?: RequestOptions,
+): Promise<ConvertedJQLQueries> {
   const config: SendRequestOptions<ConvertedJQLQueries> = {
     url: '/rest/api/3/jql/pdcleaner',
     method: 'POST',
@@ -142,6 +159,7 @@ export async function migrateQueries(client: Client, parameters: MigrateQueries)
       queryStrings: parameters.queryStrings,
     },
     schema: ConvertedJQLQueriesSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

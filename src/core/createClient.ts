@@ -4,6 +4,7 @@ import type { Auth, ClientConfig, SendRequestOptions } from './schemas/index.js'
 import type { Client } from './interfaces/index.js';
 import type { OAuth2Manager } from './oauth/index.js';
 import {
+  AuthError,
   createApiError,
   isNetworkError,
   SchemaMismatchError,
@@ -162,6 +163,64 @@ function isClient(value: ClientConfig | Client): value is Client {
 }
 
 /**
+ * The `X-Seraph-LoginReason` values that mean the credentials were presented and refused.
+ *
+ * `AUTHORISATION_FAILED` is deliberately absent: it means the user is who they claim and merely lacks a permission,
+ * which the status already says and which `ForbiddenError` already describes. `OUT` is absent for the same kind of
+ * reason — a Data Center instance behind SSO sets it on responses that are perfectly legitimate.
+ */
+const SERAPH_LOGIN_FAILURES = new Set(['AUTHENTICATED_FAILED', 'AUTHENTICATION_DENIED']);
+
+/**
+ * Whether the credentials were refused, whatever status the response carries.
+ *
+ * An endpoint that permits anonymous access answers `200` with an anonymous-scope body when the API token is expired
+ * or wrong — an empty list where the caller expected their own data — and says so nowhere but this header. Measured
+ * against a live site: the header rides on `200`, `400` and `401` alike, and a genuine permission denial carries none.
+ */
+function credentialsRejected(response: Response, hasAuth: boolean): boolean {
+  return hasAuth && SERAPH_LOGIN_FAILURES.has(response.headers.get('x-seraph-loginreason') ?? '');
+}
+
+/**
+ * `setTimeout` as a promise the signal can cut short.
+ *
+ * Without this an abort would still wait out the whole back-off before anyone noticed it.
+ */
+function sleep(ms: number, signal?: AbortSignal): Promise<void> {
+  return new Promise<void>((resolve, reject) => {
+    if (signal?.aborted) {
+      reject(signal.reason);
+
+      return;
+    }
+
+    const onAbort = () => {
+      clearTimeout(timer);
+      reject(signal!.reason);
+    };
+
+    const timer = setTimeout(() => {
+      signal?.removeEventListener('abort', onAbort);
+      resolve();
+    }, ms);
+
+    signal?.addEventListener('abort', onAbort, { once: true });
+  });
+}
+
+/** The response body as text and, where it parses, as JSON — the pair every error built here carries. */
+async function readBody(response: Response): Promise<{ text: string, detail: unknown }> {
+  const text = await response.text();
+
+  try {
+    return { text, detail: JSON.parse(text) };
+  } catch {
+    return { text, detail: text };
+  }
+}
+
+/**
  * Base64 for the Basic auth header, the same way in every runtime.
  *
  * `btoa` alone mangles anything outside Latin-1, so the string is encoded to UTF-8 bytes first — a credential may well
@@ -204,13 +263,12 @@ async function getAuthHeaders(auth: Auth): Promise<Record<string, string>> {
 }
 
 /**
- * Creates a low-level Confluence API client.
+ * Creates a low-level API client.
  *
- * The client carries only transport, auth and retry policy — it is version agnostic, so one instance drives both
- * `confluence.js/v1` and `confluence.js/v2`.
+ * The client carries only transport, auth and retry policy — it knows nothing about any one API version, so a single
+ * instance drives every surface the package exposes, and with it a single set of credentials.
  *
- * Prefer `createV1Client` / `createV2Client` from `confluence.js` unless you want the flat functions and a smaller
- * bundle.
+ * Prefer the surface factories the package exports unless you want the flat functions and a smaller bundle.
  *
  * @public
  */
@@ -219,7 +277,15 @@ export function createClient(config: ClientConfig | Client): Client {
 
   clientConfigSchema.parse(config);
 
-  const { host, auth, headers: configHeaders = {}, getAuthOn401, retry, onSchemaMismatch = 'warn' } = config;
+  const {
+    host,
+    auth,
+    headers: configHeaders = {},
+    getAuthOn401,
+    retry,
+    onSchemaMismatch = 'warn',
+    fetch: customFetch,
+  } = config;
   const retryMaxAttempts = Math.max(1, retry?.maxAttempts ?? 1);
   const retryInitialDelayMs = retry?.initialDelayMs ?? 500;
   const retryBackoffFactor = retry?.backoffFactor ?? 2;
@@ -229,9 +295,9 @@ export function createClient(config: ClientConfig | Client): Client {
   // non-null for the Data Center branch: the config schema requires it for every strategy except Cloud 3LO.
   const oauth2Manager: OAuth2Manager | undefined =
     auth?.type === 'oauth2'
-      ? createOAuth2Manager(auth)
+      ? createOAuth2Manager({ ...auth, fetch: customFetch })
       : auth?.type === 'oauth2Server'
-        ? createServerOAuth2Manager({ ...auth, host: host! })
+        ? createServerOAuth2Manager({ ...auth, host: host!, fetch: customFetch })
         : undefined;
 
   return {
@@ -264,13 +330,16 @@ export function createClient(config: ClientConfig | Client): Client {
           method: requestConfig.method,
           headers: Object.keys(headers).length > 0 ? headers : undefined,
           body: body as BodyInit,
+          signal: requestConfig.signal,
         };
 
         if (requiresDuplex(rawBody)) {
           init.duplex = 'half';
         }
 
-        return fetch(fullUrl, init);
+        // The global is called by name rather than through a variable: a detached `window.fetch` throws
+        // "Illegal invocation" in a browser.
+        return customFetch ? customFetch(fullUrl, init) : fetch(fullUrl, init);
       };
 
       const currentAuthHeaders = async (): Promise<Record<string, string>> => {
@@ -290,11 +359,15 @@ export function createClient(config: ClientConfig | Client): Client {
         try {
           response = await doRequest(derivedAuthHeaders);
         } catch (err) {
+          // The caller asked for this. Their reason is what they will compare against, so it is rethrown untouched
+          // rather than described as a transport failure it is not.
+          if (requestConfig.signal?.aborted) throw err;
+
           const networkError = isNetworkError(err) ? err : toNetworkError(err, fullUrl);
 
           if (networkAttempt + 1 < retryMaxAttempts && networkError.transient) {
             networkAttempt += 1;
-            await new Promise<void>(resolve => setTimeout(resolve, delayMs));
+            await sleep(delayMs, requestConfig.signal);
             delayMs = Math.round(delayMs * retryBackoffFactor);
             continue;
           }
@@ -302,7 +375,11 @@ export function createClient(config: ClientConfig | Client): Client {
           throw networkError;
         }
 
-        if (response.status === 401 && !reauthenticated && !(await isScopeMismatchResponse(response))) {
+        // A refused credential is not always a 401 — see `credentialsRejected` — but it deserves the same single
+        // attempt at a fresh one.
+        const unauthenticated = response.status === 401 || credentialsRejected(response, auth !== undefined);
+
+        if (unauthenticated && !reauthenticated && !(await isScopeMismatchResponse(response))) {
           if (oauth2Manager?.canRefresh()) {
             reauthenticated = true;
             await oauth2Manager.forceRefresh();
@@ -319,7 +396,7 @@ export function createClient(config: ClientConfig | Client): Client {
 
         if (TRANSIENT_HTTP_STATUSES.has(response.status) && networkAttempt + 1 < retryMaxAttempts) {
           networkAttempt += 1;
-          await new Promise<void>(resolve => setTimeout(resolve, delayMs));
+          await sleep(delayMs, requestConfig.signal);
           delayMs = Math.round(delayMs * retryBackoffFactor);
           continue;
         }
@@ -327,12 +404,24 @@ export function createClient(config: ClientConfig | Client): Client {
         break;
       }
 
+      // Ahead of the status, because the whole point is a `200` that is really a rejection: left to the branch below,
+      // an anonymous-scope body would be handed back as a successful result.
+      if (credentialsRejected(response, auth !== undefined)) {
+        const reason = response.headers.get('x-seraph-loginreason');
+        const { text, detail } = await readBody(response);
+
+        throw new AuthError(
+          `Request failed: Jira rejected the credentials (x-seraph-loginreason: ${reason}) and answered as an `
+          + `anonymous user. The API token or password may be expired, revoked or mistyped.${text ? ` - ${text}` : ''}`,
+          response.statusText,
+          detail,
+          { status: response.status },
+        );
+      }
+
       if (!response.ok) {
-        const text = await response.text();
-        let detail: unknown = text;
-        try {
-          detail = JSON.parse(text);
-        } catch {}
+        const { text, detail } = await readBody(response);
+
         throw createApiError(
           `Request failed: ${response.status} ${response.statusText}${text ? ` - ${text}` : ''}`,
           response.status,

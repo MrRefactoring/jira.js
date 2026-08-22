@@ -1,13 +1,14 @@
 import { ApplicationPropertySchema, type ApplicationProperty } from '../models/applicationProperty';
 import type { GetApplicationProperties } from '../parameters/getApplicationProperties';
 import type { SetPropertyViaRestfulTable } from '../parameters/setPropertyViaRestfulTable';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 import { z } from 'zod';
 
 /** Returns an application property. */
 export async function getApplicationProperties(
   client: Client,
   parameters?: GetApplicationProperties,
+  options?: RequestOptions,
 ): Promise<ApplicationProperty[]> {
   const config: SendRequestOptions<ApplicationProperty[]> = {
     url: '/rest/api/2/application-properties',
@@ -18,17 +19,19 @@ export async function getApplicationProperties(
       key: parameters?.key,
     },
     schema: z.array(ApplicationPropertySchema),
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Returns the properties that are displayed on the "General Configuration > Advanced Settings" page. */
-export async function getAdvancedSettings(client: Client): Promise<ApplicationProperty[]> {
+export async function getAdvancedSettings(client: Client, options?: RequestOptions): Promise<ApplicationProperty[]> {
   const config: SendRequestOptions<ApplicationProperty[]> = {
     url: '/rest/api/2/application-properties/advanced-settings',
     method: 'GET',
     schema: z.array(ApplicationPropertySchema),
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -38,12 +41,14 @@ export async function getAdvancedSettings(client: Client): Promise<ApplicationPr
 export async function setPropertyViaRestfulTable(
   client: Client,
   parameters: SetPropertyViaRestfulTable,
+  options?: RequestOptions,
 ): Promise<ApplicationProperty> {
   const config: SendRequestOptions<ApplicationProperty> = {
     url: `/rest/api/2/application-properties/${parameters.id}`,
     method: 'PUT',
     body: parameters.body,
     schema: ApplicationPropertySchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

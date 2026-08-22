@@ -8,7 +8,9 @@ export type { Auth, AuthBasic, AuthBearer, AuthOAuth2, AuthOAuth2Server } from '
 
 export { clientConfigSchema } from './clientConfig.js';
 
-export type { ClientConfig } from './clientConfig.js';
+export type { ClientConfig, FetchLike } from './clientConfig.js';
+
+export type { RequestOptions } from './requestOptions.js';
 
 export { sendRequestOptionsSchema } from './sendRequestOptions.js';
 

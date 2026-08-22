@@ -6,25 +6,35 @@ import type { GetAvatars as GetAvatarsParameters } from '../parameters/getAvatar
 import type { CreateAvatarFromTemporary } from '../parameters/createAvatarFromTemporary';
 import type { DeleteAvatar } from '../parameters/deleteAvatar';
 import type { StoreTemporaryAvatarUsingMultiPart } from '../parameters/storeTemporaryAvatarUsingMultiPart';
-import { type Client, type SendRequestOptions, toFormDataFile } from '#/core';
+import { type Client, type RequestOptions, type SendRequestOptions, toFormDataFile } from '#/core';
 
 /** Returns all system avatars of the given type. */
-export async function getAllSystemAvatars(client: Client, parameters: GetAllSystemAvatars): Promise<Avatar> {
+export async function getAllSystemAvatars(
+  client: Client,
+  parameters: GetAllSystemAvatars,
+  options?: RequestOptions,
+): Promise<Avatar> {
   const config: SendRequestOptions<Avatar> = {
     url: `/rest/api/2/avatar/${parameters.type}/system`,
     method: 'GET',
     schema: AvatarSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Returns a list of all avatars */
-export async function getAvatars(client: Client, parameters: GetAvatarsParameters): Promise<GetAvatars> {
+export async function getAvatars(
+  client: Client,
+  parameters: GetAvatarsParameters,
+  options?: RequestOptions,
+): Promise<GetAvatars> {
   const config: SendRequestOptions<GetAvatars> = {
     url: `/rest/api/2/universal_avatar/type/${parameters.type}/owner/${parameters.owningObjectId}`,
     method: 'GET',
     schema: GetAvatarsSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -34,6 +44,7 @@ export async function getAvatars(client: Client, parameters: GetAvatarsParameter
 export async function createAvatarFromTemporary(
   client: Client,
   parameters: CreateAvatarFromTemporary,
+  options?: RequestOptions,
 ): Promise<Avatar> {
   const config: SendRequestOptions<Avatar> = {
     url: `/rest/api/2/universal_avatar/type/${parameters.type}/owner/${parameters.owningObjectId}/avatar`,
@@ -46,16 +57,18 @@ export async function createAvatarFromTemporary(
       url: parameters.url,
     },
     schema: AvatarSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Deletes avatar */
-export async function deleteAvatar(client: Client, parameters: DeleteAvatar): Promise<void> {
+export async function deleteAvatar(client: Client, parameters: DeleteAvatar, options?: RequestOptions): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/2/universal_avatar/type/${parameters.type}/owner/${parameters.owningObjectId}/avatar/${parameters.id}`,
     method: 'DELETE',
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -65,6 +78,7 @@ export async function deleteAvatar(client: Client, parameters: DeleteAvatar): Pr
 export async function storeTemporaryAvatarUsingMultiPart(
   client: Client,
   parameters: StoreTemporaryAvatarUsingMultiPart,
+  options?: RequestOptions,
 ): Promise<AvatarCropping> {
   const formData = new FormData();
   const items = Array.isArray(parameters.avatar) ? parameters.avatar : [parameters.avatar];
@@ -81,6 +95,7 @@ export async function storeTemporaryAvatarUsingMultiPart(
     },
     body: formData,
     schema: AvatarCroppingSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

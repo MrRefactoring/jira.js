@@ -6,7 +6,7 @@ import type { UpdateIssueType } from '../parameters/updateIssueType';
 import type { DeleteIssueType } from '../parameters/deleteIssueType';
 import type { GetAlternativeIssueTypes } from '../parameters/getAlternativeIssueTypes';
 import type { CreateIssueTypeAvatar } from '../parameters/createIssueTypeAvatar';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 import { z } from 'zod';
 
 /**
@@ -24,11 +24,12 @@ import { z } from 'zod';
  * - If the user is anonymous then they will be able to access projects with the _Browse projects_ for anonymous users
  * - If the user authentication is incorrect they will fall back to anonymous
  */
-export async function getIssueAllTypes(client: Client): Promise<IssueTypeDetails[]> {
+export async function getIssueAllTypes(client: Client, options?: RequestOptions): Promise<IssueTypeDetails[]> {
   const config: SendRequestOptions<IssueTypeDetails[]> = {
     url: '/rest/api/3/issuetype',
     method: 'GET',
     schema: z.array(IssueTypeDetailsSchema),
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -40,7 +41,11 @@ export async function getIssueAllTypes(client: Client): Promise<IssueTypeDetails
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-export async function createIssueType(client: Client, parameters: CreateIssueType): Promise<IssueTypeDetails> {
+export async function createIssueType(
+  client: Client,
+  parameters: CreateIssueType,
+  options?: RequestOptions,
+): Promise<IssueTypeDetails> {
   const config: SendRequestOptions<IssueTypeDetails> = {
     url: '/rest/api/3/issuetype',
     method: 'POST',
@@ -50,6 +55,7 @@ export async function createIssueType(client: Client, parameters: CreateIssueTyp
       name: parameters.name,
     },
     schema: IssueTypeDetailsSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -64,11 +70,16 @@ export async function createIssueType(client: Client, parameters: CreateIssueTyp
  * projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) in a project the issue type is associated
  * with or _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-export async function getIssueType(client: Client, parameters: GetIssueType): Promise<IssueTypeDetails> {
+export async function getIssueType(
+  client: Client,
+  parameters: GetIssueType,
+  options?: RequestOptions,
+): Promise<IssueTypeDetails> {
   const config: SendRequestOptions<IssueTypeDetails> = {
     url: `/rest/api/3/issuetype/${parameters.id}`,
     method: 'GET',
     schema: IssueTypeDetailsSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -80,7 +91,11 @@ export async function getIssueType(client: Client, parameters: GetIssueType): Pr
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-export async function updateIssueType(client: Client, parameters: UpdateIssueType): Promise<IssueTypeDetails> {
+export async function updateIssueType(
+  client: Client,
+  parameters: UpdateIssueType,
+  options?: RequestOptions,
+): Promise<IssueTypeDetails> {
   const config: SendRequestOptions<IssueTypeDetails> = {
     url: `/rest/api/3/issuetype/${parameters.id}`,
     method: 'PUT',
@@ -90,6 +105,7 @@ export async function updateIssueType(client: Client, parameters: UpdateIssueTyp
       name: parameters.name,
     },
     schema: IssueTypeDetailsSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -104,13 +120,18 @@ export async function updateIssueType(client: Client, parameters: UpdateIssueTyp
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-export async function deleteIssueType(client: Client, parameters: DeleteIssueType): Promise<void> {
+export async function deleteIssueType(
+  client: Client,
+  parameters: DeleteIssueType,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/issuetype/${parameters.id}`,
     method: 'DELETE',
     searchParams: {
       alternativeIssueTypeId: parameters.alternativeIssueTypeId,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -127,11 +148,13 @@ export async function deleteIssueType(client: Client, parameters: DeleteIssueTyp
 export async function getAlternativeIssueTypes(
   client: Client,
   parameters: GetAlternativeIssueTypes,
+  options?: RequestOptions,
 ): Promise<IssueTypeDetails[]> {
   const config: SendRequestOptions<IssueTypeDetails[]> = {
     url: `/rest/api/3/issuetype/${parameters.id}/alternatives`,
     method: 'GET',
     schema: z.array(IssueTypeDetailsSchema),
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -162,7 +185,11 @@ export async function getAlternativeIssueTypes(
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-export async function createIssueTypeAvatar(client: Client, parameters: CreateIssueTypeAvatar): Promise<Avatar> {
+export async function createIssueTypeAvatar(
+  client: Client,
+  parameters: CreateIssueTypeAvatar,
+  options?: RequestOptions,
+): Promise<Avatar> {
   const config: SendRequestOptions<Avatar> = {
     url: `/rest/api/3/issuetype/${parameters.id}/avatar2`,
     method: 'POST',
@@ -176,6 +203,7 @@ export async function createIssueTypeAvatar(client: Client, parameters: CreateIs
     },
     body: parameters.body,
     schema: AvatarSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

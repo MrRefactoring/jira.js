@@ -2,13 +2,18 @@ import { ObjectTypeAttributeSchema, type ObjectTypeAttribute } from '../models/o
 import type { DeleteObjectTypeAttribute } from '../parameters/deleteObjectTypeAttribute';
 import type { StoreObjectTypeAttribute } from '../parameters/storeObjectTypeAttribute';
 import type { UpdateObjectTypeAttribute } from '../parameters/updateObjectTypeAttribute';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /** Delete a single object type attribute. */
-export async function deleteObjectTypeAttribute(client: Client, parameters: DeleteObjectTypeAttribute): Promise<void> {
+export async function deleteObjectTypeAttribute(
+  client: Client,
+  parameters: DeleteObjectTypeAttribute,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/assets/1.0/objecttypeattribute/${parameters.id}`,
     method: 'DELETE',
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -18,6 +23,7 @@ export async function deleteObjectTypeAttribute(client: Client, parameters: Dele
 export async function storeObjectTypeAttribute(
   client: Client,
   parameters: StoreObjectTypeAttribute,
+  options?: RequestOptions,
 ): Promise<ObjectTypeAttribute> {
   const config: SendRequestOptions<ObjectTypeAttribute> = {
     url: `/rest/assets/1.0/objecttypeattribute/${parameters.objectTypeId}`,
@@ -51,6 +57,7 @@ export async function storeObjectTypeAttribute(
       iql: parameters.iql,
     },
     schema: ObjectTypeAttributeSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -60,12 +67,14 @@ export async function storeObjectTypeAttribute(
 export async function updateObjectTypeAttribute(
   client: Client,
   parameters: UpdateObjectTypeAttribute,
+  options?: RequestOptions,
 ): Promise<ObjectTypeAttribute> {
   const config: SendRequestOptions<ObjectTypeAttribute> = {
     url: `/rest/assets/1.0/objecttypeattribute/${parameters.objectTypeId}/${parameters.id}`,
     method: 'PUT',
     body: parameters.body,
     schema: ObjectTypeAttributeSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

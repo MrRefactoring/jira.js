@@ -2,7 +2,7 @@ import { PagedResultsSchema, type PagedResults } from '../models/pagedResults';
 import { NotificationSchemeSchema, type NotificationScheme } from '../models/notificationScheme';
 import type { GetNotificationSchemes } from '../parameters/getNotificationSchemes';
 import type { GetNotificationScheme } from '../parameters/getNotificationScheme';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /**
  * Returns a paginated list of notification schemes. In order to access notification scheme, the calling user is
@@ -14,6 +14,7 @@ import type { Client, SendRequestOptions } from '#/core';
 export async function getNotificationSchemes(
   client: Client,
   parameters?: GetNotificationSchemes,
+  options?: RequestOptions,
 ): Promise<PagedResults> {
   const config: SendRequestOptions<PagedResults> = {
     url: '/rest/api/2/notificationscheme',
@@ -24,6 +25,7 @@ export async function getNotificationSchemes(
       startAt: parameters?.startAt,
     },
     schema: PagedResultsSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -60,6 +62,7 @@ export async function getNotificationSchemes(
 export async function getNotificationScheme(
   client: Client,
   parameters: GetNotificationScheme,
+  options?: RequestOptions,
 ): Promise<NotificationScheme> {
   const config: SendRequestOptions<NotificationScheme> = {
     url: `/rest/api/2/notificationscheme/${parameters.id}`,
@@ -68,6 +71,7 @@ export async function getNotificationScheme(
       expand: parameters.expand,
     },
     schema: NotificationSchemeSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

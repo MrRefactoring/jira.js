@@ -5,7 +5,7 @@ import {
 } from '../models/createTemporaryWebAttachmentResult';
 import type { CreateAttachment } from '../parameters/createAttachment';
 import type { AttachTemporaryFile } from '../parameters/attachTemporaryFile';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /**
  * Adds one or more temporary attachments that were created using [Attach temporary
@@ -19,7 +19,11 @@ import type { Client, SendRequestOptions } from '#/core';
  *
  * An additional comment may be provided which will be prepended to the attachments.
  */
-export async function createAttachment(client: Client, parameters: CreateAttachment): Promise<AttachmentCreateResult> {
+export async function createAttachment(
+  client: Client,
+  parameters: CreateAttachment,
+  options?: RequestOptions,
+): Promise<AttachmentCreateResult> {
   const config: SendRequestOptions<AttachmentCreateResult> = {
     url: `/rest/servicedeskapi/request/${parameters.issueIdOrKey}/attachment`,
     method: 'POST',
@@ -29,6 +33,7 @@ export async function createAttachment(client: Client, parameters: CreateAttachm
       additionalComment: parameters.additionalComment,
     },
     schema: AttachmentCreateResultSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -58,12 +63,14 @@ export async function createAttachment(client: Client, parameters: CreateAttachm
 export async function attachTemporaryFile(
   client: Client,
   parameters: AttachTemporaryFile,
+  options?: RequestOptions,
 ): Promise<CreateTemporaryWebAttachmentResult> {
   const config: SendRequestOptions<CreateTemporaryWebAttachmentResult> = {
     url: `/rest/servicedeskapi/servicedesk/${parameters.serviceDeskId}/attachTemporaryFile`,
     method: 'POST',
     body: parameters.body,
     schema: CreateTemporaryWebAttachmentResultSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

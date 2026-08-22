@@ -1,7 +1,7 @@
 import { UserSchema, type User } from '../models/user';
 import type { CreateCustomer } from '../parameters/createCustomer';
 import type { AddCustomers } from '../parameters/addCustomers';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /**
  * Creates a customer that is not associated with a service project.
@@ -18,7 +18,11 @@ import type { Client, SendRequestOptions } from '#/core';
  *
  * Jira administrator global permission is required to create a customer.
  */
-export async function createCustomer(client: Client, parameters: CreateCustomer): Promise<User> {
+export async function createCustomer(
+  client: Client,
+  parameters: CreateCustomer,
+  options?: RequestOptions,
+): Promise<User> {
   const config: SendRequestOptions<User> = {
     url: '/rest/servicedeskapi/customer',
     method: 'POST',
@@ -27,6 +31,7 @@ export async function createCustomer(client: Client, parameters: CreateCustomer)
       fullName: parameters.fullName,
     },
     schema: UserSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -39,7 +44,7 @@ export async function createCustomer(client: Client, parameters: CreateCustomer)
  * Administer project permission is required, or agents if public signups and invites are enabled for the service
  * project.)
  */
-export async function addCustomers(client: Client, parameters: AddCustomers): Promise<User> {
+export async function addCustomers(client: Client, parameters: AddCustomers, options?: RequestOptions): Promise<User> {
   const config: SendRequestOptions<User> = {
     url: `/rest/servicedeskapi/servicedesk/${parameters.serviceDeskId}/customer`,
     method: 'POST',
@@ -47,6 +52,7 @@ export async function addCustomers(client: Client, parameters: AddCustomers): Pr
       usernames: parameters.usernames,
     },
     schema: UserSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

@@ -15,13 +15,17 @@ import type { GetSprintProperty } from '../parameters/getSprintProperty';
 import type { SetSprintProperty } from '../parameters/setSprintProperty';
 import type { DeleteSprintProperty } from '../parameters/deleteSprintProperty';
 import type { SwapSprint } from '../parameters/swapSprint';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /**
  * Creates a future sprint. Sprint name and origin board id are required. Start and end date are optional. Notes: The
  * sprint name is trimmed. Only Jira administrators can create synced sprints.
  */
-export async function createSprint(client: Client, parameters: CreateSprint): Promise<Sprint> {
+export async function createSprint(
+  client: Client,
+  parameters: CreateSprint,
+  options?: RequestOptions,
+): Promise<Sprint> {
   const config: SendRequestOptions<Sprint> = {
     url: '/rest/agile/1.0/sprint',
     method: 'POST',
@@ -37,19 +41,21 @@ export async function createSprint(client: Client, parameters: CreateSprint): Pr
       userProfileTimeZone: parameters.userProfileTimeZone,
     },
     schema: SprintSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Sets the Synced flag to false for all sprints in the provided list. */
-export async function unmapSprints(client: Client, parameters: UnmapSprints): Promise<void> {
+export async function unmapSprints(client: Client, parameters: UnmapSprints, options?: RequestOptions): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: '/rest/agile/1.0/sprint/unmap',
     method: 'PUT',
     body: {
       sprintIds: parameters.sprintIds,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -59,10 +65,11 @@ export async function unmapSprints(client: Client, parameters: UnmapSprints): Pr
  * Sets the Synced flag to false for all sprints on this Jira instance. This operation is intended for cleanup only. It
  * is highly destructive and not reversible. Use with caution.
  */
-export async function unmapAllSprints(client: Client): Promise<void> {
+export async function unmapAllSprints(client: Client, options?: RequestOptions): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: '/rest/agile/1.0/sprint/unmap-all',
     method: 'PUT',
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -72,11 +79,12 @@ export async function unmapAllSprints(client: Client): Promise<void> {
  * Returns a single sprint, for a given sprint Id. The sprint will only be returned if the user can view the board that
  * the sprint was created on, or view at least one of the issues in the sprint.
  */
-export async function getSprint(client: Client, parameters: GetSprint): Promise<Sprint> {
+export async function getSprint(client: Client, parameters: GetSprint, options?: RequestOptions): Promise<Sprint> {
   const config: SendRequestOptions<Sprint> = {
     url: `/rest/agile/1.0/sprint/${parameters.sprintId}`,
     method: 'GET',
     schema: SprintSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -98,7 +106,11 @@ export async function getSprint(client: Client, parameters: GetSprint): Promise<
  * - Sprint goal can be removed by updating it's value to empty string
  * - Only Jira administrators can edit dates on sprints that are marked as synced.
  */
-export async function partiallyUpdateSprint(client: Client, parameters: PartiallyUpdateSprint): Promise<Sprint> {
+export async function partiallyUpdateSprint(
+  client: Client,
+  parameters: PartiallyUpdateSprint,
+  options?: RequestOptions,
+): Promise<Sprint> {
   const config: SendRequestOptions<Sprint> = {
     url: `/rest/agile/1.0/sprint/${parameters.sprintId}`,
     method: 'POST',
@@ -118,6 +130,7 @@ export async function partiallyUpdateSprint(client: Client, parameters: Partiall
       synced: parameters.synced,
     },
     schema: SprintSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -138,7 +151,11 @@ export async function partiallyUpdateSprint(client: Client, parameters: Partiall
  * - The completeDate field cannot be updated manually.
  * - Only Jira administrators can edit dates on sprints that are marked as synced.
  */
-export async function updateSprint(client: Client, parameters: UpdateSprint): Promise<Sprint> {
+export async function updateSprint(
+  client: Client,
+  parameters: UpdateSprint,
+  options?: RequestOptions,
+): Promise<Sprint> {
   const config: SendRequestOptions<Sprint> = {
     url: `/rest/agile/1.0/sprint/${parameters.sprintId}`,
     method: 'PUT',
@@ -158,6 +175,7 @@ export async function updateSprint(client: Client, parameters: UpdateSprint): Pr
       synced: parameters.synced,
     },
     schema: SprintSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -167,10 +185,11 @@ export async function updateSprint(client: Client, parameters: UpdateSprint): Pr
  * Deletes a sprint. Once a sprint is deleted, all issues in the sprint will be moved to the backlog. To delete a synced
  * sprint, you must unsync it first.
  */
-export async function deleteSprint(client: Client, parameters: DeleteSprint): Promise<void> {
+export async function deleteSprint(client: Client, parameters: DeleteSprint, options?: RequestOptions): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/agile/1.0/sprint/${parameters.sprintId}`,
     method: 'DELETE',
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -180,7 +199,11 @@ export async function deleteSprint(client: Client, parameters: DeleteSprint): Pr
  * Returns all issues in a sprint, for a given sprint Id. This only includes issues that the user has permission to
  * view. By default, the returned issues are ordered by rank.
  */
-export async function getIssuesForSprint(client: Client, parameters: GetIssuesForSprint): Promise<SearchResults> {
+export async function getIssuesForSprint(
+  client: Client,
+  parameters: GetIssuesForSprint,
+  options?: RequestOptions,
+): Promise<SearchResults> {
   const config: SendRequestOptions<SearchResults> = {
     url: `/rest/agile/1.0/sprint/${parameters.sprintId}/issue`,
     method: 'GET',
@@ -193,6 +216,7 @@ export async function getIssuesForSprint(client: Client, parameters: GetIssuesFo
       startAt: parameters.startAt,
     },
     schema: SearchResultsSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -202,13 +226,18 @@ export async function getIssuesForSprint(client: Client, parameters: GetIssuesFo
  * Moves issues to a sprint, for a given sprint Id. Issues can only be moved to open or active sprints. The maximum
  * number of issues that can be moved in one operation is 50.
  */
-export async function moveIssuesToSprint(client: Client, parameters: MoveIssuesToSprint): Promise<void> {
+export async function moveIssuesToSprint(
+  client: Client,
+  parameters: MoveIssuesToSprint,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/agile/1.0/sprint/${parameters.sprintId}/issue`,
     method: 'POST',
     body: {
       issues: parameters.issues,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -221,11 +250,13 @@ export async function moveIssuesToSprint(client: Client, parameters: MoveIssuesT
 export async function getSprintPropertyKeys(
   client: Client,
   parameters: GetSprintPropertyKeys,
+  options?: RequestOptions,
 ): Promise<EntityPropertiesKeys> {
   const config: SendRequestOptions<EntityPropertiesKeys> = {
     url: `/rest/agile/1.0/sprint/${parameters.sprintId}/properties`,
     method: 'GET',
     schema: EntityPropertiesKeysSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -235,11 +266,16 @@ export async function getSprintPropertyKeys(
  * Returns the value of the property with a given key from the sprint identified by the provided id. The user who
  * retrieves the property is required to have permissions to view the sprint.
  */
-export async function getSprintProperty(client: Client, parameters: GetSprintProperty): Promise<EntityProperty> {
+export async function getSprintProperty(
+  client: Client,
+  parameters: GetSprintProperty,
+  options?: RequestOptions,
+): Promise<EntityProperty> {
   const config: SendRequestOptions<EntityProperty> = {
     url: `/rest/agile/1.0/sprint/${parameters.sprintId}/properties/${parameters.propertyKey}`,
     method: 'GET',
     schema: EntityPropertySchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -249,11 +285,16 @@ export async function getSprintProperty(client: Client, parameters: GetSprintPro
  * Sets the value of the specified sprint's property. You can use this resource to store a custom data against the
  * sprint identified by the id. The user who stores the data is required to have permissions to modify the sprint.
  */
-export async function setSprintProperty(client: Client, parameters: SetSprintProperty): Promise<void> {
+export async function setSprintProperty(
+  client: Client,
+  parameters: SetSprintProperty,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/agile/1.0/sprint/${parameters.sprintId}/properties/${parameters.propertyKey}`,
     method: 'PUT',
     body: parameters.body,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -263,17 +304,22 @@ export async function setSprintProperty(client: Client, parameters: SetSprintPro
  * Removes the property from the sprint identified by the id. Ths user removing the property is required to have
  * permissions to modify the sprint.
  */
-export async function deleteSprintProperty(client: Client, parameters: DeleteSprintProperty): Promise<void> {
+export async function deleteSprintProperty(
+  client: Client,
+  parameters: DeleteSprintProperty,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/agile/1.0/sprint/${parameters.sprintId}/properties/${parameters.propertyKey}`,
     method: 'DELETE',
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Swap the position of the sprint with the second sprint. */
-export async function swapSprint(client: Client, parameters: SwapSprint): Promise<void> {
+export async function swapSprint(client: Client, parameters: SwapSprint, options?: RequestOptions): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/agile/1.0/sprint/${parameters.sprintId}/swap`,
     method: 'POST',
@@ -281,6 +327,7 @@ export async function swapSprint(client: Client, parameters: SwapSprint): Promis
       sprintToSwapWith: parameters.sprintToSwapWith,
       swap: parameters.swap,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

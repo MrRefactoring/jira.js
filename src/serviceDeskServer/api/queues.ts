@@ -10,7 +10,7 @@ import type { UpdateQueue } from '../parameters/updateQueue';
 import type { DeleteQueue } from '../parameters/deleteQueue';
 import type { GetIssuesInQueue } from '../parameters/getIssuesInQueue';
 import type { ReorderQueues } from '../parameters/reorderQueues';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /**
  * Returns a page of queues defined inside a service project, for a given service project ID. The returned queues will
@@ -21,7 +21,7 @@ import type { Client, SendRequestOptions } from '#/core';
  *
  * The calling user must be an agent of the given service project.
  */
-export async function getQueues(client: Client, parameters: GetQueues): Promise<Page<Queue>> {
+export async function getQueues(client: Client, parameters: GetQueues, options?: RequestOptions): Promise<Page<Queue>> {
   const config: SendRequestOptions<Page<Queue>> = {
     url: `/rest/servicedeskapi/servicedesk/${parameters.serviceDeskId}/queue`,
     method: 'GET',
@@ -31,6 +31,7 @@ export async function getQueues(client: Client, parameters: GetQueues): Promise<
       limit: parameters.limit,
     },
     schema: PagedQueueSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -44,7 +45,7 @@ export async function getQueues(client: Client, parameters: GetQueues): Promise<
  * The calling user must have permission to create a queue, i.e. they must be an admin of the service project that the
  * queue belongs to.
  */
-export async function createQueue(client: Client, parameters: CreateQueue): Promise<Queue> {
+export async function createQueue(client: Client, parameters: CreateQueue, options?: RequestOptions): Promise<Queue> {
   const config: SendRequestOptions<Queue> = {
     url: `/rest/servicedeskapi/servicedesk/${parameters.serviceDeskId}/queue`,
     method: 'POST',
@@ -54,6 +55,7 @@ export async function createQueue(client: Client, parameters: CreateQueue): Prom
       fields: parameters.fields,
     },
     schema: QueueSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -67,7 +69,7 @@ export async function createQueue(client: Client, parameters: CreateQueue): Prom
  *
  * The calling user must be an agent of the given service project.
  */
-export async function getQueue(client: Client, parameters: GetQueue): Promise<Queue> {
+export async function getQueue(client: Client, parameters: GetQueue, options?: RequestOptions): Promise<Queue> {
   const config: SendRequestOptions<Queue> = {
     url: `/rest/servicedeskapi/servicedesk/${parameters.serviceDeskId}/queue/${parameters.queueId}`,
     method: 'GET',
@@ -75,6 +77,7 @@ export async function getQueue(client: Client, parameters: GetQueue): Promise<Qu
       includeCount: parameters.includeCount,
     },
     schema: QueueSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -88,7 +91,7 @@ export async function getQueue(client: Client, parameters: GetQueue): Promise<Qu
  * The calling user must have permission to update a queue, i.e. they must be an admin of the service project that the
  * queue belongs to.
  */
-export async function updateQueue(client: Client, parameters: UpdateQueue): Promise<Queue> {
+export async function updateQueue(client: Client, parameters: UpdateQueue, options?: RequestOptions): Promise<Queue> {
   const config: SendRequestOptions<Queue> = {
     url: `/rest/servicedeskapi/servicedesk/${parameters.serviceDeskId}/queue/${parameters.queueId}`,
     method: 'POST',
@@ -98,6 +101,7 @@ export async function updateQueue(client: Client, parameters: UpdateQueue): Prom
       fields: parameters.fields,
     },
     schema: QueueSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -111,10 +115,11 @@ export async function updateQueue(client: Client, parameters: UpdateQueue): Prom
  * The calling user must have permission to delete the queue, i.e. they must be an admin of the service project that the
  * queue belongs to.
  */
-export async function deleteQueue(client: Client, parameters: DeleteQueue): Promise<void> {
+export async function deleteQueue(client: Client, parameters: DeleteQueue, options?: RequestOptions): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/servicedeskapi/servicedesk/${parameters.serviceDeskId}/queue/${parameters.queueId}`,
     method: 'DELETE',
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -129,7 +134,11 @@ export async function deleteQueue(client: Client, parameters: DeleteQueue): Prom
  * defined by the underlying search engine. The current value is returned in the `maxResultWindow` property of the
  * response. If not set, it means there is no limit.
  */
-export async function getIssuesInQueue(client: Client, parameters: GetIssuesInQueue): Promise<Page<Issue>> {
+export async function getIssuesInQueue(
+  client: Client,
+  parameters: GetIssuesInQueue,
+  options?: RequestOptions,
+): Promise<Page<Issue>> {
   const config: SendRequestOptions<Page<Issue>> = {
     url: `/rest/servicedeskapi/servicedesk/${parameters.serviceDeskId}/queue/${parameters.queueId}/issue`,
     method: 'GET',
@@ -138,6 +147,7 @@ export async function getIssuesInQueue(client: Client, parameters: GetIssuesInQu
       limit: parameters.limit,
     },
     schema: PagedIssueSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -152,12 +162,17 @@ export async function getIssuesInQueue(client: Client, parameters: GetIssuesInQu
  * The calling user must have permission to reorder the queue, i.e. they must be an admin of the service project that
  * the queue belongs to.
  */
-export async function reorderQueues(client: Client, parameters: ReorderQueues): Promise<Queue> {
+export async function reorderQueues(
+  client: Client,
+  parameters: ReorderQueues,
+  options?: RequestOptions,
+): Promise<Queue> {
   const config: SendRequestOptions<Queue> = {
     url: `/rest/servicedeskapi/servicedesk/${parameters.serviceDeskId}/queue/reorder`,
     method: 'POST',
     body: parameters.body,
     schema: QueueSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

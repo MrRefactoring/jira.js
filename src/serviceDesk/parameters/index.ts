@@ -112,4 +112,6 @@ export * from './subscribe';
 
 export * from './unsubscribe';
 
+export * from './validateCustomerRequest';
+
 export * from './viewArticle';

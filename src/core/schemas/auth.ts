@@ -13,8 +13,8 @@ export const authBasicApiTokenSchema = z.object({
  *
  * A separate branch rather than a loosened `email`, because the two are not interchangeable — a Cloud site rejects a
  * username, a self-hosted one has no notion of an API token, and a typo that swaps them should be a validation error
- * rather than a 401 an hour later. Personal access tokens, which Data Center has had since 8.14 and prefers, go through
- * `bearer` instead.
+ * rather than a 401 an hour later. Personal access tokens, which Data Center has had since 8.14 and prefers, go
+ * through `bearer` instead.
  */
 export const authBasicPasswordSchema = z.object({
   type: z.literal('basic'),
@@ -92,8 +92,8 @@ export const authOAuth2Schema = z
  *
  * A separate strategy from `oauth2` rather than a flag on it, because the two differ in what they talk to. Cloud 3LO
  * tokens are minted by `auth.atlassian.com` and accepted only through the Atlassian gateway, so `host` is derived from
- * a cloud id; a Data Center instance is its own authorization server and its own API host, so `host` is required and is
- * the only address involved. Folding them together would mean one strategy where `host` is both forbidden and
+ * a cloud id; a Data Center instance is its own authorization server and its own API host, so `host` is required and
+ * is the only address involved. Folding them together would mean one strategy where `host` is both forbidden and
  * mandatory.
  *
  * `redirectUri` sits with the refresh credentials because the Data Center provider validates it on the refresh grant,
@@ -117,38 +117,38 @@ export const authOAuth2ServerSchema = z
   })
   .refine(
     data =>
-      data.accessToken !== undefined ||
-      (data.refreshToken !== undefined &&
-        data.clientId !== undefined &&
-        data.clientSecret !== undefined &&
-        data.redirectUri !== undefined),
+      data.accessToken !== undefined
+      || (data.refreshToken !== undefined
+        && data.clientId !== undefined
+        && data.clientSecret !== undefined
+        && data.redirectUri !== undefined),
     {
       message:
-        'Data Center OAuth 2.0 requires either an `accessToken` or a full refresh credential set (`refreshToken`, ' +
-        '`clientId`, `clientSecret`, `redirectUri`).',
+        'Data Center OAuth 2.0 requires either an `accessToken` or a full refresh credential set (`refreshToken`, '
+        + '`clientId`, `clientSecret`, `redirectUri`).',
     },
   )
   .refine(
     data => {
       const anyRefreshField =
-        data.refreshToken !== undefined ||
-        data.clientId !== undefined ||
-        data.clientSecret !== undefined ||
-        data.redirectUri !== undefined;
+        data.refreshToken !== undefined
+        || data.clientId !== undefined
+        || data.clientSecret !== undefined
+        || data.redirectUri !== undefined;
 
       if (!anyRefreshField) return true;
 
       return (
-        data.refreshToken !== undefined &&
-        data.clientId !== undefined &&
-        data.clientSecret !== undefined &&
-        data.redirectUri !== undefined
+        data.refreshToken !== undefined
+        && data.clientId !== undefined
+        && data.clientSecret !== undefined
+        && data.redirectUri !== undefined
       );
     },
     {
       message:
-        'When using Data Center OAuth 2.0 token refresh, `refreshToken`, `clientId`, `clientSecret` and ' +
-        '`redirectUri` must all be provided together.',
+        'When using Data Center OAuth 2.0 token refresh, `refreshToken`, `clientId`, `clientSecret` and '
+        + '`redirectUri` must all be provided together.',
     },
   );
 

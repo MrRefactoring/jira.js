@@ -79,7 +79,7 @@ import type { AddWorklog } from '../parameters/addWorklog';
 import type { GetWorklog } from '../parameters/getWorklog';
 import type { UpdateWorklog } from '../parameters/updateWorklog';
 import type { DeleteWorklog } from '../parameters/deleteWorklog';
-import { type Client, type SendRequestOptions, toFormDataFile } from '#/core';
+import { type Client, type RequestOptions, type SendRequestOptions, toFormDataFile } from '#/core';
 import { z } from 'zod';
 
 /**
@@ -88,7 +88,7 @@ import { z } from 'zod';
  * detailed information regarding each issue is available in the response body. If rankCustomFieldId is not defined, the
  * default rank field will be used.
  */
-export async function rankIssues(client: Client, parameters: RankIssues): Promise<void> {
+export async function rankIssues(client: Client, parameters: RankIssues, options?: RequestOptions): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: '/rest/agile/1.0/issue/rank',
     method: 'PUT',
@@ -98,6 +98,7 @@ export async function rankIssues(client: Client, parameters: RankIssues): Promis
       rankBeforeIssue: parameters.rankBeforeIssue,
       rankCustomFieldId: parameters.rankCustomFieldId,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -107,7 +108,11 @@ export async function rankIssues(client: Client, parameters: RankIssues): Promis
  * Returns a single issue, for a given issue Id or issue key. Issues returned from this resource include Agile fields,
  * like sprint, closedSprints, flagged, and epic.
  */
-export async function getAgileIssue(client: Client, parameters: GetAgileIssue): Promise<Issue> {
+export async function getAgileIssue(
+  client: Client,
+  parameters: GetAgileIssue,
+  options?: RequestOptions,
+): Promise<Issue> {
   const config: SendRequestOptions<Issue> = {
     url: `/rest/agile/1.0/issue/${parameters.issueIdOrKey}`,
     method: 'GET',
@@ -117,6 +122,7 @@ export async function getAgileIssue(client: Client, parameters: GetAgileIssue): 
       updateHistory: parameters.updateHistory,
     },
     schema: IssueSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -131,6 +137,7 @@ export async function getAgileIssue(client: Client, parameters: GetAgileIssue): 
 export async function getIssueEstimationForBoard(
   client: Client,
   parameters: GetIssueEstimationForBoard,
+  options?: RequestOptions,
 ): Promise<FieldValue> {
   const config: SendRequestOptions<FieldValue> = {
     url: `/rest/agile/1.0/issue/${parameters.issueIdOrKey}/estimation`,
@@ -139,6 +146,7 @@ export async function getIssueEstimationForBoard(
       boardId: parameters.boardId,
     },
     schema: FieldValueSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -153,7 +161,11 @@ export async function getIssueEstimationForBoard(
  * resource](https://developer.atlassian.com/server/jira/platform/rest/v11003/intro#agile/1.0/board-getConfiguration).
  * More information about the field are returned by edit meta resource or field resource.
  */
-export async function estimateIssueForBoard(client: Client, parameters: EstimateIssueForBoard): Promise<FieldValue> {
+export async function estimateIssueForBoard(
+  client: Client,
+  parameters: EstimateIssueForBoard,
+  options?: RequestOptions,
+): Promise<FieldValue> {
   const config: SendRequestOptions<FieldValue> = {
     url: `/rest/agile/1.0/issue/${parameters.issueIdOrKey}/estimation`,
     method: 'PUT',
@@ -164,6 +176,7 @@ export async function estimateIssueForBoard(client: Client, parameters: Estimate
       value: parameters.value,
     },
     schema: FieldValueSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -183,7 +196,11 @@ export async function estimateIssueForBoard(client: Client, parameters: Estimate
  *   to true (by default, the project history is not updated). You can view the project history in the Jira application,
  *   via the Projects dropdown.
  */
-export async function createIssue(client: Client, parameters: CreateIssue): Promise<IssueCreateResponse> {
+export async function createIssue(
+  client: Client,
+  parameters: CreateIssue,
+  options?: RequestOptions,
+): Promise<IssueCreateResponse> {
   const config: SendRequestOptions<IssueCreateResponse> = {
     url: '/rest/api/2/issue',
     method: 'POST',
@@ -198,13 +215,18 @@ export async function createIssue(client: Client, parameters: CreateIssue): Prom
       update: parameters.update,
     },
     schema: IssueCreateResponseSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Archives a list of issues. */
-export async function archiveIssues(client: Client, parameters: ArchiveIssues): Promise<unknown> {
+export async function archiveIssues(
+  client: Client,
+  parameters: ArchiveIssues,
+  options?: RequestOptions,
+): Promise<unknown> {
   const config: SendRequestOptions<unknown> = {
     url: '/rest/api/2/issue/archive',
     method: 'POST',
@@ -213,6 +235,7 @@ export async function archiveIssues(client: Client, parameters: ArchiveIssues): 
     },
     body: parameters.body,
     contentType: 'text/plain',
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -222,7 +245,11 @@ export async function archiveIssues(client: Client, parameters: ArchiveIssues): 
  * Creates issues or sub-tasks from a JSON representation. Creates many issues in one bulk operation. Creating a
  * sub-task is similar to creating a regular issue. More details can be found in createIssue section.
  */
-export async function createIssues(client: Client, parameters: CreateIssues): Promise<IssuesCreateResponse> {
+export async function createIssues(
+  client: Client,
+  parameters: CreateIssues,
+  options?: RequestOptions,
+): Promise<IssuesCreateResponse> {
   const config: SendRequestOptions<IssuesCreateResponse> = {
     url: '/rest/api/2/issue/bulk',
     method: 'POST',
@@ -230,6 +257,7 @@ export async function createIssues(client: Client, parameters: CreateIssues): Pr
       issueUpdates: parameters.issueUpdates,
     },
     schema: IssuesCreateResponseSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -242,6 +270,7 @@ export async function createIssues(client: Client, parameters: CreateIssues): Pr
 export async function getCreateIssueMetaProjectIssueTypes(
   client: Client,
   parameters: GetCreateIssueMetaProjectIssueTypes,
+  options?: RequestOptions,
 ): Promise<CreateMetaIssueType> {
   const config: SendRequestOptions<CreateMetaIssueType> = {
     url: `/rest/api/2/issue/createmeta/${parameters.projectIdOrKey}/issuetypes`,
@@ -251,6 +280,7 @@ export async function getCreateIssueMetaProjectIssueTypes(
       startAt: parameters.startAt,
     },
     schema: CreateMetaIssueTypeSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -263,6 +293,7 @@ export async function getCreateIssueMetaProjectIssueTypes(
 export async function getCreateIssueMetaFields(
   client: Client,
   parameters: GetCreateIssueMetaFields,
+  options?: RequestOptions,
 ): Promise<FieldMeta> {
   const config: SendRequestOptions<FieldMeta> = {
     url: `/rest/api/2/issue/createmeta/${parameters.projectIdOrKey}/issuetypes/${parameters.issueTypeId}`,
@@ -272,6 +303,7 @@ export async function getCreateIssueMetaFields(
       startAt: parameters.startAt,
     },
     schema: FieldMetaSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -281,6 +313,7 @@ export async function getCreateIssueMetaFields(
 export async function getIssuePickerResource(
   client: Client,
   parameters?: GetIssuePickerResource,
+  options?: RequestOptions,
 ): Promise<IssuePickerResult> {
   const config: SendRequestOptions<IssuePickerResult> = {
     url: '/rest/api/2/issue/picker',
@@ -294,6 +327,7 @@ export async function getIssuePickerResource(
       showSubTaskParent: parameters?.showSubTaskParent,
     },
     schema: IssuePickerResultSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -308,6 +342,7 @@ export async function getIssuePickerResource(
 export async function createReciprocalRemoteIssueLink(
   client: Client,
   parameters: CreateReciprocalRemoteIssueLink,
+  options?: RequestOptions,
 ): Promise<RemoteReciprocalIssueLinkCreateResponse> {
   const config: SendRequestOptions<RemoteReciprocalIssueLinkCreateResponse> = {
     url: '/rest/api/2/issue/remotelink/reciprocal',
@@ -317,6 +352,7 @@ export async function createReciprocalRemoteIssueLink(
       target: parameters.target,
     },
     schema: RemoteReciprocalIssueLinkCreateResponseSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -365,7 +401,7 @@ export async function createReciprocalRemoteIssueLink(
  *   the most recent version is used. version for these fields which provide a more recent REST representation. After
  *   including versionedRepresentations "fields" field become hidden.
  */
-export async function getIssue(client: Client, parameters: GetIssue): Promise<Issue> {
+export async function getIssue(client: Client, parameters: GetIssue, options?: RequestOptions): Promise<Issue> {
   const config: SendRequestOptions<Issue> = {
     url: `/rest/api/2/issue/${parameters.issueIdOrKey}`,
     method: 'GET',
@@ -376,6 +412,7 @@ export async function getIssue(client: Client, parameters: GetIssue): Promise<Is
       properties: parameters.properties,
     },
     schema: IssueSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -385,7 +422,7 @@ export async function getIssue(client: Client, parameters: GetIssue): Promise<Is
  * Edits an issue from a JSON representation. The issue can either be updated by setting explicit the field value(s) or
  * by using an operation to change the field value.
  */
-export async function editIssue(client: Client, parameters: EditIssue): Promise<void> {
+export async function editIssue(client: Client, parameters: EditIssue, options?: RequestOptions): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/2/issue/${parameters.issueIdOrKey}`,
     method: 'PUT',
@@ -399,6 +436,7 @@ export async function editIssue(client: Client, parameters: EditIssue): Promise<
       transition: parameters.transition,
       update: parameters.update,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -408,33 +446,35 @@ export async function editIssue(client: Client, parameters: EditIssue): Promise<
  * Deletes an issue. If the issue has subtasks you must set the parameter deleteSubtasks=true to delete the issue. You
  * cannot delete an issue without its subtasks also being deleted.
  */
-export async function deleteIssue(client: Client, parameters: DeleteIssue): Promise<void> {
+export async function deleteIssue(client: Client, parameters: DeleteIssue, options?: RequestOptions): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/2/issue/${parameters.issueIdOrKey}`,
     method: 'DELETE',
     searchParams: {
       deleteSubtasks: parameters.deleteSubtasks,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Archives an issue. */
-export async function archiveIssue(client: Client, parameters: ArchiveIssue): Promise<void> {
+export async function archiveIssue(client: Client, parameters: ArchiveIssue, options?: RequestOptions): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/2/issue/${parameters.issueIdOrKey}/archive`,
     method: 'PUT',
     searchParams: {
       notifyUsers: parameters.notifyUsers,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Assign an issue to a user. */
-export async function assign(client: Client, parameters: Assign): Promise<void> {
+export async function assign(client: Client, parameters: Assign, options?: RequestOptions): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/2/issue/${parameters.issueIdOrKey}/assignee`,
     method: 'PUT',
@@ -454,6 +494,7 @@ export async function assign(client: Client, parameters: Assign): Promise<void> 
       self: parameters.self,
       timeZone: parameters.timeZone,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -469,7 +510,11 @@ export async function assign(client: Client, parameters: Assign): Promise<void> 
  * example to upload a file called "myfile.txt" to issue TEST-123: curl -D- -u admin:admin -X POST -H
  * "X-Atlassian-Token: no-check" -F "file=@myfile.txt" http://myhost/rest/api/2/issue/TEST-123/attachments
  */
-export async function addAttachment(client: Client, parameters: AddAttachment): Promise<AttachmentJson[]> {
+export async function addAttachment(
+  client: Client,
+  parameters: AddAttachment,
+  options?: RequestOptions,
+): Promise<AttachmentJson[]> {
   const formData = new FormData();
   const items = Array.isArray(parameters.attachments) ? parameters.attachments : [parameters.attachments];
 
@@ -485,6 +530,7 @@ export async function addAttachment(client: Client, parameters: AddAttachment): 
     },
     body: formData,
     schema: z.array(AttachmentJsonSchema),
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -494,7 +540,11 @@ export async function addAttachment(client: Client, parameters: AddAttachment): 
  * Returns all comments for an issue. Results can be ordered by the 'created' field which means the date a comment was
  * added.
  */
-export async function getComments(client: Client, parameters: GetComments): Promise<CommentsWithPaginationJson> {
+export async function getComments(
+  client: Client,
+  parameters: GetComments,
+  options?: RequestOptions,
+): Promise<CommentsWithPaginationJson> {
   const config: SendRequestOptions<CommentsWithPaginationJson> = {
     url: `/rest/api/2/issue/${parameters.issueIdOrKey}/comment`,
     method: 'GET',
@@ -505,13 +555,18 @@ export async function getComments(client: Client, parameters: GetComments): Prom
       startAt: parameters.startAt,
     },
     schema: CommentsWithPaginationJsonSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Adds a new comment to an issue. */
-export async function addComment(client: Client, parameters: AddComment): Promise<CommentJson> {
+export async function addComment(
+  client: Client,
+  parameters: AddComment,
+  options?: RequestOptions,
+): Promise<CommentJson> {
   const config: SendRequestOptions<CommentJson> = {
     url: `/rest/api/2/issue/${parameters.issueIdOrKey}/comment`,
     method: 'POST',
@@ -531,13 +586,18 @@ export async function addComment(client: Client, parameters: AddComment): Promis
       visibility: parameters.visibility,
     },
     schema: CommentJsonSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Returns a single comment. */
-export async function getComment(client: Client, parameters: GetComment): Promise<CommentJson> {
+export async function getComment(
+  client: Client,
+  parameters: GetComment,
+  options?: RequestOptions,
+): Promise<CommentJson> {
   const config: SendRequestOptions<CommentJson> = {
     url: `/rest/api/2/issue/${parameters.issueIdOrKey}/comment/${parameters.id}`,
     method: 'GET',
@@ -545,13 +605,18 @@ export async function getComment(client: Client, parameters: GetComment): Promis
       expand: parameters.expand,
     },
     schema: CommentJsonSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Updates an existing comment using its JSON representation. */
-export async function updateComment(client: Client, parameters: UpdateComment): Promise<CommentJson> {
+export async function updateComment(
+  client: Client,
+  parameters: UpdateComment,
+  options?: RequestOptions,
+): Promise<CommentJson> {
   const config: SendRequestOptions<CommentJson> = {
     url: `/rest/api/2/issue/${parameters.issueIdOrKey}/comment/${parameters.id}`,
     method: 'PUT',
@@ -560,27 +625,38 @@ export async function updateComment(client: Client, parameters: UpdateComment): 
     },
     body: parameters.body,
     schema: CommentJsonSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Deletes an existing comment. */
-export async function deleteComment(client: Client, parameters: DeleteComment): Promise<void> {
+export async function deleteComment(
+  client: Client,
+  parameters: DeleteComment,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/2/issue/${parameters.issueIdOrKey}/comment/${parameters.id}`,
     method: 'DELETE',
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Pins a comment to the top of the comment list. */
-export async function setPinComment(client: Client, parameters: SetPinComment): Promise<void> {
+export async function setPinComment(
+  client: Client,
+  parameters: SetPinComment,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/2/issue/${parameters.issueIdOrKey}/comment/${parameters.id}/pin`,
     method: 'PUT',
     body: parameters.body,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -590,18 +666,23 @@ export async function setPinComment(client: Client, parameters: SetPinComment): 
  * Returns the meta data for editing an issue. The fields in the editmeta correspond to the fields in the edit screen
  * for the issue. Fields not in the screen will not be in the editmeta.
  */
-export async function getEditIssueMeta(client: Client, parameters: GetEditIssueMeta): Promise<EditMeta> {
+export async function getEditIssueMeta(
+  client: Client,
+  parameters: GetEditIssueMeta,
+  options?: RequestOptions,
+): Promise<EditMeta> {
   const config: SendRequestOptions<EditMeta> = {
     url: `/rest/api/2/issue/${parameters.issueIdOrKey}/editmeta`,
     method: 'GET',
     schema: EditMetaSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Sends a notification (email) to the list or recipients defined in the request. */
-export async function notify(client: Client, parameters: Notify): Promise<void> {
+export async function notify(client: Client, parameters: Notify, options?: RequestOptions): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/2/issue/${parameters.issueIdOrKey}/notify`,
     method: 'POST',
@@ -612,17 +693,23 @@ export async function notify(client: Client, parameters: Notify): Promise<void> 
       textBody: parameters.textBody,
       to: parameters.to,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Returns all pinned to the issue comments. */
-export async function getPinnedComments(client: Client, parameters: GetPinnedComments): Promise<PinnedCommentJson[]> {
+export async function getPinnedComments(
+  client: Client,
+  parameters: GetPinnedComments,
+  options?: RequestOptions,
+): Promise<PinnedCommentJson[]> {
   const config: SendRequestOptions<PinnedCommentJson[]> = {
     url: `/rest/api/2/issue/${parameters.issueIdOrKey}/pinned-comments`,
     method: 'GET',
     schema: z.array(PinnedCommentJsonSchema),
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -632,50 +719,71 @@ export async function getPinnedComments(client: Client, parameters: GetPinnedCom
 export async function getIssuePropertyKeys(
   client: Client,
   parameters: GetIssuePropertyKeys,
+  options?: RequestOptions,
 ): Promise<EntityPropertiesKeys> {
   const config: SendRequestOptions<EntityPropertiesKeys> = {
     url: `/rest/api/2/issue/${parameters.issueIdOrKey}/properties`,
     method: 'GET',
     schema: EntityPropertiesKeysSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Returns the value of the property with a given key from the issue identified by the key or by the id. */
-export async function getIssueProperty(client: Client, parameters: GetIssueProperty): Promise<EntityProperty> {
+export async function getIssueProperty(
+  client: Client,
+  parameters: GetIssueProperty,
+  options?: RequestOptions,
+): Promise<EntityProperty> {
   const config: SendRequestOptions<EntityProperty> = {
     url: `/rest/api/2/issue/${parameters.issueIdOrKey}/properties/${parameters.propertyKey}`,
     method: 'GET',
     schema: EntityPropertySchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Sets the value of the specified issue's property. */
-export async function setIssueProperty(client: Client, parameters: SetIssueProperty): Promise<void> {
+export async function setIssueProperty(
+  client: Client,
+  parameters: SetIssueProperty,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/2/issue/${parameters.issueIdOrKey}/properties/${parameters.propertyKey}`,
     method: 'PUT',
     body: parameters.body,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Removes the property from the issue identified by the key or by the id. */
-export async function deleteIssueProperty(client: Client, parameters: DeleteIssueProperty): Promise<void> {
+export async function deleteIssueProperty(
+  client: Client,
+  parameters: DeleteIssueProperty,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/2/issue/${parameters.issueIdOrKey}/properties/${parameters.propertyKey}`,
     method: 'DELETE',
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Get remote issue links for an issue. */
-export async function getRemoteIssueLinks(client: Client, parameters: GetRemoteIssueLinks): Promise<RemoteIssueLink[]> {
+export async function getRemoteIssueLinks(
+  client: Client,
+  parameters: GetRemoteIssueLinks,
+  options?: RequestOptions,
+): Promise<RemoteIssueLink[]> {
   const config: SendRequestOptions<RemoteIssueLink[]> = {
     url: `/rest/api/2/issue/${parameters.issueIdOrKey}/remotelink`,
     method: 'GET',
@@ -683,6 +791,7 @@ export async function getRemoteIssueLinks(client: Client, parameters: GetRemoteI
       globalId: parameters.globalId,
     },
     schema: z.array(RemoteIssueLinkSchema),
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -695,6 +804,7 @@ export async function getRemoteIssueLinks(client: Client, parameters: GetRemoteI
 export async function createOrUpdateRemoteIssueLink(
   client: Client,
   parameters: CreateOrUpdateRemoteIssueLink,
+  options?: RequestOptions,
 ): Promise<RemoteIssueLink> {
   const config: SendRequestOptions<RemoteIssueLink> = {
     url: `/rest/api/2/issue/${parameters.issueIdOrKey}/remotelink`,
@@ -706,6 +816,7 @@ export async function createOrUpdateRemoteIssueLink(
       relationship: parameters.relationship,
     },
     schema: RemoteIssueLinkSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -715,6 +826,7 @@ export async function createOrUpdateRemoteIssueLink(
 export async function deleteRemoteIssueLinkByGlobalId(
   client: Client,
   parameters: DeleteRemoteIssueLinkByGlobalId,
+  options?: RequestOptions,
 ): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/2/issue/${parameters.issueIdOrKey}/remotelink`,
@@ -722,6 +834,7 @@ export async function deleteRemoteIssueLinkByGlobalId(
     searchParams: {
       globalId: parameters.globalId,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -731,18 +844,24 @@ export async function deleteRemoteIssueLinkByGlobalId(
 export async function getRemoteIssueLinkById(
   client: Client,
   parameters: GetRemoteIssueLinkById,
+  options?: RequestOptions,
 ): Promise<RemoteIssueLink> {
   const config: SendRequestOptions<RemoteIssueLink> = {
     url: `/rest/api/2/issue/${parameters.issueIdOrKey}/remotelink/${parameters.linkId}`,
     method: 'GET',
     schema: RemoteIssueLinkSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Updates a remote issue link from a JSON representation. Any fields not provided are set to null. */
-export async function updateRemoteIssueLink(client: Client, parameters: UpdateRemoteIssueLink): Promise<void> {
+export async function updateRemoteIssueLink(
+  client: Client,
+  parameters: UpdateRemoteIssueLink,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/2/issue/${parameters.issueIdOrKey}/remotelink/${parameters.linkId}`,
     method: 'PUT',
@@ -752,57 +871,74 @@ export async function updateRemoteIssueLink(client: Client, parameters: UpdateRe
       object: parameters.object,
       relationship: parameters.relationship,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Delete the remote issue link with the given id on the issue. */
-export async function deleteRemoteIssueLinkById(client: Client, parameters: DeleteRemoteIssueLinkById): Promise<void> {
+export async function deleteRemoteIssueLinkById(
+  client: Client,
+  parameters: DeleteRemoteIssueLinkById,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/2/issue/${parameters.issueIdOrKey}/remotelink/${parameters.linkId}`,
     method: 'DELETE',
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Restores an archived issue. */
-export async function restoreIssue(client: Client, parameters: RestoreIssue): Promise<void> {
+export async function restoreIssue(client: Client, parameters: RestoreIssue, options?: RequestOptions): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/2/issue/${parameters.issueIdOrKey}/restore`,
     method: 'PUT',
     searchParams: {
       notifyUsers: parameters.notifyUsers,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Returns an issue's subtask list */
-export async function getSubTasks(client: Client, parameters: GetSubTasks): Promise<IssueRefJson[]> {
+export async function getSubTasks(
+  client: Client,
+  parameters: GetSubTasks,
+  options?: RequestOptions,
+): Promise<IssueRefJson[]> {
   const config: SendRequestOptions<IssueRefJson[]> = {
     url: `/rest/api/2/issue/${parameters.issueIdOrKey}/subtask`,
     method: 'GET',
     schema: z.array(IssueRefJsonSchema),
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Checks if a subtask can be moved */
-export async function canMoveSubTask(client: Client, parameters: CanMoveSubTask): Promise<unknown> {
+export async function canMoveSubTask(
+  client: Client,
+  parameters: CanMoveSubTask,
+  options?: RequestOptions,
+): Promise<unknown> {
   const config: SendRequestOptions<unknown> = {
     url: `/rest/api/2/issue/${parameters.issueIdOrKey}/subtask/move`,
     method: 'GET',
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Reorders an issue's subtasks by moving the subtask at index 'from' to index 'to'. */
-export async function moveSubTasks(client: Client, parameters: MoveSubTasks): Promise<void> {
+export async function moveSubTasks(client: Client, parameters: MoveSubTasks, options?: RequestOptions): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/2/issue/${parameters.issueIdOrKey}/subtask/move`,
     method: 'POST',
@@ -810,6 +946,7 @@ export async function moveSubTasks(client: Client, parameters: MoveSubTasks): Pr
       current: parameters.current,
       original: parameters.original,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -820,7 +957,11 @@ export async function moveSubTasks(client: Client, parameters: MoveSubTasks): Pr
  * their types. Fields will only be returned if `expand=transitions.fields`. The fields in the metadata correspond to
  * the fields in the transition screen for that transition. Fields not in the screen will not be in the metadata.
  */
-export async function getTransitions(client: Client, parameters: GetTransitions): Promise<TransitionsMeta> {
+export async function getTransitions(
+  client: Client,
+  parameters: GetTransitions,
+  options?: RequestOptions,
+): Promise<TransitionsMeta> {
   const config: SendRequestOptions<TransitionsMeta> = {
     url: `/rest/api/2/issue/${parameters.issueIdOrKey}/transitions`,
     method: 'GET',
@@ -828,6 +969,7 @@ export async function getTransitions(client: Client, parameters: GetTransitions)
       transitionId: parameters.transitionId,
     },
     schema: TransitionsMetaSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -843,7 +985,7 @@ export async function getTransitions(client: Client, parameters: GetTransitions)
  * can view the issue history in the Jira application, via the Issues dropdown or by using the lastViewed JQL field in
  * an issue search.
  */
-export async function doTransition(client: Client, parameters: DoTransition): Promise<void> {
+export async function doTransition(client: Client, parameters: DoTransition, options?: RequestOptions): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/2/issue/${parameters.issueIdOrKey}/transitions`,
     method: 'POST',
@@ -854,55 +996,64 @@ export async function doTransition(client: Client, parameters: DoTransition): Pr
       transition: parameters.transition,
       update: parameters.update,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** A REST sub-resource representing the voters on the issue. */
-export async function getVotes(client: Client, parameters: GetVotes): Promise<Vote> {
+export async function getVotes(client: Client, parameters: GetVotes, options?: RequestOptions): Promise<Vote> {
   const config: SendRequestOptions<Vote> = {
     url: `/rest/api/2/issue/${parameters.issueIdOrKey}/votes`,
     method: 'GET',
     schema: VoteSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Adds voter (currently logged user) to particular ticket. You need to be logged in to use this method. */
-export async function addVote(client: Client, parameters: AddVote): Promise<void> {
+export async function addVote(client: Client, parameters: AddVote, options?: RequestOptions): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/2/issue/${parameters.issueIdOrKey}/votes`,
     method: 'POST',
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Remove your vote from an issue. */
-export async function removeVote(client: Client, parameters: RemoveVote): Promise<void> {
+export async function removeVote(client: Client, parameters: RemoveVote, options?: RequestOptions): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/2/issue/${parameters.issueIdOrKey}/votes`,
     method: 'DELETE',
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Returns the list of watchers for the issue with the given key. */
-export async function getIssueWatchers(client: Client, parameters: GetIssueWatchers): Promise<Watchers> {
+export async function getIssueWatchers(
+  client: Client,
+  parameters: GetIssueWatchers,
+  options?: RequestOptions,
+): Promise<Watchers> {
   const config: SendRequestOptions<Watchers> = {
     url: `/rest/api/2/issue/${parameters.issueIdOrKey}/watchers`,
     method: 'GET',
     schema: WatchersSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Adds a user to an issue's watcher list. */
-export async function addWatcher(client: Client, parameters: AddWatcher): Promise<void> {
+export async function addWatcher(client: Client, parameters: AddWatcher, options?: RequestOptions): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/2/issue/${parameters.issueIdOrKey}/watchers`,
     method: 'POST',
@@ -910,13 +1061,18 @@ export async function addWatcher(client: Client, parameters: AddWatcher): Promis
       userName: parameters.userName,
     },
     body: parameters.body,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Removes a user from an issue's watcher list. */
-export async function removeWatcher(client: Client, parameters: RemoveWatcher): Promise<void> {
+export async function removeWatcher(
+  client: Client,
+  parameters: RemoveWatcher,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/2/issue/${parameters.issueIdOrKey}/watchers`,
     method: 'DELETE',
@@ -924,24 +1080,30 @@ export async function removeWatcher(client: Client, parameters: RemoveWatcher): 
       userName: parameters.userName,
       username: parameters.username,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Returns all work logs for an issue. Work logs won't be returned if the Log work field is hidden for the project. */
-export async function getIssueWorklog(client: Client, parameters: GetIssueWorklog): Promise<WorklogWithPagination> {
+export async function getIssueWorklog(
+  client: Client,
+  parameters: GetIssueWorklog,
+  options?: RequestOptions,
+): Promise<WorklogWithPagination> {
   const config: SendRequestOptions<WorklogWithPagination> = {
     url: `/rest/api/2/issue/${parameters.issueIdOrKey}/worklog`,
     method: 'GET',
     schema: WorklogWithPaginationSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Adds a new worklog entry to an issue. */
-export async function addWorklog(client: Client, parameters: AddWorklog): Promise<Worklog> {
+export async function addWorklog(client: Client, parameters: AddWorklog, options?: RequestOptions): Promise<Worklog> {
   const config: SendRequestOptions<Worklog> = {
     url: `/rest/api/2/issue/${parameters.issueIdOrKey}/worklog`,
     method: 'POST',
@@ -965,17 +1127,19 @@ export async function addWorklog(client: Client, parameters: AddWorklog): Promis
       visibility: parameters.visibility,
     },
     schema: WorklogSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Returns a specific worklog. The work log won't be returned if the Log work field is hidden for the project. */
-export async function getWorklog(client: Client, parameters: GetWorklog): Promise<Worklog> {
+export async function getWorklog(client: Client, parameters: GetWorklog, options?: RequestOptions): Promise<Worklog> {
   const config: SendRequestOptions<Worklog> = {
     url: `/rest/api/2/issue/${parameters.issueIdOrKey}/worklog/${parameters.id}`,
     method: 'GET',
     schema: WorklogSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -989,7 +1153,11 @@ export async function getWorklog(client: Client, parameters: GetWorklog): Promis
  * - Fields which are not set will not be updated.
  * - For a request to be valid, it has to have at least one field change.
  */
-export async function updateWorklog(client: Client, parameters: UpdateWorklog): Promise<Worklog> {
+export async function updateWorklog(
+  client: Client,
+  parameters: UpdateWorklog,
+  options?: RequestOptions,
+): Promise<Worklog> {
   const config: SendRequestOptions<Worklog> = {
     url: `/rest/api/2/issue/${parameters.issueIdOrKey}/worklog/${parameters.id}`,
     method: 'PUT',
@@ -999,13 +1167,18 @@ export async function updateWorklog(client: Client, parameters: UpdateWorklog): 
     },
     body: parameters.body,
     schema: WorklogSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Deletes an existing worklog entry. */
-export async function deleteWorklog(client: Client, parameters: DeleteWorklog): Promise<void> {
+export async function deleteWorklog(
+  client: Client,
+  parameters: DeleteWorklog,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/2/issue/${parameters.issueIdOrKey}/worklog/${parameters.id}`,
     method: 'DELETE',
@@ -1014,6 +1187,7 @@ export async function deleteWorklog(client: Client, parameters: DeleteWorklog): 
       adjustEstimate: parameters.adjustEstimate,
       increaseBy: parameters.increaseBy,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

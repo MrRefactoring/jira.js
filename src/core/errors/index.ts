@@ -7,6 +7,7 @@ export {
   ScopeError,
   ServerError,
   type ApiErrorOptions,
+  type AuthErrorOptions,
   type RateLimitErrorOptions,
 } from './apiError.js';
 

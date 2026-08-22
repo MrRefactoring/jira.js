@@ -1,9 +1,13 @@
 import { UsersAndGroupsSchema, type UsersAndGroups } from '../models/usersAndGroups';
 import type { FindUsersAndGroups } from '../parameters/findUsersAndGroups';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /** Returns a list of users and groups matching query with highlighting */
-export async function findUsersAndGroups(client: Client, parameters?: FindUsersAndGroups): Promise<UsersAndGroups> {
+export async function findUsersAndGroups(
+  client: Client,
+  parameters?: FindUsersAndGroups,
+  options?: RequestOptions,
+): Promise<UsersAndGroups> {
   const config: SendRequestOptions<UsersAndGroups> = {
     url: '/rest/api/2/groupuserpicker',
     method: 'GET',
@@ -16,6 +20,7 @@ export async function findUsersAndGroups(client: Client, parameters?: FindUsersA
       fieldId: parameters?.fieldId,
     },
     schema: UsersAndGroupsSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

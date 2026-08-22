@@ -1,6 +1,6 @@
 import { StatusDetailsSchema, type StatusDetails } from '../models/statusDetails';
 import type { GetStatus } from '../parameters/getStatus';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 import { z } from 'zod';
 
 /**
@@ -13,11 +13,12 @@ import { z } from 'zod';
  * permission](https://support.atlassian.com/jira-cloud-administration/docs/manage-project-permissions/) for the
  * project.
  */
-export async function getStatuses(client: Client): Promise<StatusDetails[]> {
+export async function getStatuses(client: Client, options?: RequestOptions): Promise<StatusDetails[]> {
   const config: SendRequestOptions<StatusDetails[]> = {
     url: '/rest/api/3/status',
     method: 'GET',
     schema: z.array(StatusDetailsSchema),
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -36,11 +37,16 @@ export async function getStatuses(client: Client): Promise<StatusDetails[]> {
  * permission](https://support.atlassian.com/jira-cloud-administration/docs/manage-project-permissions/) for the
  * project.
  */
-export async function getStatus(client: Client, parameters: GetStatus): Promise<StatusDetails> {
+export async function getStatus(
+  client: Client,
+  parameters: GetStatus,
+  options?: RequestOptions,
+): Promise<StatusDetails> {
   const config: SendRequestOptions<StatusDetails> = {
     url: `/rest/api/3/status/${parameters.idOrName}`,
     method: 'GET',
     schema: StatusDetailsSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

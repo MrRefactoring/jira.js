@@ -5,13 +5,17 @@ import type { CreatePriorityScheme } from '../parameters/createPriorityScheme';
 import type { GetPriorityScheme } from '../parameters/getPriorityScheme';
 import type { UpdatePriorityScheme } from '../parameters/updatePriorityScheme';
 import type { DeletePriorityScheme } from '../parameters/deletePriorityScheme';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /**
  * Returns all priority schemes. All project keys associated with the priority scheme will only be returned if
  * additional query parameter is provided <code>expand=schemes.projectKeys</code>
  */
-export async function getPrioritySchemes(client: Client, parameters?: GetPrioritySchemes): Promise<PrioritySchemeList> {
+export async function getPrioritySchemes(
+  client: Client,
+  parameters?: GetPrioritySchemes,
+  options?: RequestOptions,
+): Promise<PrioritySchemeList> {
   const config: SendRequestOptions<PrioritySchemeList> = {
     url: '/rest/api/2/priorityschemes',
     method: 'GET',
@@ -20,13 +24,18 @@ export async function getPrioritySchemes(client: Client, parameters?: GetPriorit
       startAt: parameters?.startAt,
     },
     schema: PrioritySchemeListSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Creates new priority scheme. */
-export async function createPriorityScheme(client: Client, parameters: CreatePriorityScheme): Promise<PriorityScheme> {
+export async function createPriorityScheme(
+  client: Client,
+  parameters: CreatePriorityScheme,
+  options?: RequestOptions,
+): Promise<PriorityScheme> {
   const config: SendRequestOptions<PriorityScheme> = {
     url: '/rest/api/2/priorityschemes',
     method: 'POST',
@@ -38,17 +47,23 @@ export async function createPriorityScheme(client: Client, parameters: CreatePri
       optionIds: parameters.optionIds,
     },
     schema: PrioritySchemeSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Gets a full representation of a priority scheme in JSON format. */
-export async function getPriorityScheme(client: Client, parameters: GetPriorityScheme): Promise<PriorityScheme> {
+export async function getPriorityScheme(
+  client: Client,
+  parameters: GetPriorityScheme,
+  options?: RequestOptions,
+): Promise<PriorityScheme> {
   const config: SendRequestOptions<PriorityScheme> = {
     url: `/rest/api/2/priorityschemes/${parameters.schemeId}`,
     method: 'GET',
     schema: PrioritySchemeSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -58,7 +73,11 @@ export async function getPriorityScheme(client: Client, parameters: GetPriorityS
  * Updates a priority scheme. Update will be rejected if issue migration would be needed as a result of scheme update.
  * Priority scheme update with migration is possible from the UI.
  */
-export async function updatePriorityScheme(client: Client, parameters: UpdatePriorityScheme): Promise<PriorityScheme> {
+export async function updatePriorityScheme(
+  client: Client,
+  parameters: UpdatePriorityScheme,
+  options?: RequestOptions,
+): Promise<PriorityScheme> {
   const config: SendRequestOptions<PriorityScheme> = {
     url: `/rest/api/2/priorityschemes/${parameters.schemeId}`,
     method: 'PUT',
@@ -70,16 +89,22 @@ export async function updatePriorityScheme(client: Client, parameters: UpdatePri
       optionIds: parameters.optionIds,
     },
     schema: PrioritySchemeSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Deletes a priority scheme. All projects using deleted scheme will use default priority scheme afterwards. */
-export async function deletePriorityScheme(client: Client, parameters: DeletePriorityScheme): Promise<void> {
+export async function deletePriorityScheme(
+  client: Client,
+  parameters: DeletePriorityScheme,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/2/priorityschemes/${parameters.schemeId}`,
     method: 'DELETE',
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

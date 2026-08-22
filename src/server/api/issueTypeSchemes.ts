@@ -10,7 +10,7 @@ import type { AddProjectAssociationsToScheme } from '../parameters/addProjectAss
 import type { SetProjectAssociationsForScheme } from '../parameters/setProjectAssociationsForScheme';
 import type { RemoveAllProjectAssociations } from '../parameters/removeAllProjectAssociations';
 import type { RemoveProjectAssociation } from '../parameters/removeProjectAssociation';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 import { z } from 'zod';
 
 /**
@@ -20,11 +20,12 @@ import { z } from 'zod';
  * expand=schemes.defaultIssueType. Note that both query parameters can be used together:
  * expand=schemes.issueTypes,schemes.defaultIssueType.
  */
-export async function getAllIssueTypeSchemes(client: Client): Promise<IssueTypeSchemeList> {
+export async function getAllIssueTypeSchemes(client: Client, options?: RequestOptions): Promise<IssueTypeSchemeList> {
   const config: SendRequestOptions<IssueTypeSchemeList> = {
     url: '/rest/api/2/issuetypescheme',
     method: 'GET',
     schema: IssueTypeSchemeListSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -34,6 +35,7 @@ export async function getAllIssueTypeSchemes(client: Client): Promise<IssueTypeS
 export async function createIssueTypeScheme(
   client: Client,
   parameters: CreateIssueTypeScheme,
+  options?: RequestOptions,
 ): Promise<IssueTypeScheme> {
   const config: SendRequestOptions<IssueTypeScheme> = {
     url: '/rest/api/2/issuetypescheme',
@@ -46,17 +48,23 @@ export async function createIssueTypeScheme(
       name: parameters.name,
     },
     schema: IssueTypeSchemeSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Returns a full representation of the issue type scheme that has the given id */
-export async function getIssueTypeScheme(client: Client, parameters: GetIssueTypeScheme): Promise<IssueTypeScheme> {
+export async function getIssueTypeScheme(
+  client: Client,
+  parameters: GetIssueTypeScheme,
+  options?: RequestOptions,
+): Promise<IssueTypeScheme> {
   const config: SendRequestOptions<IssueTypeScheme> = {
     url: `/rest/api/2/issuetypescheme/${parameters.schemeId}`,
     method: 'GET',
     schema: IssueTypeSchemeSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -66,6 +74,7 @@ export async function getIssueTypeScheme(client: Client, parameters: GetIssueTyp
 export async function updateIssueTypeScheme(
   client: Client,
   parameters: UpdateIssueTypeScheme,
+  options?: RequestOptions,
 ): Promise<IssueTypeScheme> {
   const config: SendRequestOptions<IssueTypeScheme> = {
     url: `/rest/api/2/issuetypescheme/${parameters.schemeId}`,
@@ -78,6 +87,7 @@ export async function updateIssueTypeScheme(
       name: parameters.name,
     },
     schema: IssueTypeSchemeSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -87,17 +97,26 @@ export async function updateIssueTypeScheme(
  * Deletes the specified issue type scheme. Any projects associated with this IssueTypeScheme will be automatically
  * associated with the global default IssueTypeScheme.
  */
-export async function deleteIssueTypeScheme(client: Client, parameters: DeleteIssueTypeScheme): Promise<void> {
+export async function deleteIssueTypeScheme(
+  client: Client,
+  parameters: DeleteIssueTypeScheme,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/2/issuetypescheme/${parameters.schemeId}`,
     method: 'DELETE',
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** For the specified issue type scheme, returns all of the associated projects */
-export async function getAssociatedProjects(client: Client, parameters: GetAssociatedProjects): Promise<Project[]> {
+export async function getAssociatedProjects(
+  client: Client,
+  parameters: GetAssociatedProjects,
+  options?: RequestOptions,
+): Promise<Project[]> {
   const config: SendRequestOptions<Project[]> = {
     url: `/rest/api/2/issuetypescheme/${parameters.schemeId}/associations`,
     method: 'GET',
@@ -105,6 +124,7 @@ export async function getAssociatedProjects(client: Client, parameters: GetAssoc
       expand: parameters.expand,
     },
     schema: z.array(ProjectSchema),
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -114,6 +134,7 @@ export async function getAssociatedProjects(client: Client, parameters: GetAssoc
 export async function addProjectAssociationsToScheme(
   client: Client,
   parameters: AddProjectAssociationsToScheme,
+  options?: RequestOptions,
 ): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/2/issuetypescheme/${parameters.schemeId}/associations`,
@@ -121,6 +142,7 @@ export async function addProjectAssociationsToScheme(
     body: {
       idsOrKeys: parameters.idsOrKeys,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -130,6 +152,7 @@ export async function addProjectAssociationsToScheme(
 export async function setProjectAssociationsForScheme(
   client: Client,
   parameters: SetProjectAssociationsForScheme,
+  options?: RequestOptions,
 ): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/2/issuetypescheme/${parameters.schemeId}/associations`,
@@ -137,6 +160,7 @@ export async function setProjectAssociationsForScheme(
     body: {
       idsOrKeys: parameters.idsOrKeys,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -146,20 +170,27 @@ export async function setProjectAssociationsForScheme(
 export async function removeAllProjectAssociations(
   client: Client,
   parameters: RemoveAllProjectAssociations,
+  options?: RequestOptions,
 ): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/2/issuetypescheme/${parameters.schemeId}/associations`,
     method: 'DELETE',
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** For the specified issue type scheme, removes the given project association */
-export async function removeProjectAssociation(client: Client, parameters: RemoveProjectAssociation): Promise<void> {
+export async function removeProjectAssociation(
+  client: Client,
+  parameters: RemoveProjectAssociation,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/2/issuetypescheme/${parameters.schemeId}/associations/${parameters.projIdOrKey}`,
     method: 'DELETE',
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

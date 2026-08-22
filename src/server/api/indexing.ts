@@ -10,37 +10,40 @@ import type { ReindexIssues } from '../parameters/reindexIssues';
 import type { GetReindexProgress } from '../parameters/getReindexProgress';
 import type { GetProgressBulk } from '../parameters/getProgressBulk';
 import type { GetReindexRequestProgress } from '../parameters/getReindexRequestProgress';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 import { z } from 'zod';
 
 /** Lists available index snapshots absolute paths with timestamps */
-export async function listIndexSnapshot(client: Client): Promise<IndexSnapshot[]> {
+export async function listIndexSnapshot(client: Client, options?: RequestOptions): Promise<IndexSnapshot[]> {
   const config: SendRequestOptions<IndexSnapshot[]> = {
     url: '/rest/api/2/index-snapshot',
     method: 'GET',
     schema: z.array(IndexSnapshotSchema),
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Starts taking an index snapshot if no other snapshot creation process is in progress */
-export async function createIndexSnapshot(client: Client): Promise<IndexSnapshotPromise> {
+export async function createIndexSnapshot(client: Client, options?: RequestOptions): Promise<IndexSnapshotPromise> {
   const config: SendRequestOptions<IndexSnapshotPromise> = {
     url: '/rest/api/2/index-snapshot',
     method: 'POST',
     schema: IndexSnapshotPromiseSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Checks if index snapshot creation is currently running */
-export async function isIndexSnapshotRunning(client: Client): Promise<IndexSnapshotStatus> {
+export async function isIndexSnapshotRunning(client: Client, options?: RequestOptions): Promise<IndexSnapshotStatus> {
   const config: SendRequestOptions<IndexSnapshotStatus> = {
     url: '/rest/api/2/index-snapshot/isRunning',
     method: 'GET',
     schema: IndexSnapshotStatusSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -75,11 +78,12 @@ export async function isIndexSnapshotRunning(client: Client): Promise<IndexSnaps
  * operation was written to the journal. - `queueSize` - Number of operations in the queue awaiting synchronization with
  * the external platform's index.
  */
-export async function getIndexSummary(client: Client): Promise<IndexSummary> {
+export async function getIndexSummary(client: Client, options?: RequestOptions): Promise<IndexSummary> {
   const config: SendRequestOptions<IndexSummary> = {
     url: '/rest/api/2/index/summary',
     method: 'GET',
     schema: IndexSummarySchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -90,7 +94,11 @@ export async function getIndexSummary(client: Client): Promise<IndexSummary> {
  * reindex is returned. If there is no active index task, then returns information about the latest reindex task run,
  * otherwise returns a 404 indicating that no reindex has taken place.
  */
-export async function getReindexInfo(client: Client, parameters?: GetReindexInfo): Promise<Reindex> {
+export async function getReindexInfo(
+  client: Client,
+  parameters?: GetReindexInfo,
+  options?: RequestOptions,
+): Promise<Reindex> {
   const config: SendRequestOptions<Reindex> = {
     url: '/rest/api/2/reindex',
     method: 'GET',
@@ -98,13 +106,18 @@ export async function getReindexInfo(client: Client, parameters?: GetReindexInfo
       taskId: parameters?.taskId,
     },
     schema: ReindexSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Kicks off a reindex. Need Admin permissions to perform this reindex. */
-export async function reindex(client: Client, parameters: ReindexParameters): Promise<Reindex> {
+export async function reindex(
+  client: Client,
+  parameters: ReindexParameters,
+  options?: RequestOptions,
+): Promise<Reindex> {
   const config: SendRequestOptions<Reindex> = {
     url: '/rest/api/2/reindex',
     method: 'POST',
@@ -115,6 +128,7 @@ export async function reindex(client: Client, parameters: ReindexParameters): Pr
       indexComments: parameters.indexComments,
     },
     schema: ReindexSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -124,7 +138,11 @@ export async function reindex(client: Client, parameters: ReindexParameters): Pr
  * Reindexes one or more individual issues. Indexing is performed synchronously - the call returns when indexing of the
  * issues has completed or a failure occurs.
  */
-export async function reindexIssues(client: Client, parameters: ReindexIssues): Promise<Reindex> {
+export async function reindexIssues(
+  client: Client,
+  parameters: ReindexIssues,
+  options?: RequestOptions,
+): Promise<Reindex> {
   const config: SendRequestOptions<Reindex> = {
     url: '/rest/api/2/reindex/issue',
     method: 'POST',
@@ -135,6 +153,7 @@ export async function reindexIssues(client: Client, parameters: ReindexIssues): 
       indexComments: parameters.indexComments,
     },
     schema: ReindexSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -145,7 +164,11 @@ export async function reindexIssues(client: Client, parameters: ReindexIssues): 
  * reindex is returned. If there is no active index task, then returns information about the latest reindex task run,
  * otherwise returns a 404 indicating that no reindex has taken place.
  */
-export async function getReindexProgress(client: Client, parameters?: GetReindexProgress): Promise<Reindex> {
+export async function getReindexProgress(
+  client: Client,
+  parameters?: GetReindexProgress,
+  options?: RequestOptions,
+): Promise<Reindex> {
   const config: SendRequestOptions<Reindex> = {
     url: '/rest/api/2/reindex/progress',
     method: 'GET',
@@ -153,6 +176,7 @@ export async function getReindexProgress(client: Client, parameters?: GetReindex
       taskId: parameters?.taskId,
     },
     schema: ReindexSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -162,10 +186,11 @@ export async function getReindexProgress(client: Client, parameters?: GetReindex
  * Executes any pending reindex requests. Execution is asynchronous - progress of the returned tasks can be monitored
  * through other REST calls.
  */
-export async function processRequests(client: Client): Promise<unknown> {
+export async function processRequests(client: Client, options?: RequestOptions): Promise<unknown> {
   const config: SendRequestOptions<unknown> = {
     url: '/rest/api/2/reindex/request',
     method: 'POST',
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -175,7 +200,11 @@ export async function processRequests(client: Client): Promise<unknown> {
  * Retrieves the progress of multiple reindex requests. Only reindex requests that actually exist will be returned in
  * the results.
  */
-export async function getProgressBulk(client: Client, parameters?: GetProgressBulk): Promise<ReindexRequest[]> {
+export async function getProgressBulk(
+  client: Client,
+  parameters?: GetProgressBulk,
+  options?: RequestOptions,
+): Promise<ReindexRequest[]> {
   const config: SendRequestOptions<ReindexRequest[]> = {
     url: '/rest/api/2/reindex/request/bulk',
     method: 'GET',
@@ -183,6 +212,7 @@ export async function getProgressBulk(client: Client, parameters?: GetProgressBu
       requestId: parameters?.requestId,
     },
     schema: z.array(ReindexRequestSchema),
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -192,11 +222,13 @@ export async function getProgressBulk(client: Client, parameters?: GetProgressBu
 export async function getReindexRequestProgress(
   client: Client,
   parameters: GetReindexRequestProgress,
+  options?: RequestOptions,
 ): Promise<ReindexRequest> {
   const config: SendRequestOptions<ReindexRequest> = {
     url: `/rest/api/2/reindex/request/${parameters.requestId}`,
     method: 'GET',
     schema: ReindexRequestSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

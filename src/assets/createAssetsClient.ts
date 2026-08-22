@@ -1,4 +1,4 @@
-import { type ClientConfig, type Client, createClient, type Buffer } from '#/core';
+import { type ClientConfig, type Client, type RequestOptions, createClient, type Buffer } from '#/core';
 import * as icons from './api/icons';
 import * as imports from './api/imports';
 import * as importSources from './api/importSources';
@@ -131,136 +131,179 @@ export function createAssetsClient(config: AssetsClientConfig) {
 
   return {
     icons: {
-      getIcon: (parameters: GetIcon): Promise<Icon> => icons.getIcon(client, parameters),
-      getIconImage: (parameters: GetIconImage): Promise<Buffer> => icons.getIconImage(client, parameters),
-      findGlobalIcons: (): Promise<Icon[]> => icons.findGlobalIcons(client),
+      getIcon: (parameters: GetIcon, options?: RequestOptions): Promise<Icon> =>
+        icons.getIcon(client, parameters, options),
+      getIconImage: (parameters: GetIconImage, options?: RequestOptions): Promise<Buffer> =>
+        icons.getIconImage(client, parameters, options),
+      findGlobalIcons: (options?: RequestOptions): Promise<Icon[]> => icons.findGlobalIcons(client, options),
     },
     imports: {
-      startImport: (parameters: StartImport): Promise<Progress> => imports.startImport(client, parameters),
+      startImport: (parameters: StartImport, options?: RequestOptions): Promise<Progress> =>
+        imports.startImport(client, parameters, options),
     },
     importSources: {
-      getImportSource: (parameters: GetImportSource): Promise<ImportSourceResponse> =>
-        importSources.getImportSource(client, parameters),
-      submitSchemaAndMapping: (parameters: SubmitSchemaAndMapping): Promise<void> =>
-        importSources.submitSchemaAndMapping(client, parameters),
-      updateSchemaAndMapping: (parameters: UpdateSchemaAndMapping): Promise<void> =>
-        importSources.updateSchemaAndMapping(client, parameters),
-      getSchemaAndMappingProgress: (parameters: GetSchemaAndMappingProgress): Promise<void> =>
-        importSources.getSchemaAndMappingProgress(client, parameters),
-      getImportConfigurationStatus: (parameters: GetImportConfigurationStatus): Promise<void> =>
-        importSources.getImportConfigurationStatus(client, parameters),
-      getSchemaAndMapping: (parameters: GetSchemaAndMapping): Promise<ImportSchemaAndMapping> =>
-        importSources.getSchemaAndMapping(client, parameters),
-      startImportExecution: (parameters: StartImportExecution): Promise<void> =>
-        importSources.startImportExecution(client, parameters),
-      cancelImportExecution: (parameters: CancelImportExecution): Promise<void> =>
-        importSources.cancelImportExecution(client, parameters),
-      submitImportExecutionProgress: (parameters: SubmitImportExecutionProgress): Promise<void> =>
-        importSources.submitImportExecutionProgress(client, parameters),
-      submitImportExecutionData: (parameters: SubmitImportExecutionData): Promise<void> =>
-        importSources.submitImportExecutionData(client, parameters),
-      getImportExecutionStatus: (parameters: GetImportExecutionStatus): Promise<void> =>
-        importSources.getImportExecutionStatus(client, parameters),
-      getLatestImportExecutionStatus: (parameters: GetLatestImportExecutionStatus): Promise<void> =>
-        importSources.getLatestImportExecutionStatus(client, parameters),
-      createFailedImportHistory: (parameters: CreateFailedImportHistory): Promise<void> =>
-        importSources.createFailedImportHistory(client, parameters),
-      generateImportSourceToken: (parameters: GenerateImportSourceToken): Promise<void> =>
-        importSources.generateImportSourceToken(client, parameters),
-      getImportScheduleLinks: (parameters: GetImportScheduleLinks): Promise<GetImportScheduleLinksModel> =>
-        importSources.getImportScheduleLinks(client, parameters),
-      createImportSchedule: (parameters: CreateImportSchedule): Promise<ImportScheduleResponse> =>
-        importSources.createImportSchedule(client, parameters),
-      getImportSchedule: (parameters: GetImportSchedule): Promise<ImportScheduleResponse> =>
-        importSources.getImportSchedule(client, parameters),
-      updateImportSchedule: (parameters: UpdateImportSchedule): Promise<ImportScheduleResponse> =>
-        importSources.updateImportSchedule(client, parameters),
-      deleteImportSchedule: (parameters: DeleteImportSchedule): Promise<void> =>
-        importSources.deleteImportSchedule(client, parameters),
+      getImportSource: (parameters: GetImportSource, options?: RequestOptions): Promise<ImportSourceResponse> =>
+        importSources.getImportSource(client, parameters, options),
+      submitSchemaAndMapping: (parameters: SubmitSchemaAndMapping, options?: RequestOptions): Promise<void> =>
+        importSources.submitSchemaAndMapping(client, parameters, options),
+      updateSchemaAndMapping: (parameters: UpdateSchemaAndMapping, options?: RequestOptions): Promise<void> =>
+        importSources.updateSchemaAndMapping(client, parameters, options),
+      getSchemaAndMappingProgress: (parameters: GetSchemaAndMappingProgress, options?: RequestOptions): Promise<void> =>
+        importSources.getSchemaAndMappingProgress(client, parameters, options),
+      getImportConfigurationStatus: (
+        parameters: GetImportConfigurationStatus,
+        options?: RequestOptions,
+      ): Promise<void> => importSources.getImportConfigurationStatus(client, parameters, options),
+      getSchemaAndMapping: (
+        parameters: GetSchemaAndMapping,
+        options?: RequestOptions,
+      ): Promise<ImportSchemaAndMapping> => importSources.getSchemaAndMapping(client, parameters, options),
+      startImportExecution: (parameters: StartImportExecution, options?: RequestOptions): Promise<void> =>
+        importSources.startImportExecution(client, parameters, options),
+      cancelImportExecution: (parameters: CancelImportExecution, options?: RequestOptions): Promise<void> =>
+        importSources.cancelImportExecution(client, parameters, options),
+      submitImportExecutionProgress: (
+        parameters: SubmitImportExecutionProgress,
+        options?: RequestOptions,
+      ): Promise<void> => importSources.submitImportExecutionProgress(client, parameters, options),
+      submitImportExecutionData: (parameters: SubmitImportExecutionData, options?: RequestOptions): Promise<void> =>
+        importSources.submitImportExecutionData(client, parameters, options),
+      getImportExecutionStatus: (parameters: GetImportExecutionStatus, options?: RequestOptions): Promise<void> =>
+        importSources.getImportExecutionStatus(client, parameters, options),
+      getLatestImportExecutionStatus: (
+        parameters: GetLatestImportExecutionStatus,
+        options?: RequestOptions,
+      ): Promise<void> => importSources.getLatestImportExecutionStatus(client, parameters, options),
+      createFailedImportHistory: (parameters: CreateFailedImportHistory, options?: RequestOptions): Promise<void> =>
+        importSources.createFailedImportHistory(client, parameters, options),
+      generateImportSourceToken: (parameters: GenerateImportSourceToken, options?: RequestOptions): Promise<void> =>
+        importSources.generateImportSourceToken(client, parameters, options),
+      getImportScheduleLinks: (
+        parameters: GetImportScheduleLinks,
+        options?: RequestOptions,
+      ): Promise<GetImportScheduleLinksModel> => importSources.getImportScheduleLinks(client, parameters, options),
+      createImportSchedule: (
+        parameters: CreateImportSchedule,
+        options?: RequestOptions,
+      ): Promise<ImportScheduleResponse> => importSources.createImportSchedule(client, parameters, options),
+      getImportSchedule: (parameters: GetImportSchedule, options?: RequestOptions): Promise<ImportScheduleResponse> =>
+        importSources.getImportSchedule(client, parameters, options),
+      updateImportSchedule: (
+        parameters: UpdateImportSchedule,
+        options?: RequestOptions,
+      ): Promise<ImportScheduleResponse> => importSources.updateImportSchedule(client, parameters, options),
+      deleteImportSchedule: (parameters: DeleteImportSchedule, options?: RequestOptions): Promise<void> =>
+        importSources.deleteImportSchedule(client, parameters, options),
     },
     objects: {
-      loadObject: (parameters: LoadObject): Promise<AssetObject> => objects.loadObject(client, parameters),
-      updateObject: (parameters: UpdateObject): Promise<AssetObject> => objects.updateObject(client, parameters),
-      deleteObject: (parameters: DeleteObject): Promise<unknown> => objects.deleteObject(client, parameters),
-      findObjectAttributes: (parameters: FindObjectAttributes): Promise<ObjectAttribute[]> =>
-        objects.findObjectAttributes(client, parameters),
-      findObjectHistory: (parameters: FindObjectHistory): Promise<ObjectHistory[]> =>
-        objects.findObjectHistory(client, parameters),
-      findObjectReferenceInfo: (parameters: FindObjectReferenceInfo): Promise<ObjectReferenceTypeInfo[]> =>
-        objects.findObjectReferenceInfo(client, parameters),
-      createObject: (parameters: CreateObject): Promise<AssetObject> => objects.createObject(client, parameters),
-      findObjectsByAql: (parameters: FindObjectsByAql): Promise<ObjectListInclTypeAttributesEntryResult> =>
-        objects.findObjectsByAql(client, parameters),
-      countObjectsByAql: (parameters: CountObjectsByAql): Promise<ObjectAQLTotalCountResult> =>
-        objects.countObjectsByAql(client, parameters),
+      loadObject: (parameters: LoadObject, options?: RequestOptions): Promise<AssetObject> =>
+        objects.loadObject(client, parameters, options),
+      updateObject: (parameters: UpdateObject, options?: RequestOptions): Promise<AssetObject> =>
+        objects.updateObject(client, parameters, options),
+      deleteObject: (parameters: DeleteObject, options?: RequestOptions): Promise<unknown> =>
+        objects.deleteObject(client, parameters, options),
+      findObjectAttributes: (parameters: FindObjectAttributes, options?: RequestOptions): Promise<ObjectAttribute[]> =>
+        objects.findObjectAttributes(client, parameters, options),
+      findObjectHistory: (parameters: FindObjectHistory, options?: RequestOptions): Promise<ObjectHistory[]> =>
+        objects.findObjectHistory(client, parameters, options),
+      findObjectReferenceInfo: (
+        parameters: FindObjectReferenceInfo,
+        options?: RequestOptions,
+      ): Promise<ObjectReferenceTypeInfo[]> => objects.findObjectReferenceInfo(client, parameters, options),
+      createObject: (parameters: CreateObject, options?: RequestOptions): Promise<AssetObject> =>
+        objects.createObject(client, parameters, options),
+      findObjectsByAql: (
+        parameters: FindObjectsByAql,
+        options?: RequestOptions,
+      ): Promise<ObjectListInclTypeAttributesEntryResult> => objects.findObjectsByAql(client, parameters, options),
+      countObjectsByAql: (
+        parameters: CountObjectsByAql,
+        options?: RequestOptions,
+      ): Promise<ObjectAQLTotalCountResult> => objects.countObjectsByAql(client, parameters, options),
     },
     connectedTickets: {
-      findObjectTickets: (parameters: FindObjectTickets): Promise<Tickets> =>
-        connectedTickets.findObjectTickets(client, parameters),
+      findObjectTickets: (parameters: FindObjectTickets, options?: RequestOptions): Promise<Tickets> =>
+        connectedTickets.findObjectTickets(client, parameters, options),
     },
     objectSchemas: {
-      findSchemas: (parameters?: FindSchemas): Promise<ObjectSchemaList> =>
-        objectSchemas.findSchemas(client, parameters),
-      createSchema: (parameters: CreateSchema): Promise<ObjectSchema> => objectSchemas.createSchema(client, parameters),
-      loadSchema: (parameters: LoadSchema): Promise<ObjectSchema> => objectSchemas.loadSchema(client, parameters),
-      updateSchema: (parameters: UpdateSchema): Promise<ObjectSchema> => objectSchemas.updateSchema(client, parameters),
-      deleteSchema: (parameters: DeleteSchema): Promise<ObjectSchema> => objectSchemas.deleteSchema(client, parameters),
-      findSchemaAttributes: (parameters: FindSchemaAttributes): Promise<ObjectTypeAttribute[]> =>
-        objectSchemas.findSchemaAttributes(client, parameters),
-      findSchemaObjectTypes: (parameters: FindSchemaObjectTypes): Promise<ObjectType[]> =>
-        objectSchemas.findSchemaObjectTypes(client, parameters),
-      findSchemaObjectTypesFlat: (parameters: FindSchemaObjectTypesFlat): Promise<ObjectType[]> =>
-        objectSchemas.findSchemaObjectTypesFlat(client, parameters),
+      findSchemas: (parameters?: FindSchemas, options?: RequestOptions): Promise<ObjectSchemaList> =>
+        objectSchemas.findSchemas(client, parameters, options),
+      createSchema: (parameters: CreateSchema, options?: RequestOptions): Promise<ObjectSchema> =>
+        objectSchemas.createSchema(client, parameters, options),
+      loadSchema: (parameters: LoadSchema, options?: RequestOptions): Promise<ObjectSchema> =>
+        objectSchemas.loadSchema(client, parameters, options),
+      updateSchema: (parameters: UpdateSchema, options?: RequestOptions): Promise<ObjectSchema> =>
+        objectSchemas.updateSchema(client, parameters, options),
+      deleteSchema: (parameters: DeleteSchema, options?: RequestOptions): Promise<ObjectSchema> =>
+        objectSchemas.deleteSchema(client, parameters, options),
+      findSchemaAttributes: (
+        parameters: FindSchemaAttributes,
+        options?: RequestOptions,
+      ): Promise<ObjectTypeAttribute[]> => objectSchemas.findSchemaAttributes(client, parameters, options),
+      findSchemaObjectTypes: (parameters: FindSchemaObjectTypes, options?: RequestOptions): Promise<ObjectType[]> =>
+        objectSchemas.findSchemaObjectTypes(client, parameters, options),
+      findSchemaObjectTypesFlat: (
+        parameters: FindSchemaObjectTypesFlat,
+        options?: RequestOptions,
+      ): Promise<ObjectType[]> => objectSchemas.findSchemaObjectTypesFlat(client, parameters, options),
     },
     objectTypes: {
-      loadObjectType: (parameters: LoadObjectType): Promise<ObjectType> =>
-        objectTypes.loadObjectType(client, parameters),
-      updateObjectType: (parameters: UpdateObjectType): Promise<ObjectType> =>
-        objectTypes.updateObjectType(client, parameters),
-      deleteObjectType: (parameters: DeleteObjectType): Promise<ObjectType> =>
-        objectTypes.deleteObjectType(client, parameters),
-      findObjectTypeAttributes: (parameters: FindObjectTypeAttributes): Promise<ObjectTypeAttribute[]> =>
-        objectTypes.findObjectTypeAttributes(client, parameters),
-      changeObjectTypePosition: (parameters: ChangeObjectTypePosition): Promise<ObjectType> =>
-        objectTypes.changeObjectTypePosition(client, parameters),
-      createObjectType: (parameters: CreateObjectType): Promise<ObjectType> =>
-        objectTypes.createObjectType(client, parameters),
+      loadObjectType: (parameters: LoadObjectType, options?: RequestOptions): Promise<ObjectType> =>
+        objectTypes.loadObjectType(client, parameters, options),
+      updateObjectType: (parameters: UpdateObjectType, options?: RequestOptions): Promise<ObjectType> =>
+        objectTypes.updateObjectType(client, parameters, options),
+      deleteObjectType: (parameters: DeleteObjectType, options?: RequestOptions): Promise<ObjectType> =>
+        objectTypes.deleteObjectType(client, parameters, options),
+      findObjectTypeAttributes: (
+        parameters: FindObjectTypeAttributes,
+        options?: RequestOptions,
+      ): Promise<ObjectTypeAttribute[]> => objectTypes.findObjectTypeAttributes(client, parameters, options),
+      changeObjectTypePosition: (parameters: ChangeObjectTypePosition, options?: RequestOptions): Promise<ObjectType> =>
+        objectTypes.changeObjectTypePosition(client, parameters, options),
+      createObjectType: (parameters: CreateObjectType, options?: RequestOptions): Promise<ObjectType> =>
+        objectTypes.createObjectType(client, parameters, options),
     },
     objectTypeAttributes: {
-      createObjectTypeAttribute: (parameters: CreateObjectTypeAttribute): Promise<ObjectTypeAttribute> =>
-        objectTypeAttributes.createObjectTypeAttribute(client, parameters),
-      updateObjectTypeAttribute: (parameters: UpdateObjectTypeAttribute): Promise<ObjectTypeAttribute> =>
-        objectTypeAttributes.updateObjectTypeAttribute(client, parameters),
-      deleteObjectTypeAttribute: (parameters: DeleteObjectTypeAttribute): Promise<void> =>
-        objectTypeAttributes.deleteObjectTypeAttribute(client, parameters),
+      createObjectTypeAttribute: (
+        parameters: CreateObjectTypeAttribute,
+        options?: RequestOptions,
+      ): Promise<ObjectTypeAttribute> => objectTypeAttributes.createObjectTypeAttribute(client, parameters, options),
+      updateObjectTypeAttribute: (
+        parameters: UpdateObjectTypeAttribute,
+        options?: RequestOptions,
+      ): Promise<ObjectTypeAttribute> => objectTypeAttributes.updateObjectTypeAttribute(client, parameters, options),
+      deleteObjectTypeAttribute: (parameters: DeleteObjectTypeAttribute, options?: RequestOptions): Promise<void> =>
+        objectTypeAttributes.deleteObjectTypeAttribute(client, parameters, options),
     },
     progress: {
-      getImportProgress: (parameters: GetImportProgress): Promise<Progress> =>
-        progress.getImportProgress(client, parameters),
+      getImportProgress: (parameters: GetImportProgress, options?: RequestOptions): Promise<Progress> =>
+        progress.getImportProgress(client, parameters, options),
     },
     statusTypes: {
-      findStatusTypes: (parameters?: FindStatusTypes): Promise<Status[]> =>
-        statusTypes.findStatusTypes(client, parameters),
-      createStatusType: (parameters: CreateStatusType): Promise<Status> =>
-        statusTypes.createStatusType(client, parameters),
-      getStatusType: (parameters: GetStatusType): Promise<Status> => statusTypes.getStatusType(client, parameters),
-      updateStatusType: (parameters: UpdateStatusType): Promise<Status> =>
-        statusTypes.updateStatusType(client, parameters),
-      deleteStatusType: (parameters: DeleteStatusType): Promise<void> =>
-        statusTypes.deleteStatusType(client, parameters),
+      findStatusTypes: (parameters?: FindStatusTypes, options?: RequestOptions): Promise<Status[]> =>
+        statusTypes.findStatusTypes(client, parameters, options),
+      createStatusType: (parameters: CreateStatusType, options?: RequestOptions): Promise<Status> =>
+        statusTypes.createStatusType(client, parameters, options),
+      getStatusType: (parameters: GetStatusType, options?: RequestOptions): Promise<Status> =>
+        statusTypes.getStatusType(client, parameters, options),
+      updateStatusType: (parameters: UpdateStatusType, options?: RequestOptions): Promise<Status> =>
+        statusTypes.updateStatusType(client, parameters, options),
+      deleteStatusType: (parameters: DeleteStatusType, options?: RequestOptions): Promise<void> =>
+        statusTypes.deleteStatusType(client, parameters, options),
     },
     referenceTypes: {
-      findReferenceTypes: (parameters?: FindReferenceTypes): Promise<ReferenceType[]> =>
-        referenceTypes.findReferenceTypes(client, parameters),
-      createReferenceType: (parameters: CreateReferenceType): Promise<ReferenceType> =>
-        referenceTypes.createReferenceType(client, parameters),
+      findReferenceTypes: (parameters?: FindReferenceTypes, options?: RequestOptions): Promise<ReferenceType[]> =>
+        referenceTypes.findReferenceTypes(client, parameters, options),
+      createReferenceType: (parameters: CreateReferenceType, options?: RequestOptions): Promise<ReferenceType> =>
+        referenceTypes.createReferenceType(client, parameters, options),
     },
     globalConfig: {
-      updateGlobalConfiguration: (parameters: UpdateGlobalConfiguration): Promise<void> =>
-        globalConfig.updateGlobalConfiguration(client, parameters),
+      updateGlobalConfiguration: (parameters: UpdateGlobalConfiguration, options?: RequestOptions): Promise<void> =>
+        globalConfig.updateGlobalConfiguration(client, parameters, options),
     },
     usage: {
-      getTenantUsageInfo: (): Promise<TenantUsageResponse> => usage.getTenantUsageInfo(client),
+      getTenantUsageInfo: (options?: RequestOptions): Promise<TenantUsageResponse> =>
+        usage.getTenantUsageInfo(client, options),
     },
   };
 }

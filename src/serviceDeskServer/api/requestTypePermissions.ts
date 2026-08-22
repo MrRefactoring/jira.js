@@ -1,7 +1,7 @@
 import { RequestTypePermissionSchema, type RequestTypePermission } from '../models/requestTypePermission';
 import type { GetPermissionsByRequestTypeId } from '../parameters/getPermissionsByRequestTypeId';
 import type { UpsertRequestTypePermission } from '../parameters/upsertRequestTypePermission';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /**
  * Returns the permissions for a customer request type for a given request type ID. These permissions control who can
@@ -10,11 +10,13 @@ import type { Client, SendRequestOptions } from '#/core';
 export async function getPermissionsByRequestTypeId(
   client: Client,
   parameters: GetPermissionsByRequestTypeId,
+  options?: RequestOptions,
 ): Promise<RequestTypePermission> {
   const config: SendRequestOptions<RequestTypePermission> = {
     url: `/rest/servicedeskapi/servicedesk/${parameters.serviceDeskId}/requesttype/${parameters.requestTypeId}/permission`,
     method: 'GET',
     schema: RequestTypePermissionSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -24,6 +26,7 @@ export async function getPermissionsByRequestTypeId(
 export async function upsertRequestTypePermission(
   client: Client,
   parameters: UpsertRequestTypePermission,
+  options?: RequestOptions,
 ): Promise<RequestTypePermission> {
   const config: SendRequestOptions<RequestTypePermission> = {
     url: `/rest/servicedeskapi/servicedesk/${parameters.serviceDeskId}/requesttype/${parameters.requestTypeId}/permission`,
@@ -32,6 +35,7 @@ export async function upsertRequestTypePermission(
       allowlist: parameters.allowlist,
     },
     schema: RequestTypePermissionSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

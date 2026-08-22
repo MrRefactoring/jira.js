@@ -3,22 +3,31 @@ import { UploadedAttachmentSchema, type UploadedAttachment } from '../models/upl
 import type { GetAttachments } from '../parameters/getAttachments';
 import type { AddAttachments } from '../parameters/addAttachments';
 import type { DeleteAttachment } from '../parameters/deleteAttachment';
-import { type Client, type SendRequestOptions, toFormDataFile } from '#/core';
+import { type Client, type RequestOptions, type SendRequestOptions, toFormDataFile } from '#/core';
 import { z } from 'zod';
 
 /** Get the attachments for an object by object ID. */
-export async function getAttachments(client: Client, parameters: GetAttachments): Promise<Attachment[]> {
+export async function getAttachments(
+  client: Client,
+  parameters: GetAttachments,
+  options?: RequestOptions,
+): Promise<Attachment[]> {
   const config: SendRequestOptions<Attachment[]> = {
     url: `/rest/assets/1.0/attachments/object/${parameters.objectId}`,
     method: 'GET',
     schema: z.array(AttachmentSchema),
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Add an attachment to an object by object ID. */
-export async function addAttachments(client: Client, parameters: AddAttachments): Promise<UploadedAttachment[]> {
+export async function addAttachments(
+  client: Client,
+  parameters: AddAttachments,
+  options?: RequestOptions,
+): Promise<UploadedAttachment[]> {
   const formData = new FormData();
   const items = Array.isArray(parameters.attachments) ? parameters.attachments : [parameters.attachments];
 
@@ -34,17 +43,23 @@ export async function addAttachments(client: Client, parameters: AddAttachments)
     },
     body: formData,
     schema: z.array(UploadedAttachmentSchema),
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Delete an attachment by attachment ID. */
-export async function deleteAttachment(client: Client, parameters: DeleteAttachment): Promise<Attachment> {
+export async function deleteAttachment(
+  client: Client,
+  parameters: DeleteAttachment,
+  options?: RequestOptions,
+): Promise<Attachment> {
   const config: SendRequestOptions<Attachment> = {
     url: `/rest/assets/1.0/attachments/${parameters.attachmentId}`,
     method: 'DELETE',
     schema: AttachmentSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

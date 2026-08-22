@@ -2,14 +2,15 @@ import { UserSchema, type User } from '../models/user';
 import { UserWriteSchema, type UserWrite } from '../models/userWrite';
 import type { UpdateCurrentUser } from '../parameters/updateCurrentUser';
 import type { ChangeMyPassword } from '../parameters/changeMyPassword';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /** Returns currently logged user. This resource cannot be accessed anonymously */
-export async function getCurrentUser(client: Client): Promise<User> {
+export async function getCurrentUser(client: Client, options?: RequestOptions): Promise<User> {
   const config: SendRequestOptions<User> = {
     url: '/rest/api/2/myself',
     method: 'GET',
     schema: UserSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -19,7 +20,11 @@ export async function getCurrentUser(client: Client): Promise<User> {
  * Modify currently logged user. The 'value' fields present will override the existing value. Fields skipped in request
  * will not be changed. Only email and display name can be change that way. Requires user password.
  */
-export async function updateCurrentUser(client: Client, parameters: UpdateCurrentUser): Promise<UserWrite> {
+export async function updateCurrentUser(
+  client: Client,
+  parameters: UpdateCurrentUser,
+  options?: RequestOptions,
+): Promise<UserWrite> {
   const config: SendRequestOptions<UserWrite> = {
     url: '/rest/api/2/myself',
     method: 'PUT',
@@ -35,13 +40,18 @@ export async function updateCurrentUser(client: Client, parameters: UpdateCurren
       self: parameters.self,
     },
     schema: UserWriteSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Modify caller password. */
-export async function changeMyPassword(client: Client, parameters: ChangeMyPassword): Promise<void> {
+export async function changeMyPassword(
+  client: Client,
+  parameters: ChangeMyPassword,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: '/rest/api/2/myself/password',
     method: 'PUT',
@@ -49,6 +59,7 @@ export async function changeMyPassword(client: Client, parameters: ChangeMyPassw
       currentPassword: parameters.currentPassword,
       password: parameters.password,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

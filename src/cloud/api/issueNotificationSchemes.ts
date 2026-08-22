@@ -8,7 +8,7 @@ import type { GetNotificationSchemeToProjectMappings } from '../parameters/getNo
 import type { GetNotificationScheme } from '../parameters/getNotificationScheme';
 import type { AddNotifications } from '../parameters/addNotifications';
 import type { RemoveNotificationFromNotificationScheme } from '../parameters/removeNotificationFromNotificationScheme';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /**
  * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#pagination) list of
@@ -23,6 +23,7 @@ import type { Client, SendRequestOptions } from '#/core';
 export async function getNotificationSchemes(
   client: Client,
   parameters?: GetNotificationSchemes,
+  options?: RequestOptions,
 ): Promise<Page<NotificationScheme>> {
   const config: SendRequestOptions<Page<NotificationScheme>> = {
     url: '/rest/api/3/notificationscheme',
@@ -36,6 +37,7 @@ export async function getNotificationSchemes(
       expand: parameters?.expand,
     },
     schema: PageNotificationSchemeSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -54,6 +56,7 @@ export async function getNotificationSchemes(
 export async function getNotificationSchemeToProjectMappings(
   client: Client,
   parameters?: GetNotificationSchemeToProjectMappings,
+  options?: RequestOptions,
 ): Promise<Page<NotificationSchemeAndProjectMapping>> {
   const config: SendRequestOptions<Page<NotificationSchemeAndProjectMapping>> = {
     url: '/rest/api/3/notificationscheme/project',
@@ -65,6 +68,7 @@ export async function getNotificationSchemeToProjectMappings(
       projectId: parameters?.projectId,
     },
     schema: NotificationSchemeAndProjectMappingPageSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -81,6 +85,7 @@ export async function getNotificationSchemeToProjectMappings(
 export async function getNotificationScheme(
   client: Client,
   parameters: GetNotificationScheme,
+  options?: RequestOptions,
 ): Promise<NotificationScheme> {
   const config: SendRequestOptions<NotificationScheme> = {
     url: `/rest/api/3/notificationscheme/${parameters.id}`,
@@ -89,6 +94,7 @@ export async function getNotificationScheme(
       expand: parameters.expand,
     },
     schema: NotificationSchemeSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -103,13 +109,18 @@ export async function getNotificationScheme(
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-export async function addNotifications(client: Client, parameters: AddNotifications): Promise<void> {
+export async function addNotifications(
+  client: Client,
+  parameters: AddNotifications,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/notificationscheme/${parameters.id}/notification`,
     method: 'PUT',
     body: {
       notificationSchemeEvents: parameters.notificationSchemeEvents,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -124,10 +135,12 @@ export async function addNotifications(client: Client, parameters: AddNotificati
 export async function removeNotificationFromNotificationScheme(
   client: Client,
   parameters: RemoveNotificationFromNotificationScheme,
+  options?: RequestOptions,
 ): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/notificationscheme/${parameters.notificationSchemeId}/notification/${parameters.notificationId}`,
     method: 'DELETE',
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

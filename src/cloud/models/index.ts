@@ -990,6 +990,8 @@ export * from './licenseMetric';
 
 export * from './licensedApplication';
 
+export * from './limitExceededResponse';
+
 export * from './linkGroup';
 
 export * from './linkIssueRequest';

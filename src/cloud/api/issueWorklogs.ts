@@ -9,7 +9,7 @@ import type { DeleteWorklog } from '../parameters/deleteWorklog';
 import type { GetIdsOfWorklogsDeletedSince } from '../parameters/getIdsOfWorklogsDeletedSince';
 import type { GetWorklogsForIds } from '../parameters/getWorklogsForIds';
 import type { GetIdsOfWorklogsModifiedSince } from '../parameters/getIdsOfWorklogsModifiedSince';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 import { z } from 'zod';
 
 /**
@@ -30,7 +30,11 @@ import { z } from 'zod';
  *   to view the issue.
  * - If the worklog has visibility restrictions, belongs to the group or has the role visibility is restricted to.
  */
-export async function getIssueWorklog(client: Client, parameters: GetIssueWorklog): Promise<PageOfWorklogs> {
+export async function getIssueWorklog(
+  client: Client,
+  parameters: GetIssueWorklog,
+  options?: RequestOptions,
+): Promise<PageOfWorklogs> {
   const config: SendRequestOptions<PageOfWorklogs> = {
     url: `/rest/api/3/issue/${parameters.issueIdOrKey}/worklog`,
     method: 'GET',
@@ -42,6 +46,7 @@ export async function getIssueWorklog(client: Client, parameters: GetIssueWorklo
       expand: parameters.expand,
     },
     schema: PageOfWorklogsSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -62,7 +67,7 @@ export async function getIssueWorklog(client: Client, parameters: GetIssueWorklo
  * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
  *   to view the issue.
  */
-export async function addWorklog(client: Client, parameters: AddWorklog): Promise<Worklog> {
+export async function addWorklog(client: Client, parameters: AddWorklog, options?: RequestOptions): Promise<Worklog> {
   if (typeof parameters.comment === 'string') {
     const created = await client.sendRequest<{ id: string }>({
       url: `/rest/api/2/issue/${parameters.issueIdOrKey}/worklog`,
@@ -74,13 +79,18 @@ export async function addWorklog(client: Client, parameters: AddWorklog): Promis
         timeSpentSeconds: parameters.timeSpentSeconds,
         visibility: parameters.visibility,
       },
+      signal: options?.signal,
     });
 
-    return getWorklog(client, {
-      issueIdOrKey: parameters.issueIdOrKey,
-      id: created.id,
-      expand: parameters.expand,
-    });
+    return getWorklog(
+      client,
+      {
+        issueIdOrKey: parameters.issueIdOrKey,
+        id: created.id,
+        expand: parameters.expand,
+      },
+      options,
+    );
   }
 
   const config: SendRequestOptions<Worklog> = {
@@ -110,6 +120,7 @@ export async function addWorklog(client: Client, parameters: AddWorklog): Promis
       visibility: parameters.visibility,
     },
     schema: WorklogSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -131,7 +142,7 @@ export async function addWorklog(client: Client, parameters: AddWorklog): Promis
  *   to view the issue.
  * - If the worklog has visibility restrictions, belongs to the group or has the role visibility is restricted to.
  */
-export async function getWorklog(client: Client, parameters: GetWorklog): Promise<Worklog> {
+export async function getWorklog(client: Client, parameters: GetWorklog, options?: RequestOptions): Promise<Worklog> {
   const config: SendRequestOptions<Worklog> = {
     url: `/rest/api/3/issue/${parameters.issueIdOrKey}/worklog/${parameters.id}`,
     method: 'GET',
@@ -139,6 +150,7 @@ export async function getWorklog(client: Client, parameters: GetWorklog): Promis
       expand: parameters.expand,
     },
     schema: WorklogSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -162,7 +174,11 @@ export async function getWorklog(client: Client, parameters: GetWorklog): Promis
  *   own worklogs_ to update worklogs created by the user.
  * - If the worklog has visibility restrictions, belongs to the group or has the role visibility is restricted to.
  */
-export async function updateWorklog(client: Client, parameters: UpdateWorklog): Promise<Worklog> {
+export async function updateWorklog(
+  client: Client,
+  parameters: UpdateWorklog,
+  options?: RequestOptions,
+): Promise<Worklog> {
   if (typeof parameters.body.comment === 'string') {
     await client.sendRequest<unknown>({
       url: `/rest/api/2/issue/${parameters.issueIdOrKey}/worklog/${parameters.id}`,
@@ -174,13 +190,18 @@ export async function updateWorklog(client: Client, parameters: UpdateWorklog): 
         timeSpentSeconds: parameters.body.timeSpentSeconds,
         visibility: parameters.body.visibility,
       },
+      signal: options?.signal,
     });
 
-    return getWorklog(client, {
-      issueIdOrKey: parameters.issueIdOrKey,
-      id: parameters.id,
-      expand: parameters.expand,
-    });
+    return getWorklog(
+      client,
+      {
+        issueIdOrKey: parameters.issueIdOrKey,
+        id: parameters.id,
+        expand: parameters.expand,
+      },
+      options,
+    );
   }
 
   const config: SendRequestOptions<Worklog> = {
@@ -195,6 +216,7 @@ export async function updateWorklog(client: Client, parameters: UpdateWorklog): 
     },
     body: parameters.body,
     schema: WorklogSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -218,7 +240,11 @@ export async function updateWorklog(client: Client, parameters: UpdateWorklog): 
  *   _Delete own worklogs_ to delete worklogs created by the user,
  * - If the worklog has visibility restrictions, belongs to the group or has the role visibility is restricted to.
  */
-export async function deleteWorklog(client: Client, parameters: DeleteWorklog): Promise<void> {
+export async function deleteWorklog(
+  client: Client,
+  parameters: DeleteWorklog,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/issue/${parameters.issueIdOrKey}/worklog/${parameters.id}`,
     method: 'DELETE',
@@ -229,6 +255,7 @@ export async function deleteWorklog(client: Client, parameters: DeleteWorklog): 
       increaseBy: parameters.increaseBy,
       overrideEditableFlag: parameters.overrideEditableFlag,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -250,6 +277,7 @@ export async function deleteWorklog(client: Client, parameters: DeleteWorklog): 
 export async function getIdsOfWorklogsDeletedSince(
   client: Client,
   parameters?: GetIdsOfWorklogsDeletedSince,
+  options?: RequestOptions,
 ): Promise<ChangedWorklogs> {
   const config: SendRequestOptions<ChangedWorklogs> = {
     url: '/rest/api/3/worklog/deleted',
@@ -258,6 +286,7 @@ export async function getIdsOfWorklogsDeletedSince(
       since: parameters?.since,
     },
     schema: ChangedWorklogsSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -274,7 +303,11 @@ export async function getIdsOfWorklogsDeletedSince(
  * - The worklog is set as _Viewable by All Users_.
  * - The user is a member of a project role or group with permission to view the worklog.
  */
-export async function getWorklogsForIds(client: Client, parameters: GetWorklogsForIds): Promise<Worklog[]> {
+export async function getWorklogsForIds(
+  client: Client,
+  parameters: GetWorklogsForIds,
+  options?: RequestOptions,
+): Promise<Worklog[]> {
   const config: SendRequestOptions<Worklog[]> = {
     url: '/rest/api/3/worklog/list',
     method: 'POST',
@@ -285,6 +318,7 @@ export async function getWorklogsForIds(client: Client, parameters: GetWorklogsF
       ids: parameters.ids,
     },
     schema: z.array(WorklogSchema),
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -309,6 +343,7 @@ export async function getWorklogsForIds(client: Client, parameters: GetWorklogsF
 export async function getIdsOfWorklogsModifiedSince(
   client: Client,
   parameters?: GetIdsOfWorklogsModifiedSince,
+  options?: RequestOptions,
 ): Promise<ChangedWorklogs> {
   const config: SendRequestOptions<ChangedWorklogs> = {
     url: '/rest/api/3/worklog/updated',
@@ -318,6 +353,7 @@ export async function getIdsOfWorklogsModifiedSince(
       expand: parameters?.expand,
     },
     schema: ChangedWorklogsSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
