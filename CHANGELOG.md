@@ -8,7 +8,7 @@ Every one of those operations has been called against a running Jira Data Center
 
 The transport underneath every surface gained its missing seams in the same release — cancellation, a replaceable `fetch`, and an error where a refused credential used to pass for an empty result. Those are described first, because the last of them changes what existing code sees.
 
-Three more surfaces arrive with it: Service Management and Assets on Data Center, and Assets on Cloud — which closes [#266](https://github.com/MrRefactoring/jira.js/issues/266), open since May 2023.
+Four more surfaces arrive with it: Service Management and Assets on Data Center, Assets on Cloud — which closes [#266](https://github.com/MrRefactoring/jira.js/issues/266), open since May 2023 — and Teams, the first one addressed to your organization rather than to a site.
 
 ### The transport
 
@@ -47,7 +47,7 @@ Three long-standing requests, all of them the same shape: the client had no seam
 
   If your code treated an empty result on a dead token as normal, it will now throw. It was reading anonymous data and calling it yours.
 
-* **Request parameter types are importable again.** `CreateIssue`, `GetIssue` and the twelve hundred others appeared in no published declaration file: a surface entry point re-exports `api`, `models` and its factory, and never `parameters`. They now have a subpath of their own, on all seven surfaces:
+* **Request parameter types are importable again.** `CreateIssue`, `GetIssue` and the twelve hundred others appeared in no published declaration file: a surface entry point re-exports `api`, `models` and its factory, and never `parameters`. They now have a subpath of their own, on all eight surfaces:
 
   ```ts
   import type { CreateIssue } from 'jira.js/cloud/parameters';
@@ -57,6 +57,32 @@ Three long-standing requests, all of them the same shape: the client had no seam
   A subpath rather than a re-export from the surface, because a parameter and a model share a name in nine places on Cloud and forty-one on Agile, and `export *` cannot resolve that. A subpath rather than `export * as Parameters`, because the parameter modules export zod schemas as values, and a namespace object is what a bundler cannot take apart.
 
 ### Features
+
+* **`createTeamsClient` and `jira.js/teams`.** Fifteen operations of the [Teams REST API](https://developer.atlassian.com/platform/teams/rest/v1/): teams, their members, and links to an external directory. Closes [#364](https://github.com/MrRefactoring/jira.js/issues/364).
+
+  Teams are organization-level rather than site-level, so every operation but one is addressed to an `orgId` — a parameter on the call rather than a field on the client, because one account can administer several organizations and one client reaches all of them.
+
+  ```ts
+  import { createClient, getTenantContext } from 'jira.js/core';
+  import { createTeamsClient } from 'jira.js';
+
+  const { orgId } = await getTenantContext(createClient({ host, auth }));
+  const teams = createTeamsClient({ host, auth });
+
+  const page = await teams.teams.queryTeams({ orgId });
+  ```
+
+  OAuth 2.0 is absent from the config type on purpose: the API refuses it, as it refuses Forge apps, and a compile error says so earlier than a 401 would. A deleted team answers **410** rather than 404 on the next read — the id stays known and reports itself as gone.
+
+* **`getTenantContext` resolves a site's `cloudId`, `orgId` and host name.** Atlassian publishes no REST endpoint for any of the three, and `orgId` in particular names the organization above your site rather than the site itself. The call goes to the GraphQL gateway, which is the documented way to ask, and it takes the client you already built, so it inherits its proxy, retries and custom `fetch`.
+
+  ```ts
+  import { createClient, getTenantContext } from 'jira.js/core';
+
+  const { cloudId, orgId, hostName } = await getTenantContext(createClient({ host, auth }));
+  ```
+
+  Cloud only. Under OAuth 2.0 (3LO) there is no fixed host to ask about and the call throws a `ConfigError` rather than guessing; a Data Center instance serves no gateway.
 
 * **`createAssetsClient` and `jira.js/assets`.** Sixty operations of the [Assets Cloud REST API](https://developer.atlassian.com/cloud/assets/rest/) across thirteen modules: objects and their schemas, types and attributes, AQL, icons, status and reference types, and the import sources a third-party integration feeds data through.
 

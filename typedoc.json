@@ -9,7 +9,8 @@
     "src/server",
     "src/serviceDeskServer",
     "src/assets",
-    "src/assetsServer"
+    "src/assetsServer",
+    "src/teams"
   ],
   "entryPointStrategy": "expand",
   "exclude": ["**/*.test.ts", "**/index.ts"],

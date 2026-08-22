@@ -1,8 +1,8 @@
 # jira.js
 
-> Modern Jira REST API client for JavaScript and TypeScript. Covers the Jira Cloud platform REST API, the Jira Agile API, the Jira Service Management API, the Assets API, and the self-hosted Jira Data Center and Service Management Data Center APIs. Runs in Node.js 22+ and browsers, ESM-only, promise-based and fully typed, with every response validated at runtime against a schema.
+> Modern Jira REST API client for JavaScript and TypeScript. Covers the Jira Cloud platform REST API, the Jira Agile API, the Jira Service Management API, the Assets API, the organization-level Teams API, and the self-hosted Jira Data Center and Service Management Data Center APIs. Runs in Node.js 22+ and browsers, ESM-only, promise-based and fully typed, with every response validated at runtime against a schema.
 
-jira.js is an npm package (`npm install jira.js`) that wraps the Atlassian Jira REST APIs, cloud and self-hosted. Clients are built with factory functions — `createCloudClient`, `createAgileClient`, `createServiceDeskClient`, `createServerClient`, `createServiceDeskServerClient`, `createAssetsServerClient`, `createAssetsClient` — or composed from flat per-endpoint functions for smaller bundles. Failures arrive as typed errors with predicates (`isNotFoundError`, `isRateLimitError`, …) rather than as transport errors.
+jira.js is an npm package (`npm install jira.js`) that wraps the Atlassian Jira REST APIs, cloud and self-hosted. Clients are built with factory functions — `createCloudClient`, `createAgileClient`, `createServiceDeskClient`, `createServerClient`, `createServiceDeskServerClient`, `createAssetsServerClient`, `createAssetsClient`, `createTeamsClient` — or composed from flat per-endpoint functions for smaller bundles. Failures arrive as typed errors with predicates (`isNotFoundError`, `isRateLimitError`, …) rather than as transport errors.
 
 Cloud authenticates with an email and API token, a bearer token, or OAuth 2.0 (3LO) with automatic token refresh and cloud id resolution. Data Center is a surface of its own rather than the Cloud client pointed at another host — `/rest/api/2` rather than `/rest/api/3`, wiki markup rather than Atlassian Document Format, `name` and `key` rather than `accountId` — and authenticates with a personal access token, a username and password, or OAuth 2.0 against the instance itself, which is its own authorization server.
 
@@ -18,6 +18,8 @@ Every call takes an optional `RequestOptions` after its parameters — `{ signal
 - [Jira Data Center](https://mrrefactoring.github.io/jira.js/guide/data-center): The self-hosted surface — supported versions, its three authentication mechanisms, and what a Cloud user trips over.
 - [Service Management Data Center](https://mrrefactoring.github.io/jira.js/guide/service-management-data-center): The self-hosted JSM surface, and why every one of its endpoints answers 403 without a licence.
 - [Assets](https://mrrefactoring.github.io/jira.js/guide/assets): The configuration management database on both deployments — the workspace a Cloud client needs, and the six things the Data Center specification gets wrong.
+- [Teams](https://mrrefactoring.github.io/jira.js/guide/teams): Teams at organization level — why `orgId` is a parameter rather than client configuration, and why OAuth 2.0 is absent from the config type.
+- [Tenant context](https://mrrefactoring.github.io/jira.js/guide/tenant-context): Resolving a site's `cloudId`, `orgId` and host name, which no REST endpoint returns.
 - [OAuth 2.0 (3LO) guide](https://mrrefactoring.github.io/jira.js/guide/oauth2-authentication): Step-by-step setup with auto-refresh and cloudId resolution.
 - [Error handling](https://mrrefactoring.github.io/jira.js/guide/error-handling): The typed error hierarchy and its predicates.
 - [Response validation](https://mrrefactoring.github.io/jira.js/guide/response-validation): What happens when Jira sends a shape the schema does not describe, and how to configure it.

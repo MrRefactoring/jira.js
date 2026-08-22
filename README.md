@@ -140,6 +140,7 @@ The documentation includes:
 - **Jira Data Center API**: self-hosted Jira, `/rest/api/2` plus the Agile endpoints, from one `createServerClient`
 - **Jira Service Management Data Center API**: self-hosted requests, queues and organizations, from `createServiceDeskServerClient`
 - **Assets API**: objects, schemas, types and AQL — `createAssetsClient` on Cloud, `createAssetsServerClient` self-hosted
+- **Teams API**: teams, their members and external links, at organization level — `createTeamsClient`
 
 There is one platform surface, generated from Jira's v3 specification. `Version2Client` and `Version3Client` are gone — the difference between them was never the endpoints, it was rich text. Rich-text fields still accept a wiki-markup **string**: that write is routed through Jira's v2 endpoint, which parses the markup server-side, and the result is read back so what you get is a real [Atlassian Document Format](https://developer.atlassian.com/cloud/jira/platform/apis/document/structure/) document.
 
@@ -554,6 +555,9 @@ A: Yes, since 6.3. Use `createServerClient` for self-hosted Jira 10.0 and later 
 
 **Q: Why do I get a 400 when I set `assignee` while creating an issue?**  
 A: Because the field is not on that project's create screen — the library sends `fields` through untouched. `GET /rest/api/3/issue/createmeta/{projectKey}/issuetypes/{issueTypeId}` lists what the project accepts on create; if `assignee` is missing from it, either add it to the create screen in the project settings or assign afterwards with `issues.assignIssue({ issueIdOrKey, accountId })`. The shape itself is `{ fields: { assignee: { id: accountId } } }`, and Jira names the real cause in the response body, which reaches you as `error.body`. Creating an issue as deliberately unassigned is not something the API supports at all.
+
+**Q: Where do I get my `cloudId` or `orgId`?**  
+A: From `getTenantContext`, since Atlassian publishes no REST endpoint for either. `const { cloudId, orgId } = await getTenantContext(client);` — it takes the client you already built and asks the GraphQL gateway, which is the documented way. `orgId` is the one the [Teams](https://mrrefactoring.github.io/jira.js/guide/teams) API takes, and it names the organization your site belongs to rather than the site. Neither changes, so resolve once at start-up and keep the answer. Not available under OAuth 2.0 (3LO) — see the [Tenant Context guide](https://mrrefactoring.github.io/jira.js/guide/tenant-context).
 
 **Q: How do I name the type of a call's parameters?**  
 A: Import it from the surface's `parameters` subpath: `import type { CreateIssue } from 'jira.js/cloud/parameters';`. Response types come from the surface itself — `import type { Issue } from 'jira.js/cloud';` — because a parameter and a model occasionally share a name.

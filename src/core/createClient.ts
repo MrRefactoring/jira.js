@@ -301,6 +301,8 @@ export function createClient(config: ClientConfig | Client): Client {
         : undefined;
 
   return {
+    host,
+
     async sendRequest<T>(requestConfig: SendRequestOptions<T>): Promise<T> {
       const path = requestConfig.url.startsWith('/') ? requestConfig.url : `/${requestConfig.url}`;
       const effectiveHost = oauth2Manager ? await oauth2Manager.getBaseUrl() : host;
