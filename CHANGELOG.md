@@ -76,6 +76,28 @@ Three long-standing requests, all of them the same shape: the client had no seam
 
   OAuth 2.0 is absent from the config type on purpose: the API refuses it, as it refuses Forge apps, and a compile error says so earlier than a 401 would. A deleted team answers **410** rather than 404 on the next read — the id stays known and reports itself as gone.
 
+* **`jira.js/webhooks` types what Jira posts to you.** Everything else in this library calls Jira; a webhook is the other direction, and until now there was no way to say what arrives. Fifty-seven events as a union discriminated by `webhookEvent`, sixteen payload shapes, and the headers Jira attaches. Closes [#294](https://github.com/MrRefactoring/jira.js/issues/294).
+
+  ```ts
+  import type { WebhookHeaders, WebhookPayload } from 'jira.js/webhooks';
+
+  app.post('/jira', (request, response) => {
+    const payload = request.body as WebhookPayload;
+
+    switch (payload.webhookEvent) {
+      case 'jira:issue_created':
+        console.log(payload.issue.key);
+        break;
+    }
+
+    response.sendStatus(200);
+  });
+  ```
+
+  Types only — the subpath compiles to `export {}` and adds nothing to a bundle. There is no parser and no signature check: a webhook body is shaped by the site that sent it, custom fields and installed apps included, so a schema strict enough to be worth having would reject bodies that are perfectly valid elsewhere.
+
+  How much is documented is worth stating plainly, because the types say it too. Atlassian publishes one complete payload, the one for issue events; that group is written from it and from a capture of a real delivery, and is the only one whose entity is required. Every other group names its entity optionally, after the entity the event concerns. The headers are lower-cased, as they arrive, and every value is typed as the string an HTTP header is — the retry count included.
+
 * **Six more types and schemas are exported from `jira.js/core`.** `authBasicSchema`, `authBearerSchema` and `authOAuth2ServerSchema` beside the `authSchema` that was already there, and the types `CommonClientConfig`, `ParsedClientConfig` and `ErrorKind`. Each was already part of a public type's definition while being unreachable from outside the package — you could receive a `ClientConfig` but not name what it was built from.
 
 * **`getTenantContext` resolves a site's `cloudId`, `orgId` and host name.** Atlassian publishes no REST endpoint for any of the three, and `orgId` in particular names the organization above your site rather than the site itself. The call goes to the GraphQL gateway, which is the documented way to ask, and it takes the client you already built, so it inherits its proxy, retries and custom `fetch`.

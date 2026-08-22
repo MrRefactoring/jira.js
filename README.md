@@ -141,6 +141,7 @@ The documentation includes:
 - **Jira Service Management Data Center API**: self-hosted requests, queues and organizations, from `createServiceDeskServerClient`
 - **Assets API**: objects, schemas, types and AQL — `createAssetsClient` on Cloud, `createAssetsServerClient` self-hosted
 - **Teams API**: teams, their members and external links, at organization level — `createTeamsClient`
+- **Webhook types**: the events, payloads and headers Jira posts to *you* — `jira.js/webhooks`, types only, no client
 
 There is one platform surface, generated from Jira's v3 specification. `Version2Client` and `Version3Client` are gone — the difference between them was never the endpoints, it was rich text. Rich-text fields still accept a wiki-markup **string**: that write is routed through Jira's v2 endpoint, which parses the markup server-side, and the result is read back so what you get is a real [Atlassian Document Format](https://developer.atlassian.com/cloud/jira/platform/apis/document/structure/) document.
 
