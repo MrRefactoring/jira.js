@@ -36,29 +36,57 @@
       "types": "./dist/cloud/index.d.ts",
       "import": "./dist/cloud/index.js"
     },
+    "./cloud/parameters": {
+      "types": "./dist/cloud/parameters/index.d.ts",
+      "import": "./dist/cloud/parameters/index.js"
+    },
     "./agile": {
       "types": "./dist/agile/index.d.ts",
       "import": "./dist/agile/index.js"
+    },
+    "./agile/parameters": {
+      "types": "./dist/agile/parameters/index.d.ts",
+      "import": "./dist/agile/parameters/index.js"
     },
     "./serviceDesk": {
       "types": "./dist/serviceDesk/index.d.ts",
       "import": "./dist/serviceDesk/index.js"
     },
+    "./serviceDesk/parameters": {
+      "types": "./dist/serviceDesk/parameters/index.d.ts",
+      "import": "./dist/serviceDesk/parameters/index.js"
+    },
     "./server": {
       "types": "./dist/server/index.d.ts",
       "import": "./dist/server/index.js"
+    },
+    "./server/parameters": {
+      "types": "./dist/server/parameters/index.d.ts",
+      "import": "./dist/server/parameters/index.js"
     },
     "./serviceDeskServer": {
       "types": "./dist/serviceDeskServer/index.d.ts",
       "import": "./dist/serviceDeskServer/index.js"
     },
+    "./serviceDeskServer/parameters": {
+      "types": "./dist/serviceDeskServer/parameters/index.d.ts",
+      "import": "./dist/serviceDeskServer/parameters/index.js"
+    },
     "./assetsServer": {
       "types": "./dist/assetsServer/index.d.ts",
       "import": "./dist/assetsServer/index.js"
     },
+    "./assetsServer/parameters": {
+      "types": "./dist/assetsServer/parameters/index.d.ts",
+      "import": "./dist/assetsServer/parameters/index.js"
+    },
     "./assets": {
       "types": "./dist/assets/index.d.ts",
       "import": "./dist/assets/index.js"
+    },
+    "./assets/parameters": {
+      "types": "./dist/assets/parameters/index.d.ts",
+      "import": "./dist/assets/parameters/index.js"
     }
   },
   "keywords": [
