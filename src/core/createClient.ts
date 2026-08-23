@@ -434,7 +434,7 @@ export function createClient(config: ClientConfig | Client): Client {
         const challenge = response.headers.get('x-authentication-denied-reason');
         const { text, detail } = await readBody(response);
         const advice = challenge
-          ? `The credentials may well be correct: Jira is refusing the sign-in until a challenge is answered `
+          ? 'The credentials may well be correct: Jira is refusing the sign-in until a challenge is answered '
             + `(${challenge}).`
           : 'The API token or password may be expired, revoked or mistyped.';
         const anonymously = response.ok ? ' and answered as an anonymous user' : '';
