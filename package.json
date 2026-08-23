@@ -99,6 +99,30 @@
     "./teams/parameters": {
       "types": "./dist/teams/parameters/index.d.ts",
       "import": "./dist/teams/parameters/index.js"
+    },
+    "./admin": {
+      "types": "./dist/admin/index.d.ts",
+      "import": "./dist/admin/index.js"
+    },
+    "./admin/parameters": {
+      "types": "./dist/admin/parameters/index.d.ts",
+      "import": "./dist/admin/parameters/index.js"
+    },
+    "./userManagement": {
+      "types": "./dist/userManagement/index.d.ts",
+      "import": "./dist/userManagement/index.js"
+    },
+    "./userManagement/parameters": {
+      "types": "./dist/userManagement/parameters/index.d.ts",
+      "import": "./dist/userManagement/parameters/index.js"
+    },
+    "./userProvisioning": {
+      "types": "./dist/userProvisioning/index.d.ts",
+      "import": "./dist/userProvisioning/index.js"
+    },
+    "./userProvisioning/parameters": {
+      "types": "./dist/userProvisioning/parameters/index.d.ts",
+      "import": "./dist/userProvisioning/parameters/index.js"
     }
   },
   "keywords": [

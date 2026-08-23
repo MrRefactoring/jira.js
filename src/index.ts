@@ -83,6 +83,24 @@ export {
 } from './teams/createTeamsClient.js';
 
 export {
+  createAdminClient,
+  type AdminClient,
+  type AdminClientConfig,
+} from './admin/createAdminClient.js';
+
+export {
+  createUserManagementClient,
+  type UserManagementClient,
+  type UserManagementClientConfig,
+} from './userManagement/createUserManagementClient.js';
+
+export {
+  createUserProvisioningClient,
+  type UserProvisioningClient,
+  type UserProvisioningClientConfig,
+} from './userProvisioning/createUserProvisioningClient.js';
+
+export {
   ApiError,
   AuthError,
   ForbiddenError,
