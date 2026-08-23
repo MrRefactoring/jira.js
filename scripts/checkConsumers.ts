@@ -137,6 +137,46 @@ try {
       problems.push(`types do not resolve under moduleResolution "${moduleResolution}":\n${output}`);
     }
   }
+
+  const declared: string | undefined = JSON.parse(readFileSync(join(root, 'package.json'), 'utf8'))
+    .peerDependencies?.typescript;
+  const floor = declared?.replace(/^\D+/, '');
+
+  if (floor === undefined || floor === '') {
+    problems.push('package.json declares no minimum TypeScript under peerDependencies.');
+  } else {
+    // The loops above run this repository's own compiler with skipLibCheck, which is what most consumers have. Neither
+    // half of that is a given: a consumer pins an older TypeScript, and one who turns lib checking on reads our
+    // declarations rather than skipping them, where a lib type that changed shape — ArrayBufferView became generic in
+    // 5.7 — is an error rather than a silence.
+    writeFileSync(
+      join(workspace, 'tsconfig.floor.json'),
+      `${JSON.stringify(
+        {
+          compilerOptions: {
+            module: 'esnext',
+            moduleResolution: 'bundler',
+            noEmit: true,
+            skipLibCheck: false,
+            strict: true,
+            target: 'es2022',
+          },
+          files: ['probe.ts'],
+        },
+        null,
+        2,
+      )}\n`,
+    );
+
+    try {
+      run('npm', ['install', '--no-audit', '--no-fund', '--silent', '--no-save', `typescript@${floor}`], workspace);
+      run('node', [join(workspace, 'node_modules', 'typescript', 'bin', 'tsc'), '-p', 'tsconfig.floor.json'], workspace);
+    } catch (error) {
+      const output = ((error as { stdout?: string }).stdout ?? (error as Error).message).trim();
+
+      problems.push(`TypeScript ${floor}, the minimum package.json declares, cannot read the declarations:\n${output}`);
+    }
+  }
 } finally {
   rmSync(workspace, { recursive: true, force: true });
 }

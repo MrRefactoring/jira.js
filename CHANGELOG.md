@@ -224,6 +224,14 @@ Three long-standing requests, all of them the same shape: the client had no seam
 
 * **Twenty-eight more responses match what Jira sends.** `getAutoComplete` types its field and function lists as arrays of strings when both are arrays of objects. `getAvailableMetrics` and `getPasswordPolicy` declare a string and answer with an array. `SearchResults` returns `null` for `expand`, `names`, `schema` and `warningMessages`, and every issue read carries `renderedFields: null`. A project's roles, its avatars, a group's members and the eighty-five application properties were each declared as something they contain.
 
+### General
+
+* **The minimum TypeScript is declared, and measured.** `>=5.7`, as an optional peer dependency, in the README and here. It was never written down before, and the honest number is higher than anyone would have guessed: the declarations name `ArrayBufferView`, which became generic in 5.7, so a 5.6 compiler reads them as an error unless `skipLibCheck` hides them from it. `check:consumers` now installs exactly that version and type-checks the packed tarball with `skipLibCheck` off, so the floor moves only when someone means to move it.
+
+* **Built with TypeScript 6.** The declarations it emits are byte-identical to 5.9's across all 3596 of them, so nothing a consumer sees changes. Not 7.0, though npm calls it latest — typedoc's supported range ends at 6.0 and typescript-eslint's below 6.1, at the newest version either has published.
+
+* **The documentation deploys from `master` alone.** A manual run against a branch used to build the site and then publish it, because the deploy job followed the build with no condition on the ref. The build is what is worth running from a branch.
+
 ## 6.2.0
 
 Avatars moved bytes in both directions and the specification described both as JSON, so neither direction worked. Reading an image threw before the response reached the caller; uploading one had no way to send an image at all. Both are fixed here, along with two column endpoints broken by the same reading of the same specification.

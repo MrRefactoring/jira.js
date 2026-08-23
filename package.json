@@ -189,6 +189,14 @@
     "docs:preview": "vitepress preview docs",
     "docs:og": "node scripts/build-og-image.ts"
   },
+  "peerDependencies": {
+    "typescript": ">=5.7"
+  },
+  "peerDependenciesMeta": {
+    "typescript": {
+      "optional": true
+    }
+  },
   "dependencies": {
     "zod": "^4.4.3"
   },
