@@ -65,9 +65,7 @@ try {
     .filter(entry => entry !== './browser' && entry !== './package.json')
     .map(entry => (entry === '.' ? 'jira.js' : `jira.js/${entry.slice(2)}`));
 
-  // `jira.js/webhooks` describes what Jira posts to a server of yours; there is nothing to call, so it compiles to
-  // `export {}`. An empty namespace is the right answer there, and a populated one would mean runtime code crept in.
-  const TYPES_ONLY = ['jira.js/webhooks'];
+  const TYPES_ONLY: string[] = [];
 
   const runtimeProbe = [
     ...SUBPATHS.map((subpath, index) => `import * as m${index} from '${subpath}';`),

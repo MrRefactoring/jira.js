@@ -91,23 +91,56 @@ built on it. Every value is a string, including the retry count: an HTTP header 
 | `x-atlassian-webhook-flow` | `Primary` for the event itself, thirty seconds; `Secondary` for the fallout of a bulk or cascading change, fifteen minutes |
 | `x-atlassian-webhook-retry` | how many retries so far; absent on the first attempt |
 | `x-atlassian-webhook-trace` | whatever a Connect app attached to the request that caused the event |
-| `x-hub-signature` | `sha256=…`, present only on a webhook registered with a secret |
+| `x-hub-signature` | `sha256=…`, present only on a webhook registered with a secret — pass it to `verifyWebhookSignature` |
 
 Deleting an issue is the clearest illustration of the flow header: `jira:issue_deleted` goes out as `Primary`, and
 every dependent `comment_deleted`, `attachment_deleted` and `issuelink_deleted` follows as `Secondary`, possibly
 minutes later.
 
-## What this does not do
+## There is no parser
 
-**It does not parse.** The casts above are the interface, deliberately. A webhook body is shaped by the site that sent
+The casts above are the interface, deliberately. A webhook body is shaped by the site that sent
 it — custom fields under generated keys in `issue.fields`, whatever an installed app adds, a Data Center release that
 differs from Cloud — and a schema strict enough to be worth having would reject bodies that are perfectly valid
 somewhere else. Elsewhere in this library a response is validated because the API documents it; here there is nothing
 to validate against.
 
-**It does not verify signatures.** `x-hub-signature` is the only thing that proves a request came from Jira rather
-than from whoever found your URL, and checking it is yours to do. This library does not, because a signature check
-that quietly compares the wrong way is worse than none, and there is nothing here to test one against.
+## Verifying the signature
+
+`x-hub-signature` is the only thing that proves a request came from Jira rather than from whoever found your URL. A
+webhook registered with a secret carries it as `sha256=<hex>`, over HMAC-SHA256 of the exact bytes of the body.
+
+```ts
+import express from 'express';
+import { verifyWebhookSignature, type WebhookPayload } from 'jira.js/webhooks';
+
+app.post('/jira', express.raw({ type: 'application/json' }), async (request, response) => {
+  const trusted = await verifyWebhookSignature({
+    body: request.body,
+    secret: process.env.JIRA_WEBHOOK_SECRET!,
+    signature: request.get('x-hub-signature'),
+  });
+
+  if (!trusted) return response.sendStatus(401);
+
+  const payload = JSON.parse(request.body.toString()) as WebhookPayload;
+
+  response.sendStatus(200);
+});
+```
+
+**The body must be the bytes that arrived.** This is where the check usually goes wrong: `express.json()` and every
+equivalent hand you a parsed object, and `JSON.stringify` of that object is a different byte sequence for the same
+data — key order, whitespace and number formatting are not preserved — so the signature will never match. Reach for
+whatever your framework calls a raw body.
+
+The answer is `false` for every way a delivery can fail to be trustworthy: no header, an algorithm other than
+`sha256`, a digest that is not hexadecimal, a digest of the right shape and the wrong value. Your response to all four
+is the same, and distinguishing them would distinguish them for whoever is probing the endpoint too. The one thing it
+throws on is an empty secret, which is a mistake of yours rather than a failed check.
+
+The comparison is constant-time, and nothing is imported to do any of it: `crypto.subtle` is a global in Node and in
+browsers alike, so this subpath still adds nothing to a browser bundle.
 
 ## Registering one
 

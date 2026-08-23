@@ -22,12 +22,17 @@
  * });
  * ```
  *
- * Types only, and deliberately: this subpath compiles away to nothing. There is no parser and no signature check,
- * because a webhook body is shaped by the site that sent it — custom fields, apps, a Data Center release Atlassian
- * documents separately — and a schema strict enough to be worth having would throw on bodies that are perfectly
- * valid. The cast above is the honest interface: you are telling the compiler what Jira sends, and this subpath is
- * where that claim is written down.
+ * There is no parser, and deliberately so: a webhook body is shaped by the site that sent it — custom fields, apps, a
+ * Data Center release Atlassian documents separately — and a schema strict enough to be worth having would throw on
+ * bodies that are perfectly valid. The cast above is the honest interface: you are telling the compiler what Jira
+ * sends, and this subpath is where that claim is written down.
+ *
+ * The one thing here that runs is `verifyWebhookSignature`, because it is the one claim that can be checked rather
+ * than asserted. HMAC-SHA256 over the raw body either matches the secret you registered or it does not, and until it
+ * does you know nothing about where the request came from.
  */
+export { verifyWebhookSignature, type VerifyWebhookSignatureOptions } from './verify';
+
 export type {
   WebhookEvent,
   IssueWebhookEvent,

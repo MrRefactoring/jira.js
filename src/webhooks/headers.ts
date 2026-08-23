@@ -38,8 +38,8 @@ export interface WebhookHeaders {
    * The body's signature, as `method=signature` — `sha256=…` in practice. Present only on a webhook registered with
    * a secret, and the only thing that tells you the request really came from Jira.
    *
-   * Verifying it is yours to do. This library does not, because a signature check that quietly matches the wrong way
-   * is worse than none, and it cannot be tested against anything here.
+   * Pass it to `verifyWebhookSignature` along with the raw body and the secret you registered. A delivery that fails
+   * that check is one anyone could have sent.
    */
   'x-hub-signature'?: string;
 }
