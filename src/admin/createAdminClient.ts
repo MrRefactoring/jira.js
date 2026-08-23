@@ -12,7 +12,6 @@ import type {
   GetOrgs,
   GetOrgById,
   SearchDirectoryUsers,
-  GetDirectoryUserDetails,
   GetUsers,
   InviteUsers,
   GetUserRoleAssignments,
@@ -20,6 +19,7 @@ import type {
   RevokeUserAccess,
   SuspendDirectoryUser,
   RestoreDirectoryUser,
+  GetDirectoryUserDetails,
   RemoveDirectoryUser,
   AssignOrganizationRole,
   RevokeOrganizationRole,
@@ -61,10 +61,10 @@ import type {
   OrgPage,
   Org,
   MultiDirectoryUserSearchPage,
-  MultiDirectoryUserDetails,
   UserPage,
   MultidirectoryInviteSuccessResponse,
   MultiDirectoryUserRoleAssignmentPage,
+  MultiDirectoryUserDetails,
   GetDirectoryUsersCount as GetDirectoryUsersCountModel,
   MultiDirectoryUserStats,
   UserProductAccessActivityPage,
@@ -121,10 +121,6 @@ export function createAdminClient(config: AdminClientConfig) {
         parameters: SearchDirectoryUsers,
         options?: RequestOptions,
       ): Promise<MultiDirectoryUserSearchPage> => users.searchDirectoryUsers(client, parameters, options),
-      getDirectoryUserDetails: (
-        parameters: GetDirectoryUserDetails,
-        options?: RequestOptions,
-      ): Promise<MultiDirectoryUserDetails> => users.getDirectoryUserDetails(client, parameters, options),
       getUsers: (parameters: GetUsers, options?: RequestOptions): Promise<UserPage> =>
         users.getUsers(client, parameters, options),
       inviteUsers: (parameters: InviteUsers, options?: RequestOptions): Promise<MultidirectoryInviteSuccessResponse> =>
@@ -141,6 +137,10 @@ export function createAdminClient(config: AdminClientConfig) {
         users.suspendDirectoryUser(client, parameters, options),
       restoreDirectoryUser: (parameters: RestoreDirectoryUser, options?: RequestOptions): Promise<void> =>
         users.restoreDirectoryUser(client, parameters, options),
+      getDirectoryUserDetails: (
+        parameters: GetDirectoryUserDetails,
+        options?: RequestOptions,
+      ): Promise<MultiDirectoryUserDetails> => users.getDirectoryUserDetails(client, parameters, options),
       removeDirectoryUser: (parameters: RemoveDirectoryUser, options?: RequestOptions): Promise<void> =>
         users.removeDirectoryUser(client, parameters, options),
       assignOrganizationRole: (parameters: AssignOrganizationRole, options?: RequestOptions): Promise<void> =>

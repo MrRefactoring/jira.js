@@ -57,13 +57,13 @@ export const MultiDirectoryUserSchema = apiObject({
   /** Job title of the user. */
   jobTitle: z.string().optional(),
   /** Department the user belongs to. */
-  department: z.string().optional(),
+  department: z.string().nullish(),
   /** Organization the user belongs to. */
-  organization: z.string().optional(),
+  organization: z.string().nullish(),
   /** Location of the user. */
-  location: z.string().optional(),
+  location: z.string().nullish(),
   /** Time zone the user is in. */
-  timeZone: z.string().optional(),
+  timeZone: z.string().nullish(),
   counts: UserCountsSchema.optional(),
   /**
    * The user's last active timestamp for each product in the given directory. Returned only when the `productAccess`

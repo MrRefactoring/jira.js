@@ -21,7 +21,7 @@ export const MultiDirectoryUserDetailsDataSchema = apiObject({
    */
   addedToOrg: z.string().optional(),
   /** The ISO-8601 date and time the user was deactivated. */
-  deactivatedOn: z.string().optional(),
+  deactivatedOn: z.string().nullish(),
   /** The full name of the user. */
   name: z.string().optional(),
   /** The nickname of the user. */
@@ -56,13 +56,13 @@ export const MultiDirectoryUserDetailsDataSchema = apiObject({
   /** Job title of the user. */
   jobTitle: z.string().optional(),
   /** Department the user belongs to. */
-  department: z.string().optional(),
+  department: z.string().nullish(),
   /** Organization the user belongs to. */
-  organization: z.string().optional(),
+  organization: z.string().nullish(),
   /** Location of the user. */
-  location: z.string().optional(),
+  location: z.string().nullish(),
   /** Time zone the user is in. */
-  timeZone: z.string().optional(),
+  timeZone: z.string().nullish(),
   counts: UserCountsSchema.optional(),
 });
 

@@ -11,12 +11,16 @@ import { createClient, getTenantContext, type Client } from '#/core';
 import { createCloudClient, type CloudClient } from '#/cloud/createCloudClient';
 import { createAgileClient, type AgileClient } from '#/agile/createAgileClient';
 import { createTeamsClient, type TeamsClient } from '#/teams/createTeamsClient';
+import { createAdminClient, type AdminClient } from '#/admin/createAdminClient';
+import { createUserManagementClient, type UserManagementClient } from '#/userManagement/createUserManagementClient';
 import { requireLiveEnv } from './env';
 
 let cachedClient: Client | null = null;
 let cachedCloud: CloudClient | null = null;
 let cachedAgile: AgileClient | null = null;
 let cachedTeams: TeamsClient | null = null;
+let cachedAdmin: AdminClient | null = null;
+let cachedUserManagement: UserManagementClient | null = null;
 let cachedOrgId: string | null = null;
 
 /**
@@ -76,6 +80,38 @@ export function getTeamsClient(): TeamsClient {
   }
 
   return cachedTeams;
+}
+
+/**
+ * Singleton organization administration client.
+ *
+ * Built from the organization API key rather than from {@link getClient}: these APIs answer on `api.atlassian.com`
+ * and refuse a site token outright. Throws when the key is absent, so a suite must check {@link hasAdminEnv} and
+ * stand down rather than reaching for it blind.
+ */
+export function getAdminClient(): AdminClient {
+  if (!cachedAdmin) {
+    const { adminApiKey } = requireLiveEnv();
+
+    if (!adminApiKey) throw new Error('JIRA_ADMIN_API_KEY is not set; the administration suites need one.');
+
+    cachedAdmin = createAdminClient({ auth: { type: 'bearer', token: adminApiKey }, retry: RETRY });
+  }
+
+  return cachedAdmin;
+}
+
+/** Singleton user management client, on the same organization API key. */
+export function getUserManagementClient(): UserManagementClient {
+  if (!cachedUserManagement) {
+    const { adminApiKey } = requireLiveEnv();
+
+    if (!adminApiKey) throw new Error('JIRA_ADMIN_API_KEY is not set; the administration suites need one.');
+
+    cachedUserManagement = createUserManagementClient({ auth: { type: 'bearer', token: adminApiKey }, retry: RETRY });
+  }
+
+  return cachedUserManagement;
 }
 
 /**

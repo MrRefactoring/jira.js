@@ -4,7 +4,7 @@ import { apiObject } from '#/core';
 
 export const LinkSelfAltModelSchema = apiObject({
   /** URL to fetch this resource */
-  self: z.string().optional(),
+  self: z.string().nullish(),
   /** Alternate URL to fetch this resource */
   alt: z.string().optional(),
 });

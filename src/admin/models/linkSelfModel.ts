@@ -3,7 +3,7 @@ import { apiObject } from '#/core';
 
 export const LinkSelfModelSchema = apiObject({
   /** URL to fetch this resource */
-  self: z.string(),
+  self: z.string().nullable(),
 });
 
 export type LinkSelfModel = z.infer<typeof LinkSelfModelSchema>;

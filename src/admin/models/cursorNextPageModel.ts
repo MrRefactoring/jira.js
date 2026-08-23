@@ -4,7 +4,7 @@ import { apiObject } from '#/core';
 
 export const CursorNextPageModelSchema = apiObject({
   /** Cursor to fetch next page */
-  next: z.string().optional(),
+  next: z.string().nullish(),
 });
 
 export type CursorNextPageModel = z.infer<typeof CursorNextPageModelSchema>;

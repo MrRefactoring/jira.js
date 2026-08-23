@@ -90,7 +90,9 @@ Three long-standing requests, all of them the same shape: the client had no seam
 
   Two pairs of operations the documents call "roles" mean different things, and the names here say which: `grantUserAccess` and `revokeUserAccess` control access to a product, `assignOrganizationRole` and `revokeOrganizationRole` control an organization-wide role such as organization admin.
 
-  A SCIM directory needs Atlassian Guard. Without one the `userProvisioning` surface has nothing to talk to.
+  A live suite covers the organization API read-only, against a real organization. It found what a live suite is for: pagination links and four profile fields that the document types as strings and the API returns as `null`, a policy rule declared an object that arrives as an empty array when there is no rule, and two properties marked required that arrive absent. All corrected in the specification rather than worked around in the caller.
+
+  Two surfaces ship less verified than that, and the reasons are the organization's rather than the library's. User management refuses a scoped API key outright — every operation answers `403` naming a `manage:org` scope that the key creation flow does not offer — and acts only on accounts whose domain the organization has claimed, of which a development organization has none; the suite pins that refusal and stands down. A SCIM directory needs Atlassian Guard, so `userProvisioning` has nothing to talk to and is unverified against a live instance.
 
 * **`jira.js/webhooks` types what Jira posts to you.** Everything else in this library calls Jira; a webhook is the other direction, and until now there was no way to say what arrives. Fifty-seven events as a union discriminated by `webhookEvent`, sixteen payload shapes, and the headers Jira attaches. Closes [#294](https://github.com/MrRefactoring/jira.js/issues/294).
 

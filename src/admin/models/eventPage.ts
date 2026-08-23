@@ -8,7 +8,7 @@ export const EventPageSchema = apiObject({
   data: z.array(EventModelSchema).optional(),
   meta: apiObject({
     /** Value for the next cursor */
-    next: z.string().optional(),
+    next: z.string().nullish(),
     /** Number of items in a page */
     page_size: z.number().optional(),
   }).optional(),

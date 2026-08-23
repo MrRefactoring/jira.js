@@ -4,7 +4,7 @@ import { apiObject } from '#/core';
 
 export const LinkSelfCursorSchema = apiObject({
   /** Cursor to fetch this resource. */
-  self: z.string().optional(),
+  self: z.string().nullish(),
 });
 
 export type LinkSelfCursor = z.infer<typeof LinkSelfCursorSchema>;

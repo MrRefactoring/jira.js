@@ -2,7 +2,6 @@ import {
   MultiDirectoryUserSearchPageSchema,
   type MultiDirectoryUserSearchPage,
 } from '../models/multiDirectoryUserSearchPage';
-import { MultiDirectoryUserDetailsSchema, type MultiDirectoryUserDetails } from '../models/multiDirectoryUserDetails';
 import { UserPageSchema, type UserPage } from '../models/userPage';
 import {
   MultidirectoryInviteSuccessResponseSchema,
@@ -12,6 +11,7 @@ import {
   MultiDirectoryUserRoleAssignmentPageSchema,
   type MultiDirectoryUserRoleAssignmentPage,
 } from '../models/multiDirectoryUserRoleAssignmentPage';
+import { MultiDirectoryUserDetailsSchema, type MultiDirectoryUserDetails } from '../models/multiDirectoryUserDetails';
 import { GetDirectoryUsersCountSchema, type GetDirectoryUsersCount } from '../models/getDirectoryUsersCount';
 import { MultiDirectoryUserStatsSchema, type MultiDirectoryUserStats } from '../models/multiDirectoryUserStats';
 import {
@@ -20,7 +20,6 @@ import {
 } from '../models/userProductAccessActivityPage';
 import { MultiDirectoryUserPageSchema, type MultiDirectoryUserPage } from '../models/multiDirectoryUserPage';
 import type { SearchDirectoryUsers } from '../parameters/searchDirectoryUsers';
-import type { GetDirectoryUserDetails } from '../parameters/getDirectoryUserDetails';
 import type { GetUsers } from '../parameters/getUsers';
 import type { InviteUsers } from '../parameters/inviteUsers';
 import type { GetUserRoleAssignments } from '../parameters/getUserRoleAssignments';
@@ -28,6 +27,7 @@ import type { GrantUserAccess } from '../parameters/grantUserAccess';
 import type { RevokeUserAccess } from '../parameters/revokeUserAccess';
 import type { SuspendDirectoryUser } from '../parameters/suspendDirectoryUser';
 import type { RestoreDirectoryUser } from '../parameters/restoreDirectoryUser';
+import type { GetDirectoryUserDetails } from '../parameters/getDirectoryUserDetails';
 import type { RemoveDirectoryUser } from '../parameters/removeDirectoryUser';
 import type { AssignOrganizationRole } from '../parameters/assignOrganizationRole';
 import type { RevokeOrganizationRole } from '../parameters/revokeOrganizationRole';
@@ -73,22 +73,6 @@ export async function searchDirectoryUsers(
       sortBy: parameters.sortBy,
     },
     schema: MultiDirectoryUserSearchPageSchema,
-    signal: options?.signal,
-  };
-
-  return await client.sendRequest(config);
-}
-
-/** Returns detailed information about a specific user in a directory within an organization. */
-export async function getDirectoryUserDetails(
-  client: Client,
-  parameters: GetDirectoryUserDetails,
-  options?: RequestOptions,
-): Promise<MultiDirectoryUserDetails> {
-  const config: SendRequestOptions<MultiDirectoryUserDetails> = {
-    url: `/admin/v2/orgs/${parameters.orgId}/directories/${parameters.directoryId}/users/${parameters.userId}`,
-    method: 'GET',
-    schema: MultiDirectoryUserDetailsSchema,
     signal: options?.signal,
   };
 
@@ -247,6 +231,22 @@ export async function restoreDirectoryUser(
   const config: SendRequestOptions<void> = {
     url: `/admin/v2/orgs/${parameters.orgId}/directories/${parameters.directoryId}/users/${parameters.accountId}/restore`,
     method: 'POST',
+    signal: options?.signal,
+  };
+
+  return await client.sendRequest(config);
+}
+
+/** Returns detailed information about a specific user in a directory within an organization. */
+export async function getDirectoryUserDetails(
+  client: Client,
+  parameters: GetDirectoryUserDetails,
+  options?: RequestOptions,
+): Promise<MultiDirectoryUserDetails> {
+  const config: SendRequestOptions<MultiDirectoryUserDetails> = {
+    url: `/admin/v2/orgs/${parameters.orgId}/directories/${parameters.directoryId}/users/${parameters.accountId}`,
+    method: 'GET',
+    schema: MultiDirectoryUserDetailsSchema,
     signal: options?.signal,
   };
 

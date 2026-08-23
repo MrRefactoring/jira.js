@@ -13,7 +13,6 @@ export const GetDirectoryUserDetailsSchema = z.object({
   directoryId: z.string(),
   /** Unique ID associated with a user account. */
   accountId: z.string(),
-  userId: z.string(),
 });
 
 export type GetDirectoryUserDetails = z.input<typeof GetDirectoryUserDetailsSchema>;

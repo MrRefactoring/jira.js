@@ -4,11 +4,11 @@ import { apiObject } from '#/core';
 
 export const LinkPageModelSchema = apiObject({
   /** URL to fetch this Page */
-  self: z.string().optional(),
+  self: z.string().nullish(),
   /** URL to fetch the Previous Page */
-  prev: z.string().optional(),
+  prev: z.string().nullish(),
   /** URL to fetch the Next Page */
-  next: z.string().optional(),
+  next: z.string().nullish(),
 });
 
 export type LinkPageModel = z.infer<typeof LinkPageModelSchema>;

@@ -17,7 +17,7 @@ export const PolicyModelSchema = apiObject({
     /** Status of this Policy */
     status: openEnum(['enabled', 'disabled']).optional(),
     /** Rule of the Policy */
-    rule: AllowIfContainedRuleSchema.optional(),
+    rule: z.union([AllowIfContainedRuleSchema, z.array(z.unknown())]).optional(),
     /** List of resources Policy is associated with */
     resources: z.array(ResourceSchema).optional(),
   }),

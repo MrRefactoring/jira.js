@@ -4,11 +4,11 @@ import { apiObject } from '#/core';
 
 export const LinkPageCursorSchema = apiObject({
   /** Cursor to fetch this page. */
-  self: z.string().optional(),
+  self: z.string().nullish(),
   /** Cursor to fetch the previous page. */
-  prev: z.string().optional(),
+  prev: z.string().nullish(),
   /** Cursor to fetch the next page. */
-  next: z.string().optional(),
+  next: z.string().nullish(),
 });
 
 export type LinkPageCursor = z.infer<typeof LinkPageCursorSchema>;

@@ -11,7 +11,7 @@ export const EventActionModelSchema = apiObject({
     /** Display name of the event action. */
     displayName: z.string(),
     /** Display name of the event action group. */
-    groupDisplayName: z.string(),
+    groupDisplayName: z.string().optional(),
   }),
 });
 

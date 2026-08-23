@@ -3,7 +3,7 @@ import { apiObject } from '#/core';
 /** Applicable when policy type is `ip-allowlist` or `data-residency` */
 
 export const AllowIfContainedRuleSchema = apiObject({
-  in: z.array(z.string()),
+  in: z.array(z.string()).optional(),
 });
 
 export type AllowIfContainedRule = z.infer<typeof AllowIfContainedRuleSchema>;
