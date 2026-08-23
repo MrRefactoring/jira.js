@@ -176,7 +176,9 @@ const SERAPH_LOGIN_FAILURES = new Set(['AUTHENTICATED_FAILED', 'AUTHENTICATION_D
  *
  * An endpoint that permits anonymous access answers `200` with an anonymous-scope body when the API token is expired
  * or wrong — an empty list where the caller expected their own data — and says so nowhere but this header. Measured
- * against a live site: the header rides on `200`, `400` and `401` alike, and a genuine permission denial carries none.
+ * against a live Cloud site, the header rides on `200`, `400` and `401` alike; measured against Data Center, on `403`
+ * as well. A genuine permission denial is outside the set either way: Cloud sends no header at all, Data Center sends
+ * `OK`.
  */
 function credentialsRejected(response: Response, hasAuth: boolean): boolean {
   return hasAuth && SERAPH_LOGIN_FAILURES.has(response.headers.get('x-seraph-loginreason') ?? '');
@@ -427,11 +429,19 @@ export function createClient(config: ClientConfig | Client): Client {
       // an anonymous-scope body would be handed back as a successful result.
       if (credentialsRejected(response, auth !== undefined)) {
         const reason = response.headers.get('x-seraph-loginreason');
+        // Data Center adds this after too many failed sign-ins and then refuses the right password too, naming the
+        // page a human has to visit. Advice about an expired token would send that caller looking in the wrong place.
+        const challenge = response.headers.get('x-authentication-denied-reason');
         const { text, detail } = await readBody(response);
+        const advice = challenge
+          ? `The credentials may well be correct: Jira is refusing the sign-in until a challenge is answered `
+            + `(${challenge}).`
+          : 'The API token or password may be expired, revoked or mistyped.';
+        const anonymously = response.ok ? ' and answered as an anonymous user' : '';
 
         throw new AuthError(
-          `Request failed: Jira rejected the credentials (x-seraph-loginreason: ${reason}) and answered as an `
-          + `anonymous user. The API token or password may be expired, revoked or mistyped.${text ? ` - ${text}` : ''}`,
+          `Request failed: Jira rejected the credentials (x-seraph-loginreason: ${reason})${anonymously}. `
+          + `${advice}${text ? ` - ${text}` : ''}`,
           response.statusText,
           detail,
           { status: response.status },
