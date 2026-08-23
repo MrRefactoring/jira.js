@@ -68,7 +68,8 @@ export async function unlinkScimUser(
  *
  * You will have to completely reprovision the user to their respective groups after deletion.
  *
- * Explore more about [updating managed SCIM email addresses](../../email-change/).
+ * Explore more about [updating managed SCIM email
+ * addresses](https://developer.atlassian.com/cloud/admin/user-provisioning/email-change/).
  */
 export async function deleteProvisioningRecord(
   client: Client,
