@@ -23,6 +23,7 @@ const guideSidebar = (prefix = '') => [
       { text: 'Assets', link: `${prefix}/guide/assets` },
       { text: 'Teams', link: `${prefix}/guide/teams` },
       { text: prefix ? 'Контекст тенанта' : 'Tenant Context', link: `${prefix}/guide/tenant-context` },
+      { text: prefix ? 'Администрирование организации' : 'Organization Administration', link: `${prefix}/guide/administration` },
       { text: prefix ? 'Вебхуки' : 'Webhooks', link: `${prefix}/guide/webhooks` },
       { text: prefix ? 'Обработка ошибок' : 'Error Handling', link: `${prefix}/guide/error-handling` },
       { text: prefix ? 'Валидация ответов' : 'Response Validation', link: `${prefix}/guide/response-validation` },

@@ -76,6 +76,22 @@ Three long-standing requests, all of them the same shape: the client had no seam
 
   OAuth 2.0 is absent from the config type on purpose: the API refuses it, as it refuses Forge apps, and a compile error says so earlier than a 401 would. A deleted team answers **410** rather than 404 on the next read — the id stays known and reports itself as gone.
 
+* **Three surfaces above the site: organization, user management and SCIM provisioning.** `createAdminClient`, `createUserManagementClient` and `createUserProvisioningClient` — 47, 10 and 24 operations. Closes [#317](https://github.com/MrRefactoring/jira.js/issues/317), [#316](https://github.com/MrRefactoring/jira.js/issues/316) and [#315](https://github.com/MrRefactoring/jira.js/issues/315).
+
+  ```ts
+  import { createAdminClient } from 'jira.js';
+
+  const admin = createAdminClient({ auth: { type: 'bearer', token: organizationApiKey } });
+
+  const users = await admin.users.searchDirectoryUsers({ orgId, directoryId: '-', limit: 50 });
+  ```
+
+  These are organization APIs, not site ones, and they answer on `https://api.atlassian.com` — `host` is optional and defaults there. Each takes a bearer token and nothing else: an organization API key for the first two, the SCIM directory's own key for the third. A site API token answers 401 and so does OAuth 2.0 (3LO), whose scopes a user grants for a site rather than an organization granting them for itself; the config type refuses both at compile time.
+
+  Two pairs of operations the documents call "roles" mean different things, and the names here say which: `grantUserAccess` and `revokeUserAccess` control access to a product, `assignOrganizationRole` and `revokeOrganizationRole` control an organization-wide role such as organization admin.
+
+  A SCIM directory needs Atlassian Guard. Without one the `userProvisioning` surface has nothing to talk to.
+
 * **`jira.js/webhooks` types what Jira posts to you.** Everything else in this library calls Jira; a webhook is the other direction, and until now there was no way to say what arrives. Fifty-seven events as a union discriminated by `webhookEvent`, sixteen payload shapes, and the headers Jira attaches. Closes [#294](https://github.com/MrRefactoring/jira.js/issues/294).
 
   ```ts

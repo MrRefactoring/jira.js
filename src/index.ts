@@ -51,6 +51,11 @@
  * share a name, and forty-one of them do in the Agile surface alone. Neither is re-exported here: the surfaces collide
  * on a handful of names.
  *
+ * Three more surfaces sit above the site rather than inside one: `createAdminClient` for the organization, its
+ * directories, groups and policies, `createUserManagementClient` for a single managed account, and
+ * `createUserProvisioningClient` for SCIM. All three answer on `https://api.atlassian.com` and take an
+ * organization API key rather than a site token.
+ *
  * One subpath goes the other way. `jira.js/webhooks` has no client and nothing to call: it types the events, payloads
  * and headers Jira posts to a server of yours when something happens on the site.
  */
