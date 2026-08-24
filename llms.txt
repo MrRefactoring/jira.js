@@ -14,6 +14,7 @@ Version 6.0 is a rewrite: one platform surface instead of v2/v3, `fetch` instead
 - [Assets](https://mrrefactoring.github.io/jira.js/guide/assets): The configuration management database — the workspace a Cloud client needs, and why it does not answer on your site.
 - [Teams](https://mrrefactoring.github.io/jira.js/guide/teams): Teams at organization level — why `orgId` is a parameter rather than client configuration, and why OAuth 2.0 is absent from the config type.
 - [Tenant context](https://mrrefactoring.github.io/jira.js/guide/tenant-context): Resolving a site's `cloudId`, `orgId` and host name, which no REST endpoint returns.
+- [Organization administration](https://mrrefactoring.github.io/jira.js/guide/administration): The three APIs above the site — organization, one managed account, and SCIM provisioning — and which key each of them takes.
 - [Webhooks](https://mrrefactoring.github.io/jira.js/guide/webhooks): The other direction — the events, payloads and headers Jira posts to your server, as types only, and how much of that Atlassian actually documents.
 - [OAuth 2.0 (3LO) guide](https://mrrefactoring.github.io/jira.js/guide/oauth2-authentication): Step-by-step setup with auto-refresh and cloudId resolution.
 - [Error handling](https://mrrefactoring.github.io/jira.js/guide/error-handling): The typed error hierarchy and its predicates.
