@@ -1,8 +1,8 @@
 /**
  * The throwaway Data Center instance a live suite runs against, whichever product it is.
  *
- * It is parameterised by the image, the port and the licence, and by nothing else — the setup wizard is Jira's
- * whichever product runs behind it.
+ * Two rigs use this: Jira Software for the `server` suites and Jira Service Management for the `jsm` ones. They differ
+ * in the image, the port and the licence, and in nothing else — the setup wizard is Jira's either way.
  *
  * The container is deliberately not started by the test run. A cold instance takes minutes to reach `RUNNING`, and the
  * licence it gets is a three-hour timebomb, so one instance has to serve many iterations of a suite rather than one

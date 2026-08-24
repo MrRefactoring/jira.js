@@ -35,8 +35,8 @@ import { createCloudClient } from 'jira.js';
 Сборки CommonJS нет. `require('jira.js')` не работает; из CommonJS-модуля используйте динамический
 `await import('jira.js')`.
 
-Пакет также отдаёт подпути по поверхностям — `jira.js/cloud`, `jira.js/agile`, `jira.js/serviceDesk` и
-`jira.js/core`, — в которых лежат плоские функции вместе со всеми типами параметров и ответов. См.
+Пакет также отдаёт подпути по поверхностям — `jira.js/cloud`, `jira.js/agile`, `jira.js/serviceDesk`,
+`jira.js/server` и `jira.js/core`, — в которых лежат плоские функции вместе со всеми типами параметров и ответов. См.
 [Tree-Shaking](./tree-shaking).
 
 ## Требования

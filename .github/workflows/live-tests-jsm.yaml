@@ -1,0 +1,45 @@
+name: 🧰 Service Management tests
+
+on:
+  schedule:
+    - cron: '30 4 * * *'
+  workflow_dispatch:
+
+concurrency:
+  group: live-tests-jsm
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  live:
+    name: 🧰 Service Management
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🔄 Checkout sources
+        uses: actions/checkout@v7
+      - name: ⚙️ Use Node.js 22.x
+        uses: actions/setup-node@v7
+        with:
+          node-version: 22.x
+      - name: 📦 Install pnpm
+        uses: pnpm/action-setup@v6
+      - name: 📌 Install dependencies
+        run: pnpm install --frozen-lockfile
+      # A Service Management timebomb where there is one, and the Jira Software one otherwise. Assets ships with the
+      # image and its REST module does not check for a seat, so the Jira licence sets the instance up and opens all
+      # fifty-eight Assets endpoints; the sixty Service Desk ones answer 403 under it and are listed as unreachable
+      # in tests/live/jsm/uncovered.ts. Put JSM_DC_TIMEBOMB_LICENSE in the repository's secrets and that list becomes
+      # the worklist.
+      - name: 🔑 Write the timebomb licence
+        run: |
+          printf '%s' "${{ secrets.JSM_DC_TIMEBOMB_LICENSE || secrets.JIRA_DC_TIMEBOMB_LICENSE }}" > docker/jsm-dc/timebomb-license.txt
+          test -s docker/jsm-dc/timebomb-license.txt
+      - name: 🧰 Bring up Jira Service Management
+        run: pnpm run jsm-dc:up
+      - name: 🚀 Run the suites and the coverage ledger
+        run: pnpm run coverage:jsm
+      - name: 🧹 Tear it down
+        if: always()
+        run: pnpm run jsm-dc:down
