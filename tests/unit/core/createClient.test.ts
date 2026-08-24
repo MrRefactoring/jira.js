@@ -5,9 +5,12 @@ import {
   BlobSchema,
   BufferSchema,
   createClient,
+  isAuthError,
+  isForbiddenError,
   isNetworkError,
   isSchemaMismatchError,
   resetSchemaMismatchReporting,
+  type AuthError,
   type NetworkError,
   type SchemaMismatchError,
   type SchemaMismatchReport,
@@ -58,6 +61,26 @@ describe('auth headers', () => {
     const expected = `Basic ${Buffer.from('a@b.co:secret').toString('base64')}`;
 
     expect((calls[0].init.headers as Record<string, string>).Authorization).toBe(expected);
+  });
+
+  it('base64-encodes username and password for Data Center basic auth', async () => {
+    const calls = mockFetch([json({})]);
+
+    await createClient({ host: HOST, auth: { type: 'basic', username: 'jdoe', password: 'hunter2' } })
+      .sendRequest({ url: '/x', method: 'GET' });
+
+    const expected = `Basic ${Buffer.from('jdoe:hunter2').toString('base64')}`;
+
+    expect((calls[0].init.headers as Record<string, string>).Authorization).toBe(expected);
+  });
+
+  it('rejects a basic credential that mixes the two forms', async () => {
+    mockFetch([json({})]);
+
+    // Half a Cloud credential and half a Data Center one authenticates against neither, and the 401 it would earn
+    // arrives far from the mistake.
+    expect(() => createClient({ host: HOST, auth: { email: 'a@b.co', password: 'hunter2' } as never }))
+      .toThrow();
   });
 
   it('sends a static bearer token', async () => {
@@ -421,5 +444,212 @@ describe('headers and body', () => {
       .sendRequest({ url: '/x', method: 'GET', headers: { 'X-Trace': 'request' } });
 
     expect((calls[0].init.headers as Record<string, string>)['X-Trace']).toBe('request');
+  });
+
+  it('drops a header the caller left out instead of sending the word undefined', async () => {
+    const calls = mockFetch([json({})]);
+
+    await createClient({ host: HOST }).sendRequest({ url: '/x', method: 'GET', headers: { 'If-Match': undefined } });
+
+    expect(calls[0].init.headers as Record<string, string>).not.toHaveProperty('If-Match');
+  });
+
+  it('does not let an omitted header parameter shadow a client-wide one', async () => {
+    const calls = mockFetch([json({})]);
+
+    await createClient({ host: HOST, headers: { 'X-Trace': 'client' } })
+      .sendRequest({ url: '/x', method: 'GET', headers: { 'X-Trace': undefined } });
+
+    expect((calls[0].init.headers as Record<string, string>)['X-Trace']).toBe('client');
+  });
+});
+
+describe('credentials refused behind a status that says otherwise', () => {
+  const basic = { type: 'basic', email: 'a@b.co', apiToken: 'expired' } as const;
+
+  /** What Jira answers an anonymous-accessible endpoint with when the token is dead. */
+  function anonymous(reason = 'AUTHENTICATED_FAILED', status = 200): Response {
+    return new Response(JSON.stringify({ total: 0, isLast: true, values: [] }), {
+      status,
+      headers: { 'content-type': 'application/json', 'x-seraph-loginreason': reason },
+    });
+  }
+
+  it('throws rather than handing back the anonymous body', async () => {
+    mockFetch([anonymous()]);
+
+    const error = await createClient({ host: HOST, auth: basic })
+      .sendRequest({ url: '/rest/api/3/project/search', method: 'GET' })
+      .catch((e: unknown) => e);
+
+    expect(isAuthError(error)).toBe(true);
+    expect((error as AuthError).message).toContain('x-seraph-loginreason: AUTHENTICATED_FAILED');
+  });
+
+  it('reports the status that was actually on the wire, not 401', async () => {
+    mockFetch([anonymous()]);
+
+    const error = await createClient({ host: HOST, auth: basic })
+      .sendRequest({ url: '/x', method: 'GET' })
+      .catch((e: unknown) => e);
+
+    expect((error as AuthError).status).toBe(200);
+    expect((error as AuthError).statusText).toBe('');
+  });
+
+  it('fires on a 4xx too, where the status alone would blame the request', async () => {
+    mockFetch([anonymous('AUTHENTICATED_FAILED', 400)]);
+
+    const error = await createClient({ host: HOST, auth: basic })
+      .sendRequest({ url: '/x', method: 'POST' })
+      .catch((e: unknown) => e);
+
+    expect(isAuthError(error)).toBe(true);
+    expect((error as AuthError).status).toBe(400);
+  });
+
+  it('counts a login the instance refused outright', async () => {
+    mockFetch([anonymous('AUTHENTICATION_DENIED')]);
+
+    const error = await createClient({ host: HOST, auth: basic })
+      .sendRequest({ url: '/x', method: 'GET' })
+      .catch((e: unknown) => e);
+
+    expect(isAuthError(error)).toBe(true);
+  });
+
+  it.each(['AUTHORISATION_FAILED', 'OUT', 'OK'])('leaves %s alone — it is not a refused credential', async reason => {
+    mockFetch([anonymous(reason)]);
+
+    await expect(
+      createClient({ host: HOST, auth: basic }).sendRequest({ url: '/x', method: 'GET' }),
+    ).resolves.toEqual({ total: 0, isLast: true, values: [] });
+  });
+
+  it('leaves a client with no credentials alone', async () => {
+    mockFetch([anonymous()]);
+
+    await expect(createClient({ host: HOST }).sendRequest({ url: '/x', method: 'GET' })).resolves.toEqual({
+      total: 0,
+      isLast: true,
+      values: [],
+    });
+  });
+
+  it('does not reclassify a permission denial that carries the header', async () => {
+    mockFetch([
+      new Response('{"errorMessages":["nope"]}', {
+        status: 403,
+        headers: { 'content-type': 'application/json', 'x-seraph-loginreason': 'AUTHORISATION_FAILED' },
+      }),
+    ]);
+
+    const error = await createClient({ host: HOST, auth: basic })
+      .sendRequest({ url: '/x', method: 'GET' })
+      .catch((e: unknown) => e);
+
+    expect(isForbiddenError(error)).toBe(true);
+    expect(isAuthError(error)).toBe(false);
+  });
+
+  it('gives getAuthOn401 the same single attempt a 401 would', async () => {
+    const calls = mockFetch([anonymous(), json({ ok: true })]);
+    const getAuthOn401 = vi.fn(async () => ({ type: 'basic', email: 'a@b.co', apiToken: 'fresh' }) as const);
+
+    await expect(
+      createClient({ host: HOST, auth: basic, getAuthOn401 }).sendRequest({ url: '/x', method: 'GET' }),
+    ).resolves.toEqual({ ok: true });
+
+    expect(getAuthOn401).toHaveBeenCalledOnce();
+    expect(calls).toHaveLength(2);
+    expect((calls[1].init.headers as Record<string, string>).Authorization).toContain(
+      Buffer.from('a@b.co:fresh').toString('base64'),
+    );
+  });
+
+  it('does not loop when the fresh credentials are refused as well', async () => {
+    const calls = mockFetch([anonymous(), anonymous()]);
+    const getAuthOn401 = vi.fn(async () => ({ type: 'basic', email: 'a@b.co', apiToken: 'also-dead' }) as const);
+
+    await expect(
+      createClient({ host: HOST, auth: basic, getAuthOn401 }).sendRequest({ url: '/x', method: 'GET' }),
+    ).rejects.toSatisfy(isAuthError);
+
+    expect(calls).toHaveLength(2);
+  });
+});
+
+describe('cancellation', () => {
+  it('hands the signal to fetch', async () => {
+    const calls = mockFetch([json({})]);
+    const controller = new AbortController();
+
+    await createClient({ host: HOST }).sendRequest({ url: '/x', method: 'GET', signal: controller.signal });
+
+    expect(calls[0].init.signal).toBe(controller.signal);
+  });
+
+  it('rethrows the reason the caller supplied, unwrapped', async () => {
+    const reason = new Error('gave up waiting');
+
+    mockFetch([reason]);
+
+    const controller = new AbortController();
+
+    controller.abort(reason);
+
+    const error = await createClient({ host: HOST })
+      .sendRequest({ url: '/x', method: 'GET', signal: controller.signal })
+      .catch((e: unknown) => e);
+
+    expect(error).toBe(reason);
+    expect(isNetworkError(error)).toBe(false);
+  });
+
+  it('cuts the retry back-off short instead of waiting it out', async () => {
+    const calls = mockFetch([networkError('ECONNRESET')]);
+    const controller = new AbortController();
+    const started = Date.now();
+
+    setTimeout(() => controller.abort(), 5);
+
+    // Compared after the fact: `signal.reason` is undefined until `abort()` runs, so reading it while building the
+    // assertion would pin the wrong value.
+    const error = await createClient({ host: HOST, retry: { maxAttempts: 3, initialDelayMs: 30_000 } })
+      .sendRequest({ url: '/x', method: 'GET', signal: controller.signal })
+      .catch((e: unknown) => e);
+
+    expect(error).toBe(controller.signal.reason);
+    expect(calls).toHaveLength(1);
+    expect(Date.now() - started).toBeLessThan(1_000);
+  });
+});
+
+describe('a fetch of your own', () => {
+  it('is used in place of the global one', async () => {
+    mockFetch([json({ from: 'global' })]);
+
+    const own = vi.fn(async (_url: string, _init: RequestInit) => json({ from: 'own' }));
+
+    await expect(
+      createClient({ host: HOST, fetch: own }).sendRequest({ url: '/x', method: 'GET' }),
+    ).resolves.toEqual({ from: 'own' });
+
+    expect(own).toHaveBeenCalledOnce();
+    expect(own.mock.calls[0][0]).toBe(`${HOST}/x`);
+  });
+
+  it('sees the headers the client built', async () => {
+    const own = vi.fn(async (_url: string, _init: RequestInit) => json({}));
+
+    await createClient({
+      host: HOST,
+      auth: { type: 'bearer', token: 'pat' },
+      fetch: own,
+    }).sendRequest({ url: '/x', method: 'GET' });
+
+    const init = own.mock.calls[0][1];
+
+    expect((init.headers as Record<string, string>).Authorization).toBe('Bearer pat');
   });
 });

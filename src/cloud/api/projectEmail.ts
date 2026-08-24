@@ -1,7 +1,7 @@
 import { ProjectEmailAddressSchema, type ProjectEmailAddress } from '../models/projectEmailAddress';
 import type { GetProjectEmail } from '../parameters/getProjectEmail';
 import type { UpdateProjectEmail } from '../parameters/updateProjectEmail';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /**
  * Returns the [project's sender email address](https://confluence.atlassian.com/x/dolKLg).
@@ -9,11 +9,16 @@ import type { Client, SendRequestOptions } from '#/core';
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** _Browse
  * projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
  */
-export async function getProjectEmail(client: Client, parameters: GetProjectEmail): Promise<ProjectEmailAddress> {
+export async function getProjectEmail(
+  client: Client,
+  parameters: GetProjectEmail,
+  options?: RequestOptions,
+): Promise<ProjectEmailAddress> {
   const config: SendRequestOptions<ProjectEmailAddress> = {
     url: `/rest/api/3/project/${parameters.projectId}/email`,
     method: 'GET',
     schema: ProjectEmailAddressSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -28,7 +33,11 @@ export async function getProjectEmail(client: Client, parameters: GetProjectEmai
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg) or _Administer Projects_ [project
  * permission.](https://confluence.atlassian.com/x/yodKLg)
  */
-export async function updateProjectEmail(client: Client, parameters: UpdateProjectEmail): Promise<void> {
+export async function updateProjectEmail(
+  client: Client,
+  parameters: UpdateProjectEmail,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/project/${parameters.projectId}/email`,
     method: 'PUT',
@@ -36,6 +45,7 @@ export async function updateProjectEmail(client: Client, parameters: UpdateProje
       emailAddress: parameters.emailAddress,
       emailAddressStatus: parameters.emailAddressStatus,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

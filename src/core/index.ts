@@ -24,6 +24,7 @@ export {
   isScopeError,
   type ErrorKind,
   type ApiErrorOptions,
+  type AuthErrorOptions,
   type RateLimitErrorOptions,
   type OAuthErrorOptions,
 } from './errors/index.js';
@@ -43,15 +44,19 @@ export {
   authBasicSchema,
   authBearerSchema,
   authOAuth2Schema,
+  authOAuth2ServerSchema,
   sendRequestOptionsSchema,
   type HttpMethod,
   type ClientConfig,
   type CommonClientConfig,
   type ParsedClientConfig,
+  type FetchLike,
+  type RequestOptions,
   type Auth,
   type AuthBasic,
   type AuthBearer,
   type AuthOAuth2,
+  type AuthOAuth2Server,
   type SendRequestOptions,
 } from './schemas/index.js';
 
@@ -63,6 +68,15 @@ export {
   parseCallbackUrl,
   createOAuth2Manager,
 } from './oauth/index.js';
+
+export {
+  generateServerAuthorizationUrl,
+  exchangeServerAuthorizationCode,
+  refreshServerOAuth2Token,
+  createServerOAuth2Manager,
+} from './oauthServer/index.js';
+
+export type { ServerOAuth2Scope, ServerOAuth2ManagerOptions } from './oauthServer/index.js';
 
 export type {
   CallbackParams,

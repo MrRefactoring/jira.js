@@ -8,7 +8,7 @@ import type { DeleteAvatar } from '../parameters/deleteAvatar';
 import type { GetAvatarImageByType } from '../parameters/getAvatarImageByType';
 import type { GetAvatarImageByID } from '../parameters/getAvatarImageByID';
 import type { GetAvatarImageByOwner } from '../parameters/getAvatarImageByOwner';
-import { type Client, type SendRequestOptions, BlobSchema } from '#/core';
+import { type Client, type RequestOptions, type SendRequestOptions, BlobSchema } from '#/core';
 
 /**
  * Returns a list of system avatar details by owner type, where the owner types are issue type, project, user or
@@ -18,11 +18,16 @@ import { type Client, type SendRequestOptions, BlobSchema } from '#/core';
  *
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** None.
  */
-export async function getAllSystemAvatars(client: Client, parameters: GetAllSystemAvatars): Promise<SystemAvatars> {
+export async function getAllSystemAvatars(
+  client: Client,
+  parameters: GetAllSystemAvatars,
+  options?: RequestOptions,
+): Promise<SystemAvatars> {
   const config: SendRequestOptions<SystemAvatars> = {
     url: `/rest/api/3/avatar/${parameters.type}/system`,
     method: 'GET',
     schema: SystemAvatarsSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -42,11 +47,12 @@ export async function getAllSystemAvatars(client: Client, parameters: GetAllSyst
  * - For system avatars, none.
  * - For priority avatars, none.
  */
-export async function getAvatars(client: Client, parameters: GetAvatars): Promise<Avatars> {
+export async function getAvatars(client: Client, parameters: GetAvatars, options?: RequestOptions): Promise<Avatars> {
   const config: SendRequestOptions<Avatars> = {
     url: `/rest/api/3/universal_avatar/type/${parameters.type}/owner/${parameters.entityId}`,
     method: 'GET',
     schema: AvatarsSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -63,7 +69,7 @@ export async function getAvatars(client: Client, parameters: GetAvatars): Promis
  *
  * For example: `curl --request POST `
  *
- * `--user email@example.com:<api_token> `
+ * `--user email@example.com: `
  *
  * `--header 'X-Atlassian-Token: no-check' `
  *
@@ -93,7 +99,7 @@ export async function getAvatars(client: Client, parameters: GetAvatars): Promis
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-export async function storeAvatar(client: Client, parameters: StoreAvatar): Promise<Avatar> {
+export async function storeAvatar(client: Client, parameters: StoreAvatar, options?: RequestOptions): Promise<Avatar> {
   const config: SendRequestOptions<Avatar> = {
     url: `/rest/api/3/universal_avatar/type/${parameters.type}/owner/${parameters.entityId}`,
     method: 'POST',
@@ -107,6 +113,7 @@ export async function storeAvatar(client: Client, parameters: StoreAvatar): Prom
     },
     body: parameters.body,
     schema: AvatarSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -118,10 +125,11 @@ export async function storeAvatar(client: Client, parameters: StoreAvatar): Prom
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-export async function deleteAvatar(client: Client, parameters: DeleteAvatar): Promise<void> {
+export async function deleteAvatar(client: Client, parameters: DeleteAvatar, options?: RequestOptions): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/universal_avatar/type/${parameters.type}/owner/${parameters.owningObjectId}/avatar/${parameters.id}`,
     method: 'DELETE',
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -134,7 +142,11 @@ export async function deleteAvatar(client: Client, parameters: DeleteAvatar): Pr
  *
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** None.
  */
-export async function getAvatarImageByType(client: Client, parameters: GetAvatarImageByType): Promise<Blob> {
+export async function getAvatarImageByType(
+  client: Client,
+  parameters: GetAvatarImageByType,
+  options?: RequestOptions,
+): Promise<Blob> {
   const config: SendRequestOptions<Blob> = {
     url: `/rest/api/3/universal_avatar/view/type/${parameters.type}`,
     method: 'GET',
@@ -143,6 +155,7 @@ export async function getAvatarImageByType(client: Client, parameters: GetAvatar
       format: parameters.format,
     },
     schema: BlobSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -162,7 +175,11 @@ export async function getAvatarImageByType(client: Client, parameters: GetAvatar
  *   at least one project the issue type is used in.
  * - For priority avatars, none.
  */
-export async function getAvatarImageByID(client: Client, parameters: GetAvatarImageByID): Promise<Blob> {
+export async function getAvatarImageByID(
+  client: Client,
+  parameters: GetAvatarImageByID,
+  options?: RequestOptions,
+): Promise<Blob> {
   const config: SendRequestOptions<Blob> = {
     url: `/rest/api/3/universal_avatar/view/type/${parameters.type}/avatar/${parameters.id}`,
     method: 'GET',
@@ -171,6 +188,7 @@ export async function getAvatarImageByID(client: Client, parameters: GetAvatarIm
       format: parameters.format,
     },
     schema: BlobSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -190,7 +208,11 @@ export async function getAvatarImageByID(client: Client, parameters: GetAvatarIm
  *   at least one project the issue type is used in.
  * - For priority avatars, none.
  */
-export async function getAvatarImageByOwner(client: Client, parameters: GetAvatarImageByOwner): Promise<Blob> {
+export async function getAvatarImageByOwner(
+  client: Client,
+  parameters: GetAvatarImageByOwner,
+  options?: RequestOptions,
+): Promise<Blob> {
   const config: SendRequestOptions<Blob> = {
     url: `/rest/api/3/universal_avatar/view/type/${parameters.type}/owner/${parameters.entityId}`,
     method: 'GET',
@@ -199,6 +221,7 @@ export async function getAvatarImageByOwner(client: Client, parameters: GetAvata
       format: parameters.format,
     },
     schema: BlobSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

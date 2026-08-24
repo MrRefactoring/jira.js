@@ -1,6 +1,7 @@
 import { PagedCustomerRequestSchema } from '../models/pagedCustomerRequest';
 import type { Page } from '../models/page';
 import { CustomerRequestSchema, type CustomerRequest } from '../models/customerRequest';
+import { RequestValidationResultSchema, type RequestValidationResult } from '../models/requestValidationResult';
 import { PagedApprovalSchema } from '../models/pagedApproval';
 import { ApprovalSchema, type Approval } from '../models/approval';
 import { PagedAttachmentSchema } from '../models/pagedAttachment';
@@ -22,6 +23,7 @@ import { PagedCustomerTransitionSchema } from '../models/pagedCustomerTransition
 import type { CustomerTransition } from '../models/customerTransition';
 import type { GetCustomerRequests } from '../parameters/getCustomerRequests';
 import type { CreateCustomerRequest } from '../parameters/createCustomerRequest';
+import type { ValidateCustomerRequest } from '../parameters/validateCustomerRequest';
 import type { GetCustomerRequestByIdOrKey } from '../parameters/getCustomerRequestByIdOrKey';
 import type { GetApprovals } from '../parameters/getApprovals';
 import type { GetApprovalById } from '../parameters/getApprovalById';
@@ -44,7 +46,7 @@ import type { GetSlaInformationById } from '../parameters/getSlaInformationById'
 import type { GetCustomerRequestStatus } from '../parameters/getCustomerRequestStatus';
 import type { GetCustomerTransitions } from '../parameters/getCustomerTransitions';
 import type { PerformCustomerTransition } from '../parameters/performCustomerTransition';
-import { type Client, type SendRequestOptions, BufferSchema, type Buffer } from '#/core';
+import { type Client, type RequestOptions, type SendRequestOptions, BufferSchema, type Buffer } from '#/core';
 
 /**
  * This method returns all customer requests for the user executing the query.
@@ -61,6 +63,7 @@ import { type Client, type SendRequestOptions, BufferSchema, type Buffer } from 
 export async function getCustomerRequests(
   client: Client,
   parameters?: GetCustomerRequests,
+  options?: RequestOptions,
 ): Promise<Page<CustomerRequest>> {
   const config: SendRequestOptions<Page<CustomerRequest>> = {
     url: '/rest/servicedeskapi/request',
@@ -78,6 +81,7 @@ export async function getCustomerRequests(
       limit: parameters?.limit,
     },
     schema: PagedCustomerRequestSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -106,6 +110,7 @@ export async function getCustomerRequests(
 export async function createCustomerRequest(
   client: Client,
   parameters: CreateCustomerRequest,
+  options?: RequestOptions,
 ): Promise<CustomerRequest> {
   const config: SendRequestOptions<CustomerRequest> = {
     url: '/rest/servicedeskapi/request',
@@ -121,6 +126,48 @@ export async function createCustomerRequest(
       serviceDeskId: parameters.serviceDeskId,
     },
     schema: CustomerRequestSchema,
+    signal: options?.signal,
+  };
+
+  return await client.sendRequest(config);
+}
+
+/**
+ * Validates a customer request payload without creating (persisting) a request.
+ *
+ * This endpoint runs exactly the same structural and semantic validations as [Create customer
+ * request](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro#api-request-post) — including ProForma
+ * form validation — but performs **no mutation**: no issue is created and no side effects (attachments, comments,
+ * analytics) run.
+ *
+ * The response is intentionally verbose and structured so that it can be consumed by automated agents (for example an
+ * LLM repairing an invalid payload): every failure carries a machine-readable location (field id / form entity) and a
+ * human-readable reason. A valid payload returns HTTP 200 with `valid: true`; an invalid payload returns HTTP 400 with
+ * `valid: false` together with the field, form and general validation errors.
+ *
+ * **[Permissions](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro#permissions) required**:
+ * Permission to create requests in the specified service desk.
+ */
+export async function validateCustomerRequest(
+  client: Client,
+  parameters: ValidateCustomerRequest,
+  options?: RequestOptions,
+): Promise<RequestValidationResult> {
+  const config: SendRequestOptions<RequestValidationResult> = {
+    url: '/rest/servicedeskapi/request/validate',
+    method: 'POST',
+    body: {
+      channel: parameters.channel,
+      form: parameters.form,
+      isAdfRequest: parameters.isAdfRequest,
+      raiseOnBehalfOf: parameters.raiseOnBehalfOf,
+      requestFieldValues: parameters.requestFieldValues,
+      requestParticipants: parameters.requestParticipants,
+      requestTypeId: parameters.requestTypeId,
+      serviceDeskId: parameters.serviceDeskId,
+    },
+    schema: RequestValidationResultSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -142,6 +189,7 @@ export async function createCustomerRequest(
 export async function getCustomerRequestByIdOrKey(
   client: Client,
   parameters: GetCustomerRequestByIdOrKey,
+  options?: RequestOptions,
 ): Promise<CustomerRequest> {
   const config: SendRequestOptions<CustomerRequest> = {
     url: `/rest/servicedeskapi/request/${parameters.issueIdOrKey}`,
@@ -150,6 +198,7 @@ export async function getCustomerRequestByIdOrKey(
       expand: parameters.expand,
     },
     schema: CustomerRequestSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -161,7 +210,11 @@ export async function getCustomerRequestByIdOrKey(
  * **[Permissions](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro#permissions) required**:
  * Permission to view the customer request.
  */
-export async function getApprovals(client: Client, parameters: GetApprovals): Promise<Page<Approval>> {
+export async function getApprovals(
+  client: Client,
+  parameters: GetApprovals,
+  options?: RequestOptions,
+): Promise<Page<Approval>> {
   const config: SendRequestOptions<Page<Approval>> = {
     url: `/rest/servicedeskapi/request/${parameters.issueIdOrKey}/approval`,
     method: 'GET',
@@ -170,6 +223,7 @@ export async function getApprovals(client: Client, parameters: GetApprovals): Pr
       limit: parameters.limit,
     },
     schema: PagedApprovalSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -181,11 +235,16 @@ export async function getApprovals(client: Client, parameters: GetApprovals): Pr
  * **[Permissions](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro#permissions) required**:
  * Permission to view the customer request.
  */
-export async function getApprovalById(client: Client, parameters: GetApprovalById): Promise<Approval> {
+export async function getApprovalById(
+  client: Client,
+  parameters: GetApprovalById,
+  options?: RequestOptions,
+): Promise<Approval> {
   const config: SendRequestOptions<Approval> = {
     url: `/rest/servicedeskapi/request/${parameters.issueIdOrKey}/approval/${parameters.approvalId}`,
     method: 'GET',
     schema: ApprovalSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -198,7 +257,11 @@ export async function getApprovalById(client: Client, parameters: GetApprovalByI
  * **[Permissions](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro#permissions) required**: User is
  * assigned to the approval request.
  */
-export async function answerApproval(client: Client, parameters: AnswerApproval): Promise<Approval> {
+export async function answerApproval(
+  client: Client,
+  parameters: AnswerApproval,
+  options?: RequestOptions,
+): Promise<Approval> {
   const config: SendRequestOptions<Approval> = {
     url: `/rest/servicedeskapi/request/${parameters.issueIdOrKey}/approval/${parameters.approvalId}`,
     method: 'POST',
@@ -206,6 +269,7 @@ export async function answerApproval(client: Client, parameters: AnswerApproval)
       decision: parameters.decision,
     },
     schema: ApprovalSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -222,6 +286,7 @@ export async function answerApproval(client: Client, parameters: AnswerApproval)
 export async function getAttachmentsForRequest(
   client: Client,
   parameters: GetAttachmentsForRequest,
+  options?: RequestOptions,
 ): Promise<Page<Attachment>> {
   const config: SendRequestOptions<Page<Attachment>> = {
     url: `/rest/servicedeskapi/request/${parameters.issueIdOrKey}/attachment`,
@@ -231,6 +296,7 @@ export async function getAttachmentsForRequest(
       limit: parameters.limit,
     },
     schema: PagedAttachmentSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -242,9 +308,9 @@ export async function getAttachmentsForRequest(
  * with the visibility set by `public`. See
  *
  * - GET
- *   [servicedeskapi/request/{issueIdOrKey}/attachment](./#api-rest-servicedeskapi-request-issueidorkey-attachment-get)
+ *   [servicedeskapi/request/{issueIdOrKey}/attachment](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro#api-rest-servicedeskapi-request-issueidorkey-attachment-get)
  * - GET
- *   [servicedeskapi/request/{issueIdOrKey}/comment/{commentId}/attachment](./#api-rest-servicedeskapi-request-issueidorkey-comment-commentid-attachment-get)
+ *   [servicedeskapi/request/{issueIdOrKey}/comment/{commentId}/attachment](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro#api-rest-servicedeskapi-request-issueidorkey-comment-commentid-attachment-get)
  *
  * **[Permissions](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro#permissions) required**:
  * Permission to add an attachment.
@@ -254,6 +320,7 @@ export async function getAttachmentsForRequest(
 export async function createCommentWithAttachment(
   client: Client,
   parameters: CreateCommentWithAttachment,
+  options?: RequestOptions,
 ): Promise<AttachmentCreateResult> {
   const config: SendRequestOptions<AttachmentCreateResult> = {
     url: `/rest/servicedeskapi/request/${parameters.issueIdOrKey}/attachment`,
@@ -264,6 +331,7 @@ export async function createCommentWithAttachment(
       temporaryAttachmentIds: parameters.temporaryAttachmentIds,
     },
     schema: AttachmentCreateResultSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -273,7 +341,7 @@ export async function createCommentWithAttachment(
  * Returns the contents of an attachment.
  *
  * To return a thumbnail of the attachment, use
- * [servicedeskapi/request/{issueIdOrKey}/attachment/{attachmentId}/thumbnail](./#api-rest-servicedeskapi-request-issueidorkey-attachment-attachmentid-thumbnail-get).
+ * [servicedeskapi/request/{issueIdOrKey}/attachment/{attachmentId}/thumbnail](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro#api-rest-servicedeskapi-request-issueidorkey-attachment-attachmentid-thumbnail-get).
  *
  * **[Permissions](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro#permissions) required:** For the
  * issue containing the attachment:
@@ -283,11 +351,16 @@ export async function createCommentWithAttachment(
  * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
  *   to view the issue.
  */
-export async function getAttachmentContent(client: Client, parameters: GetAttachmentContent): Promise<Buffer> {
+export async function getAttachmentContent(
+  client: Client,
+  parameters: GetAttachmentContent,
+  options?: RequestOptions,
+): Promise<Buffer> {
   const config: SendRequestOptions<Buffer> = {
     url: `/rest/servicedeskapi/request/${parameters.issueIdOrKey}/attachment/${parameters.attachmentId}`,
     method: 'GET',
     schema: BufferSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -307,11 +380,16 @@ export async function getAttachmentContent(client: Client, parameters: GetAttach
  * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
  *   to view the issue.
  */
-export async function getAttachmentThumbnail(client: Client, parameters: GetAttachmentThumbnail): Promise<Buffer> {
+export async function getAttachmentThumbnail(
+  client: Client,
+  parameters: GetAttachmentThumbnail,
+  options?: RequestOptions,
+): Promise<Buffer> {
   const config: SendRequestOptions<Buffer> = {
     url: `/rest/servicedeskapi/request/${parameters.issueIdOrKey}/attachment/${parameters.attachmentId}/thumbnail`,
     method: 'GET',
     schema: BufferSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -326,7 +404,11 @@ export async function getAttachmentThumbnail(client: Client, parameters: GetAtta
  *
  * **Response limitations**: Customers are returned public comments only.
  */
-export async function getRequestComments(client: Client, parameters: GetRequestComments): Promise<Page<Comment>> {
+export async function getRequestComments(
+  client: Client,
+  parameters: GetRequestComments,
+  options?: RequestOptions,
+): Promise<Page<Comment>> {
   const config: SendRequestOptions<Page<Comment>> = {
     url: `/rest/servicedeskapi/request/${parameters.issueIdOrKey}/comment`,
     method: 'GET',
@@ -338,6 +420,7 @@ export async function getRequestComments(client: Client, parameters: GetRequestC
       limit: parameters.limit,
     },
     schema: PagedCommentSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -352,7 +435,11 @@ export async function getRequestComments(client: Client, parameters: GetRequestC
  *
  * **Request limitations**: Customers can set comments to public visibility only.
  */
-export async function createRequestComment(client: Client, parameters: CreateRequestComment): Promise<Comment> {
+export async function createRequestComment(
+  client: Client,
+  parameters: CreateRequestComment,
+  options?: RequestOptions,
+): Promise<Comment> {
   const config: SendRequestOptions<Comment> = {
     url: `/rest/servicedeskapi/request/${parameters.issueIdOrKey}/comment`,
     method: 'POST',
@@ -361,6 +448,7 @@ export async function createRequestComment(client: Client, parameters: CreateReq
       public: parameters.public,
     },
     schema: CommentSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -375,7 +463,11 @@ export async function createRequestComment(client: Client, parameters: CreateReq
  * **Response limitations**: Customers can only view public comments on requests where they are the reporter or a
  * participant whereas agents can see both internal and public comments.
  */
-export async function getRequestCommentById(client: Client, parameters: GetRequestCommentById): Promise<Comment> {
+export async function getRequestCommentById(
+  client: Client,
+  parameters: GetRequestCommentById,
+  options?: RequestOptions,
+): Promise<Comment> {
   const config: SendRequestOptions<Comment> = {
     url: `/rest/servicedeskapi/request/${parameters.issueIdOrKey}/comment/${parameters.commentId}`,
     method: 'GET',
@@ -383,6 +475,7 @@ export async function getRequestCommentById(client: Client, parameters: GetReque
       expand: parameters.expand,
     },
     schema: CommentSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -398,11 +491,13 @@ export async function getRequestCommentById(client: Client, parameters: GetReque
 export async function getSubscriptionStatus(
   client: Client,
   parameters: GetSubscriptionStatus,
+  options?: RequestOptions,
 ): Promise<RequestNotificationSubscription> {
   const config: SendRequestOptions<RequestNotificationSubscription> = {
     url: `/rest/servicedeskapi/request/${parameters.issueIdOrKey}/notification`,
     method: 'GET',
     schema: RequestNotificationSubscriptionSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -414,10 +509,11 @@ export async function getSubscriptionStatus(
  * **[Permissions](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro#permissions) required**:
  * Permission to view the customer request.
  */
-export async function subscribe(client: Client, parameters: Subscribe): Promise<void> {
+export async function subscribe(client: Client, parameters: Subscribe, options?: RequestOptions): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/servicedeskapi/request/${parameters.issueIdOrKey}/notification`,
     method: 'PUT',
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -429,10 +525,11 @@ export async function subscribe(client: Client, parameters: Subscribe): Promise<
  * **[Permissions](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro#permissions) required**:
  * Permission to view the customer request.
  */
-export async function unsubscribe(client: Client, parameters: Unsubscribe): Promise<void> {
+export async function unsubscribe(client: Client, parameters: Unsubscribe, options?: RequestOptions): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/servicedeskapi/request/${parameters.issueIdOrKey}/notification`,
     method: 'DELETE',
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -444,7 +541,11 @@ export async function unsubscribe(client: Client, parameters: Unsubscribe): Prom
  * **[Permissions](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro#permissions) required**:
  * Permission to view the customer request.
  */
-export async function getRequestParticipants(client: Client, parameters: GetRequestParticipants): Promise<Page<User>> {
+export async function getRequestParticipants(
+  client: Client,
+  parameters: GetRequestParticipants,
+  options?: RequestOptions,
+): Promise<Page<User>> {
   const config: SendRequestOptions<Page<User>> = {
     url: `/rest/servicedeskapi/request/${parameters.issueIdOrKey}/participant`,
     method: 'GET',
@@ -453,6 +554,7 @@ export async function getRequestParticipants(client: Client, parameters: GetRequ
       limit: parameters.limit,
     },
     schema: PagedUserSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -468,7 +570,11 @@ export async function getRequestParticipants(client: Client, parameters: GetRequ
  * [request](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro#api-request-post) resource, by defining
  * the participants in the `requestParticipants` field.
  */
-export async function addRequestParticipants(client: Client, parameters: AddRequestParticipants): Promise<Page<User>> {
+export async function addRequestParticipants(
+  client: Client,
+  parameters: AddRequestParticipants,
+  options?: RequestOptions,
+): Promise<Page<User>> {
   const config: SendRequestOptions<Page<User>> = {
     url: `/rest/servicedeskapi/request/${parameters.issueIdOrKey}/participant`,
     method: 'POST',
@@ -477,6 +583,7 @@ export async function addRequestParticipants(client: Client, parameters: AddRequ
       usernames: parameters.usernames,
     },
     schema: PagedUserSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -491,6 +598,7 @@ export async function addRequestParticipants(client: Client, parameters: AddRequ
 export async function removeRequestParticipants(
   client: Client,
   parameters: RemoveRequestParticipants,
+  options?: RequestOptions,
 ): Promise<Page<User>> {
   const config: SendRequestOptions<Page<User>> = {
     url: `/rest/servicedeskapi/request/${parameters.issueIdOrKey}/participant`,
@@ -500,6 +608,7 @@ export async function removeRequestParticipants(
       usernames: parameters.usernames,
     },
     schema: PagedUserSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -516,7 +625,11 @@ export async function removeRequestParticipants(
  * - Browse Projects permission on the project containing the customer request, including any restrictions imposed by
  *   issue security schemes or custom permission schemes on the specific issue.
  */
-export async function getSlaInformation(client: Client, parameters: GetSlaInformation): Promise<Page<SlaInformation>> {
+export async function getSlaInformation(
+  client: Client,
+  parameters: GetSlaInformation,
+  options?: RequestOptions,
+): Promise<Page<SlaInformation>> {
   const config: SendRequestOptions<Page<SlaInformation>> = {
     url: `/rest/servicedeskapi/request/${parameters.issueIdOrKey}/sla`,
     method: 'GET',
@@ -525,6 +638,7 @@ export async function getSlaInformation(client: Client, parameters: GetSlaInform
       limit: parameters.limit,
     },
     schema: PagedSlaInformationSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -542,11 +656,13 @@ export async function getSlaInformation(client: Client, parameters: GetSlaInform
 export async function getSlaInformationById(
   client: Client,
   parameters: GetSlaInformationById,
+  options?: RequestOptions,
 ): Promise<SlaInformation> {
   const config: SendRequestOptions<SlaInformation> = {
     url: `/rest/servicedeskapi/request/${parameters.issueIdOrKey}/sla/${parameters.slaMetricId}`,
     method: 'GET',
     schema: SlaInformationSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -563,6 +679,7 @@ export async function getSlaInformationById(
 export async function getCustomerRequestStatus(
   client: Client,
   parameters: GetCustomerRequestStatus,
+  options?: RequestOptions,
 ): Promise<Page<CustomerRequestStatus>> {
   const config: SendRequestOptions<Page<CustomerRequestStatus>> = {
     url: `/rest/servicedeskapi/request/${parameters.issueIdOrKey}/status`,
@@ -572,6 +689,7 @@ export async function getCustomerRequestStatus(
       limit: parameters.limit,
     },
     schema: PagedCustomerRequestStatusSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -588,6 +706,7 @@ export async function getCustomerRequestStatus(
 export async function getCustomerTransitions(
   client: Client,
   parameters: GetCustomerTransitions,
+  options?: RequestOptions,
 ): Promise<Page<CustomerTransition>> {
   const config: SendRequestOptions<Page<CustomerTransition>> = {
     url: `/rest/servicedeskapi/request/${parameters.issueIdOrKey}/transition`,
@@ -597,6 +716,7 @@ export async function getCustomerTransitions(
       limit: parameters.limit,
     },
     schema: PagedCustomerTransitionSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -610,7 +730,11 @@ export async function getCustomerTransitions(
  * must be able to view the request and have the Transition Issues permission. If a comment is passed the user must have
  * the Add Comments permission.
  */
-export async function performCustomerTransition(client: Client, parameters: PerformCustomerTransition): Promise<void> {
+export async function performCustomerTransition(
+  client: Client,
+  parameters: PerformCustomerTransition,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/servicedeskapi/request/${parameters.issueIdOrKey}/transition`,
     method: 'POST',
@@ -618,6 +742,7 @@ export async function performCustomerTransition(client: Client, parameters: Perf
       additionalComment: parameters.additionalComment,
       id: parameters.id,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

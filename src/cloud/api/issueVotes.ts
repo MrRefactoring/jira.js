@@ -2,7 +2,7 @@ import { VotesSchema, type Votes } from '../models/votes';
 import type { GetVotes } from '../parameters/getVotes';
 import type { AddVote } from '../parameters/addVote';
 import type { RemoveVote } from '../parameters/removeVote';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /**
  * Returns details about the votes on an issue.
@@ -23,11 +23,12 @@ import type { Client, SendRequestOptions } from '#/core';
  * Note that users with the necessary permissions for this operation but without the _View voters and watchers_ project
  * permissions are not returned details in the `voters` field.
  */
-export async function getVotes(client: Client, parameters: GetVotes): Promise<Votes> {
+export async function getVotes(client: Client, parameters: GetVotes, options?: RequestOptions): Promise<Votes> {
   const config: SendRequestOptions<Votes> = {
     url: `/rest/api/3/issue/${parameters.issueIdOrKey}/votes`,
     method: 'GET',
     schema: VotesSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -47,10 +48,11 @@ export async function getVotes(client: Client, parameters: GetVotes): Promise<Vo
  * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
  *   to view the issue.
  */
-export async function addVote(client: Client, parameters: AddVote): Promise<void> {
+export async function addVote(client: Client, parameters: AddVote, options?: RequestOptions): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/issue/${parameters.issueIdOrKey}/votes`,
     method: 'POST',
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -70,10 +72,11 @@ export async function addVote(client: Client, parameters: AddVote): Promise<void
  * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
  *   to view the issue.
  */
-export async function removeVote(client: Client, parameters: RemoveVote): Promise<void> {
+export async function removeVote(client: Client, parameters: RemoveVote, options?: RequestOptions): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/issue/${parameters.issueIdOrKey}/votes`,
     method: 'DELETE',
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

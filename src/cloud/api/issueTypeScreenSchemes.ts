@@ -19,7 +19,7 @@ import type { AppendMappingsForIssueTypeScreenScheme } from '../parameters/appen
 import type { UpdateDefaultScreenScheme } from '../parameters/updateDefaultScreenScheme';
 import type { RemoveMappingsFromIssueTypeScreenScheme } from '../parameters/removeMappingsFromIssueTypeScreenScheme';
 import type { GetProjectsForIssueTypeScreenScheme } from '../parameters/getProjectsForIssueTypeScreenScheme';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /**
  * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#pagination) list of issue
@@ -33,6 +33,7 @@ import type { Client, SendRequestOptions } from '#/core';
 export async function getIssueTypeScreenSchemes(
   client: Client,
   parameters?: GetIssueTypeScreenSchemes,
+  options?: RequestOptions,
 ): Promise<Page<IssueTypeScreenScheme>> {
   const config: SendRequestOptions<Page<IssueTypeScreenScheme>> = {
     url: '/rest/api/3/issuetypescreenscheme',
@@ -46,6 +47,7 @@ export async function getIssueTypeScreenSchemes(
       expand: parameters?.expand,
     },
     schema: PageIssueTypeScreenSchemeSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -60,6 +62,7 @@ export async function getIssueTypeScreenSchemes(
 export async function createIssueTypeScreenScheme(
   client: Client,
   parameters: CreateIssueTypeScreenScheme,
+  options?: RequestOptions,
 ): Promise<IssueTypeScreenSchemeId> {
   const config: SendRequestOptions<IssueTypeScreenSchemeId> = {
     url: '/rest/api/3/issuetypescreenscheme',
@@ -70,6 +73,7 @@ export async function createIssueTypeScreenScheme(
       name: parameters.name,
     },
     schema: IssueTypeScreenSchemeIdSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -87,6 +91,7 @@ export async function createIssueTypeScreenScheme(
 export async function getIssueTypeScreenSchemeMappings(
   client: Client,
   parameters?: GetIssueTypeScreenSchemeMappings,
+  options?: RequestOptions,
 ): Promise<Page<IssueTypeScreenSchemeItem>> {
   const config: SendRequestOptions<Page<IssueTypeScreenSchemeItem>> = {
     url: '/rest/api/3/issuetypescreenscheme/mapping',
@@ -97,6 +102,7 @@ export async function getIssueTypeScreenSchemeMappings(
       issueTypeScreenSchemeId: parameters?.issueTypeScreenSchemeId,
     },
     schema: PageIssueTypeScreenSchemeItemSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -114,6 +120,7 @@ export async function getIssueTypeScreenSchemeMappings(
 export async function getIssueTypeScreenSchemeProjectAssociations(
   client: Client,
   parameters: GetIssueTypeScreenSchemeProjectAssociations,
+  options?: RequestOptions,
 ): Promise<Page<IssueTypeScreenSchemesProjects>> {
   const config: SendRequestOptions<Page<IssueTypeScreenSchemesProjects>> = {
     url: '/rest/api/3/issuetypescreenscheme/project',
@@ -124,6 +131,7 @@ export async function getIssueTypeScreenSchemeProjectAssociations(
       projectId: parameters.projectId,
     },
     schema: PageIssueTypeScreenSchemesProjectsSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -140,6 +148,7 @@ export async function getIssueTypeScreenSchemeProjectAssociations(
 export async function assignIssueTypeScreenSchemeToProject(
   client: Client,
   parameters: AssignIssueTypeScreenSchemeToProject,
+  options?: RequestOptions,
 ): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: '/rest/api/3/issuetypescreenscheme/project',
@@ -148,6 +157,7 @@ export async function assignIssueTypeScreenSchemeToProject(
       issueTypeScreenSchemeId: parameters.issueTypeScreenSchemeId,
       projectId: parameters.projectId,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -162,6 +172,7 @@ export async function assignIssueTypeScreenSchemeToProject(
 export async function updateIssueTypeScreenScheme(
   client: Client,
   parameters: UpdateIssueTypeScreenScheme,
+  options?: RequestOptions,
 ): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/issuetypescreenscheme/${parameters.issueTypeScreenSchemeId}`,
@@ -170,6 +181,7 @@ export async function updateIssueTypeScreenScheme(
       description: parameters.description,
       name: parameters.name,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -184,10 +196,12 @@ export async function updateIssueTypeScreenScheme(
 export async function deleteIssueTypeScreenScheme(
   client: Client,
   parameters: DeleteIssueTypeScreenScheme,
+  options?: RequestOptions,
 ): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/issuetypescreenscheme/${parameters.issueTypeScreenSchemeId}`,
     method: 'DELETE',
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -202,6 +216,7 @@ export async function deleteIssueTypeScreenScheme(
 export async function appendMappingsForIssueTypeScreenScheme(
   client: Client,
   parameters: AppendMappingsForIssueTypeScreenScheme,
+  options?: RequestOptions,
 ): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/issuetypescreenscheme/${parameters.issueTypeScreenSchemeId}/mapping`,
@@ -209,6 +224,7 @@ export async function appendMappingsForIssueTypeScreenScheme(
     body: {
       issueTypeMappings: parameters.issueTypeMappings,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -221,13 +237,18 @@ export async function appendMappingsForIssueTypeScreenScheme(
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-export async function updateDefaultScreenScheme(client: Client, parameters: UpdateDefaultScreenScheme): Promise<void> {
+export async function updateDefaultScreenScheme(
+  client: Client,
+  parameters: UpdateDefaultScreenScheme,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/issuetypescreenscheme/${parameters.issueTypeScreenSchemeId}/mapping/default`,
     method: 'PUT',
     body: {
       screenSchemeId: parameters.screenSchemeId,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -242,6 +263,7 @@ export async function updateDefaultScreenScheme(client: Client, parameters: Upda
 export async function removeMappingsFromIssueTypeScreenScheme(
   client: Client,
   parameters: RemoveMappingsFromIssueTypeScreenScheme,
+  options?: RequestOptions,
 ): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/issuetypescreenscheme/${parameters.issueTypeScreenSchemeId}/mapping/remove`,
@@ -249,6 +271,7 @@ export async function removeMappingsFromIssueTypeScreenScheme(
     body: {
       issueTypeIds: parameters.issueTypeIds,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -266,6 +289,7 @@ export async function removeMappingsFromIssueTypeScreenScheme(
 export async function getProjectsForIssueTypeScreenScheme(
   client: Client,
   parameters: GetProjectsForIssueTypeScreenScheme,
+  options?: RequestOptions,
 ): Promise<Page<ProjectDetails>> {
   const config: SendRequestOptions<Page<ProjectDetails>> = {
     url: `/rest/api/3/issuetypescreenscheme/${parameters.issueTypeScreenSchemeId}/project`,
@@ -276,6 +300,7 @@ export async function getProjectsForIssueTypeScreenScheme(
       query: parameters.query,
     },
     schema: PageProjectDetailsSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

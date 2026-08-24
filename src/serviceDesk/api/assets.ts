@@ -5,7 +5,7 @@ import { PagedInsightWorkspaceSchema } from '../models/pagedInsightWorkspace';
 import type { InsightWorkspace } from '../models/insightWorkspace';
 import type { GetAssetsWorkspaces } from '../parameters/getAssetsWorkspaces';
 import type { GetInsightWorkspaces } from '../parameters/getInsightWorkspaces';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /**
  * Returns a list of Assets workspace IDs. Include a workspace ID in the path to access the [Assets REST
@@ -16,6 +16,7 @@ import type { Client, SendRequestOptions } from '#/core';
 export async function getAssetsWorkspaces(
   client: Client,
   parameters?: GetAssetsWorkspaces,
+  options?: RequestOptions,
 ): Promise<Page<AssetsWorkspace>> {
   const config: SendRequestOptions<Page<AssetsWorkspace>> = {
     url: '/rest/servicedeskapi/assets/workspace',
@@ -25,6 +26,7 @@ export async function getAssetsWorkspaces(
       limit: parameters?.limit,
     },
     schema: PagedAssetsWorkspaceSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -34,6 +36,7 @@ export async function getAssetsWorkspaces(
 export async function getInsightWorkspaces(
   client: Client,
   parameters?: GetInsightWorkspaces,
+  options?: RequestOptions,
 ): Promise<Page<InsightWorkspace>> {
   const config: SendRequestOptions<Page<InsightWorkspace>> = {
     url: '/rest/servicedeskapi/insight/workspace',
@@ -43,6 +46,7 @@ export async function getInsightWorkspaces(
       limit: parameters?.limit,
     },
     schema: PagedInsightWorkspaceSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

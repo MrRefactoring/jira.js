@@ -8,7 +8,7 @@ import {
 import type { GetPrecomputations } from '../parameters/getPrecomputations';
 import type { UpdatePrecomputations } from '../parameters/updatePrecomputations';
 import type { GetPrecomputationsByID } from '../parameters/getPrecomputationsByID';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /**
  * Returns the list of a function's precomputations along with information about when they were created, updated, and
@@ -23,6 +23,7 @@ import type { Client, SendRequestOptions } from '#/core';
 export async function getPrecomputations(
   client: Client,
   parameters?: GetPrecomputations,
+  options?: RequestOptions,
 ): Promise<Page<JqlFunctionPrecomputation>> {
   const config: SendRequestOptions<Page<JqlFunctionPrecomputation>> = {
     url: '/rest/api/3/jql/function/computation',
@@ -34,6 +35,7 @@ export async function getPrecomputations(
       orderBy: parameters?.orderBy,
     },
     schema: PageJqlFunctionPrecomputationSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -48,7 +50,11 @@ export async function getPrecomputations(
  * The new `write:app-data:jira` OAuth scope is 100% optional now, and not using it won't break your app. However, we
  * recommend adding it to your app's scope list because we will eventually make it mandatory.
  */
-export async function updatePrecomputations(client: Client, parameters: UpdatePrecomputations): Promise<void> {
+export async function updatePrecomputations(
+  client: Client,
+  parameters: UpdatePrecomputations,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: '/rest/api/3/jql/function/computation',
     method: 'POST',
@@ -58,6 +64,7 @@ export async function updatePrecomputations(client: Client, parameters: UpdatePr
     body: {
       values: parameters.values,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -76,6 +83,7 @@ export async function updatePrecomputations(client: Client, parameters: UpdatePr
 export async function getPrecomputationsByID(
   client: Client,
   parameters: GetPrecomputationsByID,
+  options?: RequestOptions,
 ): Promise<JqlFunctionPrecomputationGetByIdResponse> {
   const config: SendRequestOptions<JqlFunctionPrecomputationGetByIdResponse> = {
     url: '/rest/api/3/jql/function/computation/search',
@@ -87,6 +95,7 @@ export async function getPrecomputationsByID(
       precomputationIDs: parameters.precomputationIDs,
     },
     schema: JqlFunctionPrecomputationGetByIdResponseSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

@@ -4,7 +4,7 @@ import type { SubmitFeatureFlags as SubmitFeatureFlagsParameters } from '../para
 import type { DeleteFeatureFlagsByProperty } from '../parameters/deleteFeatureFlagsByProperty';
 import type { GetFeatureFlagById as GetFeatureFlagByIdParameters } from '../parameters/getFeatureFlagById';
 import type { DeleteFeatureFlagById } from '../parameters/deleteFeatureFlagById';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /**
  * Update / insert Feature Flag data.
@@ -22,6 +22,7 @@ import type { Client, SendRequestOptions } from '#/core';
 export async function submitFeatureFlags(
   client: Client,
   parameters: SubmitFeatureFlagsParameters,
+  options?: RequestOptions,
 ): Promise<SubmitFeatureFlags> {
   const config: SendRequestOptions<SubmitFeatureFlags> = {
     url: '/rest/featureflags/0.1/bulk',
@@ -32,6 +33,7 @@ export async function submitFeatureFlags(
       providerMetadata: parameters.providerMetadata,
     },
     schema: SubmitFeatureFlagsSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -52,6 +54,7 @@ export async function submitFeatureFlags(
 export async function deleteFeatureFlagsByProperty(
   client: Client,
   parameters: DeleteFeatureFlagsByProperty,
+  options?: RequestOptions,
 ): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: '/rest/featureflags/0.1/bulkByProperties',
@@ -60,6 +63,7 @@ export async function deleteFeatureFlagsByProperty(
       accountId: parameters.accountId,
       createdBy: parameters.createdBy,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -73,11 +77,13 @@ export async function deleteFeatureFlagsByProperty(
 export async function getFeatureFlagById(
   client: Client,
   parameters: GetFeatureFlagByIdParameters,
+  options?: RequestOptions,
 ): Promise<GetFeatureFlagById> {
   const config: SendRequestOptions<GetFeatureFlagById> = {
     url: `/rest/featureflags/0.1/flag/${parameters.featureFlagId}`,
     method: 'GET',
     schema: GetFeatureFlagByIdSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -89,10 +95,15 @@ export async function getFeatureFlagById(
  * Deletion is performed asynchronously. The getFeatureFlagById operation can be used to confirm that data has been
  * deleted successfully (if needed).
  */
-export async function deleteFeatureFlagById(client: Client, parameters: DeleteFeatureFlagById): Promise<void> {
+export async function deleteFeatureFlagById(
+  client: Client,
+  parameters: DeleteFeatureFlagById,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/featureflags/0.1/flag/${parameters.featureFlagId}`,
     method: 'DELETE',
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

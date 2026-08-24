@@ -46,7 +46,7 @@ import type { GetReportsForBoard as GetReportsForBoardParameters } from '../para
 import type { GetAllSprints as GetAllSprintsParameters } from '../parameters/getAllSprints';
 import type { GetBoardIssuesForSprint } from '../parameters/getBoardIssuesForSprint';
 import type { GetAllVersions as GetAllVersionsParameters } from '../parameters/getAllVersions';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /**
  * Returns all boards. This only includes boards that the user has permission to view.
@@ -55,7 +55,11 @@ import type { Client, SendRequestOptions } from '#/core';
  *
  * - `read:board-scope:jira-software`, `read:project:jira`
  */
-export async function getAllBoards(client: Client, parameters?: GetAllBoards): Promise<Page<Board>> {
+export async function getAllBoards(
+  client: Client,
+  parameters?: GetAllBoards,
+  options?: RequestOptions,
+): Promise<Page<Board>> {
   const config: SendRequestOptions<Page<Board>> = {
     url: '/rest/agile/1.0/board',
     method: 'GET',
@@ -75,6 +79,7 @@ export async function getAllBoards(client: Client, parameters?: GetAllBoards): P
       filterId: parameters?.filterId,
     },
     schema: PageBoardSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -106,7 +111,7 @@ export async function getAllBoards(client: Client, parameters?: GetAllBoards): P
  * - If you do not ORDER BY the Rank field for the filter of your board, you will not be able to reorder issues on the
  *   board.
  */
-export async function createBoard(client: Client, parameters: CreateBoard): Promise<Board> {
+export async function createBoard(client: Client, parameters: CreateBoard, options?: RequestOptions): Promise<Board> {
   const config: SendRequestOptions<Board> = {
     url: '/rest/agile/1.0/board',
     method: 'POST',
@@ -117,6 +122,7 @@ export async function createBoard(client: Client, parameters: CreateBoard): Prom
       type: parameters.type,
     },
     schema: BoardSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -126,7 +132,11 @@ export async function createBoard(client: Client, parameters: CreateBoard): Prom
  * Returns any boards which use the provided filter id. This method can be executed by users without a valid software
  * license in order to find which boards are using a particular filter.
  */
-export async function getBoardByFilterId(client: Client, parameters: GetBoardByFilterId): Promise<Page<BoardFilter>> {
+export async function getBoardByFilterId(
+  client: Client,
+  parameters: GetBoardByFilterId,
+  options?: RequestOptions,
+): Promise<Page<BoardFilter>> {
   const config: SendRequestOptions<Page<BoardFilter>> = {
     url: `/rest/agile/1.0/board/filter/${parameters.filterId}`,
     method: 'GET',
@@ -135,6 +145,7 @@ export async function getBoardByFilterId(client: Client, parameters: GetBoardByF
       maxResults: parameters.maxResults,
     },
     schema: PageBoardFilterSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -145,21 +156,23 @@ export async function getBoardByFilterId(client: Client, parameters: GetBoardByF
  * Admins without the view permission will see the board as a private one, so will see only a subset of the board's data
  * (board location for instance).
  */
-export async function getBoard(client: Client, parameters: GetBoard): Promise<Board> {
+export async function getBoard(client: Client, parameters: GetBoard, options?: RequestOptions): Promise<Board> {
   const config: SendRequestOptions<Board> = {
     url: `/rest/agile/1.0/board/${parameters.boardId}`,
     method: 'GET',
     schema: BoardSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Deletes the board. Admin without the view permission can still remove the board. */
-export async function deleteBoard(client: Client, parameters: DeleteBoard): Promise<void> {
+export async function deleteBoard(client: Client, parameters: DeleteBoard, options?: RequestOptions): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/agile/1.0/board/${parameters.boardId}`,
     method: 'DELETE',
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -175,6 +188,7 @@ export async function deleteBoard(client: Client, parameters: DeleteBoard): Prom
 export async function getIssuesForBacklog(
   client: Client,
   parameters: GetIssuesForBacklog,
+  options?: RequestOptions,
 ): Promise<SoftwareIssueResults> {
   const config: SendRequestOptions<SoftwareIssueResults> = {
     url: `/rest/software/1.0/board/${parameters.boardId}/backlog`,
@@ -189,6 +203,7 @@ export async function getIssuesForBacklog(
       expand: parameters.expand,
     },
     schema: SoftwareIssueResultsSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -204,6 +219,7 @@ export async function getIssuesForBacklog(
 export async function getApproximateIssueCountForBacklog(
   client: Client,
   parameters: GetApproximateIssueCountForBacklog,
+  options?: RequestOptions,
 ): Promise<IssueCount> {
   const config: SendRequestOptions<IssueCount> = {
     url: `/rest/software/1.0/board/${parameters.boardId}/backlog/approximate-count`,
@@ -212,6 +228,7 @@ export async function getApproximateIssueCountForBacklog(
       jql: parameters.jql,
     },
     schema: IssueCountSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -240,11 +257,13 @@ export async function getApproximateIssueCountForBacklog(
 export async function getConfiguration(
   client: Client,
   parameters: GetConfigurationParameters,
+  options?: RequestOptions,
 ): Promise<GetConfiguration> {
   const config: SendRequestOptions<GetConfiguration> = {
     url: `/rest/agile/1.0/board/${parameters.boardId}/configuration`,
     method: 'GET',
     schema: GetConfigurationSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -254,7 +273,11 @@ export async function getConfiguration(
  * Returns all epics from the board, for the given board ID. This only includes epics that the user has permission to
  * view. Note, if the user does not have permission to view the board, no epics will be returned at all.
  */
-export async function getEpics(client: Client, parameters: GetEpicsParameters): Promise<GetEpics> {
+export async function getEpics(
+  client: Client,
+  parameters: GetEpicsParameters,
+  options?: RequestOptions,
+): Promise<GetEpics> {
   const config: SendRequestOptions<GetEpics> = {
     url: `/rest/agile/1.0/board/${parameters.boardId}/epic`,
     method: 'GET',
@@ -264,6 +287,7 @@ export async function getEpics(client: Client, parameters: GetEpicsParameters): 
       done: parameters.done,
     },
     schema: GetEpicsSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -279,6 +303,7 @@ export async function getEpics(client: Client, parameters: GetEpicsParameters): 
 export async function getIssuesWithoutEpicForBoard(
   client: Client,
   parameters: GetIssuesWithoutEpicForBoard,
+  options?: RequestOptions,
 ): Promise<SoftwareIssueResults> {
   const config: SendRequestOptions<SoftwareIssueResults> = {
     url: `/rest/software/1.0/board/${parameters.boardId}/epic/none/issue`,
@@ -293,6 +318,7 @@ export async function getIssuesWithoutEpicForBoard(
       expand: parameters.expand,
     },
     schema: SoftwareIssueResultsSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -308,6 +334,7 @@ export async function getIssuesWithoutEpicForBoard(
 export async function getBoardIssuesForEpic(
   client: Client,
   parameters: GetBoardIssuesForEpic,
+  options?: RequestOptions,
 ): Promise<SoftwareIssueResults> {
   const config: SendRequestOptions<SoftwareIssueResults> = {
     url: `/rest/software/1.0/board/${parameters.boardId}/epic/${parameters.epicId}/issue`,
@@ -322,6 +349,7 @@ export async function getBoardIssuesForEpic(
       expand: parameters.expand,
     },
     schema: SoftwareIssueResultsSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -330,22 +358,29 @@ export async function getBoardIssuesForEpic(
 export async function getFeaturesForBoard(
   client: Client,
   parameters: GetFeaturesForBoardParameters,
+  options?: RequestOptions,
 ): Promise<GetFeaturesForBoard> {
   const config: SendRequestOptions<GetFeaturesForBoard> = {
     url: `/rest/agile/1.0/board/${parameters.boardId}/features`,
     method: 'GET',
     schema: GetFeaturesForBoardSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
-export async function toggleFeatures(client: Client, parameters: ToggleFeaturesParameters): Promise<ToggleFeatures> {
+export async function toggleFeatures(
+  client: Client,
+  parameters: ToggleFeaturesParameters,
+  options?: RequestOptions,
+): Promise<ToggleFeatures> {
   const config: SendRequestOptions<ToggleFeatures> = {
     url: `/rest/agile/1.0/board/${parameters.boardId}/features`,
     method: 'PUT',
     body: parameters.body,
     schema: ToggleFeaturesSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -356,7 +391,11 @@ export async function toggleFeatures(client: Client, parameters: ToggleFeaturesP
  * moves an issue(s) onto a board from the backlog (by adding it to the issueList for the board) Or transitions the
  * issue(s) to the first column for a kanban board with backlog. At most 50 issues may be moved at once.
  */
-export async function moveIssuesToBoard(client: Client, parameters: MoveIssuesToBoard): Promise<void> {
+export async function moveIssuesToBoard(
+  client: Client,
+  parameters: MoveIssuesToBoard,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/agile/1.0/board/${parameters.boardId}/issue`,
     method: 'POST',
@@ -366,6 +405,7 @@ export async function moveIssuesToBoard(client: Client, parameters: MoveIssuesTo
       rankBeforeIssue: parameters.rankBeforeIssue,
       rankCustomFieldId: parameters.rankCustomFieldId,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -379,7 +419,11 @@ export async function moveIssuesToBoard(client: Client, parameters: MoveIssuesTo
  * Software project fields, like sprint, closedSprints, flagged, and epic. By default, the returned issues are ordered
  * by rank.
  */
-export async function getIssuesForBoard(client: Client, parameters: GetIssuesForBoard): Promise<SoftwareIssueResults> {
+export async function getIssuesForBoard(
+  client: Client,
+  parameters: GetIssuesForBoard,
+  options?: RequestOptions,
+): Promise<SoftwareIssueResults> {
   const config: SendRequestOptions<SoftwareIssueResults> = {
     url: `/rest/software/1.0/board/${parameters.boardId}/issue`,
     method: 'GET',
@@ -393,6 +437,7 @@ export async function getIssuesForBoard(client: Client, parameters: GetIssuesFor
       expand: parameters.expand,
     },
     schema: SoftwareIssueResultsSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -408,6 +453,7 @@ export async function getIssuesForBoard(client: Client, parameters: GetIssuesFor
 export async function getApproximateIssueCountForBoard(
   client: Client,
   parameters: GetApproximateIssueCountForBoard,
+  options?: RequestOptions,
 ): Promise<IssueCount> {
   const config: SendRequestOptions<IssueCount> = {
     url: `/rest/software/1.0/board/${parameters.boardId}/issue/approximate-count`,
@@ -416,6 +462,7 @@ export async function getApproximateIssueCountForBoard(
       jql: parameters.jql,
     },
     schema: IssueCountSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -436,7 +483,11 @@ export async function getApproximateIssueCountForBoard(
  * An issue belongs to the board if its status is mapped to the board's column. Epic issues do not belongs to the scrum
  * boards.
  */
-export async function getProjects(client: Client, parameters: GetProjectsParameters): Promise<GetProjects> {
+export async function getProjects(
+  client: Client,
+  parameters: GetProjectsParameters,
+  options?: RequestOptions,
+): Promise<GetProjects> {
   const config: SendRequestOptions<GetProjects> = {
     url: `/rest/agile/1.0/board/${parameters.boardId}/project`,
     method: 'GET',
@@ -445,6 +496,7 @@ export async function getProjects(client: Client, parameters: GetProjectsParamet
       maxResults: parameters.maxResults,
     },
     schema: GetProjectsSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -461,11 +513,16 @@ export async function getProjects(client: Client, parameters: GetProjectsParamet
  * reference to ABC and BCD projects but query `project in (ABC, BCD) OR reporter = admin` doesn't have reference to any
  * project.
  */
-export async function getProjectsFull(client: Client, parameters: GetProjectsFullParameters): Promise<GetProjectsFull> {
+export async function getProjectsFull(
+  client: Client,
+  parameters: GetProjectsFullParameters,
+  options?: RequestOptions,
+): Promise<GetProjectsFull> {
   const config: SendRequestOptions<GetProjectsFull> = {
     url: `/rest/agile/1.0/board/${parameters.boardId}/project/full`,
     method: 'GET',
     schema: GetProjectsFullSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -475,11 +532,16 @@ export async function getProjectsFull(client: Client, parameters: GetProjectsFul
  * Returns the keys of all properties for the board identified by the id. The user who retrieves the property keys is
  * required to have permissions to view the board.
  */
-export async function getBoardPropertyKeys(client: Client, parameters: GetBoardPropertyKeys): Promise<PropertyKeys> {
+export async function getBoardPropertyKeys(
+  client: Client,
+  parameters: GetBoardPropertyKeys,
+  options?: RequestOptions,
+): Promise<PropertyKeys> {
   const config: SendRequestOptions<PropertyKeys> = {
     url: `/rest/agile/1.0/board/${parameters.boardId}/properties`,
     method: 'GET',
     schema: PropertyKeysSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -489,11 +551,16 @@ export async function getBoardPropertyKeys(client: Client, parameters: GetBoardP
  * Returns the value of the property with a given key from the board identified by the provided id. The user who
  * retrieves the property is required to have permissions to view the board.
  */
-export async function getBoardProperty(client: Client, parameters: GetBoardProperty): Promise<EntityProperty> {
+export async function getBoardProperty(
+  client: Client,
+  parameters: GetBoardProperty,
+  options?: RequestOptions,
+): Promise<EntityProperty> {
   const config: SendRequestOptions<EntityProperty> = {
     url: `/rest/agile/1.0/board/${parameters.boardId}/properties/${parameters.propertyKey}`,
     method: 'GET',
     schema: EntityPropertySchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -505,11 +572,16 @@ export async function getBoardProperty(client: Client, parameters: GetBoardPrope
  * You can use this resource to store a custom data against the board identified by the id. The user who stores the data
  * is required to have permissions to modify the board.
  */
-export async function setBoardProperty(client: Client, parameters: SetBoardProperty): Promise<void> {
+export async function setBoardProperty(
+  client: Client,
+  parameters: SetBoardProperty,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/agile/1.0/board/${parameters.boardId}/properties/${parameters.propertyKey}`,
     method: 'PUT',
     body: parameters.propertyValue,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -519,17 +591,26 @@ export async function setBoardProperty(client: Client, parameters: SetBoardPrope
  * Removes the property from the board identified by the id. Ths user removing the property is required to have
  * permissions to modify the board.
  */
-export async function deleteBoardProperty(client: Client, parameters: DeleteBoardProperty): Promise<void> {
+export async function deleteBoardProperty(
+  client: Client,
+  parameters: DeleteBoardProperty,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/agile/1.0/board/${parameters.boardId}/properties/${parameters.propertyKey}`,
     method: 'DELETE',
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /** Returns all quick filters from a board, for a given board ID. */
-export async function getAllQuickFilters(client: Client, parameters: GetAllQuickFilters): Promise<Page<QuickFilter>> {
+export async function getAllQuickFilters(
+  client: Client,
+  parameters: GetAllQuickFilters,
+  options?: RequestOptions,
+): Promise<Page<QuickFilter>> {
   const config: SendRequestOptions<Page<QuickFilter>> = {
     url: `/rest/agile/1.0/board/${parameters.boardId}/quickfilter`,
     method: 'GET',
@@ -538,6 +619,7 @@ export async function getAllQuickFilters(client: Client, parameters: GetAllQuick
       maxResults: parameters.maxResults,
     },
     schema: PageQuickFilterSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -547,11 +629,16 @@ export async function getAllQuickFilters(client: Client, parameters: GetAllQuick
  * Returns the quick filter for a given quick filter ID. The quick filter will only be returned if the user can view the
  * board that the quick filter belongs to.
  */
-export async function getQuickFilter(client: Client, parameters: GetQuickFilter): Promise<QuickFilter> {
+export async function getQuickFilter(
+  client: Client,
+  parameters: GetQuickFilter,
+  options?: RequestOptions,
+): Promise<QuickFilter> {
   const config: SendRequestOptions<QuickFilter> = {
     url: `/rest/agile/1.0/board/${parameters.boardId}/quickfilter/${parameters.quickFilterId}`,
     method: 'GET',
     schema: QuickFilterSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -560,11 +647,13 @@ export async function getQuickFilter(client: Client, parameters: GetQuickFilter)
 export async function getReportsForBoard(
   client: Client,
   parameters: GetReportsForBoardParameters,
+  options?: RequestOptions,
 ): Promise<GetReportsForBoard> {
   const config: SendRequestOptions<GetReportsForBoard> = {
     url: `/rest/agile/1.0/board/${parameters.boardId}/reports`,
     method: 'GET',
     schema: GetReportsForBoardSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -574,7 +663,11 @@ export async function getReportsForBoard(
  * Returns all sprints from a board, for a given board ID. This only includes sprints that the user has permission to
  * view.
  */
-export async function getAllSprints(client: Client, parameters: GetAllSprintsParameters): Promise<GetAllSprints> {
+export async function getAllSprints(
+  client: Client,
+  parameters: GetAllSprintsParameters,
+  options?: RequestOptions,
+): Promise<GetAllSprints> {
   const config: SendRequestOptions<GetAllSprints> = {
     url: `/rest/agile/1.0/board/${parameters.boardId}/sprint`,
     method: 'GET',
@@ -584,6 +677,7 @@ export async function getAllSprints(client: Client, parameters: GetAllSprintsPar
       state: parameters.state,
     },
     schema: GetAllSprintsSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -599,6 +693,7 @@ export async function getAllSprints(client: Client, parameters: GetAllSprintsPar
 export async function getBoardIssuesForSprint(
   client: Client,
   parameters: GetBoardIssuesForSprint,
+  options?: RequestOptions,
 ): Promise<SoftwareIssueResults> {
   const config: SendRequestOptions<SoftwareIssueResults> = {
     url: `/rest/software/1.0/board/${parameters.boardId}/sprint/${parameters.sprintId}/issue`,
@@ -613,6 +708,7 @@ export async function getBoardIssuesForSprint(
       expand: parameters.expand,
     },
     schema: SoftwareIssueResultsSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -623,7 +719,11 @@ export async function getBoardIssuesForSprint(
  * view. Note, if the user does not have permission to view the board, no versions will be returned at all. Returned
  * versions are ordered by the name of the project from which they belong and then by sequence defined by user.
  */
-export async function getAllVersions(client: Client, parameters: GetAllVersionsParameters): Promise<GetAllVersions> {
+export async function getAllVersions(
+  client: Client,
+  parameters: GetAllVersionsParameters,
+  options?: RequestOptions,
+): Promise<GetAllVersions> {
   const config: SendRequestOptions<GetAllVersions> = {
     url: `/rest/agile/1.0/board/${parameters.boardId}/version`,
     method: 'GET',
@@ -633,6 +733,7 @@ export async function getAllVersions(client: Client, parameters: GetAllVersionsP
       released: parameters.released,
     },
     schema: GetAllVersionsSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

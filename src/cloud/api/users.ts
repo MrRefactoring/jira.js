@@ -13,7 +13,7 @@ import type { GetUserEmailBulk } from '../parameters/getUserEmailBulk';
 import type { GetUserGroups } from '../parameters/getUserGroups';
 import type { GetAllUsersDefault } from '../parameters/getAllUsersDefault';
 import type { GetAllUsers } from '../parameters/getAllUsers';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 import { z } from 'zod';
 
 /**
@@ -26,7 +26,7 @@ import { z } from 'zod';
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** _Browse
  * users and groups_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-export async function getUser(client: Client, parameters?: GetUser): Promise<DashboardUser> {
+export async function getUser(client: Client, parameters?: GetUser, options?: RequestOptions): Promise<DashboardUser> {
   const config: SendRequestOptions<DashboardUser> = {
     url: '/rest/api/3/user',
     method: 'GET',
@@ -35,6 +35,7 @@ export async function getUser(client: Client, parameters?: GetUser): Promise<Das
       expand: parameters?.expand,
     },
     schema: DashboardUserSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -47,13 +48,17 @@ export async function getUser(client: Client, parameters?: GetUser): Promise<Das
  * **Note:** This API does not support Forge apps.
  *
  * If the user exists and has access to Jira, the operation returns a 201 status. If the user exists but does not have
- * access to Jira, the operation returns a 400 status.
+ * access to Jira & no new jira-products are requested, the operation returns a 400 status.
  *
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg). The caller has to be an
  * **organization admin**.
  */
-export async function createUser(client: Client, parameters: CreateUser): Promise<DashboardUser> {
+export async function createUser(
+  client: Client,
+  parameters: CreateUser,
+  options?: RequestOptions,
+): Promise<DashboardUser> {
   const config: SendRequestOptions<DashboardUser> = {
     url: '/rest/api/3/user',
     method: 'POST',
@@ -63,6 +68,7 @@ export async function createUser(client: Client, parameters: CreateUser): Promis
       self: parameters.self,
     },
     schema: DashboardUserSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -75,13 +81,14 @@ export async function createUser(client: Client, parameters: CreateUser): Promis
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** Site
  * administration (that is, membership of the _site-admin_ [group](https://confluence.atlassian.com/x/24xjL)).
  */
-export async function removeUser(client: Client, parameters: RemoveUser): Promise<void> {
+export async function removeUser(client: Client, parameters: RemoveUser, options?: RequestOptions): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: '/rest/api/3/user',
     method: 'DELETE',
     searchParams: {
       accountId: parameters.accountId,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -97,7 +104,11 @@ export async function removeUser(client: Client, parameters: RemoveUser): Promis
  *   user.
  * - Permission to access Jira, to get the calling user's column details.
  */
-export async function getUserDefaultColumns(client: Client, parameters?: GetUserDefaultColumns): Promise<ColumnItem[]> {
+export async function getUserDefaultColumns(
+  client: Client,
+  parameters?: GetUserDefaultColumns,
+  options?: RequestOptions,
+): Promise<ColumnItem[]> {
   const config: SendRequestOptions<ColumnItem[]> = {
     url: '/rest/api/3/user/columns',
     method: 'GET',
@@ -105,6 +116,7 @@ export async function getUserDefaultColumns(client: Client, parameters?: GetUser
       accountId: parameters?.accountId,
     },
     schema: z.array(ColumnItemSchema),
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -125,7 +137,11 @@ export async function getUserDefaultColumns(client: Client, parameters?: GetUser
  * - _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg), to set the columns on any user.
  * - Permission to access Jira, to set the calling user's columns.
  */
-export async function setUserColumns(client: Client, parameters: SetUserColumns): Promise<void> {
+export async function setUserColumns(
+  client: Client,
+  parameters: SetUserColumns,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: '/rest/api/3/user/columns',
     method: 'PUT',
@@ -135,6 +151,7 @@ export async function setUserColumns(client: Client, parameters: SetUserColumns)
     body: {
       columns: parameters.columns,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -149,13 +166,18 @@ export async function setUserColumns(client: Client, parameters: SetUserColumns)
  * - _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg), to set the columns on any user.
  * - Permission to access Jira, to set the calling user's columns.
  */
-export async function resetUserColumns(client: Client, parameters: ResetUserColumns): Promise<void> {
+export async function resetUserColumns(
+  client: Client,
+  parameters: ResetUserColumns,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: '/rest/api/3/user/columns',
     method: 'DELETE',
     searchParams: {
       accountId: parameters.accountId,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -167,7 +189,11 @@ export async function resetUserColumns(client: Client, parameters: ResetUserColu
  * [guidelines](https://community.developer.atlassian.com/t/guidelines-for-requesting-access-to-email-address/27603).
  * For Forge apps, this API only supports access via asApp() requests.
  */
-export async function getUserEmail(client: Client, parameters: GetUserEmail): Promise<UnrestrictedUserEmail> {
+export async function getUserEmail(
+  client: Client,
+  parameters: GetUserEmail,
+  options?: RequestOptions,
+): Promise<UnrestrictedUserEmail> {
   const config: SendRequestOptions<UnrestrictedUserEmail> = {
     url: '/rest/api/3/user/email',
     method: 'GET',
@@ -175,6 +201,7 @@ export async function getUserEmail(client: Client, parameters: GetUserEmail): Pr
       accountId: parameters.accountId,
     },
     schema: UnrestrictedUserEmailSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -186,7 +213,11 @@ export async function getUserEmail(client: Client, parameters: GetUserEmail): Pr
  * [guidelines](https://community.developer.atlassian.com/t/guidelines-for-requesting-access-to-email-address/27603).
  * For Forge apps, this API only supports access via asApp() requests.
  */
-export async function getUserEmailBulk(client: Client, parameters: GetUserEmailBulk): Promise<UnrestrictedUserEmail> {
+export async function getUserEmailBulk(
+  client: Client,
+  parameters: GetUserEmailBulk,
+  options?: RequestOptions,
+): Promise<UnrestrictedUserEmail> {
   const config: SendRequestOptions<UnrestrictedUserEmail> = {
     url: '/rest/api/3/user/email/bulk',
     method: 'GET',
@@ -194,6 +225,7 @@ export async function getUserEmailBulk(client: Client, parameters: GetUserEmailB
       accountId: parameters.accountId,
     },
     schema: UnrestrictedUserEmailSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -205,7 +237,11 @@ export async function getUserEmailBulk(client: Client, parameters: GetUserEmailB
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** _Browse
  * users and groups_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-export async function getUserGroups(client: Client, parameters: GetUserGroups): Promise<GroupName[]> {
+export async function getUserGroups(
+  client: Client,
+  parameters: GetUserGroups,
+  options?: RequestOptions,
+): Promise<GroupName[]> {
   const config: SendRequestOptions<GroupName[]> = {
     url: '/rest/api/3/user/groups',
     method: 'GET',
@@ -213,6 +249,7 @@ export async function getUserGroups(client: Client, parameters: GetUserGroups): 
       accountId: parameters.accountId,
     },
     schema: z.array(GroupNameSchema),
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -229,7 +266,11 @@ export async function getUserGroups(client: Client, parameters: GetUserGroups): 
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** _Browse
  * users and groups_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-export async function getAllUsersDefault(client: Client, parameters?: GetAllUsersDefault): Promise<DashboardUser[]> {
+export async function getAllUsersDefault(
+  client: Client,
+  parameters?: GetAllUsersDefault,
+  options?: RequestOptions,
+): Promise<DashboardUser[]> {
   const config: SendRequestOptions<DashboardUser[]> = {
     url: '/rest/api/3/users',
     method: 'GET',
@@ -239,6 +280,7 @@ export async function getAllUsersDefault(client: Client, parameters?: GetAllUser
       expand: parameters?.expand,
     },
     schema: z.array(DashboardUserSchema),
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -255,7 +297,11 @@ export async function getAllUsersDefault(client: Client, parameters?: GetAllUser
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** _Browse
  * users and groups_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-export async function getAllUsers(client: Client, parameters?: GetAllUsers): Promise<DashboardUser[]> {
+export async function getAllUsers(
+  client: Client,
+  parameters?: GetAllUsers,
+  options?: RequestOptions,
+): Promise<DashboardUser[]> {
   const config: SendRequestOptions<DashboardUser[]> = {
     url: '/rest/api/3/users/search',
     method: 'GET',
@@ -265,6 +311,7 @@ export async function getAllUsers(client: Client, parameters?: GetAllUsers): Pro
       expand: parameters?.expand,
     },
     schema: z.array(DashboardUserSchema),
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

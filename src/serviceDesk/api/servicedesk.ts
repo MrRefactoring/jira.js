@@ -26,7 +26,7 @@ import type { GetRequestTypes } from '../parameters/getRequestTypes';
 import type { GetRequestTypeById } from '../parameters/getRequestTypeById';
 import type { GetRequestTypeFields } from '../parameters/getRequestTypeFields';
 import type { GetRequestTypeGroups } from '../parameters/getRequestTypeGroups';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /**
  * This method returns all the service desks in the Jira Service Management instance that the user has permission to
@@ -34,12 +34,16 @@ import type { Client, SendRequestOptions } from '#/core';
  *
  * **Note:** This method will be slow if the instance has hundreds of service desks. If you want to fetch a single
  * service desk by its ID, use
- * [/rest/servicedeskapi/servicedesk/{serviceDeskId}](./#api-rest-servicedeskapi-servicedesk-servicedeskid-get)
+ * [/rest/servicedeskapi/servicedesk/{serviceDeskId}](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro#api-rest-servicedeskapi-servicedesk-servicedeskid-get)
  * instead.
  *
  * **[Permissions](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro#permissions) required**: Any
  */
-export async function getServiceDesks(client: Client, parameters?: GetServiceDesks): Promise<Page<ServiceDesk>> {
+export async function getServiceDesks(
+  client: Client,
+  parameters?: GetServiceDesks,
+  options?: RequestOptions,
+): Promise<Page<ServiceDesk>> {
   const config: SendRequestOptions<Page<ServiceDesk>> = {
     url: '/rest/servicedeskapi/servicedesk',
     method: 'GET',
@@ -48,6 +52,7 @@ export async function getServiceDesks(client: Client, parameters?: GetServiceDes
       limit: parameters?.limit,
     },
     schema: PagedServiceDeskSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -61,11 +66,16 @@ export async function getServiceDesks(client: Client, parameters?: GetServiceDes
  * Permission to access the Service Desk. For example, being the Service Desk's Administrator or one of its Agents or
  * Users.
  */
-export async function getServiceDeskById(client: Client, parameters: GetServiceDeskById): Promise<ServiceDesk> {
+export async function getServiceDeskById(
+  client: Client,
+  parameters: GetServiceDeskById,
+  options?: RequestOptions,
+): Promise<ServiceDesk> {
   const config: SendRequestOptions<ServiceDesk> = {
     url: `/rest/servicedeskapi/servicedesk/${parameters.serviceDeskId}`,
     method: 'GET',
     schema: ServiceDeskSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -99,12 +109,14 @@ export async function getServiceDeskById(client: Client, parameters: GetServiceD
 export async function attachTemporaryFile(
   client: Client,
   parameters: AttachTemporaryFileParameters,
+  options?: RequestOptions,
 ): Promise<AttachTemporaryFile> {
   const config: SendRequestOptions<AttachTemporaryFile> = {
     url: `/rest/servicedeskapi/servicedesk/${parameters.serviceDeskId}/attachTemporaryFile`,
     method: 'POST',
     body: parameters.body,
     schema: AttachTemporaryFileSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -117,7 +129,7 @@ export async function attachTemporaryFile(
  * **[Permissions](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro#permissions) required**: Service
  * desk administrator
  */
-export async function addCustomers(client: Client, parameters: AddCustomers): Promise<void> {
+export async function addCustomers(client: Client, parameters: AddCustomers, options?: RequestOptions): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/servicedeskapi/servicedesk/${parameters.serviceDeskId}/customer`,
     method: 'POST',
@@ -125,6 +137,7 @@ export async function addCustomers(client: Client, parameters: AddCustomers): Pr
       accountIds: parameters.accountIds,
       usernames: parameters.usernames,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -146,6 +159,7 @@ export async function addCustomers(client: Client, parameters: AddCustomers): Pr
 export async function addCustomersSkippingPermissionCheck(
   client: Client,
   parameters: AddCustomersSkippingPermissionCheck,
+  options?: RequestOptions,
 ): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/servicedeskapi/servicedesk/${parameters.serviceDeskId}/customer/skip-permission-check`,
@@ -154,6 +168,7 @@ export async function addCustomersSkippingPermissionCheck(
       accountIds: parameters.accountIds,
       usernames: parameters.usernames,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -168,6 +183,7 @@ export async function addCustomersSkippingPermissionCheck(
 export async function getServiceDeskArticles(
   client: Client,
   parameters: GetServiceDeskArticles,
+  options?: RequestOptions,
 ): Promise<Page<Article>> {
   const config: SendRequestOptions<Page<Article>> = {
     url: `/rest/servicedeskapi/servicedesk/${parameters.serviceDeskId}/knowledgebase/article`,
@@ -181,6 +197,7 @@ export async function getServiceDeskArticles(
       prev: parameters.prev,
     },
     schema: PagedArticleSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -193,7 +210,7 @@ export async function getServiceDeskArticles(
  * **[Permissions](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro#permissions) required**: service
  * desk's Agent.
  */
-export async function getQueues(client: Client, parameters: GetQueues): Promise<Page<Queue>> {
+export async function getQueues(client: Client, parameters: GetQueues, options?: RequestOptions): Promise<Page<Queue>> {
   const config: SendRequestOptions<Page<Queue>> = {
     url: `/rest/servicedeskapi/servicedesk/${parameters.serviceDeskId}/queue`,
     method: 'GET',
@@ -203,6 +220,7 @@ export async function getQueues(client: Client, parameters: GetQueues): Promise<
       limit: parameters.limit,
     },
     schema: PagedQueueSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -215,7 +233,7 @@ export async function getQueues(client: Client, parameters: GetQueues): Promise<
  * **[Permissions](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro#permissions) required**: service
  * desk's Agent.
  */
-export async function getQueue(client: Client, parameters: GetQueue): Promise<Queue> {
+export async function getQueue(client: Client, parameters: GetQueue, options?: RequestOptions): Promise<Queue> {
   const config: SendRequestOptions<Queue> = {
     url: `/rest/servicedeskapi/servicedesk/${parameters.serviceDeskId}/queue/${parameters.queueId}`,
     method: 'GET',
@@ -223,6 +241,7 @@ export async function getQueue(client: Client, parameters: GetQueue): Promise<Qu
       includeCount: parameters.includeCount,
     },
     schema: QueueSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -236,7 +255,11 @@ export async function getQueue(client: Client, parameters: GetQueue): Promise<Qu
  * **[Permissions](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro#permissions) required**: Service
  * desk's agent.
  */
-export async function getIssuesInQueue(client: Client, parameters: GetIssuesInQueue): Promise<Page<Issue>> {
+export async function getIssuesInQueue(
+  client: Client,
+  parameters: GetIssuesInQueue,
+  options?: RequestOptions,
+): Promise<Page<Issue>> {
   const config: SendRequestOptions<Page<Issue>> = {
     url: `/rest/servicedeskapi/servicedesk/${parameters.serviceDeskId}/queue/${parameters.queueId}/issue`,
     method: 'GET',
@@ -245,6 +268,7 @@ export async function getIssuesInQueue(client: Client, parameters: GetIssuesInQu
       limit: parameters.limit,
     },
     schema: PagedIssueSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -266,7 +290,11 @@ export async function getIssuesInQueue(client: Client, parameters: GetIssuesInQu
  * **[Permissions](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro#permissions) required**:
  * Permission to access the service desk.
  */
-export async function getRequestTypes(client: Client, parameters: GetRequestTypes): Promise<Page<RequestType>> {
+export async function getRequestTypes(
+  client: Client,
+  parameters: GetRequestTypes,
+  options?: RequestOptions,
+): Promise<Page<RequestType>> {
   const config: SendRequestOptions<Page<RequestType>> = {
     url: `/rest/servicedeskapi/servicedesk/${parameters.serviceDeskId}/requesttype`,
     method: 'GET',
@@ -280,6 +308,7 @@ export async function getRequestTypes(client: Client, parameters: GetRequestType
       restrictionStatus: parameters.restrictionStatus,
     },
     schema: PagedRequestTypeSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -293,7 +322,11 @@ export async function getRequestTypes(client: Client, parameters: GetRequestType
  * **[Permissions](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro#permissions) required**:
  * Permission to access the service desk.
  */
-export async function getRequestTypeById(client: Client, parameters: GetRequestTypeById): Promise<RequestType> {
+export async function getRequestTypeById(
+  client: Client,
+  parameters: GetRequestTypeById,
+  options?: RequestOptions,
+): Promise<RequestType> {
   const config: SendRequestOptions<RequestType> = {
     url: `/rest/servicedeskapi/servicedesk/${parameters.serviceDeskId}/requesttype/${parameters.requestTypeId}`,
     method: 'GET',
@@ -301,6 +334,7 @@ export async function getRequestTypeById(client: Client, parameters: GetRequestT
       expand: parameters.expand,
     },
     schema: RequestTypeSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -322,6 +356,7 @@ export async function getRequestTypeById(client: Client, parameters: GetRequestT
 export async function getRequestTypeFields(
   client: Client,
   parameters: GetRequestTypeFields,
+  options?: RequestOptions,
 ): Promise<CustomerRequestCreateMeta> {
   const config: SendRequestOptions<CustomerRequestCreateMeta> = {
     url: `/rest/servicedeskapi/servicedesk/${parameters.serviceDeskId}/requesttype/${parameters.requestTypeId}/field`,
@@ -330,6 +365,7 @@ export async function getRequestTypeFields(
       expand: parameters.expand,
     },
     schema: CustomerRequestCreateMetaSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -346,6 +382,7 @@ export async function getRequestTypeFields(
 export async function getRequestTypeGroups(
   client: Client,
   parameters: GetRequestTypeGroups,
+  options?: RequestOptions,
 ): Promise<Page<RequestTypeGroup>> {
   const config: SendRequestOptions<Page<RequestTypeGroup>> = {
     url: `/rest/servicedeskapi/servicedesk/${parameters.serviceDeskId}/requesttypegroup`,
@@ -355,6 +392,7 @@ export async function getRequestTypeGroups(
       limit: parameters.limit,
     },
     schema: PagedRequestTypeGroupSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

@@ -6,7 +6,7 @@ import type { GetScreenSchemes } from '../parameters/getScreenSchemes';
 import type { CreateScreenScheme } from '../parameters/createScreenScheme';
 import type { UpdateScreenScheme } from '../parameters/updateScreenScheme';
 import type { DeleteScreenScheme } from '../parameters/deleteScreenScheme';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /**
  * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#pagination) list of screen
@@ -17,7 +17,11 @@ import type { Client, SendRequestOptions } from '#/core';
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-export async function getScreenSchemes(client: Client, parameters?: GetScreenSchemes): Promise<Page<ScreenScheme>> {
+export async function getScreenSchemes(
+  client: Client,
+  parameters?: GetScreenSchemes,
+  options?: RequestOptions,
+): Promise<Page<ScreenScheme>> {
   const config: SendRequestOptions<Page<ScreenScheme>> = {
     url: '/rest/api/3/screenscheme',
     method: 'GET',
@@ -30,6 +34,7 @@ export async function getScreenSchemes(client: Client, parameters?: GetScreenSch
       orderBy: parameters?.orderBy,
     },
     schema: PageScreenSchemeSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -41,7 +46,11 @@ export async function getScreenSchemes(client: Client, parameters?: GetScreenSch
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-export async function createScreenScheme(client: Client, parameters: CreateScreenScheme): Promise<ScreenSchemeId> {
+export async function createScreenScheme(
+  client: Client,
+  parameters: CreateScreenScheme,
+  options?: RequestOptions,
+): Promise<ScreenSchemeId> {
   const config: SendRequestOptions<ScreenSchemeId> = {
     url: '/rest/api/3/screenscheme',
     method: 'POST',
@@ -51,6 +60,7 @@ export async function createScreenScheme(client: Client, parameters: CreateScree
       screens: parameters.screens,
     },
     schema: ScreenSchemeIdSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -62,7 +72,11 @@ export async function createScreenScheme(client: Client, parameters: CreateScree
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-export async function updateScreenScheme(client: Client, parameters: UpdateScreenScheme): Promise<void> {
+export async function updateScreenScheme(
+  client: Client,
+  parameters: UpdateScreenScheme,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/screenscheme/${parameters.screenSchemeId}`,
     method: 'PUT',
@@ -71,6 +85,7 @@ export async function updateScreenScheme(client: Client, parameters: UpdateScree
       name: parameters.name,
       screens: parameters.screens,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -84,10 +99,15 @@ export async function updateScreenScheme(client: Client, parameters: UpdateScree
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-export async function deleteScreenScheme(client: Client, parameters: DeleteScreenScheme): Promise<void> {
+export async function deleteScreenScheme(
+  client: Client,
+  parameters: DeleteScreenScheme,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/screenscheme/${parameters.screenSchemeId}`,
     method: 'DELETE',
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

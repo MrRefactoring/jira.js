@@ -21,7 +21,7 @@ import type { UpdateCustomFieldOption } from '../parameters/updateCustomFieldOpt
 import type { ReorderCustomFieldOptions } from '../parameters/reorderCustomFieldOptions';
 import type { DeleteCustomFieldOption } from '../parameters/deleteCustomFieldOption';
 import type { ReplaceCustomFieldOption } from '../parameters/replaceCustomFieldOption';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /**
  * Returns a custom field option. For example, an option in a select list.
@@ -44,11 +44,13 @@ import type { Client, SendRequestOptions } from '#/core';
 export async function getCustomFieldOption(
   client: Client,
   parameters: GetCustomFieldOption,
+  options?: RequestOptions,
 ): Promise<CustomFieldOption> {
   const config: SendRequestOptions<CustomFieldOption> = {
     url: `/rest/api/3/customFieldOption/${parameters.id}`,
     method: 'GET',
     schema: CustomFieldOptionSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -71,6 +73,7 @@ export async function getCustomFieldOption(
 export async function getOptionsForContext(
   client: Client,
   parameters: GetOptionsForContext,
+  options?: RequestOptions,
 ): Promise<Page<CustomFieldContextOption>> {
   const config: SendRequestOptions<Page<CustomFieldContextOption>> = {
     url: `/rest/api/3/field/${parameters.fieldId}/context/${parameters.contextId}/option`,
@@ -82,6 +85,7 @@ export async function getOptionsForContext(
       maxResults: parameters.maxResults,
     },
     schema: PageCustomFieldContextOptionSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -105,6 +109,7 @@ export async function getOptionsForContext(
 export async function createCustomFieldOption(
   client: Client,
   parameters: CreateCustomFieldOption,
+  options?: RequestOptions,
 ): Promise<CustomFieldCreatedContextOptionsList> {
   const config: SendRequestOptions<CustomFieldCreatedContextOptionsList> = {
     url: `/rest/api/3/field/${parameters.fieldId}/context/${parameters.contextId}/option`,
@@ -113,6 +118,7 @@ export async function createCustomFieldOption(
       options: parameters.options,
     },
     schema: CustomFieldCreatedContextOptionsListSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -135,6 +141,7 @@ export async function createCustomFieldOption(
 export async function updateCustomFieldOption(
   client: Client,
   parameters: UpdateCustomFieldOption,
+  options?: RequestOptions,
 ): Promise<CustomFieldUpdatedContextOptionsList> {
   const config: SendRequestOptions<CustomFieldUpdatedContextOptionsList> = {
     url: `/rest/api/3/field/${parameters.fieldId}/context/${parameters.contextId}/option`,
@@ -143,6 +150,7 @@ export async function updateCustomFieldOption(
       options: parameters.options,
     },
     schema: CustomFieldUpdatedContextOptionsListSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -159,7 +167,11 @@ export async function updateCustomFieldOption(
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-export async function reorderCustomFieldOptions(client: Client, parameters: ReorderCustomFieldOptions): Promise<void> {
+export async function reorderCustomFieldOptions(
+  client: Client,
+  parameters: ReorderCustomFieldOptions,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/field/${parameters.fieldId}/context/${parameters.contextId}/option/move`,
     method: 'PUT',
@@ -168,6 +180,7 @@ export async function reorderCustomFieldOptions(client: Client, parameters: Reor
       customFieldOptionIds: parameters.customFieldOptionIds,
       position: parameters.position,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -186,10 +199,15 @@ export async function reorderCustomFieldOptions(client: Client, parameters: Reor
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-export async function deleteCustomFieldOption(client: Client, parameters: DeleteCustomFieldOption): Promise<void> {
+export async function deleteCustomFieldOption(
+  client: Client,
+  parameters: DeleteCustomFieldOption,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/field/${parameters.fieldId}/context/${parameters.contextId}/option/${parameters.optionId}`,
     method: 'DELETE',
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -209,6 +227,7 @@ export async function deleteCustomFieldOption(client: Client, parameters: Delete
 export async function replaceCustomFieldOption(
   client: Client,
   parameters: ReplaceCustomFieldOption,
+  options?: RequestOptions,
 ): Promise<TaskProgressRemoveOptionFromIssuesResult> {
   const config: SendRequestOptions<TaskProgressRemoveOptionFromIssuesResult> = {
     url: `/rest/api/3/field/${parameters.fieldId}/context/${parameters.contextId}/option/${parameters.optionId}/issue`,
@@ -218,6 +237,7 @@ export async function replaceCustomFieldOption(
       jql: parameters.jql,
     },
     schema: TaskProgressRemoveOptionFromIssuesResultSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

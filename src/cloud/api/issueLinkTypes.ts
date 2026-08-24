@@ -4,7 +4,7 @@ import type { CreateIssueLinkType } from '../parameters/createIssueLinkType';
 import type { GetIssueLinkType } from '../parameters/getIssueLinkType';
 import type { UpdateIssueLinkType } from '../parameters/updateIssueLinkType';
 import type { DeleteIssueLinkType } from '../parameters/deleteIssueLinkType';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /**
  * Returns a list of all issue link types.
@@ -16,11 +16,12 @@ import type { Client, SendRequestOptions } from '#/core';
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** _Browse
  * projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for a project in the site.
  */
-export async function getIssueLinkTypes(client: Client): Promise<IssueLinkTypes> {
+export async function getIssueLinkTypes(client: Client, options?: RequestOptions): Promise<IssueLinkTypes> {
   const config: SendRequestOptions<IssueLinkTypes> = {
     url: '/rest/api/3/issueLinkType',
     method: 'GET',
     schema: IssueLinkTypesSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -35,7 +36,11 @@ export async function getIssueLinkTypes(client: Client): Promise<IssueLinkTypes>
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-export async function createIssueLinkType(client: Client, parameters: CreateIssueLinkType): Promise<IssueLinkType> {
+export async function createIssueLinkType(
+  client: Client,
+  parameters: CreateIssueLinkType,
+  options?: RequestOptions,
+): Promise<IssueLinkType> {
   const config: SendRequestOptions<IssueLinkType> = {
     url: '/rest/api/3/issueLinkType',
     method: 'POST',
@@ -47,6 +52,7 @@ export async function createIssueLinkType(client: Client, parameters: CreateIssu
       self: parameters.self,
     },
     schema: IssueLinkTypeSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -62,11 +68,16 @@ export async function createIssueLinkType(client: Client, parameters: CreateIssu
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** _Browse
  * projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for a project in the site.
  */
-export async function getIssueLinkType(client: Client, parameters: GetIssueLinkType): Promise<IssueLinkType> {
+export async function getIssueLinkType(
+  client: Client,
+  parameters: GetIssueLinkType,
+  options?: RequestOptions,
+): Promise<IssueLinkType> {
   const config: SendRequestOptions<IssueLinkType> = {
     url: `/rest/api/3/issueLinkType/${parameters.issueLinkTypeId}`,
     method: 'GET',
     schema: IssueLinkTypeSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -80,7 +91,11 @@ export async function getIssueLinkType(client: Client, parameters: GetIssueLinkT
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-export async function updateIssueLinkType(client: Client, parameters: UpdateIssueLinkType): Promise<IssueLinkType> {
+export async function updateIssueLinkType(
+  client: Client,
+  parameters: UpdateIssueLinkType,
+  options?: RequestOptions,
+): Promise<IssueLinkType> {
   const config: SendRequestOptions<IssueLinkType> = {
     url: `/rest/api/3/issueLinkType/${parameters.issueLinkTypeId}`,
     method: 'PUT',
@@ -92,6 +107,7 @@ export async function updateIssueLinkType(client: Client, parameters: UpdateIssu
       self: parameters.self,
     },
     schema: IssueLinkTypeSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -105,10 +121,15 @@ export async function updateIssueLinkType(client: Client, parameters: UpdateIssu
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-export async function deleteIssueLinkType(client: Client, parameters: DeleteIssueLinkType): Promise<void> {
+export async function deleteIssueLinkType(
+  client: Client,
+  parameters: DeleteIssueLinkType,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/issueLinkType/${parameters.issueLinkTypeId}`,
     method: 'DELETE',
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

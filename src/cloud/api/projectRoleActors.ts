@@ -5,7 +5,7 @@ import type { DeleteActor } from '../parameters/deleteActor';
 import type { GetProjectRoleActorsForRole } from '../parameters/getProjectRoleActorsForRole';
 import type { AddProjectRoleActorsToRole } from '../parameters/addProjectRoleActorsToRole';
 import type { DeleteProjectRoleActorsFromRole } from '../parameters/deleteProjectRoleActorsFromRole';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /**
  * Adds actors to a project role for the project.
@@ -19,7 +19,11 @@ import type { Client, SendRequestOptions } from '#/core';
  * _Administer Projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project or _Administer
  * Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-export async function addActorUsers(client: Client, parameters: AddActorUsers): Promise<ProjectRole> {
+export async function addActorUsers(
+  client: Client,
+  parameters: AddActorUsers,
+  options?: RequestOptions,
+): Promise<ProjectRole> {
   const config: SendRequestOptions<ProjectRole> = {
     url: `/rest/api/3/project/${parameters.projectIdOrKey}/role/${parameters.id}`,
     method: 'POST',
@@ -29,6 +33,7 @@ export async function addActorUsers(client: Client, parameters: AddActorUsers): 
       user: parameters.user,
     },
     schema: ProjectRoleSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -44,12 +49,13 @@ export async function addActorUsers(client: Client, parameters: AddActorUsers): 
  * _Administer Projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project or _Administer
  * Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-export async function setActors(client: Client, parameters: SetActors): Promise<ProjectRole> {
+export async function setActors(client: Client, parameters: SetActors, options?: RequestOptions): Promise<ProjectRole> {
   const config: SendRequestOptions<ProjectRole> = {
     url: `/rest/api/3/project/${parameters.projectIdOrKey}/role/${parameters.id}`,
     method: 'PUT',
     body: parameters.body,
     schema: ProjectRoleSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -67,7 +73,7 @@ export async function setActors(client: Client, parameters: SetActors): Promise<
  * _Administer Projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project or _Administer
  * Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-export async function deleteActor(client: Client, parameters: DeleteActor): Promise<void> {
+export async function deleteActor(client: Client, parameters: DeleteActor, options?: RequestOptions): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/project/${parameters.projectIdOrKey}/role/${parameters.id}`,
     method: 'DELETE',
@@ -76,6 +82,7 @@ export async function deleteActor(client: Client, parameters: DeleteActor): Prom
       group: parameters.group,
       groupId: parameters.groupId,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -92,11 +99,13 @@ export async function deleteActor(client: Client, parameters: DeleteActor): Prom
 export async function getProjectRoleActorsForRole(
   client: Client,
   parameters: GetProjectRoleActorsForRole,
+  options?: RequestOptions,
 ): Promise<ProjectRole> {
   const config: SendRequestOptions<ProjectRole> = {
     url: `/rest/api/3/role/${parameters.id}/actors`,
     method: 'GET',
     schema: ProjectRoleSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -115,6 +124,7 @@ export async function getProjectRoleActorsForRole(
 export async function addProjectRoleActorsToRole(
   client: Client,
   parameters: AddProjectRoleActorsToRole,
+  options?: RequestOptions,
 ): Promise<ProjectRole> {
   const config: SendRequestOptions<ProjectRole> = {
     url: `/rest/api/3/role/${parameters.id}/actors`,
@@ -125,6 +135,7 @@ export async function addProjectRoleActorsToRole(
       user: parameters.user,
     },
     schema: ProjectRoleSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -143,6 +154,7 @@ export async function addProjectRoleActorsToRole(
 export async function deleteProjectRoleActorsFromRole(
   client: Client,
   parameters: DeleteProjectRoleActorsFromRole,
+  options?: RequestOptions,
 ): Promise<ProjectRole> {
   const config: SendRequestOptions<ProjectRole> = {
     url: `/rest/api/3/role/${parameters.id}/actors`,
@@ -153,6 +165,7 @@ export async function deleteProjectRoleActorsFromRole(
       group: parameters.group,
     },
     schema: ProjectRoleSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

@@ -13,7 +13,7 @@ import type { SchemaMismatchError } from './schemaMismatchError.js';
 import { hasErrorKind } from './kinds.js';
 
 /**
- * Any non-2xx response from Confluence, including every subclass.
+ * Any non-2xx response from the API, including every subclass.
  *
  * Prefer these predicates to `instanceof` in library code and in anything that might load two copies of this package:
  * they check a branded marker instead of the prototype chain.
@@ -61,7 +61,7 @@ export function isRateLimitError(value: unknown): value is RateLimitError {
 }
 
 /**
- * 5xx — Confluence failed on its side.
+ * 5xx — the API failed on its side.
  *
  * @public
  */
@@ -125,7 +125,7 @@ export function isReauthorizationRequired(value: unknown): value is OAuthError {
  * The token is valid but lacks a scope this endpoint requires.
  *
  * Distinct from {@link isAuthError} because the remedy is different: refreshing cannot help, the app needs the scope
- * added and the user has to consent again. Confluence reports it as a 401 with `Unauthorized; scope does not match`.
+ * added and the user has to consent again. The API reports it as a 401 with `Unauthorized; scope does not match`.
  *
  * @public
  */

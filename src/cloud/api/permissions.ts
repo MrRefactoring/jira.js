@@ -4,7 +4,7 @@ import { PermittedProjectsSchema, type PermittedProjects } from '../models/permi
 import type { GetMyPermissions } from '../parameters/getMyPermissions';
 import type { GetBulkPermissions } from '../parameters/getBulkPermissions';
 import type { GetPermittedProjects } from '../parameters/getPermittedProjects';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /**
  * Returns a list of permissions indicating which permissions the user has. Details of the user's permissions can be
@@ -39,7 +39,11 @@ import type { Client, SendRequestOptions } from '#/core';
  *
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** None.
  */
-export async function getMyPermissions(client: Client, parameters?: GetMyPermissions): Promise<Permissions> {
+export async function getMyPermissions(
+  client: Client,
+  parameters?: GetMyPermissions,
+  options?: RequestOptions,
+): Promise<Permissions> {
   const config: SendRequestOptions<Permissions> = {
     url: '/rest/api/3/mypermissions',
     method: 'GET',
@@ -54,6 +58,7 @@ export async function getMyPermissions(client: Client, parameters?: GetMyPermiss
       commentId: parameters?.commentId,
     },
     schema: PermissionsSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -70,11 +75,12 @@ export async function getMyPermissions(client: Client, parameters?: GetMyPermiss
  *
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** None.
  */
-export async function getAllPermissions(client: Client): Promise<Permissions> {
+export async function getAllPermissions(client: Client, options?: RequestOptions): Promise<Permissions> {
   const config: SendRequestOptions<Permissions> = {
     url: '/rest/api/3/permissions',
     method: 'GET',
     schema: PermissionsSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -113,6 +119,7 @@ export async function getAllPermissions(client: Client): Promise<Permissions> {
 export async function getBulkPermissions(
   client: Client,
   parameters: GetBulkPermissions,
+  options?: RequestOptions,
 ): Promise<BulkPermissionGrants> {
   const config: SendRequestOptions<BulkPermissionGrants> = {
     url: '/rest/api/3/permissions/check',
@@ -123,6 +130,7 @@ export async function getBulkPermissions(
       projectPermissions: parameters.projectPermissions,
     },
     schema: BulkPermissionGrantsSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -138,6 +146,7 @@ export async function getBulkPermissions(
 export async function getPermittedProjects(
   client: Client,
   parameters: GetPermittedProjects,
+  options?: RequestOptions,
 ): Promise<PermittedProjects> {
   const config: SendRequestOptions<PermittedProjects> = {
     url: '/rest/api/3/permissions/project',
@@ -146,6 +155,7 @@ export async function getPermittedProjects(
       permissions: parameters.permissions,
     },
     schema: PermittedProjectsSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

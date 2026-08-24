@@ -32,8 +32,9 @@
  * For a smaller bundle, import the flat functions from `jira.js/cloud`, `jira.js/agile` or `jira.js/serviceDesk` and
  * drive them with that same client.
  *
- * Those entry points also expose every request parameter and response type. They are not re-exported here: the surfaces
- * collide on a handful of names.
+ * Those entry points also expose every response type. The request parameter types sit one level down —
+ * `jira.js/cloud/parameters` and so on — because a parameter and a model occasionally share a name, and forty-one
+ * of them do in the Agile surface alone. Neither is re-exported here: the surfaces collide on a handful of names.
  */
 
 export { createCloudClient, type CloudClient } from './cloud/createCloudClient.js';

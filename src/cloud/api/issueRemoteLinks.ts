@@ -7,7 +7,7 @@ import type { DeleteRemoteIssueLinkByGlobalId } from '../parameters/deleteRemote
 import type { GetRemoteIssueLinkById } from '../parameters/getRemoteIssueLinkById';
 import type { UpdateRemoteIssueLink } from '../parameters/updateRemoteIssueLink';
 import type { DeleteRemoteIssueLinkById } from '../parameters/deleteRemoteIssueLinkById';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /**
  * Returns the remote issue links for an issue. When a remote issue link global ID is provided the record with that
@@ -29,6 +29,7 @@ import type { Client, SendRequestOptions } from '#/core';
 export async function getRemoteIssueLinks(
   client: Client,
   parameters: GetRemoteIssueLinksParameters,
+  options?: RequestOptions,
 ): Promise<GetRemoteIssueLinks> {
   const config: SendRequestOptions<GetRemoteIssueLinks> = {
     url: `/rest/api/3/issue/${parameters.issueIdOrKey}/remotelink`,
@@ -37,6 +38,7 @@ export async function getRemoteIssueLinks(
       globalId: parameters.globalId,
     },
     schema: GetRemoteIssueLinksSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -62,6 +64,7 @@ export async function getRemoteIssueLinks(
 export async function createOrUpdateRemoteIssueLink(
   client: Client,
   parameters: CreateOrUpdateRemoteIssueLink,
+  options?: RequestOptions,
 ): Promise<RemoteIssueLinkIdentifies> {
   const config: SendRequestOptions<RemoteIssueLinkIdentifies> = {
     url: `/rest/api/3/issue/${parameters.issueIdOrKey}/remotelink`,
@@ -73,6 +76,7 @@ export async function createOrUpdateRemoteIssueLink(
       relationship: parameters.relationship,
     },
     schema: RemoteIssueLinkIdentifiesSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -97,6 +101,7 @@ export async function createOrUpdateRemoteIssueLink(
 export async function deleteRemoteIssueLinkByGlobalId(
   client: Client,
   parameters: DeleteRemoteIssueLinkByGlobalId,
+  options?: RequestOptions,
 ): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/issue/${parameters.issueIdOrKey}/remotelink`,
@@ -104,6 +109,7 @@ export async function deleteRemoteIssueLinkByGlobalId(
     searchParams: {
       globalId: parameters.globalId,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -126,11 +132,13 @@ export async function deleteRemoteIssueLinkByGlobalId(
 export async function getRemoteIssueLinkById(
   client: Client,
   parameters: GetRemoteIssueLinkById,
+  options?: RequestOptions,
 ): Promise<RemoteIssueLink> {
   const config: SendRequestOptions<RemoteIssueLink> = {
     url: `/rest/api/3/issue/${parameters.issueIdOrKey}/remotelink/${parameters.linkId}`,
     method: 'GET',
     schema: RemoteIssueLinkSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -152,7 +160,11 @@ export async function getRemoteIssueLinkById(
  * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
  *   to view the issue.
  */
-export async function updateRemoteIssueLink(client: Client, parameters: UpdateRemoteIssueLink): Promise<void> {
+export async function updateRemoteIssueLink(
+  client: Client,
+  parameters: UpdateRemoteIssueLink,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/issue/${parameters.issueIdOrKey}/remotelink/${parameters.linkId}`,
     method: 'PUT',
@@ -162,6 +174,7 @@ export async function updateRemoteIssueLink(client: Client, parameters: UpdateRe
       object: parameters.object,
       relationship: parameters.relationship,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -181,10 +194,15 @@ export async function updateRemoteIssueLink(client: Client, parameters: UpdateRe
  * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
  *   to view the issue.
  */
-export async function deleteRemoteIssueLinkById(client: Client, parameters: DeleteRemoteIssueLinkById): Promise<void> {
+export async function deleteRemoteIssueLinkById(
+  client: Client,
+  parameters: DeleteRemoteIssueLinkById,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/issue/${parameters.issueIdOrKey}/remotelink/${parameters.linkId}`,
     method: 'DELETE',
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

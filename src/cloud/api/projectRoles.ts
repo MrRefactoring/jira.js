@@ -9,7 +9,7 @@ import type { GetProjectRoleById } from '../parameters/getProjectRoleById';
 import type { PartialUpdateProjectRole } from '../parameters/partialUpdateProjectRole';
 import type { FullyUpdateProjectRole } from '../parameters/fullyUpdateProjectRole';
 import type { DeleteProjectRole } from '../parameters/deleteProjectRole';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 import { z } from 'zod';
 
 /**
@@ -26,11 +26,16 @@ import { z } from 'zod';
  * _Administer Projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for any project on the site or
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-export async function getProjectRoles(client: Client, parameters: GetProjectRolesParameters): Promise<GetProjectRoles> {
+export async function getProjectRoles(
+  client: Client,
+  parameters: GetProjectRolesParameters,
+  options?: RequestOptions,
+): Promise<GetProjectRoles> {
   const config: SendRequestOptions<GetProjectRoles> = {
     url: `/rest/api/3/project/${parameters.projectIdOrKey}/role`,
     method: 'GET',
     schema: GetProjectRolesSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -51,7 +56,11 @@ export async function getProjectRoles(client: Client, parameters: GetProjectRole
  * _Administer Projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project or _Administer
  * Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-export async function getProjectRole(client: Client, parameters: GetProjectRole): Promise<ProjectRole> {
+export async function getProjectRole(
+  client: Client,
+  parameters: GetProjectRole,
+  options?: RequestOptions,
+): Promise<ProjectRole> {
   const config: SendRequestOptions<ProjectRole> = {
     url: `/rest/api/3/project/${parameters.projectIdOrKey}/role/${parameters.id}`,
     method: 'GET',
@@ -59,6 +68,7 @@ export async function getProjectRole(client: Client, parameters: GetProjectRole)
       excludeInactiveUsers: parameters.excludeInactiveUsers,
     },
     schema: ProjectRoleSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -77,6 +87,7 @@ export async function getProjectRole(client: Client, parameters: GetProjectRole)
 export async function getProjectRoleDetails(
   client: Client,
   parameters: GetProjectRoleDetails,
+  options?: RequestOptions,
 ): Promise<ProjectRoleDetails[]> {
   const config: SendRequestOptions<ProjectRoleDetails[]> = {
     url: `/rest/api/3/project/${parameters.projectIdOrKey}/roledetails`,
@@ -87,6 +98,7 @@ export async function getProjectRoleDetails(
       excludeOtherServiceRoles: parameters.excludeOtherServiceRoles,
     },
     schema: z.array(ProjectRoleDetailsSchema),
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -129,11 +141,12 @@ export async function getProjectRoleDetails(
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-export async function getAllProjectRoles(client: Client): Promise<ProjectRole[]> {
+export async function getAllProjectRoles(client: Client, options?: RequestOptions): Promise<ProjectRole[]> {
   const config: SendRequestOptions<ProjectRole[]> = {
     url: '/rest/api/3/role',
     method: 'GET',
     schema: z.array(ProjectRoleSchema),
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -152,7 +165,11 @@ export async function getAllProjectRoles(client: Client): Promise<ProjectRole[]>
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-export async function createProjectRole(client: Client, parameters: CreateProjectRole): Promise<ProjectRole> {
+export async function createProjectRole(
+  client: Client,
+  parameters: CreateProjectRole,
+  options?: RequestOptions,
+): Promise<ProjectRole> {
   const config: SendRequestOptions<ProjectRole> = {
     url: '/rest/api/3/role',
     method: 'POST',
@@ -161,6 +178,7 @@ export async function createProjectRole(client: Client, parameters: CreateProjec
       name: parameters.name,
     },
     schema: ProjectRoleSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -173,11 +191,16 @@ export async function createProjectRole(client: Client, parameters: CreateProjec
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-export async function getProjectRoleById(client: Client, parameters: GetProjectRoleById): Promise<ProjectRole> {
+export async function getProjectRoleById(
+  client: Client,
+  parameters: GetProjectRoleById,
+  options?: RequestOptions,
+): Promise<ProjectRole> {
   const config: SendRequestOptions<ProjectRole> = {
     url: `/rest/api/3/role/${parameters.id}`,
     method: 'GET',
     schema: ProjectRoleSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -195,6 +218,7 @@ export async function getProjectRoleById(client: Client, parameters: GetProjectR
 export async function partialUpdateProjectRole(
   client: Client,
   parameters: PartialUpdateProjectRole,
+  options?: RequestOptions,
 ): Promise<ProjectRole> {
   const config: SendRequestOptions<ProjectRole> = {
     url: `/rest/api/3/role/${parameters.id}`,
@@ -204,6 +228,7 @@ export async function partialUpdateProjectRole(
       name: parameters.name,
     },
     schema: ProjectRoleSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -215,7 +240,11 @@ export async function partialUpdateProjectRole(
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-export async function fullyUpdateProjectRole(client: Client, parameters: FullyUpdateProjectRole): Promise<ProjectRole> {
+export async function fullyUpdateProjectRole(
+  client: Client,
+  parameters: FullyUpdateProjectRole,
+  options?: RequestOptions,
+): Promise<ProjectRole> {
   const config: SendRequestOptions<ProjectRole> = {
     url: `/rest/api/3/role/${parameters.id}`,
     method: 'PUT',
@@ -224,6 +253,7 @@ export async function fullyUpdateProjectRole(client: Client, parameters: FullyUp
       name: parameters.name,
     },
     schema: ProjectRoleSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -236,13 +266,18 @@ export async function fullyUpdateProjectRole(client: Client, parameters: FullyUp
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-export async function deleteProjectRole(client: Client, parameters: DeleteProjectRole): Promise<void> {
+export async function deleteProjectRole(
+  client: Client,
+  parameters: DeleteProjectRole,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/role/${parameters.id}`,
     method: 'DELETE',
     searchParams: {
       swap: parameters.swap,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

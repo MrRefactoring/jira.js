@@ -1,5 +1,6 @@
 import { z } from 'zod';
 import { openEnum } from '#/core';
+import { EntityPropertyDetailsSchema } from '../models';
 
 export const UpdateEntityPropertiesValueSchema = z.object({
   /** The app migration transfer ID. */
@@ -16,7 +17,7 @@ export const UpdateEntityPropertiesValueSchema = z.object({
     'BoardProperty',
     'SprintProperty',
   ]),
-  body: z.record(z.string(), z.any()),
+  body: z.array(EntityPropertyDetailsSchema),
 });
 
 export type UpdateEntityPropertiesValue = z.input<typeof UpdateEntityPropertiesValueSchema>;

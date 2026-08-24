@@ -21,7 +21,7 @@ import type { UpdateRelatedWork } from '../parameters/updateRelatedWork';
 import type { DeleteAndReplaceVersion } from '../parameters/deleteAndReplaceVersion';
 import type { GetVersionUnresolvedIssues } from '../parameters/getVersionUnresolvedIssues';
 import type { DeleteRelatedWork } from '../parameters/deleteRelatedWork';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 import { z } from 'zod';
 
 /**
@@ -38,6 +38,7 @@ import { z } from 'zod';
 export async function getProjectVersionsPaginated(
   client: Client,
   parameters: GetProjectVersionsPaginated,
+  options?: RequestOptions,
 ): Promise<Page<Version>> {
   const config: SendRequestOptions<Page<Version>> = {
     url: `/rest/api/3/project/${parameters.projectIdOrKey}/version`,
@@ -51,6 +52,7 @@ export async function getProjectVersionsPaginated(
       expand: parameters.expand,
     },
     schema: PageVersionSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -66,7 +68,11 @@ export async function getProjectVersionsPaginated(
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** _Browse
  * Projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
  */
-export async function getProjectVersions(client: Client, parameters: GetProjectVersions): Promise<Version[]> {
+export async function getProjectVersions(
+  client: Client,
+  parameters: GetProjectVersions,
+  options?: RequestOptions,
+): Promise<Version[]> {
   const config: SendRequestOptions<Version[]> = {
     url: `/rest/api/3/project/${parameters.projectIdOrKey}/versions`,
     method: 'GET',
@@ -74,6 +80,7 @@ export async function getProjectVersions(client: Client, parameters: GetProjectV
       expand: parameters.expand,
     },
     schema: z.array(VersionSchema),
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -88,7 +95,11 @@ export async function getProjectVersions(client: Client, parameters: GetProjectV
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg) or _Administer Projects_ [project
  * permission](https://confluence.atlassian.com/x/yodKLg) for the project the version is added to.
  */
-export async function createVersion(client: Client, parameters: CreateVersion): Promise<Version> {
+export async function createVersion(
+  client: Client,
+  parameters: CreateVersion,
+  options?: RequestOptions,
+): Promise<Version> {
   const config: SendRequestOptions<Version> = {
     url: '/rest/api/3/version',
     method: 'POST',
@@ -113,6 +124,7 @@ export async function createVersion(client: Client, parameters: CreateVersion): 
       userStartDate: parameters.userStartDate,
     },
     schema: VersionSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -126,7 +138,7 @@ export async function createVersion(client: Client, parameters: CreateVersion): 
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** _Browse
  * projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the version.
  */
-export async function getVersion(client: Client, parameters: GetVersion): Promise<Version> {
+export async function getVersion(client: Client, parameters: GetVersion, options?: RequestOptions): Promise<Version> {
   const config: SendRequestOptions<Version> = {
     url: `/rest/api/3/version/${parameters.id}`,
     method: 'GET',
@@ -134,6 +146,7 @@ export async function getVersion(client: Client, parameters: GetVersion): Promis
       expand: parameters.expand,
     },
     schema: VersionSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -148,12 +161,17 @@ export async function getVersion(client: Client, parameters: GetVersion): Promis
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg) or _Administer Projects_ [project
  * permission](https://confluence.atlassian.com/x/yodKLg) for the project that contains the version.
  */
-export async function updateVersion(client: Client, parameters: UpdateVersion): Promise<Version> {
+export async function updateVersion(
+  client: Client,
+  parameters: UpdateVersion,
+  options?: RequestOptions,
+): Promise<Version> {
   const config: SendRequestOptions<Version> = {
     url: `/rest/api/3/version/${parameters.id}`,
     method: 'PUT',
     body: parameters.body,
     schema: VersionSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -173,10 +191,15 @@ export async function updateVersion(client: Client, parameters: UpdateVersion): 
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg) or _Administer Projects_ [project
  * permission](https://confluence.atlassian.com/x/yodKLg) for the project that contains the version.
  */
-export async function mergeVersions(client: Client, parameters: MergeVersions): Promise<void> {
+export async function mergeVersions(
+  client: Client,
+  parameters: MergeVersions,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/version/${parameters.id}/mergeto/${parameters.moveIssuesTo}`,
     method: 'PUT',
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -190,7 +213,7 @@ export async function mergeVersions(client: Client, parameters: MergeVersions): 
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** _Browse
  * projects_ project permission for the project that contains the version.
  */
-export async function moveVersion(client: Client, parameters: MoveVersion): Promise<Version> {
+export async function moveVersion(client: Client, parameters: MoveVersion, options?: RequestOptions): Promise<Version> {
   const config: SendRequestOptions<Version> = {
     url: `/rest/api/3/version/${parameters.id}/move`,
     method: 'POST',
@@ -199,6 +222,7 @@ export async function moveVersion(client: Client, parameters: MoveVersion): Prom
       position: parameters.position,
     },
     schema: VersionSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -219,11 +243,13 @@ export async function moveVersion(client: Client, parameters: MoveVersion): Prom
 export async function getVersionRelatedIssues(
   client: Client,
   parameters: GetVersionRelatedIssues,
+  options?: RequestOptions,
 ): Promise<VersionIssueCounts> {
   const config: SendRequestOptions<VersionIssueCounts> = {
     url: `/rest/api/3/version/${parameters.id}/relatedIssueCounts`,
     method: 'GET',
     schema: VersionIssueCountsSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -237,11 +263,16 @@ export async function getVersionRelatedIssues(
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** _Browse
  * projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the version.
  */
-export async function getRelatedWork(client: Client, parameters: GetRelatedWork): Promise<VersionRelatedWork[]> {
+export async function getRelatedWork(
+  client: Client,
+  parameters: GetRelatedWork,
+  options?: RequestOptions,
+): Promise<VersionRelatedWork[]> {
   const config: SendRequestOptions<VersionRelatedWork[]> = {
     url: `/rest/api/3/version/${parameters.id}/relatedwork`,
     method: 'GET',
     schema: z.array(VersionRelatedWorkSchema),
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -258,7 +289,11 @@ export async function getRelatedWork(client: Client, parameters: GetRelatedWork)
  * permissions](https://confluence.atlassian.com/adminjiraserver/managing-project-permissions-938847145.html) for the
  * project that contains the version.
  */
-export async function createRelatedWork(client: Client, parameters: CreateRelatedWork): Promise<VersionRelatedWork> {
+export async function createRelatedWork(
+  client: Client,
+  parameters: CreateRelatedWork,
+  options?: RequestOptions,
+): Promise<VersionRelatedWork> {
   const config: SendRequestOptions<VersionRelatedWork> = {
     url: `/rest/api/3/version/${parameters.id}/relatedwork`,
     method: 'POST',
@@ -270,6 +305,7 @@ export async function createRelatedWork(client: Client, parameters: CreateRelate
       url: parameters.url,
     },
     schema: VersionRelatedWorkSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -286,7 +322,11 @@ export async function createRelatedWork(client: Client, parameters: CreateRelate
  * permissions](https://confluence.atlassian.com/adminjiraserver/managing-project-permissions-938847145.html) for the
  * project that contains the version.
  */
-export async function updateRelatedWork(client: Client, parameters: UpdateRelatedWork): Promise<VersionRelatedWork> {
+export async function updateRelatedWork(
+  client: Client,
+  parameters: UpdateRelatedWork,
+  options?: RequestOptions,
+): Promise<VersionRelatedWork> {
   const config: SendRequestOptions<VersionRelatedWork> = {
     url: `/rest/api/3/version/${parameters.id}/relatedwork`,
     method: 'PUT',
@@ -298,6 +338,7 @@ export async function updateRelatedWork(client: Client, parameters: UpdateRelate
       url: parameters.url,
     },
     schema: VersionRelatedWorkSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -318,7 +359,11 @@ export async function updateRelatedWork(client: Client, parameters: UpdateRelate
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg) or _Administer Projects_ [project
  * permission](https://confluence.atlassian.com/x/yodKLg) for the project that contains the version.
  */
-export async function deleteAndReplaceVersion(client: Client, parameters: DeleteAndReplaceVersion): Promise<void> {
+export async function deleteAndReplaceVersion(
+  client: Client,
+  parameters: DeleteAndReplaceVersion,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/version/${parameters.id}/removeAndSwap`,
     method: 'POST',
@@ -327,6 +372,7 @@ export async function deleteAndReplaceVersion(client: Client, parameters: Delete
       moveAffectedIssuesTo: parameters.moveAffectedIssuesTo,
       moveFixIssuesTo: parameters.moveFixIssuesTo,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -343,11 +389,13 @@ export async function deleteAndReplaceVersion(client: Client, parameters: Delete
 export async function getVersionUnresolvedIssues(
   client: Client,
   parameters: GetVersionUnresolvedIssues,
+  options?: RequestOptions,
 ): Promise<VersionUnresolvedIssuesCount> {
   const config: SendRequestOptions<VersionUnresolvedIssuesCount> = {
     url: `/rest/api/3/version/${parameters.id}/unresolvedIssueCount`,
     method: 'GET',
     schema: VersionUnresolvedIssuesCountSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -363,10 +411,15 @@ export async function getVersionUnresolvedIssues(
  * permissions](https://confluence.atlassian.com/adminjiraserver/managing-project-permissions-938847145.html) for the
  * project that contains the version.
  */
-export async function deleteRelatedWork(client: Client, parameters: DeleteRelatedWork): Promise<void> {
+export async function deleteRelatedWork(
+  client: Client,
+  parameters: DeleteRelatedWork,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/version/${parameters.versionId}/relatedwork/${parameters.relatedWorkId}`,
     method: 'DELETE',
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
