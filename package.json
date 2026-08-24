@@ -1,7 +1,7 @@
 {
   "name": "jira.js",
   "version": "6.3.0",
-  "description": "Modern Jira REST API client for JavaScript and TypeScript. Full-featured library for the Jira Cloud platform API, Jira Agile API, Jira Service Management API, and the Assets API, with every response validated at runtime. Works in Node.js and browsers with TypeScript support, tree-shaking, and comprehensive type definitions.",
+  "description": "Modern Jira REST API client for JavaScript and TypeScript. Full-featured library for the Jira Cloud platform API, Jira Agile API, Jira Service Management API, the Assets API, and the self-hosted Jira Data Center API, with every response validated at runtime. Works in Node.js and browsers with TypeScript support, tree-shaking, and comprehensive type definitions.",
   "repository": {
     "type": "git",
     "url": "https://github.com/MrRefactoring/jira.js.git"
@@ -76,6 +76,14 @@
       "types": "./dist/teams/parameters/index.d.ts",
       "import": "./dist/teams/parameters/index.js"
     },
+    "./server": {
+      "types": "./dist/server/index.d.ts",
+      "import": "./dist/server/index.js"
+    },
+    "./server/parameters": {
+      "types": "./dist/server/parameters/index.d.ts",
+      "import": "./dist/server/parameters/index.js"
+    },
     "./cloud": {
       "types": "./dist/cloud/index.d.ts",
       "import": "./dist/cloud/index.js"
@@ -111,6 +119,9 @@
     "jira agile",
     "jira service desk",
     "jira software",
+    "jira server",
+    "jira data center",
+    "jira dc",
     "jira teams",
     "jira assets",
     "assets api",
@@ -145,6 +156,11 @@
     "check:consumers": "node scripts/checkConsumers.ts",
     "test": "vitest run",
     "test:live": "vitest run --config vitest.config.live.ts",
+    "test:live:server": "vitest run --config vitest.config.server.ts",
+    "coverage:server": "node scripts/serverCoverage.ts",
+    "jira-dc:up": "node scripts/jiraDc.ts up",
+    "jira-dc:status": "node scripts/jiraDc.ts status",
+    "jira-dc:down": "node scripts/jiraDc.ts down",
     "audit:schemas": "node scripts/schemaAudit.ts",
     "docs:api": "typedoc",
     "docs:dev": "vitepress dev docs",

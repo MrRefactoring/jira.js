@@ -24,6 +24,7 @@
 - **[Assets API](https://developer.atlassian.com/cloud/assets/rest/)** — база конфигурационных единиц
 - **[Teams API](https://developer.atlassian.com/platform/teams/rest/v1/)** — команды, их участники и внешние связи, на уровне организации
 - **[API организации](https://developer.atlassian.com/cloud/admin/organization/rest/)** — каталоги, пользователи, группы, домены, политики и SCIM-провижининг, над сайтом
+- **[API Jira Data Center](https://developer.atlassian.com/server/jira/platform/rest/)** — самостоятельно размещённая платформа, вместе с Agile
 
 > **6.0 — это переписывание, а не обновление.** `npm install jira.js` теперь ставит 6.x. Перед обновлением прочитайте [MIGRATION.md](./MIGRATION.md): там прямо сказано, кому стоит остаться на `jira.js@5`, который поддерживается до конца 2026 года.
 
@@ -135,6 +136,7 @@ const agile = createAgileClient(client);
 - **Assets API**: объекты, схемы, типы и AQL — `createAssetsClient`
 - **Teams API**: команды, участники и внешние связи, на уровне организации — `createTeamsClient`
 - **Администрирование организации**: каталоги, пользователи, группы, домены, политики и SCIM-провижининг над сайтом — `createAdminClient`, `createUserManagementClient`, `createUserProvisioningClient`
+- **API Jira Data Center**: самостоятельно размещённая платформа, Agile — в том же клиенте — `createServerClient`
 
 Платформенная поверхность одна, сгенерированная из v3-спецификации Jira. `Version2Client` и `Version3Client` убраны: разница между ними была не в эндпоинтах, а в форматированном тексте. Такие поля по-прежнему принимают **строку** с wiki-разметкой — запись уходит через v2-эндпоинт, Jira разбирает разметку у себя, после чего результат перечитывается, и вы получаете настоящий документ [Atlassian Document Format](https://developer.atlassian.com/cloud/jira/platform/apis/document/structure/).
 
@@ -441,11 +443,12 @@ const issue = await getIssue(client, { issueIdOrKey: 'KEY-1' });
 
 | Импорт | Что внутри |
 | --- | --- |
-| `jira.js` | Восемь фабрик, типы ошибок и предикаты, помощники OAuth |
+| `jira.js` | Девять фабрик, типы ошибок и предикаты, помощники OAuth |
 | `jira.js/core` | `createClient`, транспорт, ошибки, OAuth, multipart |
 | `jira.js/cloud` | Функции платформенного API, параметры и типы ответов |
 | `jira.js/agile` | Функции Agile API, параметры и типы ответов |
 | `jira.js/serviceDesk` | Функции Service Management, параметры и типы ответов |
+| `jira.js/server` | Функции Data Center, параметры и типы ответов |
 | `jira.js/assets` | Функции Assets Cloud, параметры и типы ответов |
 | `jira.js/teams` | Функции Teams, параметры и типы ответов |
 | `jira.js/admin` | Функции API организации, параметры и типы ответов |
@@ -480,7 +483,7 @@ Jira.js идеально подходит для:
 ## Частые вопросы (FAQ)
 
 **В: Работает ли это с Jira Server/Data Center?**  
-О: Нет, Jira.js разработана специально для Jira Cloud. Для локальной (on-premise) Jira рассмотрите прямое использование REST API.
+О: Да, начиная с 6.3. `createServerClient` покрывает 444 операции API самостоятельно размещённой платформы, включая Agile. Это отдельная поверхность, а не облачный клиент, направленный на другой хост: два API различаются не только адресом. См. [руководство по Data Center](https://mrrefactoring.github.io/jira.js/ru/guide/data-center).
 
 **В: Обязателен ли TypeScript?**  
 О: Нет, но TypeScript полностью поддерживается с исчерпывающими определениями типов. Вы также можете использовать Jira.js с обычным JavaScript.

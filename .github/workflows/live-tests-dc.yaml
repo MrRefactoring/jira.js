@@ -1,0 +1,43 @@
+name: 🧱 Data Center tests
+
+on:
+  schedule:
+    - cron: '0 4 * * *'
+  workflow_dispatch:
+
+concurrency:
+  group: live-tests-dc
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  live:
+    name: 🧱 Data Center
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🔄 Checkout sources
+        uses: actions/checkout@v7
+      - name: ⚙️ Use Node.js 22.x
+        uses: actions/setup-node@v7
+        with:
+          node-version: 22.x
+      - name: 📦 Install pnpm
+        uses: pnpm/action-setup@v6
+      - name: 📌 Install dependencies
+        run: pnpm install --frozen-lockfile
+      # Atlassian publishes three-hour timebomb licences for exactly this, and reinstalling one on a fresh instance
+      # starts the three hours again — which is what makes a container per run workable. It lives in a secret rather
+      # than in the repository because a licence key is not ours to redistribute.
+      - name: 🔑 Write the timebomb licence
+        run: |
+          printf '%s' "${{ secrets.JIRA_DC_TIMEBOMB_LICENSE }}" > docker/jira-dc/timebomb-license.txt
+          test -s docker/jira-dc/timebomb-license.txt
+      - name: 🧱 Bring up Jira Data Center
+        run: pnpm run jira-dc:up
+      - name: 🚀 Run the suites and the coverage ledger
+        run: pnpm run coverage:server
+      - name: 🧹 Tear it down
+        if: always()
+        run: pnpm run jira-dc:down
