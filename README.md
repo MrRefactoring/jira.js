@@ -59,7 +59,7 @@ Built for Jira integrations, automation, webhook handlers, CI/CD pipelines and b
 
 ### Installation
 
-**Requires Node.js 22 or newer.** The package is ESM-only — there is no CommonJS build.
+**Requires Node.js 22 or newer.** The package is ESM-only — there is no CommonJS build. TypeScript users need **5.7 or newer**: the declarations name `ArrayBufferView`, which earlier compilers read as a different type.
 
 ```bash
 # Using npm

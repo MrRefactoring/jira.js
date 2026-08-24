@@ -11,7 +11,7 @@ export interface ParseCallbackUrlOptions {
 }
 
 export interface CallbackParams {
-  /** The authorization code, ready for {@link core/oauth/helpers!exchangeAuthorizationCode}. */
+  /** The authorization code, ready for {@link exchangeAuthorizationCode}. */
   code: string;
   /** The `state` that came back, already verified against `expectedState`. */
   state: string;
@@ -39,8 +39,8 @@ function timingSafeEquals(a: string, b: string): boolean {
  * - `state` is missing or does not match the one you issued;
  * - The URL is simply not a callback — no code, no error.
  *
- * Each throws an {@link OAuthError}; for a decline, `error` is `access_denied`, which
- * {@link core/errors/predicates!isReauthorizationRequired} recognises.
+ * Each throws an {@link OAuthError}; for a decline, `error` is `access_denied`, which {@link isReauthorizationRequired}
+ * recognises.
  *
  * @example
  *   ```typescript
