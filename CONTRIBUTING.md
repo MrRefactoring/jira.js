@@ -12,6 +12,14 @@ regeneration:
 src/cloud/**
 src/agile/**
 src/serviceDesk/**
+src/server/**
+src/serviceDeskServer/**
+src/assets/**
+src/assetsServer/**
+src/teams/**
+src/admin/**
+src/userManagement/**
+src/userProvisioning/**
 src/core/**
 ```
 
@@ -54,7 +62,10 @@ pnpm check:browser    # static browser-safety scan of dist/
 ```
 
 The live suites talk to a real Jira site and need credentials in a repo-root `.env` (`JIRA_BASE_URL`, `JIRA_EMAIL`,
-`JIRA_API_TOKEN`). They are not required for a pull request; CI runs them nightly.
+`JIRA_API_TOKEN`). They are not required for a pull request; CI runs them nightly. The Data Center suites bring their
+own instance up in Docker: Jira Data Center with `pnpm jira-dc:up`, then `pnpm coverage:server`; Service Management
+and Assets with `pnpm jsm-dc:up`, then `pnpm coverage:jsm`, whose Service Desk half needs a Service Management
+timebomb licence in `docker/jsm-dc/timebomb-license.txt`.
 
 ## Reporting a bug
 

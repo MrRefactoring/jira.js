@@ -16,15 +16,16 @@
 
 ## О библиотеке
 
-**Jira.js** — TypeScript-клиент к REST API Atlassian Jira — Jira Cloud и самостоятельно размещённого Jira Data Center — для [Node.js](https://nodejs.org/) и браузеров. Покрывает семь поверхностей:
+**Jira.js** — TypeScript-клиент к REST API Atlassian Jira — Jira Cloud и самостоятельно размещённого Jira Data Center — для [Node.js](https://nodejs.org/) и браузеров. Покрывает одиннадцать поверхностей, восемью группами:
 
 - **[Платформенный API Jira Cloud](https://developer.atlassian.com/cloud/jira/platform/rest/)** — задачи, проекты, поля, воркфлоу
 - **[Jira Agile API](https://developer.atlassian.com/cloud/jira/software/rest/intro/)** — спринты, доски, бэклог
 - **[Jira Service Management API](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro/)** — обращения, очереди, организации
-- **[Assets API](https://developer.atlassian.com/cloud/assets/rest/)** — база конфигурационных единиц
+- **[API Assets](https://developer.atlassian.com/cloud/assets/rest/)** — база конфигурационных единиц, в облаке и в Data Center
 - **[Teams API](https://developer.atlassian.com/platform/teams/rest/v1/)** — команды, их участники и внешние связи, на уровне организации
 - **[API организации](https://developer.atlassian.com/cloud/admin/organization/rest/)** — каталоги, пользователи, группы, домены, политики и SCIM-провижининг, над сайтом
-- **[API Jira Data Center](https://developer.atlassian.com/server/jira/platform/rest/)** — самостоятельно размещённая платформа, вместе с Agile
+- **[API Jira Data Center](https://developer.atlassian.com/server/jira/platform/rest/)** — самостоятельно размещённая Jira 10.0 и новее, платформа и Agile одним клиентом
+- **[API Jira Service Management Data Center](https://developer.atlassian.com/server/jira-servicedesk/rest/)** — самостоятельно размещённые запросы, очереди, типы запросов, организации
 
 > **6.0 — это переписывание, а не обновление.** `npm install jira.js` теперь ставит 6.x. Перед обновлением прочитайте [MIGRATION.md](./MIGRATION.md): там прямо сказано, кому стоит остаться на `jira.js@5`, который поддерживается до конца 2026 года.
 
@@ -50,6 +51,8 @@
 - [Использование](#использование)
   - [Аутентификация](#аутентификация)
   - [Обработка ошибок](#обработка-ошибок)
+  - [Отмена запроса](#отмена-запроса)
+  - [Собственный `fetch`](#собственный-fetch)
   - [Валидация ответов](#валидация-ответов)
   - [Структура API](#структура-api)
 - [Tree-shaking](#tree-shaking-и-оптимизация-бандла)
@@ -133,10 +136,11 @@ const agile = createAgileClient(client);
 - **Платформенный API Jira Cloud**: задачи, проекты, пользователи, поля, воркфлоу, схемы
 - **Jira Software (Agile) API**: спринты, доски, бэклоги, agile-процессы
 - **Jira Service Management API**: обращения, очереди, клиенты, организации
-- **Assets API**: объекты, схемы, типы и AQL — `createAssetsClient`
-- **Teams API**: команды, участники и внешние связи, на уровне организации — `createTeamsClient`
+- **API Jira Data Center**: самостоятельно размещённая Jira, `/rest/api/2` и эндпоинты Agile из одного `createServerClient`
+- **API Jira Service Management Data Center**: самостоятельно размещённые запросы, очереди и организации, из `createServiceDeskServerClient`
+- **API Assets**: объекты, схемы, типы и AQL — `createAssetsClient` в облаке, `createAssetsServerClient` self-hosted
+- **Teams API**: команды, их участники и внешние связи, на уровне организации — `createTeamsClient`
 - **Администрирование организации**: каталоги, пользователи, группы, домены, политики и SCIM-провижининг над сайтом — `createAdminClient`, `createUserManagementClient`, `createUserProvisioningClient`
-- **API Jira Data Center**: самостоятельно размещённая платформа, Agile — в том же клиенте — `createServerClient`
 
 Облачная платформенная поверхность одна, сгенерированная из v3-спецификации Jira. `Version2Client` и `Version3Client` убраны: разница между ними была не в эндпоинтах, а в форматированном тексте. Такие поля по-прежнему принимают **строку** с wiki-разметкой — запись уходит через v2-эндпоинт, Jira разбирает разметку у себя, после чего результат перечитывается, и вы получаете настоящий документ [Atlassian Document Format](https://developer.atlassian.com/cloud/jira/platform/apis/document/structure/).
 
@@ -251,7 +255,7 @@ try {
 | Ошибка | Когда | Дополнительно |
 | --- | --- | --- |
 | `ApiError` | Любой не-2xx; база для остальных | `status`, `statusText`, `body` |
-| `AuthError` | `401` | |
+| `AuthError` | `401`, а также любой статус, с которым Jira отказала в учётных данных | `status` — то, что реально пришло по проводу |
 | `ScopeError` | `401`, не хватает scope | |
 | `ForbiddenError` | `403` | |
 | `NotFoundError` | `404` | |
@@ -262,9 +266,86 @@ try {
 | `ConfigError` | Невозможная конфигурация клиента | |
 | `SchemaMismatchError` | 2xx не той формы | `report` |
 
+Отменённый запрос — единственный сбой, которого нет в этом списке: причина, переданная в `abort()`, пробрасывается ровно такой, какой была, поэтому одновременно верны `error.name === 'AbortError'` и `error === signal.reason`.
+
 Используйте предикаты, а не `instanceof`: они читают брендированный символ вместо цепочки прототипов и потому продолжают работать, когда бандлер режет код на чанки, когда минификация переименовывает классы и когда в `node_modules` оказались две копии пакета.
 
 Повторы выключены по умолчанию. `retry: { maxAttempts, initialDelayMs, backoffFactor }` включает их только для сетевых ошибок и `502`/`503`/`504` — никогда для `4xx` и прочих `5xx`.
+
+**Мёртвый токен не всегда приходит как `401`.** Примерно четверть операций Jira доступна анонимно, и на них
+просроченный или отозванный API-токен запрос не роняет — Jira выполняет его от имени анонимного пользователя и
+сообщает об этом только заголовком `X-Seraph-LoginReason`. В ответ приходит корректный успешный результат с тем,
+что позволено видеть анонимному посетителю, а это для большинства сайтов ничего:
+
+```typescript
+// С мёртвым токеном, до 6.3: ошибки нет, список пустой.
+const projects = await jira.projects.searchProjects();
+// { total: 0, isLast: true, values: [] }
+```
+
+Теперь клиент читает этот заголовок и бросает `AuthError` всякий раз, когда в учётных данных отказано, с каким бы
+статусом это ни пришло. В `error.status` записан статус, который действительно пришёл — `200` в примере выше, — а не
+`401`, которого не было.
+
+### Отмена запроса
+
+Каждый метод принимает необязательный `AbortSignal` последним аргументом. Он доходит до `fetch` и заодно обрывает
+паузу между повторами, которую клиент в этот момент выжидает:
+
+```typescript
+await jira.issues.getIssue({ issueIdOrKey: 'PROJ-1' }, { signal: AbortSignal.timeout(5_000) });
+
+// Операции без параметров принимают опции на их месте
+await jira.announcementBanner.getBanner({ signal });
+
+// ...и те, у которых все параметры необязательны, — после пустого объекта
+await jira.projects.searchProjects({}, { signal });
+```
+
+Причина пробрасывается нетронутой, а не заворачивается, поэтому `TimeoutError` от `AbortSignal.timeout()` остаётся
+`TimeoutError`, а собственная причина возвращается тем же объектом, который вы передали.
+
+### Собственный `fetch`
+
+У транспорта один шов — `fetch`, который он вызывает. Подмените его, чтобы логировать, трассировать, ходить через
+прокси или записывать фикстуры: клиент передаёт в него URL и собранный `RequestInit`, включая заголовки, выведенные
+из `auth`:
+
+```typescript
+const jira = createCloudClient({
+  host,
+  auth,
+  fetch: async (url, init) => {
+    const started = performance.now();
+    const response = await fetch(url, init);
+
+    console.log(`${init.method ?? 'GET'} ${url} → ${response.status} за ${Math.round(performance.now() - started)}мс`);
+
+    return response;
+  },
+});
+```
+
+```typescript
+import { fetch as undiciFetch, ProxyAgent } from 'undici';
+
+const dispatcher = new ProxyAgent(process.env.HTTPS_PROXY!);
+
+const jira = createCloudClient({
+  host,
+  auth,
+  fetch: (url, init) => undiciFetch(url, { ...init, dispatcher }),
+});
+```
+
+Запросы OAuth 2.0 за токеном и за cloud id тоже идут через него, так что прокси покрывает весь поток, а не работает
+до первого обновления токена. Обратная сторона: обёртка, логирующая тела запросов, увидит `client_secret` и
+`refresh_token` на запросе токена.
+
+`headers` — второй вход, для постоянного значения:
+`createCloudClient({ host, auth, headers: { 'X-Trace-Id': traceId } })`. Заголовки отдельного запроса важнее их, а
+они важнее заголовка `Authorization`, который клиент выводит сам, — поэтому `Authorization`, заданный там, молча
+заменяет `auth` вместе с обновлением токена.
 
 ### Валидация ответов
 
@@ -463,7 +544,7 @@ const issue = await getIssue(client, { issueIdOrKey: 'KEY-1' });
 
 | Импорт | Что внутри |
 | --- | --- |
-| `jira.js` | Девять фабрик, типы ошибок и предикаты, помощники OAuth |
+| `jira.js` | Одиннадцать фабрик, типы ошибок и предикаты, помощники OAuth |
 | `jira.js/core` | `createClient`, транспорт, ошибки, OAuth, multipart |
 | `jira.js/cloud` | Функции платформенного API и типы ответов |
 | `jira.js/cloud/models` | Только типы ответов платформенного API |
@@ -477,6 +558,12 @@ const issue = await getIssue(client, { issueIdOrKey: 'KEY-1' });
 | `jira.js/server` | Функции Data Center и типы ответов |
 | `jira.js/server/models` | Только типы ответов Data Center |
 | `jira.js/server/parameters` | Типы параметров запросов Data Center |
+| `jira.js/serviceDeskServer` | Функции Service Management Data Center и типы ответов |
+| `jira.js/serviceDeskServer/models` | Только типы ответов Service Management Data Center |
+| `jira.js/serviceDeskServer/parameters` | Типы параметров запросов Service Management Data Center |
+| `jira.js/assetsServer` | Функции Assets Data Center и типы ответов |
+| `jira.js/assetsServer/models` | Только типы ответов Assets Data Center |
+| `jira.js/assetsServer/parameters` | Типы параметров запросов Assets Data Center |
 | `jira.js/assets` | Функции Assets Cloud и типы ответов |
 | `jira.js/assets/models` | Только типы ответов Assets Cloud |
 | `jira.js/assets/parameters` | Типы параметров запросов Assets Cloud |
@@ -502,7 +589,7 @@ import type { Issue } from 'jira.js/cloud';
 import type { GetIssue } from 'jira.js/cloud/parameters';
 ```
 
-Девять поверхностей не реэкспортируются из корня — они сталкиваются на десятке имён, импортируйте из нужной.
+Одиннадцать поверхностей не реэкспортируются из корня — они сталкиваются на десятке имён, импортируйте из нужной.
 
 > Глубоким импортам нужен резолвер, понимающий `exports`: `moduleResolution: "bundler"`, `"node16"` или `"nodenext"`. Легаси-резолвинг `"node"` их не видит и ESM-only пакет всё равно не загрузит.
 
@@ -522,8 +609,11 @@ Jira.js идеально подходит для:
 
 ## Частые вопросы (FAQ)
 
+**В: Покрыт ли Assets?**  
+О: Да, начиная с 6.3, в обеих средах. `createAssetsClient` покрывает [Assets Cloud REST API](https://developer.atlassian.com/cloud/assets/rest/) — он принимает `workspaceId` и собственную конфигурацию, потому что Assets отвечает на `api.atlassian.com`, а не на вашем сайте. `createAssetsServerClient` покрывает self-hosted версию и принимает того же клиента, что и любая другая поверхность Data Center. См. [руководство по Assets](https://mrrefactoring.github.io/jira.js/ru/guide/assets).
+
 **В: Работает ли это с Jira Server/Data Center?**  
-О: Да, начиная с 6.3. `createServerClient` покрывает 444 операции API самостоятельно размещённой платформы, включая Agile. Это отдельная поверхность, а не облачный клиент, направленный на другой хост: два API различаются не только адресом. См. [руководство по Data Center](https://mrrefactoring.github.io/jira.js/ru/guide/data-center).
+О: Да, начиная с 6.3. Для самостоятельно размещённой Jira 10.0 и новее используйте `createServerClient` — см. [руководство по Data Center](https://mrrefactoring.github.io/jira.js/ru/guide/data-center). Это отдельная поверхность от облачной, потому что различия между двумя API не сводятся к адресу. Jira 9.x не поддерживается: спецификацию для неё Atlassian не публиковала, а ветка завершила жизненный цикл в июне 2026 года.
 
 **В: Обязателен ли TypeScript?**  
 О: Нет, но TypeScript полностью поддерживается с исчерпывающими определениями типов. Вы также можете использовать Jira.js с обычным JavaScript.
