@@ -42,6 +42,8 @@
 
 export { createCloudClient, type CloudClient } from './cloud/createCloudClient.js';
 
+export { createTeamsClient, type TeamsClient, type TeamsClientConfig } from './teams/createTeamsClient.js';
+
 export {
   createAssetsClient,
   type AssetsClient,
