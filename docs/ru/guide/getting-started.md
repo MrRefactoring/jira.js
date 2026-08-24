@@ -10,7 +10,7 @@
 ## Установка
 
 ```bash
-npm install jira.js@next
+npm install jira.js
 ```
 
 Требования и статус 6.0 — в разделе [Установка](./installation).

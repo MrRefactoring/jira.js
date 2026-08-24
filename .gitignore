@@ -6,9 +6,9 @@ coverage/
 
 # VitePress docs: generated API + build artifacts (authored docs/**/*.md ARE committed)
 docs/.vitepress/cache/
+docs/.vitepress/.temp/
 docs/.vitepress/dist/
-docs/api/
-docs/ru/api/
+docs/public/api/
 
 yarn.lock
 yarn-error.log
