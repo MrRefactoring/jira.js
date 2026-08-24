@@ -16,11 +16,12 @@
 
 ## О библиотеке
 
-**Jira.js** — TypeScript-клиент к REST API Atlassian Jira Cloud для [Node.js](https://nodejs.org/) и браузеров. Покрывает три поверхности:
+**Jira.js** — TypeScript-клиент к REST API Atlassian Jira Cloud для [Node.js](https://nodejs.org/) и браузеров. Покрывает четыре поверхности:
 
 - **[Платформенный API Jira Cloud](https://developer.atlassian.com/cloud/jira/platform/rest/)** — задачи, проекты, поля, воркфлоу
 - **[Jira Agile API](https://developer.atlassian.com/cloud/jira/software/rest/intro/)** — спринты, доски, бэклог
 - **[Jira Service Management API](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro/)** — обращения, очереди, организации
+- **[Assets API](https://developer.atlassian.com/cloud/assets/rest/)** — база конфигурационных единиц
 
 > **6.0 — это переписывание, а не обновление.** `npm install jira.js` теперь ставит 6.x. Перед обновлением прочитайте [MIGRATION.md](./MIGRATION.md): там прямо сказано, кому стоит остаться на `jira.js@5`, который поддерживается до конца 2026 года.
 
@@ -129,6 +130,7 @@ const agile = createAgileClient(client);
 - **Платформенный API Jira Cloud**: задачи, проекты, пользователи, поля, воркфлоу, схемы
 - **Jira Software (Agile) API**: спринты, доски, бэклоги, agile-процессы
 - **Jira Service Management API**: обращения, очереди, клиенты, организации
+- **Assets API**: объекты, схемы, типы и AQL — `createAssetsClient`
 
 Платформенная поверхность одна, сгенерированная из v3-спецификации Jira. `Version2Client` и `Version3Client` убраны: разница между ними была не в эндпоинтах, а в форматированном тексте. Такие поля по-прежнему принимают **строку** с wiki-разметкой — запись уходит через v2-эндпоинт, Jira разбирает разметку у себя, после чего результат перечитывается, и вы получаете настоящий документ [Atlassian Document Format](https://developer.atlassian.com/cloud/jira/platform/apis/document/structure/).
 
@@ -435,20 +437,31 @@ const issue = await getIssue(client, { issueIdOrKey: 'KEY-1' });
 
 | Импорт | Что внутри |
 | --- | --- |
-| `jira.js` | Три фабрики, типы ошибок и предикаты, помощники OAuth |
+| `jira.js` | Четыре фабрики, типы ошибок и предикаты, помощники OAuth |
 | `jira.js/core` | `createClient`, транспорт, ошибки, OAuth, multipart |
-| `jira.js/cloud` | Функции платформенного API, параметры и типы ответов |
-| `jira.js/agile` | Функции Agile API, параметры и типы ответов |
-| `jira.js/serviceDesk` | Функции Service Management, параметры и типы ответов |
+| `jira.js/cloud` | Функции платформенного API и типы ответов |
+| `jira.js/cloud/models` | Только типы ответов платформенного API |
+| `jira.js/cloud/parameters` | Типы параметров запросов платформенного API |
+| `jira.js/agile` | Функции Agile API и типы ответов |
+| `jira.js/agile/models` | Только типы ответов Agile API |
+| `jira.js/agile/parameters` | Типы параметров запросов Agile API |
+| `jira.js/serviceDesk` | Функции Service Management и типы ответов |
+| `jira.js/serviceDesk/models` | Только типы ответов Service Management |
+| `jira.js/serviceDesk/parameters` | Типы параметров запросов Service Management |
+| `jira.js/assets` | Функции Assets Cloud и типы ответов |
+| `jira.js/assets/models` | Только типы ответов Assets Cloud |
+| `jira.js/assets/parameters` | Типы параметров запросов Assets Cloud |
+| `jira.js/webhooks` | События, полезные нагрузки и заголовки, которые Jira шлёт вам, и проверка подписи |
 | `jira.js/browser` | Готовая браузерная сборка |
 
-Подпути поверхностей несут типы вместе с функциями, поэтому импорт только типа ничего не стоит в рантайме:
+Подпути поверхностей несут типы ответов вместе с функциями, поэтому импорт только типа ничего не стоит в рантайме. Типы параметров запросов лежат уровнем ниже, потому что параметр и модель иногда носят одно имя:
 
 ```typescript
-import type { Issue, GetIssue } from 'jira.js/cloud';
+import type { Issue } from 'jira.js/cloud';
+import type { GetIssue } from 'jira.js/cloud/parameters';
 ```
 
-Три поверхности не реэкспортируются из корня — они сталкиваются на десятке имён, импортируйте из нужной.
+Четыре поверхности не реэкспортируются из корня — они сталкиваются на десятке имён, импортируйте из нужной.
 
 > Глубоким импортам нужен резолвер, понимающий `exports`: `moduleResolution: "bundler"`, `"node16"` или `"nodenext"`. Легаси-резолвинг `"node"` их не видит и ESM-only пакет всё равно не загрузит.
 

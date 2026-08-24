@@ -29,22 +29,33 @@ where it does.
 
 | Import | Contents |
 | --- | --- |
-| `jira.js` | The three factories, the error types and their predicates, the OAuth helpers |
+| `jira.js` | The four factories, the error types and their predicates, the OAuth helpers |
 | `jira.js/core` | `createClient`, the transport, errors, OAuth, multipart helpers |
-| `jira.js/cloud` | Platform API functions, parameters and response types |
-| `jira.js/agile` | Agile API functions, parameters and response types |
-| `jira.js/serviceDesk` | Service Management functions, parameters and response types |
+| `jira.js/cloud` | Platform API functions and response types |
+| `jira.js/cloud/models` | Platform API response types on their own |
+| `jira.js/cloud/parameters` | Platform API request parameter types |
+| `jira.js/agile` | Agile API functions and response types |
+| `jira.js/agile/models` | Agile API response types on their own |
+| `jira.js/agile/parameters` | Agile API request parameter types |
+| `jira.js/serviceDesk` | Service Management functions and response types |
+| `jira.js/serviceDesk/models` | Service Management response types on their own |
+| `jira.js/serviceDesk/parameters` | Service Management request parameter types |
+| `jira.js/assets` | Assets Cloud functions and response types |
+| `jira.js/assets/models` | Assets Cloud response types on their own |
+| `jira.js/assets/parameters` | Assets Cloud request parameter types |
+| `jira.js/webhooks` | The events, payloads and headers Jira posts to you, and the signature check |
 | `jira.js/browser` | Prebuilt browser bundle |
 
-The surface subpaths carry the types alongside the functions, so a type-only import costs nothing at
-runtime:
+The surface subpaths carry the response types alongside the functions, so a type-only import costs nothing
+at runtime. Request parameter types sit one level down, because a parameter and a model occasionally share
+a name:
 
 ```typescript
 import type { Issue } from 'jira.js/cloud';
-import type { GetIssue } from 'jira.js/cloud';
+import type { GetIssue } from 'jira.js/cloud/parameters';
 ```
 
-The three surfaces are not re-exported from the root, because they collide on a handful of names — import
+The four surfaces are not re-exported from the root, because they collide on a handful of names — import
 from the surface you mean.
 
 > Deep imports need an `exports`-aware resolver: `moduleResolution: "bundler"`, `"node16"` or

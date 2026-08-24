@@ -1,7 +1,7 @@
 {
   "name": "jira.js",
   "version": "6.3.0",
-  "description": "Modern Jira REST API client for JavaScript and TypeScript. Full-featured library for the Jira Cloud platform API, Jira Agile API, and Jira Service Management API, with every response validated at runtime. Works in Node.js and browsers with TypeScript support, tree-shaking, and comprehensive type definitions.",
+  "description": "Modern Jira REST API client for JavaScript and TypeScript. Full-featured library for the Jira Cloud platform API, Jira Agile API, Jira Service Management API, and the Assets API, with every response validated at runtime. Works in Node.js and browsers with TypeScript support, tree-shaking, and comprehensive type definitions.",
   "repository": {
     "type": "git",
     "url": "https://github.com/MrRefactoring/jira.js.git"
@@ -36,9 +36,25 @@
       "types": "./dist/webhooks/index.d.ts",
       "import": "./dist/webhooks/index.js"
     },
+    "./assets": {
+      "types": "./dist/assets/index.d.ts",
+      "import": "./dist/assets/index.js"
+    },
+    "./assets/models": {
+      "types": "./dist/assets/models/index.d.ts",
+      "import": "./dist/assets/models/index.js"
+    },
+    "./assets/parameters": {
+      "types": "./dist/assets/parameters/index.d.ts",
+      "import": "./dist/assets/parameters/index.js"
+    },
     "./cloud": {
       "types": "./dist/cloud/index.d.ts",
       "import": "./dist/cloud/index.js"
+    },
+    "./cloud/models": {
+      "types": "./dist/cloud/models/index.d.ts",
+      "import": "./dist/cloud/models/index.js"
     },
     "./cloud/parameters": {
       "types": "./dist/cloud/parameters/index.d.ts",
@@ -48,6 +64,10 @@
       "types": "./dist/agile/index.d.ts",
       "import": "./dist/agile/index.js"
     },
+    "./agile/models": {
+      "types": "./dist/agile/models/index.d.ts",
+      "import": "./dist/agile/models/index.js"
+    },
     "./agile/parameters": {
       "types": "./dist/agile/parameters/index.d.ts",
       "import": "./dist/agile/parameters/index.js"
@@ -55,6 +75,10 @@
     "./serviceDesk": {
       "types": "./dist/serviceDesk/index.d.ts",
       "import": "./dist/serviceDesk/index.js"
+    },
+    "./serviceDesk/models": {
+      "types": "./dist/serviceDesk/models/index.d.ts",
+      "import": "./dist/serviceDesk/models/index.js"
     },
     "./serviceDesk/parameters": {
       "types": "./dist/serviceDesk/parameters/index.d.ts",
@@ -71,6 +95,10 @@
     "jira agile",
     "jira service desk",
     "jira software",
+    "jira assets",
+    "assets api",
+    "insight",
+    "cmdb",
     "atlassian",
     "atlassian jira",
     "javascript",
