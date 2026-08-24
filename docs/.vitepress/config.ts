@@ -19,6 +19,8 @@ const guideSidebar = (prefix = '') => [
       { text: prefix ? 'Аутентификация' : 'Authentication', link: `${prefix}/guide/authentication` },
       { text: 'OAuth 2.0 (3LO)', link: `${prefix}/guide/oauth2-authentication` },
       { text: 'Assets', link: `${prefix}/guide/assets` },
+      { text: 'Teams', link: `${prefix}/guide/teams` },
+      { text: prefix ? 'Контекст тенанта' : 'Tenant Context', link: `${prefix}/guide/tenant-context` },
       { text: prefix ? 'Вебхуки' : 'Webhooks', link: `${prefix}/guide/webhooks` },
       { text: prefix ? 'Обработка ошибок' : 'Error Handling', link: `${prefix}/guide/error-handling` },
       { text: prefix ? 'Валидация ответов' : 'Response Validation', link: `${prefix}/guide/response-validation` },

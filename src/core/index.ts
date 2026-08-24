@@ -35,6 +35,8 @@ export { openEnum } from './openEnum.js';
 
 export { createClient } from './createClient.js';
 
+export { getTenantContext, type TenantContext } from './tenantContext.js';
+
 export type { Client } from './interfaces/index.js';
 
 export {

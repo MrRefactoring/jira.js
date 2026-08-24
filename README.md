@@ -22,6 +22,7 @@
 - **[Jira Agile API](https://developer.atlassian.com/cloud/jira/software/rest/intro/)** - sprints, boards, backlog
 - **[Jira Service Management API](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro/)** - requests, queues, organizations
 - **[Assets API](https://developer.atlassian.com/cloud/assets/rest/)** - the configuration management database
+- **[Teams API](https://developer.atlassian.com/platform/teams/rest/v1/)** - teams, their members and external links, at organization level
 
 > **6.0 is a rewrite, not a refresh.** `npm install jira.js` now installs 6.x. Read [MIGRATION.md](./MIGRATION.md) before upgrading — it says plainly who should stay on `jira.js@5`, which is supported until the end of 2026.
 
@@ -134,6 +135,7 @@ The documentation includes:
 - **Jira Software (Agile) API**: sprint management, boards, backlogs, agile workflows
 - **Jira Service Management API**: request handling, queues, customers, organizations
 - **Assets API**: objects, schemas, types and AQL — `createAssetsClient`
+- **Teams API**: teams, their members and external links, at organization level — `createTeamsClient`
 - **Webhook types**: the events, payloads and headers Jira posts to *you* — `jira.js/webhooks`, types only, no client
 
 There is one platform surface, generated from Jira's v3 specification. `Version2Client` and `Version3Client` are gone — the difference between them was never the endpoints, it was rich text. Rich-text fields still accept a wiki-markup **string**: that write is routed through Jira's v2 endpoint, which parses the markup server-side, and the result is read back so what you get is a real [Atlassian Document Format](https://developer.atlassian.com/cloud/jira/platform/apis/document/structure/) document.
@@ -441,12 +443,13 @@ Every function takes the client as its first argument — the same client the fa
 
 | Import | Contents |
 | --- | --- |
-| `jira.js` | The four factories, error types and predicates, OAuth helpers |
+| `jira.js` | The five factories, error types and predicates, OAuth helpers |
 | `jira.js/core` | `createClient`, transport, errors, OAuth, multipart helpers |
 | `jira.js/cloud` | Platform API functions, parameters and response types |
 | `jira.js/agile` | Agile API functions, parameters and response types |
 | `jira.js/serviceDesk` | Service Management functions, parameters and response types |
 | `jira.js/assets` | Assets Cloud functions, parameters and response types |
+| `jira.js/teams` | Teams functions, parameters and response types |
 | `jira.js/browser` | Prebuilt browser bundle |
 
 The surface subpaths carry the types alongside the functions, so a type-only import costs nothing at runtime:

@@ -44,6 +44,14 @@
       "types": "./dist/assets/parameters/index.d.ts",
       "import": "./dist/assets/parameters/index.js"
     },
+    "./teams": {
+      "types": "./dist/teams/index.d.ts",
+      "import": "./dist/teams/index.js"
+    },
+    "./teams/parameters": {
+      "types": "./dist/teams/parameters/index.d.ts",
+      "import": "./dist/teams/parameters/index.js"
+    },
     "./cloud": {
       "types": "./dist/cloud/index.d.ts",
       "import": "./dist/cloud/index.js"
@@ -79,6 +87,7 @@
     "jira agile",
     "jira service desk",
     "jira software",
+    "jira teams",
     "jira assets",
     "assets api",
     "insight",
