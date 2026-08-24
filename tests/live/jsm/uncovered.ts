@@ -1,0 +1,73 @@
+import type { Uncovered } from '../../../scripts/lib/liveCoverage.ts';
+
+const NOT_LICENSED = 'Service Management is not licensed on the rig, and every servicedeskapi endpoint answers 403.';
+const NO_TEST_YET = 'Service Management is licensed on the rig, but no live test calls this endpoint yet.';
+
+const SERVICE_DESK = [
+  'DELETE /servicedeskapi/organization/cleanup',
+  'DELETE /servicedeskapi/organization/{organizationId}',
+  'DELETE /servicedeskapi/organization/{organizationId}/user',
+  'DELETE /servicedeskapi/request/{issueIdOrKey}/participant',
+  'DELETE /servicedeskapi/servicedesk/{serviceDeskId}/organization',
+  'DELETE /servicedeskapi/servicedesk/{serviceDeskId}/queue/{queueId}',
+  'DELETE /servicedeskapi/servicedesk/{serviceDeskId}/requesttype/{requestTypeId}',
+  'GET /servicedeskapi/admin/queues/{projectKey}',
+  'GET /servicedeskapi/organization',
+  'GET /servicedeskapi/organization/cleanup',
+  'GET /servicedeskapi/organization/{organizationId}',
+  'GET /servicedeskapi/organization/{organizationId}/user',
+  'GET /servicedeskapi/portals',
+  'GET /servicedeskapi/portals/project/{projectKey}',
+  'GET /servicedeskapi/portals/{portalId}',
+  'GET /servicedeskapi/request',
+  'GET /servicedeskapi/request/{issueIdOrKey}',
+  'GET /servicedeskapi/request/{issueIdOrKey}/approval',
+  'GET /servicedeskapi/request/{issueIdOrKey}/approval/{approvalId}',
+  'GET /servicedeskapi/request/{issueIdOrKey}/approval/{approvalId}/config',
+  'GET /servicedeskapi/request/{issueIdOrKey}/comment',
+  'GET /servicedeskapi/request/{issueIdOrKey}/comment/{commentId}',
+  'GET /servicedeskapi/request/{issueIdOrKey}/participant',
+  'GET /servicedeskapi/request/{issueIdOrKey}/sla',
+  'GET /servicedeskapi/request/{issueIdOrKey}/sla/{slaMetricId}',
+  'GET /servicedeskapi/request/{issueIdOrKey}/status',
+  'GET /servicedeskapi/request/{issueIdOrKey}/transition',
+  'GET /servicedeskapi/servicedesk',
+  'GET /servicedeskapi/servicedesk/{serviceDeskId}',
+  'GET /servicedeskapi/servicedesk/{serviceDeskId}/organization',
+  'GET /servicedeskapi/servicedesk/{serviceDeskId}/queue',
+  'GET /servicedeskapi/servicedesk/{serviceDeskId}/queue/{queueId}',
+  'GET /servicedeskapi/servicedesk/{serviceDeskId}/queue/{queueId}/issue',
+  'GET /servicedeskapi/servicedesk/{serviceDeskId}/requesttype',
+  'GET /servicedeskapi/servicedesk/{serviceDeskId}/requesttype/{requestTypeId}',
+  'GET /servicedeskapi/servicedesk/{serviceDeskId}/requesttype/{requestTypeId}/field',
+  'GET /servicedeskapi/servicedesk/{serviceDeskId}/requesttype/{requestTypeId}/permission',
+  'GET /servicedeskapi/servicedesk/{serviceDeskId}/requesttypegroup',
+  'POST /servicedeskapi/customer',
+  'POST /servicedeskapi/organization',
+  'POST /servicedeskapi/organization/{organizationId}/user',
+  'POST /servicedeskapi/request',
+  'POST /servicedeskapi/request/{issueIdOrKey}/approval/{approvalId}',
+  'POST /servicedeskapi/request/{issueIdOrKey}/attachment',
+  'POST /servicedeskapi/request/{issueIdOrKey}/comment',
+  'POST /servicedeskapi/request/{issueIdOrKey}/participant',
+  'POST /servicedeskapi/request/{issueIdOrKey}/transition',
+  'POST /servicedeskapi/servicedesk/{serviceDeskId}/attachTemporaryFile',
+  'POST /servicedeskapi/servicedesk/{serviceDeskId}/customer',
+  'POST /servicedeskapi/servicedesk/{serviceDeskId}/organization',
+  'POST /servicedeskapi/servicedesk/{serviceDeskId}/queue',
+  'POST /servicedeskapi/servicedesk/{serviceDeskId}/queue/reorder',
+  'POST /servicedeskapi/servicedesk/{serviceDeskId}/queue/{queueId}',
+  'POST /servicedeskapi/servicedesk/{serviceDeskId}/requesttype',
+  'PUT /servicedeskapi/admin/queues/cache-count',
+  'PUT /servicedeskapi/admin/queues/include-count',
+  'PUT /servicedeskapi/admin/queues/{projectKey}/cache-count',
+  'PUT /servicedeskapi/admin/queues/{projectKey}/include-count',
+  'PUT /servicedeskapi/servicedesk/{serviceDeskId}/requesttype',
+  'PUT /servicedeskapi/servicedesk/{serviceDeskId}/requesttype/{requestTypeId}/permission',
+];
+
+export function uncovered(licensed: boolean): Uncovered[] {
+  const reason = licensed ? NO_TEST_YET : NOT_LICENSED;
+
+  return SERVICE_DESK.map(endpoint => ({ endpoint, reason }));
+}

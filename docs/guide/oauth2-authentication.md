@@ -5,6 +5,10 @@ stateless helpers to drive the browser consent flow, and an auto-refreshing clie
 the access token fresh, transparently handles the **rotating refresh token**, and resolves the
 `cloudId` so requests go through the Atlassian API gateway.
 
+> This page is about **Jira Cloud**. A self-hosted instance is its own authorization server: there is no
+> `cloudId` to resolve and nothing goes near `auth.atlassian.com`. See
+> [Jira Data Center](./data-center#oauth-2-0) for that flow.
+
 > ⚠️ **`clientSecret` and refresh are server-side only.** Never ship the client secret or
 > refresh token to a browser. The simple `{ accessToken }` mode (no refresh) is the only part
 > safe for a browser, and even then the token is a user credential.

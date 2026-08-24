@@ -1,6 +1,6 @@
 import { spawnSync } from 'node:child_process';
 import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync } from 'node:fs';
-import { dirname, join } from 'node:path';
+import { basename, dirname, join } from 'node:path';
 
 export interface Uncovered {
   endpoint: string;
@@ -13,11 +13,12 @@ export interface CoverageRun {
   apiDirs: string[];
   vitestConfig: string;
   recordFile: string;
-  uncovered: Uncovered[];
+  uncovered: Uncovered[] | (() => Uncovered[]);
   urlPrefix: string;
 }
 
 interface Endpoint {
+  key: string;
   name: string;
   method: string;
   url: string;
@@ -30,6 +31,8 @@ function readInventory(apiDirs: string[]): Endpoint[] {
   const pattern = /export async function ([A-Za-z0-9_]+)[\s\S]*?url: [`'"]([^`'"]+)[`'"],\s*\n\s*method: '([A-Z]+)'/g;
 
   for (const directory of apiDirs) {
+    const surface = basename(dirname(directory));
+
     for (const file of readdirSync(directory)) {
       if (file === 'index.ts') continue;
 
@@ -42,7 +45,9 @@ function readInventory(apiDirs: string[]): Endpoint[] {
           .replace(/[.*+?^${}()|[\]\\]/g, character => `\\${character}`)
           .replace(/\\\$\\\{parameters\\\.[A-Za-z0-9_]+\\\}/g, '[^/]+');
 
-        endpoints.push({ name, method, url, placeholders, match: new RegExp(`^${expression}$`) });
+        const key = `${surface}#${name}`;
+
+        endpoints.push({ key, name, method, url, placeholders, match: new RegExp(`^${expression}$`) });
       }
     }
   }
@@ -83,7 +88,7 @@ function readCalled(recorded: string, endpoints: Endpoint[]): Set<string> {
 
     const endpoint = attribute(endpoints, method, path);
 
-    if (endpoint) called.add(endpoint.name);
+    if (endpoint) called.add(endpoint.key);
   }
 
   return called;
@@ -97,19 +102,24 @@ interface Verdict {
   covered: number;
 }
 
-function judge(run: CoverageRun, endpoints: Endpoint[], called: Set<string>): Verdict {
+function judge(
+  run: CoverageRun,
+  endpoints: Endpoint[],
+  called: Set<string>,
+  uncovered: Uncovered[],
+): Verdict {
   const spell = (endpoint: Endpoint): string =>
     `${endpoint.method} ${endpoint.url.replace(run.urlPrefix, '').replace(/\$\{parameters\.([A-Za-z0-9_]+)\}/g, '{$1}')}`;
 
-  const excused = new Set(run.uncovered.map(entry => entry.endpoint));
+  const excused = new Set(uncovered.map(entry => entry.endpoint));
   const excusedNames = new Set<string>();
 
   for (const endpoint of endpoints) {
-    if (excused.has(spell(endpoint))) excusedNames.add(endpoint.name);
+    if (excused.has(spell(endpoint))) excusedNames.add(endpoint.key);
   }
 
   const stale = [...excused].filter(entry => !endpoints.some(endpoint => spell(endpoint) === entry));
-  const missing = endpoints.filter(endpoint => !called.has(endpoint.name) && !excusedNames.has(endpoint.name));
+  const missing = endpoints.filter(endpoint => !called.has(endpoint.key) && !excusedNames.has(endpoint.key));
   const byModule = new Map<string, string[]>();
 
   for (const endpoint of missing) {
@@ -128,7 +138,8 @@ export function reportLiveCoverage(run: CoverageRun): void {
   const status = runSuites(run, recorded);
   const endpoints = readInventory(run.apiDirs);
   const called = readCalled(recorded, endpoints);
-  const { excusedNames, missing, stale, byModule, covered } = judge(run, endpoints, called);
+  const uncovered = typeof run.uncovered === 'function' ? run.uncovered() : run.uncovered;
+  const { excusedNames, missing, stale, byModule, covered } = judge(run, endpoints, called, uncovered);
 
   console.log(
     `\n${run.label} coverage: ${called.size} of ${endpoints.length} endpoints called, `
@@ -154,5 +165,8 @@ export function reportLiveCoverage(run: CoverageRun): void {
 
   if (missing.length > 0 || stale.length > 0) process.exit(1);
 
-  console.log(`Every one of the ${covered} endpoints is either exercised or accounted for.`);
+  console.log(
+    `Every one of the ${covered} endpoints is accounted for: ${called.size} exercised, `
+      + `${excusedNames.size} excused by name.`,
+  );
 }

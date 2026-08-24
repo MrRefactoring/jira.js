@@ -9,6 +9,9 @@ Authentication is configured through the `auth` field of the client config. It i
 | Bearer token | You already hold an access token and manage it yourself | `'bearer'` |
 | OAuth 2.0 (3LO) | Apps acting on behalf of users | `'oauth2'` |
 
+Self-hosted Jira takes a different set — a personal access token, a username and password, or its own OAuth 2.0
+provider. See [Jira Data Center](./data-center.md).
+
 ::: warning JWT (Atlassian Connect) is not supported
 6.0 dropped it, and there is no replacement. If you authenticate Connect installations with a shared
 secret, stay on `jira.js@5` — see [Migrating to 6.0](https://github.com/MrRefactoring/jira.js/blob/master/MIGRATION.md).

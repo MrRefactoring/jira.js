@@ -1,23 +1,7 @@
 import { resolve } from 'node:path';
 import { loadEnv } from 'vite';
 import { defineConfig } from 'vitest/config';
-import { BaseSequencer } from 'vitest/node';
-
-/**
- * Runs `instance.test.ts` last, whatever the alphabet says.
- *
- * That file is allowed to leave Jira unusable — it ends by putting the instance into read-only mode, which the Data
- * Center API offers no way out of — so everything that needs a working instance has to have finished. Nothing else
- * about the order matters, which is why this names one file rather than declaring a sequence.
- */
-class LastOfAll extends BaseSequencer {
-  async sort(files: Parameters<BaseSequencer['sort']>[0]): Promise<ReturnType<BaseSequencer['sort']>> {
-    const sorted = await super.sort(files);
-    const isLast = (file: (typeof sorted)[number]): boolean => file.moduleId.includes('instance.test.ts');
-
-    return [...sorted.filter(file => !isLast(file)), ...sorted.filter(isLast)];
-  }
-}
+import { lastOfAll } from './tests/live/setup/lastOfAll';
 
 const repoRoot = import.meta.dirname;
 
@@ -27,6 +11,9 @@ const repoRoot = import.meta.dirname;
  * Separate from `vitest.config.live.ts` because the two need different credentials and a different global setup: the
  * Cloud suites talk to a tenant that is always there, these talk to a container that has to be brought up first with
  * `pnpm jira-dc:up`.
+ *
+ * `instance.test.ts` runs last: it is allowed to leave Jira unusable — it ends by putting the instance into read-only
+ * mode, which the Data Center API offers no way out of — so everything needing a working instance has to have finished.
  */
 export default defineConfig(({ mode }) => {
   const serverEnv = loadEnv(mode, repoRoot, '');
@@ -40,7 +27,7 @@ export default defineConfig(({ mode }) => {
       reporters: ['verbose'],
       env: serverEnv,
       fileParallelism: false,
-      sequence: { sequencer: LastOfAll },
+      sequence: { sequencer: lastOfAll('instance.test.ts') },
       globalSetup: ['./tests/live/server/setup/globalSetup.ts'],
       setupFiles: ['./tests/live/server/setup/coverageCollector.ts'],
       hookTimeout: 120_000,

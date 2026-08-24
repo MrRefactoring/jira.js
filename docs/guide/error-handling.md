@@ -64,7 +64,7 @@ The predicates nest the way the types do: a `NotFoundError` satisfies `isApiErro
 import { isRateLimitError } from 'jira.js';
 
 try {
-  await jira.issueSearch.searchForIssuesUsingJqlEnhancedSearchPost({ jql });
+  await jira.issueSearch.searchAndReconsileIssuesUsingJqlPost({ jql });
 } catch (error) {
   if (isRateLimitError(error) && error.retryAfterMs) {
     await new Promise(resolve => setTimeout(resolve, error.retryAfterMs));
