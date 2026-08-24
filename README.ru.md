@@ -23,6 +23,7 @@
 - **[Jira Service Management API](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro/)** — обращения, очереди, организации
 - **[Assets API](https://developer.atlassian.com/cloud/assets/rest/)** — база конфигурационных единиц
 - **[Teams API](https://developer.atlassian.com/platform/teams/rest/v1/)** — команды, их участники и внешние связи, на уровне организации
+- **[API организации](https://developer.atlassian.com/cloud/admin/organization/rest/)** — каталоги, пользователи, группы, домены, политики и SCIM-провижининг, над сайтом
 
 > **6.0 — это переписывание, а не обновление.** `npm install jira.js` теперь ставит 6.x. Перед обновлением прочитайте [MIGRATION.md](./MIGRATION.md): там прямо сказано, кому стоит остаться на `jira.js@5`, который поддерживается до конца 2026 года.
 
@@ -133,6 +134,7 @@ const agile = createAgileClient(client);
 - **Jira Service Management API**: обращения, очереди, клиенты, организации
 - **Assets API**: объекты, схемы, типы и AQL — `createAssetsClient`
 - **Teams API**: команды, участники и внешние связи, на уровне организации — `createTeamsClient`
+- **Администрирование организации**: каталоги, пользователи, группы, домены, политики и SCIM-провижининг над сайтом — `createAdminClient`, `createUserManagementClient`, `createUserProvisioningClient`
 
 Платформенная поверхность одна, сгенерированная из v3-спецификации Jira. `Version2Client` и `Version3Client` убраны: разница между ними была не в эндпоинтах, а в форматированном тексте. Такие поля по-прежнему принимают **строку** с wiki-разметкой — запись уходит через v2-эндпоинт, Jira разбирает разметку у себя, после чего результат перечитывается, и вы получаете настоящий документ [Atlassian Document Format](https://developer.atlassian.com/cloud/jira/platform/apis/document/structure/).
 
@@ -439,13 +441,16 @@ const issue = await getIssue(client, { issueIdOrKey: 'KEY-1' });
 
 | Импорт | Что внутри |
 | --- | --- |
-| `jira.js` | Пять фабрик, типы ошибок и предикаты, помощники OAuth |
+| `jira.js` | Восемь фабрик, типы ошибок и предикаты, помощники OAuth |
 | `jira.js/core` | `createClient`, транспорт, ошибки, OAuth, multipart |
 | `jira.js/cloud` | Функции платформенного API, параметры и типы ответов |
 | `jira.js/agile` | Функции Agile API, параметры и типы ответов |
 | `jira.js/serviceDesk` | Функции Service Management, параметры и типы ответов |
 | `jira.js/assets` | Функции Assets Cloud, параметры и типы ответов |
 | `jira.js/teams` | Функции Teams, параметры и типы ответов |
+| `jira.js/admin` | Функции API организации, параметры и типы ответов |
+| `jira.js/userManagement` | Функции управления пользователями, параметры и типы ответов |
+| `jira.js/userProvisioning` | Функции SCIM-провижининга, параметры и типы ответов |
 | `jira.js/browser` | Готовая браузерная сборка |
 
 Подпути поверхностей несут типы вместе с функциями, поэтому импорт только типа ничего не стоит в рантайме:
