@@ -1,0 +1,40 @@
+name: 🧰 Service Management tests
+
+on:
+  schedule:
+    - cron: '30 4 * * *'
+  workflow_dispatch:
+
+concurrency:
+  group: live-tests-jsm
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  live:
+    name: 🧰 Service Management
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🔄 Checkout sources
+        uses: actions/checkout@v7
+      - name: ⚙️ Use Node.js 22.x
+        uses: actions/setup-node@v7
+        with:
+          node-version: 22.x
+      - name: 📦 Install pnpm
+        uses: pnpm/action-setup@v6
+      - name: 📌 Install dependencies
+        run: pnpm install --frozen-lockfile
+      - name: 🔑 Write the timebomb licence
+        run: |
+          printf '%s' "${{ secrets.JSM_DC_TIMEBOMB_LICENSE || secrets.JIRA_DC_TIMEBOMB_LICENSE }}" > docker/jsm-dc/timebomb-license.txt
+          test -s docker/jsm-dc/timebomb-license.txt
+      - name: 🧰 Bring up Jira Service Management
+        run: pnpm run jsm-dc:up
+      - name: 🚀 Run the suites and the coverage ledger
+        run: pnpm run coverage:jsm
+      - name: 🧹 Tear it down
+        if: always()
+        run: pnpm run jsm-dc:down
