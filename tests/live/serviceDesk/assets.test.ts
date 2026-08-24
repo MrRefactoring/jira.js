@@ -6,12 +6,17 @@ import { getClient } from '../setup/client';
 /**
  * Live suite for the Service Management `assets` API (`getAssetsWorkspaces`, `getInsightWorkspaces`).
  *
- * Two endpoints that do the same thing under two names — Insight was renamed Assets, and the older path is kept for
- * compatibility. That is the only thing worth asserting about them, and it is the kind of fact that is invisible in
- * the types: a caller reading the client sees two unrelated-looking methods.
+ * Two endpoints for one thing under two names — Insight was renamed Assets, and the older path is kept for
+ * compatibility. The suite used to assert that the pair behaves identically, which stopped being true when
+ * `/assets/workspace` began answering on this tenant while `/insight/workspace` did not.
  *
- * Both are gated behind the same agent licence as the rest of the surface, so what is pinned is the typed refusal and
- * that the two paths behave identically.
+ * That divergence is a licensing fact, not a retirement: the older path refuses with the same 403 as
+ * `getServiceDesks`, `getCustomerRequests` and `getOrganizations`, all four carrying a byte-identical copy of Jira's
+ * generic HTML error page. Atlassian has announced no removal, and both operations remain in the specification. So
+ * each path is pinned on its own terms — answer or typed refusal — rather than against the other.
+ *
+ * What the refusal is worth asserting for is the body: an HTML page is the one response on any of the three surfaces
+ * that the JSON parser has no way to read, and it still has to arrive as a typed error with its status intact.
  */
 describe('Jira Service Management — assets (live)', () => {
   let serviceDesk: ServiceDeskClient;
@@ -20,11 +25,18 @@ describe('Jira Service Management — assets (live)', () => {
     serviceDesk = createServiceDeskClient(getClient());
   });
 
-  it('answers the assets workspace lookup, or refuses typed', async () => {
-    const result = await serviceDesk.assets.getAssetsWorkspaces({ limit: 5 }).catch((e: unknown) => e);
+  /** Both names answer with the same page of workspace ids, so both are read the same way. */
+  const lookups: [string, () => Promise<unknown>][] = [
+    ['assets.getAssetsWorkspaces', () => serviceDesk.assets.getAssetsWorkspaces({ limit: 5 })],
+    ['assets.getInsightWorkspaces', () => serviceDesk.assets.getInsightWorkspaces({ limit: 5 })],
+  ];
+
+  it.each(lookups)('answers the %s lookup, or refuses typed', async (_name, lookup) => {
+    const result = await lookup().catch((e: unknown) => e);
 
     if (result instanceof Error) {
-      expect(isForbiddenError(result) || (result as { status?: number }).status === 404).toBe(true);
+      expect(isForbiddenError(result)).toBe(true);
+      expect((result as { status?: number }).status).toBe(403);
 
       return;
     }
@@ -35,20 +47,6 @@ describe('Jira Service Management — assets (live)', () => {
 
     for (const workspace of page.values ?? []) {
       expect(typeof workspace.workspaceId).toBe('string');
-    }
-  });
-
-  it('behaves identically through the older Insight path', async () => {
-    const assets = await serviceDesk.assets.getAssetsWorkspaces({ limit: 1 }).catch((e: unknown) => e);
-    const insight = await serviceDesk.assets.getInsightWorkspaces({ limit: 1 }).catch((e: unknown) => e);
-
-    const assetsFailed = assets instanceof Error;
-    const insightFailed = insight instanceof Error;
-
-    expect(assetsFailed).toBe(insightFailed);
-
-    if (assetsFailed && insightFailed) {
-      expect((assets as { status?: number }).status).toBe((insight as { status?: number }).status);
     }
   });
 });
