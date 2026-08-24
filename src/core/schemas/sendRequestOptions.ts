@@ -4,11 +4,32 @@ import { httpMethodSchema } from './httpMethod.js';
 export const sendRequestOptionsSchema = z.object({
   url: z.string(),
   method: httpMethodSchema.optional(),
-  headers: z.record(z.string(), z.string()).optional(),
+  /**
+   * The headers to send.
+   *
+   * A value of `undefined` is a header the caller left out — every optional header parameter arrives that way — and is
+   * dropped rather than sent, exactly as an absent `searchParams` entry or body field is.
+   */
+  headers: z.record(z.string(), z.string().optional()).optional(),
   body: z.unknown().optional(),
   searchParams: z.record(z.string(), z.unknown()).optional(),
+  /**
+   * The media type to send the body as, for the endpoints that do not take JSON.
+   *
+   * Generated onto the handful that declare `text/plain` or a form encoding. A `Blob` or `FormData` body needs none:
+   * both carry their own type, and naming one here would fight the boundary `fetch` sets for multipart.
+   */
+  contentType: z.string().optional(),
 });
 
 export type SendRequestOptions<T = unknown> = z.infer<typeof sendRequestOptionsSchema> & {
   schema?: z.ZodType<T>;
+  /**
+   * Aborts the request, and any retry back-off it is waiting out.
+   *
+   * Declared on the type rather than in the schema above: `z.custom<AbortSignal>(v => v instanceof AbortSignal)` is
+   * wrong the moment a signal crosses a realm — jsdom, undici and a worker each have their own constructor — and
+   * nothing here parses these options at runtime anyway.
+   */
+  signal?: AbortSignal;
 };

@@ -5,7 +5,7 @@ import { getClient } from '../setup/client';
 
 /**
  * Live suite for the Service Management `info` and `servicedesk` APIs (`getInfo`, `getServiceDesks`,
- * `getServiceDeskById`, `getQueues`, `getRequestTypes`).
+ * `getServiceDeskById`, `getQueues`, `getRequestTypes`, `attachTemporaryFile`).
  *
  * The third surface, and the one whose availability is not a single yes or no. On this tenant the product *is*
  * installed — `getInfo` answers with a version — while every service-desk endpoint refuses with 403, because the
@@ -85,6 +85,18 @@ describe('Jira Service Management — info and service desks (live)', () => {
     const requestTypes = await serviceDesk.servicedesk.getRequestTypes({ serviceDeskId: String(first.id) });
 
     expect(Array.isArray(requestTypes.values)).toBe(true);
+  });
+
+  it('never uploads a temporary attachment, and fails typed on the attempt', async () => {
+    const error = await serviceDesk.servicedesk
+      .attachTemporaryFile({
+        serviceDeskId: '99999999',
+        body: [{ name: 'file', originalFilename: 'jira-js-live-test.txt', contentType: 'text/plain', size: 0 }],
+      })
+      .catch((e: unknown) => e);
+
+    expect(error).toBeInstanceOf(Error);
+    expect((error as { status?: number }).status).toBeGreaterThanOrEqual(400);
   });
 
   it('surfaces an unknown service desk as a typed error', async () => {

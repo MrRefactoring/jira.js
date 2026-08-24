@@ -1,7 +1,7 @@
 import { ConnectModulesSchema, type ConnectModules } from '../models/connectModules';
 import type { RegisterModules } from '../parameters/registerModules';
 import type { RemoveModules } from '../parameters/removeModules';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /**
  * Returns all modules registered dynamically by the calling app.
@@ -9,11 +9,12 @@ import type { Client, SendRequestOptions } from '#/core';
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** Only
  * Connect apps can make this request.
  */
-export async function getModules(client: Client): Promise<ConnectModules> {
+export async function getModules(client: Client, options?: RequestOptions): Promise<ConnectModules> {
   const config: SendRequestOptions<ConnectModules> = {
     url: '/rest/atlassian-connect/1/app/module/dynamic',
     method: 'GET',
     schema: ConnectModulesSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -25,13 +26,18 @@ export async function getModules(client: Client): Promise<ConnectModules> {
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** Only
  * Connect apps can make this request.
  */
-export async function registerModules(client: Client, parameters: RegisterModules): Promise<void> {
+export async function registerModules(
+  client: Client,
+  parameters: RegisterModules,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: '/rest/atlassian-connect/1/app/module/dynamic',
     method: 'POST',
     body: {
       modules: parameters.modules,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -43,13 +49,18 @@ export async function registerModules(client: Client, parameters: RegisterModule
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** Only
  * Connect apps can make this request.
  */
-export async function removeModules(client: Client, parameters: RemoveModules): Promise<void> {
+export async function removeModules(
+  client: Client,
+  parameters: RemoveModules,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: '/rest/atlassian-connect/1/app/module/dynamic',
     method: 'DELETE',
     searchParams: {
       moduleKey: parameters.moduleKey,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

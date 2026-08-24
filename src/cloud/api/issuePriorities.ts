@@ -10,7 +10,7 @@ import type { SearchPriorities } from '../parameters/searchPriorities';
 import type { GetPriority } from '../parameters/getPriority';
 import type { UpdatePriority } from '../parameters/updatePriority';
 import type { DeletePriority } from '../parameters/deletePriority';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /**
  * Creates an issue priority.
@@ -21,7 +21,11 @@ import type { Client, SendRequestOptions } from '#/core';
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-export async function createPriority(client: Client, parameters: CreatePriority): Promise<PriorityId> {
+export async function createPriority(
+  client: Client,
+  parameters: CreatePriority,
+  options?: RequestOptions,
+): Promise<PriorityId> {
   const config: SendRequestOptions<PriorityId> = {
     url: '/rest/api/3/priority',
     method: 'POST',
@@ -33,6 +37,7 @@ export async function createPriority(client: Client, parameters: CreatePriority)
       statusColor: parameters.statusColor,
     },
     schema: PriorityIdSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -44,13 +49,18 @@ export async function createPriority(client: Client, parameters: CreatePriority)
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-export async function setDefaultPriority(client: Client, parameters: SetDefaultPriority): Promise<void> {
+export async function setDefaultPriority(
+  client: Client,
+  parameters: SetDefaultPriority,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: '/rest/api/3/priority/default',
     method: 'PUT',
     body: {
       id: parameters.id,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -62,7 +72,11 @@ export async function setDefaultPriority(client: Client, parameters: SetDefaultP
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-export async function movePriorities(client: Client, parameters: MovePriorities): Promise<void> {
+export async function movePriorities(
+  client: Client,
+  parameters: MovePriorities,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: '/rest/api/3/priority/move',
     method: 'PUT',
@@ -71,6 +85,7 @@ export async function movePriorities(client: Client, parameters: MovePriorities)
       ids: parameters.ids,
       position: parameters.position,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -95,7 +110,11 @@ export async function movePriorities(client: Client, parameters: MovePriorities)
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** Permission
  * to access Jira.
  */
-export async function searchPriorities(client: Client, parameters?: SearchPriorities): Promise<Page<Priority>> {
+export async function searchPriorities(
+  client: Client,
+  parameters?: SearchPriorities,
+  options?: RequestOptions,
+): Promise<Page<Priority>> {
   const config: SendRequestOptions<Page<Priority>> = {
     url: '/rest/api/3/priority/search',
     method: 'GET',
@@ -109,6 +128,7 @@ export async function searchPriorities(client: Client, parameters?: SearchPriori
       expand: parameters?.expand,
     },
     schema: PagePrioritySchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -122,11 +142,16 @@ export async function searchPriorities(client: Client, parameters?: SearchPriori
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** Permission
  * to access Jira.
  */
-export async function getPriority(client: Client, parameters: GetPriority): Promise<Priority> {
+export async function getPriority(
+  client: Client,
+  parameters: GetPriority,
+  options?: RequestOptions,
+): Promise<Priority> {
   const config: SendRequestOptions<Priority> = {
     url: `/rest/api/3/priority/${parameters.id}`,
     method: 'GET',
     schema: PrioritySchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -143,7 +168,11 @@ export async function getPriority(client: Client, parameters: GetPriority): Prom
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-export async function updatePriority(client: Client, parameters: UpdatePriority): Promise<void> {
+export async function updatePriority(
+  client: Client,
+  parameters: UpdatePriority,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/priority/${parameters.id}`,
     method: 'PUT',
@@ -154,6 +183,7 @@ export async function updatePriority(client: Client, parameters: UpdatePriority)
       name: parameters.name,
       statusColor: parameters.statusColor,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -170,11 +200,16 @@ export async function updatePriority(client: Client, parameters: UpdatePriority)
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-export async function deletePriority(client: Client, parameters: DeletePriority): Promise<TaskProgressObject> {
+export async function deletePriority(
+  client: Client,
+  parameters: DeletePriority,
+  options?: RequestOptions,
+): Promise<TaskProgressObject> {
   const config: SendRequestOptions<TaskProgressObject> = {
     url: `/rest/api/3/priority/${parameters.id}`,
     method: 'DELETE',
     schema: TaskProgressObjectSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

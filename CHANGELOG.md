@@ -2,6 +2,49 @@
 
 ## 6.3.0
 
+### The transport
+
+Three long-standing requests, all of them the same shape: the client had no seam. `fetch` was reached as a global, a request could not be cancelled, and a response's headers were read for one thing and thrown away. None of that was visible from outside, and all three issues predate 6.0.
+
+* **Every call takes an `AbortSignal`.** Each method gains an optional argument after its parameters — an operation that takes no parameters takes it in their place — and the signal reaches `fetch`. It also cuts short a retry back-off, which until now had no upper bound on total wall time. Fixes [#406](https://github.com/MrRefactoring/jira.js/issues/406).
+
+  ```ts
+  await jira.issues.getIssue({ issueIdOrKey: 'PROJ-1' }, { signal: AbortSignal.timeout(5_000) });
+  await jira.announcementBanner.getBanner({ signal });
+  ```
+
+  The abort reason is rethrown untouched rather than wrapped in a `NetworkError`: `error.name === 'AbortError'` is what the ecosystem branches on, a `TimeoutError` from `AbortSignal.timeout()` stays a `TimeoutError`, and a reason of your own comes back as the object you passed. Aborting one call never disturbs an OAuth 2.0 refresh in flight — that refresh is single-flighted and shared by every concurrent request on the client.
+
+  Nothing that compiled before stops compiling: the argument is optional and it is last.
+
+* **The `fetch` the client calls is yours to replace.** `fetch` in the client configuration receives the URL and the `RequestInit` the client built, headers included, and returns a `Response`. That covers logging, tracing, a corporate proxy and fixture recording — what `middlewares` was used for before 6.0 removed axios, and what has had no replacement since. Fixes [#404](https://github.com/MrRefactoring/jira.js/issues/404).
+
+  ```ts
+  import { fetch as undiciFetch, ProxyAgent } from 'undici';
+
+  const dispatcher = new ProxyAgent(process.env.HTTPS_PROXY!);
+
+  const jira = createCloudClient({ host, auth, fetch: (url, init) => undiciFetch(url, { ...init, dispatcher }) });
+  ```
+
+  The OAuth 2.0 token and cloud-id calls go through it too, so a proxy covers the whole flow rather than working until the first refresh an hour later. The flip side is worth stating plainly: a wrapper that logs request bodies will see `client_secret` and `refresh_token` on the token call.
+
+  Its type is `(url: string, init: RequestInit) => Promise<Response>` rather than `typeof globalThis.fetch`, so undici's `fetch` — whose `RequestInit` carries `dispatcher` and lacks `duplex` — fits without a cast.
+
+* **An expired API token is an error rather than an empty result. This changes behaviour.** Around a quarter of Jira's operations can be reached anonymously, and on those a dead or revoked token does not fail the request: Jira serves it as the anonymous user, returns a well-formed response containing whatever an anonymous visitor may see, and reports the refusal only in the `X-Seraph-LoginReason` header. Measured against a live site, `GET /rest/api/3/project/search` with a dead token answers `200` and `{"total":0,"isLast":true,"values":[]}`. Fixes [#418](https://github.com/MrRefactoring/jira.js/issues/418).
+
+  The client now reads that header and throws `AuthError` whenever it says the credentials were refused — whatever the status, because the header rides on `200`, `400` and `401` alike and the diagnosis is the same in each case. `error.status` records the status that actually arrived rather than a `401` that never happened; that is what the new `AuthErrorOptions.status` is for.
+
+  Two values count: `AUTHENTICATED_FAILED` and `AUTHENTICATION_DENIED`, both meaning the credentials were presented and refused. `AUTHORISATION_FAILED` does not — it means the user is who they claim and merely lacks a permission, which the status already carries and `ForbiddenError` already describes. A genuine permission denial was measured to send no such header at all. The check runs only when the client was given credentials, so a deliberately anonymous client is untouched, and `getAuthOn401` is offered the same single retry a plain `401` earns it.
+
+  If your code treated an empty result on a dead token as normal, it will now throw. It was reading anonymous data and calling it yours.
+
+* **A header set to `undefined` is left out rather than sent.** `SendRequestOptions.headers` accepts `string | undefined`, and the transport strips the absent entries before the request is built — the same treatment `searchParams` and a JSON body have always had. An omitted header does not shadow one set in the client configuration either, so a per-request `undefined` falls through to the client-wide value instead of erasing it.
+
+* **Two authentication strategies for a self-hosted instance.** `basic` accepts a local `username` and `password` beside the Cloud pair of `email` and `apiToken`, and `oauth2Server` is OAuth 2.0 against an instance's own authorization server — `generateServerAuthorizationUrl`, `exchangeServerAuthorizationCode`, `refreshServerOAuth2Token` and `createServerOAuth2Manager`, all of them addressed to the site's own domain with no cloud id and no gateway involved.
+
+  They arrive with the transport rather than with the surface they are for, because `src/core` is generated whole and `createClient` branches on the strategy — separating them would mean hand-writing a core the generator does not produce. No surface in this release answers to them yet.
+
 ### Features
 
 * **Request parameter types are importable again.** `CreateIssue`, `GetIssue` and the twelve hundred others appeared in no published declaration file: a surface entry point re-exports `api`, `models` and its factory, and never `parameters`. They now have a subpath of their own:
@@ -18,6 +61,28 @@
 * **The documentation site builds again, and the API reference covers the whole package.** The reference was generated by walking every file under each entry point rather than by following its exports. That published four internal `core` modules as though they were API, and produced a page per generated model saying only `type X = z.infer<typeof XSchema>` — absent from the sidebar, linked from no signature, and between them enough weight to threaten the build's heap. It is generated from the package's own `exports` map now, so it documents exactly what a caller can import: every surface, every model and parameter type, and every zod schema. A new surface reaches the documentation the day it reaches the exports map, and an internal module never does.
 
   `validation.notExported` makes the reference a check on the public surface besides: a type built out of something the package does not export fails the documentation build. Five symbols were in exactly that position and are exported now — `authBasicSchema`, `authBearerSchema`, `CommonClientConfig`, `ParsedClientConfig` and `ErrorKind`.
+
+### Types
+
+* **Four request bodies are typed as the shape the endpoint reads, where they were `Record<string, any>`.** Each was generated from a request body the specification declares as something other than an object, which the generator had no reading for and degraded to an object of arbitrary keys. None of the four could be called correctly through its own declaration.
+
+  | Operation | Body was | Body is |
+  | --- | --- | --- |
+  | `issueWatchers.addWatcher` | `Record<string, any>` | `string` |
+  | `myself.setPreference` | `Record<string, any>` | `string` |
+  | `appMigration.updateEntityPropertiesValue` | `Record<string, any>` | `EntityPropertyDetails[]` |
+  | `servicedesk.attachTemporaryFile` (Service Desk) | `Record<string, any>` | `MultipartFile[]` |
+
+  ```ts
+  await jira.issueWatchers.addWatcher({ issueIdOrKey: 'PROJ-1', body: '5b10ac8d82e05b22cc7d4ef5' });
+  await jira.myself.setPreference({ key: 'user.notifications.mimetype', body: 'text' });
+  ```
+
+  The two that take a lone string were the sharper break. `addWatcher` wants an account id and `setPreference` a preference value, each sent as a JSON string — and an object was never a value either would accept, so the only way to call them was to cast a string past the declaration. The live suite did exactly that, with a helper whose whole purpose was to launder a `string` into a `Record<string, unknown>`. Those casts are what stops compiling now, and deleting each one is the fix.
+
+  The two that take an array break more quietly: an array satisfies `Record<string, any>`, so a caller already passing the right thing is untouched and needs no change. A caller passing a single object, which the old declaration invited and the endpoint refused, is the one the compiler now stops.
+
+  `tests/unit/nonObjectBodies.test.ts` pins all four against the wire. It is unit rather than live because two of them cannot be reached: `updateEntityPropertiesValue` is addressed with a Connect app's JWT, and `attachTemporaryFile` needs an agent licence — so what a live run can show is the typed refusal, and what it cannot show is that the body left the client as a bare string or a top-level array rather than wrapped in a key.
 
 ### General
 

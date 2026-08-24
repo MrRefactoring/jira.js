@@ -4,7 +4,7 @@ import type { SubmitRemoteLinks as SubmitRemoteLinksParameters } from '../parame
 import type { DeleteRemoteLinksByProperty } from '../parameters/deleteRemoteLinksByProperty';
 import type { GetRemoteLinkById as GetRemoteLinkByIdParameters } from '../parameters/getRemoteLinkById';
 import type { DeleteRemoteLinkById } from '../parameters/deleteRemoteLinkById';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /**
  * Update / insert Remote Link data.
@@ -22,6 +22,7 @@ import type { Client, SendRequestOptions } from '#/core';
 export async function submitRemoteLinks(
   client: Client,
   parameters: SubmitRemoteLinksParameters,
+  options?: RequestOptions,
 ): Promise<SubmitRemoteLinks> {
   const config: SendRequestOptions<SubmitRemoteLinks> = {
     url: '/rest/remotelinks/1.0/bulk',
@@ -32,6 +33,7 @@ export async function submitRemoteLinks(
       providerMetadata: parameters.providerMetadata,
     },
     schema: SubmitRemoteLinksSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -54,6 +56,7 @@ export async function submitRemoteLinks(
 export async function deleteRemoteLinksByProperty(
   client: Client,
   parameters: DeleteRemoteLinksByProperty,
+  options?: RequestOptions,
 ): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: '/rest/remotelinks/1.0/bulkByProperties',
@@ -61,6 +64,7 @@ export async function deleteRemoteLinksByProperty(
     searchParams: {
       params: parameters.params,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -74,11 +78,13 @@ export async function deleteRemoteLinksByProperty(
 export async function getRemoteLinkById(
   client: Client,
   parameters: GetRemoteLinkByIdParameters,
+  options?: RequestOptions,
 ): Promise<GetRemoteLinkById> {
   const config: SendRequestOptions<GetRemoteLinkById> = {
     url: `/rest/remotelinks/1.0/remotelink/${parameters.remoteLinkId}`,
     method: 'GET',
     schema: GetRemoteLinkByIdSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -90,10 +96,15 @@ export async function getRemoteLinkById(
  * Deletion is performed asynchronously. The `getRemoteLinkById` operation can be used to confirm that data has been
  * deleted successfully (if needed).
  */
-export async function deleteRemoteLinkById(client: Client, parameters: DeleteRemoteLinkById): Promise<void> {
+export async function deleteRemoteLinkById(
+  client: Client,
+  parameters: DeleteRemoteLinkById,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/remotelinks/1.0/remotelink/${parameters.remoteLinkId}`,
     method: 'DELETE',
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

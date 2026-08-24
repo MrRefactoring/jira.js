@@ -1,6 +1,6 @@
 import { AuditRecordsSchema, type AuditRecords } from '../models/auditRecords';
 import type { GetAuditRecords } from '../parameters/getAuditRecords';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /**
  * Returns a list of audit records. The list can be filtered to include items:
@@ -25,7 +25,11 @@ import type { Client, SendRequestOptions } from '#/core';
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-export async function getAuditRecords(client: Client, parameters?: GetAuditRecords): Promise<AuditRecords> {
+export async function getAuditRecords(
+  client: Client,
+  parameters?: GetAuditRecords,
+  options?: RequestOptions,
+): Promise<AuditRecords> {
   const config: SendRequestOptions<AuditRecords> = {
     url: '/rest/api/3/auditing/record',
     method: 'GET',
@@ -37,6 +41,7 @@ export async function getAuditRecords(client: Client, parameters?: GetAuditRecor
       to: parameters?.to,
     },
     schema: AuditRecordsSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

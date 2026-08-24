@@ -8,9 +8,9 @@ import { isSchemaAuditEnabled } from './schemaAudit.js';
  * behind the API it describes. A value the vendor added and did not write down is not a bug in the caller's code, and
  * it must not turn into a warning in their logs.
  *
- * The documented values survive where they are actually useful — in the type. `z.infer` gives `'software' |
- * 'service_desk' | 'business' | (string & {})`, so an editor still suggests all three while the compiler accepts
- * whatever the API turns out to send. They also survive in the failure message, which names them.
+ * The documented values survive where they are actually useful — in the type. `z.infer` gives
+ * `'software' | 'service_desk' | 'business' | (string & {})`, so an editor still suggests all three while the compiler
+ * accepts whatever the API turns out to send. They also survive in the failure message, which names them.
  *
  * Under `AUDIT_SCHEMAS=true` it builds a real `z.enum` instead, which is how the audit run learns that a list has gone
  * stale. That is the run whose job is to compare the schemas against what the API sends; a caller's process is not.
@@ -22,7 +22,6 @@ import { isSchemaAuditEnabled } from './schemaAudit.js';
 export function openEnum<const T extends readonly string[]>(values: T) {
   const documented = values.map(value => `'${value}'`).join(' | ');
 
-  // `string & {}`, not `string`: a plain `string` in the union swallows the literals and takes the suggestions with them.
   const open = z.custom<T[number] | (string & {})>(value => typeof value === 'string', {
     message: `one of ${documented}, or another string`,
   });

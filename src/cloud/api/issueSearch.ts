@@ -7,7 +7,7 @@ import type { MatchIssues } from '../parameters/matchIssues';
 import type { CountIssues } from '../parameters/countIssues';
 import type { SearchAndReconsileIssuesUsingJql } from '../parameters/searchAndReconsileIssuesUsingJql';
 import type { SearchAndReconsileIssuesUsingJqlPost } from '../parameters/searchAndReconsileIssuesUsingJqlPost';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /**
  * Returns lists of issues matching a query string. Use this resource to provide auto-completion suggestions when the
@@ -27,6 +27,7 @@ import type { Client, SendRequestOptions } from '#/core';
 export async function getIssuePickerResource(
   client: Client,
   parameters?: GetIssuePickerResource,
+  options?: RequestOptions,
 ): Promise<IssuePickerSuggestions> {
   const config: SendRequestOptions<IssuePickerSuggestions> = {
     url: '/rest/api/3/issue/picker',
@@ -40,6 +41,7 @@ export async function getIssuePickerResource(
       showSubTaskParent: parameters?.showSubTaskParent,
     },
     schema: IssuePickerSuggestionsSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -56,7 +58,11 @@ export async function getIssuePickerResource(
  * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
  *   to view the issue.
  */
-export async function matchIssues(client: Client, parameters: MatchIssues): Promise<IssueMatches> {
+export async function matchIssues(
+  client: Client,
+  parameters: MatchIssues,
+  options?: RequestOptions,
+): Promise<IssueMatches> {
   const config: SendRequestOptions<IssueMatches> = {
     url: '/rest/api/3/jql/match',
     method: 'POST',
@@ -65,6 +71,7 @@ export async function matchIssues(client: Client, parameters: MatchIssues): Prom
       jqls: parameters.jqls,
     },
     schema: IssueMatchesSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -84,7 +91,11 @@ export async function matchIssues(client: Client, parameters: MatchIssues): Prom
  * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
  *   to view the issue.
  */
-export async function countIssues(client: Client, parameters: CountIssues): Promise<JQLCountResults> {
+export async function countIssues(
+  client: Client,
+  parameters: CountIssues,
+  options?: RequestOptions,
+): Promise<JQLCountResults> {
   const config: SendRequestOptions<JQLCountResults> = {
     url: '/rest/api/3/search/approximate-count',
     method: 'POST',
@@ -92,6 +103,7 @@ export async function countIssues(client: Client, parameters: CountIssues): Prom
       jql: parameters.jql,
     },
     schema: JQLCountResultsSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -119,6 +131,7 @@ export async function countIssues(client: Client, parameters: CountIssues): Prom
 export async function searchAndReconsileIssuesUsingJql(
   client: Client,
   parameters?: SearchAndReconsileIssuesUsingJql,
+  options?: RequestOptions,
 ): Promise<SearchAndReconcileResults> {
   const config: SendRequestOptions<SearchAndReconcileResults> = {
     url: '/rest/api/3/search/jql',
@@ -135,6 +148,7 @@ export async function searchAndReconsileIssuesUsingJql(
       reconcileIssues: parameters?.reconcileIssues,
     },
     schema: SearchAndReconcileResultsSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -158,6 +172,7 @@ export async function searchAndReconsileIssuesUsingJql(
 export async function searchAndReconsileIssuesUsingJqlPost(
   client: Client,
   parameters: SearchAndReconsileIssuesUsingJqlPost,
+  options?: RequestOptions,
 ): Promise<SearchAndReconcileResults> {
   const config: SendRequestOptions<SearchAndReconcileResults> = {
     url: '/rest/api/3/search/jql',
@@ -173,6 +188,7 @@ export async function searchAndReconsileIssuesUsingJqlPost(
       reconcileIssues: parameters.reconcileIssues,
     },
     schema: SearchAndReconcileResultsSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

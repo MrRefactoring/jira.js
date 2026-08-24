@@ -4,7 +4,7 @@ import type { SubmitComponents as SubmitComponentsParameters } from '../paramete
 import type { DeleteComponentsByProperty } from '../parameters/deleteComponentsByProperty';
 import type { GetComponentById as GetComponentByIdParameters } from '../parameters/getComponentById';
 import type { DeleteComponentById } from '../parameters/deleteComponentById';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /**
  * Update / insert DevOps Component data.
@@ -27,6 +27,7 @@ import type { Client, SendRequestOptions } from '#/core';
 export async function submitComponents(
   client: Client,
   parameters: SubmitComponentsParameters,
+  options?: RequestOptions,
 ): Promise<SubmitComponents> {
   const config: SendRequestOptions<SubmitComponents> = {
     url: '/rest/devopscomponents/1.0/bulk',
@@ -37,6 +38,7 @@ export async function submitComponents(
       providerMetadata: parameters.providerMetadata,
     },
     schema: SubmitComponentsSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -60,6 +62,7 @@ export async function submitComponents(
 export async function deleteComponentsByProperty(
   client: Client,
   parameters: DeleteComponentsByProperty,
+  options?: RequestOptions,
 ): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: '/rest/devopscomponents/1.0/bulkByProperties',
@@ -68,6 +71,7 @@ export async function deleteComponentsByProperty(
       accountId: parameters.accountId,
       createdBy: parameters.createdBy,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -84,11 +88,13 @@ export async function deleteComponentsByProperty(
 export async function getComponentById(
   client: Client,
   parameters: GetComponentByIdParameters,
+  options?: RequestOptions,
 ): Promise<GetComponentById> {
   const config: SendRequestOptions<GetComponentById> = {
     url: `/rest/devopscomponents/1.0/devopscomponents/${parameters.componentId}`,
     method: 'GET',
     schema: GetComponentByIdSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -103,10 +109,15 @@ export async function getComponentById(
  * Only Connect apps that define the `jiraDevOpsComponentProvider` module can access this resource. This resource
  * requires the 'DELETE' scope for Connect apps.
  */
-export async function deleteComponentById(client: Client, parameters: DeleteComponentById): Promise<void> {
+export async function deleteComponentById(
+  client: Client,
+  parameters: DeleteComponentById,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/devopscomponents/1.0/devopscomponents/${parameters.componentId}`,
     method: 'DELETE',
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
