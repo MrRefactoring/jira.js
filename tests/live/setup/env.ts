@@ -13,10 +13,29 @@ export interface LiveTestEnv {
   email: string;
   /** Atlassian API token paired with `email`. */
   apiToken: string;
+  /**
+   * The organization the site belongs to, when it was pinned rather than resolved.
+   *
+   * Optional by design: `getOrgId()` asks the site for it, so a new tenant needs no secret added anywhere. Set
+   * `JIRA_ORG_ID` only to override that — if the resolution itself is what broke, the Teams suites should still run.
+   */
+  orgId?: string;
+  /**
+   * An organization API key, for the surfaces that answer on `api.atlassian.com` rather than on a site.
+   *
+   * Optional: CI has no such key, and the suites that need one stand down visibly rather than failing. A site API
+   * token does not substitute — these APIs answer 401 to one.
+   */
+  adminApiKey?: string;
 }
 
 function firstSet(...values: (string | undefined)[]): string | undefined {
   return values.find(value => value !== undefined && value.trim() !== '');
+}
+
+/** True when an organization API key is configured, which the administration suites need and CI does not have. */
+export function hasAdminEnv(): boolean {
+  return Boolean(firstSet(process.env.JIRA_ADMIN_API_KEY));
 }
 
 /** True when all credentials required for live tests are present. */
@@ -39,5 +58,11 @@ export function requireLiveEnv(): LiveTestEnv {
     );
   }
 
-  return { host, email, apiToken };
+  return {
+    host,
+    email,
+    apiToken,
+    orgId: firstSet(process.env.JIRA_ORG_ID),
+    adminApiKey: firstSet(process.env.JIRA_ADMIN_API_KEY),
+  };
 }

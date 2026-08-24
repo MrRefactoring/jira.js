@@ -13,7 +13,7 @@ import type { DeleteComponent } from '../parameters/deleteComponent';
 import type { GetComponentRelatedIssues } from '../parameters/getComponentRelatedIssues';
 import type { GetProjectComponentsPaginated } from '../parameters/getProjectComponentsPaginated';
 import type { GetProjectComponents } from '../parameters/getProjectComponents';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 import { z } from 'zod';
 
 /**
@@ -28,6 +28,7 @@ import { z } from 'zod';
 export async function findComponentsForProjects(
   client: Client,
   parameters?: FindComponentsForProjects,
+  options?: RequestOptions,
 ): Promise<Page<Component>> {
   const config: SendRequestOptions<Page<Component>> = {
     url: '/rest/api/3/component',
@@ -40,6 +41,7 @@ export async function findComponentsForProjects(
       query: parameters?.query,
     },
     schema: PageComponentSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -55,7 +57,11 @@ export async function findComponentsForProjects(
  * _Administer projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project in which the
  * component is created or _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-export async function createComponent(client: Client, parameters: CreateComponent): Promise<ProjectComponent> {
+export async function createComponent(
+  client: Client,
+  parameters: CreateComponent,
+  options?: RequestOptions,
+): Promise<ProjectComponent> {
   const config: SendRequestOptions<ProjectComponent> = {
     url: '/rest/api/3/component',
     method: 'POST',
@@ -77,6 +83,7 @@ export async function createComponent(client: Client, parameters: CreateComponen
       self: parameters.self,
     },
     schema: ProjectComponentSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -90,11 +97,16 @@ export async function createComponent(client: Client, parameters: CreateComponen
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** _Browse
  * projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for project containing the component.
  */
-export async function getComponent(client: Client, parameters: GetComponent): Promise<ProjectComponent> {
+export async function getComponent(
+  client: Client,
+  parameters: GetComponent,
+  options?: RequestOptions,
+): Promise<ProjectComponent> {
   const config: SendRequestOptions<ProjectComponent> = {
     url: `/rest/api/3/component/${parameters.id}`,
     method: 'GET',
     schema: ProjectComponentSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -110,12 +122,17 @@ export async function getComponent(client: Client, parameters: GetComponent): Pr
  * _Administer projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the
  * component or _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-export async function updateComponent(client: Client, parameters: UpdateComponent): Promise<ProjectComponent> {
+export async function updateComponent(
+  client: Client,
+  parameters: UpdateComponent,
+  options?: RequestOptions,
+): Promise<ProjectComponent> {
   const config: SendRequestOptions<ProjectComponent> = {
     url: `/rest/api/3/component/${parameters.id}`,
     method: 'PUT',
     body: parameters.body,
     schema: ProjectComponentSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -130,13 +147,18 @@ export async function updateComponent(client: Client, parameters: UpdateComponen
  * _Administer projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the
  * component or _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-export async function deleteComponent(client: Client, parameters: DeleteComponent): Promise<void> {
+export async function deleteComponent(
+  client: Client,
+  parameters: DeleteComponent,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/component/${parameters.id}`,
     method: 'DELETE',
     searchParams: {
       moveIssuesTo: parameters.moveIssuesTo,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -157,11 +179,13 @@ export async function deleteComponent(client: Client, parameters: DeleteComponen
 export async function getComponentRelatedIssues(
   client: Client,
   parameters: GetComponentRelatedIssues,
+  options?: RequestOptions,
 ): Promise<ComponentIssuesCount> {
   const config: SendRequestOptions<ComponentIssuesCount> = {
     url: `/rest/api/3/component/${parameters.id}/relatedIssueCounts`,
     method: 'GET',
     schema: ComponentIssuesCountSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -184,6 +208,7 @@ export async function getComponentRelatedIssues(
 export async function getProjectComponentsPaginated(
   client: Client,
   parameters: GetProjectComponentsPaginated,
+  options?: RequestOptions,
 ): Promise<Page<ComponentWithIssueCount>> {
   const config: SendRequestOptions<Page<ComponentWithIssueCount>> = {
     url: `/rest/api/3/project/${parameters.projectIdOrKey}/component`,
@@ -196,6 +221,7 @@ export async function getProjectComponentsPaginated(
       query: parameters.query,
     },
     schema: PageComponentWithIssueCountSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -217,6 +243,7 @@ export async function getProjectComponentsPaginated(
 export async function getProjectComponents(
   client: Client,
   parameters: GetProjectComponents,
+  options?: RequestOptions,
 ): Promise<ProjectComponent[]> {
   const config: SendRequestOptions<ProjectComponent[]> = {
     url: `/rest/api/3/project/${parameters.projectIdOrKey}/components`,
@@ -225,6 +252,7 @@ export async function getProjectComponents(
       componentSource: parameters.componentSource,
     },
     schema: z.array(ProjectComponentSchema),
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

@@ -10,7 +10,7 @@ import type { GetDynamicWebhooksForApp } from '../parameters/getDynamicWebhooksF
 import type { RegisterDynamicWebhooks } from '../parameters/registerDynamicWebhooks';
 import type { DeleteWebhookById } from '../parameters/deleteWebhookById';
 import type { RefreshWebhooks } from '../parameters/refreshWebhooks';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /**
  * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#pagination) list of the
@@ -23,6 +23,7 @@ import type { Client, SendRequestOptions } from '#/core';
 export async function getDynamicWebhooksForApp(
   client: Client,
   parameters?: GetDynamicWebhooksForApp,
+  options?: RequestOptions,
 ): Promise<Page<Webhook>> {
   const config: SendRequestOptions<Page<Webhook>> = {
     url: '/rest/api/3/webhook',
@@ -32,6 +33,7 @@ export async function getDynamicWebhooksForApp(
       maxResults: parameters?.maxResults,
     },
     schema: PageWebhookSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -50,6 +52,7 @@ export async function getDynamicWebhooksForApp(
 export async function registerDynamicWebhooks(
   client: Client,
   parameters: RegisterDynamicWebhooks,
+  options?: RequestOptions,
 ): Promise<ContainerForRegisteredWebhooks> {
   const config: SendRequestOptions<ContainerForRegisteredWebhooks> = {
     url: '/rest/api/3/webhook',
@@ -59,6 +62,7 @@ export async function registerDynamicWebhooks(
       webhooks: parameters.webhooks,
     },
     schema: ContainerForRegisteredWebhooksSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -72,13 +76,18 @@ export async function registerDynamicWebhooks(
  * [Connect](https://developer.atlassian.com/cloud/jira/platform/#connect-apps) and [OAuth
  * 2.0](https://developer.atlassian.com/cloud/jira/platform/oauth-2-3lo-apps) apps can use this operation.
  */
-export async function deleteWebhookById(client: Client, parameters: DeleteWebhookById): Promise<void> {
+export async function deleteWebhookById(
+  client: Client,
+  parameters: DeleteWebhookById,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: '/rest/api/3/webhook',
     method: 'DELETE',
     body: {
       webhookIds: parameters.webhookIds,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -94,7 +103,11 @@ export async function deleteWebhookById(client: Client, parameters: DeleteWebhoo
  * [Connect](https://developer.atlassian.com/cloud/jira/platform/#connect-apps) and [OAuth
  * 2.0](https://developer.atlassian.com/cloud/jira/platform/oauth-2-3lo-apps) apps can use this operation.
  */
-export async function refreshWebhooks(client: Client, parameters: RefreshWebhooks): Promise<WebhooksExpirationDate> {
+export async function refreshWebhooks(
+  client: Client,
+  parameters: RefreshWebhooks,
+  options?: RequestOptions,
+): Promise<WebhooksExpirationDate> {
   const config: SendRequestOptions<WebhooksExpirationDate> = {
     url: '/rest/api/3/webhook/refresh',
     method: 'PUT',
@@ -102,6 +115,7 @@ export async function refreshWebhooks(client: Client, parameters: RefreshWebhook
       webhookIds: parameters.webhookIds,
     },
     schema: WebhooksExpirationDateSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

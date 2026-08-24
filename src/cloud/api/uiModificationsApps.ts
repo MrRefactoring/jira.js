@@ -6,7 +6,7 @@ import type { GetUiModifications } from '../parameters/getUiModifications';
 import type { CreateUiModification } from '../parameters/createUiModification';
 import type { UpdateUiModification } from '../parameters/updateUiModification';
 import type { DeleteUiModification } from '../parameters/deleteUiModification';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /**
  * Gets UI modifications. UI modifications can only be retrieved by Forge apps.
@@ -19,6 +19,7 @@ import type { Client, SendRequestOptions } from '#/core';
 export async function getUiModifications(
   client: Client,
   parameters?: GetUiModifications,
+  options?: RequestOptions,
 ): Promise<Page<UiModificationDetails>> {
   const config: SendRequestOptions<Page<UiModificationDetails>> = {
     url: '/rest/api/3/uiModifications',
@@ -29,6 +30,7 @@ export async function getUiModifications(
       expand: parameters?.expand,
     },
     schema: PageUiModificationDetailsSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -52,6 +54,13 @@ export async function getUiModifications(
  *   Wildcards are not supported. Supported JSM views:
  *
  *   - `JSMRequestCreate` - Jira Service Management request create portal view
+ * - **Agent view contexts:** For Agent view types, use `projectId` and `issueTypeId` like Jira contexts, and optionally
+ *   set `requestTypeId`. `portalId` must not be set. One of `projectId`, `issueTypeId`, or `viewType` can act as a
+ *   wildcard. Supported Agent views:
+ *
+ *   - `GICAgentView` - Agent view variant of Jira global issue create
+ *   - `IssueViewAgentView` - Agent view variant of Jira issue view
+ *   - `IssueTransitionAgentView` - Agent view variant of Jira issue transition
  *
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  *
@@ -65,6 +74,7 @@ export async function getUiModifications(
 export async function createUiModification(
   client: Client,
   parameters: CreateUiModification,
+  options?: RequestOptions,
 ): Promise<UiModificationIdentifiers> {
   const config: SendRequestOptions<UiModificationIdentifiers> = {
     url: '/rest/api/3/uiModifications',
@@ -76,6 +86,7 @@ export async function createUiModification(
       name: parameters.name,
     },
     schema: UiModificationIdentifiersSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -99,6 +110,13 @@ export async function createUiModification(
  *   Wildcards are not supported. Supported JSM views:
  *
  *   - `JSMRequestCreate` - Jira Service Management request create portal view
+ * - **Agent view contexts:** For Agent view types, use `projectId` and `issueTypeId` like Jira contexts, and optionally
+ *   set `requestTypeId`. `portalId` must not be set. One of `projectId`, `issueTypeId`, or `viewType` can act as a
+ *   wildcard. Supported Agent views:
+ *
+ *   - `GICAgentView` - Agent view variant of Jira global issue create
+ *   - `IssueViewAgentView` - Agent view variant of Jira issue view
+ *   - `IssueTransitionAgentView` - Agent view variant of Jira issue transition
  *
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  *
@@ -109,7 +127,11 @@ export async function createUiModification(
  * The new `write:app-data:jira` OAuth scope is 100% optional now, and not using it won't break your app. However, we
  * recommend adding it to your app's scope list because we will eventually make it mandatory.
  */
-export async function updateUiModification(client: Client, parameters: UpdateUiModification): Promise<void> {
+export async function updateUiModification(
+  client: Client,
+  parameters: UpdateUiModification,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/uiModifications/${parameters.uiModificationId}`,
     method: 'PUT',
@@ -119,6 +141,7 @@ export async function updateUiModification(client: Client, parameters: UpdateUiM
       description: parameters.description,
       name: parameters.name,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -133,10 +156,15 @@ export async function updateUiModification(client: Client, parameters: UpdateUiM
  * The new `write:app-data:jira` OAuth scope is 100% optional now, and not using it won't break your app. However, we
  * recommend adding it to your app's scope list because we will eventually make it mandatory.
  */
-export async function deleteUiModification(client: Client, parameters: DeleteUiModification): Promise<void> {
+export async function deleteUiModification(
+  client: Client,
+  parameters: DeleteUiModification,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/uiModifications/${parameters.uiModificationId}`,
     method: 'DELETE',
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

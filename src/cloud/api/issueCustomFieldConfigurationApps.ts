@@ -3,7 +3,7 @@ import type { Page } from '../models/page';
 import type { ContextualConfiguration } from '../models/contextualConfiguration';
 import type { GetCustomFieldConfiguration } from '../parameters/getCustomFieldConfiguration';
 import type { UpdateCustomFieldConfiguration } from '../parameters/updateCustomFieldConfiguration';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /**
  * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#pagination) list of
@@ -27,6 +27,7 @@ import type { Client, SendRequestOptions } from '#/core';
 export async function getCustomFieldConfiguration(
   client: Client,
   parameters: GetCustomFieldConfiguration,
+  options?: RequestOptions,
 ): Promise<Page<ContextualConfiguration>> {
   const config: SendRequestOptions<Page<ContextualConfiguration>> = {
     url: `/rest/api/3/app/field/${parameters.fieldIdOrKey}/context/configuration`,
@@ -41,6 +42,7 @@ export async function getCustomFieldConfiguration(
       maxResults: parameters.maxResults,
     },
     schema: PageContextualConfigurationSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -58,6 +60,7 @@ export async function getCustomFieldConfiguration(
 export async function updateCustomFieldConfiguration(
   client: Client,
   parameters: UpdateCustomFieldConfiguration,
+  options?: RequestOptions,
 ): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/app/field/${parameters.fieldIdOrKey}/context/configuration`,
@@ -65,6 +68,7 @@ export async function updateCustomFieldConfiguration(
     body: {
       configurations: parameters.configurations,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

@@ -7,14 +7,21 @@
  * {@link rawRequest} stays for the gaps a typed client cannot reach: endpoints absent from the specification, and the
  * v2 paths a test needs to inspect directly rather than through the routing under test.
  */
-import { createClient, type Client } from '#/core';
+import { createClient, getTenantContext, type Client } from '#/core';
 import { createCloudClient, type CloudClient } from '#/cloud/createCloudClient';
 import { createAgileClient, type AgileClient } from '#/agile/createAgileClient';
+import { createTeamsClient, type TeamsClient } from '#/teams/createTeamsClient';
+import { createAdminClient, type AdminClient } from '#/admin/createAdminClient';
+import { createUserManagementClient, type UserManagementClient } from '#/userManagement/createUserManagementClient';
 import { requireLiveEnv } from './env';
 
 let cachedClient: Client | null = null;
 let cachedCloud: CloudClient | null = null;
 let cachedAgile: AgileClient | null = null;
+let cachedTeams: TeamsClient | null = null;
+let cachedAdmin: AdminClient | null = null;
+let cachedUserManagement: UserManagementClient | null = null;
+let cachedOrgId: string | null = null;
 
 /**
  * `retry` rides out the occasional transient TLS reset or 5xx Jira Cloud throws, without masking real 4xx failures.
@@ -53,6 +60,74 @@ export function getAgileClient(): AgileClient {
   cachedAgile ??= createAgileClient(getClient());
 
   return cachedAgile;
+}
+
+/**
+ * Singleton Teams client.
+ *
+ * Built from the configuration rather than from {@link getClient}: Teams refuses OAuth 2.0, and its config says so in
+ * the type, so it cannot take a client whose auth strategy is already anonymous to it.
+ */
+export function getTeamsClient(): TeamsClient {
+  if (!cachedTeams) {
+    const { host, email, apiToken } = requireLiveEnv();
+
+    cachedTeams = createTeamsClient({
+      host,
+      auth: { type: 'basic', email, apiToken },
+      retry: RETRY,
+    });
+  }
+
+  return cachedTeams;
+}
+
+/**
+ * Singleton organization administration client.
+ *
+ * Built from the organization API key rather than from {@link getClient}: these APIs answer on `api.atlassian.com`
+ * and refuse a site token outright. Throws when the key is absent, so a suite must check {@link hasAdminEnv} and
+ * stand down rather than reaching for it blind.
+ */
+export function getAdminClient(): AdminClient {
+  if (!cachedAdmin) {
+    const { adminApiKey } = requireLiveEnv();
+
+    if (!adminApiKey) throw new Error('JIRA_ADMIN_API_KEY is not set; the administration suites need one.');
+
+    cachedAdmin = createAdminClient({ auth: { type: 'bearer', token: adminApiKey }, retry: RETRY });
+  }
+
+  return cachedAdmin;
+}
+
+/** Singleton user management client, on the same organization API key. */
+export function getUserManagementClient(): UserManagementClient {
+  if (!cachedUserManagement) {
+    const { adminApiKey } = requireLiveEnv();
+
+    if (!adminApiKey) throw new Error('JIRA_ADMIN_API_KEY is not set; the administration suites need one.');
+
+    cachedUserManagement = createUserManagementClient({ auth: { type: 'bearer', token: adminApiKey }, retry: RETRY });
+  }
+
+  return cachedUserManagement;
+}
+
+/**
+ * The organization every Teams call is addressed to.
+ *
+ * Asked of the site rather than pinned in a secret, so pointing the suites at another tenant needs nothing but the
+ * host. `JIRA_ORG_ID` overrides it, for the case where the resolution is itself what broke.
+ */
+export async function getOrgId(): Promise<string> {
+  if (!cachedOrgId) {
+    const { orgId } = requireLiveEnv();
+
+    cachedOrgId = orgId ?? (await getTenantContext(getClient())).orgId;
+  }
+
+  return cachedOrgId;
 }
 
 /** A separate client that raises `SchemaMismatchError` instead of reporting, for suites pinning a known drift. */

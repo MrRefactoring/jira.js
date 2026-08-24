@@ -16,11 +16,14 @@
 
 ## About
 
-**Jira.js** is a TypeScript client for the Atlassian Jira Cloud REST APIs, for [Node.js](https://nodejs.org/) and browsers. It covers three surfaces:
+**Jira.js** is a TypeScript client for the Atlassian Jira REST APIs, for [Node.js](https://nodejs.org/) and browsers. It covers four surfaces:
 
 - **[Jira Cloud platform API](https://developer.atlassian.com/cloud/jira/platform/rest/)** - issues, projects, fields, workflows
 - **[Jira Agile API](https://developer.atlassian.com/cloud/jira/software/rest/intro/)** - sprints, boards, backlog
 - **[Jira Service Management API](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro/)** - requests, queues, organizations
+- **[Jira Data Center API](https://developer.atlassian.com/server/jira/platform/rest/)** - self-hosted Jira 10.0 and later, platform and Agile in one client
+- **[Jira Service Management Data Center API](https://developer.atlassian.com/server/jira-servicedesk/rest/)** - self-hosted requests, queues, request types, organizations
+- **[Assets API](https://developer.atlassian.com/cloud/assets/rest/)** - the configuration management database, on Cloud and Data Center alike
 
 > **6.0 is a rewrite, not a refresh.** `npm install jira.js` now installs 6.x. Read [MIGRATION.md](./MIGRATION.md) before upgrading — it says plainly who should stay on `jira.js@5`, which is supported until the end of 2026.
 
@@ -49,6 +52,8 @@ Built for Jira integrations, automation, webhook handlers, CI/CD pipelines and b
     - [Bearer Token](#bearer-token)
     - [OAuth 2.0](#oauth-20)
   - [Error Handling](#error-handling)
+  - [Cancelling a Request](#cancelling-a-request)
+  - [Custom `fetch`](#custom-fetch)
   - [Response Validation](#response-validation)
   - [API Structure](#api-structure)
 - [Tree Shaking](#tree-shaking)
@@ -59,7 +64,7 @@ Built for Jira integrations, automation, webhook handlers, CI/CD pipelines and b
 
 ### Installation
 
-**Requires Node.js 22 or newer.** The package is ESM-only — there is no CommonJS build.
+**Requires Node.js 22 or newer.** The package is ESM-only — there is no CommonJS build. TypeScript users need **5.7 or newer**: the declarations name `ArrayBufferView`, which earlier compilers read as a different type.
 
 ```bash
 # Using npm
@@ -132,6 +137,12 @@ The documentation includes:
 - **Jira Cloud platform API**: issues, projects, users, fields, workflows, schemes
 - **Jira Software (Agile) API**: sprint management, boards, backlogs, agile workflows
 - **Jira Service Management API**: request handling, queues, customers, organizations
+- **Jira Data Center API**: self-hosted Jira, `/rest/api/2` plus the Agile endpoints, from one `createServerClient`
+- **Jira Service Management Data Center API**: self-hosted requests, queues and organizations, from `createServiceDeskServerClient`
+- **Assets API**: objects, schemas, types and AQL — `createAssetsClient` on Cloud, `createAssetsServerClient` self-hosted
+- **Teams API**: teams, their members and external links, at organization level — `createTeamsClient`
+- **Organization administration**: directories, users, groups, domains, policies and SCIM provisioning above the site — `createAdminClient`, `createUserManagementClient`, `createUserProvisioningClient`
+- **Webhook types**: the events, payloads and headers Jira posts to *you* — `jira.js/webhooks`, types only, no client
 
 There is one platform surface, generated from Jira's v3 specification. `Version2Client` and `Version3Client` are gone — the difference between them was never the endpoints, it was rich text. Rich-text fields still accept a wiki-markup **string**: that write is routed through Jira's v2 endpoint, which parses the markup server-side, and the result is read back so what you get is a real [Atlassian Document Format](https://developer.atlassian.com/cloud/jira/platform/apis/document/structure/) document.
 
@@ -226,7 +237,7 @@ try {
 | Error | When | Extra |
 | --- | --- | --- |
 | `ApiError` | Any non-2xx; base of the ones below | `status`, `statusText`, `body` |
-| `AuthError` | `401` | |
+| `AuthError` | `401`, or any status Jira answered while refusing the credentials | `status` is what was on the wire |
 | `ScopeError` | `401`, token lacks the scope | |
 | `ForbiddenError` | `403` | |
 | `NotFoundError` | `404` | |
@@ -237,9 +248,72 @@ try {
 | `ConfigError` | Impossible client configuration | |
 | `SchemaMismatchError` | 2xx of the wrong shape | `report` |
 
+An aborted request is the one failure that is not one of these: the reason you passed to `abort()` is rethrown exactly as it is, so `error.name === 'AbortError'` and `error === signal.reason` both hold.
+
 Use the predicates rather than `instanceof`: they read a branded symbol instead of walking the prototype chain, so they keep working when a bundler splits chunks, when minification renames classes, and when two copies of the package end up in one `node_modules`.
 
 Retries are off by default. `retry: { maxAttempts, initialDelayMs, backoffFactor }` opts in for network errors and `502`/`503`/`504` only — never `4xx`, never other `5xx`.
+
+**A dead token does not always arrive as a `401`.** Around a quarter of Jira's operations can be reached anonymously, and on those an expired or revoked API token does not fail the request — Jira serves it as the anonymous user and says so only in the `X-Seraph-LoginReason` header. What you get back is a well-formed, successful response containing whatever an anonymous visitor is allowed to see, which for most sites is nothing:
+
+```typescript
+// With a dead token, before 6.3: no error, and an empty list.
+const projects = await jira.projects.searchProjects();
+// { total: 0, isLast: true, values: [] }
+```
+
+The client now reads that header and throws `AuthError` whenever the credentials were refused, whatever status came with it. `error.status` records the status that actually arrived — `200` in the case above — rather than a `401` that never happened.
+
+### Cancelling a Request
+
+Every method takes an optional `AbortSignal` as its last argument. It reaches `fetch`, and it also cuts short any retry back-off the client is waiting out:
+
+```typescript
+await jira.issues.getIssue({ issueIdOrKey: 'PROJ-1' }, { signal: AbortSignal.timeout(5_000) });
+
+// Operations that take no parameters take the options in their place
+await jira.announcementBanner.getBanner({ signal });
+
+// ...and so do the ones whose parameters are all optional, after an empty object
+await jira.projects.searchProjects({}, { signal });
+```
+
+The reason is rethrown untouched rather than wrapped, so a `TimeoutError` from `AbortSignal.timeout()` stays a `TimeoutError`, and a reason of your own comes back as the object you passed.
+
+### Custom `fetch`
+
+The transport has one seam: the `fetch` it calls. Replace it to log, to trace, to route through a proxy, or to record fixtures — the client hands it the URL and the `RequestInit` it built, including the headers it derived from `auth`:
+
+```typescript
+const jira = createCloudClient({
+  host,
+  auth,
+  fetch: async (url, init) => {
+    const started = performance.now();
+    const response = await fetch(url, init);
+
+    console.log(`${init.method ?? 'GET'} ${url} → ${response.status} in ${Math.round(performance.now() - started)}ms`);
+
+    return response;
+  },
+});
+```
+
+```typescript
+import { fetch as undiciFetch, ProxyAgent } from 'undici';
+
+const dispatcher = new ProxyAgent(process.env.HTTPS_PROXY!);
+
+const jira = createCloudClient({
+  host,
+  auth,
+  fetch: (url, init) => undiciFetch(url, { ...init, dispatcher }),
+});
+```
+
+The OAuth 2.0 token and cloud-id calls go through it too, so a proxy covers the whole flow rather than working until the first refresh. The flip side: a wrapper that logs request bodies will see `client_secret` and `refresh_token` on the token call.
+
+`headers` is the other way in, for something constant: `createCloudClient({ host, auth, headers: { 'X-Trace-Id': traceId } })`. Per-request headers win over it, and it wins over the `Authorization` header the client derives — so setting `Authorization` there silently replaces `auth`, refresh included.
 
 ### Response Validation
 
@@ -438,11 +512,15 @@ Every function takes the client as its first argument — the same client the fa
 
 | Import | Contents |
 | --- | --- |
-| `jira.js` | The three factories, error types and predicates, OAuth helpers |
+| `jira.js` | The seven factories, error types and predicates, OAuth helpers |
 | `jira.js/core` | `createClient`, transport, errors, OAuth, multipart helpers |
 | `jira.js/cloud` | Platform API functions, parameters and response types |
 | `jira.js/agile` | Agile API functions, parameters and response types |
 | `jira.js/serviceDesk` | Service Management functions, parameters and response types |
+| `jira.js/server` | Data Center functions, parameters and response types |
+| `jira.js/serviceDeskServer` | Service Management Data Center functions, parameters and response types |
+| `jira.js/assetsServer` | Assets Data Center functions, parameters and response types |
+| `jira.js/assets` | Assets Cloud functions, parameters and response types |
 | `jira.js/browser` | Prebuilt browser bundle |
 
 The surface subpaths carry the types alongside the functions, so a type-only import costs nothing at runtime:
@@ -451,7 +529,7 @@ The surface subpaths carry the types alongside the functions, so a type-only imp
 import type { Issue, GetIssue } from 'jira.js/cloud';
 ```
 
-The three surfaces are not re-exported from the root — they collide on a handful of names, so import from the one you mean.
+The four surfaces are not re-exported from the root — they collide on a handful of names, so import from the one you mean.
 
 > Deep imports need an `exports`-aware resolver: `moduleResolution: "bundler"`, `"node16"` or `"nodenext"`. The legacy `"node"` resolution cannot see them, and cannot load an ESM-only package either.
 
@@ -471,8 +549,20 @@ Jira.js is perfect for:
 
 ## Common Questions (FAQ)
 
+**Q: Does this cover Assets?**  
+A: Yes, since 6.3, on both deployments. `createAssetsClient` covers the [Assets Cloud REST API](https://developer.atlassian.com/cloud/assets/rest/) — it takes a `workspaceId` and its own configuration, because Assets answers on `api.atlassian.com` rather than on your site. `createAssetsServerClient` covers the self-hosted one and takes the same client as every other Data Center surface. See the [Assets guide](https://mrrefactoring.github.io/jira.js/guide/assets).
+
 **Q: Does this work with Jira Server/Data Center?**  
-A: No, Jira.js is designed specifically for Jira Cloud. For on-premise Jira, consider using the REST API directly.
+A: Yes, since 6.3. Use `createServerClient` for self-hosted Jira 10.0 and later — see the [Data Center guide](https://mrrefactoring.github.io/jira.js/guide/data-center). It is a separate surface from the Cloud one, because the two APIs differ in more than their host. Jira 9.x is not supported: Atlassian never published a specification for it, and the line reached end of life in June 2026.
+
+**Q: Why do I get a 400 when I set `assignee` while creating an issue?**  
+A: Because the field is not on that project's create screen — the library sends `fields` through untouched. `GET /rest/api/3/issue/createmeta/{projectKey}/issuetypes/{issueTypeId}` lists what the project accepts on create; if `assignee` is missing from it, either add it to the create screen in the project settings or assign afterwards with `issues.assignIssue({ issueIdOrKey, accountId })`. The shape itself is `{ fields: { assignee: { id: accountId } } }`, and Jira names the real cause in the response body, which reaches you as `error.body`. Creating an issue as deliberately unassigned is not something the API supports at all.
+
+**Q: Where do I get my `cloudId` or `orgId`?**  
+A: From `getTenantContext`, since Atlassian publishes no REST endpoint for either. `const { cloudId, orgId } = await getTenantContext(client);` — it takes the client you already built and asks the GraphQL gateway, which is the documented way. `orgId` is the one the [Teams](https://mrrefactoring.github.io/jira.js/guide/teams) API takes, and it names the organization your site belongs to rather than the site. Neither changes, so resolve once at start-up and keep the answer. Not available under OAuth 2.0 (3LO) — see the [Tenant Context guide](https://mrrefactoring.github.io/jira.js/guide/tenant-context).
+
+**Q: How do I name the type of a call's parameters?**  
+A: Import it from the surface's `parameters` subpath: `import type { CreateIssue } from 'jira.js/cloud/parameters';`. Response types come from the surface itself — `import type { Issue } from 'jira.js/cloud';` — because a parameter and a model occasionally share a name.
 
 **Q: Is TypeScript required?**  
 A: No, but TypeScript is fully supported with comprehensive type definitions. You can use Jira.js with plain JavaScript too.
@@ -500,7 +590,7 @@ Explore our other Atlassian integration libraries:
 
 ## Contributing
 
-Contributions are welcome! Please feel free to submit a Pull Request. For major changes, please open an issue first to discuss what you would like to change.
+Contributions are welcome. One thing to know first: most of `src/` — every `api`, `models` and `parameters` directory, and `src/core` — is generated from Atlassian's OpenAPI documents by [apis-code-gen](https://github.com/MrRefactoring/apis-code-gen), and a change made there is overwritten on the next regeneration. [CONTRIBUTING.md](./CONTRIBUTING.md) says which repository a fix belongs in and how to run the checks. For major changes, open an issue first.
 
 ## License
 

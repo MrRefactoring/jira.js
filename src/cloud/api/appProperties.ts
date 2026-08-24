@@ -10,7 +10,7 @@ import type { DeleteAddonProperty } from '../parameters/deleteAddonProperty';
 import type { GetForgeAppProperty as GetForgeAppPropertyParameters } from '../parameters/getForgeAppProperty';
 import type { PutForgeAppProperty } from '../parameters/putForgeAppProperty';
 import type { DeleteForgeAppProperty } from '../parameters/deleteForgeAppProperty';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /**
  * Gets all the properties of an app. The reserved key `connect_client_key_019cdff3-8bfb-71fe-9628-875b700aebb8` is not
@@ -20,11 +20,16 @@ import type { Client, SendRequestOptions } from '#/core';
  * Connect app whose key matches `addonKey` can make this request. Additionally, Forge apps can access Connect app
  * properties (stored against the same `app.connect.key`).
  */
-export async function getAddonProperties(client: Client, parameters: GetAddonProperties): Promise<PropertyKeys> {
+export async function getAddonProperties(
+  client: Client,
+  parameters: GetAddonProperties,
+  options?: RequestOptions,
+): Promise<PropertyKeys> {
   const config: SendRequestOptions<PropertyKeys> = {
     url: `/rest/atlassian-connect/1/addons/${parameters.addonKey}/properties`,
     method: 'GET',
     schema: PropertyKeysSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -40,11 +45,16 @@ export async function getAddonProperties(client: Client, parameters: GetAddonPro
  * Connect app whose key matches `addonKey` can make this request. Additionally, Forge apps can access Connect app
  * properties (stored against the same `app.connect.key`).
  */
-export async function getAddonProperty(client: Client, parameters: GetAddonProperty): Promise<EntityProperty> {
+export async function getAddonProperty(
+  client: Client,
+  parameters: GetAddonProperty,
+  options?: RequestOptions,
+): Promise<EntityProperty> {
   const config: SendRequestOptions<EntityProperty> = {
     url: `/rest/atlassian-connect/1/addons/${parameters.addonKey}/properties/${parameters.propertyKey}`,
     method: 'GET',
     schema: EntityPropertySchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -60,12 +70,17 @@ export async function getAddonProperty(client: Client, parameters: GetAddonPrope
  * Connect app whose key matches `addonKey` can make this request. Additionally, Forge apps can access Connect app
  * properties (stored against the same `app.connect.key`).
  */
-export async function putAddonProperty(client: Client, parameters: PutAddonProperty): Promise<OperationMessage> {
+export async function putAddonProperty(
+  client: Client,
+  parameters: PutAddonProperty,
+  options?: RequestOptions,
+): Promise<OperationMessage> {
   const config: SendRequestOptions<OperationMessage> = {
     url: `/rest/atlassian-connect/1/addons/${parameters.addonKey}/properties/${parameters.propertyKey}`,
     method: 'PUT',
     body: parameters.body,
     schema: OperationMessageSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -78,10 +93,15 @@ export async function putAddonProperty(client: Client, parameters: PutAddonPrope
  * Connect app whose key matches `addonKey` can make this request. Additionally, Forge apps can access Connect app
  * properties (stored against the same `app.connect.key`).
  */
-export async function deleteAddonProperty(client: Client, parameters: DeleteAddonProperty): Promise<void> {
+export async function deleteAddonProperty(
+  client: Client,
+  parameters: DeleteAddonProperty,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/atlassian-connect/1/addons/${parameters.addonKey}/properties/${parameters.propertyKey}`,
     method: 'DELETE',
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -95,11 +115,15 @@ export async function deleteAddonProperty(client: Client, parameters: DeleteAddo
  * **[asApp()](https://developer.atlassian.com/platform/forge/apis-reference/fetch-api-product.requestjira/#method-signature)**
  * requests from Forge.
  */
-export async function getForgeAppPropertyKeys(client: Client): Promise<GetForgeAppPropertyKeys> {
+export async function getForgeAppPropertyKeys(
+  client: Client,
+  options?: RequestOptions,
+): Promise<GetForgeAppPropertyKeys> {
   const config: SendRequestOptions<GetForgeAppPropertyKeys> = {
     url: '/rest/forge/1/app/properties',
     method: 'GET',
     schema: GetForgeAppPropertyKeysSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -116,11 +140,13 @@ export async function getForgeAppPropertyKeys(client: Client): Promise<GetForgeA
 export async function getForgeAppProperty(
   client: Client,
   parameters: GetForgeAppPropertyParameters,
+  options?: RequestOptions,
 ): Promise<GetForgeAppProperty> {
   const config: SendRequestOptions<GetForgeAppProperty> = {
     url: `/rest/forge/1/app/properties/${parameters.propertyKey}`,
     method: 'GET',
     schema: GetForgeAppPropertySchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -145,12 +171,17 @@ export async function getForgeAppProperty(
  * The new `write:app-data:jira` OAuth scope is 100% optional now, and not using it won't break your app. However, we
  * recommend adding it to your app's scope list because we will eventually make it mandatory.
  */
-export async function putForgeAppProperty(client: Client, parameters: PutForgeAppProperty): Promise<OperationMessage> {
+export async function putForgeAppProperty(
+  client: Client,
+  parameters: PutForgeAppProperty,
+  options?: RequestOptions,
+): Promise<OperationMessage> {
   const config: SendRequestOptions<OperationMessage> = {
     url: `/rest/forge/1/app/properties/${parameters.propertyKey}`,
     method: 'PUT',
     body: parameters.body,
     schema: OperationMessageSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -167,10 +198,15 @@ export async function putForgeAppProperty(client: Client, parameters: PutForgeAp
  * The new `write:app-data:jira` OAuth scope is 100% optional now, and not using it won't break your app. However, we
  * recommend adding it to your app's scope list because we will eventually make it mandatory.
  */
-export async function deleteForgeAppProperty(client: Client, parameters: DeleteForgeAppProperty): Promise<void> {
+export async function deleteForgeAppProperty(
+  client: Client,
+  parameters: DeleteForgeAppProperty,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/forge/1/app/properties/${parameters.propertyKey}`,
     method: 'DELETE',
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

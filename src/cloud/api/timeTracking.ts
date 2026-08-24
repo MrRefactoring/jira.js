@@ -2,7 +2,7 @@ import { TimeTrackingProviderSchema, type TimeTrackingProvider } from '../models
 import { TimeTrackingConfigurationSchema, type TimeTrackingConfiguration } from '../models/timeTrackingConfiguration';
 import type { SelectTimeTrackingImplementation } from '../parameters/selectTimeTrackingImplementation';
 import type { SetSharedTimeTrackingConfiguration } from '../parameters/setSharedTimeTrackingConfiguration';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 import { z } from 'zod';
 
 /**
@@ -12,10 +12,11 @@ import { z } from 'zod';
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-export async function getSelectedTimeTrackingImplementation(client: Client): Promise<void> {
+export async function getSelectedTimeTrackingImplementation(client: Client, options?: RequestOptions): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: '/rest/api/3/configuration/timetracking',
     method: 'GET',
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -30,6 +31,7 @@ export async function getSelectedTimeTrackingImplementation(client: Client): Pro
 export async function selectTimeTrackingImplementation(
   client: Client,
   parameters: SelectTimeTrackingImplementation,
+  options?: RequestOptions,
 ): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: '/rest/api/3/configuration/timetracking',
@@ -39,6 +41,7 @@ export async function selectTimeTrackingImplementation(
       name: parameters.name,
       url: parameters.url,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -53,11 +56,15 @@ export async function selectTimeTrackingImplementation(
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-export async function getAvailableTimeTrackingImplementations(client: Client): Promise<TimeTrackingProvider[]> {
+export async function getAvailableTimeTrackingImplementations(
+  client: Client,
+  options?: RequestOptions,
+): Promise<TimeTrackingProvider[]> {
   const config: SendRequestOptions<TimeTrackingProvider[]> = {
     url: '/rest/api/3/configuration/timetracking/list',
     method: 'GET',
     schema: z.array(TimeTrackingProviderSchema),
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -70,11 +77,15 @@ export async function getAvailableTimeTrackingImplementations(client: Client): P
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-export async function getSharedTimeTrackingConfiguration(client: Client): Promise<TimeTrackingConfiguration> {
+export async function getSharedTimeTrackingConfiguration(
+  client: Client,
+  options?: RequestOptions,
+): Promise<TimeTrackingConfiguration> {
   const config: SendRequestOptions<TimeTrackingConfiguration> = {
     url: '/rest/api/3/configuration/timetracking/options',
     method: 'GET',
     schema: TimeTrackingConfigurationSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -89,6 +100,7 @@ export async function getSharedTimeTrackingConfiguration(client: Client): Promis
 export async function setSharedTimeTrackingConfiguration(
   client: Client,
   parameters: SetSharedTimeTrackingConfiguration,
+  options?: RequestOptions,
 ): Promise<TimeTrackingConfiguration> {
   const config: SendRequestOptions<TimeTrackingConfiguration> = {
     url: '/rest/api/3/configuration/timetracking/options',
@@ -100,6 +112,7 @@ export async function setSharedTimeTrackingConfiguration(
       workingHoursPerDay: parameters.workingHoursPerDay,
     },
     schema: TimeTrackingConfigurationSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

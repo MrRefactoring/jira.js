@@ -4,7 +4,7 @@ import type { GetPreference } from '../parameters/getPreference';
 import type { SetPreference } from '../parameters/setPreference';
 import type { RemovePreference } from '../parameters/removePreference';
 import type { GetCurrentUser } from '../parameters/getCurrentUser';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 import { z } from 'zod';
 
 /**
@@ -31,7 +31,11 @@ import { z } from 'zod';
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** Permission
  * to access Jira.
  */
-export async function getPreference(client: Client, parameters: GetPreference): Promise<string> {
+export async function getPreference(
+  client: Client,
+  parameters: GetPreference,
+  options?: RequestOptions,
+): Promise<string> {
   const config: SendRequestOptions<string> = {
     url: '/rest/api/3/mypreferences',
     method: 'GET',
@@ -39,6 +43,7 @@ export async function getPreference(client: Client, parameters: GetPreference): 
       key: parameters.key,
     },
     schema: z.string(),
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -77,7 +82,11 @@ export async function getPreference(client: Client, parameters: GetPreference): 
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** Permission
  * to access Jira.
  */
-export async function setPreference(client: Client, parameters: SetPreference): Promise<void> {
+export async function setPreference(
+  client: Client,
+  parameters: SetPreference,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: '/rest/api/3/mypreferences',
     method: 'PUT',
@@ -85,6 +94,7 @@ export async function setPreference(client: Client, parameters: SetPreference): 
       key: parameters.key,
     },
     body: parameters.body,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -105,13 +115,18 @@ export async function setPreference(client: Client, parameters: SetPreference): 
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** Permission
  * to access Jira.
  */
-export async function removePreference(client: Client, parameters: RemovePreference): Promise<void> {
+export async function removePreference(
+  client: Client,
+  parameters: RemovePreference,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: '/rest/api/3/mypreferences',
     method: 'DELETE',
     searchParams: {
       key: parameters.key,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -128,11 +143,12 @@ export async function removePreference(client: Client, parameters: RemovePrefere
  *
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** None.
  */
-export async function getLocale(client: Client): Promise<Locale> {
+export async function getLocale(client: Client, options?: RequestOptions): Promise<Locale> {
   const config: SendRequestOptions<Locale> = {
     url: '/rest/api/3/mypreferences/locale',
     method: 'GET',
     schema: LocaleSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -144,7 +160,11 @@ export async function getLocale(client: Client): Promise<Locale> {
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** Permission
  * to access Jira.
  */
-export async function getCurrentUser(client: Client, parameters?: GetCurrentUser): Promise<DashboardUser> {
+export async function getCurrentUser(
+  client: Client,
+  parameters?: GetCurrentUser,
+  options?: RequestOptions,
+): Promise<DashboardUser> {
   const config: SendRequestOptions<DashboardUser> = {
     url: '/rest/api/3/myself',
     method: 'GET',
@@ -152,6 +172,7 @@ export async function getCurrentUser(client: Client, parameters?: GetCurrentUser
       expand: parameters?.expand,
     },
     schema: DashboardUserSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

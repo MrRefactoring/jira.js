@@ -1,0 +1,59 @@
+# A throwaway Jira Data Center instance for the `server` live suites.
+#
+# Not production-shaped and not meant to be: one node, one database, no reverse proxy, and a licence that expires in
+# three hours. What it has to be is reproducible, so that a schema mismatch found here is a fact about Jira rather
+# than about somebody's laptop.
+name: jira-js-dc
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: jira
+      POSTGRES_USER: jira
+      POSTGRES_PASSWORD: jira
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U jira -d jira']
+      interval: 5s
+      timeout: 5s
+      retries: 20
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
+  jira:
+    # 10.3 LTS by default, not the newest release, and the reason is authentication rather than age: Jira 11.0 disables
+    # basic authentication by default and rejects `/rest/auth/1/session` as well, leaving a personal access token as
+    # the only way in — and a token cannot be minted without first signing in through a browser. On 10.3 the suites
+    # bootstrap themselves. Point this at 11.3 with JIRA_DC_VERSION when testing against the newest surface, and give
+    # the suites a token through JIRA_SERVER_PAT.
+    image: atlassian/jira-software:${JIRA_DC_VERSION:-10.3}
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      # These four are what let the setup wizard skip its database step. Everything after it — licence, administrator,
+      # mail — has no environment variable and is driven over HTTP by scripts/jiraDc.ts.
+      ATL_JDBC_URL: jdbc:postgresql://postgres:5432/jira
+      ATL_JDBC_USER: jira
+      ATL_JDBC_PASSWORD: jira
+      # Atlassian's name for "any PostgreSQL", regardless of the server's actual version.
+      ATL_DB_TYPE: postgres72
+      # Without this the generated dbconfig.xml carries an empty <driver-class>, Jira cannot open the connection, and
+      # the wizard asks for the database after all — with every field blank, which looks like the variables were
+      # ignored rather than incomplete.
+      ATL_DB_DRIVER: org.postgresql.Driver
+      ATL_TOMCAT_PORT: '8080'
+      JVM_MINIMUM_MEMORY: 1024m
+      JVM_MAXIMUM_MEMORY: 2048m
+      # Jira writes this into the base URL it hands back in `self` links, and the live suites compare against it.
+      ATL_PROXY_NAME: localhost
+      ATL_PROXY_PORT: '8080'
+      ATL_TOMCAT_SCHEME: http
+    ports:
+      - '8080:8080'
+    volumes:
+      - jira-home:/var/atlassian/application-data/jira
+
+volumes:
+  postgres-data:
+  jira-home:

@@ -5,7 +5,7 @@ import {
 import type { UpdateIssueFields } from '../parameters/updateIssueFields';
 import type { UpdateEntityPropertiesValue } from '../parameters/updateEntityPropertiesValue';
 import type { WorkflowRuleSearch } from '../parameters/workflowRuleSearch';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /**
  * Updates the value of a custom field added by Connect apps on one or more issues. The values of up to 200 custom
@@ -14,7 +14,11 @@ import type { Client, SendRequestOptions } from '#/core';
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** Only
  * Connect apps can make this request
  */
-export async function updateIssueFields(client: Client, parameters: UpdateIssueFields): Promise<void> {
+export async function updateIssueFields(
+  client: Client,
+  parameters: UpdateIssueFields,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: '/rest/atlassian-connect/1/migration/field',
     method: 'PUT',
@@ -24,6 +28,7 @@ export async function updateIssueFields(client: Client, parameters: UpdateIssueF
     body: {
       updateValueList: parameters.updateValueList,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -36,6 +41,7 @@ export async function updateIssueFields(client: Client, parameters: UpdateIssueF
 export async function updateEntityPropertiesValue(
   client: Client,
   parameters: UpdateEntityPropertiesValue,
+  options?: RequestOptions,
 ): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/atlassian-connect/1/migration/properties/${parameters.entityType}`,
@@ -44,6 +50,7 @@ export async function updateEntityPropertiesValue(
       'Atlassian-Transfer-Id': parameters['Atlassian-Transfer-Id'],
     },
     body: parameters.body,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -56,6 +63,7 @@ export async function updateEntityPropertiesValue(
 export async function workflowRuleSearch(
   client: Client,
   parameters: WorkflowRuleSearch,
+  options?: RequestOptions,
 ): Promise<WorkflowRulesSearchDetails> {
   const config: SendRequestOptions<WorkflowRulesSearchDetails> = {
     url: '/rest/atlassian-connect/1/migration/workflow/rule/search',
@@ -69,6 +77,7 @@ export async function workflowRuleSearch(
       workflowEntityId: parameters.workflowEntityId,
     },
     schema: WorkflowRulesSearchDetailsSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

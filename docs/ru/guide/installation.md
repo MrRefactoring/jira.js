@@ -3,22 +3,27 @@
 `jira.js` — **только ESM**, с встроенными определениями типов TypeScript. Требует **Node.js 22 или новее**
 и работает в современных браузерах.
 
+TypeScript не обязателен, но если вы им пользуетесь, объявлениям нужна версия **5.7 или новее**. В них упомянут
+`ArrayBufferView`, ставший генериком именно в этом выпуске; компилятор постарше читает то же самое объявление
+как ошибку — если только `skipLibCheck` не прячет её от него самого.
+
 ::: warning 6.0 — это переписывание
-`npm install jira.js` пока ставит 5.x. 6.0 находится в стадии release candidate: `npm install jira.js@next`.
-Это не бесшовное обновление — сначала прочитайте [руководство по миграции](https://github.com/MrRefactoring/jira.js/blob/master/MIGRATION.md).
+`npm install jira.js` ставит 6.x. Это не бесшовное обновление с 5.x — сначала прочитайте
+[руководство по миграции](https://github.com/MrRefactoring/jira.js/blob/master/MIGRATION.md) и обратите внимание,
+кому там рекомендовано остаться на `jira.js@5`.
 :::
 
 ## Менеджеры пакетов
 
 ```bash
 # npm
-npm install jira.js@next
+npm install jira.js
 
 # yarn
-yarn add jira.js@next
+yarn add jira.js
 
 # pnpm
-pnpm add jira.js@next
+pnpm add jira.js
 ```
 
 ## Импорт
@@ -30,8 +35,8 @@ import { createCloudClient } from 'jira.js';
 Сборки CommonJS нет. `require('jira.js')` не работает; из CommonJS-модуля используйте динамический
 `await import('jira.js')`.
 
-Пакет также отдаёт подпути по поверхностям — `jira.js/cloud`, `jira.js/agile`, `jira.js/serviceDesk` и
-`jira.js/core`, — в которых лежат плоские функции вместе со всеми типами параметров и ответов. См.
+Пакет также отдаёт подпути по поверхностям — `jira.js/cloud`, `jira.js/agile`, `jira.js/serviceDesk`,
+`jira.js/server` и `jira.js/core`, — в которых лежат плоские функции вместе со всеми типами параметров и ответов. См.
 [Tree-Shaking](./tree-shaking).
 
 ## Требования

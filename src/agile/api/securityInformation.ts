@@ -9,20 +9,25 @@ import type { SubmitVulnerabilities as SubmitVulnerabilitiesParameters } from '.
 import type { DeleteVulnerabilitiesByProperty } from '../parameters/deleteVulnerabilitiesByProperty';
 import type { GetVulnerabilityById as GetVulnerabilityByIdParameters } from '../parameters/getVulnerabilityById';
 import type { DeleteVulnerabilityById } from '../parameters/deleteVulnerabilityById';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /**
  * Insert Security Workspace IDs to establish a relationship between them and the Jira site the app is installed on. If
  * a relationship between the workspace ID and Jira already exists then the workspace ID will be ignored and Jira will
  * process the rest of the entries.
  */
-export async function submitWorkspaces(client: Client, parameters: SubmitWorkspaces): Promise<void> {
+export async function submitWorkspaces(
+  client: Client,
+  parameters: SubmitWorkspaces,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: '/rest/security/1.0/linkedWorkspaces/bulk',
     method: 'POST',
     body: {
       workspaceIds: parameters.workspaceIds,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -33,13 +38,18 @@ export async function submitWorkspaces(client: Client, parameters: SubmitWorkspa
  *
  * E.g. DELETE /bulk?workspaceIds=111-222-333,444-555-666
  */
-export async function deleteLinkedWorkspaces(client: Client, parameters: DeleteLinkedWorkspaces): Promise<void> {
+export async function deleteLinkedWorkspaces(
+  client: Client,
+  parameters: DeleteLinkedWorkspaces,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: '/rest/security/1.0/linkedWorkspaces/bulk',
     method: 'DELETE',
     searchParams: {
       workspaceIds: parameters.workspaceIds,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -50,11 +60,12 @@ export async function deleteLinkedWorkspaces(client: Client, parameters: DeleteL
  *
  * The result will be what is currently stored, ignoring any pending updates or deletes.
  */
-export async function getLinkedWorkspaces(client: Client): Promise<GetLinkedWorkspaces> {
+export async function getLinkedWorkspaces(client: Client, options?: RequestOptions): Promise<GetLinkedWorkspaces> {
   const config: SendRequestOptions<GetLinkedWorkspaces> = {
     url: '/rest/security/1.0/linkedWorkspaces',
     method: 'GET',
     schema: GetLinkedWorkspacesSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -68,11 +79,13 @@ export async function getLinkedWorkspaces(client: Client): Promise<GetLinkedWork
 export async function getLinkedWorkspaceById(
   client: Client,
   parameters: GetLinkedWorkspaceByIdParameters,
+  options?: RequestOptions,
 ): Promise<GetLinkedWorkspaceById> {
   const config: SendRequestOptions<GetLinkedWorkspaceById> = {
     url: `/rest/security/1.0/linkedWorkspaces/${parameters.workspaceId}`,
     method: 'GET',
     schema: GetLinkedWorkspaceByIdSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -96,6 +109,7 @@ export async function getLinkedWorkspaceById(
 export async function submitVulnerabilities(
   client: Client,
   parameters: SubmitVulnerabilitiesParameters,
+  options?: RequestOptions,
 ): Promise<SubmitVulnerabilities> {
   const config: SendRequestOptions<SubmitVulnerabilities> = {
     url: '/rest/security/1.0/bulk',
@@ -107,6 +121,7 @@ export async function submitVulnerabilities(
       providerMetadata: parameters.providerMetadata,
     },
     schema: SubmitVulnerabilitiesSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -127,6 +142,7 @@ export async function submitVulnerabilities(
 export async function deleteVulnerabilitiesByProperty(
   client: Client,
   parameters: DeleteVulnerabilitiesByProperty,
+  options?: RequestOptions,
 ): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: '/rest/security/1.0/bulkByProperties',
@@ -135,6 +151,7 @@ export async function deleteVulnerabilitiesByProperty(
       accountId: parameters.accountId,
       createdBy: parameters.createdBy,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -148,11 +165,13 @@ export async function deleteVulnerabilitiesByProperty(
 export async function getVulnerabilityById(
   client: Client,
   parameters: GetVulnerabilityByIdParameters,
+  options?: RequestOptions,
 ): Promise<GetVulnerabilityById> {
   const config: SendRequestOptions<GetVulnerabilityById> = {
     url: `/rest/security/1.0/vulnerability/${parameters.vulnerabilityId}`,
     method: 'GET',
     schema: GetVulnerabilityByIdSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -164,10 +183,15 @@ export async function getVulnerabilityById(
  * Deletion is performed asynchronously. The GET vulnerability endpoint can be used to confirm that data has been
  * deleted successfully (if needed).
  */
-export async function deleteVulnerabilityById(client: Client, parameters: DeleteVulnerabilityById): Promise<void> {
+export async function deleteVulnerabilityById(
+  client: Client,
+  parameters: DeleteVulnerabilityById,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/security/1.0/vulnerability/${parameters.vulnerabilityId}`,
     method: 'DELETE',
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

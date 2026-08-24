@@ -1,4 +1,5 @@
 import type { AccessibleResource, OAuth2TokenResponse } from './types.js';
+import type { FetchLike } from '../schemas/clientConfig.js';
 import { OAuthError } from '../errors/index.js';
 
 const AUTHORIZE_URL = 'https://auth.atlassian.com/authorize';
@@ -26,11 +27,12 @@ function mapTokenResponse(data: RawTokenResponse): OAuth2TokenResponse {
 }
 
 /** `fetch` does not reject on a non-2xx status, so the status is checked here and turned into an `OAuthError`. */
-async function requestJson<T>(url: string, init: RequestInit): Promise<T> {
+async function requestJson<T>(url: string, init: RequestInit, fetchImpl?: FetchLike): Promise<T> {
   let response: Response;
 
   try {
-    response = await fetch(url, init);
+    // By name, not through a variable: a detached `window.fetch` throws "Illegal invocation" in a browser.
+    response = await (fetchImpl ? fetchImpl(url, init) : fetch(url, init));
   } catch (err) {
     throw new OAuthError(`Request to ${url} failed before a response arrived`, { cause: err });
   }
@@ -90,6 +92,8 @@ export async function exchangeAuthorizationCode(params: {
   clientSecret: string;
   code: string;
   redirectUri: string;
+  /** The `fetch` to reach Atlassian by. Defaults to the global one. */
+  fetch?: FetchLike;
 }): Promise<OAuth2TokenResponse> {
   const data = await requestJson<RawTokenResponse>(TOKEN_URL, {
     method: 'POST',
@@ -101,7 +105,7 @@ export async function exchangeAuthorizationCode(params: {
       code: params.code,
       redirect_uri: params.redirectUri,
     }),
-  });
+  }, params.fetch);
 
   return mapTokenResponse(data);
 }
@@ -118,6 +122,8 @@ export async function refreshOAuth2Token(params: {
   clientId: string;
   clientSecret: string;
   refreshToken: string;
+  /** The `fetch` to reach Atlassian by. Defaults to the global one. */
+  fetch?: FetchLike;
 }): Promise<OAuth2TokenResponse> {
   const data = await requestJson<RawTokenResponse>(TOKEN_URL, {
     method: 'POST',
@@ -128,19 +134,19 @@ export async function refreshOAuth2Token(params: {
       client_secret: params.clientSecret,
       refresh_token: params.refreshToken,
     }),
-  });
+  }, params.fetch);
 
   return mapTokenResponse(data);
 }
 
 /**
- * List the Confluence sites this access token can reach. The `id` of an entry is its cloud id.
+ * List the sites this access token can reach. The `id` of an entry is its cloud id.
  *
  * @public
  */
-export async function getAccessibleResources(accessToken: string): Promise<AccessibleResource[]> {
+export async function getAccessibleResources(accessToken: string, fetchImpl?: FetchLike): Promise<AccessibleResource[]> {
   return requestJson<AccessibleResource[]>(ACCESSIBLE_RESOURCES_URL, {
     method: 'GET',
     headers: { Authorization: `Bearer ${accessToken}`, Accept: 'application/json' },
-  });
+  }, fetchImpl);
 }

@@ -1,6 +1,6 @@
 import { ColumnItemSchema, type ColumnItem } from '../models/columnItem';
 import type { SetIssueNavigatorDefaultColumns } from '../parameters/setIssueNavigatorDefaultColumns';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 import { z } from 'zod';
 
 /**
@@ -9,11 +9,12 @@ import { z } from 'zod';
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-export async function getIssueNavigatorDefaultColumns(client: Client): Promise<ColumnItem[]> {
+export async function getIssueNavigatorDefaultColumns(client: Client, options?: RequestOptions): Promise<ColumnItem[]> {
   const config: SendRequestOptions<ColumnItem[]> = {
     url: '/rest/api/3/settings/columns',
     method: 'GET',
     schema: z.array(ColumnItemSchema),
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -39,6 +40,7 @@ export async function getIssueNavigatorDefaultColumns(client: Client): Promise<C
 export async function setIssueNavigatorDefaultColumns(
   client: Client,
   parameters: SetIssueNavigatorDefaultColumns,
+  options?: RequestOptions,
 ): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: '/rest/api/3/settings/columns',
@@ -46,6 +48,7 @@ export async function setIssueNavigatorDefaultColumns(
     body: {
       columns: parameters.columns,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

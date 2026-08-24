@@ -7,20 +7,25 @@ import type { PartiallyUpdateEpic } from '../parameters/partiallyUpdateEpic';
 import type { MoveIssuesToEpic } from '../parameters/moveIssuesToEpic';
 import type { GetIssuesForEpic } from '../parameters/getIssuesForEpic';
 import type { RankEpics } from '../parameters/rankEpics';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /**
  * Removes issues from epics. The user needs to have the edit issue permission for all issue they want to remove from
  * epics. The maximum number of issues that can be moved in one operation is 50. **Note:** This operation does not work
  * for epics in next-gen projects. Instead, update the issue using `{ fields: { parent: {} } }`
  */
-export async function removeIssuesFromEpic(client: Client, parameters: RemoveIssuesFromEpic): Promise<void> {
+export async function removeIssuesFromEpic(
+  client: Client,
+  parameters: RemoveIssuesFromEpic,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: '/rest/agile/1.0/epic/none/issue',
     method: 'POST',
     body: {
       issues: parameters.issues,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -40,6 +45,7 @@ export async function removeIssuesFromEpic(client: Client, parameters: RemoveIss
 export async function getIssuesWithoutEpic(
   client: Client,
   parameters?: GetIssuesWithoutEpic,
+  options?: RequestOptions,
 ): Promise<SoftwareIssueResults> {
   const config: SendRequestOptions<SoftwareIssueResults> = {
     url: '/rest/software/1.0/epic/none/issue',
@@ -54,6 +60,7 @@ export async function getIssuesWithoutEpic(
       expand: parameters?.expand,
     },
     schema: SoftwareIssueResultsSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -63,11 +70,12 @@ export async function getIssuesWithoutEpic(
  * Returns the epic for a given epic ID. This epic will only be returned if the user has permission to view it.
  * **Note:** This operation does not work for epics in next-gen projects.
  */
-export async function getEpic(client: Client, parameters: GetEpic): Promise<Epic> {
+export async function getEpic(client: Client, parameters: GetEpic, options?: RequestOptions): Promise<Epic> {
   const config: SendRequestOptions<Epic> = {
     url: `/rest/agile/1.0/epic/${parameters.epicIdOrKey}`,
     method: 'GET',
     schema: EpicSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -78,7 +86,11 @@ export async function getEpic(client: Client, parameters: GetEpic): Promise<Epic
  * updated. Valid values for color are `color_1` to `color_9`. **Note:** This operation does not work for epics in
  * next-gen projects.
  */
-export async function partiallyUpdateEpic(client: Client, parameters: PartiallyUpdateEpic): Promise<Epic> {
+export async function partiallyUpdateEpic(
+  client: Client,
+  parameters: PartiallyUpdateEpic,
+  options?: RequestOptions,
+): Promise<Epic> {
   const config: SendRequestOptions<Epic> = {
     url: `/rest/agile/1.0/epic/${parameters.epicIdOrKey}`,
     method: 'POST',
@@ -89,6 +101,7 @@ export async function partiallyUpdateEpic(client: Client, parameters: PartiallyU
       summary: parameters.summary,
     },
     schema: EpicSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -100,13 +113,18 @@ export async function partiallyUpdateEpic(client: Client, parameters: PartiallyU
  * edit issue permission for all issue they want to move and to the epic. The maximum number of issues that can be moved
  * in one operation is 50. **Note:** This operation does not work for epics in next-gen projects.
  */
-export async function moveIssuesToEpic(client: Client, parameters: MoveIssuesToEpic): Promise<void> {
+export async function moveIssuesToEpic(
+  client: Client,
+  parameters: MoveIssuesToEpic,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/agile/1.0/epic/${parameters.epicIdOrKey}/issue`,
     method: 'POST',
     body: {
       issues: parameters.issues,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -123,7 +141,11 @@ export async function moveIssuesToEpic(client: Client, parameters: MoveIssuesToE
  * `parent` JQL field, see [Advanced
  * searching](https://confluence.atlassian.com/x/dAiiLQ#Advancedsearching-fieldsreference-Parent).
  */
-export async function getIssuesForEpic(client: Client, parameters: GetIssuesForEpic): Promise<SoftwareIssueResults> {
+export async function getIssuesForEpic(
+  client: Client,
+  parameters: GetIssuesForEpic,
+  options?: RequestOptions,
+): Promise<SoftwareIssueResults> {
   const config: SendRequestOptions<SoftwareIssueResults> = {
     url: `/rest/software/1.0/epic/${parameters.epicIdOrKey}/issue`,
     method: 'GET',
@@ -137,6 +159,7 @@ export async function getIssuesForEpic(client: Client, parameters: GetIssuesForE
       expand: parameters.expand,
     },
     schema: SoftwareIssueResultsSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -149,7 +172,7 @@ export async function getIssuesForEpic(client: Client, parameters: GetIssuesForE
  *
  * **Note:** This operation does not work for epics in next-gen projects.
  */
-export async function rankEpics(client: Client, parameters: RankEpics): Promise<void> {
+export async function rankEpics(client: Client, parameters: RankEpics, options?: RequestOptions): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/agile/1.0/epic/${parameters.epicIdOrKey}/rank`,
     method: 'PUT',
@@ -158,6 +181,7 @@ export async function rankEpics(client: Client, parameters: RankEpics): Promise<
       rankBeforeEpic: parameters.rankBeforeEpic,
       rankCustomFieldId: parameters.rankCustomFieldId,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

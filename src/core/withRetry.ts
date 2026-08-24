@@ -8,7 +8,7 @@ export interface RetryOptions {
   /** Exponential backoff multiplier. Default: 2. */
   backoffFactor?: number;
   /**
-   * Also retry a 429, waiting out `Retry-After` when Confluence sent one. Off by default: a rate limit asks you to slow
+   * Also retry a 429, waiting out `Retry-After` when the API sent one. Off by default: a rate limit asks you to slow
    * the whole client down, and retrying one call in place papers over that.
    */
   retryRateLimit?: boolean;

@@ -22,7 +22,7 @@ import type { AddIssueTypesToContext } from '../parameters/addIssueTypesToContex
 import type { RemoveIssueTypesFromContext } from '../parameters/removeIssueTypesFromContext';
 import type { AssignProjectsToCustomFieldContext } from '../parameters/assignProjectsToCustomFieldContext';
 import type { RemoveCustomFieldContextFromProjects } from '../parameters/removeCustomFieldContextFromProjects';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /**
  * Returns a [paginated](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#pagination) list of [
@@ -43,6 +43,7 @@ import type { Client, SendRequestOptions } from '#/core';
 export async function getContextsForField(
   client: Client,
   parameters: GetContextsForField,
+  options?: RequestOptions,
 ): Promise<Page<CustomFieldContext>> {
   const config: SendRequestOptions<Page<CustomFieldContext>> = {
     url: `/rest/api/3/field/${parameters.fieldId}/context`,
@@ -55,6 +56,7 @@ export async function getContextsForField(
       maxResults: parameters.maxResults,
     },
     schema: PageCustomFieldContextSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -72,6 +74,7 @@ export async function getContextsForField(
 export async function createCustomFieldContext(
   client: Client,
   parameters: CreateCustomFieldContextParameters,
+  options?: RequestOptions,
 ): Promise<CreateCustomFieldContext> {
   const config: SendRequestOptions<CreateCustomFieldContext> = {
     url: `/rest/api/3/field/${parameters.fieldId}/context`,
@@ -84,6 +87,7 @@ export async function createCustomFieldContext(
       projectIds: parameters.projectIds,
     },
     schema: CreateCustomFieldContextSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -111,6 +115,7 @@ export async function createCustomFieldContext(
 export async function getContextDefaultValues(
   client: Client,
   parameters: GetContextDefaultValues,
+  options?: RequestOptions,
 ): Promise<Page<ContextDefaultValues>> {
   const config: SendRequestOptions<Page<ContextDefaultValues>> = {
     url: `/rest/api/3/field/${parameters.fieldId}/context/defaultValues`,
@@ -122,6 +127,7 @@ export async function getContextDefaultValues(
       maxResults: parameters.maxResults,
     },
     schema: PageContextDefaultValuesSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -138,6 +144,7 @@ export async function getContextDefaultValues(
 export async function getIssueTypeMappingsForContexts(
   client: Client,
   parameters: GetIssueTypeMappingsForContexts,
+  options?: RequestOptions,
 ): Promise<Page<IssueTypeToContextMapping>> {
   const config: SendRequestOptions<Page<IssueTypeToContextMapping>> = {
     url: `/rest/api/3/field/${parameters.fieldId}/context/issuetypemapping`,
@@ -148,6 +155,7 @@ export async function getIssueTypeMappingsForContexts(
       maxResults: parameters.maxResults,
     },
     schema: PageIssueTypeToContextMappingSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -172,6 +180,7 @@ export async function getIssueTypeMappingsForContexts(
 export async function getCustomFieldContextsForProjectsAndIssueTypes(
   client: Client,
   parameters: GetCustomFieldContextsForProjectsAndIssueTypes,
+  options?: RequestOptions,
 ): Promise<Page<ContextForProjectAndIssueType>> {
   const config: SendRequestOptions<Page<ContextForProjectAndIssueType>> = {
     url: `/rest/api/3/field/${parameters.fieldId}/context/mapping`,
@@ -184,6 +193,7 @@ export async function getCustomFieldContextsForProjectsAndIssueTypes(
       mappings: parameters.mappings,
     },
     schema: PageContextForProjectAndIssueTypeSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -194,12 +204,19 @@ export async function getCustomFieldContextsForProjectsAndIssueTypes(
  * to project mappings for a custom field. The result can be filtered by `contextId`. Otherwise, all mappings are
  * returned. Invalid IDs are ignored.
  *
+ * **Note:** Jira is adding support for multiple field contexts per project. On sites where this is enabled, a custom
+ * field can have more than one context associated with the same project, so this operation can return several mappings
+ * that share the same `projectId`, each with a different `contextId`. Do not assume that a project appears at most once
+ * in the response. See [CHANGE-3082](https://developer.atlassian.com/cloud/jira/platform/changelog/#CHANGE-3082) for
+ * more details.
+ *
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
 export async function getProjectContextMapping(
   client: Client,
   parameters: GetProjectContextMapping,
+  options?: RequestOptions,
 ): Promise<Page<CustomFieldContextProjectMapping>> {
   const config: SendRequestOptions<Page<CustomFieldContextProjectMapping>> = {
     url: `/rest/api/3/field/${parameters.fieldId}/context/projectmapping`,
@@ -210,6 +227,7 @@ export async function getProjectContextMapping(
       maxResults: parameters.maxResults,
     },
     schema: PageCustomFieldContextProjectMappingSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -222,7 +240,11 @@ export async function getProjectContextMapping(
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-export async function updateCustomFieldContext(client: Client, parameters: UpdateCustomFieldContext): Promise<void> {
+export async function updateCustomFieldContext(
+  client: Client,
+  parameters: UpdateCustomFieldContext,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/field/${parameters.fieldId}/context/${parameters.contextId}`,
     method: 'PUT',
@@ -230,6 +252,7 @@ export async function updateCustomFieldContext(client: Client, parameters: Updat
       description: parameters.description,
       name: parameters.name,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -245,10 +268,15 @@ export async function updateCustomFieldContext(client: Client, parameters: Updat
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-export async function deleteCustomFieldContext(client: Client, parameters: DeleteCustomFieldContext): Promise<void> {
+export async function deleteCustomFieldContext(
+  client: Client,
+  parameters: DeleteCustomFieldContext,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/field/${parameters.fieldId}/context/${parameters.contextId}`,
     method: 'DELETE',
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -268,13 +296,18 @@ export async function deleteCustomFieldContext(client: Client, parameters: Delet
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-export async function addIssueTypesToContext(client: Client, parameters: AddIssueTypesToContext): Promise<void> {
+export async function addIssueTypesToContext(
+  client: Client,
+  parameters: AddIssueTypesToContext,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/field/${parameters.fieldId}/context/${parameters.contextId}/issuetype`,
     method: 'PUT',
     body: {
       issueTypeIds: parameters.issueTypeIds,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -291,6 +324,7 @@ export async function addIssueTypesToContext(client: Client, parameters: AddIssu
 export async function removeIssueTypesFromContext(
   client: Client,
   parameters: RemoveIssueTypesFromContext,
+  options?: RequestOptions,
 ): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/field/${parameters.fieldId}/context/${parameters.contextId}/issuetype/remove`,
@@ -298,6 +332,7 @@ export async function removeIssueTypesFromContext(
     body: {
       issueTypeIds: parameters.issueTypeIds,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -317,6 +352,7 @@ export async function removeIssueTypesFromContext(
 export async function assignProjectsToCustomFieldContext(
   client: Client,
   parameters: AssignProjectsToCustomFieldContext,
+  options?: RequestOptions,
 ): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/field/${parameters.fieldId}/context/${parameters.contextId}/project`,
@@ -324,6 +360,7 @@ export async function assignProjectsToCustomFieldContext(
     body: {
       projectIds: parameters.projectIds,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -344,6 +381,7 @@ export async function assignProjectsToCustomFieldContext(
 export async function removeCustomFieldContextFromProjects(
   client: Client,
   parameters: RemoveCustomFieldContextFromProjects,
+  options?: RequestOptions,
 ): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/field/${parameters.fieldId}/context/${parameters.contextId}/project/remove`,
@@ -351,6 +389,7 @@ export async function removeCustomFieldContextFromProjects(
     body: {
       projectIds: parameters.projectIds,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

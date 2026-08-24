@@ -4,7 +4,7 @@ import type { UpdateProjectAvatar } from '../parameters/updateProjectAvatar';
 import type { DeleteProjectAvatar } from '../parameters/deleteProjectAvatar';
 import type { CreateProjectAvatar } from '../parameters/createProjectAvatar';
 import type { GetAllProjectAvatars } from '../parameters/getAllProjectAvatars';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /**
  * Sets the avatar displayed for a project.
@@ -16,7 +16,11 @@ import type { Client, SendRequestOptions } from '#/core';
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer projects_ [project permission](https://confluence.atlassian.com/x/yodKLg).
  */
-export async function updateProjectAvatar(client: Client, parameters: UpdateProjectAvatar): Promise<void> {
+export async function updateProjectAvatar(
+  client: Client,
+  parameters: UpdateProjectAvatar,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/project/${parameters.projectIdOrKey}/avatar`,
     method: 'PUT',
@@ -29,6 +33,7 @@ export async function updateProjectAvatar(client: Client, parameters: UpdateProj
       owner: parameters.owner,
       urls: parameters.urls,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -40,10 +45,15 @@ export async function updateProjectAvatar(client: Client, parameters: UpdateProj
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer projects_ [project permission](https://confluence.atlassian.com/x/yodKLg).
  */
-export async function deleteProjectAvatar(client: Client, parameters: DeleteProjectAvatar): Promise<void> {
+export async function deleteProjectAvatar(
+  client: Client,
+  parameters: DeleteProjectAvatar,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/project/${parameters.projectIdOrKey}/avatar/${parameters.id}`,
     method: 'DELETE',
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -60,7 +70,7 @@ export async function deleteProjectAvatar(client: Client, parameters: DeleteProj
  *
  * For example: `curl --request POST `
  *
- * `--user email@example.com:<api_token> `
+ * `--user email@example.com: `
  *
  * `--header 'X-Atlassian-Token: no-check' `
  *
@@ -82,7 +92,11 @@ export async function deleteProjectAvatar(client: Client, parameters: DeleteProj
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer projects_ [project permission](https://confluence.atlassian.com/x/yodKLg).
  */
-export async function createProjectAvatar(client: Client, parameters: CreateProjectAvatar): Promise<Avatar> {
+export async function createProjectAvatar(
+  client: Client,
+  parameters: CreateProjectAvatar,
+  options?: RequestOptions,
+): Promise<Avatar> {
   const config: SendRequestOptions<Avatar> = {
     url: `/rest/api/3/project/${parameters.projectIdOrKey}/avatar2`,
     method: 'POST',
@@ -96,6 +110,7 @@ export async function createProjectAvatar(client: Client, parameters: CreateProj
     },
     body: parameters.body,
     schema: AvatarSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -109,11 +124,16 @@ export async function createProjectAvatar(client: Client, parameters: CreateProj
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** _Browse
  * projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.
  */
-export async function getAllProjectAvatars(client: Client, parameters: GetAllProjectAvatars): Promise<ProjectAvatars> {
+export async function getAllProjectAvatars(
+  client: Client,
+  parameters: GetAllProjectAvatars,
+  options?: RequestOptions,
+): Promise<ProjectAvatars> {
   const config: SendRequestOptions<ProjectAvatars> = {
     url: `/rest/api/3/project/${parameters.projectIdOrKey}/avatars`,
     method: 'GET',
     schema: ProjectAvatarsSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

@@ -8,7 +8,7 @@ import type { RankIssues } from '../parameters/rankIssues';
 import type { GetIssue } from '../parameters/getIssue';
 import type { GetIssueEstimationForBoard as GetIssueEstimationForBoardParameters } from '../parameters/getIssueEstimationForBoard';
 import type { EstimateIssueForBoard as EstimateIssueForBoardParameters } from '../parameters/estimateIssueForBoard';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /**
  * Moves (ranks) issues before or after a given issue. At most 50 issues may be ranked at once.
@@ -18,7 +18,7 @@ import type { Client, SendRequestOptions } from '#/core';
  *
  * If rankCustomFieldId is not defined, the default rank field will be used.
  */
-export async function rankIssues(client: Client, parameters: RankIssues): Promise<void> {
+export async function rankIssues(client: Client, parameters: RankIssues, options?: RequestOptions): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: '/rest/agile/1.0/issue/rank',
     method: 'PUT',
@@ -28,6 +28,7 @@ export async function rankIssues(client: Client, parameters: RankIssues): Promis
       rankBeforeIssue: parameters.rankBeforeIssue,
       rankCustomFieldId: parameters.rankCustomFieldId,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -37,7 +38,7 @@ export async function rankIssues(client: Client, parameters: RankIssues): Promis
  * Returns a single issue, for a given issue ID or issue key. Issues returned from this resource include Agile fields,
  * like sprint, closedSprints, flagged, and epic.
  */
-export async function getIssue(client: Client, parameters: GetIssue): Promise<Issue> {
+export async function getIssue(client: Client, parameters: GetIssue, options?: RequestOptions): Promise<Issue> {
   const config: SendRequestOptions<Issue> = {
     url: `/rest/agile/1.0/issue/${parameters.issueIdOrKey}`,
     method: 'GET',
@@ -47,6 +48,7 @@ export async function getIssue(client: Client, parameters: GetIssue): Promise<Is
       updateHistory: parameters.updateHistory,
     },
     schema: IssueSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -67,6 +69,7 @@ export async function getIssue(client: Client, parameters: GetIssue): Promise<Is
 export async function getIssueEstimationForBoard(
   client: Client,
   parameters: GetIssueEstimationForBoardParameters,
+  options?: RequestOptions,
 ): Promise<GetIssueEstimationForBoard> {
   const config: SendRequestOptions<GetIssueEstimationForBoard> = {
     url: `/rest/agile/1.0/issue/${parameters.issueIdOrKey}/estimation`,
@@ -75,6 +78,7 @@ export async function getIssueEstimationForBoard(
       boardId: parameters.boardId,
     },
     schema: GetIssueEstimationForBoardSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -98,6 +102,7 @@ export async function getIssueEstimationForBoard(
 export async function estimateIssueForBoard(
   client: Client,
   parameters: EstimateIssueForBoardParameters,
+  options?: RequestOptions,
 ): Promise<EstimateIssueForBoard> {
   const config: SendRequestOptions<EstimateIssueForBoard> = {
     url: `/rest/agile/1.0/issue/${parameters.issueIdOrKey}/estimation`,
@@ -109,6 +114,7 @@ export async function estimateIssueForBoard(
       value: parameters.value,
     },
     schema: EstimateIssueForBoardSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

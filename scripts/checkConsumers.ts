@@ -17,7 +17,7 @@
  * Runs on bare `node`; keep the types erasable.
  */
 import { execFileSync } from 'node:child_process';
-import { mkdtempSync, rmSync, writeFileSync, existsSync } from 'node:fs';
+import { mkdtempSync, readFileSync, rmSync, writeFileSync, existsSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -60,15 +60,26 @@ try {
 
   run('npm', ['install', '--no-audit', '--no-fund', '--silent', tarball], workspace);
 
-  const SUBPATHS = ['jira.js', 'jira.js/core', 'jira.js/cloud', 'jira.js/agile', 'jira.js/serviceDesk'];
+  // Read off the manifest rather than listed here, so a new surface is covered by adding its export and nothing else.
+  const SUBPATHS = Object.keys(JSON.parse(readFileSync(join(root, 'package.json'), 'utf8')).exports)
+    .filter(entry => entry !== './browser' && entry !== './package.json')
+    .map(entry => (entry === '.' ? 'jira.js' : `jira.js/${entry.slice(2)}`));
+
+  const TYPES_ONLY: string[] = [];
 
   const runtimeProbe = [
     ...SUBPATHS.map((subpath, index) => `import * as m${index} from '${subpath}';`),
     `const surfaces = [${SUBPATHS.map((_, index) => `m${index}`).join(', ')}];`,
     `const names = ${JSON.stringify(SUBPATHS)};`,
+    `const typesOnly = ${JSON.stringify(TYPES_ONLY)};`,
     'surfaces.forEach((surface, index) => {',
-    '  if (Object.keys(surface).length === 0) {',
+    '  const empty = Object.keys(surface).length === 0;',
+    '  if (empty && !typesOnly.includes(names[index])) {',
     "    console.error(`empty namespace from ${names[index]}`);",
+    '    process.exitCode = 1;',
+    '  }',
+    '  if (!empty && typesOnly.includes(names[index])) {',
+    "    console.error(`${names[index]} is types only but exports runtime values`);",
     '    process.exitCode = 1;',
     '  }',
     '});',
@@ -90,10 +101,13 @@ try {
     "import { createCloudClient, isNotFoundError } from 'jira.js';",
     "import { createClient } from 'jira.js/core';",
     "import type { Client } from 'jira.js/core';",
+    "import type { WebhookHeaders, WebhookPayload } from 'jira.js/webhooks';",
     '',
     "const client: Client = createClient({ host: 'https://example.atlassian.net' });",
     'export const jira = createCloudClient(client);',
     'export const predicate: (value: unknown) => boolean = isNotFoundError;',
+    'export const identify = (headers: WebhookHeaders, payload: WebhookPayload): string =>',
+    "  `${payload.webhookEvent} ${headers['x-atlassian-webhook-identifier']}`;",
   ].join('\n');
 
   writeFileSync(join(workspace, 'probe.ts'), `${typeProbe}\n`);
@@ -119,6 +133,46 @@ try {
       const output = ((error as { stdout?: string }).stdout ?? (error as Error).message).trim();
 
       problems.push(`types do not resolve under moduleResolution "${moduleResolution}":\n${output}`);
+    }
+  }
+
+  const declared: string | undefined = JSON.parse(readFileSync(join(root, 'package.json'), 'utf8'))
+    .peerDependencies?.typescript;
+  const floor = declared?.replace(/^\D+/, '');
+
+  if (floor === undefined || floor === '') {
+    problems.push('package.json declares no minimum TypeScript under peerDependencies.');
+  } else {
+    // The loops above run this repository's own compiler with skipLibCheck, which is what most consumers have. Neither
+    // half of that is a given: a consumer pins an older TypeScript, and one who turns lib checking on reads our
+    // declarations rather than skipping them, where a lib type that changed shape — ArrayBufferView became generic in
+    // 5.7 — is an error rather than a silence.
+    writeFileSync(
+      join(workspace, 'tsconfig.floor.json'),
+      `${JSON.stringify(
+        {
+          compilerOptions: {
+            module: 'esnext',
+            moduleResolution: 'bundler',
+            noEmit: true,
+            skipLibCheck: false,
+            strict: true,
+            target: 'es2022',
+          },
+          files: ['probe.ts'],
+        },
+        null,
+        2,
+      )}\n`,
+    );
+
+    try {
+      run('npm', ['install', '--no-audit', '--no-fund', '--silent', '--no-save', `typescript@${floor}`], workspace);
+      run('node', [join(workspace, 'node_modules', 'typescript', 'bin', 'tsc'), '-p', 'tsconfig.floor.json'], workspace);
+    } catch (error) {
+      const output = ((error as { stdout?: string }).stdout ?? (error as Error).message).trim();
+
+      problems.push(`TypeScript ${floor}, the minimum package.json declares, cannot read the declarations:\n${output}`);
     }
   }
 } finally {

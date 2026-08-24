@@ -30,8 +30,8 @@ export interface UndocumentedKeys extends DriftLocation {
  * A value outside the set the schema lists for a field.
  *
  * The counterpart of an undocumented key, and every bit as much a gap in the specification rather than breakage: the
- * field is described, its list of values is not complete. Kept apart from the other kind because the repair differs — a
- * missing key has to be added to a schema, a missing value to an enum.
+ * field is described, its list of values is not complete. Kept apart from the other kind because the repair differs —
+ * a missing key has to be added to a schema, a missing value to an enum.
  */
 export interface UndocumentedValue extends DriftLocation {
   kind: 'value';

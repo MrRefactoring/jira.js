@@ -33,7 +33,7 @@ import type { GetEditIssueMeta } from '../parameters/getEditIssueMeta';
 import type { Notify } from '../parameters/notify';
 import type { GetTransitions } from '../parameters/getTransitions';
 import type { DoTransition } from '../parameters/doTransition';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /**
  * Bulk fetch changelogs for multiple issues and filter by fields
@@ -51,7 +51,11 @@ import type { Client, SendRequestOptions } from '#/core';
  * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
  *   to view the issues.
  */
-export async function getBulkChangelogs(client: Client, parameters: GetBulkChangelogs): Promise<BulkChangelogResponse> {
+export async function getBulkChangelogs(
+  client: Client,
+  parameters: GetBulkChangelogs,
+  options?: RequestOptions,
+): Promise<BulkChangelogResponse> {
   const config: SendRequestOptions<BulkChangelogResponse> = {
     url: '/rest/api/3/changelog/bulkfetch',
     method: 'POST',
@@ -62,6 +66,7 @@ export async function getBulkChangelogs(client: Client, parameters: GetBulkChang
       nextPageToken: parameters.nextPageToken,
     },
     schema: BulkChangelogResponseSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -92,7 +97,11 @@ export async function getBulkChangelogs(client: Client, parameters: GetBulkChang
  * projects_ and _Create issues_ [project permissions](https://confluence.atlassian.com/x/yodKLg) for the project in
  * which the issue or subtask is created.
  */
-export async function createIssue(client: Client, parameters: CreateIssue): Promise<CreatedIssue> {
+export async function createIssue(
+  client: Client,
+  parameters: CreateIssue,
+  options?: RequestOptions,
+): Promise<CreatedIssue> {
   if (typeof parameters.fields?.description === 'string' || typeof parameters.fields?.environment === 'string') {
     return client.sendRequest({
       url: '/rest/api/2/issue',
@@ -105,6 +114,7 @@ export async function createIssue(client: Client, parameters: CreateIssue): Prom
         transition: parameters.transition,
         update: parameters.update,
       },
+      signal: options?.signal,
     });
   }
 
@@ -122,6 +132,7 @@ export async function createIssue(client: Client, parameters: CreateIssue): Prom
       update: parameters.update,
     },
     schema: CreatedIssueSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -150,7 +161,11 @@ export async function createIssue(client: Client, parameters: CreateIssue): Prom
  * projects_ and _Create issues_ [project permissions](https://confluence.atlassian.com/x/yodKLg) for the project in
  * which each issue or subtask is created.
  */
-export async function createIssues(client: Client, parameters: CreateIssues): Promise<CreatedIssues> {
+export async function createIssues(
+  client: Client,
+  parameters: CreateIssues,
+  options?: RequestOptions,
+): Promise<CreatedIssues> {
   const config: SendRequestOptions<CreatedIssues> = {
     url: '/rest/api/3/issue/bulk',
     method: 'POST',
@@ -158,13 +173,28 @@ export async function createIssues(client: Client, parameters: CreateIssues): Pr
       issueUpdates: parameters.issueUpdates,
     },
     schema: CreatedIssuesSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
 }
 
 /**
- * Returns the details for a set of requested issues. You can request up to 100 issues.
+ * Returns the details for a set of requested issues.
+ *
+ * By default you can request up to 100 issues in a single call. You can request up to 1000 issues in a single call when
+ * the request is shaped so that it can be served efficiently, that is, when _all_ of the following are true:
+ *
+ * - The `fields` parameter explicitly names at least one field to include — a request that contains only exclusions is
+ *   **not** eligible, and neither are the `*all` and `*navigable` wildcards or the default navigable field set, because
+ *   the number of resolved fields depends on the site's configuration;
+ * - No more than 100 fields are explicitly included;
+ * - None of the included fields returns multiple values (for example `comment`, `worklog`, or `attachment`); and
+ * - The `expand` parameter does not include `changelog`, `editmeta`, `operations`, `renderedFields`, `transitions`, or
+ *   `versionedRepresentations`.
+ *
+ * Requests that do not meet all of these conditions can include at most 100 issues; larger requests are rejected with a
+ * 400 error.
  *
  * Each issue is identified by its ID or key, however, if the identifier doesn't match an issue, a case-insensitive
  * search and check for moved issues is performed. If a matching issue is found its details are returned, a 302 or other
@@ -183,7 +213,11 @@ export async function createIssues(client: Client, parameters: CreateIssues): Pr
  * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
  *   to view the issue.
  */
-export async function bulkFetchIssues(client: Client, parameters: BulkFetchIssues): Promise<BulkIssueResults> {
+export async function bulkFetchIssues(
+  client: Client,
+  parameters: BulkFetchIssues,
+  options?: RequestOptions,
+): Promise<BulkIssueResults> {
   const config: SendRequestOptions<BulkIssueResults> = {
     url: '/rest/api/3/issue/bulkfetch',
     method: 'POST',
@@ -195,6 +229,7 @@ export async function bulkFetchIssues(client: Client, parameters: BulkFetchIssue
       properties: parameters.properties,
     },
     schema: BulkIssueResultsSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -215,6 +250,7 @@ export async function bulkFetchIssues(client: Client, parameters: BulkFetchIssue
 export async function getCreateIssueMetaIssueTypes(
   client: Client,
   parameters: GetCreateIssueMetaIssueTypes,
+  options?: RequestOptions,
 ): Promise<PageOfCreateMetaIssueTypes> {
   const config: SendRequestOptions<PageOfCreateMetaIssueTypes> = {
     url: `/rest/api/3/issue/createmeta/${parameters.projectIdOrKey}/issuetypes`,
@@ -224,6 +260,7 @@ export async function getCreateIssueMetaIssueTypes(
       maxResults: parameters.maxResults,
     },
     schema: PageOfCreateMetaIssueTypesSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -244,6 +281,7 @@ export async function getCreateIssueMetaIssueTypes(
 export async function getCreateIssueMetaIssueTypeId(
   client: Client,
   parameters: GetCreateIssueMetaIssueTypeId,
+  options?: RequestOptions,
 ): Promise<PageOfCreateMetaIssueTypeWithField> {
   const config: SendRequestOptions<PageOfCreateMetaIssueTypeWithField> = {
     url: `/rest/api/3/issue/createmeta/${parameters.projectIdOrKey}/issuetypes/${parameters.issueTypeId}`,
@@ -253,6 +291,7 @@ export async function getCreateIssueMetaIssueTypeId(
       maxResults: parameters.maxResults,
     },
     schema: PageOfCreateMetaIssueTypeWithFieldSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -274,7 +313,7 @@ export async function getCreateIssueMetaIssueTypeId(
  * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
  *   to view the issue.
  */
-export async function getIssue(client: Client, parameters: GetIssue): Promise<Issue> {
+export async function getIssue(client: Client, parameters: GetIssue, options?: RequestOptions): Promise<Issue> {
   const config: SendRequestOptions<Issue> = {
     url: `/rest/api/3/issue/${parameters.issueIdOrKey}`,
     method: 'GET',
@@ -287,6 +326,7 @@ export async function getIssue(client: Client, parameters: GetIssue): Promise<Is
       failFast: parameters.failFast,
     },
     schema: IssueSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -324,7 +364,7 @@ export async function getIssue(client: Client, parameters: GetIssue): Promise<Is
  * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
  *   to view the issue.
  */
-export async function editIssue(client: Client, parameters: EditIssue): Promise<void> {
+export async function editIssue(client: Client, parameters: EditIssue, options?: RequestOptions): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/issue/${parameters.issueIdOrKey}`,
     method: 'PUT',
@@ -342,6 +382,7 @@ export async function editIssue(client: Client, parameters: EditIssue): Promise<
       transition: parameters.transition,
       update: parameters.update,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -362,13 +403,14 @@ export async function editIssue(client: Client, parameters: EditIssue): Promise<
  * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
  *   to view the issue.
  */
-export async function deleteIssue(client: Client, parameters: DeleteIssue): Promise<void> {
+export async function deleteIssue(client: Client, parameters: DeleteIssue, options?: RequestOptions): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/issue/${parameters.issueIdOrKey}`,
     method: 'DELETE',
     searchParams: {
       deleteSubtasks: parameters.deleteSubtasks,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -392,7 +434,7 @@ export async function deleteIssue(client: Client, parameters: DeleteIssue): Prom
  * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
  *   to view the issue.
  */
-export async function assignIssue(client: Client, parameters: AssignIssue): Promise<void> {
+export async function assignIssue(client: Client, parameters: AssignIssue, options?: RequestOptions): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/issue/${parameters.issueIdOrKey}/assignee`,
     method: 'PUT',
@@ -412,6 +454,7 @@ export async function assignIssue(client: Client, parameters: AssignIssue): Prom
       self: parameters.self,
       timeZone: parameters.timeZone,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -430,7 +473,11 @@ export async function assignIssue(client: Client, parameters: AssignIssue): Prom
  * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
  *   to view the issue.
  */
-export async function getChangeLogs(client: Client, parameters: GetChangeLogs): Promise<Page<Changelog>> {
+export async function getChangeLogs(
+  client: Client,
+  parameters: GetChangeLogs,
+  options?: RequestOptions,
+): Promise<Page<Changelog>> {
   const config: SendRequestOptions<Page<Changelog>> = {
     url: `/rest/api/3/issue/${parameters.issueIdOrKey}/changelog`,
     method: 'GET',
@@ -439,6 +486,7 @@ export async function getChangeLogs(client: Client, parameters: GetChangeLogs): 
       maxResults: parameters.maxResults,
     },
     schema: PageChangelogSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -456,7 +504,11 @@ export async function getChangeLogs(client: Client, parameters: GetChangeLogs): 
  * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
  *   to view the issue.
  */
-export async function getChangeLogsByIds(client: Client, parameters: GetChangeLogsByIds): Promise<PageOfChangelogs> {
+export async function getChangeLogsByIds(
+  client: Client,
+  parameters: GetChangeLogsByIds,
+  options?: RequestOptions,
+): Promise<PageOfChangelogs> {
   const config: SendRequestOptions<PageOfChangelogs> = {
     url: `/rest/api/3/issue/${parameters.issueIdOrKey}/changelog/list`,
     method: 'POST',
@@ -464,6 +516,7 @@ export async function getChangeLogsByIds(client: Client, parameters: GetChangeLo
       changelogIds: parameters.changelogIds,
     },
     schema: PageOfChangelogsSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -522,7 +575,11 @@ export async function getChangeLogsByIds(client: Client, parameters: GetChangeLo
  * Note: For any fields to be editable the user must have the _Edit issues_ [project
  * permission](https://confluence.atlassian.com/x/yodKLg) for the issue.
  */
-export async function getEditIssueMeta(client: Client, parameters: GetEditIssueMeta): Promise<IssueUpdateMetadata> {
+export async function getEditIssueMeta(
+  client: Client,
+  parameters: GetEditIssueMeta,
+  options?: RequestOptions,
+): Promise<IssueUpdateMetadata> {
   const config: SendRequestOptions<IssueUpdateMetadata> = {
     url: `/rest/api/3/issue/${parameters.issueIdOrKey}/editmeta`,
     method: 'GET',
@@ -531,6 +588,7 @@ export async function getEditIssueMeta(client: Client, parameters: GetEditIssueM
       overrideEditableFlag: parameters.overrideEditableFlag,
     },
     schema: IssueUpdateMetadataSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -546,7 +604,7 @@ export async function getEditIssueMeta(client: Client, parameters: GetEditIssueM
  * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
  *   to view the issue.
  */
-export async function notify(client: Client, parameters: Notify): Promise<void> {
+export async function notify(client: Client, parameters: Notify, options?: RequestOptions): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/issue/${parameters.issueIdOrKey}/notify`,
     method: 'POST',
@@ -557,6 +615,7 @@ export async function notify(client: Client, parameters: Notify): Promise<void> 
       textBody: parameters.textBody,
       to: parameters.to,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -582,7 +641,11 @@ export async function notify(client: Client, parameters: Notify): Promise<void> 
  * However, if the user does not have the _Transition issues_ [ project
  * permission](https://confluence.atlassian.com/x/yodKLg) the response will not list any transitions.
  */
-export async function getTransitions(client: Client, parameters: GetTransitions): Promise<Transitions> {
+export async function getTransitions(
+  client: Client,
+  parameters: GetTransitions,
+  options?: RequestOptions,
+): Promise<Transitions> {
   const config: SendRequestOptions<Transitions> = {
     url: `/rest/api/3/issue/${parameters.issueIdOrKey}/transitions`,
     method: 'GET',
@@ -594,6 +657,7 @@ export async function getTransitions(client: Client, parameters: GetTransitions)
       sortByOpsBarAndStatus: parameters.sortByOpsBarAndStatus,
     },
     schema: TransitionsSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -616,7 +680,7 @@ export async function getTransitions(client: Client, parameters: GetTransitions)
  * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
  *   to view the issue.
  */
-export async function doTransition(client: Client, parameters: DoTransition): Promise<void> {
+export async function doTransition(client: Client, parameters: DoTransition, options?: RequestOptions): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/issue/${parameters.issueIdOrKey}/transitions`,
     method: 'POST',
@@ -627,6 +691,7 @@ export async function doTransition(client: Client, parameters: DoTransition): Pr
       transition: parameters.transition,
       update: parameters.update,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

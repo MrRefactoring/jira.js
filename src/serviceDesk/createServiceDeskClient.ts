@@ -1,4 +1,4 @@
-import { type ClientConfig, type Client, createClient, type Buffer } from '#/core';
+import { type ClientConfig, type Client, type RequestOptions, createClient, type Buffer } from '#/core';
 import * as assets from './api/assets';
 import * as customer from './api/customer';
 import * as info from './api/info';
@@ -30,6 +30,7 @@ import type {
   RemoveOrganization,
   GetCustomerRequests,
   CreateCustomerRequest,
+  ValidateCustomerRequest,
   GetCustomerRequestByIdOrKey,
   GetApprovals,
   GetApprovalById,
@@ -77,6 +78,7 @@ import type {
   PropertyKeys,
   EntityProperty,
   CustomerRequest,
+  RequestValidationResult,
   Approval,
   Attachment,
   AttachmentCreateResult,
@@ -99,120 +101,173 @@ export function createServiceDeskClient(clientConfig: ClientConfig | Client) {
 
   return {
     assets: {
-      getAssetsWorkspaces: (parameters?: GetAssetsWorkspaces): Promise<Page<AssetsWorkspace>> =>
-        assets.getAssetsWorkspaces(client, parameters),
-      getInsightWorkspaces: (parameters?: GetInsightWorkspaces): Promise<Page<InsightWorkspace>> =>
-        assets.getInsightWorkspaces(client, parameters),
+      getAssetsWorkspaces: (
+        parameters?: GetAssetsWorkspaces,
+        options?: RequestOptions,
+      ): Promise<Page<AssetsWorkspace>> => assets.getAssetsWorkspaces(client, parameters, options),
+      getInsightWorkspaces: (
+        parameters?: GetInsightWorkspaces,
+        options?: RequestOptions,
+      ): Promise<Page<InsightWorkspace>> => assets.getInsightWorkspaces(client, parameters, options),
     },
     customer: {
-      createCustomer: (parameters: CreateCustomer): Promise<User> => customer.createCustomer(client, parameters),
-      createCustomerSkippingPermissionCheck: (parameters: CreateCustomerSkippingPermissionCheck): Promise<User> =>
-        customer.createCustomerSkippingPermissionCheck(client, parameters),
-      revokePortalOnlyAccessForUser: (parameters: RevokePortalOnlyAccessForUser): Promise<void> =>
-        customer.revokePortalOnlyAccessForUser(client, parameters),
+      createCustomer: (parameters: CreateCustomer, options?: RequestOptions): Promise<User> =>
+        customer.createCustomer(client, parameters, options),
+      createCustomerSkippingPermissionCheck: (
+        parameters: CreateCustomerSkippingPermissionCheck,
+        options?: RequestOptions,
+      ): Promise<User> => customer.createCustomerSkippingPermissionCheck(client, parameters, options),
+      revokePortalOnlyAccessForUser: (
+        parameters: RevokePortalOnlyAccessForUser,
+        options?: RequestOptions,
+      ): Promise<void> => customer.revokePortalOnlyAccessForUser(client, parameters, options),
     },
     info: {
-      getInfo: (): Promise<SoftwareInfo> => info.getInfo(client),
+      getInfo: (options?: RequestOptions): Promise<SoftwareInfo> => info.getInfo(client, options),
     },
     knowledgebase: {
-      getArticles: (parameters: GetArticles): Promise<Page<Article>> => knowledgebase.getArticles(client, parameters),
-      viewArticle: (parameters: ViewArticle): Promise<string> => knowledgebase.viewArticle(client, parameters),
+      getArticles: (parameters: GetArticles, options?: RequestOptions): Promise<Page<Article>> =>
+        knowledgebase.getArticles(client, parameters, options),
+      viewArticle: (parameters: ViewArticle, options?: RequestOptions): Promise<string> =>
+        knowledgebase.viewArticle(client, parameters, options),
     },
     organization: {
-      getOrganizations: (parameters?: GetOrganizations): Promise<Page<Organization>> =>
-        organization.getOrganizations(client, parameters),
-      createOrganization: (parameters: CreateOrganization): Promise<Organization> =>
-        organization.createOrganization(client, parameters),
-      getOrganization: (parameters: GetOrganization): Promise<Organization> =>
-        organization.getOrganization(client, parameters),
-      deleteOrganization: (parameters: DeleteOrganization): Promise<void> =>
-        organization.deleteOrganization(client, parameters),
-      getPropertiesKeys: (parameters: GetPropertiesKeys): Promise<PropertyKeys> =>
-        organization.getPropertiesKeys(client, parameters),
-      getProperty: (parameters: GetProperty): Promise<EntityProperty> => organization.getProperty(client, parameters),
-      setProperty: (parameters: SetProperty): Promise<void> => organization.setProperty(client, parameters),
-      deleteProperty: (parameters: DeleteProperty): Promise<void> => organization.deleteProperty(client, parameters),
-      getUsersInOrganization: (parameters: GetUsersInOrganization): Promise<Page<User>> =>
-        organization.getUsersInOrganization(client, parameters),
-      addUsersToOrganization: (parameters: AddUsersToOrganization): Promise<void> =>
-        organization.addUsersToOrganization(client, parameters),
-      removeUsersFromOrganization: (parameters: RemoveUsersFromOrganization): Promise<void> =>
-        organization.removeUsersFromOrganization(client, parameters),
-      getServiceDeskOrganizations: (parameters: GetServiceDeskOrganizations): Promise<Page<Organization>> =>
-        organization.getServiceDeskOrganizations(client, parameters),
-      addOrganization: (parameters: AddOrganization): Promise<void> => organization.addOrganization(client, parameters),
-      removeOrganization: (parameters: RemoveOrganization): Promise<void> =>
-        organization.removeOrganization(client, parameters),
+      getOrganizations: (parameters?: GetOrganizations, options?: RequestOptions): Promise<Page<Organization>> =>
+        organization.getOrganizations(client, parameters, options),
+      createOrganization: (parameters: CreateOrganization, options?: RequestOptions): Promise<Organization> =>
+        organization.createOrganization(client, parameters, options),
+      getOrganization: (parameters: GetOrganization, options?: RequestOptions): Promise<Organization> =>
+        organization.getOrganization(client, parameters, options),
+      deleteOrganization: (parameters: DeleteOrganization, options?: RequestOptions): Promise<void> =>
+        organization.deleteOrganization(client, parameters, options),
+      getPropertiesKeys: (parameters: GetPropertiesKeys, options?: RequestOptions): Promise<PropertyKeys> =>
+        organization.getPropertiesKeys(client, parameters, options),
+      getProperty: (parameters: GetProperty, options?: RequestOptions): Promise<EntityProperty> =>
+        organization.getProperty(client, parameters, options),
+      setProperty: (parameters: SetProperty, options?: RequestOptions): Promise<void> =>
+        organization.setProperty(client, parameters, options),
+      deleteProperty: (parameters: DeleteProperty, options?: RequestOptions): Promise<void> =>
+        organization.deleteProperty(client, parameters, options),
+      getUsersInOrganization: (parameters: GetUsersInOrganization, options?: RequestOptions): Promise<Page<User>> =>
+        organization.getUsersInOrganization(client, parameters, options),
+      addUsersToOrganization: (parameters: AddUsersToOrganization, options?: RequestOptions): Promise<void> =>
+        organization.addUsersToOrganization(client, parameters, options),
+      removeUsersFromOrganization: (parameters: RemoveUsersFromOrganization, options?: RequestOptions): Promise<void> =>
+        organization.removeUsersFromOrganization(client, parameters, options),
+      getServiceDeskOrganizations: (
+        parameters: GetServiceDeskOrganizations,
+        options?: RequestOptions,
+      ): Promise<Page<Organization>> => organization.getServiceDeskOrganizations(client, parameters, options),
+      addOrganization: (parameters: AddOrganization, options?: RequestOptions): Promise<void> =>
+        organization.addOrganization(client, parameters, options),
+      removeOrganization: (parameters: RemoveOrganization, options?: RequestOptions): Promise<void> =>
+        organization.removeOrganization(client, parameters, options),
     },
     request: {
-      getCustomerRequests: (parameters?: GetCustomerRequests): Promise<Page<CustomerRequest>> =>
-        request.getCustomerRequests(client, parameters),
-      createCustomerRequest: (parameters: CreateCustomerRequest): Promise<CustomerRequest> =>
-        request.createCustomerRequest(client, parameters),
-      getCustomerRequestByIdOrKey: (parameters: GetCustomerRequestByIdOrKey): Promise<CustomerRequest> =>
-        request.getCustomerRequestByIdOrKey(client, parameters),
-      getApprovals: (parameters: GetApprovals): Promise<Page<Approval>> => request.getApprovals(client, parameters),
-      getApprovalById: (parameters: GetApprovalById): Promise<Approval> => request.getApprovalById(client, parameters),
-      answerApproval: (parameters: AnswerApproval): Promise<Approval> => request.answerApproval(client, parameters),
-      getAttachmentsForRequest: (parameters: GetAttachmentsForRequest): Promise<Page<Attachment>> =>
-        request.getAttachmentsForRequest(client, parameters),
-      createCommentWithAttachment: (parameters: CreateCommentWithAttachment): Promise<AttachmentCreateResult> =>
-        request.createCommentWithAttachment(client, parameters),
-      getAttachmentContent: (parameters: GetAttachmentContent): Promise<Buffer> =>
-        request.getAttachmentContent(client, parameters),
-      getAttachmentThumbnail: (parameters: GetAttachmentThumbnail): Promise<Buffer> =>
-        request.getAttachmentThumbnail(client, parameters),
-      getRequestComments: (parameters: GetRequestComments): Promise<Page<Comment>> =>
-        request.getRequestComments(client, parameters),
-      createRequestComment: (parameters: CreateRequestComment): Promise<Comment> =>
-        request.createRequestComment(client, parameters),
-      getRequestCommentById: (parameters: GetRequestCommentById): Promise<Comment> =>
-        request.getRequestCommentById(client, parameters),
-      getSubscriptionStatus: (parameters: GetSubscriptionStatus): Promise<RequestNotificationSubscription> =>
-        request.getSubscriptionStatus(client, parameters),
-      subscribe: (parameters: Subscribe): Promise<void> => request.subscribe(client, parameters),
-      unsubscribe: (parameters: Unsubscribe): Promise<void> => request.unsubscribe(client, parameters),
-      getRequestParticipants: (parameters: GetRequestParticipants): Promise<Page<User>> =>
-        request.getRequestParticipants(client, parameters),
-      addRequestParticipants: (parameters: AddRequestParticipants): Promise<Page<User>> =>
-        request.addRequestParticipants(client, parameters),
-      removeRequestParticipants: (parameters: RemoveRequestParticipants): Promise<Page<User>> =>
-        request.removeRequestParticipants(client, parameters),
-      getSlaInformation: (parameters: GetSlaInformation): Promise<Page<SlaInformation>> =>
-        request.getSlaInformation(client, parameters),
-      getSlaInformationById: (parameters: GetSlaInformationById): Promise<SlaInformation> =>
-        request.getSlaInformationById(client, parameters),
-      getCustomerRequestStatus: (parameters: GetCustomerRequestStatus): Promise<Page<CustomerRequestStatus>> =>
-        request.getCustomerRequestStatus(client, parameters),
-      getCustomerTransitions: (parameters: GetCustomerTransitions): Promise<Page<CustomerTransition>> =>
-        request.getCustomerTransitions(client, parameters),
-      performCustomerTransition: (parameters: PerformCustomerTransition): Promise<void> =>
-        request.performCustomerTransition(client, parameters),
+      getCustomerRequests: (
+        parameters?: GetCustomerRequests,
+        options?: RequestOptions,
+      ): Promise<Page<CustomerRequest>> => request.getCustomerRequests(client, parameters, options),
+      createCustomerRequest: (parameters: CreateCustomerRequest, options?: RequestOptions): Promise<CustomerRequest> =>
+        request.createCustomerRequest(client, parameters, options),
+      validateCustomerRequest: (
+        parameters: ValidateCustomerRequest,
+        options?: RequestOptions,
+      ): Promise<RequestValidationResult> => request.validateCustomerRequest(client, parameters, options),
+      getCustomerRequestByIdOrKey: (
+        parameters: GetCustomerRequestByIdOrKey,
+        options?: RequestOptions,
+      ): Promise<CustomerRequest> => request.getCustomerRequestByIdOrKey(client, parameters, options),
+      getApprovals: (parameters: GetApprovals, options?: RequestOptions): Promise<Page<Approval>> =>
+        request.getApprovals(client, parameters, options),
+      getApprovalById: (parameters: GetApprovalById, options?: RequestOptions): Promise<Approval> =>
+        request.getApprovalById(client, parameters, options),
+      answerApproval: (parameters: AnswerApproval, options?: RequestOptions): Promise<Approval> =>
+        request.answerApproval(client, parameters, options),
+      getAttachmentsForRequest: (
+        parameters: GetAttachmentsForRequest,
+        options?: RequestOptions,
+      ): Promise<Page<Attachment>> => request.getAttachmentsForRequest(client, parameters, options),
+      createCommentWithAttachment: (
+        parameters: CreateCommentWithAttachment,
+        options?: RequestOptions,
+      ): Promise<AttachmentCreateResult> => request.createCommentWithAttachment(client, parameters, options),
+      getAttachmentContent: (parameters: GetAttachmentContent, options?: RequestOptions): Promise<Buffer> =>
+        request.getAttachmentContent(client, parameters, options),
+      getAttachmentThumbnail: (parameters: GetAttachmentThumbnail, options?: RequestOptions): Promise<Buffer> =>
+        request.getAttachmentThumbnail(client, parameters, options),
+      getRequestComments: (parameters: GetRequestComments, options?: RequestOptions): Promise<Page<Comment>> =>
+        request.getRequestComments(client, parameters, options),
+      createRequestComment: (parameters: CreateRequestComment, options?: RequestOptions): Promise<Comment> =>
+        request.createRequestComment(client, parameters, options),
+      getRequestCommentById: (parameters: GetRequestCommentById, options?: RequestOptions): Promise<Comment> =>
+        request.getRequestCommentById(client, parameters, options),
+      getSubscriptionStatus: (
+        parameters: GetSubscriptionStatus,
+        options?: RequestOptions,
+      ): Promise<RequestNotificationSubscription> => request.getSubscriptionStatus(client, parameters, options),
+      subscribe: (parameters: Subscribe, options?: RequestOptions): Promise<void> =>
+        request.subscribe(client, parameters, options),
+      unsubscribe: (parameters: Unsubscribe, options?: RequestOptions): Promise<void> =>
+        request.unsubscribe(client, parameters, options),
+      getRequestParticipants: (parameters: GetRequestParticipants, options?: RequestOptions): Promise<Page<User>> =>
+        request.getRequestParticipants(client, parameters, options),
+      addRequestParticipants: (parameters: AddRequestParticipants, options?: RequestOptions): Promise<Page<User>> =>
+        request.addRequestParticipants(client, parameters, options),
+      removeRequestParticipants: (
+        parameters: RemoveRequestParticipants,
+        options?: RequestOptions,
+      ): Promise<Page<User>> => request.removeRequestParticipants(client, parameters, options),
+      getSlaInformation: (parameters: GetSlaInformation, options?: RequestOptions): Promise<Page<SlaInformation>> =>
+        request.getSlaInformation(client, parameters, options),
+      getSlaInformationById: (parameters: GetSlaInformationById, options?: RequestOptions): Promise<SlaInformation> =>
+        request.getSlaInformationById(client, parameters, options),
+      getCustomerRequestStatus: (
+        parameters: GetCustomerRequestStatus,
+        options?: RequestOptions,
+      ): Promise<Page<CustomerRequestStatus>> => request.getCustomerRequestStatus(client, parameters, options),
+      getCustomerTransitions: (
+        parameters: GetCustomerTransitions,
+        options?: RequestOptions,
+      ): Promise<Page<CustomerTransition>> => request.getCustomerTransitions(client, parameters, options),
+      performCustomerTransition: (parameters: PerformCustomerTransition, options?: RequestOptions): Promise<void> =>
+        request.performCustomerTransition(client, parameters, options),
     },
     servicedesk: {
-      getServiceDesks: (parameters?: GetServiceDesks): Promise<Page<ServiceDesk>> =>
-        servicedesk.getServiceDesks(client, parameters),
-      getServiceDeskById: (parameters: GetServiceDeskById): Promise<ServiceDesk> =>
-        servicedesk.getServiceDeskById(client, parameters),
-      attachTemporaryFile: (parameters: AttachTemporaryFile): Promise<AttachTemporaryFileModel> =>
-        servicedesk.attachTemporaryFile(client, parameters),
-      addCustomers: (parameters: AddCustomers): Promise<void> => servicedesk.addCustomers(client, parameters),
-      addCustomersSkippingPermissionCheck: (parameters: AddCustomersSkippingPermissionCheck): Promise<void> =>
-        servicedesk.addCustomersSkippingPermissionCheck(client, parameters),
-      getServiceDeskArticles: (parameters: GetServiceDeskArticles): Promise<Page<Article>> =>
-        servicedesk.getServiceDeskArticles(client, parameters),
-      getQueues: (parameters: GetQueues): Promise<Page<Queue>> => servicedesk.getQueues(client, parameters),
-      getQueue: (parameters: GetQueue): Promise<Queue> => servicedesk.getQueue(client, parameters),
-      getIssuesInQueue: (parameters: GetIssuesInQueue): Promise<Page<Issue>> =>
-        servicedesk.getIssuesInQueue(client, parameters),
-      getRequestTypes: (parameters: GetRequestTypes): Promise<Page<RequestType>> =>
-        servicedesk.getRequestTypes(client, parameters),
-      getRequestTypeById: (parameters: GetRequestTypeById): Promise<RequestType> =>
-        servicedesk.getRequestTypeById(client, parameters),
-      getRequestTypeFields: (parameters: GetRequestTypeFields): Promise<CustomerRequestCreateMeta> =>
-        servicedesk.getRequestTypeFields(client, parameters),
-      getRequestTypeGroups: (parameters: GetRequestTypeGroups): Promise<Page<RequestTypeGroup>> =>
-        servicedesk.getRequestTypeGroups(client, parameters),
+      getServiceDesks: (parameters?: GetServiceDesks, options?: RequestOptions): Promise<Page<ServiceDesk>> =>
+        servicedesk.getServiceDesks(client, parameters, options),
+      getServiceDeskById: (parameters: GetServiceDeskById, options?: RequestOptions): Promise<ServiceDesk> =>
+        servicedesk.getServiceDeskById(client, parameters, options),
+      attachTemporaryFile: (
+        parameters: AttachTemporaryFile,
+        options?: RequestOptions,
+      ): Promise<AttachTemporaryFileModel> => servicedesk.attachTemporaryFile(client, parameters, options),
+      addCustomers: (parameters: AddCustomers, options?: RequestOptions): Promise<void> =>
+        servicedesk.addCustomers(client, parameters, options),
+      addCustomersSkippingPermissionCheck: (
+        parameters: AddCustomersSkippingPermissionCheck,
+        options?: RequestOptions,
+      ): Promise<void> => servicedesk.addCustomersSkippingPermissionCheck(client, parameters, options),
+      getServiceDeskArticles: (parameters: GetServiceDeskArticles, options?: RequestOptions): Promise<Page<Article>> =>
+        servicedesk.getServiceDeskArticles(client, parameters, options),
+      getQueues: (parameters: GetQueues, options?: RequestOptions): Promise<Page<Queue>> =>
+        servicedesk.getQueues(client, parameters, options),
+      getQueue: (parameters: GetQueue, options?: RequestOptions): Promise<Queue> =>
+        servicedesk.getQueue(client, parameters, options),
+      getIssuesInQueue: (parameters: GetIssuesInQueue, options?: RequestOptions): Promise<Page<Issue>> =>
+        servicedesk.getIssuesInQueue(client, parameters, options),
+      getRequestTypes: (parameters: GetRequestTypes, options?: RequestOptions): Promise<Page<RequestType>> =>
+        servicedesk.getRequestTypes(client, parameters, options),
+      getRequestTypeById: (parameters: GetRequestTypeById, options?: RequestOptions): Promise<RequestType> =>
+        servicedesk.getRequestTypeById(client, parameters, options),
+      getRequestTypeFields: (
+        parameters: GetRequestTypeFields,
+        options?: RequestOptions,
+      ): Promise<CustomerRequestCreateMeta> => servicedesk.getRequestTypeFields(client, parameters, options),
+      getRequestTypeGroups: (
+        parameters: GetRequestTypeGroups,
+        options?: RequestOptions,
+      ): Promise<Page<RequestTypeGroup>> => servicedesk.getRequestTypeGroups(client, parameters, options),
     },
   };
 }

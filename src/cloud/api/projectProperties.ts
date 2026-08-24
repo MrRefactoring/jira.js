@@ -4,7 +4,7 @@ import type { GetProjectPropertyKeys } from '../parameters/getProjectPropertyKey
 import type { GetProjectProperty } from '../parameters/getProjectProperty';
 import type { SetProjectProperty } from '../parameters/setProjectProperty';
 import type { DeleteProjectProperty } from '../parameters/deleteProjectProperty';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /**
  * Returns all [project
@@ -19,11 +19,13 @@ import type { Client, SendRequestOptions } from '#/core';
 export async function getProjectPropertyKeys(
   client: Client,
   parameters: GetProjectPropertyKeys,
+  options?: RequestOptions,
 ): Promise<PropertyKeys> {
   const config: SendRequestOptions<PropertyKeys> = {
     url: `/rest/api/3/project/${parameters.projectIdOrKey}/properties`,
     method: 'GET',
     schema: PropertyKeysSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -38,11 +40,16 @@ export async function getProjectPropertyKeys(
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** _Browse
  * Projects_ [project permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the property.
  */
-export async function getProjectProperty(client: Client, parameters: GetProjectProperty): Promise<EntityProperty> {
+export async function getProjectProperty(
+  client: Client,
+  parameters: GetProjectProperty,
+  options?: RequestOptions,
+): Promise<EntityProperty> {
   const config: SendRequestOptions<EntityProperty> = {
     url: `/rest/api/3/project/${parameters.projectIdOrKey}/properties/${parameters.propertyKey}`,
     method: 'GET',
     schema: EntityPropertySchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -62,11 +69,16 @@ export async function getProjectProperty(client: Client, parameters: GetProjectP
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg) or _Administer Projects_ [project
  * permission](https://confluence.atlassian.com/x/yodKLg) for the project in which the property is created.
  */
-export async function setProjectProperty(client: Client, parameters: SetProjectProperty): Promise<void> {
+export async function setProjectProperty(
+  client: Client,
+  parameters: SetProjectProperty,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/project/${parameters.projectIdOrKey}/properties/${parameters.propertyKey}`,
     method: 'PUT',
     body: parameters.body,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -83,10 +95,15 @@ export async function setProjectProperty(client: Client, parameters: SetProjectP
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg) or _Administer Projects_ [project
  * permission](https://confluence.atlassian.com/x/yodKLg) for the project containing the property.
  */
-export async function deleteProjectProperty(client: Client, parameters: DeleteProjectProperty): Promise<void> {
+export async function deleteProjectProperty(
+  client: Client,
+  parameters: DeleteProjectProperty,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/project/${parameters.projectIdOrKey}/properties/${parameters.propertyKey}`,
     method: 'DELETE',
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

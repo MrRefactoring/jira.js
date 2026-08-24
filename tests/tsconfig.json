@@ -6,12 +6,11 @@
     "declaration": false,
     "declarationMap": false,
     "sourceMap": false,
-    "baseUrl": ".",
     "paths": {
       "@jirajs": ["../src"],
       "@jirajs/*": ["../src/*"],
-      "@tests": ["."],
-      "@tests/*": ["*"],
+      "@tests": ["./"],
+      "@tests/*": ["./*"],
       "#/*": ["../src/*"]
     }
   },

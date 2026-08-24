@@ -15,7 +15,7 @@ import type { Search } from '../parameters/search';
 import type { GetProjectIssueTypeUsagesForStatus } from '../parameters/getProjectIssueTypeUsagesForStatus';
 import type { GetProjectUsagesForStatus } from '../parameters/getProjectUsagesForStatus';
 import type { GetWorkflowUsagesForStatus } from '../parameters/getWorkflowUsagesForStatus';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 import { z } from 'zod';
 
 /**
@@ -26,7 +26,11 @@ import { z } from 'zod';
  * - _Administer projects_ [project permission.](https://confluence.atlassian.com/x/yodKLg)
  * - _Administer Jira_ [project permission.](https://confluence.atlassian.com/x/yodKLg)
  */
-export async function getStatusesById(client: Client, parameters: GetStatusesById): Promise<JiraStatus[]> {
+export async function getStatusesById(
+  client: Client,
+  parameters: GetStatusesById,
+  options?: RequestOptions,
+): Promise<JiraStatus[]> {
   const config: SendRequestOptions<JiraStatus[]> = {
     url: '/rest/api/3/statuses',
     method: 'GET',
@@ -34,6 +38,7 @@ export async function getStatusesById(client: Client, parameters: GetStatusesByI
       id: parameters.id,
     },
     schema: z.array(JiraStatusSchema),
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -47,7 +52,11 @@ export async function getStatusesById(client: Client, parameters: GetStatusesByI
  * - _Administer projects_ [project permission.](https://confluence.atlassian.com/x/yodKLg)
  * - _Administer Jira_ [project permission.](https://confluence.atlassian.com/x/yodKLg)
  */
-export async function createStatuses(client: Client, parameters: CreateStatuses): Promise<JiraStatus[]> {
+export async function createStatuses(
+  client: Client,
+  parameters: CreateStatuses,
+  options?: RequestOptions,
+): Promise<JiraStatus[]> {
   const config: SendRequestOptions<JiraStatus[]> = {
     url: '/rest/api/3/statuses',
     method: 'POST',
@@ -56,6 +65,7 @@ export async function createStatuses(client: Client, parameters: CreateStatuses)
       statuses: parameters.statuses,
     },
     schema: z.array(JiraStatusSchema),
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -69,13 +79,18 @@ export async function createStatuses(client: Client, parameters: CreateStatuses)
  * - _Administer projects_ [project permission.](https://confluence.atlassian.com/x/yodKLg)
  * - _Administer Jira_ [project permission.](https://confluence.atlassian.com/x/yodKLg)
  */
-export async function updateStatuses(client: Client, parameters: UpdateStatuses): Promise<void> {
+export async function updateStatuses(
+  client: Client,
+  parameters: UpdateStatuses,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: '/rest/api/3/statuses',
     method: 'PUT',
     body: {
       statuses: parameters.statuses,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -89,13 +104,18 @@ export async function updateStatuses(client: Client, parameters: UpdateStatuses)
  * - _Administer projects_ [project permission.](https://confluence.atlassian.com/x/yodKLg)
  * - _Administer Jira_ [project permission.](https://confluence.atlassian.com/x/yodKLg)
  */
-export async function deleteStatusesById(client: Client, parameters: DeleteStatusesById): Promise<void> {
+export async function deleteStatusesById(
+  client: Client,
+  parameters: DeleteStatusesById,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: '/rest/api/3/statuses',
     method: 'DELETE',
     searchParams: {
       id: parameters.id,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -110,7 +130,11 @@ export async function deleteStatusesById(client: Client, parameters: DeleteStatu
  * - _Administer Jira_ [project permission.](https://confluence.atlassian.com/x/yodKLg)
  * - _Browse projects_ [project permission.](https://confluence.atlassian.com/x/yodKLg)
  */
-export async function getStatusesByName(client: Client, parameters: GetStatusesByName): Promise<JiraStatus[]> {
+export async function getStatusesByName(
+  client: Client,
+  parameters: GetStatusesByName,
+  options?: RequestOptions,
+): Promise<JiraStatus[]> {
   const config: SendRequestOptions<JiraStatus[]> = {
     url: '/rest/api/3/statuses/byNames',
     method: 'GET',
@@ -119,6 +143,7 @@ export async function getStatusesByName(client: Client, parameters: GetStatusesB
       projectId: parameters.projectId,
     },
     schema: z.array(JiraStatusSchema),
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -133,7 +158,7 @@ export async function getStatusesByName(client: Client, parameters: GetStatusesB
  * - _Administer projects_ [project permission.](https://confluence.atlassian.com/x/yodKLg)
  * - _Administer Jira_ [project permission.](https://confluence.atlassian.com/x/yodKLg)
  */
-export async function search(client: Client, parameters?: Search): Promise<PageOfStatuses> {
+export async function search(client: Client, parameters?: Search, options?: RequestOptions): Promise<PageOfStatuses> {
   const config: SendRequestOptions<PageOfStatuses> = {
     url: '/rest/api/3/statuses/search',
     method: 'GET',
@@ -146,6 +171,7 @@ export async function search(client: Client, parameters?: Search): Promise<PageO
       includeGlobalStatuses: parameters?.includeGlobalStatuses,
     },
     schema: PageOfStatusesSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -155,6 +181,7 @@ export async function search(client: Client, parameters?: Search): Promise<PageO
 export async function getProjectIssueTypeUsagesForStatus(
   client: Client,
   parameters: GetProjectIssueTypeUsagesForStatus,
+  options?: RequestOptions,
 ): Promise<StatusProjectIssueTypeUsageDTO> {
   const config: SendRequestOptions<StatusProjectIssueTypeUsageDTO> = {
     url: `/rest/api/3/statuses/${parameters.statusId}/project/${parameters.projectId}/issueTypeUsages`,
@@ -164,6 +191,7 @@ export async function getProjectIssueTypeUsagesForStatus(
       maxResults: parameters.maxResults,
     },
     schema: StatusProjectIssueTypeUsageDTOSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -173,6 +201,7 @@ export async function getProjectIssueTypeUsagesForStatus(
 export async function getProjectUsagesForStatus(
   client: Client,
   parameters: GetProjectUsagesForStatus,
+  options?: RequestOptions,
 ): Promise<StatusProjectUsageDTO> {
   const config: SendRequestOptions<StatusProjectUsageDTO> = {
     url: `/rest/api/3/statuses/${parameters.statusId}/projectUsages`,
@@ -182,6 +211,7 @@ export async function getProjectUsagesForStatus(
       maxResults: parameters.maxResults,
     },
     schema: StatusProjectUsageDTOSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -191,6 +221,7 @@ export async function getProjectUsagesForStatus(
 export async function getWorkflowUsagesForStatus(
   client: Client,
   parameters: GetWorkflowUsagesForStatus,
+  options?: RequestOptions,
 ): Promise<StatusWorkflowUsageDTO> {
   const config: SendRequestOptions<StatusWorkflowUsageDTO> = {
     url: `/rest/api/3/statuses/${parameters.statusId}/workflowUsages`,
@@ -200,6 +231,7 @@ export async function getWorkflowUsagesForStatus(
       maxResults: parameters.maxResults,
     },
     schema: StatusWorkflowUsageDTOSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

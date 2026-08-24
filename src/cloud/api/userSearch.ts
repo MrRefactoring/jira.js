@@ -12,7 +12,7 @@ import type { FindUsers } from '../parameters/findUsers';
 import type { FindUsersByQuery } from '../parameters/findUsersByQuery';
 import type { FindUserKeysByQuery } from '../parameters/findUserKeysByQuery';
 import type { FindUsersWithBrowsePermission } from '../parameters/findUsersWithBrowsePermission';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 import { z } from 'zod';
 
 /**
@@ -39,6 +39,7 @@ import { z } from 'zod';
 export async function findBulkAssignableUsers(
   client: Client,
   parameters: FindBulkAssignableUsers,
+  options?: RequestOptions,
 ): Promise<DashboardUser[]> {
   const config: SendRequestOptions<DashboardUser[]> = {
     url: '/rest/api/3/user/assignable/multiProjectSearch',
@@ -51,6 +52,7 @@ export async function findBulkAssignableUsers(
       maxResults: parameters.maxResults,
     },
     schema: z.array(DashboardUserSchema),
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -84,7 +86,11 @@ export async function findBulkAssignableUsers(
  * users and groups_ [global permission](https://confluence.atlassian.com/x/x4dKLg) or _Assign issues_ [project
  * permission](https://confluence.atlassian.com/x/yodKLg)
  */
-export async function findAssignableUsers(client: Client, parameters?: FindAssignableUsers): Promise<DashboardUser[]> {
+export async function findAssignableUsers(
+  client: Client,
+  parameters?: FindAssignableUsers,
+  options?: RequestOptions,
+): Promise<DashboardUser[]> {
   const config: SendRequestOptions<DashboardUser[]> = {
     url: '/rest/api/3/user/assignable/search',
     method: 'GET',
@@ -103,6 +109,7 @@ export async function findAssignableUsers(client: Client, parameters?: FindAssig
       appType: parameters?.appType,
     },
     schema: z.array(DashboardUserSchema),
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -138,6 +145,7 @@ export async function findAssignableUsers(client: Client, parameters?: FindAssig
 export async function findUsersWithAllPermissions(
   client: Client,
   parameters: FindUsersWithAllPermissions,
+  options?: RequestOptions,
 ): Promise<DashboardUser[]> {
   const config: SendRequestOptions<DashboardUser[]> = {
     url: '/rest/api/3/user/permission/search',
@@ -152,6 +160,7 @@ export async function findUsersWithAllPermissions(
       maxResults: parameters.maxResults,
     },
     schema: z.array(DashboardUserSchema),
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -178,7 +187,11 @@ export async function findUsersWithAllPermissions(
  * users and groups_ [global permission](https://confluence.atlassian.com/x/x4dKLg). Anonymous calls and calls by users
  * without the required permission return search results for an exact name match only.
  */
-export async function findUsersForPicker(client: Client, parameters: FindUsersForPicker): Promise<FoundUsers> {
+export async function findUsersForPicker(
+  client: Client,
+  parameters: FindUsersForPicker,
+  options?: RequestOptions,
+): Promise<FoundUsers> {
   const config: SendRequestOptions<FoundUsers> = {
     url: '/rest/api/3/user/picker',
     method: 'GET',
@@ -191,6 +204,7 @@ export async function findUsersForPicker(client: Client, parameters: FindUsersFo
       excludeConnectUsers: parameters.excludeConnectUsers,
     },
     schema: FoundUsersSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -215,7 +229,11 @@ export async function findUsersForPicker(client: Client, parameters: FindUsersFo
  * users and groups_ [global permission](https://confluence.atlassian.com/x/x4dKLg). Anonymous calls or calls by users
  * without the required permission return empty search results.
  */
-export async function findUsers(client: Client, parameters?: FindUsers): Promise<DashboardUser[]> {
+export async function findUsers(
+  client: Client,
+  parameters?: FindUsers,
+  options?: RequestOptions,
+): Promise<DashboardUser[]> {
   const config: SendRequestOptions<DashboardUser[]> = {
     url: '/rest/api/3/user/search',
     method: 'GET',
@@ -228,6 +246,7 @@ export async function findUsers(client: Client, parameters?: FindUsers): Promise
       property: parameters?.property,
     },
     schema: z.array(DashboardUserSchema),
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -264,7 +283,11 @@ export async function findUsers(client: Client, parameters?: FindUsers): Promise
  *
  * `is assignee of PROJ AND [propertyKey].entity.property.path is "property value"`
  */
-export async function findUsersByQuery(client: Client, parameters: FindUsersByQuery): Promise<Page<DashboardUser>> {
+export async function findUsersByQuery(
+  client: Client,
+  parameters: FindUsersByQuery,
+  options?: RequestOptions,
+): Promise<Page<DashboardUser>> {
   const config: SendRequestOptions<Page<DashboardUser>> = {
     url: '/rest/api/3/user/search/query',
     method: 'GET',
@@ -274,6 +297,7 @@ export async function findUsersByQuery(client: Client, parameters: FindUsersByQu
       maxResults: parameters.maxResults,
     },
     schema: PageUserSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -310,7 +334,11 @@ export async function findUsersByQuery(client: Client, parameters: FindUsersByQu
  *
  * `is assignee of PROJ AND [propertyKey].entity.property.path is "property value"`
  */
-export async function findUserKeysByQuery(client: Client, parameters: FindUserKeysByQuery): Promise<Page<UserKey>> {
+export async function findUserKeysByQuery(
+  client: Client,
+  parameters: FindUserKeysByQuery,
+  options?: RequestOptions,
+): Promise<Page<UserKey>> {
   const config: SendRequestOptions<Page<UserKey>> = {
     url: '/rest/api/3/user/search/query/key',
     method: 'GET',
@@ -320,6 +348,7 @@ export async function findUserKeysByQuery(client: Client, parameters: FindUserKe
       maxResult: parameters.maxResult,
     },
     schema: PageUserKeySchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -356,6 +385,7 @@ export async function findUserKeysByQuery(client: Client, parameters: FindUserKe
 export async function findUsersWithBrowsePermission(
   client: Client,
   parameters?: FindUsersWithBrowsePermission,
+  options?: RequestOptions,
 ): Promise<DashboardUser[]> {
   const config: SendRequestOptions<DashboardUser[]> = {
     url: '/rest/api/3/user/viewissue/search',
@@ -369,6 +399,7 @@ export async function findUsersWithBrowsePermission(
       maxResults: parameters?.maxResults,
     },
     schema: z.array(DashboardUserSchema),
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

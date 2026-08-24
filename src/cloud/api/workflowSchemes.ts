@@ -35,7 +35,7 @@ import type { GetWorkflow } from '../parameters/getWorkflow';
 import type { UpdateWorkflowMapping } from '../parameters/updateWorkflowMapping';
 import type { DeleteWorkflowMapping } from '../parameters/deleteWorkflowMapping';
 import type { GetProjectUsagesForWorkflowScheme } from '../parameters/getProjectUsagesForWorkflowScheme';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 import { z } from 'zod';
 
 /**
@@ -48,6 +48,7 @@ import { z } from 'zod';
 export async function getAllWorkflowSchemes(
   client: Client,
   parameters?: GetAllWorkflowSchemes,
+  options?: RequestOptions,
 ): Promise<Page<WorkflowScheme>> {
   const config: SendRequestOptions<Page<WorkflowScheme>> = {
     url: '/rest/api/3/workflowscheme',
@@ -57,6 +58,7 @@ export async function getAllWorkflowSchemes(
       maxResults: parameters?.maxResults,
     },
     schema: PageWorkflowSchemeSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -68,7 +70,11 @@ export async function getAllWorkflowSchemes(
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-export async function createWorkflowScheme(client: Client, parameters: CreateWorkflowScheme): Promise<WorkflowScheme> {
+export async function createWorkflowScheme(
+  client: Client,
+  parameters: CreateWorkflowScheme,
+  options?: RequestOptions,
+): Promise<WorkflowScheme> {
   const config: SendRequestOptions<WorkflowScheme> = {
     url: '/rest/api/3/workflowscheme',
     method: 'POST',
@@ -88,6 +94,7 @@ export async function createWorkflowScheme(client: Client, parameters: CreateWor
       updateDraftIfNeeded: parameters.updateDraftIfNeeded,
     },
     schema: WorkflowSchemeSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -104,6 +111,7 @@ export async function createWorkflowScheme(client: Client, parameters: CreateWor
 export async function readWorkflowSchemes(
   client: Client,
   parameters: ReadWorkflowSchemes,
+  options?: RequestOptions,
 ): Promise<WorkflowSchemeReadResponse[]> {
   const config: SendRequestOptions<WorkflowSchemeReadResponse[]> = {
     url: '/rest/api/3/workflowscheme/read',
@@ -113,6 +121,7 @@ export async function readWorkflowSchemes(
       workflowSchemeIds: parameters.workflowSchemeIds,
     },
     schema: z.array(WorkflowSchemeReadResponseSchema),
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -129,7 +138,11 @@ export async function readWorkflowSchemes(
  * - _Administer Jira_ project permission to update all, including global-scoped, workflow schemes.
  * - _Administer projects_ project permission to update project-scoped workflow schemes.
  */
-export async function updateSchemes(client: Client, parameters: UpdateSchemes): Promise<TaskProgressObject> {
+export async function updateSchemes(
+  client: Client,
+  parameters: UpdateSchemes,
+  options?: RequestOptions,
+): Promise<TaskProgressObject> {
   const config: SendRequestOptions<TaskProgressObject> = {
     url: '/rest/api/3/workflowscheme/update',
     method: 'POST',
@@ -144,6 +157,7 @@ export async function updateSchemes(client: Client, parameters: UpdateSchemes): 
       workflowsForIssueTypes: parameters.workflowsForIssueTypes,
     },
     schema: TaskProgressObjectSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -162,6 +176,7 @@ export async function updateSchemes(client: Client, parameters: UpdateSchemes): 
 export async function getRequiredWorkflowSchemeMappings(
   client: Client,
   parameters: GetRequiredWorkflowSchemeMappings,
+  options?: RequestOptions,
 ): Promise<WorkflowSchemeUpdateRequiredMappingsResponse> {
   const config: SendRequestOptions<WorkflowSchemeUpdateRequiredMappingsResponse> = {
     url: '/rest/api/3/workflowscheme/update/mappings',
@@ -172,6 +187,7 @@ export async function getRequiredWorkflowSchemeMappings(
       workflowsForIssueTypes: parameters.workflowsForIssueTypes,
     },
     schema: WorkflowSchemeUpdateRequiredMappingsResponseSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -183,7 +199,11 @@ export async function getRequiredWorkflowSchemeMappings(
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-export async function getWorkflowScheme(client: Client, parameters: GetWorkflowScheme): Promise<WorkflowScheme> {
+export async function getWorkflowScheme(
+  client: Client,
+  parameters: GetWorkflowScheme,
+  options?: RequestOptions,
+): Promise<WorkflowScheme> {
   const config: SendRequestOptions<WorkflowScheme> = {
     url: `/rest/api/3/workflowscheme/${parameters.id}`,
     method: 'GET',
@@ -191,6 +211,7 @@ export async function getWorkflowScheme(client: Client, parameters: GetWorkflowS
       returnDraftIfExists: parameters.returnDraftIfExists,
     },
     schema: WorkflowSchemeSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -204,12 +225,17 @@ export async function getWorkflowScheme(client: Client, parameters: GetWorkflowS
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-export async function updateWorkflowScheme(client: Client, parameters: UpdateWorkflowScheme): Promise<WorkflowScheme> {
+export async function updateWorkflowScheme(
+  client: Client,
+  parameters: UpdateWorkflowScheme,
+  options?: RequestOptions,
+): Promise<WorkflowScheme> {
   const config: SendRequestOptions<WorkflowScheme> = {
     url: `/rest/api/3/workflowscheme/${parameters.id}`,
     method: 'PUT',
     body: parameters.body,
     schema: WorkflowSchemeSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -222,10 +248,15 @@ export async function updateWorkflowScheme(client: Client, parameters: UpdateWor
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-export async function deleteWorkflowScheme(client: Client, parameters: DeleteWorkflowScheme): Promise<void> {
+export async function deleteWorkflowScheme(
+  client: Client,
+  parameters: DeleteWorkflowScheme,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/workflowscheme/${parameters.id}`,
     method: 'DELETE',
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -239,7 +270,11 @@ export async function deleteWorkflowScheme(client: Client, parameters: DeleteWor
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-export async function getDefaultWorkflow(client: Client, parameters: GetDefaultWorkflow): Promise<DefaultWorkflow> {
+export async function getDefaultWorkflow(
+  client: Client,
+  parameters: GetDefaultWorkflow,
+  options?: RequestOptions,
+): Promise<DefaultWorkflow> {
   const config: SendRequestOptions<DefaultWorkflow> = {
     url: `/rest/api/3/workflowscheme/${parameters.id}/default`,
     method: 'GET',
@@ -247,6 +282,7 @@ export async function getDefaultWorkflow(client: Client, parameters: GetDefaultW
       returnDraftIfExists: parameters.returnDraftIfExists,
     },
     schema: DefaultWorkflowSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -265,6 +301,7 @@ export async function getDefaultWorkflow(client: Client, parameters: GetDefaultW
 export async function updateDefaultWorkflow(
   client: Client,
   parameters: UpdateDefaultWorkflow,
+  options?: RequestOptions,
 ): Promise<WorkflowScheme> {
   const config: SendRequestOptions<WorkflowScheme> = {
     url: `/rest/api/3/workflowscheme/${parameters.id}/default`,
@@ -274,6 +311,7 @@ export async function updateDefaultWorkflow(
       workflow: parameters.workflow,
     },
     schema: WorkflowSchemeSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -293,6 +331,7 @@ export async function updateDefaultWorkflow(
 export async function deleteDefaultWorkflow(
   client: Client,
   parameters: DeleteDefaultWorkflow,
+  options?: RequestOptions,
 ): Promise<WorkflowScheme> {
   const config: SendRequestOptions<WorkflowScheme> = {
     url: `/rest/api/3/workflowscheme/${parameters.id}/default`,
@@ -301,6 +340,7 @@ export async function deleteDefaultWorkflow(
       updateDraftIfNeeded: parameters.updateDraftIfNeeded,
     },
     schema: WorkflowSchemeSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -315,6 +355,7 @@ export async function deleteDefaultWorkflow(
 export async function getWorkflowSchemeIssueType(
   client: Client,
   parameters: GetWorkflowSchemeIssueType,
+  options?: RequestOptions,
 ): Promise<IssueTypeWorkflowMapping> {
   const config: SendRequestOptions<IssueTypeWorkflowMapping> = {
     url: `/rest/api/3/workflowscheme/${parameters.id}/issuetype/${parameters.issueType}`,
@@ -323,6 +364,7 @@ export async function getWorkflowSchemeIssueType(
       returnDraftIfExists: parameters.returnDraftIfExists,
     },
     schema: IssueTypeWorkflowMappingSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -341,12 +383,14 @@ export async function getWorkflowSchemeIssueType(
 export async function setWorkflowSchemeIssueType(
   client: Client,
   parameters: SetWorkflowSchemeIssueType,
+  options?: RequestOptions,
 ): Promise<WorkflowScheme> {
   const config: SendRequestOptions<WorkflowScheme> = {
     url: `/rest/api/3/workflowscheme/${parameters.id}/issuetype/${parameters.issueType}`,
     method: 'PUT',
     body: parameters.body,
     schema: WorkflowSchemeSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -365,6 +409,7 @@ export async function setWorkflowSchemeIssueType(
 export async function deleteWorkflowSchemeIssueType(
   client: Client,
   parameters: DeleteWorkflowSchemeIssueType,
+  options?: RequestOptions,
 ): Promise<WorkflowScheme> {
   const config: SendRequestOptions<WorkflowScheme> = {
     url: `/rest/api/3/workflowscheme/${parameters.id}/issuetype/${parameters.issueType}`,
@@ -373,6 +418,7 @@ export async function deleteWorkflowSchemeIssueType(
       updateDraftIfNeeded: parameters.updateDraftIfNeeded,
     },
     schema: WorkflowSchemeSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -384,7 +430,11 @@ export async function deleteWorkflowSchemeIssueType(
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-export async function getWorkflow(client: Client, parameters: GetWorkflow): Promise<IssueTypesWorkflowMapping> {
+export async function getWorkflow(
+  client: Client,
+  parameters: GetWorkflow,
+  options?: RequestOptions,
+): Promise<IssueTypesWorkflowMapping> {
   const config: SendRequestOptions<IssueTypesWorkflowMapping> = {
     url: `/rest/api/3/workflowscheme/${parameters.id}/workflow`,
     method: 'GET',
@@ -393,6 +443,7 @@ export async function getWorkflow(client: Client, parameters: GetWorkflow): Prom
       returnDraftIfExists: parameters.returnDraftIfExists,
     },
     schema: IssueTypesWorkflowMappingSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -412,6 +463,7 @@ export async function getWorkflow(client: Client, parameters: GetWorkflow): Prom
 export async function updateWorkflowMapping(
   client: Client,
   parameters: UpdateWorkflowMapping,
+  options?: RequestOptions,
 ): Promise<WorkflowScheme> {
   const config: SendRequestOptions<WorkflowScheme> = {
     url: `/rest/api/3/workflowscheme/${parameters.id}/workflow`,
@@ -426,6 +478,7 @@ export async function updateWorkflowMapping(
       workflow: parameters.workflow,
     },
     schema: WorkflowSchemeSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -441,7 +494,11 @@ export async function updateWorkflowMapping(
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-export async function deleteWorkflowMapping(client: Client, parameters: DeleteWorkflowMapping): Promise<void> {
+export async function deleteWorkflowMapping(
+  client: Client,
+  parameters: DeleteWorkflowMapping,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/workflowscheme/${parameters.id}/workflow`,
     method: 'DELETE',
@@ -449,6 +506,7 @@ export async function deleteWorkflowMapping(client: Client, parameters: DeleteWo
       workflowName: parameters.workflowName,
       updateDraftIfNeeded: parameters.updateDraftIfNeeded,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -458,6 +516,7 @@ export async function deleteWorkflowMapping(client: Client, parameters: DeleteWo
 export async function getProjectUsagesForWorkflowScheme(
   client: Client,
   parameters: GetProjectUsagesForWorkflowScheme,
+  options?: RequestOptions,
 ): Promise<WorkflowSchemeProjectUsageDTO> {
   const config: SendRequestOptions<WorkflowSchemeProjectUsageDTO> = {
     url: `/rest/api/3/workflowscheme/${parameters.workflowSchemeId}/projectUsages`,
@@ -467,6 +526,7 @@ export async function getProjectUsagesForWorkflowScheme(
       maxResults: parameters.maxResults,
     },
     schema: WorkflowSchemeProjectUsageDTOSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
