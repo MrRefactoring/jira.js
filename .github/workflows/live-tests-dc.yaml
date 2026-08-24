@@ -1,0 +1,40 @@
+name: 🧱 Data Center tests
+
+on:
+  schedule:
+    - cron: '0 4 * * *'
+  workflow_dispatch:
+
+concurrency:
+  group: live-tests-dc
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  live:
+    name: 🧱 Data Center
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🔄 Checkout sources
+        uses: actions/checkout@v7
+      - name: ⚙️ Use Node.js 22.x
+        uses: actions/setup-node@v7
+        with:
+          node-version: 22.x
+      - name: 📦 Install pnpm
+        uses: pnpm/action-setup@v6
+      - name: 📌 Install dependencies
+        run: pnpm install --frozen-lockfile
+      - name: 🔑 Write the timebomb licence
+        run: |
+          printf '%s' "${{ secrets.JIRA_DC_TIMEBOMB_LICENSE }}" > docker/jira-dc/timebomb-license.txt
+          test -s docker/jira-dc/timebomb-license.txt
+      - name: 🧱 Bring up Jira Data Center
+        run: pnpm run jira-dc:up
+      - name: 🚀 Run the suites and the coverage ledger
+        run: pnpm run coverage:server
+      - name: 🧹 Tear it down
+        if: always()
+        run: pnpm run jira-dc:down
