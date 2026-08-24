@@ -29,7 +29,7 @@ where it does.
 
 | Import | Contents |
 | --- | --- |
-| `jira.js` | The four factories, the error types and their predicates, the OAuth helpers |
+| `jira.js` | The five factories, the error types and their predicates, the OAuth helpers |
 | `jira.js/core` | `createClient`, the transport, errors, OAuth, multipart helpers |
 | `jira.js/cloud` | Platform API functions and response types |
 | `jira.js/cloud/models` | Platform API response types on their own |
@@ -43,6 +43,9 @@ where it does.
 | `jira.js/assets` | Assets Cloud functions and response types |
 | `jira.js/assets/models` | Assets Cloud response types on their own |
 | `jira.js/assets/parameters` | Assets Cloud request parameter types |
+| `jira.js/teams` | Teams functions and response types |
+| `jira.js/teams/models` | Teams response types on their own |
+| `jira.js/teams/parameters` | Teams request parameter types |
 | `jira.js/webhooks` | The events, payloads and headers Jira posts to you, and the signature check |
 | `jira.js/browser` | Prebuilt browser bundle |
 
@@ -55,7 +58,7 @@ import type { Issue } from 'jira.js/cloud';
 import type { GetIssue } from 'jira.js/cloud/parameters';
 ```
 
-The four surfaces are not re-exported from the root, because they collide on a handful of names — import
+The five surfaces are not re-exported from the root, because they collide on a handful of names — import
 from the surface you mean.
 
 > Deep imports need an `exports`-aware resolver: `moduleResolution: "bundler"`, `"node16"` or

@@ -13,6 +13,13 @@ export interface LiveTestEnv {
   email: string;
   /** Atlassian API token paired with `email`. */
   apiToken: string;
+  /**
+   * The organization the site belongs to, when it was pinned rather than resolved.
+   *
+   * Optional by design: `getOrgId()` asks the site for it, so a new tenant needs no secret added anywhere. Set
+   * `JIRA_ORG_ID` only to override that — if the resolution itself is what broke, the Teams suites should still run.
+   */
+  orgId?: string;
 }
 
 function firstSet(...values: (string | undefined)[]): string | undefined {
@@ -39,5 +46,5 @@ export function requireLiveEnv(): LiveTestEnv {
     );
   }
 
-  return { host, email, apiToken };
+  return { host, email, apiToken, orgId: firstSet(process.env.JIRA_ORG_ID) };
 }

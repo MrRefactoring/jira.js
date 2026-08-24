@@ -47,6 +47,22 @@ Three long-standing requests, all of them the same shape: the client had no seam
 
 ### Features
 
+* **`createTeamsClient` and `jira.js/teams`.** Fifteen operations of the [Teams REST API](https://developer.atlassian.com/platform/teams/rest/v1/): teams, their members, and links to an external directory. Closes [#364](https://github.com/MrRefactoring/jira.js/issues/364).
+
+  Teams are organization-level rather than site-level, so every operation but one is addressed to an `orgId` — a parameter on the call rather than a field on the client, because one account can administer several organizations and one client reaches all of them.
+
+  ```ts
+  import { createClient, getTenantContext } from 'jira.js/core';
+  import { createTeamsClient } from 'jira.js';
+
+  const { orgId } = await getTenantContext(createClient({ host, auth }));
+  const teams = createTeamsClient({ host, auth });
+
+  const page = await teams.teams.queryTeams({ orgId });
+  ```
+
+  OAuth 2.0 is absent from the config type on purpose: the API refuses it, as it refuses Forge apps, and a compile error says so earlier than a 401 would. A deleted team answers **410** rather than 404 on the next read — the id stays known and reports itself as gone.
+
 * **`createAssetsClient` and `jira.js/assets`.** Sixty operations of the [Assets Cloud REST API](https://developer.atlassian.com/cloud/assets/rest/) across thirteen modules: objects and their schemas, types and attributes, AQL, icons, status and reference types, and the import sources a third-party integration feeds data through.
 
   Assets is the one surface in this library that does not answer on your site's own host, so its client is built from its own configuration rather than shared with the others:

@@ -1,12 +1,13 @@
 # Getting Started
 
 `jira.js` is a TypeScript client for the Atlassian Jira Cloud REST APIs, for [Node.js](https://nodejs.org/)
-and browsers. It covers four surfaces:
+and browsers. It covers five surfaces:
 
 - **[Jira Cloud platform](https://developer.atlassian.com/cloud/jira/platform/rest/)** — issues, projects, fields, workflows
 - **[Jira Agile](https://developer.atlassian.com/cloud/jira/software/rest/intro/)** — boards, sprints, backlog
 - **[Jira Service Management](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro/)** — requests, queues, organizations
 - **[Assets](https://developer.atlassian.com/cloud/assets/rest/)** — objects, schemas and types, AQL
+- **[Teams](https://developer.atlassian.com/platform/teams/rest/v1/)** — teams, their members and external links
 
 ## Install
 
@@ -53,7 +54,8 @@ const agile = createAgileClient(client);
 
 Assets is the exception. It is the one surface that does not answer on your site's host, so its client is
 built from its own configuration and needs a `workspaceId` rather than the shared client — see
-[Assets](./assets).
+[Assets](./assets). Teams builds from its own configuration too: it answers on the site host, but only to
+an API token or a bearer token, never to OAuth 2.0 — see [Teams](./teams).
 
 ## Make your first request
 
@@ -97,6 +99,7 @@ Reads always come back as a document, never as a string.
 
 - [Authentication](./authentication) — API token, OAuth 2.0 (3LO)
 - [Assets](./assets) — the configuration management database, and the client it is built with
+- [Teams](./teams) — teams across the organization, and the `orgId` every call is addressed to
 - [Error Handling](./error-handling) — typed errors and their predicates
 - [Response Validation](./response-validation) — what happens when Jira sends something unexpected
 - [Tree-Shaking](./tree-shaking) — keeping the bundle small
