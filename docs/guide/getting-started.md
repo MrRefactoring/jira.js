@@ -1,11 +1,12 @@
 # Getting Started
 
 `jira.js` is a TypeScript client for the Atlassian Jira Cloud REST APIs, for [Node.js](https://nodejs.org/)
-and browsers. It covers three surfaces:
+and browsers. It covers four surfaces:
 
 - **[Jira Cloud platform](https://developer.atlassian.com/cloud/jira/platform/rest/)** — issues, projects, fields, workflows
 - **[Jira Agile](https://developer.atlassian.com/cloud/jira/software/rest/intro/)** — boards, sprints, backlog
 - **[Jira Service Management](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro/)** — requests, queues, organizations
+- **[Assets](https://developer.atlassian.com/cloud/assets/rest/)** — objects, schemas and types, AQL
 
 ## Install
 
@@ -50,6 +51,10 @@ const jira = createCloudClient(client);
 const agile = createAgileClient(client);
 ```
 
+Assets is the exception. It is the one surface that does not answer on your site's host, so its client is
+built from its own configuration and needs a `workspaceId` rather than the shared client — see
+[Assets](./assets).
+
 ## Make your first request
 
 Every endpoint is a promise-returning method:
@@ -91,6 +96,7 @@ Reads always come back as a document, never as a string.
 ## Next steps
 
 - [Authentication](./authentication) — API token, OAuth 2.0 (3LO)
+- [Assets](./assets) — the configuration management database, and the client it is built with
 - [Error Handling](./error-handling) — typed errors and their predicates
 - [Response Validation](./response-validation) — what happens when Jira sends something unexpected
 - [Tree-Shaking](./tree-shaking) — keeping the bundle small

@@ -27,21 +27,32 @@ const issue = await getIssue(client, { issueIdOrKey: 'TEST-1' });
 
 | Импорт | Что внутри |
 | --- | --- |
-| `jira.js` | Три фабрики, типы ошибок и предикаты, помощники OAuth |
+| `jira.js` | Четыре фабрики, типы ошибок и предикаты, помощники OAuth |
 | `jira.js/core` | `createClient`, транспорт, ошибки, OAuth, multipart |
-| `jira.js/cloud` | Функции платформенного API, параметры и типы ответов |
-| `jira.js/agile` | Функции Agile API, параметры и типы ответов |
-| `jira.js/serviceDesk` | Функции Service Management, параметры и типы ответов |
+| `jira.js/cloud` | Функции платформенного API и типы ответов |
+| `jira.js/cloud/models` | Только типы ответов платформенного API |
+| `jira.js/cloud/parameters` | Типы параметров запросов платформенного API |
+| `jira.js/agile` | Функции Agile API и типы ответов |
+| `jira.js/agile/models` | Только типы ответов Agile API |
+| `jira.js/agile/parameters` | Типы параметров запросов Agile API |
+| `jira.js/serviceDesk` | Функции Service Management и типы ответов |
+| `jira.js/serviceDesk/models` | Только типы ответов Service Management |
+| `jira.js/serviceDesk/parameters` | Типы параметров запросов Service Management |
+| `jira.js/assets` | Функции Assets Cloud и типы ответов |
+| `jira.js/assets/models` | Только типы ответов Assets Cloud |
+| `jira.js/assets/parameters` | Типы параметров запросов Assets Cloud |
+| `jira.js/webhooks` | События, полезные нагрузки и заголовки, которые Jira шлёт вам, и проверка подписи |
 | `jira.js/browser` | Готовая браузерная сборка |
 
-Подпути поверхностей несут типы вместе с функциями, поэтому импорт только типа ничего не стоит в рантайме:
+Подпути поверхностей несут типы ответов вместе с функциями, поэтому импорт только типа ничего не стоит в
+рантайме. Типы параметров запросов лежат уровнем ниже, потому что параметр и модель иногда носят одно имя:
 
 ```typescript
 import type { Issue } from 'jira.js/cloud';
-import type { GetIssue } from 'jira.js/cloud';
+import type { GetIssue } from 'jira.js/cloud/parameters';
 ```
 
-Три поверхности не реэкспортируются из корня, потому что сталкиваются на десятке имён — импортируйте из
+Четыре поверхности не реэкспортируются из корня, потому что сталкиваются на десятке имён — импортируйте из
 той, которую имеете в виду.
 
 > Глубоким импортам нужен резолвер, понимающий `exports`: `moduleResolution: "bundler"`, `"node16"` или

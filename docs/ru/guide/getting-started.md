@@ -1,11 +1,12 @@
 # Быстрый старт
 
 `jira.js` — TypeScript-клиент к REST API Atlassian Jira Cloud для [Node.js](https://nodejs.org/) и
-браузеров. Покрывает три поверхности:
+браузеров. Покрывает четыре поверхности:
 
 - **[Платформа Jira Cloud](https://developer.atlassian.com/cloud/jira/platform/rest/)** — задачи, проекты, поля, воркфлоу
 - **[Jira Agile](https://developer.atlassian.com/cloud/jira/software/rest/intro/)** — доски, спринты, бэклог
 - **[Jira Service Management](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro/)** — обращения, очереди, организации
+- **[Assets](https://developer.atlassian.com/cloud/assets/rest/)** — объекты, схемы и типы, AQL
 
 ## Установка
 
@@ -50,6 +51,10 @@ const jira = createCloudClient(client);
 const agile = createAgileClient(client);
 ```
 
+Assets — исключение. Это единственная поверхность, которая отвечает не на хосте вашего сайта, поэтому её
+клиент собирается из собственной конфигурации и требует `workspaceId`, а не общий клиент — см.
+[Assets](./assets).
+
 ## Первый запрос
 
 Каждый эндпоинт — метод, возвращающий промис:
@@ -91,6 +96,7 @@ await jira.issueComments.addComment({
 ## Дальше
 
 - [Аутентификация](./authentication) — API-токен, OAuth 2.0 (3LO)
+- [Assets](./assets) — база конфигурационных единиц и клиент, которым с ней работают
 - [Обработка ошибок](./error-handling) — типизированные ошибки и предикаты
 - [Валидация ответов](./response-validation) — что происходит, когда Jira присылает неожиданное
 - [Tree-Shaking](./tree-shaking) — как не раздувать бандл
