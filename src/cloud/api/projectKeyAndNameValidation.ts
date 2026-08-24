@@ -2,7 +2,7 @@ import { ErrorCollectionSchema, type ErrorCollection } from '../models/errorColl
 import type { ValidateProjectKey } from '../parameters/validateProjectKey';
 import type { GetValidProjectKey } from '../parameters/getValidProjectKey';
 import type { GetValidProjectName } from '../parameters/getValidProjectName';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 import { z } from 'zod';
 
 /**
@@ -10,7 +10,11 @@ import { z } from 'zod';
  *
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** None.
  */
-export async function validateProjectKey(client: Client, parameters?: ValidateProjectKey): Promise<ErrorCollection> {
+export async function validateProjectKey(
+  client: Client,
+  parameters?: ValidateProjectKey,
+  options?: RequestOptions,
+): Promise<ErrorCollection> {
   const config: SendRequestOptions<ErrorCollection> = {
     url: '/rest/api/3/projectvalidate/key',
     method: 'GET',
@@ -18,6 +22,7 @@ export async function validateProjectKey(client: Client, parameters?: ValidatePr
       key: parameters?.key,
     },
     schema: ErrorCollectionSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -28,7 +33,11 @@ export async function validateProjectKey(client: Client, parameters?: ValidatePr
  *
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** None.
  */
-export async function getValidProjectKey(client: Client, parameters?: GetValidProjectKey): Promise<string> {
+export async function getValidProjectKey(
+  client: Client,
+  parameters?: GetValidProjectKey,
+  options?: RequestOptions,
+): Promise<string> {
   const config: SendRequestOptions<string> = {
     url: '/rest/api/3/projectvalidate/validProjectKey',
     method: 'GET',
@@ -36,6 +45,7 @@ export async function getValidProjectKey(client: Client, parameters?: GetValidPr
       key: parameters?.key,
     },
     schema: z.string(),
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -48,7 +58,11 @@ export async function getValidProjectKey(client: Client, parameters?: GetValidPr
  *
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** None.
  */
-export async function getValidProjectName(client: Client, parameters: GetValidProjectName): Promise<string> {
+export async function getValidProjectName(
+  client: Client,
+  parameters: GetValidProjectName,
+  options?: RequestOptions,
+): Promise<string> {
   const config: SendRequestOptions<string> = {
     url: '/rest/api/3/projectvalidate/validProjectName',
     method: 'GET',
@@ -56,6 +70,7 @@ export async function getValidProjectName(client: Client, parameters: GetValidPr
       name: parameters.name,
     },
     schema: z.string(),
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

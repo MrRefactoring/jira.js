@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { MultipartFileSchema } from '../models';
 
 export const AttachTemporaryFileSchema = z.object({
   /**
@@ -6,7 +7,7 @@ export const AttachTemporaryFileSchema = z.object({
    * identifier.](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro#project-identifiers)
    */
   serviceDeskId: z.string(),
-  body: z.record(z.string(), z.any()),
+  body: z.array(MultipartFileSchema),
 });
 
 export type AttachTemporaryFile = z.input<typeof AttachTemporaryFileSchema>;

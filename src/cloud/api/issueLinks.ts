@@ -2,7 +2,7 @@ import { IssueLinkSchema, type IssueLink } from '../models/issueLink';
 import type { LinkIssues } from '../parameters/linkIssues';
 import type { GetIssueLink } from '../parameters/getIssueLink';
 import type { DeleteIssueLink } from '../parameters/deleteIssueLink';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /**
  * Creates a link between two issues. Use this operation to indicate a relationship between two issues and optionally
@@ -27,7 +27,7 @@ import type { Client, SendRequestOptions } from '#/core';
  *   to view the issue.
  * - If the comment has visibility restrictions, belongs to the group or has the role visibility is restricted to.
  */
-export async function linkIssues(client: Client, parameters: LinkIssues): Promise<void> {
+export async function linkIssues(client: Client, parameters: LinkIssues, options?: RequestOptions): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: '/rest/api/3/issueLink',
     method: 'POST',
@@ -37,6 +37,7 @@ export async function linkIssues(client: Client, parameters: LinkIssues): Promis
       outwardIssue: parameters.outwardIssue,
       type: parameters.type,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -54,11 +55,16 @@ export async function linkIssues(client: Client, parameters: LinkIssues): Promis
  * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, permission to view both of the
  *   issues.
  */
-export async function getIssueLink(client: Client, parameters: GetIssueLink): Promise<IssueLink> {
+export async function getIssueLink(
+  client: Client,
+  parameters: GetIssueLink,
+  options?: RequestOptions,
+): Promise<IssueLink> {
   const config: SendRequestOptions<IssueLink> = {
     url: `/rest/api/3/issueLink/${parameters.linkId}`,
     method: 'GET',
     schema: IssueLinkSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -78,10 +84,15 @@ export async function getIssueLink(client: Client, parameters: GetIssueLink): Pr
  * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, permission to view both of the
  *   issues.
  */
-export async function deleteIssueLink(client: Client, parameters: DeleteIssueLink): Promise<void> {
+export async function deleteIssueLink(
+  client: Client,
+  parameters: DeleteIssueLink,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/issueLink/${parameters.linkId}`,
     method: 'DELETE',
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

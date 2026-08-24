@@ -20,14 +20,6 @@ import { createTestIssue, TEST_PROJECT_KEY, type TestIssue } from '../setup/fixt
  * Strings are JSON-encoded now, so the endpoint works through the client and this suite exercises it directly.
  */
 
-/**
- * The parameter type still declares an object where the endpoint wants a lone string — a specification quirk the cast
- * records rather than hides. What changed is the transport underneath it, not this declaration.
- */
-function accountIdBody(accountId: string): Record<string, unknown> {
-  return accountId as unknown as Record<string, unknown>;
-}
-
 describe('Jira Cloud — issueWatchers (live)', () => {
   const tracker = new ResourceTracker();
   let client: CloudClient;
@@ -53,7 +45,7 @@ describe('Jira Cloud — issueWatchers (live)', () => {
   });
 
   it('adds the calling account as a watcher, observable on the next read', async () => {
-    await client.issueWatchers.addWatcher({ issueIdOrKey: issue.key, body: accountIdBody(accountId) });
+    await client.issueWatchers.addWatcher({ issueIdOrKey: issue.key, body: accountId });
 
     const watchers = await client.issueWatchers.getIssueWatchers({ issueIdOrKey: issue.key });
 
@@ -64,7 +56,7 @@ describe('Jira Cloud — issueWatchers (live)', () => {
   it('treats a repeated add as idempotent rather than cumulative', async () => {
     const before = await client.issueWatchers.getIssueWatchers({ issueIdOrKey: issue.key });
 
-    await client.issueWatchers.addWatcher({ issueIdOrKey: issue.key, body: accountIdBody(accountId) });
+    await client.issueWatchers.addWatcher({ issueIdOrKey: issue.key, body: accountId });
 
     const after = await client.issueWatchers.getIssueWatchers({ issueIdOrKey: issue.key });
 
@@ -88,7 +80,7 @@ describe('Jira Cloud — issueWatchers (live)', () => {
 
   it('rejects an unknown account id rather than silently ignoring it', async () => {
     const error = await client.issueWatchers
-      .addWatcher({ issueIdOrKey: issue.key, body: accountIdBody('no-such-account-id') })
+      .addWatcher({ issueIdOrKey: issue.key, body: 'no-such-account-id' })
       .catch((e: unknown) => e);
 
     expect(error).toBeInstanceOf(Error);

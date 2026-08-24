@@ -2,7 +2,7 @@ import { ApplicationPropertySchema, type ApplicationProperty } from '../models/a
 import { ConfigurationSchema, type Configuration } from '../models/configuration';
 import type { GetApplicationProperty } from '../parameters/getApplicationProperty';
 import type { SetApplicationProperty } from '../parameters/setApplicationProperty';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 import { z } from 'zod';
 
 /**
@@ -19,6 +19,7 @@ import { z } from 'zod';
 export async function getApplicationProperty(
   client: Client,
   parameters?: GetApplicationProperty,
+  options?: RequestOptions,
 ): Promise<ApplicationProperty[]> {
   const config: SendRequestOptions<ApplicationProperty[]> = {
     url: '/rest/api/3/application-properties',
@@ -29,6 +30,7 @@ export async function getApplicationProperty(
       keyFilter: parameters?.keyFilter,
     },
     schema: z.array(ApplicationPropertySchema),
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -42,11 +44,12 @@ export async function getApplicationProperty(
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-export async function getAdvancedSettings(client: Client): Promise<ApplicationProperty[]> {
+export async function getAdvancedSettings(client: Client, options?: RequestOptions): Promise<ApplicationProperty[]> {
   const config: SendRequestOptions<ApplicationProperty[]> = {
     url: '/rest/api/3/application-properties/advanced-settings',
     method: 'GET',
     schema: z.array(ApplicationPropertySchema),
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -110,12 +113,14 @@ export async function getAdvancedSettings(client: Client): Promise<ApplicationPr
 export async function setApplicationProperty(
   client: Client,
   parameters: SetApplicationProperty,
+  options?: RequestOptions,
 ): Promise<ApplicationProperty> {
   const config: SendRequestOptions<ApplicationProperty> = {
     url: `/rest/api/3/application-properties/${parameters.id}`,
     method: 'PUT',
     body: parameters.body,
     schema: ApplicationPropertySchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -129,11 +134,12 @@ export async function setApplicationProperty(
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** Permission
  * to access Jira.
  */
-export async function getConfiguration(client: Client): Promise<Configuration> {
+export async function getConfiguration(client: Client, options?: RequestOptions): Promise<Configuration> {
   const config: SendRequestOptions<Configuration> = {
     url: '/rest/api/3/configuration',
     method: 'GET',
     schema: ConfigurationSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

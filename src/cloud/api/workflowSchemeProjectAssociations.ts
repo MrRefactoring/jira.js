@@ -4,7 +4,7 @@ import {
 } from '../models/containerOfWorkflowSchemeAssociations';
 import type { GetWorkflowSchemeProjectAssociations } from '../parameters/getWorkflowSchemeProjectAssociations';
 import type { AssignSchemeToProject } from '../parameters/assignSchemeToProject';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /**
  * Returns a list of the workflow schemes associated with a list of projects. Each returned workflow scheme includes a
@@ -20,6 +20,7 @@ import type { Client, SendRequestOptions } from '#/core';
 export async function getWorkflowSchemeProjectAssociations(
   client: Client,
   parameters: GetWorkflowSchemeProjectAssociations,
+  options?: RequestOptions,
 ): Promise<ContainerOfWorkflowSchemeAssociations> {
   const config: SendRequestOptions<ContainerOfWorkflowSchemeAssociations> = {
     url: '/rest/api/3/workflowscheme/project',
@@ -28,6 +29,7 @@ export async function getWorkflowSchemeProjectAssociations(
       projectId: parameters.projectId,
     },
     schema: ContainerOfWorkflowSchemeAssociationsSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -41,7 +43,11 @@ export async function getWorkflowSchemeProjectAssociations(
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-export async function assignSchemeToProject(client: Client, parameters: AssignSchemeToProject): Promise<void> {
+export async function assignSchemeToProject(
+  client: Client,
+  parameters: AssignSchemeToProject,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: '/rest/api/3/workflowscheme/project',
     method: 'PUT',
@@ -49,6 +55,7 @@ export async function assignSchemeToProject(client: Client, parameters: AssignSc
       projectId: parameters.projectId,
       workflowSchemeId: parameters.workflowSchemeId,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

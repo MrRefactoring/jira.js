@@ -198,14 +198,14 @@ describe('cloud id resolution', () => {
     mockFetch([json(SITES)]);
     const manager = createOAuth2Manager({ accessToken: 'access' });
 
-    await expect(manager.getBaseUrl()).rejects.toThrow(/Multiple accessible Confluence resources/);
+    await expect(manager.getBaseUrl()).rejects.toThrow(/Multiple accessible resources/);
   });
 
   it('explains an empty resource list', async () => {
     mockFetch([json([])]);
     const manager = createOAuth2Manager({ accessToken: 'access' });
 
-    await expect(manager.getBaseUrl()).rejects.toThrow(/No accessible Confluence resources/);
+    await expect(manager.getBaseUrl()).rejects.toThrow(/No accessible resources/);
   });
 
   it('reports which sites were available when siteUrl matches none', async () => {

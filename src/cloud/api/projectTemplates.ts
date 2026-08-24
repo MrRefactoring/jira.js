@@ -1,5 +1,5 @@
 import type { CreateProjectWithCustomTemplate } from '../parameters/createProjectWithCustomTemplate';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /**
  * Creates a project based on a custom template provided in the request.
@@ -26,6 +26,7 @@ import type { Client, SendRequestOptions } from '#/core';
 export async function createProjectWithCustomTemplate(
   client: Client,
   parameters: CreateProjectWithCustomTemplate,
+  options?: RequestOptions,
 ): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: '/rest/api/3/project-template',
@@ -34,6 +35,7 @@ export async function createProjectWithCustomTemplate(
       details: parameters.details,
       template: parameters.template,
     },
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

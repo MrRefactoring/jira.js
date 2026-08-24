@@ -88,7 +88,7 @@ export function parseRetryAfter(header: string | null, now = Date.now()): number
 /**
  * Whether a 401 is really a missing scope.
  *
- * Confluence says so in the body — `{"code":401,"message":"Unauthorized; scope does not match"}` — and nowhere else, so
+ * The API says so in the body — `{"code":401,"message":"Unauthorized; scope does not match"}` — and nowhere else, so
  * the message is the only signal there is. Matched loosely, since the wording is Atlassian's to change; a miss only
  * costs the caller a plain `AuthError`.
  */

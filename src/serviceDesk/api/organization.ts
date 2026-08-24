@@ -19,7 +19,7 @@ import type { RemoveUsersFromOrganization } from '../parameters/removeUsersFromO
 import type { GetServiceDeskOrganizations } from '../parameters/getServiceDeskOrganizations';
 import type { AddOrganization } from '../parameters/addOrganization';
 import type { RemoveOrganization } from '../parameters/removeOrganization';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /**
  * This method returns a list of organizations in the Jira Service Management instance. Use this method when you want to
@@ -31,7 +31,11 @@ import type { Client, SendRequestOptions } from '#/core';
  * **Response limitations**: If the user is a customer, only those organizations of which the customer is a member are
  * listed.
  */
-export async function getOrganizations(client: Client, parameters?: GetOrganizations): Promise<Page<Organization>> {
+export async function getOrganizations(
+  client: Client,
+  parameters?: GetOrganizations,
+  options?: RequestOptions,
+): Promise<Page<Organization>> {
   const config: SendRequestOptions<Page<Organization>> = {
     url: '/rest/servicedeskapi/organization',
     method: 'GET',
@@ -41,6 +45,7 @@ export async function getOrganizations(client: Client, parameters?: GetOrganizat
       accountId: parameters?.accountId,
     },
     schema: PagedOrganizationSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -55,7 +60,11 @@ export async function getOrganizations(client: Client, parameters?: GetOrganizat
  * management](https://confluence.atlassian.com/servicedeskcloud/setting-up-service-desk-users-732528877.html#Settingupservicedeskusers-manageorgsManageorganizations)**
  * feature.
  */
-export async function createOrganization(client: Client, parameters: CreateOrganization): Promise<Organization> {
+export async function createOrganization(
+  client: Client,
+  parameters: CreateOrganization,
+  options?: RequestOptions,
+): Promise<Organization> {
   const config: SendRequestOptions<Organization> = {
     url: '/rest/servicedeskapi/organization',
     method: 'POST',
@@ -63,6 +72,7 @@ export async function createOrganization(client: Client, parameters: CreateOrgan
       name: parameters.name,
     },
     schema: OrganizationSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -80,11 +90,16 @@ export async function createOrganization(client: Client, parameters: CreateOrgan
  *
  * **Response limitations**: Customers can only retrieve organization of which they are members.
  */
-export async function getOrganization(client: Client, parameters: GetOrganization): Promise<Organization> {
+export async function getOrganization(
+  client: Client,
+  parameters: GetOrganization,
+  options?: RequestOptions,
+): Promise<Organization> {
   const config: SendRequestOptions<Organization> = {
     url: `/rest/servicedeskapi/organization/${parameters.organizationId}`,
     method: 'GET',
     schema: OrganizationSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -97,10 +112,15 @@ export async function getOrganization(client: Client, parameters: GetOrganizatio
  * **[Permissions](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro#permissions) required**: Jira
  * administrator.
  */
-export async function deleteOrganization(client: Client, parameters: DeleteOrganization): Promise<void> {
+export async function deleteOrganization(
+  client: Client,
+  parameters: DeleteOrganization,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/servicedeskapi/organization/${parameters.organizationId}`,
     method: 'DELETE',
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -119,11 +139,16 @@ export async function deleteOrganization(client: Client, parameters: DeleteOrgan
  *
  * **Response limitations**: Customers can only access properties of organizations of which they are members.
  */
-export async function getPropertiesKeys(client: Client, parameters: GetPropertiesKeys): Promise<PropertyKeys> {
+export async function getPropertiesKeys(
+  client: Client,
+  parameters: GetPropertiesKeys,
+  options?: RequestOptions,
+): Promise<PropertyKeys> {
   const config: SendRequestOptions<PropertyKeys> = {
     url: `/rest/servicedeskapi/organization/${parameters.organizationId}/property`,
     method: 'GET',
     schema: PropertyKeysSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -142,11 +167,16 @@ export async function getPropertiesKeys(client: Client, parameters: GetPropertie
  *
  * **Response limitations**: Customers can only access properties of organizations of which they are members.
  */
-export async function getProperty(client: Client, parameters: GetProperty): Promise<EntityProperty> {
+export async function getProperty(
+  client: Client,
+  parameters: GetProperty,
+  options?: RequestOptions,
+): Promise<EntityProperty> {
   const config: SendRequestOptions<EntityProperty> = {
     url: `/rest/servicedeskapi/organization/${parameters.organizationId}/property/${parameters.propertyKey}`,
     method: 'GET',
     schema: EntityPropertySchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -169,11 +199,12 @@ export async function getProperty(client: Client, parameters: GetProperty): Prom
  * management](https://confluence.atlassian.com/servicedeskcloud/setting-up-service-desk-users-732528877.html#Settingupservicedeskusers-manageorgsManageorganizations)**
  * feature.
  */
-export async function setProperty(client: Client, parameters: SetProperty): Promise<void> {
+export async function setProperty(client: Client, parameters: SetProperty, options?: RequestOptions): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/servicedeskapi/organization/${parameters.organizationId}/property/${parameters.propertyKey}`,
     method: 'PUT',
     body: parameters.body,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -196,10 +227,15 @@ export async function setProperty(client: Client, parameters: SetProperty): Prom
  * management](https://confluence.atlassian.com/servicedeskcloud/setting-up-service-desk-users-732528877.html#Settingupservicedeskusers-manageorgsManageorganizations)**
  * feature.
  */
-export async function deleteProperty(client: Client, parameters: DeleteProperty): Promise<void> {
+export async function deleteProperty(
+  client: Client,
+  parameters: DeleteProperty,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/servicedeskapi/organization/${parameters.organizationId}/property/${parameters.propertyKey}`,
     method: 'DELETE',
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -212,7 +248,11 @@ export async function deleteProperty(client: Client, parameters: DeleteProperty)
  * **[Permissions](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro#permissions) required**: Service
  * desk administrator or agent.
  */
-export async function getUsersInOrganization(client: Client, parameters: GetUsersInOrganization): Promise<Page<User>> {
+export async function getUsersInOrganization(
+  client: Client,
+  parameters: GetUsersInOrganization,
+  options?: RequestOptions,
+): Promise<Page<User>> {
   const config: SendRequestOptions<Page<User>> = {
     url: `/rest/servicedeskapi/organization/${parameters.organizationId}/user`,
     method: 'GET',
@@ -221,6 +261,7 @@ export async function getUsersInOrganization(client: Client, parameters: GetUser
       limit: parameters.limit,
     },
     schema: PagedUserSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -235,11 +276,16 @@ export async function getUsersInOrganization(client: Client, parameters: GetUser
  * management](https://confluence.atlassian.com/servicedeskcloud/setting-up-service-desk-users-732528877.html#Settingupservicedeskusers-manageorgsManageorganizations)**
  * feature.
  */
-export async function addUsersToOrganization(client: Client, parameters: AddUsersToOrganization): Promise<void> {
+export async function addUsersToOrganization(
+  client: Client,
+  parameters: AddUsersToOrganization,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/servicedeskapi/organization/${parameters.organizationId}/user`,
     method: 'POST',
     body: parameters.body,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -257,11 +303,13 @@ export async function addUsersToOrganization(client: Client, parameters: AddUser
 export async function removeUsersFromOrganization(
   client: Client,
   parameters: RemoveUsersFromOrganization,
+  options?: RequestOptions,
 ): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/servicedeskapi/organization/${parameters.organizationId}/user`,
     method: 'DELETE',
     body: parameters.body,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -276,6 +324,7 @@ export async function removeUsersFromOrganization(
 export async function getServiceDeskOrganizations(
   client: Client,
   parameters: GetServiceDeskOrganizations,
+  options?: RequestOptions,
 ): Promise<Page<Organization>> {
   const config: SendRequestOptions<Page<Organization>> = {
     url: `/rest/servicedeskapi/servicedesk/${parameters.serviceDeskId}/organization`,
@@ -286,6 +335,7 @@ export async function getServiceDeskOrganizations(
       accountId: parameters.accountId,
     },
     schema: PagedOrganizationSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -298,11 +348,16 @@ export async function getServiceDeskOrganizations(
  * **[Permissions](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro#permissions) required**: Service
  * desk's agent.
  */
-export async function addOrganization(client: Client, parameters: AddOrganization): Promise<void> {
+export async function addOrganization(
+  client: Client,
+  parameters: AddOrganization,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/servicedeskapi/servicedesk/${parameters.serviceDeskId}/organization`,
     method: 'POST',
     body: parameters.body,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
@@ -315,11 +370,16 @@ export async function addOrganization(client: Client, parameters: AddOrganizatio
  * **[Permissions](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro#permissions) required**: Service
  * desk's agent.
  */
-export async function removeOrganization(client: Client, parameters: RemoveOrganization): Promise<void> {
+export async function removeOrganization(
+  client: Client,
+  parameters: RemoveOrganization,
+  options?: RequestOptions,
+): Promise<void> {
   const config: SendRequestOptions<void> = {
     url: `/rest/servicedeskapi/servicedesk/${parameters.serviceDeskId}/organization`,
     method: 'DELETE',
     body: parameters.body,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);

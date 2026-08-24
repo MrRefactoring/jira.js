@@ -14,16 +14,6 @@ import { getCloudClient } from '../setup/client';
 /** Namespaced so a failed run can never clobber a real user preference. */
 const PREFERENCE_KEY = 'jira.js.livetest.preference';
 
-/**
- * `setPreference` declares its body as an object, but the endpoint is plain text: it stores whatever bytes it is given
- * and `getPreference` hands them straight back (verified live — a raw `raw-text-value` body reads back verbatim, and
- * the response schema is `z.string()` precisely because of that). The declared parameter type is wrong, inherited from
- * the specification; the cast records the mismatch here rather than papering over it, and the fix belongs upstream.
- */
-function preferenceBody(value: string): Record<string, unknown> {
-  return value as unknown as Record<string, unknown>;
-}
-
 describe('Jira Cloud — myself.getCurrentUser (live)', () => {
   let client: CloudClient;
 
@@ -80,7 +70,7 @@ describe('Jira Cloud — myself preferences (live, round trip)', () => {
   });
 
   it('stores a preference and reads back exactly what was written', async () => {
-    await client.myself.setPreference({ key: PREFERENCE_KEY, body: preferenceBody('stored-by-live-test') });
+    await client.myself.setPreference({ key: PREFERENCE_KEY, body: 'stored-by-live-test' });
 
     const value = await client.myself.getPreference({ key: PREFERENCE_KEY });
 
@@ -88,13 +78,13 @@ describe('Jira Cloud — myself preferences (live, round trip)', () => {
   });
 
   it('overwrites rather than appending on a second write', async () => {
-    await client.myself.setPreference({ key: PREFERENCE_KEY, body: preferenceBody('second') });
+    await client.myself.setPreference({ key: PREFERENCE_KEY, body: 'second' });
 
     expect(await client.myself.getPreference({ key: PREFERENCE_KEY })).toBe('second');
   });
 
   it('makes the preference unreadable once removed', async () => {
-    await client.myself.setPreference({ key: PREFERENCE_KEY, body: preferenceBody('transient') });
+    await client.myself.setPreference({ key: PREFERENCE_KEY, body: 'transient' });
     await client.myself.removePreference({ key: PREFERENCE_KEY });
 
     const error = await client.myself.getPreference({ key: PREFERENCE_KEY }).catch((e: unknown) => e);

@@ -3,7 +3,7 @@ import {
   type ForgePanelProjectPinAsyncResponse,
 } from '../models/forgePanelProjectPinAsyncResponse';
 import type { BulkPinUnpinProjectsAsync } from '../parameters/bulkPinUnpinProjectsAsync';
-import type { Client, SendRequestOptions } from '#/core';
+import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /**
  * Bulk pin or unpin an issue panel (added by a Forge app) to or from multiple projects.
@@ -18,6 +18,7 @@ import type { Client, SendRequestOptions } from '#/core';
 export async function bulkPinUnpinProjectsAsync(
   client: Client,
   parameters: BulkPinUnpinProjectsAsync,
+  options?: RequestOptions,
 ): Promise<ForgePanelProjectPinAsyncResponse> {
   const config: SendRequestOptions<ForgePanelProjectPinAsyncResponse> = {
     url: '/rest/api/3/forge/panel/action/bulk/async',
@@ -27,6 +28,7 @@ export async function bulkPinUnpinProjectsAsync(
       projectList: parameters.projectList,
     },
     schema: ForgePanelProjectPinAsyncResponseSchema,
+    signal: options?.signal,
   };
 
   return await client.sendRequest(config);
