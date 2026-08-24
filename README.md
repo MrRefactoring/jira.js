@@ -132,6 +132,7 @@ The documentation includes:
 - **Jira Cloud platform API**: issues, projects, users, fields, workflows, schemes
 - **Jira Software (Agile) API**: sprint management, boards, backlogs, agile workflows
 - **Jira Service Management API**: request handling, queues, customers, organizations
+- **Webhook types**: the events, payloads and headers Jira posts to *you* — `jira.js/webhooks`, types only, no client
 
 There is one platform surface, generated from Jira's v3 specification. `Version2Client` and `Version3Client` are gone — the difference between them was never the endpoints, it was rich text. Rich-text fields still accept a wiki-markup **string**: that write is routed through Jira's v2 endpoint, which parses the markup server-side, and the result is read back so what you get is a real [Atlassian Document Format](https://developer.atlassian.com/cloud/jira/platform/apis/document/structure/) document.
 
