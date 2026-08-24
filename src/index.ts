@@ -35,6 +35,9 @@
  * Those entry points also expose every response type. The request parameter types sit one level down —
  * `jira.js/cloud/parameters` and so on — because a parameter and a model occasionally share a name, and forty-one
  * of them do in the Agile surface alone. Neither is re-exported here: the surfaces collide on a handful of names.
+ *
+ * One subpath goes the other way. `jira.js/webhooks` has no client and nothing to call: it types the events, payloads
+ * and headers Jira posts to a server of yours when something happens on the site.
  */
 
 export { createCloudClient, type CloudClient } from './cloud/createCloudClient.js';
