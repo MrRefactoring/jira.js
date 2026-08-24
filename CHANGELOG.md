@@ -47,6 +47,23 @@ Three long-standing requests, all of them the same shape: the client had no seam
 
 ### Features
 
+l.
+
+* **`createServerClient` and `jira.js/server`.** Four hundred and forty-four operations across sixty-one modules, generated from the Jira Data Center 11.3 LTS specification and usable against **Jira Data Center 10.0 and later**. Data Center publishes its platform, Agile and session endpoints as one document, so unlike Cloud there is no separate Agile factory — boards and sprints sit in the same client as issues.
+
+  ```ts
+  import { createServerClient } from 'jira.js';
+
+  const jira = createServerClient({
+    host: 'https://jira.your-company.com',
+    auth: { type: 'bearer', token: personalAccessToken },
+  });
+
+  await jira.issues.getIssue({ issueIdOrKey: 'PROJ-1' });
+  ```
+
+  The nine operations that arrived after 10.0 carry an `@since` note naming the release each can be relied on from. Jira 9.x is not supported: Atlassian never published an OpenAPI document for it, and the line reached end of life on 26 June 2026.
+
 * **Three surfaces above the site: organization, user management and SCIM provisioning.** `createAdminClient`, `createUserManagementClient` and `createUserProvisioningClient` — 47, 10 and 24 operations. Closes [#317](https://github.com/MrRefactoring/jira.js/issues/317), [#316](https://github.com/MrRefactoring/jira.js/issues/316) and [#315](https://github.com/MrRefactoring/jira.js/issues/315).
 
   ```ts

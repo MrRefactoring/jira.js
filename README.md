@@ -24,6 +24,7 @@
 - **[Assets API](https://developer.atlassian.com/cloud/assets/rest/)** - the configuration management database
 - **[Teams API](https://developer.atlassian.com/platform/teams/rest/v1/)** - teams, their members and external links, at organization level
 - **[Organization APIs](https://developer.atlassian.com/cloud/admin/organization/rest/)** - directories, users, groups, domains, policies and SCIM provisioning, above the site
+- **[Jira Data Center API](https://developer.atlassian.com/server/jira/platform/rest/)** - the self-hosted platform, Agile included
 
 > **6.0 is a rewrite, not a refresh.** `npm install jira.js` now installs 6.x. Read [MIGRATION.md](./MIGRATION.md) before upgrading — it says plainly who should stay on `jira.js@5`, which is supported until the end of 2026.
 
@@ -138,6 +139,7 @@ The documentation includes:
 - **Assets API**: objects, schemas, types and AQL — `createAssetsClient`
 - **Teams API**: teams, their members and external links, at organization level — `createTeamsClient`
 - **Organization administration**: directories, users, groups, domains, policies and SCIM provisioning above the site — `createAdminClient`, `createUserManagementClient`, `createUserProvisioningClient`
+- **Jira Data Center API**: the self-hosted platform with Agile in the same client — `createServerClient`
 - **Webhook types**: the events, payloads and headers Jira posts to *you* — `jira.js/webhooks`, types only, no client
 
 There is one platform surface, generated from Jira's v3 specification. `Version2Client` and `Version3Client` are gone — the difference between them was never the endpoints, it was rich text. Rich-text fields still accept a wiki-markup **string**: that write is routed through Jira's v2 endpoint, which parses the markup server-side, and the result is read back so what you get is a real [Atlassian Document Format](https://developer.atlassian.com/cloud/jira/platform/apis/document/structure/) document.
@@ -445,11 +447,12 @@ Every function takes the client as its first argument — the same client the fa
 
 | Import | Contents |
 | --- | --- |
-| `jira.js` | The eight factories, error types and predicates, OAuth helpers |
+| `jira.js` | The nine factories, error types and predicates, OAuth helpers |
 | `jira.js/core` | `createClient`, transport, errors, OAuth, multipart helpers |
 | `jira.js/cloud` | Platform API functions, parameters and response types |
 | `jira.js/agile` | Agile API functions, parameters and response types |
 | `jira.js/serviceDesk` | Service Management functions, parameters and response types |
+| `jira.js/server` | Data Center functions, parameters and response types |
 | `jira.js/assets` | Assets Cloud functions, parameters and response types |
 | `jira.js/teams` | Teams functions, parameters and response types |
 | `jira.js/admin` | Organization API functions, parameters and response types |
@@ -487,7 +490,7 @@ Jira.js is perfect for:
 A: Yes, since 6.3. `createAssetsClient` covers the [Assets Cloud REST API](https://developer.atlassian.com/cloud/assets/rest/) — it takes a `workspaceId` and its own configuration, because Assets answers on `api.atlassian.com` rather than on your site. See the [Assets guide](https://mrrefactoring.github.io/jira.js/guide/assets).
 
 **Q: Does this work with Jira Server/Data Center?**  
-A: No, Jira.js is designed specifically for Jira Cloud. For on-premise Jira, consider using the REST API directly.
+A: Yes, since 6.3. `createServerClient` covers 444 operations of the self-hosted platform API, Agile included — it is a surface of its own rather than the Cloud client pointed at another host, because the two APIs differ in more than their address. See the [Data Center guide](https://mrrefactoring.github.io/jira.js/guide/data-center).
 
 **Q: Is TypeScript required?**  
 A: No, but TypeScript is fully supported with comprehensive type definitions. You can use Jira.js with plain JavaScript too.
