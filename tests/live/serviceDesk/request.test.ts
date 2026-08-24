@@ -9,8 +9,10 @@ import { getClient } from '../setup/client';
  * Every endpoint here is gated behind an agent licence the test account does not hold, so this file asserts the
  * shape of the refusal across the whole surface rather than skipping. Two things make that worth doing.
  *
- * First, the refusal is a 403 with an empty body — the least informative answer in any of the three surfaces — so
- * that it arrives *typed* is the only thing standing between a caller and a bare rejection they cannot classify.
+ * First, the refusal is a 403 carrying Jira's generic HTML error page rather than a service-desk error — the same
+ * body `getServiceDesks`, `getOrganizations` and `getInsightWorkspaces` refuse with, and the one answer on any of the
+ * three surfaces that a JSON parser cannot read at all. That it arrives *typed*, with its status intact, is the only
+ * thing standing between a caller and a bare rejection they cannot classify.
  *
  * Second, several of these endpoints would be unsafe even with a licence: `createCustomerRequest` opens a real ticket
  * a support team would see, `createRequestComment` writes into a customer conversation, and
