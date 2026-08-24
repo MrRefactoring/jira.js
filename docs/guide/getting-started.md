@@ -1,15 +1,19 @@
 # Getting Started
 
-`jira.js` is a TypeScript client for the Atlassian Jira Cloud REST APIs, for [Node.js](https://nodejs.org/)
-and browsers. It covers seven surfaces:
+`jira.js` is a TypeScript client for the Atlassian Jira REST APIs, for [Node.js](https://nodejs.org/)
+and browsers. It covers eight surfaces:
 
 - **[Jira Cloud platform](https://developer.atlassian.com/cloud/jira/platform/rest/)** — issues, projects, fields, workflows
 - **[Jira Agile](https://developer.atlassian.com/cloud/jira/software/rest/intro/)** — boards, sprints, backlog
 - **[Jira Service Management](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro/)** — requests, queues, organizations
-- **[Assets](https://developer.atlassian.com/cloud/assets/rest/)** — objects, schemas and types, AQL
+- **[Assets](https://developer.atlassian.com/cloud/assets/rest/)** — objects, schemas and types, AQL, on Cloud and Data Center alike
 - **[Teams](https://developer.atlassian.com/platform/teams/rest/v1/)** — teams, their members and external links
 - **[Organization APIs](https://developer.atlassian.com/cloud/admin/organization/rest/)** — directories, users, groups, domains, policies, SCIM
-- **[Jira Data Center](https://developer.atlassian.com/server/jira/platform/rest/)** — the self-hosted platform, Agile included
+- **[Jira Data Center](https://developer.atlassian.com/server/jira/platform/rest/)** — the self-hosted API, platform and agile in one client
+- **[Jira Service Management Data Center](https://developer.atlassian.com/server/jira-servicedesk/rest/)** — self-hosted requests, queues, request types, organizations
+
+The Cloud surfaces and the self-hosted ones are separate: Data Center is a surface of its own rather than the
+Cloud one pointed at another host — see [Jira Data Center](./data-center).
 
 ## Install
 

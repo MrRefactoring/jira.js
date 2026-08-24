@@ -27,7 +27,7 @@ const issue = await getIssue(client, { issueIdOrKey: 'TEST-1' });
 
 | Импорт | Что внутри |
 | --- | --- |
-| `jira.js` | Восемь фабрик, типы ошибок и предикаты, помощники OAuth |
+| `jira.js` | Одиннадцать фабрик, типы ошибок и предикаты, помощники OAuth |
 | `jira.js/core` | `createClient`, транспорт, ошибки, OAuth, multipart |
 | `jira.js/cloud` | Функции платформенного API и типы ответов |
 | `jira.js/cloud/models` | Только типы ответов платформенного API |
@@ -41,6 +41,12 @@ const issue = await getIssue(client, { issueIdOrKey: 'TEST-1' });
 | `jira.js/server` | Функции Data Center и типы ответов |
 | `jira.js/server/models` | Только типы ответов Data Center |
 | `jira.js/server/parameters` | Типы параметров запросов Data Center |
+| `jira.js/serviceDeskServer` | Функции Service Management Data Center и типы ответов |
+| `jira.js/serviceDeskServer/models` | Только типы ответов Service Management Data Center |
+| `jira.js/serviceDeskServer/parameters` | Типы параметров запросов Service Management Data Center |
+| `jira.js/assetsServer` | Функции Assets Data Center и типы ответов |
+| `jira.js/assetsServer/models` | Только типы ответов Assets Data Center |
+| `jira.js/assetsServer/parameters` | Типы параметров запросов Assets Data Center |
 | `jira.js/assets` | Функции Assets Cloud и типы ответов |
 | `jira.js/assets/models` | Только типы ответов Assets Cloud |
 | `jira.js/assets/parameters` | Типы параметров запросов Assets Cloud |
@@ -67,8 +73,9 @@ import type { Issue } from 'jira.js/cloud';
 import type { GetIssue } from 'jira.js/cloud/parameters';
 ```
 
-Девять поверхностей не реэкспортируются из корня, потому что сталкиваются на десятке имён — импортируйте из
-той, которую имеете в виду.
+Одиннадцать поверхностей не реэкспортируются из корня, потому что сталкиваются на десятке имён — импортируйте
+из той, которую имеете в виду. Сильнее всех сталкивается Data Center: восемьдесят семь его моделей носят
+имя облачных и описывают другое.
 
 > Глубоким импортам нужен резолвер, понимающий `exports`: `moduleResolution: "bundler"`, `"node16"` или
 > `"nodenext"`. Легаси-резолвинг `"node"` их не видит и ESM-only пакет всё равно не загрузит.

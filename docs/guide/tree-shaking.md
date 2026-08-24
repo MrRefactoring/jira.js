@@ -29,7 +29,7 @@ where it does.
 
 | Import | Contents |
 | --- | --- |
-| `jira.js` | The eight factories, the error types and their predicates, the OAuth helpers |
+| `jira.js` | The eleven factories, the error types and their predicates, the OAuth helpers |
 | `jira.js/core` | `createClient`, the transport, errors, OAuth, multipart helpers |
 | `jira.js/cloud` | Platform API functions and response types |
 | `jira.js/cloud/models` | Platform API response types on their own |
@@ -43,6 +43,12 @@ where it does.
 | `jira.js/server` | Data Center functions and response types |
 | `jira.js/server/models` | Data Center response types on their own |
 | `jira.js/server/parameters` | Data Center request parameter types |
+| `jira.js/serviceDeskServer` | Service Management Data Center functions and response types |
+| `jira.js/serviceDeskServer/models` | Service Management Data Center response types on their own |
+| `jira.js/serviceDeskServer/parameters` | Service Management Data Center request parameter types |
+| `jira.js/assetsServer` | Assets Data Center functions and response types |
+| `jira.js/assetsServer/models` | Assets Data Center response types on their own |
+| `jira.js/assetsServer/parameters` | Assets Data Center request parameter types |
 | `jira.js/assets` | Assets Cloud functions and response types |
 | `jira.js/assets/models` | Assets Cloud response types on their own |
 | `jira.js/assets/parameters` | Assets Cloud request parameter types |
@@ -70,8 +76,9 @@ import type { Issue } from 'jira.js/cloud';
 import type { GetIssue } from 'jira.js/cloud/parameters';
 ```
 
-The nine surfaces are not re-exported from the root, because they collide on a handful of names — import
-from the surface you mean.
+The eleven surfaces are not re-exported from the root, because they collide on a handful of names — import
+from the surface you mean. Data Center collides hardest: eighty-seven of its models share a name with a
+Cloud one and describe something else.
 
 > Deep imports need an `exports`-aware resolver: `moduleResolution: "bundler"`, `"node16"` or
 > `"nodenext"`. The legacy `"node"` resolution cannot see them, and cannot load an ESM-only package
