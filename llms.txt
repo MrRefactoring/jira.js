@@ -11,6 +11,7 @@ Version 6.0 is a rewrite: one platform surface instead of v2/v3, `fetch` instead
 - [API reference](https://mrrefactoring.github.io/jira.js/): Full TypeDoc reference for every endpoint, parameter, and model.
 - [Getting started](https://mrrefactoring.github.io/jira.js/guide/getting-started): Install, build a client, make a first request.
 - [Authentication](https://mrrefactoring.github.io/jira.js/guide/authentication): API token, bearer token, OAuth 2.0 (3LO).
+- [Assets](https://mrrefactoring.github.io/jira.js/guide/assets): The configuration management database — the workspace a Cloud client needs, and why it does not answer on your site.
 - [Webhooks](https://mrrefactoring.github.io/jira.js/guide/webhooks): The other direction — the events, payloads and headers Jira posts to your server, as types only, and how much of that Atlassian actually documents.
 - [OAuth 2.0 (3LO) guide](https://mrrefactoring.github.io/jira.js/guide/oauth2-authentication): Step-by-step setup with auto-refresh and cloudId resolution.
 - [Error handling](https://mrrefactoring.github.io/jira.js/guide/error-handling): The typed error hierarchy and its predicates.

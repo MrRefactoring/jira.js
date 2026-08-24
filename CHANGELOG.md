@@ -47,6 +47,23 @@ Three long-standing requests, all of them the same shape: the client had no seam
 
 ### Features
 
+* **`createAssetsClient` and `jira.js/assets`.** Sixty operations of the [Assets Cloud REST API](https://developer.atlassian.com/cloud/assets/rest/) across thirteen modules: objects and their schemas, types and attributes, AQL, icons, status and reference types, and the import sources a third-party integration feeds data through.
+
+  Assets is the one surface in this library that does not answer on your site's own host, so its client is built from its own configuration rather than shared with the others:
+
+  ```ts
+  import { createServiceDeskClient, createAssetsClient } from 'jira.js';
+
+  const serviceDesk = createServiceDeskClient({ host, auth });
+  const [workspace] = (await serviceDesk.assets.getAssetsWorkspaces()).values ?? [];
+
+  const assets = createAssetsClient({ workspaceId: workspace.workspaceId, auth });
+
+  await assets.objects.loadObject({ id: '42' });
+  ```
+
+  `workspaceId` is required and explicit: a site has one, `getAssetsWorkspaces` returns it, and it does not change. Under OAuth 2.0 the client resolves the gateway itself as it does everywhere else; under every other strategy it goes to `api.atlassian.com`. Assets needs Jira Service Management Premium, without which the workspace list comes back empty. Closes [#266](https://github.com/MrRefactoring/jira.js/issues/266), open since May 2023.
+
 * **`jira.js/webhooks` types what Jira posts to you.** Everything else in this library calls Jira; a webhook is the other direction, and until now there was no way to say what arrives. Fifty-seven events as a union discriminated by `webhookEvent`, sixteen payload shapes, and the headers Jira attaches. Closes [#294](https://github.com/MrRefactoring/jira.js/issues/294).
 
   ```ts
