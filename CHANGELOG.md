@@ -47,6 +47,46 @@ Three long-standing requests, all of them the same shape: the client had no seam
 
 ### Features
 
+* **`jira.js/webhooks` types what Jira posts to you.** Everything else in this library calls Jira; a webhook is the other direction, and until now there was no way to say what arrives. Fifty-seven events as a union discriminated by `webhookEvent`, sixteen payload shapes, and the headers Jira attaches. Closes [#294](https://github.com/MrRefactoring/jira.js/issues/294).
+
+  ```ts
+  import type { WebhookHeaders, WebhookPayload } from 'jira.js/webhooks';
+
+  app.post('/jira', (request, response) => {
+    const payload = request.body as WebhookPayload;
+
+    switch (payload.webhookEvent) {
+      case 'jira:issue_created':
+        console.log(payload.issue.key);
+        break;
+    }
+
+    response.sendStatus(200);
+  });
+  ```
+
+  There is no parser: a webhook body is shaped by the site that sent it, custom fields and installed apps included, so a schema strict enough to be worth having would reject bodies that are perfectly valid elsewhere.
+
+  **`verifyWebhookSignature` is the one thing here that runs**, because it is the one claim that can be checked rather than asserted. `x-hub-signature` is what distinguishes a delivery from Jira from a POST anyone who found your URL can make, and it is HMAC-SHA256 over the exact bytes of the body.
+
+  ```ts
+  import { verifyWebhookSignature } from 'jira.js/webhooks';
+
+  app.post('/jira', express.raw({ type: 'application/json' }), async (request, response) => {
+    const trusted = await verifyWebhookSignature({
+      body: request.body,
+      secret: process.env.JIRA_WEBHOOK_SECRET!,
+      signature: request.get('x-hub-signature'),
+    });
+
+    if (!trusted) return response.sendStatus(401);
+  });
+  ```
+
+  The body must be the bytes that arrived — `JSON.stringify` of a parsed object is a different byte sequence for the same data, and never matches. Every untrustworthy delivery answers `false` alike, whether the header is missing, names another algorithm, or carries a digest of the right shape and the wrong value; only an empty secret throws, being a mistake of yours rather than a failed check. The comparison is constant-time, and `crypto.subtle` is a global in Node and browsers alike, so nothing is imported and the browser bundle is unchanged.
+
+  How much is documented is worth stating plainly, because the types say it too. Atlassian publishes one complete payload, the one for issue events; that group is written from it and from a capture of a real delivery, and is the only one whose entity is required. Every other group names its entity optionally, after the entity the event concerns. The headers are lower-cased, as they arrive, and every value is typed as the string an HTTP header is — the retry count included.
+
 * **Request parameter types are importable again.** `CreateIssue`, `GetIssue` and the twelve hundred others appeared in no published declaration file: a surface entry point re-exports `api`, `models` and its factory, and never `parameters`. They now have a subpath of their own:
 
   ```ts

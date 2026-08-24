@@ -101,10 +101,13 @@ try {
     "import { createCloudClient, isNotFoundError } from 'jira.js';",
     "import { createClient } from 'jira.js/core';",
     "import type { Client } from 'jira.js/core';",
+    "import type { WebhookHeaders, WebhookPayload } from 'jira.js/webhooks';",
     '',
     "const client: Client = createClient({ host: 'https://example.atlassian.net' });",
     'export const jira = createCloudClient(client);',
     'export const predicate: (value: unknown) => boolean = isNotFoundError;',
+    'export const identify = (headers: WebhookHeaders, payload: WebhookPayload): string =>',
+    "  `${payload.webhookEvent} ${headers['x-atlassian-webhook-identifier']}`;",
   ].join('\n');
 
   writeFileSync(join(workspace, 'probe.ts'), `${typeProbe}\n`);

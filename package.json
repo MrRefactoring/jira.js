@@ -32,6 +32,10 @@
       "types": "./dist/core/index.d.ts",
       "import": "./dist/core/index.js"
     },
+    "./webhooks": {
+      "types": "./dist/webhooks/index.d.ts",
+      "import": "./dist/webhooks/index.js"
+    },
     "./cloud": {
       "types": "./dist/cloud/index.d.ts",
       "import": "./dist/cloud/index.js"
