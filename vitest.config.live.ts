@@ -6,11 +6,13 @@ const repoRoot = import.meta.dirname;
 
 export default defineConfig(({ mode }) => ({
   test: {
-    // The Data Center suite runs against a container of its own, under its own config and its own global setup,
-    // and has to be brought up first with `pnpm jira-dc:up`. Left in, it does not merely fail — it fails with
-    // `undefined` where its fixtures should be, because this run's global setup provides different ones.
+    // Every suite that runs against a container of its own is excluded here, because each has its own config and its
+    // own global setup and the container has to be brought up first: `tests/live/server` needs `pnpm jira-dc:up`,
+    // `tests/live/jsm` needs `pnpm jsm-dc:up`. Left in, they do not merely fail — they fail with `undefined` where
+    // their fixtures should be, because this run's global setup provides different ones. A new self-hosted surface
+    // belongs on this list the day its directory appears.
     include: ['tests/live/**/*.test.ts'],
-    exclude: ['tests/live/server/**'],
+    exclude: ['tests/live/server/**', 'tests/live/jsm/**'],
     environment: 'node',
     reporters: ['verbose'],
     env: loadEnv(mode, repoRoot, ''),

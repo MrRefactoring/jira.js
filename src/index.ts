@@ -1,10 +1,10 @@
 /**
  * Jira REST API client for Node.js and browsers.
  *
- * Nine surfaces, one client. On Cloud: the Jira platform API, the Agile (software) API, Jira Service Management,
- * Assets and Teams, and three more addressed to an organization rather than to a site. Self-hosted: the Data Center
- * platform, Agile included. Each has its own factory, and the site-level ones take the same bare site URL — the API
- * path belongs to the request, not to `host`:
+ * Eight surfaces, one client: on Cloud, the Jira platform API, the Agile (software) API, Jira Service Management,
+ * Assets and Teams; self-hosted, the Data Center counterparts of the platform — Agile included — Service Management
+ * and Assets. Each has its own factory, and every one but Assets takes the same bare site URL — the API path belongs
+ * to the request, not to `host`:
  *
  * ```ts
  * import { createCloudClient } from 'jira.js';
@@ -30,10 +30,9 @@
  * const agile = createAgileClient(client);
  * ```
  *
- * Data Center is a separate surface rather than a mode of the Cloud one, because the two APIs are not variants of
- * each other: `/rest/api/2` against `/rest/api/3`, wiki markup against ADF, `name` and `key` against `accountId`.
- * Only the client underneath is shared. It publishes its platform and agile endpoints as one document, so unlike
- * Cloud there is no separate agile factory — boards and sprints sit in the same client as issues.
+ * Data Center is a separate surface rather than a mode of the Cloud one, because the two APIs are not variants of each
+ * other: `/rest/api/2` against `/rest/api/3`, wiki markup against ADF, `name` and `key` against `accountId`. Only the
+ * client underneath is shared.
  *
  * ```ts
  * import { createServerClient } from 'jira.js';
@@ -48,8 +47,14 @@
  * `jira.js/server` and drive them with that same client.
  *
  * Those entry points also expose every response type. The request parameter types sit one level down —
- * `jira.js/cloud/parameters` and so on — because a parameter and a model occasionally share a name, and forty-one
- * of them do in the Agile surface alone. Neither is re-exported here: the surfaces collide on a handful of names.
+ * `jira.js/cloud/parameters`, `jira.js/server/parameters` and so on — because a parameter and a model occasionally
+ * share a name, and forty-one of them do in the Agile surface alone. Neither is re-exported here: the surfaces collide
+ * on a handful of names.
+ *
+ * Three more surfaces sit above the site rather than inside one: `createAdminClient` for the organization, its
+ * directories, groups and policies, `createUserManagementClient` for a single managed account, and
+ * `createUserProvisioningClient` for SCIM. All three answer on `https://api.atlassian.com` and take an
+ * organization API key rather than a site token.
  *
  * One subpath goes the other way. `jira.js/webhooks` has no client and nothing to call: it types the events, payloads
  * and headers Jira posts to a server of yours when something happens on the site.
@@ -57,11 +62,36 @@
 
 export { createCloudClient, type CloudClient } from './cloud/createCloudClient.js';
 
+export { createAgileClient, type AgileClient } from './agile/createAgileClient.js';
+
+export { createServiceDeskClient, type ServiceDeskClient } from './serviceDesk/createServiceDeskClient.js';
+
 export { createServerClient, type ServerClient } from './server/createServerClient.js';
 
-export { createTeamsClient, type TeamsClient, type TeamsClientConfig } from './teams/createTeamsClient.js';
+export {
+  createServiceDeskServerClient,
+  type ServiceDeskServerClient,
+} from './serviceDeskServer/createServiceDeskServerClient.js';
 
-export { createAdminClient, type AdminClient, type AdminClientConfig } from './admin/createAdminClient.js';
+export { createAssetsServerClient, type AssetsServerClient } from './assetsServer/createAssetsServerClient.js';
+
+export {
+  createAssetsClient,
+  type AssetsClient,
+  type AssetsClientConfig,
+} from './assets/createAssetsClient.js';
+
+export {
+  createTeamsClient,
+  type TeamsClient,
+  type TeamsClientConfig,
+} from './teams/createTeamsClient.js';
+
+export {
+  createAdminClient,
+  type AdminClient,
+  type AdminClientConfig,
+} from './admin/createAdminClient.js';
 
 export {
   createUserManagementClient,
@@ -74,16 +104,6 @@ export {
   type UserProvisioningClient,
   type UserProvisioningClientConfig,
 } from './userProvisioning/createUserProvisioningClient.js';
-
-export {
-  createAssetsClient,
-  type AssetsClient,
-  type AssetsClientConfig,
-} from './assets/createAssetsClient.js';
-
-export { createAgileClient, type AgileClient } from './agile/createAgileClient.js';
-
-export { createServiceDeskClient, type ServiceDeskClient } from './serviceDesk/createServiceDeskClient.js';
 
 export {
   ApiError,
@@ -130,6 +150,14 @@ export type {
   OnTokenRefresh,
   CallbackParams,
 } from './core/index.js';
+
+export {
+  generateServerAuthorizationUrl,
+  exchangeServerAuthorizationCode,
+  refreshServerOAuth2Token,
+} from './core/index.js';
+
+export type { ServerOAuth2Scope } from './core/index.js';
 
 export { createMultipartRequestBody, toFormDataFile } from './core/index.js';
 

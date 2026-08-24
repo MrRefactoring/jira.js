@@ -19,6 +19,7 @@ const guideSidebar = (prefix = '') => [
       { text: prefix ? 'Аутентификация' : 'Authentication', link: `${prefix}/guide/authentication` },
       { text: 'OAuth 2.0 (3LO)', link: `${prefix}/guide/oauth2-authentication` },
       { text: 'Jira Data Center', link: `${prefix}/guide/data-center` },
+      { text: prefix ? 'Jira Service Management Data Center' : 'Service Management Data Center', link: `${prefix}/guide/service-management-data-center` },
       { text: 'Assets', link: `${prefix}/guide/assets` },
       { text: 'Teams', link: `${prefix}/guide/teams` },
       { text: prefix ? 'Контекст тенанта' : 'Tenant Context', link: `${prefix}/guide/tenant-context` },
