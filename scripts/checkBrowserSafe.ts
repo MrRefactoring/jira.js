@@ -67,8 +67,8 @@ const probe = join(root, 'node_modules', '.cache', 'browser-safe');
 rmSync(probe, { recursive: true, force: true });
 mkdirSync(join(probe, 'src'), { recursive: true });
 
-const entries = ['.', './core', './cloud', './agile', './serviceDesk'];
 const pkg = JSON.parse(readFileSync(join(root, 'package.json'), 'utf8'));
+const entries = Object.keys(pkg.exports).filter(entry => entry !== './browser' && entry !== './package.json');
 
 writeFileSync(
   join(probe, 'src', 'index.ts'),

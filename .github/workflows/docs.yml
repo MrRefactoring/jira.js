@@ -7,7 +7,7 @@ on:
     paths:
       - 'docs/**'
       - 'src/**'
-      - 'typedoc.json'
+      - 'typedoc.config.mjs'
       - 'package.json'
       - 'pnpm-lock.yaml'
       - '.github/workflows/docs.yml'
@@ -47,8 +47,6 @@ jobs:
 
       - name: 🏗️ Build documentation
         run: pnpm run docs:build
-        env:
-          NODE_OPTIONS: --max-old-space-size=8192
 
       - name: 📤 Upload Pages artifact
         uses: actions/upload-pages-artifact@v5
@@ -58,6 +56,7 @@ jobs:
   deploy:
     name: 🚀 Deploy to GitHub Pages
     needs: build
+    if: github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
     environment:
       name: github-pages

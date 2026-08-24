@@ -35,7 +35,7 @@ function readErrorFields(body: unknown): { error?: string; errorDescription?: st
 /**
  * An OAuth 2.0 failure: the token endpoint rejected the request, or the client cannot proceed with what it was given.
  *
- * Deliberately not an `ApiError`: it does not come from the Confluence API, and a caller retrying Confluence calls
+ * Deliberately not an `ApiError`: it does not come from the product API, and a caller retrying product calls
  * should not treat "your refresh token is dead" as the same class of problem as "that page is missing".
  *
  * @public
@@ -53,10 +53,7 @@ export class OAuthError extends Error {
    */
   readonly error?: string;
   readonly errorDescription?: string;
-  /**
-   * Whether the only way forward is a fresh authorization. Read it through
-   * {@link core/errors/predicates!isReauthorizationRequired}.
-   */
+  /** Whether the only way forward is a fresh authorization. Read it through {@link isReauthorizationRequired}. */
   readonly reauthorizationRequired: boolean;
 
   constructor(message: string, options?: OAuthErrorOptions) {
