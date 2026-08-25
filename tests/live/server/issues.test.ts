@@ -34,7 +34,6 @@ describe('issues', () => {
 
   beforeAll(async () => {
     issueKey = await newIssue('the issues suite', {
-      // Data Center takes wiki markup as a plain string. The Cloud surface would reject this and want a document.
       description: 'h2. Heading\n\n*bold* and _italic_',
     });
   });
@@ -152,8 +151,6 @@ describe('issues', () => {
   });
 
   it('votes and watches', async () => {
-    // The reporter cannot vote for their own issue, which is what makes this a `touch`: the request shape is what is
-    // under test, and Jira refusing on those grounds is a correct answer.
     await touch(() => jira.issues.addVote({ issueIdOrKey: issueKey }));
 
     const votes = await jira.issues.getVotes({ issueIdOrKey: issueKey });
@@ -285,8 +282,6 @@ describe('issues', () => {
   it('archives and restores', async () => {
     const doomed = await newIssue('to be archived');
 
-    // Archiving needs Jira Software Data Center licensing that a timebomb does not always carry, so what is under
-    // test here is the request, not the outcome.
     await touch(() => jira.issues.archiveIssue({ issueIdOrKey: doomed }));
     await touch(() => jira.issues.restoreIssue({ issueIdOrKey: doomed }));
     await touch(() => jira.issues.archiveIssues({ body: doomed }));

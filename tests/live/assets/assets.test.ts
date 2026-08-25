@@ -26,8 +26,6 @@ async function findWorkspace(): Promise<string | undefined> {
 
     return page.values?.[0]?.workspaceId;
   } catch {
-    // A site with no Service Management at all refuses the lookup rather than answering it empty. Either way there
-    // is no workspace, which is the only thing this needs to know.
     return undefined;
   }
 }

@@ -29,8 +29,6 @@ if (OUTPUT) {
     try {
       calls.push(`${method} ${new URL(url).pathname}`);
     } catch {
-      // A request whose URL will not parse is not one of ours, and losing it from the ledger is better than ending
-      // the run over it.
     }
 
     return original(input, init);

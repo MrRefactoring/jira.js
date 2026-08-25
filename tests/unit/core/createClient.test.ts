@@ -77,8 +77,6 @@ describe('auth headers', () => {
   it('rejects a basic credential that mixes the two forms', async () => {
     mockFetch([json({})]);
 
-    // Half a Cloud credential and half a Data Center one authenticates against neither, and the 401 it would earn
-    // arrives far from the mistake.
     expect(() => createClient({ host: HOST, auth: { email: 'a@b.co', password: 'hunter2' } as never }))
       .toThrow();
   });
@@ -613,8 +611,6 @@ describe('cancellation', () => {
 
     setTimeout(() => controller.abort(), 5);
 
-    // Compared after the fact: `signal.reason` is undefined until `abort()` runs, so reading it while building the
-    // assertion would pin the wrong value.
     const error = await createClient({ host: HOST, retry: { maxAttempts: 3, initialDelayMs: 30_000 } })
       .sendRequest({ url: '/x', method: 'GET', signal: controller.signal })
       .catch((e: unknown) => e);

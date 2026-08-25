@@ -142,7 +142,6 @@ function readForm(html: string, pageUrl: string): Form {
 
     const type = /\btype="([^"]+)"/i.exec(tag)?.[1] ?? 'text';
 
-    // An unchecked radio or checkbox submits nothing, and taking its value would pick the wrong option.
     if ((type === 'radio' || type === 'checkbox') && !/\bchecked\b/i.test(tag)) continue;
 
     fields[name[1]] = /\bvalue="([^"]*)"/i.exec(tag)?.[1] ?? '';
@@ -219,8 +218,6 @@ async function runWizard(rig: Rig): Promise<void> {
     let last = '';
 
     while (Date.now() < deadline) {
-      // Start at the root and let Jira say which step it is on, rather than naming one: it redirects to whichever step
-      // is outstanding, and asking for a step it considers done earns a redirect to the login page instead.
       const page = await follow(`${rig.baseUrl}/`);
 
       if (Object.keys(answers).some(step => page.url.includes(step))) return page;
@@ -248,8 +245,6 @@ async function runWizard(rig: Rig): Promise<void> {
 
     const body = new URLSearchParams({ ...form.fields, ...(answerKey ? answers[answerKey] : {}) });
 
-    // The reply to a step carries the next step's form in its body as often as it redirects to it, so what comes back
-    // is used directly. Re-fetching the URL just posted to lands on a page with no form at all.
     page = await follow(form.action, {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
@@ -293,8 +288,5 @@ export async function runRigCommand(rig: Rig, command: string): Promise<void> {
     console.log('▸ already set up');
   }
 
-  // The password is not printed. It is a fixed credential for a container that lives three hours and is then
-  // deleted, so it is no secret — but a line that logs something read from `adminPassword` is one CodeQL flags on
-  // every pull request afterwards, and the two scripts export the constant for a reader who wants it.
   console.log(`✔ ready at ${rig.baseUrl} — sign in as ${rig.adminUsername}, with the password its script exports`);
 }

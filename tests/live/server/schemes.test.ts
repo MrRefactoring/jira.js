@@ -206,8 +206,6 @@ describe('schemes and screens', () => {
 
     await jira.workflowSchemes.updateWorkflowMapping({ id: scheme.id!, workflowName: workflow, workflow });
 
-    // Naming a workflow narrows the answer to that one mapping; leaving it out lists them all. The endpoint returns
-    // both shapes and the type says so.
     const forWorkflow = await jira.workflowSchemes.getWorkflow({ id: scheme.id!, workflowName: workflow });
 
     expect(Array.isArray(forWorkflow) ? forWorkflow[0]?.workflow : forWorkflow.workflow).toBe(workflow);
@@ -220,8 +218,6 @@ describe('schemes and screens', () => {
     await touch(() => jira.workflowSchemes.deleteWorkflowMapping({ id: scheme.id!, workflowName: workflow }));
     await touch(() => jira.workflowSchemes.deleteDefault({ id: scheme.id! }));
 
-    // A draft only exists once the scheme is in use by a project; every one of these is a legitimate refusal on a
-    // scheme that is not.
     await touch(() => jira.workflowSchemes.createDraftForParent({ id: scheme.id! }));
     await touch(() => jira.workflowSchemes.getDraftById({ id: scheme.id! }));
     await touch(() => jira.workflowSchemes.updateDraft({ id: scheme.id!, body: { name: testName('wf3') } }));

@@ -35,8 +35,6 @@ describe('Jira Cloud — refused credentials (live)', () => {
       headers: { authorization: `Basic ${credentials}`, accept: 'application/json' },
     });
 
-    // The premise of the whole feature. If Atlassian ever starts answering 401 here, the client is not wrong — but
-    // the reason this check exists has gone, and that is worth knowing.
     expect(response.headers.get('x-seraph-loginreason')).toBe('AUTHENTICATED_FAILED');
     expect(response.ok).toBe(true);
   });

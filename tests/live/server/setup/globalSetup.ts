@@ -66,6 +66,5 @@ export async function setup(project: TestProject): Promise<void> {
 
   project.provide('serverFixtures', await createFixtures(connect(), projectKey));
 
-  // The fixtures are a suite of their own as far as the ledger is concerned: sixteen write endpoints run here.
   flushRecordedCalls();
 }

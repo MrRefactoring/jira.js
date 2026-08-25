@@ -16,9 +16,6 @@ const entryPoints = Object.entries(subpaths)
 export default {
   $schema: 'https://typedoc.org/schema.json',
   entryPoints,
-  // `resolve` follows the exports of each entry point. `expand` — the previous setting — walked every file in the
-  // directory instead, which published four internal `core` modules as API and produced a page per generated model
-  // that said only `type X = z.infer<typeof XSchema>`.
   entryPointStrategy: 'resolve',
   exclude: ['**/*.test.ts'],
   out: 'docs/public/api',
@@ -29,7 +26,5 @@ export default {
     Guide: 'https://mrrefactoring.github.io/jira.js/guide/getting-started',
     GitHub: 'https://github.com/MrRefactoring/jira.js',
   },
-  // A public type built out of something the package does not export cannot be named by a caller. Left unchecked that
-  // is invisible; here it fails the documentation build.
   validation: { notExported: true },
 };

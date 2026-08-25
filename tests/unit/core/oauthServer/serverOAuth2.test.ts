@@ -179,8 +179,6 @@ describe('a client authenticated against Data Center', () => {
   });
 
   it('refuses a half-filled refresh credential set', () => {
-    // Without `redirectUri` the refresh grant is rejected by the provider, and the failure would surface an hour
-    // later as an `invalid_grant` naming nothing.
     expect(() =>
       createClient({
         host: HOST,

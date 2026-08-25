@@ -84,7 +84,6 @@ describe('assets schemas and types', () => {
 
       expect(updated.name).toContain('renamed type');
 
-        // The tree takes a position relative to a sibling, so the fixture type is what this one is placed against.
       await api.objectTypes.changeOrderObjectType({
         affectedId: String(created.id),
         toObjectTypeId: fixtures.objectTypeId,

@@ -119,7 +119,6 @@ describe('Jira Cloud — avatars (live)', () => {
 
     const image = await client.avatars.getAvatarImageByID({ type: 'project', id: Number(stored.id) });
 
-    // Jira answers with the charset appended — `image/png;charset=utf-8` — so the essence is what can be asserted.
     expect(image.type).toMatch(/^image\/png\b/);
     expect(image.size).toBeGreaterThan(50);
   });

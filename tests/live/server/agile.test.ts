@@ -43,7 +43,6 @@ describe('agile', () => {
   it('creates a board and deletes it', async () => {
     const filter = await jira.filters.createFilter({ name: testName('board filter'), jql: `project = ${projectKey}` });
 
-    // A board needs a filter shared with someone; on a private instance that is everyone signed in.
     await jira.filters.addSharePermission({ id: String(filter.id), type: 'authenticated' });
 
     const board = await jira.board.createBoard({
@@ -110,7 +109,6 @@ describe('agile', () => {
 
     expect(sprint.name).toBe(renamed);
 
-    // A full update replaces the sprint, so every field it validates has to be present — `state` among them.
     await jira.sprint.updateSprint({ sprintId, name: renamed, state: 'future', goal: 'proving the write path' });
     await touch(() => jira.sprint.swapSprint({ sprintId, sprintToSwapWith: sprintId }));
     await touch(() => jira.sprint.unmapSprints({ sprintIds: [sprintId] }));
