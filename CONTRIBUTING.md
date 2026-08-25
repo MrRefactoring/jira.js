@@ -9,13 +9,10 @@ These directories are machine-written from Atlassian's OpenAPI documents and are
 regeneration:
 
 ```
-src/cloud/**
-src/agile/**
-src/serviceDesk/**
-src/server/**
-src/serviceDeskServer/**
-src/assets/**
-src/assetsServer/**
+src/cloud/**            src/serviceDeskServer/**   src/admin/**
+src/agile/**            src/assets/**              src/userManagement/**
+src/serviceDesk/**      src/assetsServer/**        src/userProvisioning/**
+src/server/**           src/teams/**
 src/core/**
 ```
 
@@ -42,8 +39,9 @@ worth more than a guess at the cause, and it is what a patch gets written from.
 
 ## What is hand-written here
 
-Everything else: `src/index.ts`, `tests/`, `scripts/`, `tools/`, `docs/` and the files in the repository root.
-Pull requests against those are ordinary pull requests.
+Everything else: `src/index.ts`, `src/webhooks/` — which describes what Jira posts to you rather than what you
+can call, so no specification produces it — `tests/`, `scripts/`, `tools/`, `docs/` and the files in the
+repository root. Pull requests against those are ordinary pull requests.
 
 ## Running things
 
