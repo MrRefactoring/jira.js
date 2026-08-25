@@ -68,8 +68,6 @@ export async function createFixtures(jira: ServerClient, projectKey: string): Pr
   const project = await jira.projects.getProject({ projectIdOrKey: projectKey });
   const boardId = await waitForBoard(jira);
 
-  // The Scrum template creates an "Epic Name" custom field and refuses an epic without it. Its id is assigned at
-  // template time and differs between instances, so it is looked up rather than written down.
   const fields = await jira.issueFields.getFields();
   const epicName = fields.find(field => field.name === 'Epic Name')?.id;
 
@@ -144,8 +142,6 @@ export async function createFixtures(jira: ServerClient, projectKey: string): Pr
     description: 'created by the Data Center suite',
   });
 
-  // Not `global`: a private instance refuses to share with anyone on the web, and every instance this suite runs
-  // against is private.
   await jira.filters.addSharePermission({ id: String(filter.id), type: 'authenticated' });
 
   const issueTypes = await jira.issueTypes.getIssueAllTypes();
@@ -160,14 +156,11 @@ export async function createFixtures(jira: ServerClient, projectKey: string): Pr
 
   await jira.groups.createGroup({ name: testName('group') });
 
-  // A workflow scheme of its own, because a fresh Jira has none that is not the default, and eight read endpoints —
-  // the drafts among them — take a scheme id.
   const workflowScheme = await jira.workflowSchemes.createScheme({
     name: testName('workflow scheme'),
     description: 'created by the Data Center suite',
   });
 
-  // One key across every entity that has properties, so the crawl needs a single constant rather than one per domain.
   const { propertyKey } = FIXTURE;
 
   await jira.issues.setIssueProperty({ issueIdOrKey: issue.key!, propertyKey, body: PROPERTY_VALUE });
@@ -178,8 +171,6 @@ export async function createFixtures(jira: ServerClient, projectKey: string): Pr
   await jira.board.setBoardProperty({ boardId, propertyKey, body: PROPERTY_VALUE });
   await jira.sprint.setSprintProperty({ sprintId: sprint.id!, propertyKey, body: PROPERTY_VALUE });
 
-  // Webhooks are the one part of the surface Atlassian describes in prose rather than in the document, so a fixture
-  // is what proves the endpoints written from a WADL and a measurement actually answer.
   const webhook = await jira.webhooks.createWebhook({
     name: testName('webhook'),
     url: 'https://example.com/jira-js',

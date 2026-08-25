@@ -83,7 +83,6 @@ describe('webhooks', () => {
 
     expect(Array.isArray(transitions)).toBe(true);
 
-    // 204 until the webhook has fired, which the client hands back as `undefined`.
     const latest = await jira.webhooks.getLatestWebhookInvocation({ webhookId: webhookId! });
 
     expect(latest).toBeUndefined();

@@ -36,12 +36,9 @@ function readEndpoints(): Endpoint[] {
     if (typeof value !== 'function') continue;
 
     const source = value.toString();
-    // Either quote style: the test runner's transform rewrites the generated single quotes to double ones.
     const method = /method:\s*['"]([A-Z]+)['"]/.exec(source)?.[1];
     const url = /url:\s*['"`]([^'"`]+)['"`]/.exec(source)?.[1];
 
-    // Every generated operation writes both as literals. A miss means the build pipeline started transforming them,
-    // and a crawl that silently skipped those endpoints would look like a clean run.
     expect(method, `no method literal in ${name}`).toBeDefined();
     expect(url, `no url literal in ${name}`).toBeDefined();
 
@@ -220,8 +217,6 @@ beforeAll(() => {
   remember('id', fixtures.attachmentId, '/rest/api/2/attachment');
   remember('id', String(fixtures.workflowSchemeId), '/rest/api/2/workflowscheme');
 
-  // Chosen rather than discovered: the fixtures store them under names this crawl can spell without being told what
-  // this particular run happened to create.
   remember('propertyKey', FIXTURE.propertyKey);
   remember('attributeKey', FIXTURE.schemeAttributeKey);
   remember('globalId', FIXTURE.remoteVersionLinkGlobalId, '/rest/api/2/version');
@@ -239,7 +234,6 @@ async function callEndpoint(endpoint: Endpoint, parameters: Record<string, unkno
   } catch (error) {
     const status = (error as { status?: number }).status;
 
-    // Jira answering "no" is an answer. Only a transport or schema failure is this crawl's business.
     if (typeof status === 'number') {
       return { name: endpoint.name, url: endpoint.url, status: 'refused', detail: String(status) };
     }
@@ -261,9 +255,6 @@ describe('crawling the Data Center surface', () => {
 
     expect(readable.length).toBeGreaterThan(200);
 
-    // Passes rather than one sweep, because reaching an endpoint can be what supplies the next one's parameter: a
-    // sprint id is listed only by a board endpoint, and the board id only by the endpoint that lists boards. Looping
-    // until a pass adds nothing turns that chain into coverage without hard-coding an order.
     for (let pass = 0; pass < 6; pass += 1) {
       const reachable = readable.filter(
         endpoint =>
@@ -274,10 +265,6 @@ describe('crawling the Data Center surface', () => {
       if (reachable.length === 0) break;
 
       for (const endpoint of reachable) {
-        // An empty object, not nothing: an endpoint with no path parameters can still take query ones, and its
-        // generated signature then reads `parameters` unconditionally. Passing nothing is a TypeError in the crawl
-        // rather than an answer from Jira, and a required query parameter left out comes back as a 400, which is a
-        // fair answer.
         const parameters = Object.fromEntries(
           endpoint.pathParameters.map(name => [name, resolve(endpoint.url, name)]),
         );
@@ -325,8 +312,6 @@ describe('crawling the Data Center surface', () => {
       byEndpoint.set(report.endpoint, lines);
     }
 
-    // Printed rather than left to the assertion diff: this list is the worklist for the generator, and it has to be
-    // readable as one.
     for (const [endpoint, lines] of [...byEndpoint].sort()) console.log(`  ${endpoint}\n    ${lines.join('\n    ')}`);
 
     expect([...byEndpoint.keys()], `${byEndpoint.size} endpoints drifted`).toEqual([]);

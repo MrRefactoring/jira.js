@@ -41,7 +41,6 @@ describe('verifyWebhookSignature', () => {
   });
 
   it('agrees with RFC 4231, so the algorithm is the one Jira uses', async () => {
-    // Test case 2: key "Jefe", data "what do ya want for nothing?".
     const expected = '5bdcc146bf60754e6a042426089575c75a003f089d2739839dec58b964ec3843';
 
     await expect(

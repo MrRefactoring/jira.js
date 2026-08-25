@@ -147,8 +147,6 @@ function judge(run: CoverageRun, endpoints: Endpoint[], called: Set<string>): Ve
     byModule.set(module, [...(byModule.get(module) ?? []), `${endpoint.method} ${endpoint.name}`]);
   }
 
-  // A union rather than a sum: an endpoint can be listed as unreachable and still be called, and counting it
-  // twice would put the total above the number of endpoints that exist.
   const covered = new Set([...called, ...excusedNames]).size;
 
   return { excusedNames, missing, stale, byModule, covered };

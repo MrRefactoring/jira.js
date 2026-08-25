@@ -68,6 +68,5 @@ export async function setup(project: TestProject): Promise<void> {
 
   project.provide('jsmFixtures', await createFixtures(assets(), licensed));
 
-  // The fixtures are a suite of their own as far as the ledger is concerned: five write endpoints run here.
   flushRecordedCalls();
 }

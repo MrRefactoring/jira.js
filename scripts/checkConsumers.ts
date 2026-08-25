@@ -60,7 +60,6 @@ try {
 
   run('npm', ['install', '--no-audit', '--no-fund', '--silent', tarball], workspace);
 
-  // Read off the manifest rather than listed here, so a new surface is covered by adding its export and nothing else.
   const SUBPATHS = Object.keys(JSON.parse(readFileSync(join(root, 'package.json'), 'utf8')).exports)
     .filter(entry => entry !== './browser' && entry !== './package.json')
     .map(entry => (entry === '.' ? 'jira.js' : `jira.js/${entry.slice(2)}`));
@@ -143,10 +142,6 @@ try {
   if (floor === undefined || floor === '') {
     problems.push('package.json declares no minimum TypeScript under peerDependencies.');
   } else {
-    // The loops above run this repository's own compiler with skipLibCheck, which is what most consumers have. Neither
-    // half of that is a given: a consumer pins an older TypeScript, and one who turns lib checking on reads our
-    // declarations rather than skipping them, where a lib type that changed shape — ArrayBufferView became generic in
-    // 5.7 — is an error rather than a silence.
     writeFileSync(
       join(workspace, 'tsconfig.floor.json'),
       `${JSON.stringify(

@@ -68,8 +68,6 @@ rmSync(probe, { recursive: true, force: true });
 mkdirSync(join(probe, 'src'), { recursive: true });
 
 const pkg = JSON.parse(readFileSync(join(root, 'package.json'), 'utf8'));
-// Read off the manifest rather than listed here, so a new surface is covered by adding its export and nothing else.
-// `./browser` is the bundle this check exists to protect and `./package.json` is not code.
 const entries = Object.keys(pkg.exports).filter(entry => entry !== './browser' && entry !== './package.json');
 
 writeFileSync(

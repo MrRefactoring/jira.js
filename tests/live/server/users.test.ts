@@ -109,7 +109,6 @@ describe('users and groups', () => {
   });
 
   it('validates and schedules an anonymisation', async () => {
-    // Anonymisation is keyed by the user's key, which a directory assigns and which need not be the username.
     const { key = name } = await jira.users.getUser({ username: name });
     const validation = await jira.users.validateUserAnonymization({ userKey: key });
 
@@ -159,12 +158,8 @@ describe('users and groups', () => {
 
     expect(me.name).toBe(username);
 
-    // Data Center validates the whole user on this endpoint, password included, so what it refuses is a partial
-    // update rather than a badly-shaped one.
     await touch(() => jira.myself.updateCurrentUser({ displayName: 'the Data Center live suite' }));
 
-    // Never actually changed: the rest of the run signs in with this password. A wrong current password is a fair
-    // answer, and it is the request shape that is under test.
     await touch(() =>
       jira.myself.changeMyPassword({ currentPassword: 'not-the-password', password: 'not-the-password-either' }));
   });

@@ -23,7 +23,6 @@ describe('assets configuration', () => {
 
   it('creates, loads, updates and deletes a status type', async () => {
     const created = await api.statusTypes.storeStatusType({
-      // Assets caps a status name at thirty characters, which the run id already spends half of.
       name: assetName('status'),
       category: 1,
       description: 'Created and removed by one test.',

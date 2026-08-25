@@ -22,8 +22,6 @@ describe('Jira Cloud — auditRecords (live, admin-gated)', () => {
   beforeAll(async () => {
     client = getCloudClient();
 
-    // Two different refusals wear the same 403, and the suite asserts opposite things about them: a site whose plan
-    // has no audit log at all, and an administrator-only endpoint reached without administrator rights.
     const probe = await client.auditRecords.getAuditRecords({ limit: 1 }).catch((e: unknown) => e);
 
     permitted = !(probe instanceof Error);

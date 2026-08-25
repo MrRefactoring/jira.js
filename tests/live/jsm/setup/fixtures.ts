@@ -40,7 +40,6 @@ export async function createFixtures(assets: AssetsServerClient, serviceDeskLice
 
   const schema = await assets.objectSchemas.createSchema({
     name: assetName('schema'),
-    // Assets builds every object key out of this, so it has to be unique on the instance as well as legal.
     objectSchemaKey: schemaKey(),
     description: 'Created by the jira.js Service Management live suite.',
   });

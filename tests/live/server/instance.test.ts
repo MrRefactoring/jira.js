@@ -96,7 +96,6 @@ describe('the instance', () => {
   });
 
   it('asks the cluster about itself', async () => {
-    // A single node is not a cluster, and Jira says so with a 405 rather than an empty list.
     const nodes = await touch(() => jira.cluster.getAllNodes());
     const nodeId = nodes?.[0]?.nodeId ?? 'no-such-node';
 
@@ -109,9 +108,6 @@ describe('the instance', () => {
   });
 
   it('handles the email templates', async () => {
-    // "Creates a zip file containing email templates at local home and returns the file", and then the document
-    // describes no body — so the call was typed `void` and threw the zip away. The magic number is the assertion: a
-    // zip begins `PK\x03\x04`, and nothing else this API returns does.
     const templates = await jira.emailTemplates.downloadEmailTemplates();
     const bytes = new Uint8Array(templates as ArrayBufferLike & Uint8Array);
 
@@ -136,8 +132,6 @@ describe('the instance', () => {
         avatar: { filename: 'avatar.png', content: png },
       }));
 
-    // Called whether or not the upload took: what is under test is the request, and a temporary avatar that is not
-    // there is one of the answers this endpoint gives.
     expect(temporary === undefined || temporary !== null).toBe(true);
 
     await touch(() =>
@@ -170,7 +164,6 @@ describe('the instance', () => {
   it('runs the upgrade tasks', async () => {
     await touch(() => jira.upgrade.runUpgradesNow());
 
-    // 404 until an upgrade has actually run, which on a freshly created instance it has not.
     await touch(() => jira.upgrade.getUpgradeResult());
   });
 
@@ -179,7 +172,6 @@ describe('the instance', () => {
 
     expect(session.name).toBeDefined();
 
-    // A fresh session rather than the one the suite authenticates with, so signing out of it costs nothing.
     await touch(() => jira.session.login({ username: 'admin', password: 'admin123' }));
     await touch(() => jira.session.logout());
     await touch(() => jira.websudo.release({}));
@@ -197,8 +189,6 @@ describe('the instance', () => {
     await touch(() => jira.indexing.reindex({ type: 'BACKGROUND' }));
   });
 
-  // Last of everything: the Data Center API has no endpoint that turns read-only mode off again, so whatever runs
-  // after this one meets an instance that refuses to write.
   it('puts the instance into read-only mode', async () => {
     await touch(() =>
       jira.readOnlyMode.updateReadOnlyMode({ enabled: true, message: 'set by the Data Center live suite' }));

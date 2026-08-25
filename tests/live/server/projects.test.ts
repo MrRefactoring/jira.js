@@ -208,7 +208,6 @@ describe('projects', () => {
   });
 
   it('archives and restores', async () => {
-    // Archiving a project needs Data Center licensing a timebomb does not always carry.
     await touch(() => jira.projects.archiveProject({ projectIdOrKey: key }));
     await touch(() => jira.projects.restoreProject({ projectIdOrKey: key }));
   });
