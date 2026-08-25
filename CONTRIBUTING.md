@@ -9,15 +9,16 @@ These directories are machine-written from Atlassian's OpenAPI documents and are
 regeneration:
 
 ```
-src/cloud/{api,models,parameters}
-src/agile/{api,models,parameters}
-src/serviceDesk/{api,models,parameters}
-src/server/{api,models,parameters}
-src/serviceDeskServer/{api,models,parameters}
-src/assets/{api,models,parameters}
-src/assetsServer/{api,models,parameters}
+src/cloud/**            src/serviceDeskServer/**   src/admin/**
+src/agile/**            src/assets/**              src/userManagement/**
+src/serviceDesk/**      src/assetsServer/**        src/userProvisioning/**
+src/server/**           src/teams/**
 src/core/**
 ```
+
+A surface directory is generated *whole*, not just its `api`, `models` and `parameters`. Its `index.ts` and its
+`create*Client.ts` come out of the generator too — `createIndexFile.ts` and `createClientFactoryCode.ts` write them —
+so those are as overwritten as the rest.
 
 A change made there disappears. It is nobody's fault that this is not obvious — the files carry no banner, and there is
 no build step in this repository that would produce them.
@@ -38,8 +39,9 @@ worth more than a guess at the cause, and it is what a patch gets written from.
 
 ## What is hand-written here
 
-Everything else: `src/index.ts`, each surface's `index.ts` and `create*Client.ts`, `tests/`, `scripts/`, `tools/`,
-`docs/` and the files in the repository root. Pull requests against those are ordinary pull requests.
+Everything else: `src/index.ts`, `src/webhooks/` — which describes what Jira posts to you rather than what you
+can call, so no specification produces it — `tests/`, `scripts/`, `tools/`, `docs/` and the files in the
+repository root. Pull requests against those are ordinary pull requests.
 
 ## Running things
 
