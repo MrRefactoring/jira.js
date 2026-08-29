@@ -268,6 +268,10 @@ Three long-standing requests, all of them the same shape: the client had no seam
 
 * **Built with TypeScript 6.** The declarations it emits are byte-identical to 5.9's across all 3596 of them, so nothing a consumer sees changes. Not 7.0, though npm calls it latest — typedoc's supported range ends at 6.0 and typescript-eslint's below 6.1, at the newest version either has published.
 
+* **`getInsightWorkspaces` is marked deprecated.** Atlassian says so in prose — "This endpoint is deprecated, please use /assets/workspace/." — and leaves the specification's `deprecated` flag at `false`, so the sentence reached the generated documentation and stopped there. It is now a `@deprecated` tag carrying that same sentence, on the standalone function and on the `serviceDesk.assets` method alike, so an editor strikes the call through and a linter can find it. The tag names the replacement as well: Atlassian's sentence points at a URL, and what you actually call is `getAssetsWorkspaces`, sitting right beside it.
+
+  Nothing is removed and the endpoint still answers where the licence allows it. It is also the only operation in the whole Jira surface this reaches: the other eight deprecated in prose carry the flag as well, and the generator drops a flagged operation before it can reach the client.
+
 * **The documentation deploys from `master` alone.** A manual run against a branch used to build the site and then publish it, because the deploy job followed the build with no condition on the ref. The build is what is worth running from a branch.
 
 ## 6.2.0

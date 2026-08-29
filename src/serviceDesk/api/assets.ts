@@ -32,7 +32,10 @@ export async function getAssetsWorkspaces(
   return await client.sendRequest(config);
 }
 
-/** This endpoint is deprecated, please use /assets/workspace/. */
+/**
+ * @deprecated This endpoint is deprecated, please use /assets/workspace/. In this library that is
+ *   `getAssetsWorkspaces`.
+ */
 export async function getInsightWorkspaces(
   client: Client,
   parameters?: GetInsightWorkspaces,
