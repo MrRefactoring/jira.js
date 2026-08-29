@@ -105,6 +105,10 @@ export function createServiceDeskClient(clientConfig: ClientConfig | Client) {
         parameters?: GetAssetsWorkspaces,
         options?: RequestOptions,
       ): Promise<Page<AssetsWorkspace>> => assets.getAssetsWorkspaces(client, parameters, options),
+      /**
+       * @deprecated This endpoint is deprecated, please use /assets/workspace/. In this library that is
+       *   `getAssetsWorkspaces`.
+       */
       getInsightWorkspaces: (
         parameters?: GetInsightWorkspaces,
         options?: RequestOptions,
