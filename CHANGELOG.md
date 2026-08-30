@@ -240,6 +240,13 @@ Three long-standing requests, all of them the same shape: the client had no seam
 
 * **Twenty-eight more responses match what Jira sends.** `getAutoComplete` types its field and function lists as arrays of strings when both are arrays of objects. `getAvailableMetrics` and `getPasswordPolicy` declare a string and answer with an array. `SearchResults` returns `null` for `expand`, `names`, `schema` and `warningMessages`, and every issue read carries `renderedFields: null`. A project's roles, its avatars, a group's members and the eighty-five application properties were each declared as something they contain.
 
+* **Every docblock keeps its own line breaks.** A schema's description was written into the comment with a `*` before each newline rather than a ` * ` after it, so a multi-line description came out with a stray star welded to the end of each line and the markdown around it did not survive. `UserDetails` is the plainest case — three exceptions Atlassian writes as a bullet list read as one run-on sentence with two stars in the middle of it, on Cloud, Agile and Service Management alike.
+
+  Thirty models across the three surfaces are restored, and the docblock is reattached to what it documents: it sat one
+  blank line above its `export`, which reads as a file-level note rather than a description of the schema below it, and
+  in an editor the hover shows nothing at all. Only comments and the blank line before them move; not a schema, a type
+  or a line of runtime code changes.
+
 ### Types
 
 * **Four request bodies are typed as the shape the endpoint reads, where they were `Record<string, any>`.** Each was generated from a request body the specification declares as something other than an object, which the generator had no reading for and degraded to an object of arbitrary keys. None of the four could be called correctly through its own declaration.
