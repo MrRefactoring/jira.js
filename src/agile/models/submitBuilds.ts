@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
 import { IssueIdOrKeysAssociationSchema } from './issueIdOrKeysAssociation';
-/** The result of a successful `submitBuilds` request.* */
+/** The result of a successful `submitBuilds` request. */
 
 export const SubmitBuildsSchema = apiObject({
   /**

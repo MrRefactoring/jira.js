@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import { apiObject, openEnum } from '#/core';
-/** The current gating status for the given Deployment.* */
+/** The current gating status for the given Deployment. */
 
 export const GetDeploymentGatingStatusByKeySchema = apiObject({
   /** This is the identifier for the Deployment. */

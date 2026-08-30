@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject, openEnum } from '#/core';
 import { IssueIdOrKeysAssociationSchema } from './issueIdOrKeysAssociation';
-/** Data related to a single Feature Flag, across any Environment that the flag is present in.* */
+/** Data related to a single Feature Flag, across any Environment that the flag is present in. */
 
 export const GetFeatureFlagByIdSchema = apiObject({
   /**

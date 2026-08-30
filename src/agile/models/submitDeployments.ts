@@ -3,7 +3,7 @@ import { apiObject } from '#/core';
 import { IssueIdOrKeysAssociationSchema } from './issueIdOrKeysAssociation';
 import { ServiceIdOrKeysAssociationSchema } from './serviceIdOrKeysAssociation';
 import { EntityAssociationSchema } from './entityAssociation';
-/** The result of a successful submitDeployments request.* */
+/** The result of a successful submitDeployments request. */
 
 export const SubmitDeploymentsSchema = apiObject({
   /**

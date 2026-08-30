@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import { apiObject, openEnum } from '#/core';
-/** Data related to a specific component in a specific workspace that is affected by incidents.* */
+/** Data related to a specific component in a specific workspace that is affected by incidents. */
 
 export const GetComponentByIdSchema = apiObject({
   /**

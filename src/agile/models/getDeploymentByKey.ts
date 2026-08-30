@@ -4,8 +4,8 @@ import { IssueIdOrKeysAssociationSchema } from './issueIdOrKeysAssociation';
 import { ServiceIdOrKeysAssociationSchema } from './serviceIdOrKeysAssociation';
 import { EntityAssociationSchema } from './entityAssociation';
 /**
- * Data related to a specific deployment in a specific environment that the deployment is present in.* Must specify one
- * of `issueKeys` or `associations`.*
+ * Data related to a specific deployment in a specific environment that the deployment is present in. Must specify one
+ * of `issueKeys` or `associations`.
  */
 
 export const GetDeploymentByKeySchema = apiObject({

@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject, openEnum } from '#/core';
 import { IssueIdOrKeysAssociationSchema } from './issueIdOrKeysAssociation';
-/** Data related to a single build* */
+/** Data related to a single build */
 
 export const GetBuildByKeySchema = apiObject({
   /**

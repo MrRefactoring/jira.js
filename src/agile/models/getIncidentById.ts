@@ -2,7 +2,7 @@ import { z } from 'zod';
 import { apiObject, openEnum } from '#/core';
 /**
  * Data related to a specific incident in a specific container that the incident is present in. Must specify at least
- * one association to a component.*
+ * one association to a component.
  */
 
 export const GetIncidentByIdSchema = apiObject({

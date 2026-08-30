@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
 import { IssueIdOrKeysAssociationSchema } from './issueIdOrKeysAssociation';
-/** The result of a successful submitFeatureFlags request.* */
+/** The result of a successful submitFeatureFlags request. */
 
 export const SubmitFeatureFlagsSchema = apiObject({
   /**
