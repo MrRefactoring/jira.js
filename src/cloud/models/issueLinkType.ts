@@ -1,16 +1,16 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
 /**
- * This object is used as follows:*
+ * This object is used as follows:
  *
- * In the [
- * issueLink](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-issueLink/#api-rest-api-3-issueLink-post)
- * resource it defines and reports on the type of link between the issues. Find a list of issue link types with [Get
- * issue link
- * types](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-issueLinkType/#api-rest-api-3-issueLinkType-get).*
- * In the [
- * issueLinkType](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-issueLinkType/#api-rest-api-3-issueLinkType-post)
- * resource it defines and reports on issue link types.
+ * - In the [
+ *   issueLink](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-issueLink/#api-rest-api-3-issueLink-post)
+ *   resource it defines and reports on the type of link between the issues. Find a list of issue link types with [Get
+ *   issue link
+ *   types](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-issueLinkType/#api-rest-api-3-issueLinkType-get).
+ * - In the [
+ *   issueLinkType](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-issueLinkType/#api-rest-api-3-issueLinkType-post)
+ *   resource it defines and reports on issue link types.
  */
 
 export const IssueLinkTypeSchema = apiObject({

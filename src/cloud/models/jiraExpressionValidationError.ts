@@ -1,9 +1,10 @@
 import { z } from 'zod';
 import { apiObject, openEnum } from '#/core';
 /**
- * Details about syntax and type errors. The error details apply to the entire expression, unless the object includes:*
+ * Details about syntax and type errors. The error details apply to the entire expression, unless the object includes:
  *
- * `line` and `column`* `expression`
+ * - `line` and `column`
+ * - `expression`
  */
 
 export const JiraExpressionValidationErrorSchema = apiObject({

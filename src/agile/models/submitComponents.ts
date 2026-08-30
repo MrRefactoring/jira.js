@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** The result of a successful submitDevopsComponents request.* */
+/** The result of a successful submitDevopsComponents request. */
 
 export const SubmitComponentsSchema = apiObject({
   /**

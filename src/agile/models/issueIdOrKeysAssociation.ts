@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import { apiObject, openEnum } from '#/core';
-/** An association type referencing issues in Jira.* */
+/** An association type referencing issues in Jira. */
 
 export const IssueIdOrKeysAssociationSchema = apiObject({
   /** Defines the association type. */

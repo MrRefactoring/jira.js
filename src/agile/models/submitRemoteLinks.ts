@@ -2,7 +2,7 @@ import { z } from 'zod';
 import { apiObject } from '#/core';
 import { IssueIdOrKeysAssociationSchema } from './issueIdOrKeysAssociation';
 import { ServiceIdOrKeysAssociationSchema } from './serviceIdOrKeysAssociation';
-/** The result of a successful `submitRemoteLinks` request.* */
+/** The result of a successful `submitRemoteLinks` request. */
 
 export const SubmitRemoteLinksSchema = apiObject({
   /**

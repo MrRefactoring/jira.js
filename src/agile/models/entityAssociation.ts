@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import { apiObject, openEnum } from '#/core';
-/** An association type referencing another entity* */
+/** An association type referencing another entity */
 
 export const EntityAssociationSchema = apiObject({
   /** Defines the association type. Currently supported entities can be found in this field's value enums list. */
