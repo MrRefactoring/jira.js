@@ -42,6 +42,12 @@
 
 export { createCloudClient, type CloudClient } from './cloud/createCloudClient.js';
 
+export {
+  createAssetsClient,
+  type AssetsClient,
+  type AssetsClientConfig,
+} from './assets/createAssetsClient.js';
+
 export { createAgileClient, type AgileClient } from './agile/createAgileClient.js';
 
 export { createServiceDeskClient, type ServiceDeskClient } from './serviceDesk/createServiceDeskClient.js';
