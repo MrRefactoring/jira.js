@@ -7,8 +7,8 @@ export interface ConditionGroupConfiguration {
   conditions?: WorkflowRuleConfiguration[];
   operation?: 'ANY' | 'ALL' | (string & {});
 }
-/** The conditions group associated with the transition. */
 
+/** The conditions group associated with the transition. */
 export const ConditionGroupConfigurationSchema: z.ZodType<ConditionGroupConfiguration> = apiObject({
   /** The nested conditions of the condition group. */
   conditionGroups: z.array(z.lazy(() => ConditionGroupConfigurationSchema)).optional(),

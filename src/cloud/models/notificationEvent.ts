@@ -7,8 +7,8 @@ export interface NotificationEvent {
   name?: string;
   templateEvent?: NotificationEvent;
 }
-/** Details about a notification event. */
 
+/** Details about a notification event. */
 export const NotificationEventSchema: z.ZodType<NotificationEvent> = apiObject({
   /** The description of the event. */
   description: z.string().optional(),

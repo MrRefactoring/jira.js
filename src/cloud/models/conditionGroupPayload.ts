@@ -7,8 +7,8 @@ export interface ConditionGroupPayload {
   conditions?: RulePayload[];
   operation?: 'ANY' | 'ALL' | (string & {});
 }
-/** The payload for creating a condition group in a workflow */
 
+/** The payload for creating a condition group in a workflow */
 export const ConditionGroupPayloadSchema: z.ZodType<ConditionGroupPayload> = apiObject({
   /** The nested conditions of the condition group. */
   conditionGroup: z.array(z.lazy(() => ConditionGroupPayloadSchema)).optional(),
