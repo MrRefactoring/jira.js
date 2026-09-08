@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** Properties that identify a published workflow. */
 
+/** Properties that identify a published workflow. */
 export const PublishedWorkflowIdSchema = apiObject({
   /** The entity ID of the workflow. */
   entityId: z.string().optional(),

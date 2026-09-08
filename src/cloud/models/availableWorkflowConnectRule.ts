@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject, openEnum } from '#/core';
-/** The Connect provided ecosystem rules available. */
 
+/** The Connect provided ecosystem rules available. */
 export const AvailableWorkflowConnectRuleSchema = apiObject({
   /** The add-on providing the rule. */
   addonKey: z.string().optional(),

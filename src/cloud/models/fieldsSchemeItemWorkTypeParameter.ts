@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject, openEnum } from '#/core';
-/** The list of work type-specific parameter overrides, may be empty if only default parameters are being updated */
 
+/** The list of work type-specific parameter overrides, may be empty if only default parameters are being updated */
 export const FieldsSchemeItemWorkTypeParameterSchema = apiObject({
   /** The custom description for the field for this work type, null to use default or preserve current */
   description: z.string().optional(),

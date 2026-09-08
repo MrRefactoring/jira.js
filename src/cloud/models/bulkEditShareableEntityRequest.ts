@@ -2,8 +2,8 @@ import { z } from 'zod';
 import { apiObject, openEnum } from '#/core';
 import { BulkChangeOwnerDetailsSchema } from './bulkChangeOwnerDetails';
 import { PermissionDetailsSchema } from './permissionDetails';
-/** Details of a request to bulk edit shareable entity. */
 
+/** Details of a request to bulk edit shareable entity. */
 export const BulkEditShareableEntityRequestSchema = apiObject({
   /** Allowed action for bulk edit shareable entity */
   action: openEnum(['changeOwner', 'changePermission', 'addPermission', 'removePermission']),

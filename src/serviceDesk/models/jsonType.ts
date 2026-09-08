@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** The schema of a field. */
 
+/** The schema of a field. */
 export const JsonTypeSchema = apiObject({
   /** If the field is a custom field, the configuration of the field. */
   configuration: z.record(z.string(), z.any()).optional(),

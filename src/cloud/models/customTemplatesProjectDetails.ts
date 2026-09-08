@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject, openEnum } from '#/core';
-/** Project Details */
 
+/** Project Details */
 export const CustomTemplatesProjectDetailsSchema = apiObject({
   /** The access level of the project. Only used by team-managed project */
   accessLevel: openEnum(['open', 'limited', 'private', 'free']).optional(),

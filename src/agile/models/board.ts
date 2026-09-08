@@ -3,8 +3,8 @@ import { apiObject, openEnum } from '#/core';
 import { GroupSchema } from './group';
 import { UserSchema } from './user';
 import { BoardLocationSchema } from './boardLocation';
-/** Details about a board. */
 
+/** Details about a board. */
 export const BoardSchema = apiObject({
   /** The users and groups who own the board. */
   admins: apiObject({

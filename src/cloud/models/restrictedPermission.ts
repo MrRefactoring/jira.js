@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** Details of the permission. */
 
+/** Details of the permission. */
 export const RestrictedPermissionSchema = apiObject({
   /**
    * The ID of the permission. Either `id` or `key` must be specified. Use [Get all

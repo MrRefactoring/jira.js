@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** Details about the time tracking provider. */
 
+/** Details about the time tracking provider. */
 export const TimeTrackingProviderSchema = apiObject({
   /** The key for the time tracking provider. For example, _JIRA_. */
   key: z.string(),

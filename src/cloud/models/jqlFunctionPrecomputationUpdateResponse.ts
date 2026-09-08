@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** Result of updating JQL Function precomputations. */
 
+/** Result of updating JQL Function precomputations. */
 export const JqlFunctionPrecomputationUpdateResponseSchema = apiObject({
   /**
    * List of precomputations that were not found and skipped. Only returned if the request passed

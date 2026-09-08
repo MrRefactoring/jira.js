@@ -3,6 +3,7 @@ import { apiObject, openEnum } from '#/core';
 import { SimpleListWrapperApplicationRoleSchema } from './simpleListWrapperApplicationRole';
 import { AvatarUrlsSchema } from './avatarUrls';
 import { SimpleListWrapperGroupNameSchema } from './simpleListWrapperGroupName';
+
 /**
  * A user with details as permitted by the user's Atlassian Account privacy settings. However, be aware of these
  * exceptions:*
@@ -14,7 +15,6 @@ import { SimpleListWrapperGroupNameSchema } from './simpleListWrapperGroupName';
  * record unavailable: This usually occurs due to an internal service outage. In this case, all parameters have fallback
  * values.
  */
-
 export const DashboardUserSchema = apiObject({
   /**
    * The account ID of the user, which uniquely identifies the user across all Atlassian products. For example,

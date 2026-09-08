@@ -2,8 +2,8 @@ import { z } from 'zod';
 import { apiObject } from '#/core';
 import { FieldLastUsedSchema } from './fieldLastUsed';
 import { JsonTypeSchema } from './jsonType';
-/** Details of a field. */
 
+/** Details of a field. */
 export const FieldSchema = apiObject({
   /** Number of contexts where the field is used. */
   contextsCount: z.number().optional(),

@@ -2,8 +2,8 @@ import { z } from 'zod';
 import { apiObject } from '#/core';
 import { PagePriorityWithSequenceSchema } from './pagePriorityWithSequence';
 import { PageProjectDetailsSchema } from './pageProjectDetails';
-/** A priority scheme with paginated priorities and projects. */
 
+/** A priority scheme with paginated priorities and projects. */
 export const PrioritySchemeWithPaginatedPrioritiesAndProjectsSchema = apiObject({
   default: z.boolean().optional(),
   /** The ID of the default issue priority. */

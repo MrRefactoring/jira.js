@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
 import { SecurityLevelSchema } from './securityLevel';
-/** Details about a security scheme. */
 
+/** Details about a security scheme. */
 export const SecuritySchemeSchema = apiObject({
   /** The ID of the default security level. */
   defaultSecurityLevelId: z.number().optional(),

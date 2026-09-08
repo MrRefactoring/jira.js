@@ -2,8 +2,8 @@ import { z } from 'zod';
 import { apiObject } from '#/core';
 import { IssueErrorSchema } from './issueError';
 import { IssueSchema } from './issue';
-/** The list of requested issues & fields. */
 
+/** The list of requested issues & fields. */
 export const BulkIssueResultsSchema = apiObject({
   /**
    * When Jira can't return an issue enumerated in a request due to a retriable error or payload constraint, we'll

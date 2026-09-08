@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
 import { BulkTransitionSubmitInputSchema } from './bulkTransitionSubmitInput';
-/** Issue Bulk Transition Payload */
 
+/** Issue Bulk Transition Payload */
 export const IssueBulkTransitionPayloadSchema = apiObject({
   /**
    * List of objects and each object has two properties:

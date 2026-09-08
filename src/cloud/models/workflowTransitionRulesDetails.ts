@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
 import { WorkflowIdSchema } from './workflowId';
-/** Details about a workflow configuration update request. */
 
+/** Details about a workflow configuration update request. */
 export const WorkflowTransitionRulesDetailsSchema = apiObject({
   workflowId: WorkflowIdSchema,
   /** The list of connect workflow rule IDs. */

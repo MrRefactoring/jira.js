@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
 import { ProjectCreateResourceIdentifierSchema } from './projectCreateResourceIdentifier';
-/** List of permission grants */
 
+/** List of permission grants */
 export const PermissionGrantDTOSchema = apiObject({
   applicationAccess: z.array(z.string()).optional(),
   groupCustomFields: z.array(ProjectCreateResourceIdentifierSchema).optional(),

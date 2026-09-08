@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** List of custom fields using the version. */
 
+/** List of custom fields using the version. */
 export const VersionUsageInCustomFieldSchema = apiObject({
   /** The ID of the custom field. */
   customFieldId: z.number().optional(),

@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** Classification mapping for classifications in source issues to respective target classification. */
 
+/** Classification mapping for classifications in source issues to respective target classification. */
 export const targetClassificationSchema = apiObject({
   /**
    * An object with the key as the ID of the target classification and value with the list of the IDs of the current

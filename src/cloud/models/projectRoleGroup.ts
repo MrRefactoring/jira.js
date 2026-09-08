@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** Details of the group associated with the role. */
 
+/** Details of the group associated with the role. */
 export const ProjectRoleGroupSchema = apiObject({
   /** The display name of the group. */
   displayName: z.string().optional(),

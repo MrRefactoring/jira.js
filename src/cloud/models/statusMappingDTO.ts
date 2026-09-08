@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
 import { StatusMigrationSchema } from './statusMigration';
-/** The mapping of old to new status ID for a specific project and issue type. */
 
+/** The mapping of old to new status ID for a specific project and issue type. */
 export const StatusMappingDTOSchema = apiObject({
   /** The issue type for the status mapping. */
   issueTypeId: z.string(),

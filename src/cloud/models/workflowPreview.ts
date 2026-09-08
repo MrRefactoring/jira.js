@@ -6,8 +6,8 @@ import { WorkflowPreviewScopeSchema } from './workflowPreviewScope';
 import { WorkflowPreviewStatusSchema } from './workflowPreviewStatus';
 import { TransitionPreviewSchema } from './transitionPreview';
 import { WorkflowDocumentVersionSchema } from './workflowDocumentVersion';
-/** Details of a workflow. */
 
+/** Details of a workflow. */
 export const WorkflowPreviewSchema = apiObject({
   /** The description of the workflow. */
   description: z.string().optional(),

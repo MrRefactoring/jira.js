@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** Details of the association between an issue type scheme and project. */
 
+/** Details of the association between an issue type scheme and project. */
 export const IssueTypeSchemeProjectAssociationSchema = apiObject({
   /** The ID of the issue type scheme. */
   issueTypeSchemeId: z.string(),

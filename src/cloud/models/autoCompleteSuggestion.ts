@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** A field auto-complete suggestion. */
 
+/** A field auto-complete suggestion. */
 export const AutoCompleteSuggestionSchema = apiObject({
   /**
    * The display name of a suggested item. If `fieldValue` or `predicateValue` are provided, the matching text is

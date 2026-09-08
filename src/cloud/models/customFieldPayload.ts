@@ -1,11 +1,11 @@
 import { z } from 'zod';
 import { apiObject, openEnum } from '#/core';
 import { ProjectCreateResourceIdentifierSchema } from './projectCreateResourceIdentifier';
+
 /**
  * Defines the payload for the custom field definitions. See
  * https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-issue-fields/#api-rest-api-3-field-post
  */
-
 export const CustomFieldPayloadSchema = apiObject({
   /** The type of the custom field */
   cfType: z.string().optional(),

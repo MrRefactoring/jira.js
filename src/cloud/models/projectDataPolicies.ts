@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
 import { ProjectWithDataPolicySchema } from './projectWithDataPolicy';
-/** Details about data policies for a list of projects. */
 
+/** Details about data policies for a list of projects. */
 export const ProjectDataPoliciesSchema = apiObject({
   /** List of projects with data policies. */
   projectDataPolicies: z.array(ProjectWithDataPolicySchema).optional(),

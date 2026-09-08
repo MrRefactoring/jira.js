@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
 import { ProjectCreateResourceIdentifierSchema } from './projectCreateResourceIdentifier';
-/** The payload for creating issue type schemes */
 
+/** The payload for creating issue type schemes */
 export const IssueTypeSchemePayloadSchema = apiObject({
   defaultIssueTypeId: ProjectCreateResourceIdentifierSchema.optional(),
   /** The description of the issue type scheme */

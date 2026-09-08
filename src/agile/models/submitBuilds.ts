@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
 import { IssueIdOrKeysAssociationSchema } from './issueIdOrKeysAssociation';
-/** The result of a successful `submitBuilds` request.* */
 
+/** The result of a successful `submitBuilds` request.* */
 export const SubmitBuildsSchema = apiObject({
   /**
    * The keys of builds that have been accepted for submission. A build key is a composite key that consists of

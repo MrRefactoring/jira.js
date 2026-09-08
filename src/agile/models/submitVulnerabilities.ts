@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
 import { IssueIdOrKeysAssociationSchema } from './issueIdOrKeysAssociation';
-/** The result of a successful submitVulnerabilities request.* */
 
+/** The result of a successful submitVulnerabilities request.* */
 export const SubmitVulnerabilitiesSchema = apiObject({
   /**
    * The IDs of Vulnerabilities that have been accepted for submission.

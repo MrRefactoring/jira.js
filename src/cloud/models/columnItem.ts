@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** Details of an issue navigator column item. */
 
+/** Details of an issue navigator column item. */
 export const ColumnItemSchema = apiObject({
   /** The issue navigator column label. */
   label: z.string().optional(),

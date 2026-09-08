@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
 import { ChangeDetailsSchema } from './changeDetails';
-/** A log of changes made to issue fields. Changelogs related to workflow associations are currently being deprecated. */
 
+/** A log of changes made to issue fields. Changelogs related to workflow associations are currently being deprecated. */
 export const ChangelogSchema = apiObject({
   /**
    * User details permitted by the user's Atlassian Account privacy settings. However, be aware of these exceptions:

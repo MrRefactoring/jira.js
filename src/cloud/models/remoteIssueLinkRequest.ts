@@ -2,8 +2,8 @@ import { z } from 'zod';
 import { apiObject } from '#/core';
 import { ApplicationSchema } from './application';
 import { RemoteObjectSchema } from './remoteObject';
-/** Details of a remote issue link. */
 
+/** Details of a remote issue link. */
 export const RemoteIssueLinkRequestSchema = apiObject({
   application: ApplicationSchema.optional(),
   /**

@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** Details of a screen. */
 
+/** Details of a screen. */
 export const UpdateScreenDetailsSchema = apiObject({
   /** The description of the screen. The maximum length is 255 characters. */
   description: z.string().optional(),

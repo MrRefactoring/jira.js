@@ -2,8 +2,8 @@ import { z } from 'zod';
 import { apiObject, openEnum } from '#/core';
 import { PermissionGrantDTOSchema } from './permissionGrantDTO';
 import { ProjectCreateResourceIdentifierSchema } from './projectCreateResourceIdentifier';
-/** The payload to create a permission scheme */
 
+/** The payload to create a permission scheme */
 export const PermissionPayloadDTOSchema = apiObject({
   /** Configuration to generate addon role. Default is false if null. Only applies to GLOBAL-scoped permission scheme */
   addAddonRole: z.boolean().optional(),

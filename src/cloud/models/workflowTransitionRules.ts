@@ -2,8 +2,8 @@ import { z } from 'zod';
 import { apiObject } from '#/core';
 import { AppWorkflowTransitionRuleSchema } from './appWorkflowTransitionRule';
 import { WorkflowIdSchema } from './workflowId';
-/** A workflow with transition rules. */
 
+/** A workflow with transition rules. */
 export const WorkflowTransitionRulesSchema = apiObject({
   /** The list of conditions within the workflow. */
   conditions: z.array(AppWorkflowTransitionRuleSchema).optional(),

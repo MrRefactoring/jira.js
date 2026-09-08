@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** The details of the preview workflow request. */
 
+/** The details of the preview workflow request. */
 export const WorkflowPreviewRequestSchema = apiObject({
   /** The list of issue type IDs. At most 25 issue type IDs can be specified. */
   issueTypeIds: z.array(z.string()).optional(),

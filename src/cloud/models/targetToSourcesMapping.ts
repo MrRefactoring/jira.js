@@ -3,11 +3,11 @@ import { apiObject } from '#/core';
 import { targetClassificationSchema } from './targetClassification';
 import { targetMandatoryFieldsSchema } from './targetMandatoryFields';
 import { targetStatusSchema } from './targetStatus';
+
 /**
  * An object representing the mapping of issues and data related to destination entities, like fields and statuses, that
  * are required during a bulk move.
  */
-
 export const targetToSourcesMappingSchema = apiObject({
   /**
    * If `true`, when issues are moved into this target group, they will adopt the target project's default

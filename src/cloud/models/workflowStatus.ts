@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** Details of a workflow status. */
 
+/** Details of a workflow status. */
 export const WorkflowStatusSchema = apiObject({
   /** The ID of the issue status. */
   id: z.string(),

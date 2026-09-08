@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** The payload for creating rules in a workflow */
 
+/** The payload for creating rules in a workflow */
 export const RulePayloadSchema = apiObject({
   /** The parameters of the rule */
   parameters: z.record(z.string(), z.any()).optional(),

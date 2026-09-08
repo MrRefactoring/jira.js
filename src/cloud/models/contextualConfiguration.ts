@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** Details of the contextual configuration for a custom field. */
 
+/** Details of the contextual configuration for a custom field. */
 export const ContextualConfigurationSchema = apiObject({
   /** The field configuration. */
   configuration: z.unknown().optional(),

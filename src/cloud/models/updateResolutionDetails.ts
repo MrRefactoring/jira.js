@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** Details of an issue resolution. */
 
+/** Details of an issue resolution. */
 export const UpdateResolutionDetailsSchema = apiObject({
   /** The description of the resolution. */
   description: z.string().max(255, 'description must be at most 255 characters').optional(),

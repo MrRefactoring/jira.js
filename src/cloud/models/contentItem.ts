@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject, openEnum } from '#/core';
-/** Represents the content to redact */
 
+/** Represents the content to redact */
 export const ContentItemSchema = apiObject({
   /**
    * The ID of the content entity.

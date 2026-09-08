@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
 import { WorklogSchema } from './worklog';
-/** Paginated list of worklog details */
 
+/** Paginated list of worklog details */
 export const PageOfWorklogsSchema = apiObject({
   /** The maximum number of results that could be on the page. */
   maxResults: z.number().optional(),

@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** The default value for a multi-select custom field. */
 
+/** The default value for a multi-select custom field. */
 export const CustomFieldContextDefaultValueMultipleOptionSchema = apiObject({
   /** The ID of the context. */
   contextId: z.string(),

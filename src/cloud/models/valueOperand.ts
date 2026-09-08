@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** An operand that is a user-provided value. */
 
+/** An operand that is a user-provided value. */
 export const ValueOperandSchema = apiObject({
   /** Encoded value, which can be used directly in a JQL query. */
   encodedValue: z.string().optional(),

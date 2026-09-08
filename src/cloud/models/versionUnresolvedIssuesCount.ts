@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** Count of a version's unresolved issues. */
 
+/** Count of a version's unresolved issues. */
 export const VersionUnresolvedIssuesCountSchema = apiObject({
   /** Count of issues. */
   issuesCount: z.number().optional(),

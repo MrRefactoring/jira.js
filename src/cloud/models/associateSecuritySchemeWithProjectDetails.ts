@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
 import { OldToNewSecurityLevelMappingsSchema } from './oldToNewSecurityLevelMappings';
-/** Issue security scheme, project, and remapping details. */
 
+/** Issue security scheme, project, and remapping details. */
 export const AssociateSecuritySchemeWithProjectDetailsSchema = apiObject({
   /** The list of scheme levels which should be remapped to new levels of the issue security scheme. */
   oldToNewSecurityLevelMappings: z.array(OldToNewSecurityLevelMappingsSchema).optional(),

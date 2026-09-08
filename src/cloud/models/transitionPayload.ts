@@ -4,8 +4,8 @@ import { RulePayloadSchema } from './rulePayload';
 import { ConditionGroupPayloadSchema } from './conditionGroupPayload';
 import { FromLayoutPayloadSchema } from './fromLayoutPayload';
 import { ToLayoutPayloadSchema } from './toLayoutPayload';
-/** The payload for creating a transition in a workflow. Can be DIRECTED, GLOBAL, SELF-LOOPED, GLOBAL LOOPED */
 
+/** The payload for creating a transition in a workflow. Can be DIRECTED, GLOBAL, SELF-LOOPED, GLOBAL LOOPED */
 export const TransitionPayloadSchema = apiObject({
   /** The actions that are performed when the transition is made */
   actions: z.array(RulePayloadSchema).optional(),

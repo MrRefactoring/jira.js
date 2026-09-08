@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** Contains details about a version approver. */
 
+/** Contains details about a version approver. */
 export const VersionApproverSchema = apiObject({
   /** The Atlassian account ID of the approver. */
   accountId: z.string().optional(),

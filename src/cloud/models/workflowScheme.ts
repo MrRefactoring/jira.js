@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
 import { DashboardUserSchema } from './dashboardUser';
-/** Details about a workflow scheme. */
 
+/** Details about a workflow scheme. */
 export const WorkflowSchemeSchema = apiObject({
   /**
    * The name of the default workflow for the workflow scheme. The default workflow has _All Unassigned Issue Types_

@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** The container that the board is located in. */
 
+/** The container that the board is located in. */
 export const BoardLocationSchema = apiObject({
   avatarURI: z.url().optional(),
   displayName: z.string().optional(),

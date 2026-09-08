@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import { apiObject, openEnum } from '#/core';
 import { GroupLabelSchema } from './groupLabel';
-/** A group found in a search. */
 
+/** A group found in a search. */
 export const FoundGroupSchema = apiObject({
   /** Avatar url for the group/team if present. */
   avatarUrl: z.string().optional(),

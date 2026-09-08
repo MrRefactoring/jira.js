@@ -2,8 +2,8 @@ import { z } from 'zod';
 import { apiObject } from '#/core';
 import { RoleActorSchema } from './roleActor';
 import { ScopeSchema } from './scope';
-/** Details about the roles in a project. */
 
+/** Details about the roles in a project. */
 export const ProjectRoleSchema = apiObject({
   /** The list of users who act in this role. */
   actors: z.array(RoleActorSchema).optional(),

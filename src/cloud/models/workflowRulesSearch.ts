@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** Details of the workflow and its transition rules. */
 
+/** Details of the workflow and its transition rules. */
 export const WorkflowRulesSearchSchema = apiObject({
   /**
    * Use expand to include additional information in the response. This parameter accepts `transition` which, for each

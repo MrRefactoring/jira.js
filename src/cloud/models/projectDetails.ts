@@ -2,8 +2,8 @@ import { z } from 'zod';
 import { apiObject, openEnum } from '#/core';
 import { AvatarUrlsSchema } from './avatarUrls';
 import { UpdatedProjectCategorySchema } from './updatedProjectCategory';
-/** Details about a project. */
 
+/** Details about a project. */
 export const ProjectDetailsSchema = apiObject({
   avatarUrls: AvatarUrlsSchema.optional(),
   /** The ID of the project. */

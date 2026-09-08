@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** Details about a failed webhook. */
 
+/** Details about a failed webhook. */
 export const FailedWebhookSchema = apiObject({
   /** The webhook body. */
   body: z.string().optional(),

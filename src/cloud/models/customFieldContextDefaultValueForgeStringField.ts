@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** The default text for a Forge string custom field. */
 
+/** The default text for a Forge string custom field. */
 export const CustomFieldContextDefaultValueForgeStringFieldSchema = apiObject({
   /** The ID of the context. */
   contextId: z.string(),

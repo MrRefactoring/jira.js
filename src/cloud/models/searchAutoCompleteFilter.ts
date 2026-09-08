@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** Details of how to filter and list search auto complete information. */
 
+/** Details of how to filter and list search auto complete information. */
 export const SearchAutoCompleteFilterSchema = apiObject({
   /** Include collapsed fields for fields that have non-unique names. */
   includeCollapsedFields: z.boolean().optional(),

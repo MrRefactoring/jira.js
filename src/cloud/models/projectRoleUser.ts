@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** Details of the user associated with the role. */
 
+/** Details of the user associated with the role. */
 export const ProjectRoleUserSchema = apiObject({
   /**
    * The account ID of the user, which uniquely identifies the user across all Atlassian products. For example,

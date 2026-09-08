@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
 import { ProjectCreateResourceIdentifierSchema } from './projectCreateResourceIdentifier';
-/** Defines the payload for the field association scheme. */
 
+/** Defines the payload for the field association scheme. */
 export const FieldAssociationItemPayloadSchema = apiObject({
   /** The description of the field association item */
   description: z.string().optional(),

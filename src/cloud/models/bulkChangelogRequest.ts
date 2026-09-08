@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** Request bean for bulk changelog retrieval */
 
+/** Request bean for bulk changelog retrieval */
 export const BulkChangelogRequestSchema = apiObject({
   /** List of field IDs to filter changelogs */
   fieldIds: z.array(z.string()).optional(),

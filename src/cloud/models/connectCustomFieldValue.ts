@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject, openEnum } from '#/core';
-/** A list of custom field details. */
 
+/** A list of custom field details. */
 export const ConnectCustomFieldValueSchema = apiObject({
   /** The type of custom field. */
   _type: openEnum([

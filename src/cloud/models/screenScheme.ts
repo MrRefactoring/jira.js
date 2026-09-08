@@ -2,8 +2,8 @@ import { z } from 'zod';
 import { apiObject } from '#/core';
 import { PageIssueTypeScreenSchemeSchema } from './pageIssueTypeScreenScheme';
 import { ScreenTypesSchema } from './screenTypes';
-/** A screen scheme. */
 
+/** A screen scheme. */
 export const ScreenSchemeSchema = apiObject({
   /** The description of the screen scheme. */
   description: z.string().optional(),

@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** Details of a custom field context. */
 
+/** Details of a custom field context. */
 export const CustomFieldContextUpdateDetailsSchema = apiObject({
   /** The description of the custom field context. The maximum length is 255 characters. */
   description: z.string().optional(),

@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** The project and issue type mapping with a matching custom field context. */
 
+/** The project and issue type mapping with a matching custom field context. */
 export const ContextForProjectAndIssueTypeSchema = apiObject({
   /** The ID of the custom field context. */
   contextId: z.string(),

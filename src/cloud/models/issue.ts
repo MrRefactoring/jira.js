@@ -5,8 +5,8 @@ import { IssueUpdateMetadataSchema } from './issueUpdateMetadata';
 import { IncludedFieldsSchema } from './includedFields';
 import { OperationsSchema } from './operations';
 import { IssueTransitionSchema } from './issueTransition';
-/** Details about an issue. */
 
+/** Details about an issue. */
 export const IssueSchema = apiObject({
   changelog: PageOfChangelogsSchema.optional(),
   editmeta: IssueUpdateMetadataSchema.optional(),

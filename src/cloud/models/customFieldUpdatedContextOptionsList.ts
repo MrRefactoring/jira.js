@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
 import { CustomFieldOptionUpdateSchema } from './customFieldOptionUpdate';
-/** A list of custom field options for a context. */
 
+/** A list of custom field options for a context. */
 export const CustomFieldUpdatedContextOptionsListSchema = apiObject({
   /** The updated custom field options. */
   options: z.array(CustomFieldOptionUpdateSchema).optional(),

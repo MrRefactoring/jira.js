@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import { apiObject, openEnum } from '#/core';
 import { ProjectCreateResourceIdentifierSchema } from './projectCreateResourceIdentifier';
-/** The payload for creating an issue type */
 
+/** The payload for creating an issue type */
 export const IssueTypePayloadSchema = apiObject({
   /**
    * The avatar ID of the issue type. Go to

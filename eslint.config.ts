@@ -3,6 +3,7 @@ import globals from 'globals';
 import tseslint from 'typescript-eslint';
 import { defineConfig } from 'eslint/config';
 import stylistic from '@stylistic/eslint-plugin';
+import { noDetachedJsdoc } from './eslintRules/noDetachedJsdoc';
 
 export default defineConfig([
   { files: ['**/*.{js,mjs,cjs,ts}'], plugins: { js }, extends: ['js/recommended'] },
@@ -17,6 +18,7 @@ export default defineConfig([
     },
     plugins: {
       '@stylistic': stylistic,
+      local: { rules: { 'no-detached-jsdoc': noDetachedJsdoc } },
     },
     rules: {
       'no-empty': ['error', { allowEmptyCatch: true }],
@@ -56,6 +58,7 @@ export default defineConfig([
       '@typescript-eslint/no-unsafe-call': 'off',
       '@typescript-eslint/no-unsafe-member-access': 'off',
       '@typescript-eslint/prefer-optional-chain': 'error',
+      'local/no-detached-jsdoc': 'error',
     },
   },
 ]);

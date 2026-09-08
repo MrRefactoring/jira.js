@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject, openEnum } from '#/core';
-/** Information about the most recent use of a field. */
 
+/** Information about the most recent use of a field. */
 export const FieldLastUsedSchema = apiObject({
   /**
    * Last used value type:

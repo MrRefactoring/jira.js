@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** Counts of the number of issues in various statuses. */
 
+/** Counts of the number of issues in various statuses. */
 export const VersionIssuesStatusSchema = apiObject({
   /** Count of issues with status _done_. */
   done: z.number().optional(),

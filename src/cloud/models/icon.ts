@@ -1,12 +1,12 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
+
 /**
  * An icon. If no icon is defined:*
  *
  * For a status icon, no status icon displays in Jira.* for the remote object icon, the default link icon displays in
  * Jira.
  */
-
 export const IconSchema = apiObject({
   /** The URL of the tooltip, used only for a status icon. If not set, the status icon in Jira is not clickable. */
   link: z.string().optional(),

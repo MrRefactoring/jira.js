@@ -2,8 +2,8 @@ import { z } from 'zod';
 import { apiObject } from '#/core';
 import { JiraWorkflowPreviewStatusSchema } from './jiraWorkflowPreviewStatus';
 import { WorkflowPreviewSchema } from './workflowPreview';
-/** The preview workflow response containing workflows and statuses. */
 
+/** The preview workflow response containing workflows and statuses. */
 export const WorkflowPreviewResponseSchema = apiObject({
   /** The list of statuses referenced by the workflows. */
   statuses: z.array(JiraWorkflowPreviewStatusSchema).optional(),

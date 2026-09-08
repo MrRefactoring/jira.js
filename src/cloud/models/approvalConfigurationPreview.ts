@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** Approval configuration. */
 
+/** Approval configuration. */
 export const ApprovalConfigurationPreviewSchema = apiObject({
   /** The active approval configuration. */
   active: z.string().optional(),

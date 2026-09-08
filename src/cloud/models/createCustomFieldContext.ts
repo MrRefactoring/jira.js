@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** The details of a created custom field context. */
 
+/** The details of a created custom field context. */
 export const CreateCustomFieldContextSchema = apiObject({
   /** The description of the context. */
   description: z.string().optional(),

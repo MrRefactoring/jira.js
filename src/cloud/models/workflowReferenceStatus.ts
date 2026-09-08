@@ -2,8 +2,8 @@ import { z } from 'zod';
 import { apiObject } from '#/core';
 import { ApprovalConfigurationSchema } from './approvalConfiguration';
 import { WorkflowStatusLayoutSchema } from './workflowStatusLayout';
-/** The statuses referenced in the workflow. */
 
+/** The statuses referenced in the workflow. */
 export const WorkflowReferenceStatusSchema = apiObject({
   approvalConfiguration: ApprovalConfigurationSchema.optional(),
   /** Indicates if the status is deprecated. */

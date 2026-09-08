@@ -4,8 +4,8 @@ import { MappingsByIssueTypeOverrideSchema } from './mappingsByIssueTypeOverride
 import { MappingsByWorkflowSchema } from './mappingsByWorkflow';
 import { DocumentVersionSchema } from './documentVersion';
 import { WorkflowSchemeAssociationSchema } from './workflowSchemeAssociation';
-/** The update workflow scheme payload. */
 
+/** The update workflow scheme payload. */
 export const WorkflowSchemeUpdateRequestSchema = apiObject({
   /**
    * The ID of the workflow for issue types without having a mapping defined in this workflow scheme. Only used in

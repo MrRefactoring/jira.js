@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** Change the order of issue resolutions. */
 
+/** Change the order of issue resolutions. */
 export const ReorderIssueResolutionsRequestSchema = apiObject({
   /** The ID of the resolution. Required if `position` isn't provided. */
   after: z.string().optional(),

@@ -1,5 +1,6 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
+
 /**
  * User details permitted by the user's Atlassian Account privacy settings. However, be aware of these exceptions:*
  *
@@ -10,7 +11,6 @@ import { apiObject } from '#/core';
  * record unavailable: This usually occurs due to an internal service outage. In this case, all parameters have fallback
  * values.
  */
-
 export const UserDetailsSchema = apiObject({
   /**
    * The account ID of the user, which uniquely identifies the user across all Atlassian products. For example,

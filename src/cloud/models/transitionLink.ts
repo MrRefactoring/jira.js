@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** Link information for workflow transitions. */
 
+/** Link information for workflow transitions. */
 export const TransitionLinkSchema = apiObject({
   /** The from port number. */
   fromPort: z.number().optional(),

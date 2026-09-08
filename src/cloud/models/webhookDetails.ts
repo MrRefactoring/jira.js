@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject, openEnum } from '#/core';
-/** A list of webhooks. */
 
+/** A list of webhooks. */
 export const WebhookDetailsSchema = apiObject({
   /** The Jira events that trigger the webhook. */
   events: z.array(

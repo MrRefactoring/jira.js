@@ -1,5 +1,6 @@
 import { z } from 'zod';
 import { apiObject, openEnum } from '#/core';
+
 /**
  * Every project-created entity has an ID that must be unique within the scope of the project creation. PCRI (Project
  * Create Resource Identifier) is a standard format for creating IDs and references to other project entities. PCRI
@@ -9,7 +10,6 @@ import { apiObject, openEnum } from '#/core';
  * existing entity ID that exists in the Jira site, if `ref` - must be unique across all entities in the scope of this
  * project template creation
  */
-
 export const ProjectCreateResourceIdentifierSchema = apiObject({
   anID: z.boolean().optional(),
   areference: z.boolean().optional(),

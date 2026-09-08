@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import { apiObject, openEnum } from '#/core';
 import { WorkflowElementReferenceSchema } from './workflowElementReference';
-/** The details about a workflow validation error. */
 
+/** The details about a workflow validation error. */
 export const WorkflowValidationErrorSchema = apiObject({
   /** Additional details about the validation error. */
   additionalDetails: z.string().optional(),

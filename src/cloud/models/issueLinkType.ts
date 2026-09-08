@@ -1,5 +1,6 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
+
 /**
  * This object is used as follows:*
  *
@@ -12,7 +13,6 @@ import { apiObject } from '#/core';
  * issueLinkType](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-issueLinkType/#api-rest-api-3-issueLinkType-post)
  * resource it defines and reports on issue link types.
  */
-
 export const IssueLinkTypeSchema = apiObject({
   /**
    * The ID of the issue link type and is used as follows:

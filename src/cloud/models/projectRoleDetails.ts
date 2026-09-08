@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import { apiObject, openEnum } from '#/core';
 import { ScopeSchema } from './scope';
-/** Details about a project role. */
 
+/** Details about a project role. */
 export const ProjectRoleDetailsSchema = apiObject({
   /** Whether this role is the admin role for the project. */
   admin: z.boolean().optional(),

@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
 import { SaveProjectTemplateRequestSchema } from './saveProjectTemplateRequest';
-/** Request to save a custom template */
 
+/** Request to save a custom template */
 export const SaveTemplateRequestSchema = apiObject({
   /** The description of the template */
   templateDescription: z.string().max(150, 'templateDescription must be at most 150 characters').optional(),

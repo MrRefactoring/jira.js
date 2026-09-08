@@ -4,8 +4,8 @@ import { PreviewRuleConfigurationSchema } from './previewRuleConfiguration';
 import { PreviewConditionGroupConfigurationSchema } from './previewConditionGroupConfiguration';
 import { TransitionLinkSchema } from './transitionLink';
 import { PreviewTriggerSchema } from './previewTrigger';
-/** Details about a workflow transition in preview context. */
 
+/** Details about a workflow transition in preview context. */
 export const TransitionPreviewSchema = apiObject({
   /** The post-functions of the transition. */
   actions: z.array(PreviewRuleConfigurationSchema).optional(),

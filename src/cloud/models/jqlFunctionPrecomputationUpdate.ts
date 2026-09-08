@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** Precomputation id and its new value. */
 
+/** Precomputation id and its new value. */
 export const JqlFunctionPrecomputationUpdateSchema = apiObject({
   /**
    * The error message to be displayed to the user if the given function clause is no longer valid during recalculation

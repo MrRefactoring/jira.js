@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
 import { IssueFilterForBulkPropertySetSchema } from './issueFilterForBulkPropertySet';
-/** Bulk issue property update request details. */
 
+/** Bulk issue property update request details. */
 export const BulkIssuePropertyUpdateRequestSchema = apiObject({
   /**
    * EXPERIMENTAL. The Jira expression to calculate the value of the property. The value of the expression must be an

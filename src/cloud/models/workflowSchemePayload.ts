@@ -1,11 +1,11 @@
 import { z } from 'zod';
 import { apiObject, openEnum } from '#/core';
 import { ProjectCreateResourceIdentifierSchema } from './projectCreateResourceIdentifier';
+
 /**
  * The payload for creating a workflow scheme. See
  * https://www.atlassian.com/software/jira/guides/workflows/overview#what-is-a-jira-workflow-scheme
  */
-
 export const WorkflowSchemePayloadSchema = apiObject({
   defaultWorkflow: ProjectCreateResourceIdentifierSchema.optional(),
   /** The description of the workflow scheme */

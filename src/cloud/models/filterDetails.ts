@@ -3,8 +3,8 @@ import { apiObject } from '#/core';
 import { SharePermissionSchema } from './sharePermission';
 import { DashboardUserSchema } from './dashboardUser';
 import { FilterSubscriptionSchema } from './filterSubscription';
-/** Details of a filter. */
 
+/** Details of a filter. */
 export const FilterDetailsSchema = apiObject({
   /**
    * [Experimental] Approximate last used time. Returns the date and time when the filter was last used. Returns `null`

@@ -3,8 +3,8 @@ import { apiObject } from '#/core';
 import { IssueIdOrKeysAssociationSchema } from './issueIdOrKeysAssociation';
 import { ServiceIdOrKeysAssociationSchema } from './serviceIdOrKeysAssociation';
 import { EntityAssociationSchema } from './entityAssociation';
-/** The result of a successful submitDeployments request.* */
 
+/** The result of a successful submitDeployments request.* */
 export const SubmitDeploymentsSchema = apiObject({
   /**
    * The keys of deployments that have been accepted for submission. A deployment key is a composite key that consists

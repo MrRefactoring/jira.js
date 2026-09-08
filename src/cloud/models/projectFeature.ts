@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject, openEnum } from '#/core';
-/** Details of a project feature. */
 
+/** Details of a project feature. */
 export const ProjectFeatureSchema = apiObject({
   /** The key of the feature. */
   feature: z.string().optional(),

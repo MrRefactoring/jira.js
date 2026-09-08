@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import { apiObject, openEnum } from '#/core';
 import { IssueIdOrKeysAssociationSchema } from './issueIdOrKeysAssociation';
-/** Represents a repository, containing development information such as commits, pull requests, and branches. */
 
+/** Represents a repository, containing development information such as commits, pull requests, and branches. */
 export const GetRepositorySchema = apiObject({
   /** The name of this repository. Max length is 255 characters. */
   name: z.string().max(255, 'name must be at most 255 characters'),

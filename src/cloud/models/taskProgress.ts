@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject, openEnum } from '#/core';
-/** Details about a task. */
 
+/** Details about a task. */
 export const TaskProgressSchema = apiObject({
   /** The description of the task. */
   description: z.string().optional(),

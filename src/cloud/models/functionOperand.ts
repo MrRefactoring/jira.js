@@ -1,10 +1,10 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
+
 /**
  * An operand that is a function. See [Advanced searching - functions
  * reference](https://confluence.atlassian.com/x/dwiiLQ) for more information about JQL functions.
  */
-
 export const FunctionOperandSchema = apiObject({
   /** The list of function arguments. */
   arguments: z.array(z.string()),

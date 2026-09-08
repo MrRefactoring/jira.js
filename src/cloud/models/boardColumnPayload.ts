@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
 import { ProjectCreateResourceIdentifierSchema } from './projectCreateResourceIdentifier';
-/** The payload for creating a board column */
 
+/** The payload for creating a board column */
 export const BoardColumnPayloadSchema = apiObject({
   /** The maximum issue constraint for the column */
   maximumIssueConstraint: z.number().optional(),
