@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
 import { BulkProjectPermissionGrantsSchema } from './bulkProjectPermissionGrants';
-/** Details of global and project permissions granted to the user. */
 
+/** Details of global and project permissions granted to the user. */
 export const BulkPermissionGrantsSchema = apiObject({
   /** List of permissions granted to the user. */
   globalPermissions: z.array(z.string()),

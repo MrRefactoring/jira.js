@@ -5,8 +5,8 @@ import { WorkflowScopeSchema } from './workflowScope';
 import { WorkflowReferenceStatusSchema } from './workflowReferenceStatus';
 import { WorkflowTransitionsSchema } from './workflowTransitions';
 import { DocumentVersionSchema } from './documentVersion';
-/** Details of a workflow. */
 
+/** Details of a workflow. */
 export const JiraWorkflowSchema = apiObject({
   /** The creation date of the workflow. */
   created: z.string().nullish(),

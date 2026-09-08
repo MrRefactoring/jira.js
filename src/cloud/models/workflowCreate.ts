@@ -3,8 +3,8 @@ import { apiObject } from '#/core';
 import { WorkflowLayoutSchema } from './workflowLayout';
 import { StatusLayoutUpdateSchema } from './statusLayoutUpdate';
 import { TransitionUpdateDTOSchema } from './transitionUpdateDTO';
-/** The details of the workflows to create. */
 
+/** The details of the workflows to create. */
 export const WorkflowCreateSchema = apiObject({
   /** The description of the workflow to create. */
   description: z.string().optional(),

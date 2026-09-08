@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** The details of the field configuration scheme. */
 
+/** The details of the field configuration scheme. */
 export const UpdateFieldConfigurationSchemeDetailsSchema = apiObject({
   /** The description of the field configuration scheme. */
   description: z.string().max(1024, 'description must be at most 1024 characters').optional(),

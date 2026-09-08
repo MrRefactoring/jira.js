@@ -1,11 +1,11 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
 import { ProjectCreateResourceIdentifierSchema } from './projectCreateResourceIdentifier';
+
 /**
  * Defines the payload for the tabs of the screen. See
  * https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-screen-tab-fields/#api-rest-api-3-screens-screenid-tabs-tabid-fields-post
  */
-
 export const TabPayloadSchema = apiObject({
   /**
    * The list of resource identifier of the field associated to the tab. See

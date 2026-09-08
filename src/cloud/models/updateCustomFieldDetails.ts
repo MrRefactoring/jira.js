@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject, openEnum } from '#/core';
-/** Details of a custom field. */
 
+/** Details of a custom field. */
 export const UpdateCustomFieldDetailsSchema = apiObject({
   /** The description of the custom field. The maximum length is 40000 characters. */
   description: z.string().optional(),

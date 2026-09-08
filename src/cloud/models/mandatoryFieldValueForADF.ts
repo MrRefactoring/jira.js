@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject, openEnum } from '#/core';
-/** An object notation input */
 
+/** An object notation input */
 export const MandatoryFieldValueForADFSchema = apiObject({
   /** If `true`, will try to retain original non-null issue field values on move. */
   retain: z.boolean().nullish(),

@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** Error response returned updating JQL Function precomputations fails. */
 
+/** Error response returned updating JQL Function precomputations fails. */
 export const JqlFunctionPrecomputationUpdateErrorResponseSchema = apiObject({
   /** The list of error messages produced by this operation. */
   errorMessages: z.array(z.string()).optional(),

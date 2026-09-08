@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** Error messages from an operation. */
 
+/** Error messages from an operation. */
 export const ErrorCollectionSchema = apiObject({
   /** The list of error messages produced by this operation. For example, "input parameter 'key' must be provided" */
   errorMessages: z.array(z.string()).optional(),

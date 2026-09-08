@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** A status category. */
 
+/** A status category. */
 export const StatusCategorySchema = apiObject({
   /** The name of the color used to represent the status category. */
   colorName: z.string().optional(),

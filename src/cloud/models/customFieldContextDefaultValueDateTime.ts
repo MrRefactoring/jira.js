@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** The default value for a date time custom field. */
 
+/** The default value for a date time custom field. */
 export const CustomFieldContextDefaultValueDateTimeSchema = apiObject({
   /** The ID of the context. */
   contextId: z.string(),

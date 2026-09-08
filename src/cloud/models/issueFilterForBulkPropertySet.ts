@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** Bulk operation filter details. */
 
+/** Bulk operation filter details. */
 export const IssueFilterForBulkPropertySetSchema = apiObject({
   /** The value of properties to perform the bulk operation on. */
   currentValue: z.unknown().optional(),

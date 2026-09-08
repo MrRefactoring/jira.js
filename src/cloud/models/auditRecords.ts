@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
 import { AuditRecordSchema } from './auditRecord';
-/** Container for a list of audit records. */
 
+/** Container for a list of audit records. */
 export const AuditRecordsSchema = apiObject({
   /** The requested or default limit on the number of audit items to be returned. */
   limit: z.number().optional(),

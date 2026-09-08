@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import { apiObject, openEnum } from '#/core';
 import { CustomTemplateOptionsSchema } from './customTemplateOptions';
-/** The request details to generate template from a project */
 
+/** The request details to generate template from a project */
 export const SaveProjectTemplateRequestSchema = apiObject({
   /** The ID of the target project */
   projectId: z.number().optional(),

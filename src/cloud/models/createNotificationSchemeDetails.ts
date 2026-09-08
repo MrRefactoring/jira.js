@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
 import { NotificationSchemeEventDetailsSchema } from './notificationSchemeEventDetails';
-/** Details of an notification scheme. */
 
+/** Details of an notification scheme. */
 export const CreateNotificationSchemeDetailsSchema = apiObject({
   /** The description of the notification scheme. */
   description: z.string().max(4000, 'description must be at most 4000 characters').optional(),

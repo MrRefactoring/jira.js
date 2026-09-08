@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
 import { StatusProjectIssueTypeUsageSchema } from './statusProjectIssueTypeUsage';
-/** A page of issue types. */
 
+/** A page of issue types. */
 export const StatusProjectIssueTypeUsagePageSchema = apiObject({
   /** Page token for the next page of issue type usages. */
   nextPageToken: z.string().nullish(),

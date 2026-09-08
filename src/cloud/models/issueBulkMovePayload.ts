@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** Issue Bulk Move Payload */
 
+/** Issue Bulk Move Payload */
 export const IssueBulkMovePayloadSchema = apiObject({
   /**
    * A boolean value that indicates whether to send a bulk change notification when the issues are being moved.

@@ -1,11 +1,11 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
 import { ProjectCreateResourceIdentifierSchema } from './projectCreateResourceIdentifier';
+
 /**
  * Defines the payload for the field layout configuration. See
  * https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-issue-field-configurations/#api-rest-api-3-fieldconfiguration-post
  */
-
 export const FieldLayoutConfigurationSchema = apiObject({
   /** Whether to show the field */
   field: z.boolean().optional(),

@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** Details about the mapping between issue types and a workflow. */
 
+/** Details about the mapping between issue types and a workflow. */
 export const IssueTypesWorkflowMappingSchema = apiObject({
   /** Whether the workflow is the default workflow for the workflow scheme. */
   defaultMapping: z.boolean().optional(),

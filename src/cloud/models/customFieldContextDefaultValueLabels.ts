@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** Default value for a labels custom field. */
 
+/** Default value for a labels custom field. */
 export const CustomFieldContextDefaultValueLabelsSchema = apiObject({
   /** The ID of the context. */
   contextId: z.string(),

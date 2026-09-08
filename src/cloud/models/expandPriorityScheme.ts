@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** A priority scheme with less fields to be used in for an API expand response. */
 
+/** A priority scheme with less fields to be used in for an API expand response. */
 export const ExpandPrioritySchemeSchema = apiObject({
   /** The ID of the priority scheme. */
   id: z.string().optional(),

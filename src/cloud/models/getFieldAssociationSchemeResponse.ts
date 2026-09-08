@@ -2,8 +2,8 @@ import { z } from 'zod';
 import { apiObject } from '#/core';
 import { FieldAssociationSchemeLinksBeanSchema } from './fieldAssociationSchemeLinksBean';
 import { FieldAssociationSchemeMatchedFiltersSchema } from './fieldAssociationSchemeMatchedFilters';
-/** Response object for getting a field association scheme. */
 
+/** Response object for getting a field association scheme. */
 export const GetFieldAssociationSchemeResponseSchema = apiObject({
   description: z.string().optional(),
   fieldsCount: z.number().optional(),

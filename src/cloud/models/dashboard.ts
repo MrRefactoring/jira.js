@@ -2,8 +2,8 @@ import { z } from 'zod';
 import { apiObject } from '#/core';
 import { SharePermissionSchema } from './sharePermission';
 import { UserBeanSchema } from './userBean';
-/** Details of a dashboard. */
 
+/** Details of a dashboard. */
 export const DashboardSchema = apiObject({
   /** The automatic refresh interval for the dashboard in milliseconds. */
   automaticRefreshMs: z.number().optional(),

@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
 import { SuggestedIssueSchema } from './suggestedIssue';
-/** A type of issue suggested for use in auto-completion. */
 
+/** A type of issue suggested for use in auto-completion. */
 export const IssuePickerSuggestionsIssueTypeSchema = apiObject({
   /** The ID of the type of issues suggested for use in auto-completion. */
   id: z.string().optional(),

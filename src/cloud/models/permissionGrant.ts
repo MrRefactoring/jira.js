@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
 import { PermissionHolderSchema } from './permissionHolder';
-/** Details about a permission granted to a user or group. */
 
+/** Details about a permission granted to a user or group. */
 export const PermissionGrantSchema = apiObject({
   holder: PermissionHolderSchema.optional(),
   /** The ID of the permission granted details. */

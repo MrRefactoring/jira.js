@@ -2,8 +2,8 @@ import { z } from 'zod';
 import { apiObject } from '#/core';
 import { AssociatedItemSchema } from './associatedItem';
 import { ChangedValueSchema } from './changedValue';
-/** An audit record. */
 
+/** An audit record. */
 export const AuditRecordSchema = apiObject({
   /** The list of items associated with the changed record. */
   associatedItems: z.array(AssociatedItemSchema).optional(),

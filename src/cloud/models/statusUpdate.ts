@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject, openEnum } from '#/core';
-/** Details of the status being updated. */
 
+/** Details of the status being updated. */
 export const StatusUpdateSchema = apiObject({
   /** The description of the status. */
   description: z.string().optional(),

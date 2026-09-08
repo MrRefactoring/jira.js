@@ -1,10 +1,10 @@
 import { z } from 'zod';
 import { apiObject, openEnum } from '#/core';
+
 /**
  * The default parameters to apply to the field across all work types in the specified schemes, may be null if only work
  * type-specific updates are needed
  */
-
 export const FieldsSchemeItemParameterSchema = apiObject({
   /** The custom description for the field, null to preserve current description */
   description: z.string().optional(),

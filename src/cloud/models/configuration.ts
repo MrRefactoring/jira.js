@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
 import { TimeTrackingConfigurationSchema } from './timeTrackingConfiguration';
-/** Details about the configuration of Jira. */
 
+/** Details about the configuration of Jira. */
 export const ConfigurationSchema = apiObject({
   /** Whether the ability to add attachments to issues is enabled. */
   attachmentsEnabled: z.boolean().optional(),

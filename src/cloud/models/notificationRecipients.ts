@@ -2,8 +2,8 @@ import { z } from 'zod';
 import { apiObject } from '#/core';
 import { GroupNameSchema } from './groupName';
 import { UserDetailsSchema } from './userDetails';
-/** Details of the users and groups to receive the notification. */
 
+/** Details of the users and groups to receive the notification. */
 export const NotificationRecipientsSchema = apiObject({
   /** Whether the notification should be sent to the issue's assignees. */
   assignee: z.boolean().optional(),

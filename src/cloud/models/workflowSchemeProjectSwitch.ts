@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
 import { MappingsByIssueTypeOverrideSchema } from './mappingsByIssueTypeOverride';
-/** Request to switch a project's workflow scheme */
 
+/** Request to switch a project's workflow scheme */
 export const WorkflowSchemeProjectSwitchSchema = apiObject({
   /**
    * The mappings for migrating issues from old statuses to new statuses when switching from one workflow scheme to

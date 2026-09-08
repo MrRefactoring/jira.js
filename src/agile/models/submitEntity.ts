@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** The result of a successful submitIncidents request.* */
 
+/** The result of a successful submitIncidents request.* */
 export const SubmitEntitySchema = apiObject({
   /**
    * The IDs of Incidents that have been accepted for submission.

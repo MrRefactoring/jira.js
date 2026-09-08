@@ -6,8 +6,8 @@ import { ProjectDetailsSchema } from './projectDetails';
 import { WorkflowSchemeIdNameSchema } from './workflowSchemeIdName';
 import { WorkflowStatusSchema } from './workflowStatus';
 import { TransitionSchema } from './transition';
-/** Details about a workflow. */
 
+/** Details about a workflow. */
 export const WorkflowSchema = apiObject({
   /** The creation date of the workflow. */
   created: z.coerce.date().optional(),

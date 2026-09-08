@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
 import { DashboardGadgetSchema } from './dashboardGadget';
-/** The list of gadgets on the dashboard. */
 
+/** The list of gadgets on the dashboard. */
 export const DashboardGadgetResponseSchema = apiObject({
   /** The list of gadgets. */
   gadgets: z.array(DashboardGadgetSchema),

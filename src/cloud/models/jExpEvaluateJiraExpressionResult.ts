@@ -1,11 +1,11 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
 import { JExpEvaluateMetaDataSchema } from './jExpEvaluateMetaData';
+
 /**
  * The result of evaluating a Jira expression.This bean will be replacing `JiraExpressionResultBean` bean as part of new
  * evaluate endpoint
  */
-
 export const JExpEvaluateJiraExpressionResultSchema = apiObject({
   meta: JExpEvaluateMetaDataSchema.optional(),
   /**

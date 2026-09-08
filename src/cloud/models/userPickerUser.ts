@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject, openEnum } from '#/core';
-/** A user found in a search. */
 
+/** A user found in a search. */
 export const UserPickerUserSchema = apiObject({
   /**
    * The account ID of the user, which uniquely identifies the user across all Atlassian products. For example,

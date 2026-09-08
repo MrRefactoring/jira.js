@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** A rule configuration. */
 
+/** A rule configuration. */
 export const RuleConfigurationSchema = apiObject({
   /** Whether the rule is disabled. */
   disabled: z.boolean().optional(),

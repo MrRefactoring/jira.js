@@ -2,8 +2,8 @@ import { z } from 'zod';
 import { apiObject } from '#/core';
 import { JiraWorkflowStatusSchema } from './jiraWorkflowStatus';
 import { JiraWorkflowSchema } from './jiraWorkflow';
-/** Page of items, including workflows and related statuses. */
 
+/** Page of items, including workflows and related statuses. */
 export const WorkflowSearchResponseSchema = apiObject({
   /** Whether this is the last page. */
   isLast: z.boolean().optional(),

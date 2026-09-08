@@ -2,8 +2,8 @@ import { z } from 'zod';
 import { apiObject, openEnum } from '#/core';
 import { IssueIdOrKeysAssociationSchema } from './issueIdOrKeysAssociation';
 import { ServiceIdOrKeysAssociationSchema } from './serviceIdOrKeysAssociation';
-/** Data related to a single Remote Link.* */
 
+/** Data related to a single Remote Link.* */
 export const GetRemoteLinkByIdSchema = apiObject({
   /**
    * The schema version used for this data.

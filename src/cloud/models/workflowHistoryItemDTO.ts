@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** A single entry in the WorkflowHistoryPage. */
 
+/** A single entry in the WorkflowHistoryPage. */
 export const WorkflowHistoryItemDTOSchema = apiObject({
   /** Whether the version is an intermediate workflow state, sometimes created during workflow updates. */
   isIntermediate: z.boolean().optional(),

@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject, openEnum } from '#/core';
-/** The Atlassian provided system rules available. */
 
+/** The Atlassian provided system rules available. */
 export const AvailableWorkflowSystemRuleSchema = apiObject({
   /** The rule description. */
   description: z.string(),

@@ -2,11 +2,11 @@ import { z } from 'zod';
 import { apiObject, openEnum } from '#/core';
 import { ProjectCreateResourceIdentifierSchema } from './projectCreateResourceIdentifier';
 import { SecurityLevelMemberPayloadSchema } from './securityLevelMemberPayload';
+
 /**
  * The payload for creating a security level. See
  * https://support.atlassian.com/jira-cloud-administration/docs/configure-issue-security-schemes/
  */
-
 export const SecurityLevelPayloadSchema = apiObject({
   /** The description of the security level */
   description: z.string().optional(),

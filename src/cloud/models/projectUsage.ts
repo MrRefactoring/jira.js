@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** The project. */
 
+/** The project. */
 export const ProjectUsageSchema = apiObject({
   /** The project ID. */
   id: z.string().optional(),

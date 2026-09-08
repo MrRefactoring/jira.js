@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** The default value for a Forge collection of groups custom field. */
 
+/** The default value for a Forge collection of groups custom field. */
 export const CustomFieldContextDefaultValueForgeMultiGroupFieldSchema = apiObject({
   /** The ID of the context. */
   contextId: z.string(),

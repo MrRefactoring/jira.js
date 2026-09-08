@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** Details of scheme and new default level. */
 
+/** Details of scheme and new default level. */
 export const DefaultLevelValueSchema = apiObject({
   /**
    * The ID of the issue security level to set as default for the specified scheme. Providing null will reset the

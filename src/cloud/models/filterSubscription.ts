@@ -2,8 +2,8 @@ import { z } from 'zod';
 import { apiObject } from '#/core';
 import { GroupNameSchema } from './groupName';
 import { DashboardUserSchema } from './dashboardUser';
-/** Details of a user or group subscribing to a filter. */
 
+/** Details of a user or group subscribing to a filter. */
 export const FilterSubscriptionSchema = apiObject({
   group: GroupNameSchema.optional(),
   /** The ID of the filter subscription. */

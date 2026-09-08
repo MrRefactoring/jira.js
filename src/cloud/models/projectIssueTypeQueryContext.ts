@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** Project and issue type context for workflow queries made using issue types. */
 
+/** Project and issue type context for workflow queries made using issue types. */
 export const ProjectIssueTypeQueryContextSchema = apiObject({
   /** The set of issue type IDs. */
   issueTypes: z.array(z.string()).optional(),

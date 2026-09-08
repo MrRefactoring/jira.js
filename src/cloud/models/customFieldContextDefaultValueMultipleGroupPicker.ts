@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** The default value for a multiple group picker custom field. */
 
+/** The default value for a multiple group picker custom field. */
 export const CustomFieldContextDefaultValueMultipleGroupPickerSchema = apiObject({
   /** The ID of the context. */
   contextId: z.string(),

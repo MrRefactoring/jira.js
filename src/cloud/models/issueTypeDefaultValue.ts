@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
 import { CustomFieldContextDefaultValueSchema } from './customFieldContextDefaultValue';
-/** A default value associated with an issue type within a context. */
 
+/** A default value associated with an issue type within a context. */
 export const IssueTypeDefaultValueSchema = apiObject({
   /**
    * True when this default value applies to every issue type covered by the context (no specific issue type). Only

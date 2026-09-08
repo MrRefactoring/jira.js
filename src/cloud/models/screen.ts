@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
 import { ScopeSchema } from './scope';
-/** A screen. */
 
+/** A screen. */
 export const ScreenSchema = apiObject({
   /** The description of the screen. */
   description: z.string().optional(),

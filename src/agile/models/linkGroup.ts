@@ -10,8 +10,8 @@ export interface LinkGroup {
   styleClass?: string;
   weight?: number;
 }
-/** Details a link group, which defines issue operations. */
 
+/** Details a link group, which defines issue operations. */
 export const LinkGroupSchema: z.ZodType<LinkGroup> = apiObject({
   groups: z.array(z.lazy(() => LinkGroupSchema)).optional(),
   /** Details about the operations available in this version. */

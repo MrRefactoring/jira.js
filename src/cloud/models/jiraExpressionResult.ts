@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
 import { JiraExpressionEvaluationMetaDataSchema } from './jiraExpressionEvaluationMetaData';
-/** The result of evaluating a Jira expression. */
 
+/** The result of evaluating a Jira expression. */
 export const JiraExpressionResultSchema = apiObject({
   meta: JiraExpressionEvaluationMetaDataSchema.optional(),
   /**

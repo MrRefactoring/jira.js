@@ -4,8 +4,8 @@ import { FieldDetailsSchema } from './fieldDetails';
 import { GroupNameSchema } from './groupName';
 import { ProjectRoleSchema } from './projectRole';
 import { UserDetailsSchema } from './userDetails';
-/** Details about a notification associated with an event. */
 
+/** Details about a notification associated with an event. */
 export const EventNotificationSchema = apiObject({
   /** The email address. */
   emailAddress: z.string().optional(),

@@ -4,8 +4,8 @@ import { GroupNameSchema } from './groupName';
 import { ProjectSchema } from './project';
 import { ProjectRoleSchema } from './projectRole';
 import { UserBeanSchema } from './userBean';
-/** Details of a share permission for the filter. */
 
+/** Details of a share permission for the filter. */
 export const SharePermissionSchema = apiObject({
   group: GroupNameSchema.optional(),
   /** The unique identifier of the share permission. */

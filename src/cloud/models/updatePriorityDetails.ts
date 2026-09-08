@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject, openEnum } from '#/core';
-/** Details of an issue priority. */
 
+/** Details of an issue priority. */
 export const UpdatePriorityDetailsSchema = apiObject({
   /** The ID for the avatar for the priority. This parameter is nullable and both iconUrl and avatarId cannot be defined. */
   avatarId: z.number().optional(),

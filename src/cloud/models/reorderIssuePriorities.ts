@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** Change the order of issue priorities. */
 
+/** Change the order of issue priorities. */
 export const ReorderIssuePrioritiesSchema = apiObject({
   /** The ID of the priority. Required if `position` isn't provided. */
   after: z.string().optional(),

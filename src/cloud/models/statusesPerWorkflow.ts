@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** The statuses associated with each workflow. */
 
+/** The statuses associated with each workflow. */
 export const StatusesPerWorkflowSchema = apiObject({
   /** The ID of the initial status for the workflow. */
   initialStatusId: z.string().optional(),

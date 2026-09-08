@@ -2,8 +2,8 @@ import { z } from 'zod';
 import { apiObject } from '#/core';
 import { RuleConfigurationSchema } from './ruleConfiguration';
 import { WorkflowTransitionSchema } from './workflowTransition';
-/** A workflow transition rule. */
 
+/** A workflow transition rule. */
 export const AppWorkflowTransitionRuleSchema = apiObject({
   configuration: RuleConfigurationSchema,
   /** The ID of the transition rule. */

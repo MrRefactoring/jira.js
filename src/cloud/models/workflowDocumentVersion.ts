@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** The version details of the workflow. */
 
+/** The version details of the workflow. */
 export const WorkflowDocumentVersionSchema = apiObject({
   /** The version UUID. */
   id: z.string().optional(),

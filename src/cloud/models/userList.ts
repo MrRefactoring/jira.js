@@ -1,11 +1,11 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
 import { DashboardUserSchema } from './dashboardUser';
+
 /**
  * A paginated list of users sharing the filter. This includes users that are members of the groups or can browse the
  * projects that the filter is shared with.
  */
-
 export const UserListSchema = apiObject({
   /** The index of the last item returned on the page. */
   'end-index': z.number().optional(),

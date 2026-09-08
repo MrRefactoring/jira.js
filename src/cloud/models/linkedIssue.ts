@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
 import { FieldsSchema } from './fields';
-/** The ID or key of a linked issue. */
 
+/** The ID or key of a linked issue. */
 export const LinkedIssueSchema = apiObject({
   fields: FieldsSchema.optional(),
   /** The ID of an issue. Required if `key` isn't provided. */

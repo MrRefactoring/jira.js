@@ -11,8 +11,8 @@ import { RolesCapabilityPayloadSchema } from './rolesCapabilityPayload';
 import { ScopePayloadSchema } from './scopePayload';
 import { SecuritySchemePayloadSchema } from './securitySchemePayload';
 import { WorkflowCapabilityPayloadSchema } from './workflowCapabilityPayload';
-/** The specific request object for creating a project with template. */
 
+/** The specific request object for creating a project with template. */
 export const CustomTemplateRequestDTOSchema = apiObject({
   boardFeatures: BoardFeaturesPayloadSchema.optional(),
   boards: BoardsPayloadSchema.optional(),

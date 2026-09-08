@@ -2,8 +2,8 @@ import { z } from 'zod';
 import { apiObject } from '#/core';
 import { AvatarUrlsSchema } from './avatarUrls';
 import { IssueTypeIssueCreateMetadataSchema } from './issueTypeIssueCreateMetadata';
-/** Details of the issue creation metadata for a project. */
 
+/** Details of the issue creation metadata for a project. */
 export const ProjectIssueCreateMetadataSchema = apiObject({
   avatarUrls: AvatarUrlsSchema.optional(),
   /** Expand options that include additional project issue create metadata details in the response. */

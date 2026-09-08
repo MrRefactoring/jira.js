@@ -2,8 +2,8 @@ import { z } from 'zod';
 import { apiObject, openEnum } from '#/core';
 import { WorkflowRulesSchema } from './workflowRules';
 import { TransitionScreenDetailsSchema } from './transitionScreenDetails';
-/** Details of a workflow transition. */
 
+/** Details of a workflow transition. */
 export const TransitionSchema = apiObject({
   /** The description of the transition. */
   description: z.string(),

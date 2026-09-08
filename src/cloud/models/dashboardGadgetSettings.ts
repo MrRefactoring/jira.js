@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
 import { DashboardGadgetPositionSchema } from './dashboardGadgetPosition';
-/** Details of the settings for a dashboard gadget. */
 
+/** Details of the settings for a dashboard gadget. */
 export const DashboardGadgetSettingsSchema = apiObject({
   /** The color of the gadget. Should be one of `blue`, `red`, `yellow`, `green`, `cyan`, `purple`, `gray`, or `white`. */
   color: z.string().optional(),

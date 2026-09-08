@@ -4,8 +4,8 @@ import { WorkflowRuleConfigurationSchema } from './workflowRuleConfiguration';
 import { ConditionGroupUpdateSchema } from './conditionGroupUpdate';
 import { WorkflowTransitionLinksSchema } from './workflowTransitionLinks';
 import { WorkflowTriggerSchema } from './workflowTrigger';
-/** The transition update data. */
 
+/** The transition update data. */
 export const TransitionUpdateDTOSchema = apiObject({
   /** The post-functions of the transition. */
   actions: z.array(WorkflowRuleConfigurationSchema).optional(),

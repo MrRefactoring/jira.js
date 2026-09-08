@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
 import { JQLQueryWithUnknownUsersSchema } from './jqlQueryWithUnknownUsers';
-/** The converted JQL queries. */
 
+/** The converted JQL queries. */
 export const ConvertedJQLQueriesSchema = apiObject({
   /** List of queries containing user information that could not be mapped to an existing user */
   queriesWithUnknownUsers: z.array(JQLQueryWithUnknownUsersSchema).optional(),

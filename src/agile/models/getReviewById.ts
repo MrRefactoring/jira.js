@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject, openEnum } from '#/core';
-/** Data related to a specific post-incident review. Must specify at least one association to an incident.* */
 
+/** Data related to a specific post-incident review. Must specify at least one association to an incident.* */
 export const GetReviewByIdSchema = apiObject({
   /**
    * The PostIncidentReviewData schema version used for this post-incident review data.

@@ -2,8 +2,8 @@ import { z } from 'zod';
 import { apiObject } from '#/core';
 import { IssueIdOrKeysAssociationSchema } from './issueIdOrKeysAssociation';
 import { ServiceIdOrKeysAssociationSchema } from './serviceIdOrKeysAssociation';
-/** The result of a successful `submitRemoteLinks` request.* */
 
+/** The result of a successful `submitRemoteLinks` request.* */
 export const SubmitRemoteLinksSchema = apiObject({
   /**
    * The IDs of Remote Links that have been accepted for submission.

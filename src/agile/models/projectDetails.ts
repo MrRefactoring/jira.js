@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject, openEnum } from '#/core';
-/** Details about a project. */
 
+/** Details about a project. */
 export const ProjectDetailsSchema = apiObject({
   avatarUrls: apiObject({
     /** The URL of the item's 16x16 pixel avatar. */

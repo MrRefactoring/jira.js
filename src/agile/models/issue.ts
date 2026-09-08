@@ -4,8 +4,8 @@ import { ChangelogSchema } from './changelog';
 import { IncludedFieldsSchema } from './includedFields';
 import { OperationsSchema } from './operations';
 import { IssueTransitionSchema } from './issueTransition';
-/** Details about an issue. */
 
+/** Details about an issue. */
 export const IssueSchema = apiObject({
   /** A page of changelogs. */
   changelog: apiObject({

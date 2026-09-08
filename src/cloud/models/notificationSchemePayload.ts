@@ -2,11 +2,11 @@ import { z } from 'zod';
 import { apiObject, openEnum } from '#/core';
 import { NotificationSchemeEventPayloadSchema } from './notificationSchemeEventPayload';
 import { ProjectCreateResourceIdentifierSchema } from './projectCreateResourceIdentifier';
+
 /**
  * The payload for creating a notification scheme. The user has to supply the ID for the default notification scheme.
  * For CMP this is provided in the project payload and should be left empty, for TMP it's provided using this payload
  */
-
 export const NotificationSchemePayloadSchema = apiObject({
   /** The description of the notification scheme */
   description: z.string().optional(),

@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject, openEnum } from '#/core';
-/** The details of a UI modification's context, which define where to activate the UI modification. */
 
+/** The details of a UI modification's context, which define where to activate the UI modification. */
 export const UiModificationContextDetailsSchema = apiObject({
   /** The ID of the UI modification context. */
   id: z.string().optional(),

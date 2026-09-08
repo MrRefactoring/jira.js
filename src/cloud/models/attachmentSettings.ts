@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** Details of the instance's attachment settings. */
 
+/** Details of the instance's attachment settings. */
 export const AttachmentSettingsSchema = apiObject({
   /** Whether the ability to add attachments is enabled. */
   enabled: z.boolean().optional(),

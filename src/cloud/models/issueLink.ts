@@ -2,8 +2,8 @@ import { z } from 'zod';
 import { apiObject } from '#/core';
 import { LinkedIssueSchema } from './linkedIssue';
 import { IssueLinkTypeSchema } from './issueLinkType';
-/** Details of a link between issues. */
 
+/** Details of a link between issues. */
 export const IssueLinkSchema = apiObject({
   /** The ID of the issue link. */
   id: z.string().optional(),

@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** The default text for a text custom field. */
 
+/** The default text for a text custom field. */
 export const CustomFieldContextDefaultValueTextFieldSchema = apiObject({
   /** The ID of the context. */
   contextId: z.string(),

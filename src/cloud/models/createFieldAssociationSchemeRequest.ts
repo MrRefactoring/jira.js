@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** Request object for creating a new field association scheme. */
 
+/** Request object for creating a new field association scheme. */
 export const CreateFieldAssociationSchemeRequestSchema = apiObject({
   /** Description of the scheme to be created */
   description: z.string().optional(),

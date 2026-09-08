@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject, openEnum } from '#/core';
-/** An ordered list of issue type IDs and information about where to move them. */
 
+/** An ordered list of issue type IDs and information about where to move them. */
 export const OrderOfIssueTypesSchema = apiObject({
   /** The ID of the issue type to place the moved issue types after. Required if `position` isn't provided. */
   after: z.string().optional(),

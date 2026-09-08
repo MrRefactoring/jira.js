@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
 import { IssueBulkEditFieldSchema } from './issueBulkEditField';
-/** Bulk Edit Get Fields Response. */
 
+/** Bulk Edit Get Fields Response. */
 export const BulkEditGetFieldsSchema = apiObject({
   /** The end cursor for use in pagination. */
   endingBefore: z.string().optional(),

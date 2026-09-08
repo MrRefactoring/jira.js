@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
 import { StatusProjectIssueTypeUsagePageSchema } from './statusProjectIssueTypeUsagePage';
-/** The issue types using this status in a project. */
 
+/** The issue types using this status in a project. */
 export const StatusProjectIssueTypeUsageDTOSchema = apiObject({
   issueTypes: StatusProjectIssueTypeUsagePageSchema.optional(),
   /** The project ID. */

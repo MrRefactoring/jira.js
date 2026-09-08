@@ -3,8 +3,8 @@ import { apiObject } from '#/core';
 import { PriorityMappingSchema } from './priorityMapping';
 import { UpdatePrioritiesInSchemeRequestSchema } from './updatePrioritiesInSchemeRequest';
 import { UpdateProjectsInSchemeRequestSchema } from './updateProjectsInSchemeRequest';
-/** Details of a priority scheme. */
 
+/** Details of a priority scheme. */
 export const UpdatePrioritySchemeRequestSchema = apiObject({
   /** The default priority of the scheme. */
   defaultPriorityId: z.number().optional(),

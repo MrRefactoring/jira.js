@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** The metadata describing an issue field. */
 
+/** The metadata describing an issue field. */
 export const FieldMetadataSchema = apiObject({
   /** The list of values allowed in the field. */
   allowedValues: z.array(z.unknown()).optional(),

@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** Details for changing owners of shareable entities */
 
+/** Details for changing owners of shareable entities */
 export const BulkChangeOwnerDetailsSchema = apiObject({
   /** Whether the name is fixed automatically if it's duplicated after changing owner. */
   autofixName: z.boolean(),

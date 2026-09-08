@@ -2,8 +2,8 @@ import { z } from 'zod';
 import { apiObject } from '#/core';
 import { PermissionGrantSchema } from './permissionGrant';
 import { ScopeSchema } from './scope';
-/** Details of a permission scheme. */
 
+/** Details of a permission scheme. */
 export const PermissionSchemeSchema = apiObject({
   /** A description for the permission scheme. */
   description: z.string().optional(),

@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** Filter for a User Picker (single) custom field. */
 
+/** Filter for a User Picker (single) custom field. */
 export const UserFilterSchema = apiObject({
   /** Whether the filter is enabled. */
   enabled: z.boolean(),

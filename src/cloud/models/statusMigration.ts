@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** The mapping of old to new status ID. */
 
+/** The mapping of old to new status ID. */
 export const StatusMigrationSchema = apiObject({
   /** The new status ID. */
   newStatusReference: z.string(),

@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject, openEnum } from '#/core';
-/** The details of the statuses in the associated workflows. */
 
+/** The details of the statuses in the associated workflows. */
 export const StatusMetadataSchema = apiObject({
   /** The category of the status. */
   category: openEnum(['TODO', 'IN_PROGRESS', 'DONE']).optional(),

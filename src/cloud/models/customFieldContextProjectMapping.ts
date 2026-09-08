@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** Details of a context to project association. */
 
+/** Details of a context to project association. */
 export const CustomFieldContextProjectMappingSchema = apiObject({
   /** The ID of the context. */
   contextId: z.string(),

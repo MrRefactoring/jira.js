@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
 import { StatusDetailsSchema } from './statusDetails';
-/** Status details for an issue type. */
 
+/** Status details for an issue type. */
 export const IssueTypeWithStatusSchema = apiObject({
   /** The ID of the issue type. */
   id: z.string(),

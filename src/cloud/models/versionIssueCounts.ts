@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
 import { VersionUsageInCustomFieldSchema } from './versionUsageInCustomField';
-/** Various counts of issues within a version. */
 
+/** Various counts of issues within a version. */
 export const VersionIssueCountsSchema = apiObject({
   /** List of custom fields using the version. */
   customFieldUsage: z.array(VersionUsageInCustomFieldSchema).optional(),

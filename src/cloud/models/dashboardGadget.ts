@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import { apiObject, openEnum } from '#/core';
 import { DashboardGadgetPositionSchema } from './dashboardGadgetPosition';
-/** Details of a gadget. */
 
+/** Details of a gadget. */
 export const DashboardGadgetSchema = apiObject({
   /** The color of the gadget. Should be one of `blue`, `red`, `yellow`, `green`, `cyan`, `purple`, `gray`, or `white`. */
   color: openEnum(['blue', 'red', 'yellow', 'green', 'cyan', 'purple', 'gray', 'white']),

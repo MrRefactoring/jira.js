@@ -2,8 +2,8 @@ import { z } from 'zod';
 import { apiObject, openEnum } from '#/core';
 import { ProjectRoleGroupSchema } from './projectRoleGroup';
 import { ProjectRoleUserSchema } from './projectRoleUser';
-/** Details about a user assigned to a project role. */
 
+/** Details about a user assigned to a project role. */
 export const RoleActorSchema = apiObject({
   actorGroup: ProjectRoleGroupSchema.optional(),
   actorUser: ProjectRoleUserSchema.optional(),

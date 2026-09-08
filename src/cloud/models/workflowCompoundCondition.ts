@@ -7,8 +7,8 @@ export interface WorkflowCompoundCondition {
   nodeType: 'compound';
   operator: 'AND' | 'OR' | (string & {});
 }
-/** A compound workflow transition rule condition. This object returns `nodeType` as `compound`. */
 
+/** A compound workflow transition rule condition. This object returns `nodeType` as `compound`. */
 export const WorkflowCompoundConditionSchema: z.ZodType<WorkflowCompoundCondition> = apiObject({
   /** The list of workflow conditions. */
   conditions: z.array(z.lazy(() => WorkflowConditionSchema)),

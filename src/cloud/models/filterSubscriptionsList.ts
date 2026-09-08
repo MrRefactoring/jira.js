@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
 import { FilterSubscriptionSchema } from './filterSubscription';
-/** A paginated list of subscriptions to a filter. */
 
+/** A paginated list of subscriptions to a filter. */
 export const FilterSubscriptionsListSchema = apiObject({
   /** The index of the last item returned on the page. */
   'end-index': z.number().optional(),

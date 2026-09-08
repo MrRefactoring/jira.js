@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** Details of a custom option for a field. */
 
+/** Details of a custom option for a field. */
 export const CustomFieldOptionSchema = apiObject({
   /** The URL of these custom field option details. */
   self: z.url().optional(),

@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** The Security Workspace information stored for the given ID. */
 
+/** The Security Workspace information stored for the given ID. */
 export const GetLinkedWorkspaceByIdSchema = apiObject({
   /** The Security Workspace ID */
   workspaceId: z.string(),

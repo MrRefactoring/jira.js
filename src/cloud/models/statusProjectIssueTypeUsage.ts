@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** The list of issue types. */
 
+/** The list of issue types. */
 export const StatusProjectIssueTypeUsageSchema = apiObject({
   /** The issue type ID. */
   id: z.string().optional(),

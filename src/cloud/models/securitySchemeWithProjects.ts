@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** Details about an issue security scheme. */
 
+/** Details about an issue security scheme. */
 export const SecuritySchemeWithProjectsSchema = apiObject({
   /** The default level ID of the issue security scheme. */
   defaultLevel: z.number().optional(),

@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import { apiObject, openEnum } from '#/core';
 import { DashboardUserSchema } from './dashboardUser';
-/** Details about a component with a count of the issues it contains. */
 
+/** Details about a component with a count of the issues it contains. */
 export const ComponentWithIssueCountSchema = apiObject({
   assignee: DashboardUserSchema.optional(),
   /**

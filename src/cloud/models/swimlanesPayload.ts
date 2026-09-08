@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import { apiObject, openEnum } from '#/core';
 import { SwimlanePayloadSchema } from './swimlanePayload';
-/** The payload for customising a swimlanes on a board */
 
+/** The payload for customising a swimlanes on a board */
 export const SwimlanesPayloadSchema = apiObject({
   /** The custom swimlane definitions. */
   customSwimlanes: z.array(SwimlanePayloadSchema).optional(),

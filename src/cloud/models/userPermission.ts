@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject, openEnum } from '#/core';
-/** Details of a permission and its availability to a user. */
 
+/** Details of a permission and its availability to a user. */
 export const UserPermissionSchema = apiObject({
   /**
    * Indicate whether the permission key is deprecated. Note that deprecated keys cannot be used in the `permissions

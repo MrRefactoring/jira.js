@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject, openEnum } from '#/core';
-/** A group label. */
 
+/** A group label. */
 export const GroupLabelSchema = apiObject({
   /** The group label name. */
   text: z.string().optional(),

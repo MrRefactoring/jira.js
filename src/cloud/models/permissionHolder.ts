@@ -1,11 +1,11 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
+
 /**
  * Details of a user, group, field, or project role that holds a permission. See [Holder
  * object](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-permission-schemes/#holder-object) in
  * _Get all permission schemes_ for more information.
  */
-
 export const PermissionHolderSchema = apiObject({
   /** Expand options that include additional permission holder details in the response. */
   expand: z.string().optional(),

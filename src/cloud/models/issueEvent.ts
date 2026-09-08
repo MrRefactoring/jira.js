@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** Details about an issue event. */
 
+/** Details about an issue event. */
 export const IssueEventSchema = apiObject({
   /** The ID of the event. */
   id: z.number().optional(),

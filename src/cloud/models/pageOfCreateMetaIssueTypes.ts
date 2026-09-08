@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
 import { IssueTypeIssueCreateMetadataSchema } from './issueTypeIssueCreateMetadata';
-/** A page of CreateMetaIssueTypes. */
 
+/** A page of CreateMetaIssueTypes. */
 export const PageOfCreateMetaIssueTypesSchema = apiObject({
   createMetaIssueType: z.array(IssueTypeIssueCreateMetadataSchema).optional(),
   /** The list of CreateMetaIssueType. */

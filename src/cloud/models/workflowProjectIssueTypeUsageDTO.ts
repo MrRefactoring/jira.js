@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
 import { WorkflowProjectIssueTypeUsagePageSchema } from './workflowProjectIssueTypeUsagePage';
-/** Issue types associated with the workflow for a project. */
 
+/** Issue types associated with the workflow for a project. */
 export const WorkflowProjectIssueTypeUsageDTOSchema = apiObject({
   issueTypes: WorkflowProjectIssueTypeUsagePageSchema.optional(),
   /** The ID of the project. */

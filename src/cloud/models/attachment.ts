@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
 import { UserDetailsSchema } from './userDetails';
-/** Details about an attachment. */
 
+/** Details about an attachment. */
 export const AttachmentSchema = apiObject({
   author: UserDetailsSchema.optional(),
   /** The content of the attachment. */

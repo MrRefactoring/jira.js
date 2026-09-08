@@ -1,12 +1,12 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
 import { WorkflowAssociationStatusMappingSchema } from './workflowAssociationStatusMapping';
+
 /**
  * The status mappings by workflows. Status mappings are required when the new workflow for an issue type doesn't
  * contain all statuses that the old workflow has. Status mappings can be provided by a combination of
  * `statusMappingsByWorkflows` and `statusMappingsByIssueTypeOverride`.
  */
-
 export const MappingsByWorkflowSchema = apiObject({
   /** The ID of the new workflow. */
   newWorkflowId: z.string(),

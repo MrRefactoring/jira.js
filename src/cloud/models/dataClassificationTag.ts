@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** The data classification. */
 
+/** The data classification. */
 export const DataClassificationTagSchema = apiObject({
   /** The color of the data classification object. */
   color: z.string().optional(),

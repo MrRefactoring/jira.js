@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
 import { AvatarSchema } from './avatar';
-/** List of project avatars. */
 
+/** List of project avatars. */
 export const ProjectAvatarsSchema = apiObject({
   /** List of avatars added to Jira. These avatars may be deleted. */
   custom: z.array(AvatarSchema).optional(),

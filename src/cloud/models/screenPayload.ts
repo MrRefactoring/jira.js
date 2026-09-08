@@ -2,11 +2,11 @@ import { z } from 'zod';
 import { apiObject } from '#/core';
 import { ProjectCreateResourceIdentifierSchema } from './projectCreateResourceIdentifier';
 import { TabPayloadSchema } from './tabPayload';
+
 /**
  * Defines the payload for the field screens. See
  * https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-screens/#api-rest-api-3-screens-post
  */
-
 export const ScreenPayloadSchema = apiObject({
   /** The description of the screen */
   description: z.string().optional(),

@@ -2,8 +2,8 @@ import { z } from 'zod';
 import { apiObject } from '#/core';
 import { SuggestedMappingsForPrioritiesRequestSchema } from './suggestedMappingsForPrioritiesRequest';
 import { SuggestedMappingsForProjectsRequestSchema } from './suggestedMappingsForProjectsRequest';
-/** Details of changes to a priority scheme that require suggested priority mappings. */
 
+/** Details of changes to a priority scheme that require suggested priority mappings. */
 export const SuggestedMappingsRequestSchema = apiObject({
   /** The maximum number of results that could be on the page. */
   maxResults: z.number().optional(),

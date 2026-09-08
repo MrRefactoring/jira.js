@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** A change item. */
 
+/** A change item. */
 export const ChangeDetailsSchema = apiObject({
   /** The name of the field changed. */
   field: z.string().optional(),
