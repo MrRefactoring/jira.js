@@ -2,12 +2,12 @@ import { z } from 'zod';
 import { apiObject, openEnum } from '#/core';
 import { JqlQueryFieldSchema } from './jqlQueryField';
 import { JqlQueryClauseTimePredicateSchema } from './jqlQueryClauseTimePredicate';
+
 /**
  * A clause that asserts whether a field was changed. For example, `status CHANGED AFTER startOfMonth(-1M)`.See
  * [CHANGED](https://confluence.atlassian.com/x/dgiiLQ#Advancedsearching-operatorsreference-CHANGEDCHANGED) for more
  * information about the CHANGED operator.
  */
-
 export const FieldChangedClauseSchema = apiObject({
   field: JqlQueryFieldSchema,
   /** The operator applied to the field. */

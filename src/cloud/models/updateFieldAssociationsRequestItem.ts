@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** Represents an association between a field and its operations. */
 
+/** Represents an association between a field and its operations. */
 export const UpdateFieldAssociationsRequestItemSchema = apiObject({
   /**
    * (optional) Work types to restrict field to. Replaces any existing work type associations for the field. If not

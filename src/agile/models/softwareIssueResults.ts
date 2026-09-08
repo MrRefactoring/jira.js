@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
 import { IssueSchema } from './issue';
-/** The result of an issue search in Jira Software APIs. */
 
+/** The result of an issue search in Jira Software APIs. */
 export const SoftwareIssueResultsSchema = apiObject({
   /** Expand options that include additional search result details in the response. */
   expand: z.string().optional(),

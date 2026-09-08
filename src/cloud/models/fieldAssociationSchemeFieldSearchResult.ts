@@ -2,8 +2,8 @@ import { z } from 'zod';
 import { apiObject } from '#/core';
 import { SearchResultFieldParametersSchema } from './searchResultFieldParameters';
 import { SearchResultWorkTypeParametersSchema } from './searchResultWorkTypeParameters';
-/** Field association scheme field search results. */
 
+/** Field association scheme field search results. */
 export const FieldAssociationSchemeFieldSearchResultSchema = apiObject({
   allowedOperations: z.array(z.string()).optional(),
   fieldId: z.string().optional(),

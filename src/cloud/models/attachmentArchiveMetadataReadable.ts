@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
 import { AttachmentArchiveItemReadableSchema } from './attachmentArchiveItemReadable';
-/** Metadata for an archive (for example a zip) and its contents. */
 
+/** Metadata for an archive (for example a zip) and its contents. */
 export const AttachmentArchiveMetadataReadableSchema = apiObject({
   /** The list of the items included in the archive. */
   entries: z.array(AttachmentArchiveItemReadableSchema).optional(),

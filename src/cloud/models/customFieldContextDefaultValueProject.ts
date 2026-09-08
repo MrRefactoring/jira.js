@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** The default value for a project custom field. */
 
+/** The default value for a project custom field. */
 export const CustomFieldContextDefaultValueProjectSchema = apiObject({
   /** The ID of the context. */
   contextId: z.string(),

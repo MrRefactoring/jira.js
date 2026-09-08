@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** A list of issue IDs and the value to update a custom field to. */
 
+/** A list of issue IDs and the value to update a custom field to. */
 export const CustomFieldValueUpdateSchema = apiObject({
   /** The list of issue IDs. */
   issueIds: z.array(z.number()),

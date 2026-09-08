@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject, openEnum } from '#/core';
-/** Announcement banner configuration. */
 
+/** Announcement banner configuration. */
 export const AnnouncementBannerConfigurationSchema = apiObject({
   /** Hash of the banner data. The client detects updates by comparing hash IDs. */
   hashId: z.string().optional(),

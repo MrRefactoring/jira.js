@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
 import { DashboardUserSchema } from './dashboardUser';
-/** Metadata for an issue attachment. */
 
+/** Metadata for an issue attachment. */
 export const AttachmentMetadataSchema = apiObject({
   author: DashboardUserSchema.optional(),
   /** The URL of the attachment. */

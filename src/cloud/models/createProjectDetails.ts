@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject, openEnum } from '#/core';
-/** Details about the project. */
 
+/** Details about the project. */
 export const CreateProjectDetailsSchema = apiObject({
   /** The default assignee when creating issues for this project. */
   assigneeType: openEnum(['PROJECT_LEAD', 'UNASSIGNED']).optional(),

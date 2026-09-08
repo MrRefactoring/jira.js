@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject, openEnum } from '#/core';
-/** The Forge provided ecosystem rules available. */
 
+/** The Forge provided ecosystem rules available. */
 export const AvailableWorkflowForgeRuleSchema = apiObject({
   /** The rule description. */
   description: z.string().optional(),

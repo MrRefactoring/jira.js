@@ -1,12 +1,12 @@
 import { z } from 'zod';
 import { apiObject, openEnum } from '#/core';
+
 /**
  * The JQL specifying the issues available in the evaluated Jira expression under the `issues` context variable. Not all
  * issues returned by the JQL query are loaded, only those described by the `startAt` and `maxResults` properties. To
  * determine whether it is necessary to iterate to ensure all the issues returned by the JQL query are evaluated,
  * inspect `meta.issues.jql.count` in the response.
  */
-
 export const JexpJqlIssuesSchema = apiObject({
   /**
    * The maximum number of issues to return from the JQL query. Inspect `meta.issues.jql.maxResults` in the response to

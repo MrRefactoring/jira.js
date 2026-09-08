@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** Details of issue history metadata. */
 
+/** Details of issue history metadata. */
 export const HistoryMetadataSchema = apiObject({
   /** The activity described in the history record. */
   activityDescription: z.string().optional(),

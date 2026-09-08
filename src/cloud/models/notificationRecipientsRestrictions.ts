@@ -2,8 +2,8 @@ import { z } from 'zod';
 import { apiObject } from '#/core';
 import { GroupNameSchema } from './groupName';
 import { RestrictedPermissionSchema } from './restrictedPermission';
-/** Details of the group membership or permissions needed to receive the notification. */
 
+/** Details of the group membership or permissions needed to receive the notification. */
 export const NotificationRecipientsRestrictionsSchema = apiObject({
   /** List of groupId memberships required to receive the notification. */
   groupIds: z.array(z.string()).optional(),

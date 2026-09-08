@@ -2,11 +2,11 @@ import { z } from 'zod';
 import { apiObject, openEnum } from '#/core';
 import { FieldAssociationItemPayloadSchema } from './fieldAssociationItemPayload';
 import { ProjectCreateResourceIdentifierSchema } from './projectCreateResourceIdentifier';
+
 /**
  * Defines the payload to configure the field scheme for a project. See [Field
  * schemes](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-field-schemes/#api-group-field-schemes).
  */
-
 export const FieldSchemePayloadSchema = apiObject({
   /** The description of the field scheme */
   description: z.string().optional(),

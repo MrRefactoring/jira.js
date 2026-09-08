@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** An issue priority with sequence information. */
 
+/** An issue priority with sequence information. */
 export const PriorityWithSequenceSchema = apiObject({
   /** The description of the issue priority. */
   description: z.string().optional(),

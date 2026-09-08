@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** Property key details. */
 
+/** Property key details. */
 export const PropertyKeySchema = apiObject({
   /** The key of the property. */
   key: z.string().optional(),

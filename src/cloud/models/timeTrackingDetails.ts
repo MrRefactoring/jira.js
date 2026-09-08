@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** Time tracking details. */
 
+/** Time tracking details. */
 export const TimeTrackingDetailsSchema = apiObject({
   /** The original estimate of time needed for this issue in readable format. */
   originalEstimate: z.string().optional(),

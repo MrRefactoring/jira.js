@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** List issues archived within a specified date range. */
 
+/** List issues archived within a specified date range. */
 export const DateRangeFilterRequestSchema = apiObject({
   /** List issues archived after a specified date, passed in the YYYY-MM-DD format. */
   dateAfter: z.string(),

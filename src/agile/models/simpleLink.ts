@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** Details about the operations available in this version. */
 
+/** Details about the operations available in this version. */
 export const SimpleLinkSchema = apiObject({
   href: z.string().optional(),
   iconClass: z.string().optional(),

@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** The payload for custom swimlanes */
 
+/** The payload for custom swimlanes */
 export const SwimlanePayloadSchema = apiObject({
   /** The description of the quick filter */
   description: z.string().optional(),

@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
 import { DateRangeFilterRequestSchema } from './dateRangeFilterRequest';
-/** Details of a filter for exporting archived issues. */
 
+/** Details of a filter for exporting archived issues. */
 export const ArchivedIssuesFilterRequestSchema = apiObject({
   /** List archived issues archived by a specified account ID. */
   archivedBy: z.array(z.string()).optional(),

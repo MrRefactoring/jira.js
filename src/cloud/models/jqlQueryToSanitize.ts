@@ -1,10 +1,10 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
+
 /**
  * The JQL query to sanitize for the account ID. If the account ID is null, sanitizing is performed for an anonymous
  * user.
  */
-
 export const JqlQueryToSanitizeSchema = apiObject({
   /**
    * The account ID of the user, which uniquely identifies the user across all Atlassian products. For example,

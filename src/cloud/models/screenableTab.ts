@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** A screen tab. */
 
+/** A screen tab. */
 export const ScreenableTabSchema = apiObject({
   /** The ID of the screen tab. */
   id: z.number().optional(),

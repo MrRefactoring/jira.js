@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
 import { CustomTemplateOptionsSchema } from './customTemplateOptions';
-/** Request to edit a custom template */
 
+/** Request to edit a custom template */
 export const EditTemplateRequestSchema = apiObject({
   /** The description of the template */
   templateDescription: z.string().max(150, 'templateDescription must be at most 150 characters').optional(),

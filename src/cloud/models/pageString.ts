@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** A page of items. */
 
+/** A page of items. */
 export const PageStringSchema = apiObject({
   /** Whether this is the last page. */
   isLast: z.boolean().optional(),

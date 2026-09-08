@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** Trigger configuration for workflow transitions. */
 
+/** Trigger configuration for workflow transitions. */
 export const PreviewTriggerSchema = apiObject({
   /** The ID of the trigger. */
   id: z.string().optional(),

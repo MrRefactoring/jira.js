@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** An associated workflow scheme and project. */
 
+/** An associated workflow scheme and project. */
 export const WorkflowSchemeProjectAssociationSchema = apiObject({
   /** The ID of the project. */
   projectId: z.string(),

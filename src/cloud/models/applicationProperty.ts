@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** Details of an application property. */
 
+/** Details of an application property. */
 export const ApplicationPropertySchema = apiObject({
   /** The allowed values, if applicable. */
   allowedValues: z.array(z.string()).optional(),

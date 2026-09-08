@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
 import { SecuritySchemeLevelSchema } from './securitySchemeLevel';
-/** Issue security scheme and it's details */
 
+/** Issue security scheme and it's details */
 export const CreateIssueSecuritySchemeDetailsSchema = apiObject({
   /** The description of the issue security scheme. */
   description: z.string().max(255, 'description must be at most 255 characters').optional(),

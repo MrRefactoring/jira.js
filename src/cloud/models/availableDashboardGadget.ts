@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** The details of the available dashboard gadget. */
 
+/** The details of the available dashboard gadget. */
 export const AvailableDashboardGadgetSchema = apiObject({
   /** The module key of the gadget type. */
   moduleKey: z.string().optional(),

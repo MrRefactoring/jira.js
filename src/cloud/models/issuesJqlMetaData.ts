@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** The description of the page of issues loaded by the provided JQL query. */
 
+/** The description of the page of issues loaded by the provided JQL query. */
 export const IssuesJqlMetaDataSchema = apiObject({
   /** The number of issues that were loaded in this evaluation. */
   count: z.number(),

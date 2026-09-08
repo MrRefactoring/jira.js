@@ -3,8 +3,8 @@ import { apiObject } from '#/core';
 import { IssueTypeHierarchyPayloadSchema } from './issueTypeHierarchyPayload';
 import { IssueTypeSchemePayloadSchema } from './issueTypeSchemePayload';
 import { IssueTypePayloadSchema } from './issueTypePayload';
-/** The payload for creating issue types in a project */
 
+/** The payload for creating issue types in a project */
 export const IssueTypeProjectCreatePayloadSchema = apiObject({
   /**
    * Defines the issue type hierarhy to be created and used during this project creation. This will only add new levels

@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
 import { IconSchema } from './icon';
-/** The status of the item. */
 
+/** The status of the item. */
 export const StatusSchema = apiObject({
   icon: IconSchema.optional(),
   /**

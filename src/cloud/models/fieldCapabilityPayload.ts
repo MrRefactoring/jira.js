@@ -7,11 +7,11 @@ import { IssueLayoutPayloadSchema } from './issueLayoutPayload';
 import { IssueTypeScreenSchemePayloadSchema } from './issueTypeScreenSchemePayload';
 import { ScreenSchemePayloadSchema } from './screenSchemePayload';
 import { ScreenPayloadSchema } from './screenPayload';
+
 /**
  * Defines the payload for the fields, screens, screen schemes, issue type screen schemes, field layouts, and field
  * layout schemes
  */
-
 export const FieldCapabilityPayloadSchema = apiObject({
   /**
    * The custom field definitions. See

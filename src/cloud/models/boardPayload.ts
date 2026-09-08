@@ -7,8 +7,8 @@ import { ProjectCreateResourceIdentifierSchema } from './projectCreateResourceId
 import { QuickFilterPayloadSchema } from './quickFilterPayload';
 import { SwimlanesPayloadSchema } from './swimlanesPayload';
 import { WorkingDaysConfigSchema } from './workingDaysConfig';
-/** The payload for creating a board */
 
+/** The payload for creating a board */
 export const BoardPayloadSchema = apiObject({
   /**
    * Takes in a JQL string to create a new filter. If no value is provided, it'll default to a JQL filter for the

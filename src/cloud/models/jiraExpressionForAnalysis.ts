@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** Details of Jira expressions for analysis. */
 
+/** Details of Jira expressions for analysis. */
 export const JiraExpressionForAnalysisSchema = apiObject({
   /**
    * Context variables and their types. The type checker assumes that [common context

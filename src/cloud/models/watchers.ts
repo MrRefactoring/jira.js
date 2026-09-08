@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
 import { UserDetailsSchema } from './userDetails';
-/** The details of watchers on an issue. */
 
+/** The details of watchers on an issue. */
 export const WatchersSchema = apiObject({
   /** Whether the calling user is watching this issue. */
   isWatching: z.boolean().optional(),

@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** A project's sender email address. */
 
+/** A project's sender email address. */
 export const ProjectEmailAddressSchema = apiObject({
   /** The email address. */
   emailAddress: z.string().optional(),

@@ -10,8 +10,8 @@ import { ProjectLandingPageInfoSchema } from './projectLandingPageInfo';
 import { ProjectPermissionsSchema } from './projectPermissions';
 import { ProjectCategorySchema } from './projectCategory';
 import { VersionSchema } from './version';
-/** Details about a project. */
 
+/** Details about a project. */
 export const ProjectSchema = apiObject({
   /** Whether the project is archived. */
   archived: z.boolean().optional(),

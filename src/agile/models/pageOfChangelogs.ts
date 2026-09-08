@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
 import { ChangelogSchema } from './changelog';
-/** A page of changelogs. */
 
+/** A page of changelogs. */
 export const PageOfChangelogsSchema = apiObject({
   /** The list of changelogs. */
   histories: z.array(ChangelogSchema).optional(),

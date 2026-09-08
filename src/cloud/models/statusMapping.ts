@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** Details about the mapping from a status to a new status for an issue type. */
 
+/** Details about the mapping from a status to a new status for an issue type. */
 export const StatusMappingSchema = apiObject({
   /** The ID of the issue type. */
   issueTypeId: z.string(),

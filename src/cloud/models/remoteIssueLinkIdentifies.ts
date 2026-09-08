@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** Details of the identifiers for a created or updated remote issue link. */
 
+/** Details of the identifiers for a created or updated remote issue link. */
 export const RemoteIssueLinkIdentifiesSchema = apiObject({
   /** The ID of the remote issue link, such as the ID of the item on the remote system. */
   id: z.number().optional(),

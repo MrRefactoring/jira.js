@@ -1,11 +1,11 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
+
 /**
  * The JQL specifying the issues available in the evaluated Jira expression under the `issues` context variable. Not all
  * issues returned by the JQL query are loaded, only those described by the `nextPageToken` and `maxResults` properties.
  * This bean will be replacing JexpJqlIssues bean as part of new `evaluate` endpoint
  */
-
 export const JexpEvaluateCtxJqlIssuesSchema = apiObject({
   /**
    * The maximum number of issues to return from the JQL query. max results value considered may be lower than the

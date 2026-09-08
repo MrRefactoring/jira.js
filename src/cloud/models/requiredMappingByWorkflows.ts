@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** The list of required status mappings by workflow. */
 
+/** The list of required status mappings by workflow. */
 export const RequiredMappingByWorkflowsSchema = apiObject({
   /** The ID of the source workflow. */
   sourceWorkflowId: z.string().optional(),

@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** A field within a field configuration. */
 
+/** A field within a field configuration. */
 export const FieldConfigurationItemSchema = apiObject({
   /** The description of the field within the field configuration. */
   description: z.string().optional(),

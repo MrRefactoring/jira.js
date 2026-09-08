@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** A metric that provides insight into the active licence details */
 
+/** A metric that provides insight into the active licence details */
 export const LicenseMetricSchema = apiObject({
   /** The key of a specific license metric. */
   key: z.string().optional(),

@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** The IDs of the screen schemes for the issue type IDs. */
 
+/** The IDs of the screen schemes for the issue type IDs. */
 export const IssueTypeScreenSchemeMappingSchema = apiObject({
   /**
    * The ID of the issue type or _default_. Only issue types used in classic projects are accepted. An entry for

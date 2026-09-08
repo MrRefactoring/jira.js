@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject, openEnum } from '#/core';
-/** List of string of inputs */
 
+/** List of string of inputs */
 export const MandatoryFieldValueSchema = apiObject({
   /** If `true`, will try to retain original non-null issue field values on move. */
   retain: z.boolean().nullish(),

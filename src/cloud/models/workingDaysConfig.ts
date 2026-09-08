@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
 import { NonWorkingDaySchema } from './nonWorkingDay';
-/** Working days configuration */
 
+/** Working days configuration */
 export const WorkingDaysConfigSchema = apiObject({
   friday: z.boolean().optional(),
   id: z.number().optional(),

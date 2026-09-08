@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** Request for associating field schemes to projects. */
 
+/** Request for associating field schemes to projects. */
 export const FieldSchemeToProjectsRequestSchema = apiObject({
   /** List of project IDs to associate with field schemes */
   projectIds: z.array(z.number()),

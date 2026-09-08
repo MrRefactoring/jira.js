@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
 import { UserFilterSchema } from './userFilter';
-/** Defaults for a User Picker (single) custom field. */
 
+/** Defaults for a User Picker (single) custom field. */
 export const CustomFieldContextSingleUserPickerDefaultsSchema = apiObject({
   /** The ID of the default user. */
   accountId: z.string(),

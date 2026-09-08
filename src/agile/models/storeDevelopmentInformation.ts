@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
 import { IssueIdOrKeysAssociationSchema } from './issueIdOrKeysAssociation';
-/** The result of a successful store development information request */
 
+/** The result of a successful store development information request */
 export const StoreDevelopmentInformationSchema = apiObject({
   /**
    * The IDs of devinfo entities that have been accepted for submission grouped by their repository IDs. Note that a

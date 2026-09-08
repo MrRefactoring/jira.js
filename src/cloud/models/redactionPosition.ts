@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** Represents the position of the redaction */
 
+/** Represents the position of the redaction */
 export const RedactionPositionSchema = apiObject({
   /**
    * The ADF pointer indicating the position of the text to be redacted. This is only required when redacting from rich

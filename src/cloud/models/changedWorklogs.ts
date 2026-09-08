@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
 import { ChangedWorklogSchema } from './changedWorklog';
-/** List of changed worklogs. */
 
+/** List of changed worklogs. */
 export const ChangedWorklogsSchema = apiObject({
   lastPage: z.boolean().optional(),
   /** The URL of the next list of changed worklogs. */

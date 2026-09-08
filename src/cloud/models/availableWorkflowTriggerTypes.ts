@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** The list of available trigger types. */
 
+/** The list of available trigger types. */
 export const AvailableWorkflowTriggerTypesSchema = apiObject({
   /** The description of the trigger rule. */
   description: z.string().optional(),

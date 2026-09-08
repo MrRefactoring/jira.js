@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
 import { TaskProgressJsonNodeSchema } from './taskProgressJsonNode';
-/** The ID of a priority scheme. */
 
+/** The ID of a priority scheme. */
 export const PrioritySchemeIdSchema = apiObject({
   /** The ID of the priority scheme. */
   id: z.string().optional(),

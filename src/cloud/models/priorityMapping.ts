@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** Mapping of issue priorities for changes in priority schemes. */
 
+/** Mapping of issue priorities for changes in priority schemes. */
 export const PriorityMappingSchema = apiObject({
   /**
    * The mapping of priorities for issues being migrated **into** this priority scheme. Key is the old priority ID,

@@ -1,8 +1,8 @@
 import type { z } from 'zod';
 import { apiObject, openEnum } from '#/core';
 import { ProjectCreateResourceIdentifierSchema } from './projectCreateResourceIdentifier';
-/** The payload for creating a project */
 
+/** The payload for creating a project */
 export const ProjectPayloadSchema = apiObject({
   fieldLayoutSchemeId: ProjectCreateResourceIdentifierSchema.optional(),
   issueSecuritySchemeId: ProjectCreateResourceIdentifierSchema.optional(),

@@ -1,11 +1,11 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
 import { JqlQueryFieldEntityPropertySchema } from './jqlQueryFieldEntityProperty';
+
 /**
  * A field used in a JQL query. See [Advanced searching - fields reference](https://confluence.atlassian.com/x/dAiiLQ)
  * for more information about fields in JQL queries.
  */
-
 export const JqlQueryFieldSchema = apiObject({
   /** The encoded name of the field, which can be used directly in a JQL query. */
   encodedName: z.string().optional(),

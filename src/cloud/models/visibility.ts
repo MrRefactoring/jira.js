@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject, openEnum } from '#/core';
-/** The group or role to which this item is visible. */
 
+/** The group or role to which this item is visible. */
 export const VisibilitySchema = apiObject({
   /** The ID of the group or the name of the role that visibility of this item is restricted to. */
   identifier: z.string().nullish(),

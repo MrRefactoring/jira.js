@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** Details about a project type. */
 
+/** Details about a project type. */
 export const ProjectTypeSchema = apiObject({
   /** The color of the project type. */
   color: z.string().optional(),

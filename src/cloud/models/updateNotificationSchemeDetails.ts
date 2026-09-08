@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** Details of a notification scheme. */
 
+/** Details of a notification scheme. */
 export const UpdateNotificationSchemeDetailsSchema = apiObject({
   /** The description of the notification scheme. */
   description: z.string().max(4000, 'description must be at most 4000 characters').optional(),

@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** The default value for a cascading select custom field. */
 
+/** The default value for a cascading select custom field. */
 export const CustomFieldContextDefaultValueCascadingOptionSchema = apiObject({
   /** The ID of the default cascading option. */
   cascadingOptionId: z.string().optional(),

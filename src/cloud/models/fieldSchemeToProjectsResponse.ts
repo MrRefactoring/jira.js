@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
 import { FieldSchemeToProjectsPartialFailureSchema } from './fieldSchemeToProjectsPartialFailure';
-/** Response for updating field scheme to projects associations. */
 
+/** Response for updating field scheme to projects associations. */
 export const FieldSchemeToProjectsResponseSchema = apiObject({
   results: z.array(FieldSchemeToProjectsPartialFailureSchema),
 });

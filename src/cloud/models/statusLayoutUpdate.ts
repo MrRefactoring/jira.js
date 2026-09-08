@@ -2,8 +2,8 @@ import { z } from 'zod';
 import { apiObject } from '#/core';
 import { ApprovalConfigurationSchema } from './approvalConfiguration';
 import { WorkflowLayoutSchema } from './workflowLayout';
-/** The statuses associated with this workflow. */
 
+/** The statuses associated with this workflow. */
 export const StatusLayoutUpdateSchema = apiObject({
   approvalConfiguration: ApprovalConfigurationSchema.optional(),
   layout: WorkflowLayoutSchema.optional(),

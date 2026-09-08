@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** The field configuration for an issue type. */
 
+/** The field configuration for an issue type. */
 export const FieldConfigurationIssueTypeItemSchema = apiObject({
   /** The ID of the field configuration. */
   fieldConfigurationId: z.string(),

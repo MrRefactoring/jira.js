@@ -1,11 +1,11 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
 import { UserDetailsSchema } from './userDetails';
+
 /**
  * A paged list. To access additional details append `[start-index:end-index]` to the expand request. For example,
  * `?expand=sharedUsers[10:40]` returns a list starting at item 10 and finishing at item 40.
  */
-
 export const PagedListUserDetailsApplicationUserSchema = apiObject({
   /** The index of the last item returned on the page. */
   'end-index': z.number().optional(),

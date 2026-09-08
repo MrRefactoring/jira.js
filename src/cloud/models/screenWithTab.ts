@@ -2,8 +2,8 @@ import { z } from 'zod';
 import { apiObject } from '#/core';
 import { ScopeSchema } from './scope';
 import { ScreenableTabSchema } from './screenableTab';
-/** A screen with tab details. */
 
+/** A screen with tab details. */
 export const ScreenWithTabSchema = apiObject({
   /** The description of the screen. */
   description: z.string().optional(),

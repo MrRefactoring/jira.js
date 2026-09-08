@@ -2,6 +2,7 @@ import { z } from 'zod';
 import { apiObject } from '#/core';
 import { FieldLayoutConfigurationSchema } from './fieldLayoutConfiguration';
 import { ProjectCreateResourceIdentifierSchema } from './projectCreateResourceIdentifier';
+
 /**
  * Defines the payload for the field layouts. See
  * https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-issue-field-configurations/#api-group-issue-field-configurations"
@@ -9,7 +10,6 @@ import { ProjectCreateResourceIdentifierSchema } from './projectCreateResourceId
  * - Fieldlayout is what users would see as "Field Configuration" in Jira's UI -
  *   https://support.atlassian.com/jira-cloud-administration/docs/manage-issue-field-configurations/
  */
-
 export const FieldLayoutPayloadSchema = apiObject({
   /**
    * The field layout configuration. See

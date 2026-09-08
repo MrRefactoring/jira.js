@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** The response for status request for a running/completed export task. */
 
+/** The response for status request for a running/completed export task. */
 export const ExportArchivedIssuesTaskProgressResponseSchema = apiObject({
   fileUrl: z.string().optional(),
   payload: z.string().optional(),

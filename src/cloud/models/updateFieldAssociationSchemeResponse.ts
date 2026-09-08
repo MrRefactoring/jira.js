@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
 import { UpdateFieldAssociationSchemeLinksSchema } from './updateFieldAssociationSchemeLinks';
-/** Response object after successfully updating an existing field association scheme. */
 
+/** Response object after successfully updating an existing field association scheme. */
 export const UpdateFieldAssociationSchemeResponseSchema = apiObject({
   description: z.string().optional(),
   id: z.number().optional(),

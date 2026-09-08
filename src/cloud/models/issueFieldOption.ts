@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
 import { IssueFieldOptionConfigurationSchema } from './issueFieldOptionConfiguration';
-/** Details of the options for a select list issue field. */
 
+/** Details of the options for a select list issue field. */
 export const IssueFieldOptionSchema = apiObject({
   config: IssueFieldOptionConfigurationSchema.optional(),
   /** The unique identifier for the option. This is only unique within the select field's set of options. */

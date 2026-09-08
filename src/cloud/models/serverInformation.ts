@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
 import { HealthCheckResultSchema } from './healthCheckResult';
-/** Details about the Jira instance. */
 
+/** Details about the Jira instance. */
 export const ServerInformationSchema = apiObject({
   /** The base URL of the Jira instance. */
   baseUrl: z.string().optional(),

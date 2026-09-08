@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** The IDs of the screens for the screen types of the screen scheme. */
 
+/** The IDs of the screens for the screen types of the screen scheme. */
 export const UpdateScreenTypesSchema = apiObject({
   /** The ID of the create screen. To remove the screen association, pass a null. */
   create: z.string().optional(),

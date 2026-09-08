@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
 import { WorkflowSchemeUsagePageSchema } from './workflowSchemeUsagePage';
-/** Workflow schemes using the workflow. */
 
+/** Workflow schemes using the workflow. */
 export const WorkflowSchemeUsageDTOSchema = apiObject({
   /** The workflow ID. */
   workflowId: z.string().optional(),

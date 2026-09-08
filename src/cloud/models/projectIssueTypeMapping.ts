@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** The project and issue type mapping. */
 
+/** The project and issue type mapping. */
 export const ProjectIssueTypeMappingSchema = apiObject({
   /** The ID of the issue type. */
   issueTypeId: z.string(),

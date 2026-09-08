@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
 import { AvatarSchema } from './avatar';
-/** List of system avatars. */
 
+/** List of system avatars. */
 export const SystemAvatarsSchema = apiObject({
   /** A list of avatar details. */
   system: z.array(AvatarSchema).optional(),

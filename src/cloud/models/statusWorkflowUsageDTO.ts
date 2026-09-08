@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
 import { StatusWorkflowUsagePageSchema } from './statusWorkflowUsagePage';
-/** Workflows using the status. */
 
+/** Workflows using the status. */
 export const StatusWorkflowUsageDTOSchema = apiObject({
   /** The status ID. */
   statusId: z.string().optional(),

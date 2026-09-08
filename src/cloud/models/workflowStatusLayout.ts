@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** The x and y location of the status in the workflow. */
 
+/** The x and y location of the status in the workflow. */
 export const WorkflowStatusLayoutSchema = apiObject({
   /** The x axis location. */
   x: z.number().nullish(),

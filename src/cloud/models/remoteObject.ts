@@ -2,8 +2,8 @@ import { z } from 'zod';
 import { apiObject } from '#/core';
 import { IconSchema } from './icon';
 import { StatusSchema } from './status';
-/** The linked item. */
 
+/** The linked item. */
 export const RemoteObjectSchema = apiObject({
   icon: IconSchema.optional(),
   status: StatusSchema.optional(),

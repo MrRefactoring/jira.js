@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
 import { IssueTypeDefaultValueSchema } from './issueTypeDefaultValue';
-/** Default values grouped by custom field context. */
 
+/** Default values grouped by custom field context. */
 export const ContextDefaultValuesSchema = apiObject({
   /** The ID of the context. */
   contextId: z.number(),

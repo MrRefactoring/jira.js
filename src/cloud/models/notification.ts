@@ -2,8 +2,8 @@ import { z } from 'zod';
 import { apiObject } from '#/core';
 import { NotificationRecipientsRestrictionsSchema } from './notificationRecipientsRestrictions';
 import { NotificationRecipientsSchema } from './notificationRecipients';
-/** Details about a notification. */
 
+/** Details about a notification. */
 export const NotificationSchema = apiObject({
   /** The HTML body of the email notification for the issue. */
   htmlBody: z.string().optional(),

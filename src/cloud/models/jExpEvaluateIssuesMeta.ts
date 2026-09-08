@@ -1,11 +1,11 @@
 import type { z } from 'zod';
 import { apiObject } from '#/core';
 import { JExpEvaluateIssuesJqlMetaDataSchema } from './jExpEvaluateIssuesJqlMetaData';
+
 /**
  * Meta data describing the `issues` context variable.This bean will be replacing IssuesMetaBean bean as part of new
  * `evaluate` endpoint
  */
-
 export const JExpEvaluateIssuesMetaSchema = apiObject({
   jql: JExpEvaluateIssuesJqlMetaDataSchema.optional(),
 });

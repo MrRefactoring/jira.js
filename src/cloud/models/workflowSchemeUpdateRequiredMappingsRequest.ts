@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
 import { WorkflowSchemeAssociationSchema } from './workflowSchemeAssociation';
-/** The request payload to get the required mappings for updating a workflow scheme. */
 
+/** The request payload to get the required mappings for updating a workflow scheme. */
 export const WorkflowSchemeUpdateRequiredMappingsRequestSchema = apiObject({
   /**
    * The ID of the new default workflow for this workflow scheme. Only used in global-scoped workflow schemes. If it

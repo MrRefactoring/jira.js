@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
 import { ScopeSchema } from './scope';
-/** Details about an issue type. */
 
+/** Details about an issue type. */
 export const IssueTypeDetailsSchema = apiObject({
   /** The ID of the issue type's avatar. */
   avatarId: z.number().optional(),

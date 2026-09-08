@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** An issue suggested for use in the issue picker auto-completion. */
 
+/** An issue suggested for use in the issue picker auto-completion. */
 export const SuggestedIssueSchema = apiObject({
   /** The ID of the issue. */
   id: z.number().optional(),

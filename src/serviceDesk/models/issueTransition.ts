@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
 import { StatusDetailsSchema } from './statusDetails';
-/** Details of an issue transition. */
 
+/** Details of an issue transition. */
 export const IssueTransitionSchema = apiObject({
   /** Expand options that include additional transition details in the response. */
   expand: z.string().optional(),

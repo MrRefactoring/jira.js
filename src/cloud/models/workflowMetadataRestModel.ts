@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
 import { DocumentVersionSchema } from './documentVersion';
-/** Workflow metadata and usage detail. */
 
+/** Workflow metadata and usage detail. */
 export const WorkflowMetadataRestModelSchema = apiObject({
   /** The description of the workflow. */
   description: z.string(),

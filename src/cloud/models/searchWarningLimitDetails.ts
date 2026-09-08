@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** Experimental. Structured details about a JQL clause exceeding its argument limit. */
 
+/** Experimental. Structured details about a JQL clause exceeding its argument limit. */
 export const SearchWarningLimitDetailsSchema = apiObject({
   /** The actual number of arguments supplied that exceeded the limit. */
   actual: z.number().optional(),

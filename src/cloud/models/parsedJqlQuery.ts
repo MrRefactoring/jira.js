@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
 import { JqlQuerySchema } from './jqlQuery';
-/** Details of a parsed JQL query. */
 
+/** Details of a parsed JQL query. */
 export const ParsedJqlQuerySchema = apiObject({
   /** The list of syntax or validation errors. */
   errors: z.array(z.string()).optional(),

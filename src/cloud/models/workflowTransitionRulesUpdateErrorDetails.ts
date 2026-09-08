@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
 import { WorkflowIdSchema } from './workflowId';
-/** Details of any errors encountered while updating workflow transition rules for a workflow. */
 
+/** Details of any errors encountered while updating workflow transition rules for a workflow. */
 export const WorkflowTransitionRulesUpdateErrorDetailsSchema = apiObject({
   /**
    * A list of transition rule update errors, indexed by the transition rule ID. Any transition rule that appears here

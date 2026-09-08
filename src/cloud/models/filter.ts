@@ -4,8 +4,8 @@ import { SharePermissionSchema } from './sharePermission';
 import { DashboardUserSchema } from './dashboardUser';
 import { UserListSchema } from './userList';
 import { FilterSubscriptionsListSchema } from './filterSubscriptionsList';
-/** Details about a filter. */
 
+/** Details about a filter. */
 export const FilterSchema = apiObject({
   /**
    * [Experimental] Approximate last used time. Returns the date and time when the filter was last used. Returns `null`

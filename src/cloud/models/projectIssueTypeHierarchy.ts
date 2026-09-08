@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
 import { ProjectIssueTypesHierarchyLevelSchema } from './projectIssueTypesHierarchyLevel';
-/** The hierarchy of issue types within a project. */
 
+/** The hierarchy of issue types within a project. */
 export const ProjectIssueTypeHierarchySchema = apiObject({
   /** Details of an issue type hierarchy level. */
   hierarchy: z.array(ProjectIssueTypesHierarchyLevelSchema).optional(),

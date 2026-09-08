@@ -2,8 +2,8 @@ import { z } from 'zod';
 import { apiObject } from '#/core';
 import { IssueSchema } from './issue';
 import { SearchWarningSchema } from './searchWarning';
-/** The result of a JQL search with issues reconsilation. */
 
+/** The result of a JQL search with issues reconsilation. */
 export const SearchAndReconcileResultsSchema = apiObject({
   /** Indicates whether this is the last page of the paginated response. */
   isLast: z.boolean().optional(),

@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** Details of a locale. */
 
+/** Details of a locale. */
 export const LocaleSchema = apiObject({
   /**
    * The locale code. The Java the locale format is used: a two character language code (ISO 639), an underscore, and

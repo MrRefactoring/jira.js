@@ -2,8 +2,8 @@ import { z } from 'zod';
 import { apiObject } from '#/core';
 import { NotificationSchemeEventSchema } from './notificationSchemeEvent';
 import { ScopeSchema } from './scope';
-/** Details about a notification scheme. */
 
+/** Details about a notification scheme. */
 export const NotificationSchemeSchema = apiObject({
   /** The description of the notification scheme. */
   description: z.string().optional(),
