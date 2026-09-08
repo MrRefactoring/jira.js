@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
 import { TeamSchema } from './team';
-/** Cursor pagination result for PublicApiTeam */
 
+/** Cursor pagination result for PublicApiTeam */
 export const TeamPaginationResultSchema = apiObject({
   /** The cursor for pagination */
   cursor: z.string().nullish(),

@@ -5,8 +5,8 @@ import { FieldWasClauseSchema, type FieldWasClause } from './fieldWasClause';
 import { FieldChangedClauseSchema, type FieldChangedClause } from './fieldChangedClause';
 
 export type JqlQueryClause = CompoundClause | FieldValueClause | FieldWasClause | FieldChangedClause;
-/** A JQL query clause. */
 
+/** A JQL query clause. */
 export const JqlQueryClauseSchema: z.ZodType<JqlQueryClause> = z.union([
   z.lazy(() => CompoundClauseSchema),
   FieldValueClauseSchema,

@@ -7,8 +7,8 @@ export interface PreviewConditionGroupConfiguration {
   conditions?: PreviewRuleConfiguration[];
   operation?: 'ANY' | 'ALL' | (string & {});
 }
-/** Condition group configuration for workflow transitions. */
 
+/** Condition group configuration for workflow transitions. */
 export const PreviewConditionGroupConfigurationSchema: z.ZodType<PreviewConditionGroupConfiguration> = apiObject({
   /** The nested conditions of the condition group. */
   conditionGroups: z.array(z.lazy(() => PreviewConditionGroupConfigurationSchema)).optional(),
