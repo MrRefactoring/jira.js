@@ -3,8 +3,8 @@ import { WorkflowSimpleConditionSchema, type WorkflowSimpleCondition } from './w
 import { WorkflowCompoundConditionSchema, type WorkflowCompoundCondition } from './workflowCompoundCondition';
 
 export type WorkflowCondition = WorkflowSimpleCondition | WorkflowCompoundCondition;
-/** The workflow transition rule conditions tree. */
 
+/** The workflow transition rule conditions tree. */
 export const WorkflowConditionSchema: z.ZodType<WorkflowCondition> = z.union([
   WorkflowSimpleConditionSchema,
   z.lazy(() => WorkflowCompoundConditionSchema),
