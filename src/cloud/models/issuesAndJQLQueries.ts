@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** List of issues and JQL queries. */
 
+/** List of issues and JQL queries. */
 export const IssuesAndJQLQueriesSchema = apiObject({
   /** A list of issue IDs. */
   issueIds: z.array(z.number()),

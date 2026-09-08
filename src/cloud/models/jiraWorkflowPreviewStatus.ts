@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import { apiObject, openEnum } from '#/core';
 import { WorkflowPreviewScopeSchema } from './workflowPreviewScope';
-/** Details of a status. */
 
+/** Details of a status. */
 export const JiraWorkflowPreviewStatusSchema = apiObject({
   /** The description of the status. */
   description: z.string().optional(),

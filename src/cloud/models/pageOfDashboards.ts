@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
 import { DashboardSchema } from './dashboard';
-/** A page containing dashboard details. */
 
+/** A page containing dashboard details. */
 export const PageOfDashboardsSchema = apiObject({
   /** List of dashboards. */
   dashboards: z.array(DashboardSchema).optional(),

@@ -2,11 +2,11 @@ import { z } from 'zod';
 import { apiObject } from '#/core';
 import { ProjectCreateResourceIdentifierSchema } from './projectCreateResourceIdentifier';
 import { SecurityLevelPayloadSchema } from './securityLevelPayload';
+
 /**
  * The payload for creating a security scheme. See
  * https://support.atlassian.com/jira-cloud-administration/docs/configure-issue-security-schemes/
  */
-
 export const SecuritySchemePayloadSchema = apiObject({
   /** The description of the security scheme */
   description: z.string().optional(),

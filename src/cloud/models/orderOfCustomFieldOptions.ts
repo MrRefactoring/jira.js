@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject, openEnum } from '#/core';
-/** An ordered list of custom field option IDs and information on where to move them. */
 
+/** An ordered list of custom field option IDs and information on where to move them. */
 export const OrderOfCustomFieldOptionsSchema = apiObject({
   /**
    * The ID of the custom field option or cascading option to place the moved options after. Required if `position`

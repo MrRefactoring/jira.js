@@ -1,7 +1,7 @@
 import type { z } from 'zod';
 import { apiObject, openEnum } from '#/core';
-/** Details of the scope of the default sharing for new filters and dashboards. */
 
+/** Details of the scope of the default sharing for new filters and dashboards. */
 export const DefaultShareScopeSchema = apiObject({
   /**
    * The scope of the default sharing for new filters and dashboards:

@@ -1,10 +1,10 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
+
 /**
  * An issue ID with entity property values. See [Entity
  * properties](https://developer.atlassian.com/cloud/jira/platform/jira-entity-properties/) for more information.
  */
-
 export const IssueEntityPropertiesForMultiUpdateSchema = apiObject({
   /** The ID of the issue. */
   issueID: z.number().optional(),

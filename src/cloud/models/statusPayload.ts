@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import { apiObject, openEnum } from '#/core';
 import { ProjectCreateResourceIdentifierSchema } from './projectCreateResourceIdentifier';
-/** The payload for creating a status */
 
+/** The payload for creating a status */
 export const StatusPayloadSchema = apiObject({
   /** The description of the status */
   description: z.string().optional(),

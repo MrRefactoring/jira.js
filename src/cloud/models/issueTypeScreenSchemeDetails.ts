@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
 import { IssueTypeScreenSchemeMappingSchema } from './issueTypeScreenSchemeMapping';
-/** The details of an issue type screen scheme. */
 
+/** The details of an issue type screen scheme. */
 export const IssueTypeScreenSchemeDetailsSchema = apiObject({
   /** The description of the issue type screen scheme. The maximum length is 255 characters. */
   description: z.string().optional(),

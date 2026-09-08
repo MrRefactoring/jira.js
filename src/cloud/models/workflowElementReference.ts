@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
 import { ProjectAndIssueTypePairSchema } from './projectAndIssueTypePair';
-/** A reference to the location of the error. This will be null if the error does not refer to a specific element. */
 
+/** A reference to the location of the error. This will be null if the error does not refer to a specific element. */
 export const WorkflowElementReferenceSchema = apiObject({
   /** A property key. */
   propertyKey: z.string().optional(),

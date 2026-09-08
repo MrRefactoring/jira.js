@@ -6,8 +6,8 @@ import { StatusMappingDTOSchema } from './statusMappingDTO';
 import { StatusLayoutUpdateSchema } from './statusLayoutUpdate';
 import { TransitionUpdateDTOSchema } from './transitionUpdateDTO';
 import { DocumentVersionSchema } from './documentVersion';
-/** The details of the workflows to update. */
 
+/** The details of the workflows to update. */
 export const WorkflowUpdateSchema = apiObject({
   /** The mapping of old to new status ID. */
   defaultStatusMappings: z.array(StatusMigrationSchema).optional(),

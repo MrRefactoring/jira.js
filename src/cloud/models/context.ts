@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
 import { ScopeSchema } from './scope';
-/** A context. */
 
+/** A context. */
 export const ContextSchema = apiObject({
   /** The ID of the context. */
   id: z.number().optional(),

@@ -1,10 +1,10 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
+
 /**
  * An entity property, for more information see [Entity
  * properties](https://developer.atlassian.com/cloud/jira/platform/jira-entity-properties/).
  */
-
 export const EntityPropertySchema = apiObject({
   /** The key of the property. Required on create and update. */
   key: z.string().optional(),

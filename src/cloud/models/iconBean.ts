@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** An icon. */
 
+/** An icon. */
 export const IconBeanSchema = apiObject({
   /** The URL of the tooltip, used only for a status icon. */
   link: z.string().optional(),

@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
 import { GroupNameSchema } from './groupName';
-/** Details of an application role. */
 
+/** Details of an application role. */
 export const ApplicationRoleSchema = apiObject({
   /**
    * The groups that are granted default access for this application role. As a group's name can change, use of

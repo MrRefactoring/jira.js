@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** Jira instance health check results. Deprecated and no longer returned. */
 
+/** Jira instance health check results. Deprecated and no longer returned. */
 export const HealthCheckResultSchema = apiObject({
   /** The description of the Jira health check item. */
   description: z.string().optional(),

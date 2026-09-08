@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject, openEnum } from '#/core';
-/** The approval configuration of a status within a workflow. Applies only to Jira Service Management approvals. */
 
+/** The approval configuration of a status within a workflow. Applies only to Jira Service Management approvals. */
 export const ApprovalConfigurationSchema = apiObject({
   /** Whether the approval configuration is active. */
   active: openEnum(['true', 'false']),

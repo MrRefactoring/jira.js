@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** Details about the default workflow. */
 
+/** Details about the default workflow. */
 export const DefaultWorkflowSchema = apiObject({
   /**
    * Whether a draft workflow scheme is created or updated when updating an active workflow scheme. The draft is updated

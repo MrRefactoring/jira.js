@@ -2,8 +2,8 @@ import { z } from 'zod';
 import { apiObject } from '#/core';
 import { ScopeSchema } from './scope';
 import { StatusCategorySchema } from './statusCategory';
-/** A status. */
 
+/** A status. */
 export const StatusDetailsSchema = apiObject({
   /** The description of the status. */
   description: z.string().optional(),

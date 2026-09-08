@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** Details of project permissions and associated issues and projects to look up. */
 
+/** Details of project permissions and associated issues and projects to look up. */
 export const BulkProjectPermissionsSchema = apiObject({
   /** List of issue IDs. */
   issues: z.array(z.number()).optional(),

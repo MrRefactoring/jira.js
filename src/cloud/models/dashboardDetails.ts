@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
 import { SharePermissionSchema } from './sharePermission';
-/** Details of a dashboard. */
 
+/** Details of a dashboard. */
 export const DashboardDetailsSchema = apiObject({
   /** The description of the dashboard. */
   description: z.string().optional(),

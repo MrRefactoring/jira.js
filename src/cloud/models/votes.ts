@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
 import { DashboardUserSchema } from './dashboardUser';
-/** The details of votes on an issue. */
 
+/** The details of votes on an issue. */
 export const VotesSchema = apiObject({
   /** Whether the user making this request has voted on the issue. */
   hasVoted: z.boolean().optional(),

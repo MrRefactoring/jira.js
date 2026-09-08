@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
 import { ChangelogSchema } from './changelog';
-/** List of changelogs that belong to single issue */
 
+/** List of changelogs that belong to single issue */
 export const IssueChangeLogSchema = apiObject({
   /** List of changelogs that belongs to given issueId. */
   changeHistories: z.array(ChangelogSchema).optional(),

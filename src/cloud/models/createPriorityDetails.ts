@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject, openEnum } from '#/core';
-/** Details of an issue priority. */
 
+/** Details of an issue priority. */
 export const CreatePriorityDetailsSchema = apiObject({
   /**
    * The ID for the avatar for the priority. Either the iconUrl or avatarId must be defined, but not both. This

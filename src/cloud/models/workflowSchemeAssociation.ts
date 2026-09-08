@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** The explicit association between issue types and a workflow in a workflow scheme. */
 
+/** The explicit association between issue types and a workflow in a workflow scheme. */
 export const WorkflowSchemeAssociationSchema = apiObject({
   /** The issue types assigned to the workflow. */
   issueTypeIds: z.array(z.string()),

@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject, openEnum } from '#/core';
-/** Details of the time tracking configuration. */
 
+/** Details of the time tracking configuration. */
 export const TimeTrackingConfigurationSchema = apiObject({
   /** The default unit of time applied to logged time. */
   defaultUnit: openEnum(['minute', 'hour', 'day', 'week']),

@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** Details of an avatar. */
 
+/** Details of an avatar. */
 export const AvatarSchema = apiObject({
   /** The file name of the avatar icon. Returned for system avatars. */
   fileName: z.string().optional(),

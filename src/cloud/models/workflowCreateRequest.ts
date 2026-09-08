@@ -3,8 +3,8 @@ import { apiObject } from '#/core';
 import { WorkflowScopeSchema } from './workflowScope';
 import { WorkflowStatusUpdateSchema } from './workflowStatusUpdate';
 import { WorkflowCreateSchema } from './workflowCreate';
-/** The create workflows payload. */
 
+/** The create workflows payload. */
 export const WorkflowCreateRequestSchema = apiObject({
   scope: WorkflowScopeSchema.optional(),
   /** The statuses to associate with the workflows. */

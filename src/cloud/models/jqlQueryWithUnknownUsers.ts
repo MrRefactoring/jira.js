@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** JQL queries that contained users that could not be found */
 
+/** JQL queries that contained users that could not be found */
 export const JQLQueryWithUnknownUsersSchema = apiObject({
   /** The converted query, with accountIDs instead of user identifiers, or 'unknown' for users that could not be found */
   convertedQuery: z.string().optional(),

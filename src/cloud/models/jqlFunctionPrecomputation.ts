@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** Jql function precomputation. */
 
+/** Jql function precomputation. */
 export const JqlFunctionPrecomputationSchema = apiObject({
   /** The list of arguments function was invoked with. */
   arguments: z.array(z.string()).optional(),

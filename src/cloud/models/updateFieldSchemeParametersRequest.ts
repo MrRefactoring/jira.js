@@ -2,8 +2,8 @@ import { z } from 'zod';
 import { apiObject } from '#/core';
 import { FieldsSchemeItemParameterSchema } from './fieldsSchemeItemParameter';
 import { FieldsSchemeItemWorkTypeParameterSchema } from './fieldsSchemeItemWorkTypeParameter';
-/** Request bean for updating field scheme parameters across multiple schemes and work types. */
 
+/** Request bean for updating field scheme parameters across multiple schemes and work types. */
 export const UpdateFieldSchemeParametersRequestSchema = apiObject({
   parameters: FieldsSchemeItemParameterSchema.optional(),
   /** The list of field scheme IDs to update */

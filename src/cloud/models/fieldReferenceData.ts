@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject, openEnum } from '#/core';
-/** Details of a field that can be used in advanced searches. */
 
+/** Details of a field that can be used in advanced searches. */
 export const FieldReferenceDataSchema = apiObject({
   /** Whether the field provide auto-complete suggestions. */
   auto: openEnum(['true', 'false']).optional(),

@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** The default text for a read only custom field. */
 
+/** The default text for a read only custom field. */
 export const CustomFieldContextDefaultValueReadOnlySchema = apiObject({
   /** The ID of the context. */
   contextId: z.string(),

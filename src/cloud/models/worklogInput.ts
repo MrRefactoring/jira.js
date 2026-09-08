@@ -4,8 +4,8 @@ import { UserDetailsSchema } from './userDetails';
 import { DocumentSchema } from './document';
 import { EntityPropertySchema } from './entityProperty';
 import { VisibilitySchema } from './visibility';
-/** Details of a worklog. */
 
+/** Details of a worklog. */
 export const WorklogInputSchema = apiObject({
   author: UserDetailsSchema.optional(),
   /**

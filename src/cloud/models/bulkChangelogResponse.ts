@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
 import { IssueChangeLogSchema } from './issueChangeLog';
-/** A page of changelogs which is designed to handle multiple issues */
 
+/** A page of changelogs which is designed to handle multiple issues */
 export const BulkChangelogResponseSchema = apiObject({
   /** The list of issues changelogs. */
   issueChangeLogs: z.array(IssueChangeLogSchema).optional(),

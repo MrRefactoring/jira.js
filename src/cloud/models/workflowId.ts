@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** Properties that identify a workflow. */
 
+/** Properties that identify a workflow. */
 export const WorkflowIdSchema = apiObject({
   /**
    * **Deprecated:** Whether the workflow is in the draft state. The 'draft' parameter will be removed from this API on

@@ -3,8 +3,8 @@ import { apiObject } from '#/core';
 import { VersionApproverSchema } from './versionApprover';
 import { VersionIssuesStatusSchema } from './versionIssuesStatus';
 import { SimpleLinkSchema } from './simpleLink';
-/** Details about a project version. */
 
+/** Details about a project version. */
 export const VersionSchema = apiObject({
   /** If the expand option `approvers` is used, returns a list containing the approvers for this version. */
   approvers: z.array(VersionApproverSchema).optional(),

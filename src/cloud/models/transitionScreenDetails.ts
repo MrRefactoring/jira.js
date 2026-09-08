@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** The details of a transition screen. */
 
+/** The details of a transition screen. */
 export const TransitionScreenDetailsSchema = apiObject({
   /** The ID of the screen. */
   id: z.string(),

@@ -1,8 +1,8 @@
 import type { z } from 'zod';
 import { apiObject, openEnum } from '#/core';
 import { JqlQueryFieldSchema } from './jqlQueryField';
-/** An element of the order-by JQL clause. */
 
+/** An element of the order-by JQL clause. */
 export const JqlQueryOrderByClauseElementSchema = apiObject({
   /** The direction in which to order the results. */
   direction: openEnum(['asc', 'desc']).optional(),

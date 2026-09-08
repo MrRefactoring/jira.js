@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
 import { ExpandPrioritySchemePageSchema } from './expandPrioritySchemePage';
-/** An issue priority. */
 
+/** An issue priority. */
 export const PrioritySchema = apiObject({
   /**
    * The avatarId of the avatar for the issue priority. This parameter is nullable and when set, this avatar references

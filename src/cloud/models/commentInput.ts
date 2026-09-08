@@ -4,8 +4,8 @@ import { UserDetailsSchema } from './userDetails';
 import { DocumentSchema } from './document';
 import { EntityPropertySchema } from './entityProperty';
 import { VisibilitySchema } from './visibility';
-/** A comment. */
 
+/** A comment. */
 export const CommentInputSchema = apiObject({
   author: UserDetailsSchema.optional(),
   /**

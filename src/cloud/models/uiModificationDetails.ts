@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
 import { UiModificationContextDetailsSchema } from './uiModificationContextDetails';
-/** The details of a UI modification. */
 
+/** The details of a UI modification. */
 export const UiModificationDetailsSchema = apiObject({
   /** List of contexts of the UI modification. The maximum number of contexts is 1000. */
   contexts: z.array(UiModificationContextDetailsSchema).optional(),

@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** List of project associations. */
 
+/** List of project associations. */
 export const FieldProjectAssociationSchema = apiObject({
   projectId: z.string().optional(),
 });

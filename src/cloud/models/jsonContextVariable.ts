@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** A JSON object with custom content. */
 
+/** A JSON object with custom content. */
 export const JsonContextVariableSchema = apiObject({
   /** Type of custom context variable. */
   type: z.enum(['json']),

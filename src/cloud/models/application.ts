@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** The application the linked item is in. */
 
+/** The application the linked item is in. */
 export const ApplicationSchema = apiObject({
   /**
    * The name of the application. Used in conjunction with the (remote) object icon title to display a tooltip for the

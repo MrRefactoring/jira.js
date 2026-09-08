@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** Associated related work to a version */
 
+/** Associated related work to a version */
 export const VersionRelatedWorkSchema = apiObject({
   /** The category of the related work */
   category: z.string(),

@@ -2,8 +2,8 @@ import { z } from 'zod';
 import { apiObject, openEnum } from '#/core';
 import { ProjectCreateResourceIdentifierSchema } from './projectCreateResourceIdentifier';
 import { IssueLayoutItemPayloadSchema } from './issueLayoutItemPayload';
-/** Defines the payload to configure the issue layouts for a project. */
 
+/** Defines the payload to configure the issue layouts for a project. */
 export const IssueLayoutPayloadSchema = apiObject({
   containerId: ProjectCreateResourceIdentifierSchema.optional(),
   /** The issue layout type */

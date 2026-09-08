@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import { apiObject, openEnum } from '#/core';
 import { ProjectCreateResourceIdentifierSchema } from './projectCreateResourceIdentifier';
-/** The payload for creating an issue type hierarchy */
 
+/** The payload for creating an issue type hierarchy */
 export const IssueTypeHierarchyPayloadSchema = apiObject({
   /** The hierarchy level of the issue type. 0, 1, 2, 3 .. n; Negative values for subtasks */
   hierarchyLevel: z.number().optional(),

@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** Details of an item associated with the changed record. */
 
+/** Details of an item associated with the changed record. */
 export const AssociatedItemSchema = apiObject({
   /** The ID of the associated record. */
   id: z.string().optional(),

@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
 import { CommentSchema } from './comment';
-/** A page of comments. */
 
+/** A page of comments. */
 export const PageOfCommentsSchema = apiObject({
   /** The list of comments. */
   comments: z.array(CommentSchema).optional(),

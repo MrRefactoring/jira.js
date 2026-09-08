@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
 import { BulkProjectPermissionsSchema } from './bulkProjectPermissions';
-/** Details of global permissions to look up and project permissions with associated projects and issues to look up. */
 
+/** Details of global permissions to look up and project permissions with associated projects and issues to look up. */
 export const BulkPermissionsRequestSchema = apiObject({
   /** The account ID of a user. */
   accountId: z.string().optional(),

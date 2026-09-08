@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** Operations allowed on a workflow */
 
+/** Operations allowed on a workflow */
 export const WorkflowOperationsSchema = apiObject({
   /** Whether the workflow can be deleted. */
   canDelete: z.boolean(),

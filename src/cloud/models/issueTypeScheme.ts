@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** Details of an issue type scheme. */
 
+/** Details of an issue type scheme. */
 export const IssueTypeSchemeSchema = apiObject({
   /** The ID of the default issue type of the issue type scheme. */
   defaultIssueTypeId: z.string().optional(),

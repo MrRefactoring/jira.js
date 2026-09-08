@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** Details about the complexity of the analysed Jira expression. */
 
+/** Details about the complexity of the analysed Jira expression. */
 export const JiraExpressionComplexitySchema = apiObject({
   /**
    * Information that can be used to determine how many [expensive

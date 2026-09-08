@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** A project category. */
 
+/** A project category. */
 export const UpdatedProjectCategorySchema = apiObject({
   /** The name of the project category. */
   description: z.string().optional(),

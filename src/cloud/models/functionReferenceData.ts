@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject, openEnum } from '#/core';
-/** Details of functions that can be used in advanced searches. */
 
+/** Details of functions that can be used in advanced searches. */
 export const FunctionReferenceDataSchema = apiObject({
   /** The display name of the function. */
   displayName: z.string().optional(),

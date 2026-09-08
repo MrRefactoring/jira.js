@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** The worflow. */
 
+/** The worflow. */
 export const StatusWorkflowUsageWorkflowSchema = apiObject({
   /** The workflow ID. */
   id: z.string().optional(),

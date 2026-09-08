@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** Details about a group. */
 
+/** Details about a group. */
 export const GroupNameSchema = apiObject({
   /**
    * The ID of the group, which uniquely identifies the group across all Atlassian products. For example,

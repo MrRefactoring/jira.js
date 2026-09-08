@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
 import { FieldCreateMetadataSchema } from './fieldCreateMetadata';
-/** A page of CreateMetaIssueType with Field. */
 
+/** A page of CreateMetaIssueType with Field. */
 export const PageOfCreateMetaIssueTypeWithFieldSchema = apiObject({
   /** The collection of FieldCreateMetaBeans. */
   fields: z.array(FieldCreateMetadataSchema).optional(),

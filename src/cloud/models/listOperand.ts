@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
 import { JqlQueryUnitaryOperandSchema } from './jqlQueryUnitaryOperand';
-/** An operand that is a list of values. */
 
+/** An operand that is a list of values. */
 export const ListOperandSchema = apiObject({
   /** Encoded operand, which can be used directly in a JQL query. */
   encodedOperand: z.string().optional(),

@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** The trigger configuration associated with a workflow. */
 
+/** The trigger configuration associated with a workflow. */
 export const WorkflowTriggerSchema = apiObject({
   /** The ID of the trigger. */
   id: z.string().optional(),

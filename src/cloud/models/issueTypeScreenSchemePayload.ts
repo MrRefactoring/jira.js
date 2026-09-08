@@ -1,11 +1,11 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
 import { ProjectCreateResourceIdentifierSchema } from './projectCreateResourceIdentifier';
+
 /**
  * Defines the payload for the issue type screen schemes. See
  * https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-issue-type-screen-schemes/#api-rest-api-3-issuetypescreenscheme-post
  */
-
 export const IssueTypeScreenSchemePayloadSchema = apiObject({
   defaultScreenScheme: ProjectCreateResourceIdentifierSchema.optional(),
   /** The description of the issue type screen scheme */

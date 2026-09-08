@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** Details of an issue resolution. */
 
+/** Details of an issue resolution. */
 export const ResolutionSchema = apiObject({
   /** The description of the issue resolution. */
   description: z.string().optional(),

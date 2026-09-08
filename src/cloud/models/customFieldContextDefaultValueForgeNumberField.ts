@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** Default value for a Forge number custom field. */
 
+/** Default value for a Forge number custom field. */
 export const CustomFieldContextDefaultValueForgeNumberFieldSchema = apiObject({
   /** The ID of the context. */
   contextId: z.string(),

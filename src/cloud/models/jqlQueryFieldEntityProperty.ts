@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject, openEnum } from '#/core';
-/** Details of an entity property. */
 
+/** Details of an entity property. */
 export const JqlQueryFieldEntityPropertySchema = apiObject({
   /** The object on which the property is set. */
   entity: z.string(),

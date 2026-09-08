@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** Associated issue type screen scheme and project. */
 
+/** Associated issue type screen scheme and project. */
 export const IssueTypeScreenSchemeProjectAssociationSchema = apiObject({
   /** The ID of the issue type screen scheme. */
   issueTypeScreenSchemeId: z.string().optional(),

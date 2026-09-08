@@ -5,8 +5,8 @@ import { WorkflowScopeSchema } from './workflowScope';
 import { WorkflowReferenceStatusSchema } from './workflowReferenceStatus';
 import { WorkflowTransitionsSchema } from './workflowTransitions';
 import { DocumentVersionSchema } from './documentVersion';
-/** The workflow stored for the specified version. */
 
+/** The workflow stored for the specified version. */
 export const WorkflowDocumentDTOSchema = apiObject({
   created: z.string().optional(),
   description: z.string().optional(),

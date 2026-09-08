@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** Metadata for an item in an attachment archive. */
 
+/** Metadata for an item in an attachment archive. */
 export const AttachmentArchiveItemReadableSchema = apiObject({
   /** The position of the item within the archive. */
   index: z.number().optional(),

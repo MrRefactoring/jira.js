@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** A workflow transition rule. */
 
+/** A workflow transition rule. */
 export const WorkflowTransitionRuleSchema = apiObject({
   /** EXPERIMENTAL. The configuration of the transition rule. */
   configuration: z.unknown().optional(),

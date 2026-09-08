@@ -4,11 +4,11 @@ import { WorkflowStatusLayoutPayloadSchema } from './workflowStatusLayoutPayload
 import { ProjectCreateResourceIdentifierSchema } from './projectCreateResourceIdentifier';
 import { WorkflowStatusPayloadSchema } from './workflowStatusPayload';
 import { TransitionPayloadSchema } from './transitionPayload';
+
 /**
  * The payload for creating workflow, see
  * https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-workflows/#api-rest-api-3-workflows-create-post
  */
-
 export const WorkflowPayloadSchema = apiObject({
   /** The description of the workflow */
   description: z.string().optional(),

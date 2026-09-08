@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
 import { WorkflowTransitionRulesSchema } from './workflowTransitionRules';
-/** Details of workflow transition rules. */
 
+/** Details of workflow transition rules. */
 export const WorkflowRulesSearchDetailsSchema = apiObject({
   /** List of workflow rule IDs that do not belong to the workflow or can not be found. */
   invalidRules: z.array(z.string()).optional(),

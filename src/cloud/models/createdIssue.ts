@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
 import { NestedResponseSchema } from './nestedResponse';
-/** Details about a created issue or subtask. */
 
+/** Details about a created issue or subtask. */
 export const CreatedIssueSchema = apiObject({
   /** The ID of the created issue or subtask. */
   id: z.string(),

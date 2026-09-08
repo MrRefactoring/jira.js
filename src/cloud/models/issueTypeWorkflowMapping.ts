@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** Details about the mapping between an issue type and a workflow. */
 
+/** Details about the mapping between an issue type and a workflow. */
 export const IssueTypeWorkflowMappingSchema = apiObject({
   /** The ID of the issue type. Not required if updating the issue type-workflow mapping. */
   issueType: z.string().optional(),

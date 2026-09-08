@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
 import { IssueSchema } from './issue';
-/** The result of a JQL search. */
 
+/** The result of a JQL search. */
 export const SearchResultsSchema = apiObject({
   /** Expand options that include additional search result details in the response. */
   expand: z.string().optional(),

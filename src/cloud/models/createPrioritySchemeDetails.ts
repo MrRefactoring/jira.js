@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
 import { PriorityMappingSchema } from './priorityMapping';
-/** Details of a new priority scheme */
 
+/** Details of a new priority scheme */
 export const CreatePrioritySchemeDetailsSchema = apiObject({
   /** The ID of the default priority for the priority scheme. */
   defaultPriorityId: z.number(),

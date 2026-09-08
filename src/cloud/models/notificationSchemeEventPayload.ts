@@ -2,8 +2,8 @@ import { z } from 'zod';
 import { apiObject } from '#/core';
 import { NotificationSchemeEventIDPayloadSchema } from './notificationSchemeEventIDPayload';
 import { NotificationSchemeNotificationDetailsPayloadSchema } from './notificationSchemeNotificationDetailsPayload';
-/** The payload for creating a notification scheme event. Defines which notifications should be sent for a specific event */
 
+/** The payload for creating a notification scheme event. Defines which notifications should be sent for a specific event */
 export const NotificationSchemeEventPayloadSchema = apiObject({
   event: NotificationSchemeEventIDPayloadSchema.optional(),
   /** The configuration for notification recipents */

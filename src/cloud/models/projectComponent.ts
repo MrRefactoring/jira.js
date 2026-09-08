@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import { apiObject, openEnum } from '#/core';
 import { DashboardUserSchema } from './dashboardUser';
-/** Details about a project component. */
 
+/** Details about a project component. */
 export const ProjectComponentSchema = apiObject({
   /** Compass component's ID. Can't be updated. Not required for creating a Project Component. */
   ari: z.string().optional(),

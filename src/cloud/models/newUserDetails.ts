@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** The user details. */
 
+/** The user details. */
 export const NewUserDetailsSchema = apiObject({
   /** The email address for the user. */
   emailAddress: z.string(),

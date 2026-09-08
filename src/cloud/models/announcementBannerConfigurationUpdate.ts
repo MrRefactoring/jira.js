@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** Configuration of the announcement banner. */
 
+/** Configuration of the announcement banner. */
 export const AnnouncementBannerConfigurationUpdateSchema = apiObject({
   /** Flag indicating if the announcement banner can be dismissed by the user. */
   isDismissible: z.boolean().optional(),

@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
 import { JiraIssueFieldsSchema } from './jiraIssueFields';
-/** Issue Bulk Edit Payload */
 
+/** Issue Bulk Edit Payload */
 export const IssueBulkEditPayloadSchema = apiObject({
   editedFieldsInput: JiraIssueFieldsSchema.optional(),
   /**

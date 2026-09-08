@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
 import { FailedWebhookSchema } from './failedWebhook';
-/** A page of failed webhooks. */
 
+/** A page of failed webhooks. */
 export const FailedWebhooksSchema = apiObject({
   /**
    * The maximum number of items on the page. If the list of values is shorter than this number, then there are no more

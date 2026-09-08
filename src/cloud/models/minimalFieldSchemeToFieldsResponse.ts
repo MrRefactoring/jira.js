@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
 import { MinimalFieldSchemeToFieldsPartialFailureSchema } from './minimalFieldSchemeToFieldsPartialFailure';
-/** Minimal response for updating field scheme to fields associations. */
 
+/** Minimal response for updating field scheme to fields associations. */
 export const MinimalFieldSchemeToFieldsResponseSchema = apiObject({
   results: z.array(MinimalFieldSchemeToFieldsPartialFailureSchema),
 });

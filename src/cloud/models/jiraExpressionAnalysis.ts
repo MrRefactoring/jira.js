@@ -2,8 +2,8 @@ import { z } from 'zod';
 import { apiObject } from '#/core';
 import { JiraExpressionComplexitySchema } from './jiraExpressionComplexity';
 import { JiraExpressionValidationErrorSchema } from './jiraExpressionValidationError';
-/** Details about the analysed Jira expression. */
 
+/** Details about the analysed Jira expression. */
 export const JiraExpressionAnalysisSchema = apiObject({
   complexity: JiraExpressionComplexitySchema.optional(),
   /** A list of validation errors. Not included if the expression is valid. */

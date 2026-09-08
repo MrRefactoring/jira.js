@@ -1,11 +1,11 @@
 import { z } from 'zod';
 import { apiObject, openEnum } from '#/core';
 import { ProjectCreateResourceIdentifierSchema } from './projectCreateResourceIdentifier';
+
 /**
  * The payload used to create a project role. It is optional for CMP projects, as a default role actor will be provided.
  * TMP will add new role actors to the table.
  */
-
 export const RolePayloadSchema = apiObject({
   /** The default actors for the role. By adding default actors, the role will be added to any future projects created */
   defaultActors: z.array(ProjectCreateResourceIdentifierSchema).optional(),

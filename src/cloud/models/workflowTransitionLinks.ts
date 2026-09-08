@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** The statuses the transition can start from, and the mapping of ports between the statuses. */
 
+/** The statuses the transition can start from, and the mapping of ports between the statuses. */
 export const WorkflowTransitionLinksSchema = apiObject({
   /** The port that the transition starts from. */
   fromPort: z.number().nullish(),

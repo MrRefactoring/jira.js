@@ -3,8 +3,8 @@ import { apiObject } from '#/core';
 import { HistoryMetadataSchema } from './historyMetadata';
 import { EntityPropertySchema } from './entityProperty';
 import { IssueTransitionSchema } from './issueTransition';
-/** Details of an issue update request. */
 
+/** Details of an issue update request. */
 export const IssueUpdateDetailsSchema = apiObject({
   /**
    * List of issue screen fields to update, specifying the sub-field to update and its value for each field. This field

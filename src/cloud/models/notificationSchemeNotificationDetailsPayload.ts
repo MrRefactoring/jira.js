@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** The configuration for notification recipents */
 
+/** The configuration for notification recipents */
 export const NotificationSchemeNotificationDetailsPayloadSchema = apiObject({
   /** The type of notification. */
   notificationType: z.string().optional(),

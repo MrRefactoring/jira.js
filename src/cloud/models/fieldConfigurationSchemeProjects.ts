@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
 import { FieldConfigurationSchemeSchema } from './fieldConfigurationScheme';
-/** Project list with assigned field configuration schema. */
 
+/** Project list with assigned field configuration schema. */
 export const FieldConfigurationSchemeProjectsSchema = apiObject({
   fieldConfigurationScheme: FieldConfigurationSchemeSchema.optional(),
   /** The IDs of projects using the field configuration scheme. */

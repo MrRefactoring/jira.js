@@ -1,11 +1,11 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
 import { ProjectCreateResourceIdentifierSchema } from './projectCreateResourceIdentifier';
+
 /**
  * Defines the payload for the screen schemes. See
  * https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-screen-schemes/#api-rest-api-3-screenscheme-post
  */
-
 export const ScreenSchemePayloadSchema = apiObject({
   defaultScreen: ProjectCreateResourceIdentifierSchema.optional(),
   /** The description of the screen scheme */

@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** Details of the custom field options for a context. */
 
+/** Details of the custom field options for a context. */
 export const CustomFieldContextOptionSchema = apiObject({
   /** Whether the option is disabled. */
   disabled: z.boolean(),

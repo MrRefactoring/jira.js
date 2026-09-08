@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** Details of user or system associated with a issue history metadata item. */
 
+/** Details of user or system associated with a issue history metadata item. */
 export const HistoryMetadataParticipantSchema = apiObject({
   /** The URL to an avatar for the user or system associated with a history record. */
   avatarUrl: z.string().optional(),

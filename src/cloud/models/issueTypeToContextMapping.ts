@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** Mapping of an issue type to a context. */
 
+/** Mapping of an issue type to a context. */
 export const IssueTypeToContextMappingSchema = apiObject({
   /** The ID of the context. */
   contextId: z.string(),

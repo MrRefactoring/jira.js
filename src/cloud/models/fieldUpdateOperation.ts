@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-/** Details of an operation to perform on a field. */
 
+/** Details of an operation to perform on a field. */
 export const FieldUpdateOperationSchema = apiObject({
   /** The value to add to the field. */
   add: z.unknown().optional(),
