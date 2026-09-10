@@ -21,6 +21,16 @@ import { createOAuth2Manager } from './oauth/index.js';
 import { createServerOAuth2Manager } from './oauthServer/index.js';
 
 /**
+ * Whether a response body is JSON, by its media type.
+ *
+ * `application/json` is the common case, but not the only one: SCIM answers `application/scim+json`, and any
+ * `+json` suffix means the same thing.
+ */
+function isJsonMediaType(contentType: string): boolean {
+  return /^[^;]*[/+]json\b/i.test(contentType);
+}
+
+/**
  * Whether this 401 means "missing scope" rather than "stale token".
  *
  * Reads a clone, so the body stays available for the error that gets thrown later.
@@ -473,7 +483,9 @@ export function createClient(config: ClientConfig | Client): Client {
         return BlobSchema.parse(await response.blob()) as T;
       }
 
-      if (contentType && !contentType.includes('application/json')) {
+      const isJson = contentType !== null && isJsonMediaType(contentType);
+
+      if (contentType && !isJson) {
         if (requestConfig.schema) {
           throw new SchemaMismatchError(`Expected a JSON response to validate against the schema, got ${contentType}`, {
             endpoint: `${requestConfig.method ?? 'GET'} ${requestConfig.url}`,
@@ -486,7 +498,7 @@ export function createClient(config: ClientConfig | Client): Client {
 
       let data: unknown;
 
-      if (contentType?.includes('application/json')) {
+      if (isJson) {
         const text = await response.text();
 
         try {

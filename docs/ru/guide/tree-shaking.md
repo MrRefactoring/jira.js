@@ -27,7 +27,7 @@ const issue = await getIssue(client, { issueIdOrKey: 'TEST-1' });
 
 | Импорт | Что внутри |
 | --- | --- |
-| `jira.js` | Пять фабрик, типы ошибок и предикаты, помощники OAuth |
+| `jira.js` | Восемь фабрик, типы ошибок и предикаты, помощники OAuth |
 | `jira.js/core` | `createClient`, транспорт, ошибки, OAuth, multipart |
 | `jira.js/cloud` | Функции платформенного API и типы ответов |
 | `jira.js/cloud/models` | Только типы ответов платформенного API |
@@ -44,6 +44,15 @@ const issue = await getIssue(client, { issueIdOrKey: 'TEST-1' });
 | `jira.js/teams` | Функции Teams и типы ответов |
 | `jira.js/teams/models` | Только типы ответов Teams |
 | `jira.js/teams/parameters` | Типы параметров запросов Teams |
+| `jira.js/admin` | Функции API организации и типы ответов |
+| `jira.js/admin/models` | Только типы ответов API организации |
+| `jira.js/admin/parameters` | Типы параметров запросов API организации |
+| `jira.js/userManagement` | Функции управления пользователями и типы ответов |
+| `jira.js/userManagement/models` | Только типы ответов управления пользователями |
+| `jira.js/userManagement/parameters` | Типы параметров запросов управления пользователями |
+| `jira.js/userProvisioning` | Функции SCIM-провижининга и типы ответов |
+| `jira.js/userProvisioning/models` | Только типы ответов SCIM-провижининга |
+| `jira.js/userProvisioning/parameters` | Типы параметров запросов SCIM-провижининга |
 | `jira.js/webhooks` | События, полезные нагрузки и заголовки, которые Jira шлёт вам, и проверка подписи |
 | `jira.js/browser` | Готовая браузерная сборка |
 
@@ -55,7 +64,7 @@ import type { Issue } from 'jira.js/cloud';
 import type { GetIssue } from 'jira.js/cloud/parameters';
 ```
 
-Пять поверхностей не реэкспортируются из корня, потому что сталкиваются на десятке имён — импортируйте из
+Восемь поверхностей не реэкспортируются из корня, потому что сталкиваются на десятке имён — импортируйте из
 той, которую имеете в виду.
 
 > Глубоким импортам нужен резолвер, понимающий `exports`: `moduleResolution: "bundler"`, `"node16"` или

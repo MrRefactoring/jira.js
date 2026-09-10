@@ -16,13 +16,14 @@
 
 ## О библиотеке
 
-**Jira.js** — TypeScript-клиент к REST API Atlassian Jira Cloud для [Node.js](https://nodejs.org/) и браузеров. Покрывает пять поверхностей:
+**Jira.js** — TypeScript-клиент к REST API Atlassian Jira Cloud для [Node.js](https://nodejs.org/) и браузеров. Покрывает шесть поверхностей:
 
 - **[Платформенный API Jira Cloud](https://developer.atlassian.com/cloud/jira/platform/rest/)** — задачи, проекты, поля, воркфлоу
 - **[Jira Agile API](https://developer.atlassian.com/cloud/jira/software/rest/intro/)** — спринты, доски, бэклог
 - **[Jira Service Management API](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro/)** — обращения, очереди, организации
 - **[Assets API](https://developer.atlassian.com/cloud/assets/rest/)** — база конфигурационных единиц
 - **[Teams API](https://developer.atlassian.com/platform/teams/rest/v1/)** — команды, их участники и внешние связи, на уровне организации
+- **[API организации](https://developer.atlassian.com/cloud/admin/organization/rest/)** — каталоги, пользователи, группы, домены, политики и SCIM-провижининг, над сайтом
 
 > **6.0 — это переписывание, а не обновление.** `npm install jira.js` теперь ставит 6.x. Перед обновлением прочитайте [MIGRATION.md](./MIGRATION.md): там прямо сказано, кому стоит остаться на `jira.js@5`, который поддерживается до конца 2026 года.
 
@@ -133,6 +134,7 @@ const agile = createAgileClient(client);
 - **Jira Service Management API**: обращения, очереди, клиенты, организации
 - **Assets API**: объекты, схемы, типы и AQL — `createAssetsClient`
 - **Teams API**: команды, участники и внешние связи, на уровне организации — `createTeamsClient`
+- **Администрирование организации**: каталоги, пользователи, группы, домены, политики и SCIM-провижининг над сайтом — `createAdminClient`, `createUserManagementClient`, `createUserProvisioningClient`
 
 Платформенная поверхность одна, сгенерированная из v3-спецификации Jira. `Version2Client` и `Version3Client` убраны: разница между ними была не в эндпоинтах, а в форматированном тексте. Такие поля по-прежнему принимают **строку** с wiki-разметкой — запись уходит через v2-эндпоинт, Jira разбирает разметку у себя, после чего результат перечитывается, и вы получаете настоящий документ [Atlassian Document Format](https://developer.atlassian.com/cloud/jira/platform/apis/document/structure/).
 
@@ -439,7 +441,7 @@ const issue = await getIssue(client, { issueIdOrKey: 'KEY-1' });
 
 | Импорт | Что внутри |
 | --- | --- |
-| `jira.js` | Пять фабрик, типы ошибок и предикаты, помощники OAuth |
+| `jira.js` | Восемь фабрик, типы ошибок и предикаты, помощники OAuth |
 | `jira.js/core` | `createClient`, транспорт, ошибки, OAuth, multipart |
 | `jira.js/cloud` | Функции платформенного API и типы ответов |
 | `jira.js/cloud/models` | Только типы ответов платформенного API |
@@ -456,6 +458,15 @@ const issue = await getIssue(client, { issueIdOrKey: 'KEY-1' });
 | `jira.js/teams` | Функции Teams и типы ответов |
 | `jira.js/teams/models` | Только типы ответов Teams |
 | `jira.js/teams/parameters` | Типы параметров запросов Teams |
+| `jira.js/admin` | Функции API организации и типы ответов |
+| `jira.js/admin/models` | Только типы ответов API организации |
+| `jira.js/admin/parameters` | Типы параметров запросов API организации |
+| `jira.js/userManagement` | Функции управления пользователями и типы ответов |
+| `jira.js/userManagement/models` | Только типы ответов управления пользователями |
+| `jira.js/userManagement/parameters` | Типы параметров запросов управления пользователями |
+| `jira.js/userProvisioning` | Функции SCIM-провижининга и типы ответов |
+| `jira.js/userProvisioning/models` | Только типы ответов SCIM-провижининга |
+| `jira.js/userProvisioning/parameters` | Типы параметров запросов SCIM-провижининга |
 | `jira.js/webhooks` | События, полезные нагрузки и заголовки, которые Jira шлёт вам, и проверка подписи |
 | `jira.js/browser` | Готовая браузерная сборка |
 
@@ -466,7 +477,7 @@ import type { Issue } from 'jira.js/cloud';
 import type { GetIssue } from 'jira.js/cloud/parameters';
 ```
 
-Пять поверхностей не реэкспортируются из корня — они сталкиваются на десятке имён, импортируйте из нужной.
+Восемь поверхностей не реэкспортируются из корня — они сталкиваются на десятке имён, импортируйте из нужной.
 
 > Глубоким импортам нужен резолвер, понимающий `exports`: `moduleResolution: "bundler"`, `"node16"` или `"nodenext"`. Легаси-резолвинг `"node"` их не видит и ESM-only пакет всё равно не загрузит.
 

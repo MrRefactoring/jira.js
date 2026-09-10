@@ -31,6 +31,8 @@ export {
 
 export { apiObject } from './apiObject.js';
 
+export { ATLASSIAN_GATEWAY } from './atlassianGateway.js';
+
 export { openEnum } from './openEnum.js';
 
 export { createClient } from './createClient.js';

@@ -1,13 +1,14 @@
 # Getting Started
 
 `jira.js` is a TypeScript client for the Atlassian Jira Cloud REST APIs, for [Node.js](https://nodejs.org/)
-and browsers. It covers five surfaces:
+and browsers. It covers six surfaces:
 
 - **[Jira Cloud platform](https://developer.atlassian.com/cloud/jira/platform/rest/)** — issues, projects, fields, workflows
 - **[Jira Agile](https://developer.atlassian.com/cloud/jira/software/rest/intro/)** — boards, sprints, backlog
 - **[Jira Service Management](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro/)** — requests, queues, organizations
 - **[Assets](https://developer.atlassian.com/cloud/assets/rest/)** — objects, schemas and types, AQL
 - **[Teams](https://developer.atlassian.com/platform/teams/rest/v1/)** — teams, their members and external links
+- **[Organization APIs](https://developer.atlassian.com/cloud/admin/organization/rest/)** — directories, users, groups, domains, policies, SCIM
 
 ## Install
 
@@ -52,10 +53,12 @@ const jira = createCloudClient(client);
 const agile = createAgileClient(client);
 ```
 
-Assets is the exception. It is the one surface that does not answer on your site's host, so its client is
-built from its own configuration and needs a `workspaceId` rather than the shared client — see
-[Assets](./assets). Teams builds from its own configuration too: it answers on the site host, but only to
-an API token or a bearer token, never to OAuth 2.0 — see [Teams](./teams).
+The shared client reaches the three site surfaces. The others build from their own configuration, each for
+its own reason. Assets does not answer on your site's host at all and needs a `workspaceId` — see
+[Assets](./assets). Teams answers on the site host but takes only an API token or a bearer token, never
+OAuth 2.0 — see [Teams](./teams). The three organization APIs sit above the site entirely, answer on
+`api.atlassian.com` and take an organization key — see
+[Organization Administration](./administration).
 
 ## Make your first request
 
@@ -100,6 +103,7 @@ Reads always come back as a document, never as a string.
 - [Authentication](./authentication) — API token, OAuth 2.0 (3LO)
 - [Assets](./assets) — the configuration management database, and the client it is built with
 - [Teams](./teams) — teams across the organization, and the `orgId` every call is addressed to
+- [Organization Administration](./administration) — directories, users, groups and SCIM, above the site
 - [Error Handling](./error-handling) — typed errors and their predicates
 - [Response Validation](./response-validation) — what happens when Jira sends something unexpected
 - [Tree-Shaking](./tree-shaking) — keeping the bundle small

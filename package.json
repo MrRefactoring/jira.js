@@ -48,6 +48,42 @@
       "types": "./dist/assets/parameters/index.d.ts",
       "import": "./dist/assets/parameters/index.js"
     },
+    "./admin": {
+      "types": "./dist/admin/index.d.ts",
+      "import": "./dist/admin/index.js"
+    },
+    "./admin/models": {
+      "types": "./dist/admin/models/index.d.ts",
+      "import": "./dist/admin/models/index.js"
+    },
+    "./admin/parameters": {
+      "types": "./dist/admin/parameters/index.d.ts",
+      "import": "./dist/admin/parameters/index.js"
+    },
+    "./userManagement": {
+      "types": "./dist/userManagement/index.d.ts",
+      "import": "./dist/userManagement/index.js"
+    },
+    "./userManagement/models": {
+      "types": "./dist/userManagement/models/index.d.ts",
+      "import": "./dist/userManagement/models/index.js"
+    },
+    "./userManagement/parameters": {
+      "types": "./dist/userManagement/parameters/index.d.ts",
+      "import": "./dist/userManagement/parameters/index.js"
+    },
+    "./userProvisioning": {
+      "types": "./dist/userProvisioning/index.d.ts",
+      "import": "./dist/userProvisioning/index.js"
+    },
+    "./userProvisioning/models": {
+      "types": "./dist/userProvisioning/models/index.d.ts",
+      "import": "./dist/userProvisioning/models/index.js"
+    },
+    "./userProvisioning/parameters": {
+      "types": "./dist/userProvisioning/parameters/index.d.ts",
+      "import": "./dist/userProvisioning/parameters/index.js"
+    },
     "./teams": {
       "types": "./dist/teams/index.d.ts",
       "import": "./dist/teams/index.js"

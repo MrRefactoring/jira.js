@@ -1,4 +1,4 @@
-import { type ClientConfig, type Client, type RequestOptions, createClient, type Buffer } from '#/core';
+import { type ClientConfig, type Client, type RequestOptions, ATLASSIAN_GATEWAY, createClient, type Buffer } from '#/core';
 import * as icons from './api/icons';
 import * as imports from './api/imports';
 import * as importSources from './api/importSources';
@@ -95,8 +95,6 @@ import type {
   TenantUsageResponse,
 } from './models';
 
-const ASSETS_GATEWAY = 'https://api.atlassian.com';
-
 export type AssetsClientConfig = Omit<ClientConfig, 'host'> & {
   /**
    * The Assets workspace this client talks to.
@@ -119,7 +117,7 @@ function createWorkspaceClient({ workspaceId, host, ...config }: AssetsClientCon
   const client = createClient(
     config.auth?.type === 'oauth2'
       ? { ...config, auth: config.auth, host }
-      : { ...config, auth: config.auth, host: host ?? ASSETS_GATEWAY },
+      : { ...config, auth: config.auth, host: host ?? ATLASSIAN_GATEWAY },
   );
   const prefix = `/jsm/assets/workspace/${workspaceId}/v1`;
 
