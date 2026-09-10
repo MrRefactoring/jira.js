@@ -280,6 +280,20 @@ describe('responses', () => {
     ]);
   });
 
+  it('parses a +json media type such as SCIM answers with, the same as application/json', async () => {
+    mockFetch([
+      new Response('{"id":"u1"}', { status: 200, headers: { 'content-type': 'application/scim+json;charset=UTF-8' } }),
+    ]);
+
+    const result = await createClient({ host: HOST }).sendRequest({
+      url: '/x',
+      method: 'GET',
+      schema: z.object({ id: z.string() }),
+    });
+
+    expect(result).toEqual({ id: 'u1' });
+  });
+
   it('still returns undefined for a non-JSON response when no schema was declared', async () => {
     mockFetch([new Response('plain', { status: 200, headers: { 'content-type': 'text/html' } })]);
 

@@ -47,6 +47,24 @@ Three long-standing requests, all of them the same shape: the client had no seam
 
 ### Features
 
+* **Three surfaces above the site: organization, user management and SCIM provisioning.** `createAdminClient`, `createUserManagementClient` and `createUserProvisioningClient` — 47, 10 and 24 operations. Closes [#317](https://github.com/MrRefactoring/jira.js/issues/317), [#316](https://github.com/MrRefactoring/jira.js/issues/316) and [#315](https://github.com/MrRefactoring/jira.js/issues/315).
+
+  ```ts
+  import { createAdminClient } from 'jira.js';
+
+  const admin = createAdminClient({ auth: { type: 'bearer', token: organizationApiKey } });
+
+  const users = await admin.users.searchDirectoryUsers({ orgId, directoryId: '-', limit: 50 });
+  ```
+
+  These are organization APIs, not site ones, and they answer on `https://api.atlassian.com` — `host` is optional and defaults there. Each takes a bearer token and nothing else: an organization API key for the first two, the SCIM directory's own key for the third. A site API token answers 401 and so does OAuth 2.0 (3LO), whose scopes a user grants for a site rather than an organization granting them for itself; the config type refuses both at compile time.
+
+  Two pairs of operations the documents call "roles" mean different things, and the names here say which: `grantUserAccess` and `revokeUserAccess` control access to a product, `assignOrganizationRole` and `revokeOrganizationRole` control an organization-wide role such as organization admin.
+
+  A live suite covers the organization API read-only, against a real organization. It found what a live suite is for: pagination links and four profile fields that the document types as strings and the API returns as `null`, a policy rule declared an object that arrives as an empty array when there is no rule, and two properties marked required that arrive absent. All corrected in the specification rather than worked around in the caller.
+
+  Two surfaces ship less verified than that, and the reasons are the organization's rather than the library's. User management refuses a scoped API key outright — every operation answers `403` naming a `manage:org` scope that the key creation flow does not offer — and acts only on accounts whose domain the organization has claimed, of which a development organization has none; the suite pins that refusal and stands down. A SCIM directory needs Atlassian Guard, so `userProvisioning` has nothing to talk to and is unverified against a live instance.
+
 * **`createTeamsClient` and `jira.js/teams`.** Fifteen operations of the [Teams REST API](https://developer.atlassian.com/platform/teams/rest/v1/): teams, their members, and links to an external directory. Closes [#364](https://github.com/MrRefactoring/jira.js/issues/364).
 
   Teams are organization-level rather than site-level, so every operation but one is addressed to an `orgId` — a parameter on the call rather than a field on the client, because one account can administer several organizations and one client reaches all of them.

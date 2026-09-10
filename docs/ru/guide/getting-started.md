@@ -1,13 +1,14 @@
 # Быстрый старт
 
 `jira.js` — TypeScript-клиент к REST API Atlassian Jira Cloud для [Node.js](https://nodejs.org/) и
-браузеров. Покрывает пять поверхностей:
+браузеров. Покрывает шесть поверхностей:
 
 - **[Платформа Jira Cloud](https://developer.atlassian.com/cloud/jira/platform/rest/)** — задачи, проекты, поля, воркфлоу
 - **[Jira Agile](https://developer.atlassian.com/cloud/jira/software/rest/intro/)** — доски, спринты, бэклог
 - **[Jira Service Management](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro/)** — обращения, очереди, организации
 - **[Assets](https://developer.atlassian.com/cloud/assets/rest/)** — объекты, схемы и типы, AQL
 - **[Teams](https://developer.atlassian.com/platform/teams/rest/v1/)** — команды, их участники и внешние связи
+- **[API организации](https://developer.atlassian.com/cloud/admin/organization/rest/)** — каталоги, пользователи, группы, домены, политики, SCIM
 
 ## Установка
 
@@ -52,10 +53,12 @@ const jira = createCloudClient(client);
 const agile = createAgileClient(client);
 ```
 
-Assets — исключение. Это единственная поверхность, которая отвечает не на хосте вашего сайта, поэтому её
-клиент собирается из собственной конфигурации и требует `workspaceId`, а не общий клиент — см.
-[Assets](./assets). Teams тоже собирается из собственной конфигурации: он отвечает на хосте сайта, но
-принимает только API-токен или bearer-токен и никогда OAuth 2.0 — см. [Teams](./teams).
+Общий клиент покрывает три поверхности сайта. Остальные собираются из собственной конфигурации, каждая по
+своей причине. Assets вообще отвечает не на хосте вашего сайта и требует `workspaceId` — см.
+[Assets](./assets). Teams отвечает на хосте сайта, но принимает только API-токен или bearer-токен и
+никогда OAuth 2.0 — см. [Teams](./teams). Три API организации стоят над сайтом целиком, отвечают на
+`api.atlassian.com` и принимают ключ организации — см.
+[Администрирование организации](./administration).
 
 ## Первый запрос
 
@@ -100,6 +103,7 @@ await jira.issueComments.addComment({
 - [Аутентификация](./authentication) — API-токен, OAuth 2.0 (3LO)
 - [Assets](./assets) — база конфигурационных единиц и клиент, которым с ней работают
 - [Teams](./teams) — команды на уровне организации и `orgId`, которому адресован каждый вызов
+- [Администрирование организации](./administration) — каталоги, пользователи, группы и SCIM, над сайтом
 - [Обработка ошибок](./error-handling) — типизированные ошибки и предикаты
 - [Валидация ответов](./response-validation) — что происходит, когда Jira присылает неожиданное
 - [Tree-Shaking](./tree-shaking) — как не раздувать бандл

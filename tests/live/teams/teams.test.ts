@@ -1,7 +1,7 @@
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 import { isApiError, type ApiError } from '#/core';
 import type { TeamsClient } from '#/teams/createTeamsClient';
-import { getOrgId, getTeamsClient } from '../setup/client';
+import { getOrgId, getSiteId, getTeamsClient } from '../setup/client';
 import { RESOURCE_MARKER, testName } from '../helpers/naming';
 
 /**
@@ -15,12 +15,14 @@ import { RESOURCE_MARKER, testName } from '../helpers/naming';
 describe('Teams (live)', () => {
   let client: TeamsClient;
   let orgId: string;
+  let siteId: string;
 
   const created: string[] = [];
 
   async function createTeam(label: string) {
     const team = await client.teams.createTeam({
       orgId,
+      siteId,
       displayName: testName(label),
       description: 'Created by the jira.js live suite.',
       teamType: 'MEMBER_INVITE',
@@ -34,10 +36,11 @@ describe('Teams (live)', () => {
   beforeAll(async () => {
     client = getTeamsClient();
     orgId = await getOrgId();
+    siteId = await getSiteId();
   });
 
   afterAll(async () => {
-    const { entities } = await client.teams.queryTeams({ orgId, size: 300 }).catch(() => ({ entities: [] }));
+    const { entities } = await client.teams.queryTeams({ orgId, siteId, size: 300 }).catch(() => ({ entities: [] }));
     const debris = entities
       .filter(team => team.displayName.startsWith(`[${RESOURCE_MARKER}:`))
       .map(team => team.teamId);
@@ -61,7 +64,7 @@ describe('Teams (live)', () => {
   it('reads one back by id', async () => {
     const { teamId, displayName } = await createTeam('read');
 
-    const team = await client.teams.getTeam({ orgId, teamId });
+    const team = await client.teams.getTeam({ orgId, siteId, teamId });
 
     expect(team.teamId).toBe(teamId);
     expect(team.displayName).toBe(displayName);
@@ -70,7 +73,7 @@ describe('Teams (live)', () => {
   it('lists the organization teams, cursor and all', async () => {
     const { teamId } = await createTeam('list');
 
-    const page = await client.teams.queryTeams({ orgId, size: 300 });
+    const page = await client.teams.queryTeams({ orgId, siteId, size: 300 });
 
     expect(Array.isArray(page.entities)).toBe(true);
     expect(page.entities.map(team => team.teamId)).toContain(teamId);
@@ -83,23 +86,23 @@ describe('Teams (live)', () => {
     const updated = await client.teams.updateTeam({ orgId, teamId, displayName: renamed });
 
     expect(updated.displayName).toBe(renamed);
-    expect((await client.teams.getTeam({ orgId, teamId })).displayName).toBe(renamed);
+    expect((await client.teams.getTeam({ orgId, siteId, teamId })).displayName).toBe(renamed);
   });
 
   it('archives and unarchives in bulk, and the state follows', async () => {
     const { teamId } = await createTeam('archive');
 
     await client.teams.archiveTeams({ orgId, teamIds: [teamId] });
-    expect((await client.teams.getTeam({ orgId, teamId })).state).toBe('ARCHIVED');
+    expect((await client.teams.getTeam({ orgId, siteId, teamId })).state).toBe('ARCHIVED');
 
     await client.teams.unarchiveTeams({ orgId, teamIds: [teamId] });
-    expect((await client.teams.getTeam({ orgId, teamId })).state).toBe('ACTIVE');
+    expect((await client.teams.getTeam({ orgId, siteId, teamId })).state).toBe('ACTIVE');
   });
 
   it('pages the members, which come back under a cursor of their own', async () => {
     const { teamId } = await createTeam('members');
 
-    const page = await client.teamMembers.fetchMembers({ orgId, teamId, first: 10 });
+    const page = await client.teamMembers.fetchMembers({ orgId, siteId, teamId, first: 10 });
 
     expect(page.results.length).toBeGreaterThan(0);
     expect(typeof page.results[0].accountId).toBe('string');
@@ -111,7 +114,7 @@ describe('Teams (live)', () => {
 
     await client.teams.deleteTeam({ orgId, teamId });
 
-    const error = await client.teams.getTeam({ orgId, teamId }).catch((e: unknown) => e);
+    const error = await client.teams.getTeam({ orgId, siteId, teamId }).catch((e: unknown) => e);
 
     expect(isApiError(error)).toBe(true);
     expect((error as ApiError).status).toBe(410);

@@ -5,9 +5,9 @@ const BASE = '/jira.js/';
 const SITE_TITLE = 'jira.js';
 const SITE_TAGLINE = 'Jira REST API client for Node.js, TypeScript & browsers';
 const SITE_DESCRIPTION_EN =
-  'Modern Jira REST API client for JavaScript and TypeScript — Jira Cloud, Agile, Service Desk, Assets, and Teams APIs. ESM, runs in Node.js and browsers, fully typed, tree-shakable.';
+  'Modern Jira REST API client for JavaScript and TypeScript — Jira Cloud, Agile, Service Desk, Assets, Teams, and the organization APIs. ESM, runs in Node.js and browsers, fully typed, tree-shakable.';
 const SITE_DESCRIPTION_RU =
-  'Современный клиент Jira REST API для JavaScript и TypeScript — Jira Cloud, Agile, Service Desk, Assets и Teams. ESM, работает в Node.js и браузерах, строгая типизация, tree-shaking.';
+  'Современный клиент Jira REST API для JavaScript и TypeScript — Jira Cloud, Agile, Service Desk, Assets, Teams и API организации. ESM, работает в Node.js и браузерах, строгая типизация, tree-shaking.';
 const OG_IMAGE = `${SITE_URL}${BASE.slice(0, -1)}/og-image.png`;
 
 const guideSidebar = (prefix = '') => [
@@ -21,6 +21,7 @@ const guideSidebar = (prefix = '') => [
       { text: 'Assets', link: `${prefix}/guide/assets` },
       { text: 'Teams', link: `${prefix}/guide/teams` },
       { text: prefix ? 'Контекст тенанта' : 'Tenant Context', link: `${prefix}/guide/tenant-context` },
+      { text: prefix ? 'Администрирование организации' : 'Organization Administration', link: `${prefix}/guide/administration` },
       { text: prefix ? 'Вебхуки' : 'Webhooks', link: `${prefix}/guide/webhooks` },
       { text: prefix ? 'Обработка ошибок' : 'Error Handling', link: `${prefix}/guide/error-handling` },
       { text: prefix ? 'Валидация ответов' : 'Response Validation', link: `${prefix}/guide/response-validation` },

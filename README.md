@@ -16,13 +16,14 @@
 
 ## About
 
-**Jira.js** is a TypeScript client for the Atlassian Jira Cloud REST APIs, for [Node.js](https://nodejs.org/) and browsers. It covers five surfaces:
+**Jira.js** is a TypeScript client for the Atlassian Jira Cloud REST APIs, for [Node.js](https://nodejs.org/) and browsers. It covers six surfaces:
 
 - **[Jira Cloud platform API](https://developer.atlassian.com/cloud/jira/platform/rest/)** - issues, projects, fields, workflows
 - **[Jira Agile API](https://developer.atlassian.com/cloud/jira/software/rest/intro/)** - sprints, boards, backlog
 - **[Jira Service Management API](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro/)** - requests, queues, organizations
 - **[Assets API](https://developer.atlassian.com/cloud/assets/rest/)** - the configuration management database
 - **[Teams API](https://developer.atlassian.com/platform/teams/rest/v1/)** - teams, their members and external links, at organization level
+- **[Organization APIs](https://developer.atlassian.com/cloud/admin/organization/rest/)** - directories, users, groups, domains, policies and SCIM provisioning, above the site
 
 > **6.0 is a rewrite, not a refresh.** `npm install jira.js` now installs 6.x. Read [MIGRATION.md](./MIGRATION.md) before upgrading — it says plainly who should stay on `jira.js@5`, which is supported until the end of 2026.
 
@@ -136,6 +137,7 @@ The documentation includes:
 - **Jira Service Management API**: request handling, queues, customers, organizations
 - **Assets API**: objects, schemas, types and AQL — `createAssetsClient`
 - **Teams API**: teams, their members and external links, at organization level — `createTeamsClient`
+- **Organization administration**: directories, users, groups, domains, policies and SCIM provisioning above the site — `createAdminClient`, `createUserManagementClient`, `createUserProvisioningClient`
 - **Webhook types**: the events, payloads and headers Jira posts to *you* — `jira.js/webhooks`, types only, no client
 
 There is one platform surface, generated from Jira's v3 specification. `Version2Client` and `Version3Client` are gone — the difference between them was never the endpoints, it was rich text. Rich-text fields still accept a wiki-markup **string**: that write is routed through Jira's v2 endpoint, which parses the markup server-side, and the result is read back so what you get is a real [Atlassian Document Format](https://developer.atlassian.com/cloud/jira/platform/apis/document/structure/) document.
@@ -443,7 +445,7 @@ Every function takes the client as its first argument — the same client the fa
 
 | Import | Contents |
 | --- | --- |
-| `jira.js` | The five factories, error types and predicates, OAuth helpers |
+| `jira.js` | The eight factories, error types and predicates, OAuth helpers |
 | `jira.js/core` | `createClient`, transport, errors, OAuth, multipart helpers |
 | `jira.js/cloud` | Platform API functions and response types |
 | `jira.js/cloud/models` | Platform API response types on their own |
@@ -460,6 +462,15 @@ Every function takes the client as its first argument — the same client the fa
 | `jira.js/teams` | Teams functions and response types |
 | `jira.js/teams/models` | Teams response types on their own |
 | `jira.js/teams/parameters` | Teams request parameter types |
+| `jira.js/admin` | Organization API functions and response types |
+| `jira.js/admin/models` | Organization API response types on their own |
+| `jira.js/admin/parameters` | Organization API request parameter types |
+| `jira.js/userManagement` | User management functions and response types |
+| `jira.js/userManagement/models` | User management response types on their own |
+| `jira.js/userManagement/parameters` | User management request parameter types |
+| `jira.js/userProvisioning` | SCIM provisioning functions and response types |
+| `jira.js/userProvisioning/models` | SCIM provisioning response types on their own |
+| `jira.js/userProvisioning/parameters` | SCIM provisioning request parameter types |
 | `jira.js/webhooks` | The events, payloads and headers Jira posts to you, and the signature check |
 | `jira.js/browser` | Prebuilt browser bundle |
 
@@ -470,7 +481,7 @@ import type { Issue } from 'jira.js/cloud';
 import type { GetIssue } from 'jira.js/cloud/parameters';
 ```
 
-The five surfaces are not re-exported from the root — they collide on a handful of names, so import from the one you mean.
+The eight surfaces are not re-exported from the root — they collide on a handful of names, so import from the one you mean.
 
 > Deep imports need an `exports`-aware resolver: `moduleResolution: "bundler"`, `"node16"` or `"nodenext"`. The legacy `"node"` resolution cannot see them, and cannot load an ESM-only package either.
 
