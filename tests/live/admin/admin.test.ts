@@ -1,8 +1,16 @@
 import { beforeAll, describe, expect, it } from 'vitest';
-import { isForbiddenError } from '#/core';
+import { isApiError, isForbiddenError, type ApiError } from '#/core';
 import type { AdminClient } from '#/admin/createAdminClient';
 import { getAdminClient, getOrgId } from '../setup/client';
 import { hasAdminEnv } from '../setup/env';
+
+const PAGE = 100;
+
+const sortGroupsBy = (direction: 'asc' | 'desc') => [{ field: 'name' as const, direction }];
+
+function decodeCursor(cursor: string): { sortBy: unknown } {
+  return JSON.parse(Buffer.from(cursor, 'base64').toString('utf8')) as { sortBy: unknown };
+}
 
 /**
  * Live suite for the organization administration API.
@@ -119,5 +127,64 @@ describe.skipIf(!hasAdminEnv())('Organization administration (live)', () => {
         expect(isForbiddenError(error)).toBe(true);
       },
     );
+  });
+
+  it('sorts groups by name, and desc is asc reversed', async () => {
+    const [asc, desc] = await Promise.all([
+      admin.groups.getGroups({ orgId, directoryId, limit: PAGE, sortBy: sortGroupsBy('asc') }),
+      admin.groups.getGroups({ orgId, directoryId, limit: PAGE, sortBy: sortGroupsBy('desc') }),
+    ]);
+
+    expect(asc.links?.next, 'the directory outgrew a single page; the comparison is no longer over one set').toBeFalsy();
+
+    const ascNames = asc.data!.map(group => group.name);
+    const descNames = desc.data!.map(group => group.name);
+
+    expect(ascNames.length).toBeGreaterThan(1);
+    expect([...descNames].sort()).toEqual([...ascNames].sort());
+    expect(descNames).toEqual([...ascNames].reverse());
+  });
+
+  it('leaves the order alone for asc, which is what no sortBy already gives', async () => {
+    const [baseline, asc] = await Promise.all([
+      admin.groups.getGroups({ orgId, directoryId, limit: PAGE }),
+      admin.groups.getGroups({ orgId, directoryId, limit: PAGE, sortBy: sortGroupsBy('asc') }),
+    ]);
+
+    expect(asc.data!.map(group => group.name)).toEqual(baseline.data!.map(group => group.name));
+  });
+
+  it('echoes the sortBy it parsed back in the page cursor', async () => {
+    const sortBy = sortGroupsBy('desc');
+    const [sorted, unsorted] = await Promise.all([
+      admin.groups.getGroups({ orgId, directoryId, limit: PAGE, sortBy }),
+      admin.groups.getGroups({ orgId, directoryId, limit: PAGE }),
+    ]);
+
+    expect(decodeCursor(sorted.links!.self!).sortBy).toEqual(sortBy);
+    expect(decodeCursor(unsorted.links!.self!).sortBy).toBeNull();
+  });
+
+  it('refuses a second sort element rather than quietly taking the first', async () => {
+    const error = await admin.groups
+      .getGroups({
+        orgId,
+        directoryId,
+        sortBy: [
+          { field: 'name', direction: 'asc' },
+          { field: 'name', direction: 'desc' },
+        ],
+      })
+      .catch((e: unknown) => e);
+
+    expect(isApiError(error)).toBe(true);
+    expect((error as ApiError).status).toBe(400);
+  });
+
+  it('takes sortBy on the user listing too', async () => {
+    const sortBy = [{ field: 'nick_name' as const, direction: 'desc' as const }];
+    const { links } = await admin.users.getDirectoryUsers({ orgId, directoryId, limit: PAGE, sortBy });
+
+    expect(decodeCursor(links!.self!).sortBy).toEqual(sortBy);
   });
 });

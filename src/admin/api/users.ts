@@ -454,6 +454,7 @@ export async function getDirectoryUsers(
       roleIds: parameters.roleIds,
       emailDomains: parameters.emailDomains,
       searchTerm: parameters.searchTerm,
+      sortBy: parameters.sortBy && JSON.stringify(parameters.sortBy),
     },
     schema: MultiDirectoryUserPageSchema,
     signal: options?.signal,
