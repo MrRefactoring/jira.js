@@ -16,7 +16,7 @@
 
 ## О библиотеке
 
-**Jira.js** — TypeScript-клиент к REST API Atlassian Jira Cloud для [Node.js](https://nodejs.org/) и браузеров. Покрывает шесть поверхностей:
+**Jira.js** — TypeScript-клиент к REST API Atlassian Jira — Jira Cloud и самостоятельно размещённого Jira Data Center — для [Node.js](https://nodejs.org/) и браузеров. Покрывает семь поверхностей:
 
 - **[Платформенный API Jira Cloud](https://developer.atlassian.com/cloud/jira/platform/rest/)** — задачи, проекты, поля, воркфлоу
 - **[Jira Agile API](https://developer.atlassian.com/cloud/jira/software/rest/intro/)** — спринты, доски, бэклог
@@ -24,6 +24,7 @@
 - **[Assets API](https://developer.atlassian.com/cloud/assets/rest/)** — база конфигурационных единиц
 - **[Teams API](https://developer.atlassian.com/platform/teams/rest/v1/)** — команды, их участники и внешние связи, на уровне организации
 - **[API организации](https://developer.atlassian.com/cloud/admin/organization/rest/)** — каталоги, пользователи, группы, домены, политики и SCIM-провижининг, над сайтом
+- **[API Jira Data Center](https://developer.atlassian.com/server/jira/platform/rest/)** — самостоятельно размещённая платформа, вместе с Agile
 
 > **6.0 — это переписывание, а не обновление.** `npm install jira.js` теперь ставит 6.x. Перед обновлением прочитайте [MIGRATION.md](./MIGRATION.md): там прямо сказано, кому стоит остаться на `jira.js@5`, который поддерживается до конца 2026 года.
 
@@ -135,8 +136,9 @@ const agile = createAgileClient(client);
 - **Assets API**: объекты, схемы, типы и AQL — `createAssetsClient`
 - **Teams API**: команды, участники и внешние связи, на уровне организации — `createTeamsClient`
 - **Администрирование организации**: каталоги, пользователи, группы, домены, политики и SCIM-провижининг над сайтом — `createAdminClient`, `createUserManagementClient`, `createUserProvisioningClient`
+- **API Jira Data Center**: самостоятельно размещённая платформа, Agile — в том же клиенте — `createServerClient`
 
-Платформенная поверхность одна, сгенерированная из v3-спецификации Jira. `Version2Client` и `Version3Client` убраны: разница между ними была не в эндпоинтах, а в форматированном тексте. Такие поля по-прежнему принимают **строку** с wiki-разметкой — запись уходит через v2-эндпоинт, Jira разбирает разметку у себя, после чего результат перечитывается, и вы получаете настоящий документ [Atlassian Document Format](https://developer.atlassian.com/cloud/jira/platform/apis/document/structure/).
+Облачная платформенная поверхность одна, сгенерированная из v3-спецификации Jira. `Version2Client` и `Version3Client` убраны: разница между ними была не в эндпоинтах, а в форматированном тексте. Такие поля по-прежнему принимают **строку** с wiki-разметкой — запись уходит через v2-эндпоинт, Jira разбирает разметку у себя, после чего результат перечитывается, и вы получаете настоящий документ [Atlassian Document Format](https://developer.atlassian.com/cloud/jira/platform/apis/document/structure/).
 
 ```typescript
 // Wiki-разметка — работает и форматируется
@@ -146,7 +148,7 @@ await jira.issueComments.addComment({
 });
 ```
 
-При чтении всегда приходит документ, никогда не строка.
+При чтении всегда приходит документ, никогда не строка. К Data Center это не относится: ADF там нет, и `createServerClient` и на записи, и на чтении работает с wiki-разметкой как с обычной строкой — `body` комментария имеет тип `string`, а не документ.
 
 ## Использование
 
@@ -203,6 +205,26 @@ const jira = createCloudClient({
 **Сохранять ротированный refresh-токен — не опция**: Atlassian обесценивает предыдущий при каждом обновлении.
 
 Библиотека также экспортирует stateless-помощники для authorization-code потока: `generateAuthorizationUrl`, `exchangeAuthorizationCode`, `refreshOAuth2Token`, `getAccessibleResources`, `parseCallbackUrl`. См. [пошаговое руководство по OAuth 2.0](https://mrrefactoring.github.io/jira.js/ru/guide/oauth2-authentication).
+
+#### Jira Data Center
+
+У `createServerClient` набор стратегий другой. API-токенов в Data Center нет, поэтому облачная пара `email` и `apiToken` там не работает — код компилируется, а инстанс отвечает `401`. Облачный OAuth 2.0 (3LO) тоже неприменим: он определяет cloud id и направляет запросы через `api.atlassian.com`, так что до переданного хоста клиент не доходит.
+
+```typescript
+// Персональный access-токен — есть с Jira 8.14 и на Jira 11 по умолчанию единственный способ войти
+const jira = createServerClient({
+  host: 'https://jira.your-company.com',
+  auth: { type: 'bearer', token: 'YOUR_PERSONAL_ACCESS_TOKEN' },
+});
+
+// Локальная учётная запись — `username`, не `email`. В Jira 11 basic-аутентификация выключена по умолчанию.
+const jiraBasic = createServerClient({
+  host: 'https://jira.your-company.com',
+  auth: { type: 'basic', username: 'jdoe', password: 'hunter2' },
+});
+```
+
+OAuth 2.0 против собственного сервера авторизации инстанса — это `{ type: 'oauth2Server', ... }` и помощники `generateServerAuthorizationUrl`, `exchangeServerAuthorizationCode`, `refreshServerOAuth2Token`. См. [руководство по Data Center](https://mrrefactoring.github.io/jira.js/ru/guide/data-center).
 
 > **JWT (Atlassian Connect) в 6.0 не поддерживается**, замены нет. Если вы аутентифицируете установки Connect общим секретом — оставайтесь на `jira.js@5`, см. [MIGRATION.md](./MIGRATION.md). Сам Atlassian Connect [снимается с поддержки в Q4 2026](https://www.atlassian.com/blog/development/announcing-connect-end-of-support-timeline-and-next-steps).
 
@@ -441,7 +463,7 @@ const issue = await getIssue(client, { issueIdOrKey: 'KEY-1' });
 
 | Импорт | Что внутри |
 | --- | --- |
-| `jira.js` | Восемь фабрик, типы ошибок и предикаты, помощники OAuth |
+| `jira.js` | Девять фабрик, типы ошибок и предикаты, помощники OAuth |
 | `jira.js/core` | `createClient`, транспорт, ошибки, OAuth, multipart |
 | `jira.js/cloud` | Функции платформенного API и типы ответов |
 | `jira.js/cloud/models` | Только типы ответов платформенного API |
@@ -452,6 +474,9 @@ const issue = await getIssue(client, { issueIdOrKey: 'KEY-1' });
 | `jira.js/serviceDesk` | Функции Service Management и типы ответов |
 | `jira.js/serviceDesk/models` | Только типы ответов Service Management |
 | `jira.js/serviceDesk/parameters` | Типы параметров запросов Service Management |
+| `jira.js/server` | Функции Data Center и типы ответов |
+| `jira.js/server/models` | Только типы ответов Data Center |
+| `jira.js/server/parameters` | Типы параметров запросов Data Center |
 | `jira.js/assets` | Функции Assets Cloud и типы ответов |
 | `jira.js/assets/models` | Только типы ответов Assets Cloud |
 | `jira.js/assets/parameters` | Типы параметров запросов Assets Cloud |
@@ -477,7 +502,7 @@ import type { Issue } from 'jira.js/cloud';
 import type { GetIssue } from 'jira.js/cloud/parameters';
 ```
 
-Восемь поверхностей не реэкспортируются из корня — они сталкиваются на десятке имён, импортируйте из нужной.
+Девять поверхностей не реэкспортируются из корня — они сталкиваются на десятке имён, импортируйте из нужной.
 
 > Глубоким импортам нужен резолвер, понимающий `exports`: `moduleResolution: "bundler"`, `"node16"` или `"nodenext"`. Легаси-резолвинг `"node"` их не видит и ESM-only пакет всё равно не загрузит.
 
@@ -498,7 +523,7 @@ Jira.js идеально подходит для:
 ## Частые вопросы (FAQ)
 
 **В: Работает ли это с Jira Server/Data Center?**  
-О: Нет, Jira.js разработана специально для Jira Cloud. Для локальной (on-premise) Jira рассмотрите прямое использование REST API.
+О: Да, начиная с 6.3. `createServerClient` покрывает 444 операции API самостоятельно размещённой платформы, включая Agile. Это отдельная поверхность, а не облачный клиент, направленный на другой хост: два API различаются не только адресом. См. [руководство по Data Center](https://mrrefactoring.github.io/jira.js/ru/guide/data-center).
 
 **В: Обязателен ли TypeScript?**  
 О: Нет, но TypeScript полностью поддерживается с исчерпывающими определениями типов. Вы также можете использовать Jira.js с обычным JavaScript.

@@ -27,7 +27,7 @@ const issue = await getIssue(client, { issueIdOrKey: 'TEST-1' });
 
 | Импорт | Что внутри |
 | --- | --- |
-| `jira.js` | Восемь фабрик, типы ошибок и предикаты, помощники OAuth |
+| `jira.js` | Девять фабрик, типы ошибок и предикаты, помощники OAuth |
 | `jira.js/core` | `createClient`, транспорт, ошибки, OAuth, multipart |
 | `jira.js/cloud` | Функции платформенного API и типы ответов |
 | `jira.js/cloud/models` | Только типы ответов платформенного API |
@@ -38,6 +38,9 @@ const issue = await getIssue(client, { issueIdOrKey: 'TEST-1' });
 | `jira.js/serviceDesk` | Функции Service Management и типы ответов |
 | `jira.js/serviceDesk/models` | Только типы ответов Service Management |
 | `jira.js/serviceDesk/parameters` | Типы параметров запросов Service Management |
+| `jira.js/server` | Функции Data Center и типы ответов |
+| `jira.js/server/models` | Только типы ответов Data Center |
+| `jira.js/server/parameters` | Типы параметров запросов Data Center |
 | `jira.js/assets` | Функции Assets Cloud и типы ответов |
 | `jira.js/assets/models` | Только типы ответов Assets Cloud |
 | `jira.js/assets/parameters` | Типы параметров запросов Assets Cloud |
@@ -64,7 +67,7 @@ import type { Issue } from 'jira.js/cloud';
 import type { GetIssue } from 'jira.js/cloud/parameters';
 ```
 
-Восемь поверхностей не реэкспортируются из корня, потому что сталкиваются на десятке имён — импортируйте из
+Девять поверхностей не реэкспортируются из корня, потому что сталкиваются на десятке имён — импортируйте из
 той, которую имеете в виду.
 
 > Глубоким импортам нужен резолвер, понимающий `exports`: `moduleResolution: "bundler"`, `"node16"` или

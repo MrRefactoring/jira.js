@@ -29,7 +29,7 @@ where it does.
 
 | Import | Contents |
 | --- | --- |
-| `jira.js` | The eight factories, the error types and their predicates, the OAuth helpers |
+| `jira.js` | The nine factories, the error types and their predicates, the OAuth helpers |
 | `jira.js/core` | `createClient`, the transport, errors, OAuth, multipart helpers |
 | `jira.js/cloud` | Platform API functions and response types |
 | `jira.js/cloud/models` | Platform API response types on their own |
@@ -40,6 +40,9 @@ where it does.
 | `jira.js/serviceDesk` | Service Management functions and response types |
 | `jira.js/serviceDesk/models` | Service Management response types on their own |
 | `jira.js/serviceDesk/parameters` | Service Management request parameter types |
+| `jira.js/server` | Data Center functions and response types |
+| `jira.js/server/models` | Data Center response types on their own |
+| `jira.js/server/parameters` | Data Center request parameter types |
 | `jira.js/assets` | Assets Cloud functions and response types |
 | `jira.js/assets/models` | Assets Cloud response types on their own |
 | `jira.js/assets/parameters` | Assets Cloud request parameter types |
@@ -67,7 +70,7 @@ import type { Issue } from 'jira.js/cloud';
 import type { GetIssue } from 'jira.js/cloud/parameters';
 ```
 
-The eight surfaces are not re-exported from the root, because they collide on a handful of names — import
+The nine surfaces are not re-exported from the root, because they collide on a handful of names — import
 from the surface you mean.
 
 > Deep imports need an `exports`-aware resolver: `moduleResolution: "bundler"`, `"node16"` or

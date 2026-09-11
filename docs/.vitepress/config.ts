@@ -5,9 +5,9 @@ const BASE = '/jira.js/';
 const SITE_TITLE = 'jira.js';
 const SITE_TAGLINE = 'Jira REST API client for Node.js, TypeScript & browsers';
 const SITE_DESCRIPTION_EN =
-  'Modern Jira REST API client for JavaScript and TypeScript — Jira Cloud, Agile, Service Desk, Assets, Teams, and the organization APIs. ESM, runs in Node.js and browsers, fully typed, tree-shakable.';
+  'Modern Jira REST API client for JavaScript and TypeScript — Jira Cloud, Data Center, Agile, Service Desk, Assets, Teams, and the organization APIs. ESM, runs in Node.js and browsers, fully typed, tree-shakable.';
 const SITE_DESCRIPTION_RU =
-  'Современный клиент Jira REST API для JavaScript и TypeScript — Jira Cloud, Agile, Service Desk, Assets, Teams и API организации. ESM, работает в Node.js и браузерах, строгая типизация, tree-shaking.';
+  'Современный клиент Jira REST API для JavaScript и TypeScript — Jira Cloud, Data Center, Agile, Service Desk, Assets, Teams и API организации. ESM, работает в Node.js и браузерах, строгая типизация, tree-shaking.';
 const OG_IMAGE = `${SITE_URL}${BASE.slice(0, -1)}/og-image.png`;
 
 const guideSidebar = (prefix = '') => [
@@ -18,6 +18,7 @@ const guideSidebar = (prefix = '') => [
       { text: prefix ? 'Установка' : 'Installation', link: `${prefix}/guide/installation` },
       { text: prefix ? 'Аутентификация' : 'Authentication', link: `${prefix}/guide/authentication` },
       { text: 'OAuth 2.0 (3LO)', link: `${prefix}/guide/oauth2-authentication` },
+      { text: 'Jira Data Center', link: `${prefix}/guide/data-center` },
       { text: 'Assets', link: `${prefix}/guide/assets` },
       { text: 'Teams', link: `${prefix}/guide/teams` },
       { text: prefix ? 'Контекст тенанта' : 'Tenant Context', link: `${prefix}/guide/tenant-context` },
@@ -83,7 +84,7 @@ export default defineConfig({
         license: 'https://opensource.org/licenses/MIT',
         author: { '@type': 'Person', name: 'Vladislav Tupikin' },
         keywords:
-          'jira, jira api, jira cloud, jira rest api, jira agile, jira service desk, atlassian, typescript, javascript, nodejs, api client',
+          'jira, jira api, jira cloud, jira rest api, jira agile, jira service desk, jira data center, jira server, atlassian, typescript, javascript, nodejs, api client',
         url: SITE_URL + BASE,
       }),
     ],

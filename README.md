@@ -16,7 +16,7 @@
 
 ## About
 
-**Jira.js** is a TypeScript client for the Atlassian Jira Cloud REST APIs, for [Node.js](https://nodejs.org/) and browsers. It covers six surfaces:
+**Jira.js** is a TypeScript client for the Atlassian Jira REST APIs — Jira Cloud and self-hosted Jira Data Center — for [Node.js](https://nodejs.org/) and browsers. It covers seven surfaces:
 
 - **[Jira Cloud platform API](https://developer.atlassian.com/cloud/jira/platform/rest/)** - issues, projects, fields, workflows
 - **[Jira Agile API](https://developer.atlassian.com/cloud/jira/software/rest/intro/)** - sprints, boards, backlog
@@ -24,6 +24,7 @@
 - **[Assets API](https://developer.atlassian.com/cloud/assets/rest/)** - the configuration management database
 - **[Teams API](https://developer.atlassian.com/platform/teams/rest/v1/)** - teams, their members and external links, at organization level
 - **[Organization APIs](https://developer.atlassian.com/cloud/admin/organization/rest/)** - directories, users, groups, domains, policies and SCIM provisioning, above the site
+- **[Jira Data Center API](https://developer.atlassian.com/server/jira/platform/rest/)** - the self-hosted platform, Agile included
 
 > **6.0 is a rewrite, not a refresh.** `npm install jira.js` now installs 6.x. Read [MIGRATION.md](./MIGRATION.md) before upgrading — it says plainly who should stay on `jira.js@5`, which is supported until the end of 2026.
 
@@ -51,6 +52,7 @@ Built for Jira integrations, automation, webhook handlers, CI/CD pipelines and b
     - [Email and API Token](#email-and-api-token)
     - [Bearer Token](#bearer-token)
     - [OAuth 2.0](#oauth-20)
+    - [Jira Data Center](#jira-data-center)
   - [Error Handling](#error-handling)
   - [Response Validation](#response-validation)
   - [API Structure](#api-structure)
@@ -138,9 +140,10 @@ The documentation includes:
 - **Assets API**: objects, schemas, types and AQL — `createAssetsClient`
 - **Teams API**: teams, their members and external links, at organization level — `createTeamsClient`
 - **Organization administration**: directories, users, groups, domains, policies and SCIM provisioning above the site — `createAdminClient`, `createUserManagementClient`, `createUserProvisioningClient`
+- **Jira Data Center API**: the self-hosted platform with Agile in the same client — `createServerClient`
 - **Webhook types**: the events, payloads and headers Jira posts to *you* — `jira.js/webhooks`, types only, no client
 
-There is one platform surface, generated from Jira's v3 specification. `Version2Client` and `Version3Client` are gone — the difference between them was never the endpoints, it was rich text. Rich-text fields still accept a wiki-markup **string**: that write is routed through Jira's v2 endpoint, which parses the markup server-side, and the result is read back so what you get is a real [Atlassian Document Format](https://developer.atlassian.com/cloud/jira/platform/apis/document/structure/) document.
+There is one Cloud platform surface, generated from Jira's v3 specification. `Version2Client` and `Version3Client` are gone — the difference between them was never the endpoints, it was rich text. Rich-text fields still accept a wiki-markup **string**: that write is routed through Jira's v2 endpoint, which parses the markup server-side, and the result is read back so what you get is a real [Atlassian Document Format](https://developer.atlassian.com/cloud/jira/platform/apis/document/structure/) document.
 
 ```typescript
 // Wiki markup — still works, still formats
@@ -150,7 +153,7 @@ await jira.issueComments.addComment({
 });
 ```
 
-Reads always come back as a document, never as a string.
+Reads always come back as a document, never as a string. None of that applies to Data Center: it has no ADF, and `createServerClient` hands you wiki markup as a plain string on read just as it takes one on write — a comment's `body` is a `string`, not a document.
 
 ## Usage
 
@@ -207,6 +210,26 @@ const jira = createCloudClient({
 **Persisting the rotated refresh token is not optional** — Atlassian invalidates the previous one on every refresh.
 
 jira.js also exports stateless helpers for the authorization-code flow — `generateAuthorizationUrl`, `exchangeAuthorizationCode`, `refreshOAuth2Token`, `getAccessibleResources`, `parseCallbackUrl`. See the [step-by-step OAuth 2.0 guide](https://mrrefactoring.github.io/jira.js/guide/oauth2-authentication).
+
+#### Jira Data Center
+
+`createServerClient` takes a different set of strategies. Data Center has no API tokens, so the Cloud pair of `email` and `apiToken` does not apply — it compiles, and then answers `401`. Cloud OAuth 2.0 (3LO) does not apply either: it resolves a cloud id and routes through `api.atlassian.com`, so a client built with it never reaches the host you passed.
+
+```typescript
+// A personal access token — available since Jira 8.14, and the only way in on a default Jira 11 instance
+const jira = createServerClient({
+  host: 'https://jira.your-company.com',
+  auth: { type: 'bearer', token: 'YOUR_PERSONAL_ACCESS_TOKEN' },
+});
+
+// A local account — `username`, not `email`. Jira 11 disables basic authentication by default.
+const jiraBasic = createServerClient({
+  host: 'https://jira.your-company.com',
+  auth: { type: 'basic', username: 'jdoe', password: 'hunter2' },
+});
+```
+
+OAuth 2.0 against the instance's own authorization server is `{ type: 'oauth2Server', ... }`, with `generateServerAuthorizationUrl`, `exchangeServerAuthorizationCode` and `refreshServerOAuth2Token` beside it. See the [Data Center guide](https://mrrefactoring.github.io/jira.js/guide/data-center).
 
 > **JWT (Atlassian Connect) is not supported in 6.0** and has no replacement. If you authenticate Connect installations with a shared secret, stay on `jira.js@5` — see [MIGRATION.md](./MIGRATION.md). Atlassian Connect itself is reaching [end of support in Q4 2026](https://www.atlassian.com/blog/development/announcing-connect-end-of-support-timeline-and-next-steps).
 
@@ -445,7 +468,7 @@ Every function takes the client as its first argument — the same client the fa
 
 | Import | Contents |
 | --- | --- |
-| `jira.js` | The eight factories, error types and predicates, OAuth helpers |
+| `jira.js` | The nine factories, error types and predicates, OAuth helpers |
 | `jira.js/core` | `createClient`, transport, errors, OAuth, multipart helpers |
 | `jira.js/cloud` | Platform API functions and response types |
 | `jira.js/cloud/models` | Platform API response types on their own |
@@ -456,6 +479,9 @@ Every function takes the client as its first argument — the same client the fa
 | `jira.js/serviceDesk` | Service Management functions and response types |
 | `jira.js/serviceDesk/models` | Service Management response types on their own |
 | `jira.js/serviceDesk/parameters` | Service Management request parameter types |
+| `jira.js/server` | Data Center functions and response types |
+| `jira.js/server/models` | Data Center response types on their own |
+| `jira.js/server/parameters` | Data Center request parameter types |
 | `jira.js/assets` | Assets Cloud functions and response types |
 | `jira.js/assets/models` | Assets Cloud response types on their own |
 | `jira.js/assets/parameters` | Assets Cloud request parameter types |
@@ -481,7 +507,7 @@ import type { Issue } from 'jira.js/cloud';
 import type { GetIssue } from 'jira.js/cloud/parameters';
 ```
 
-The eight surfaces are not re-exported from the root — they collide on a handful of names, so import from the one you mean.
+The nine surfaces are not re-exported from the root — they collide on a handful of names, so import from the one you mean.
 
 > Deep imports need an `exports`-aware resolver: `moduleResolution: "bundler"`, `"node16"` or `"nodenext"`. The legacy `"node"` resolution cannot see them, and cannot load an ESM-only package either.
 
@@ -505,7 +531,7 @@ Jira.js is perfect for:
 A: Yes, since 6.3. `createAssetsClient` covers the [Assets Cloud REST API](https://developer.atlassian.com/cloud/assets/rest/) — it takes a `workspaceId` and its own configuration, because Assets answers on `api.atlassian.com` rather than on your site. See the [Assets guide](https://mrrefactoring.github.io/jira.js/guide/assets).
 
 **Q: Does this work with Jira Server/Data Center?**  
-A: No, Jira.js is designed specifically for Jira Cloud. For on-premise Jira, consider using the REST API directly.
+A: Yes, since 6.3. `createServerClient` covers 444 operations of the self-hosted platform API, Agile included — it is a surface of its own rather than the Cloud client pointed at another host, because the two APIs differ in more than their address. See the [Data Center guide](https://mrrefactoring.github.io/jira.js/guide/data-center).
 
 **Q: Is TypeScript required?**  
 A: No, but TypeScript is fully supported with comprehensive type definitions. You can use Jira.js with plain JavaScript too.

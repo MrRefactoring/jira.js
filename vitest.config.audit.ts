@@ -17,6 +17,7 @@ const repoRoot = import.meta.dirname;
 export default defineConfig(({ mode }) => ({
   test: {
     include: ['tests/live/**/*.test.ts'],
+    exclude: ['tests/live/server/**'],
     environment: 'node',
     reporters: ['default'],
     env: {
