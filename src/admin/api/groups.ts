@@ -292,6 +292,7 @@ export async function getGroups(
       searchTerm: parameters.searchTerm,
       includeResources: parameters.counts?.includeResources,
       includeUsers: parameters.counts?.includeUsers,
+      sortBy: parameters.sortBy && JSON.stringify(parameters.sortBy),
       roleIds: parameters.roleIds,
     },
     schema: MultiDirectoryGroupPageSchema,
