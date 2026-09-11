@@ -143,8 +143,6 @@ describe('Jira Cloud — filters (live)', () => {
     expect(isNotFoundError(error)).toBe(true);
   });
   it('gives a filter its own columns, then takes them away again', async () => {
-    // A filter without columns of its own has no layout at all rather than an empty one, and Jira says so with a 404.
-    // Reading that as "the filter is gone" is the mistake this pins.
     const missing = await client.filters.getColumns({ id: filterId }).catch((e: unknown) => e);
 
     expect(isNotFoundError(missing)).toBe(true);

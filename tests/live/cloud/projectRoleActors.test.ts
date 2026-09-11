@@ -78,7 +78,6 @@ describe('Jira Cloud — projectRoleActors (live, read-only)', () => {
       .addActorUsers({ projectIdOrKey: TEST_PROJECT_KEY, id: roleId })
       .catch((e: unknown) => e);
 
-    // A Free plan refuses every role actor write, so the refusal here would say nothing about the empty payload.
     ctx.skip(isNotEntitled(error), 'the site is on a Free plan, which refuses role actor writes whatever they say');
 
     expect(error).toBeInstanceOf(Error);

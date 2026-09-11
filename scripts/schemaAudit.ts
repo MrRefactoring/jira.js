@@ -110,7 +110,6 @@ if (existsSync(findings)) {
   for (const line of lines ? lines.split('\n') : []) {
     const entry = JSON.parse(line) as SchemaDrift;
 
-    // Entries written before this script grew a second finding kind carry no `kind` and are always key drift.
     if (entry.kind === 'value') {
       const field = normalize(entry.path);
 
