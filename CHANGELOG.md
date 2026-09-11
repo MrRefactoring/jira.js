@@ -43,9 +43,24 @@ Three long-standing requests, all of them the same shape: the client had no seam
 
 * **Two authentication strategies for a self-hosted instance.** `basic` accepts a local `username` and `password` beside the Cloud pair of `email` and `apiToken`, and `oauth2Server` is OAuth 2.0 against an instance's own authorization server — `generateServerAuthorizationUrl`, `exchangeServerAuthorizationCode`, `refreshServerOAuth2Token` and `createServerOAuth2Manager`, all of them addressed to the site's own domain with no cloud id and no gateway involved.
 
-  They arrive with the transport rather than with the surface they are for, because `src/core` is generated whole and `createClient` branches on the strategy — separating them would mean hand-writing a core the generator does not produce. No surface in this release answers to them yet.
+  They arrive with the transport rather than with the surface they are for, because `src/core` is generated whole and `createClient` branches on the strategy — separating them would mean hand-writing a core the generator does not produce. `createServerClient`, below, is the surface they are for.
 
 ### Features
+
+* **`createServerClient` and `jira.js/server`.** Four hundred and forty-four operations across sixty-one modules, generated from the Jira Data Center 11.3 LTS specification and usable against **Jira Data Center 10.0 and later**. Data Center publishes its platform, Agile and session endpoints as one document, so unlike Cloud there is no separate Agile factory — boards and sprints sit in the same client as issues.
+
+  ```ts
+  import { createServerClient } from 'jira.js';
+
+  const jira = createServerClient({
+    host: 'https://jira.your-company.com',
+    auth: { type: 'bearer', token: personalAccessToken },
+  });
+
+  await jira.issues.getIssue({ issueIdOrKey: 'PROJ-1' });
+  ```
+
+  The nine operations that arrived after 10.0 say so in their own description, naming the release each can be relied on from. Jira 9.x is not supported: Atlassian never published an OpenAPI document for it, and the line reached end of life on 26 June 2026.
 
 * **Three surfaces above the site: organization, user management and SCIM provisioning.** `createAdminClient`, `createUserManagementClient` and `createUserProvisioningClient` — 47, 10 and 24 operations. Closes [#317](https://github.com/MrRefactoring/jira.js/issues/317), [#316](https://github.com/MrRefactoring/jira.js/issues/316) and [#315](https://github.com/MrRefactoring/jira.js/issues/315).
 

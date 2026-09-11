@@ -58,6 +58,7 @@ export {
   type RequestOptions,
   type Auth,
   type AuthBasic,
+  type AuthBasicPassword,
   type AuthBearer,
   type AuthOAuth2,
   type AuthOAuth2Server,

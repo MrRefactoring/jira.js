@@ -1,7 +1,7 @@
 # Getting Started
 
-`jira.js` is a TypeScript client for the Atlassian Jira Cloud REST APIs, for [Node.js](https://nodejs.org/)
-and browsers. It covers six surfaces:
+`jira.js` is a TypeScript client for the Atlassian Jira Cloud and Data Center REST APIs, for [Node.js](https://nodejs.org/)
+and browsers. It covers seven surfaces:
 
 - **[Jira Cloud platform](https://developer.atlassian.com/cloud/jira/platform/rest/)** — issues, projects, fields, workflows
 - **[Jira Agile](https://developer.atlassian.com/cloud/jira/software/rest/intro/)** — boards, sprints, backlog
@@ -9,6 +9,7 @@ and browsers. It covers six surfaces:
 - **[Assets](https://developer.atlassian.com/cloud/assets/rest/)** — objects, schemas and types, AQL
 - **[Teams](https://developer.atlassian.com/platform/teams/rest/v1/)** — teams, their members and external links
 - **[Organization APIs](https://developer.atlassian.com/cloud/admin/organization/rest/)** — directories, users, groups, domains, policies, SCIM
+- **[Jira Data Center](https://developer.atlassian.com/server/jira/platform/rest/)** — the self-hosted platform, Agile included
 
 ## Install
 
@@ -58,7 +59,9 @@ its own reason. Assets does not answer on your site's host at all and needs a `w
 [Assets](./assets). Teams answers on the site host but takes only an API token or a bearer token, never
 OAuth 2.0 — see [Teams](./teams). The three organization APIs sit above the site entirely, answer on
 `api.atlassian.com` and take an organization key — see
-[Organization Administration](./administration).
+[Organization Administration](./administration). Data Center is a surface of its own: it speaks
+`/rest/api/2` against your own instance, takes that instance's credentials, and is built with
+`createServerClient` — see [Jira Data Center](./data-center).
 
 ## Make your first request
 
@@ -104,6 +107,7 @@ Reads always come back as a document, never as a string.
 - [Assets](./assets) — the configuration management database, and the client it is built with
 - [Teams](./teams) — teams across the organization, and the `orgId` every call is addressed to
 - [Organization Administration](./administration) — directories, users, groups and SCIM, above the site
+- [Jira Data Center](./data-center) — the self-hosted surface, its authentication and how it differs from Cloud
 - [Error Handling](./error-handling) — typed errors and their predicates
 - [Response Validation](./response-validation) — what happens when Jira sends something unexpected
 - [Tree-Shaking](./tree-shaking) — keeping the bundle small

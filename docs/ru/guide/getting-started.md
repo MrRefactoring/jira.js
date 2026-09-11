@@ -1,7 +1,7 @@
 # Быстрый старт
 
-`jira.js` — TypeScript-клиент к REST API Atlassian Jira Cloud для [Node.js](https://nodejs.org/) и
-браузеров. Покрывает шесть поверхностей:
+`jira.js` — TypeScript-клиент к REST API Atlassian Jira Cloud и Data Center для [Node.js](https://nodejs.org/) и
+браузеров. Покрывает семь поверхностей:
 
 - **[Платформа Jira Cloud](https://developer.atlassian.com/cloud/jira/platform/rest/)** — задачи, проекты, поля, воркфлоу
 - **[Jira Agile](https://developer.atlassian.com/cloud/jira/software/rest/intro/)** — доски, спринты, бэклог
@@ -9,6 +9,7 @@
 - **[Assets](https://developer.atlassian.com/cloud/assets/rest/)** — объекты, схемы и типы, AQL
 - **[Teams](https://developer.atlassian.com/platform/teams/rest/v1/)** — команды, их участники и внешние связи
 - **[API организации](https://developer.atlassian.com/cloud/admin/organization/rest/)** — каталоги, пользователи, группы, домены, политики, SCIM
+- **[Jira Data Center](https://developer.atlassian.com/server/jira/platform/rest/)** — самостоятельно размещённая платформа, вместе с Agile
 
 ## Установка
 
@@ -58,7 +59,9 @@ const agile = createAgileClient(client);
 [Assets](./assets). Teams отвечает на хосте сайта, но принимает только API-токен или bearer-токен и
 никогда OAuth 2.0 — см. [Teams](./teams). Три API организации стоят над сайтом целиком, отвечают на
 `api.atlassian.com` и принимают ключ организации — см.
-[Администрирование организации](./administration).
+[Администрирование организации](./administration). Data Center — отдельная поверхность: она говорит
+`/rest/api/2` с вашим собственным инстансом, принимает его учётные данные и собирается через
+`createServerClient` — см. [Jira Data Center](./data-center).
 
 ## Первый запрос
 
@@ -104,6 +107,7 @@ await jira.issueComments.addComment({
 - [Assets](./assets) — база конфигурационных единиц и клиент, которым с ней работают
 - [Teams](./teams) — команды на уровне организации и `orgId`, которому адресован каждый вызов
 - [Администрирование организации](./administration) — каталоги, пользователи, группы и SCIM, над сайтом
+- [Jira Data Center](./data-center) — самостоятельно размещённая поверхность, её аутентификация и отличия от Cloud
 - [Обработка ошибок](./error-handling) — типизированные ошибки и предикаты
 - [Валидация ответов](./response-validation) — что происходит, когда Jira присылает неожиданное
 - [Tree-Shaking](./tree-shaking) — как не раздувать бандл
