@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { openEnum } from '#/core';
 import { RoleIdSchema } from '../models';
 
 export const GetGroupsSchema = z.object({
@@ -45,6 +46,20 @@ export const GetGroupsSchema = z.object({
       /** Whether to include the number of users associated with the group. */
       includeUsers: z.boolean().optional(),
     })
+    .optional(),
+  /**
+   * The field and direction to sort the results by. Currently, only a single field can be sorted by. If `null`, the
+   * default sorting will be used.
+   */
+  sortBy: z
+    .array(
+      z.object({
+        /** The name of the field to sort the results by. */
+        field: openEnum(['name']),
+        /** The direction to sort the results by. */
+        direction: openEnum(['asc', 'desc']),
+      }),
+    )
     .optional(),
   /**
    * A list of role IDs. The Atlassian canonical roles are used to determine the permissions of the user against
