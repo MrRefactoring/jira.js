@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { openEnum } from '#/core';
 import { ClaimStatusSchema } from '../models';
 import { StatusSchema } from '../models';
 import { AccountStatusSchema } from '../models';
@@ -103,6 +104,20 @@ export const GetDirectoryUsersSchema = z.object({
   emailDomains: z.array(z.string()).optional(),
   /** A search term to search the `nickname` and `email` fields. */
   searchTerm: z.string().optional(),
+  /**
+   * The field and direction to sort the results by. Currently, only a single field can be sorted by. If `null`, the
+   * default sorting will be used.
+   */
+  sortBy: z
+    .array(
+      z.object({
+        /** The name of the field to sort the results by. */
+        field: openEnum(['nick_name']),
+        /** The direction to sort the results by. */
+        direction: openEnum(['asc', 'desc']),
+      }),
+    )
+    .optional(),
 });
 
 export type GetDirectoryUsers = z.input<typeof GetDirectoryUsersSchema>;
