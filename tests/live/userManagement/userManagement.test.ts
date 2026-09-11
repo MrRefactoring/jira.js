@@ -63,8 +63,6 @@ describe.skipIf(!hasAdminEnv())('User management (live)', () => {
   });
 
   it('has no managed account to act on', async () => {
-    // The other half of why this suite reads rather than writes: the organization manages nobody. Pinned so that the
-    // day a domain is claimed, this test fails and says the suite can be widened.
     const orgId = await getOrgId();
     const { data } = await admin.users.getUsers({ orgId });
 

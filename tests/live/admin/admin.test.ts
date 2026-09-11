@@ -39,9 +39,6 @@ describe.skipIf(!hasAdminEnv())('Organization administration (live)', () => {
   });
 
   it('lists no organizations at all, because the key is scoped to one', async () => {
-    // Not a defect and not an empty tenant: a key created with scopes belongs to a single organization, and the
-    // listing endpoint answers 200 with nothing while the direct read above works. Pinned so that a future empty
-    // result is read as this rather than as a broken credential.
     const { data } = await admin.orgs.getOrgs();
 
     expect(data).toEqual([]);
@@ -88,7 +85,6 @@ describe.skipIf(!hasAdminEnv())('Organization administration (live)', () => {
   });
 
   it('answers for the audit trail, empty or not', async () => {
-    // A quiet organization has no events, so the assertion is on the envelope rather than on its contents.
     const events = await admin.events.getEvents({ orgId });
 
     expect(Array.isArray(events.data)).toBe(true);
@@ -106,14 +102,11 @@ describe.skipIf(!hasAdminEnv())('Organization administration (live)', () => {
   });
 
   it('refuses what the key is not entitled to, as a typed error', async () => {
-    // Last active dates are a paid feature, and the read-scoped key is refused. What matters here is that the refusal
-    // arrives as `ForbiddenError` rather than as a resolved empty answer — the same failure #418 was about.
     const { data } = await admin.users.searchDirectoryUsers({ orgId, directoryId, limit: 1 });
     const accountId = data![0]!.accountId!;
 
     await admin.users.getUserLastActiveDates({ orgId, accountId }).then(
       () => {
-        // Entitled after all — the endpoint works and there is nothing to pin.
       },
       (error: unknown) => {
         expect(isForbiddenError(error)).toBe(true);
