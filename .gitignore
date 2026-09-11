@@ -4,6 +4,9 @@ node_modules/
 dist/
 coverage/
 
+docker/jira-dc/timebomb-license.txt
+docker/jsm-dc/timebomb-license.txt
+
 # VitePress docs: generated API + build artifacts (authored docs/**/*.md ARE committed)
 docs/.vitepress/cache/
 docs/.vitepress/.temp/

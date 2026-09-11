@@ -1,7 +1,7 @@
 # Быстрый старт
 
 `jira.js` — TypeScript-клиент к REST API Atlassian Jira Cloud для [Node.js](https://nodejs.org/) и
-браузеров. Покрывает шесть поверхностей:
+браузеров. Покрывает семь поверхностей:
 
 - **[Платформа Jira Cloud](https://developer.atlassian.com/cloud/jira/platform/rest/)** — задачи, проекты, поля, воркфлоу
 - **[Jira Agile](https://developer.atlassian.com/cloud/jira/software/rest/intro/)** — доски, спринты, бэклог
@@ -9,6 +9,7 @@
 - **[Assets](https://developer.atlassian.com/cloud/assets/rest/)** — объекты, схемы и типы, AQL
 - **[Teams](https://developer.atlassian.com/platform/teams/rest/v1/)** — команды, их участники и внешние связи
 - **[API организации](https://developer.atlassian.com/cloud/admin/organization/rest/)** — каталоги, пользователи, группы, домены, политики, SCIM
+- **[Jira Data Center](https://developer.atlassian.com/server/jira/platform/rest/)** — самостоятельно размещённая платформа, вместе с Agile
 
 ## Установка
 
