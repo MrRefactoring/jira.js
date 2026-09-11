@@ -57,8 +57,6 @@ describe('the site has three names', () => {
     expect((calls[0].init.headers as Record<string, string>)['X-Trace']).toBe('yes');
   });
 
-  // What happens once it is aborted belongs to `createClient` and is tested there; the job here is to thread the
-  // option rather than drop it.
   it('hands the abort signal to the request', async () => {
     const calls = mockFetch({ data: { tenantContexts: [CONTEXT] } });
     const controller = new AbortController();
