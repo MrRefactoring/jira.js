@@ -11,9 +11,12 @@ import { getClient } from '../setup/client';
  * `/assets/workspace` began answering on this tenant while `/insight/workspace` did not.
  *
  * That divergence is a licensing fact, not a retirement: the older path refuses with the same 403 as
- * `getServiceDesks`, `getCustomerRequests` and `getOrganizations`, all four carrying a byte-identical copy of Jira's
- * generic HTML error page. Atlassian has announced no removal, and both operations remain in the specification. So
- * each path is pinned on its own terms — answer or typed refusal — rather than against the other.
+ * `getServiceDesks`, `getCustomerRequests` and `getOrganizations`, all four carrying Jira's generic HTML error page.
+ * Measured against the site, the page `/insight/workspace` returns and the page `/servicedesk` returns agree line
+ * for line, all eighty of them, and nothing in either reports a removal — no 404, no 410, no sentence saying the
+ * path is gone. Both operations remain in the specification, where Atlassian leaves `deprecated` at
+ * `false` and writes the deprecation in prose. So each path is pinned on its own terms — answer or typed refusal —
+ * rather than against the other.
  *
  * What the refusal is worth asserting for is the body: an HTML page is the one response on any of the three surfaces
  * that the JSON parser has no way to read, and it still has to arrive as a typed error with its status intact.
