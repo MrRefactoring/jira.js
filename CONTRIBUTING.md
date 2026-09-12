@@ -12,6 +12,10 @@ regeneration:
 src/cloud/**
 src/agile/**
 src/serviceDesk/**
+src/server/**
+src/serviceDeskServer/**
+src/assets/**
+src/assetsServer/**
 src/core/**
 ```
 
@@ -54,7 +58,8 @@ pnpm check:browser    # static browser-safety scan of dist/
 ```
 
 The live suites talk to a real Jira site and need credentials in a repo-root `.env` (`JIRA_BASE_URL`, `JIRA_EMAIL`,
-`JIRA_API_TOKEN`). They are not required for a pull request; CI runs them nightly.
+`JIRA_API_TOKEN`). They are not required for a pull request; CI runs them nightly. The Data Center suites bring their
+own instance up in Docker — `pnpm jira-dc:up`, then `pnpm coverage:server`.
 
 ## Reporting a bug
 

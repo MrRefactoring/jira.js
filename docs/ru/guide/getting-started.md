@@ -1,15 +1,19 @@
 # Быстрый старт
 
 `jira.js` — TypeScript-клиент к REST API Atlassian Jira Cloud и Data Center для [Node.js](https://nodejs.org/) и
-браузеров. Покрывает семь поверхностей:
+браузеров. Покрывает восемь поверхностей:
 
 - **[Платформа Jira Cloud](https://developer.atlassian.com/cloud/jira/platform/rest/)** — задачи, проекты, поля, воркфлоу
 - **[Jira Agile](https://developer.atlassian.com/cloud/jira/software/rest/intro/)** — доски, спринты, бэклог
 - **[Jira Service Management](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro/)** — обращения, очереди, организации
-- **[Assets](https://developer.atlassian.com/cloud/assets/rest/)** — объекты, схемы и типы, AQL
+- **[Assets](https://developer.atlassian.com/cloud/assets/rest/)** — объекты, схемы и типы, AQL, в облаке и в Data Center
 - **[Teams](https://developer.atlassian.com/platform/teams/rest/v1/)** — команды, их участники и внешние связи
 - **[API организации](https://developer.atlassian.com/cloud/admin/organization/rest/)** — каталоги, пользователи, группы, домены, политики, SCIM
-- **[Jira Data Center](https://developer.atlassian.com/server/jira/platform/rest/)** — самостоятельно размещённая платформа, вместе с Agile
+- **[Jira Data Center](https://developer.atlassian.com/server/jira/platform/rest/)** — self-hosted API, платформа и agile в одном клиенте
+- **[Jira Service Management Data Center](https://developer.atlassian.com/server/jira-servicedesk/rest/)** — самостоятельно размещённые запросы, очереди, типы запросов, организации
+
+Облачные поверхности и самостоятельно размещённые — разные: Data Center это отдельная поверхность, а не
+облачный клиент, направленный на другой хост; см. [Jira Data Center](./data-center).
 
 ## Установка
 

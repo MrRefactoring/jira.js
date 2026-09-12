@@ -30,8 +30,8 @@ import { createCloudClient } from 'jira.js';
 There is no CommonJS build. `require('jira.js')` does not work; from a CommonJS module, use a dynamic
 `await import('jira.js')`.
 
-The package also exposes surface-level subpaths — `jira.js/cloud`, `jira.js/agile`, `jira.js/serviceDesk`
-and `jira.js/core` — carrying the flat functions along with every parameter and response type. See
+The package also exposes surface-level subpaths — `jira.js/cloud`, `jira.js/agile`, `jira.js/serviceDesk`,
+`jira.js/server` and `jira.js/core` — carrying the flat functions along with every parameter and response type. See
 [Tree-Shaking](./tree-shaking).
 
 ## Requirements
