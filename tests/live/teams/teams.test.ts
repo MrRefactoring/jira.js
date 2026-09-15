@@ -1,6 +1,7 @@
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 import { isApiError, type ApiError } from '#/core';
 import type { TeamsClient } from '#/teams/createTeamsClient';
+import type { Team } from '#/teams/models/team';
 import { getOrgId, getSiteId, getTeamsClient } from '../setup/client';
 import { RESOURCE_MARKER, testName } from '../helpers/naming';
 
@@ -18,6 +19,20 @@ describe('Teams (live)', () => {
   let siteId: string;
 
   const created: string[] = [];
+
+  async function allTeams(): Promise<Team[]> {
+    const entities: Team[] = [];
+    let cursor: string | null | undefined;
+
+    do {
+      const page = await client.teams.queryTeams({ orgId, siteId, size: 300, cursor: cursor ?? undefined });
+
+      entities.push(...page.entities);
+      cursor = page.cursor;
+    } while (cursor);
+
+    return entities;
+  }
 
   async function createTeam(label: string) {
     const team = await client.teams.createTeam({
@@ -40,7 +55,7 @@ describe('Teams (live)', () => {
   });
 
   afterAll(async () => {
-    const { entities } = await client.teams.queryTeams({ orgId, siteId, size: 300 }).catch(() => ({ entities: [] }));
+    const entities = await allTeams().catch(() => [] as Team[]);
     const debris = entities
       .filter(team => team.displayName.startsWith(`[${RESOURCE_MARKER}:`))
       .map(team => team.teamId);
@@ -73,10 +88,10 @@ describe('Teams (live)', () => {
   it('lists the organization teams, cursor and all', async () => {
     const { teamId } = await createTeam('list');
 
-    const page = await client.teams.queryTeams({ orgId, siteId, size: 300 });
+    const entities = await allTeams();
 
-    expect(Array.isArray(page.entities)).toBe(true);
-    expect(page.entities.map(team => team.teamId)).toContain(teamId);
+    expect(Array.isArray(entities)).toBe(true);
+    expect(entities.map(team => team.teamId)).toContain(teamId);
   });
 
   it('renames one, and the change survives a re-read', async () => {
