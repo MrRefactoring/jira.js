@@ -1,6 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-import { DashboardUserSchema } from './dashboardUser';
+import { IssueTypeDetailsSchema } from './issueTypeDetails';
+import { UserSchema } from './user';
 
 /** Details about a workflow scheme. */
 export const WorkflowSchemeSchema = apiObject({
@@ -20,15 +21,15 @@ export const WorkflowSchemeSchema = apiObject({
    * The issue type to workflow mappings, where each mapping is an issue type ID and workflow name pair. Note that an
    * issue type can only be mapped to one workflow in a workflow scheme.
    */
-  issueTypeMappings: z.record(z.string(), z.any()).optional(),
+  issueTypeMappings: z.record(z.string(), z.string()).optional(),
   /** The issue types available in Jira. */
-  issueTypes: z.record(z.string(), z.any()).optional(),
+  issueTypes: z.record(z.string(), IssueTypeDetailsSchema).optional(),
   /**
    * The date-time that the draft workflow scheme was last modified. A modification is a change to the issue
    * type-project mappings only. This property does not apply to non-draft workflows.
    */
   lastModified: z.string().optional(),
-  lastModifiedUser: DashboardUserSchema.optional(),
+  lastModifiedUser: UserSchema.optional(),
   /**
    * The name of the workflow scheme. The name must be unique. The maximum length is 255 characters. Required when
    * creating a workflow scheme.
@@ -44,7 +45,7 @@ export const WorkflowSchemeSchema = apiObject({
    * where each mapping is an issue type ID and workflow name pair. Note that an issue type can only be mapped to one
    * workflow in a workflow scheme.
    */
-  originalIssueTypeMappings: z.record(z.string(), z.any()).optional(),
+  originalIssueTypeMappings: z.record(z.string(), z.string()).optional(),
   self: z.url().optional(),
   /**
    * Whether to create or update a draft workflow scheme when updating an active workflow scheme. An active workflow

@@ -16,7 +16,7 @@ export const SubmitBuildsSchema = z.object({
    * Properties are supplied as key/value pairs, a maximum of 5 properties can be supplied, and keys must not contain
    * ':' or start with '_'.
    */
-  properties: z.record(z.string(), z.any()).optional(),
+  properties: z.record(z.string(), z.string().max(255, 'properties must be at most 255 characters')).optional(),
   /**
    * A list of builds to submit to Jira.
    *

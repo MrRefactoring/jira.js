@@ -4,6 +4,7 @@ import type { CloudClient } from '#/cloud/createCloudClient';
 import { getCloudClient } from '../setup/client';
 import { ResourceTracker } from '../setup/resources';
 import { createTestIssue, TEST_PROJECT_KEY, type TestIssue } from '../setup/fixtures';
+import { waitFor } from '../helpers/poll';
 
 /**
  * Live suite for the `issueProperties` API (`getIssuePropertyKeys`, `getIssueProperty`, `setIssueProperty`,
@@ -109,6 +110,28 @@ describe('Jira Cloud — issueProperties (live, round trip)', () => {
       .catch(() => undefined);
 
     if (applied) expect(applied.value).toEqual({ bulk: true });
+  });
+
+  it('writes real JSON values through both property-list bulk writes', async () => {
+    const listKey = `${PROPERTY_KEY}.list`;
+    const byIssueKey = `${PROPERTY_KEY}.byissue`;
+
+    await client.issueProperties.bulkSetIssuesPropertiesList({
+      entitiesIds: [Number(issue.id)],
+      properties: { [listKey]: VALUE },
+    });
+    await client.issueProperties.bulkSetIssuePropertiesByIssue({
+      issues: [{ issueID: Number(issue.id), properties: { [byIssueKey]: 'on' } }],
+    });
+
+    const read = (propertyKey: string) =>
+      client.issueProperties.getIssueProperty({ issueIdOrKey: issue.key, propertyKey }).catch(() => undefined);
+
+    const list = await waitFor(() => read(listKey), property => property !== undefined);
+    const byIssue = await waitFor(() => read(byIssueKey), property => property !== undefined);
+
+    expect(list?.value).toEqual(VALUE);
+    expect(byIssue?.value).toBe('on');
   });
 
   it('surfaces a property on a missing issue as a typed NotFoundError', async () => {

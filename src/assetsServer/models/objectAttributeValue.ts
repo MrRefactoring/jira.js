@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-import { AssetObjectSchema, type AssetObject } from './assetObject';
+import { AssetObjectSchema, type AssetObject, type AssetObjectInput } from './assetObject';
 import { UserSchema, type User } from './user';
 import { GroupSchema, type Group } from './group';
 import { ConfluencePageSchema, type ConfluencePage } from './confluencePage';
@@ -21,9 +21,25 @@ export interface ObjectAttributeValue {
   searchValue?: string;
   referencedType?: boolean;
   displayValue?: string;
+  [key: string]: unknown;
 }
 
-export const ObjectAttributeValueSchema: z.ZodType<ObjectAttributeValue> = apiObject({
+export interface ObjectAttributeValueInput {
+  referencedObject?: AssetObjectInput;
+  user?: z.input<typeof UserSchema>;
+  group?: z.input<typeof GroupSchema>;
+  confluencePage?: z.input<typeof ConfluencePageSchema>;
+  version?: z.input<typeof VersionSchema>;
+  project?: z.input<typeof ProjectSchema>;
+  status?: z.input<typeof StatusTypeSchema>;
+  value?: string;
+  additionalValue?: string;
+  searchValue?: string;
+  referencedType?: boolean;
+  displayValue?: string;
+}
+
+export const ObjectAttributeValueSchema: z.ZodType<ObjectAttributeValue, ObjectAttributeValueInput> = apiObject({
   referencedObject: z.lazy(() => AssetObjectSchema).optional(),
   user: UserSchema.optional(),
   group: GroupSchema.optional(),

@@ -1,21 +1,13 @@
-import { z } from 'zod';
+import { SearchStatusesSchema, type SearchStatuses } from './searchStatuses';
 
-export const SearchSchema = z.object({
-  /** The project the status is part of or null for global statuses. */
-  projectId: z.string().optional(),
-  /** The index of the first item to return in a page of results (page offset). */
-  startAt: z.number().optional(),
-  /** The maximum number of items to return per page. */
-  maxResults: z.number().optional(),
-  /** Term to match status names against or null to search for all statuses in the search scope. */
-  searchString: z.string().max(255, 'searchString must be at most 255 characters').optional(),
-  /** Category of the status to filter by. The supported values are: `TODO`, `IN_PROGRESS`, and `DONE`. */
-  statusCategory: z.string().optional(),
-  /**
-   * Whether to include global statuses (scope = null, not tied to any project) in the response. Defaults to false. Only
-   * relevant for project scoped queries.
-   */
-  includeGlobalStatuses: z.boolean().optional(),
-});
+/**
+ * @deprecated Renamed to `SearchStatusesSchema`, which describes the same shape. This alias is removed in the next
+ *   major version.
+ */
+export const SearchSchema = SearchStatusesSchema;
 
-export type Search = z.input<typeof SearchSchema>;
+/**
+ * @deprecated Renamed to `SearchStatuses`, which describes the same shape. This alias is removed in the next major
+ *   version.
+ */
+export type Search = SearchStatuses;

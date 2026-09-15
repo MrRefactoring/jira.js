@@ -17,8 +17,6 @@ export const UpdateProjectSchema = z.object(UpdateProjectDetailsSchema.shape).ex
    */
   expand: z
     .union([
-      z.string(),
-      z.array(z.string()),
       openEnum(['description', 'issueTypes', 'lead', 'projectKeys']),
       z.array(openEnum(['description', 'issueTypes', 'lead', 'projectKeys'])),
     ])

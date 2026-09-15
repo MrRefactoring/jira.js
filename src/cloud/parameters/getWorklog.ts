@@ -12,9 +12,7 @@ export const GetWorklogSchema = z.object({
    *
    * `properties`, which returns worklog properties.
    */
-  expand: z
-    .union([z.string(), z.array(z.string()), openEnum(['properties']), z.array(openEnum(['properties']))])
-    .optional(),
+  expand: z.union([openEnum(['properties']), z.array(openEnum(['properties']))]).optional(),
 });
 
 export type GetWorklog = z.input<typeof GetWorklogSchema>;

@@ -20,7 +20,19 @@ export const SubmitFeatureFlagsSchema = apiObject({
    * The object (if present) will be keyed by Feature Flag ID and include any errors associated with that Feature Flag
    * that have prevented it being submitted.
    */
-  failedFeatureFlags: z.record(z.string(), z.any()).optional(),
+  failedFeatureFlags: z
+    .record(
+      z.string(),
+      z.array(
+        apiObject({
+          /** A human-readable message describing the error. */
+          message: z.string(),
+          /** An optional trace ID that can be used by Jira developers to locate the source of the error. */
+          errorTraceId: z.string().optional(),
+        }),
+      ),
+    )
+    .optional(),
   /**
    * Issue keys that are not known on this Jira instance (if any).
    *

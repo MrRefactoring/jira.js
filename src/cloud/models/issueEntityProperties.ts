@@ -9,7 +9,7 @@ export const IssueEntityPropertiesSchema = apiObject({
   /** A list of entity property IDs. */
   entitiesIds: z.array(z.number()).optional(),
   /** A list of entity property keys and values. */
-  properties: z.record(z.string(), z.any()).optional(),
+  properties: z.record(z.string(), z.unknown()).optional(),
 });
 
 export type IssueEntityProperties = z.infer<typeof IssueEntityPropertiesSchema>;

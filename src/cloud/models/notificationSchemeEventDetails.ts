@@ -5,7 +5,7 @@ import { NotificationSchemeNotificationDetailsSchema } from './notificationSchem
 
 /** Details of a notification scheme event. */
 export const NotificationSchemeEventDetailsSchema = apiObject({
-  event: NotificationSchemeEventTypeIdSchema.optional(),
+  event: NotificationSchemeEventTypeIdSchema,
   /** The list of notifications mapped to a specified event. */
   notifications: z.array(NotificationSchemeNotificationDetailsSchema),
 });

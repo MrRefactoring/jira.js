@@ -9,9 +9,7 @@ export const GetIdsOfWorklogsModifiedSinceSchema = z.object({
    * information about worklogs in the response. This parameter accepts `properties` that returns the properties of each
    * worklog.
    */
-  expand: z
-    .union([z.string(), z.array(z.string()), openEnum(['properties']), z.array(openEnum(['properties']))])
-    .optional(),
+  expand: z.union([openEnum(['properties']), z.array(openEnum(['properties']))]).optional(),
 });
 
 export type GetIdsOfWorklogsModifiedSince = z.input<typeof GetIdsOfWorklogsModifiedSinceSchema>;

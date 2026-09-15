@@ -11,9 +11,7 @@ export const GetCommentSchema = z.object({
    * information about comments in the response. This parameter accepts `renderedBody`, which returns the comment body
    * rendered in HTML.
    */
-  expand: z
-    .union([z.string(), z.array(z.string()), openEnum(['renderedBody']), z.array(openEnum(['renderedBody']))])
-    .optional(),
+  expand: z.union([openEnum(['renderedBody']), z.array(openEnum(['renderedBody']))]).optional(),
 });
 
 export type GetComment = z.input<typeof GetCommentSchema>;

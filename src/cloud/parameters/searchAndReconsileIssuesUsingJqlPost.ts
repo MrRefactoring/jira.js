@@ -1,6 +1,13 @@
-import { z } from 'zod';
-import { SearchAndReconcileRequestSchema } from '../models';
+import { SearchIssuesPostSchema, type SearchIssuesPost } from './searchIssuesPost';
 
-export const SearchAndReconsileIssuesUsingJqlPostSchema = z.object(SearchAndReconcileRequestSchema.shape);
+/**
+ * @deprecated Renamed to `SearchIssuesPostSchema`, which describes the same shape. This alias is removed in the next
+ *   major version.
+ */
+export const SearchAndReconsileIssuesUsingJqlPostSchema = SearchIssuesPostSchema;
 
-export type SearchAndReconsileIssuesUsingJqlPost = z.input<typeof SearchAndReconsileIssuesUsingJqlPostSchema>;
+/**
+ * @deprecated Renamed to `SearchIssuesPost`, which describes the same shape. This alias is removed in the next major
+ *   version.
+ */
+export type SearchAndReconsileIssuesUsingJqlPost = SearchIssuesPost;

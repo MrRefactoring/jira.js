@@ -20,7 +20,7 @@ export const FieldLayoutSchemePayloadSchema = apiObject({
    * an explicit mapping users can create (or re-use existing) configurations for other issue types and map them to this
    * scheme
    */
-  explicitMappings: z.record(z.string(), z.any()).optional(),
+  explicitMappings: z.record(z.string(), ProjectCreateResourceIdentifierSchema).optional(),
   /** The name of the field layout scheme */
   name: z.string().optional(),
   pcri: ProjectCreateResourceIdentifierSchema.optional(),

@@ -4,6 +4,7 @@ import { PageOfChangelogsSchema } from './pageOfChangelogs';
 import { IssueUpdateMetadataSchema } from './issueUpdateMetadata';
 import { IncludedFieldsSchema } from './includedFields';
 import { OperationsSchema } from './operations';
+import { JsonTypeSchema } from './jsonType';
 import { IssueTransitionSchema } from './issueTransition';
 
 /** Details about an issue. */
@@ -19,14 +20,14 @@ export const IssueSchema = apiObject({
   /** The key of the issue. */
   key: z.string().optional(),
   /** The ID and name of each field present on the issue. */
-  names: z.record(z.string(), z.any()).optional(),
+  names: z.record(z.string(), z.string()).optional(),
   operations: OperationsSchema.optional(),
   /** Details of the issue properties identified in the request. */
   properties: z.record(z.string(), z.any()).optional(),
   /** The rendered value of each field present on the issue. */
   renderedFields: z.record(z.string(), z.any()).optional(),
   /** The schema describing each field present on the issue. */
-  schema: z.record(z.string(), z.any()).optional(),
+  schema: z.record(z.string(), JsonTypeSchema).optional(),
   /** The URL of the issue details. */
   self: z.url().optional(),
   /** The transitions that can be performed on the issue. */

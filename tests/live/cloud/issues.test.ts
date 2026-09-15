@@ -1,18 +1,18 @@
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 import { isNotFoundError, isScopeError } from '#/core';
 import type { CloudClient } from '#/cloud/createCloudClient';
-import { getCloudClient } from '../setup/client';
+import { getCloudClient, getStrictCloudClient } from '../setup/client';
 import { ResourceTracker } from '../setup/resources';
-import { createTestIssue, TEST_PROJECT_KEY, type TestIssue } from '../setup/fixtures';
+import { createTestIssue, documentOf, TEST_PROJECT_KEY, type TestIssue } from '../setup/fixtures';
 import { testName } from '../helpers/naming';
 import { waitFor } from '../helpers/poll';
 
 /**
  * The issue lifecycle, end to end.
  *
- * These assert the *contract* rather than that a call resolves: that what the Zod models declare is what arrives, that
- * a mutation is observable on the next read, that query parameters have an effect, and that a deleted issue surfaces
- * as a typed `NotFoundError` rather than an untyped rejection.
+ * These assert the _contract_ rather than that a call resolves: that what the Zod models declare is what arrives, that
+ * a mutation is observable on the next read, that query parameters have an effect, and that a deleted issue surfaces as
+ * a typed `NotFoundError` rather than an untyped rejection.
  */
 describe('issue lifecycle', () => {
   const tracker = new ResourceTracker();
@@ -59,7 +59,7 @@ describe('issue lifecycle', () => {
 
   it('finds the issue through JQL once indexing catches up', async () => {
     const found = await waitFor(
-      () => client.issueSearch.searchAndReconsileIssuesUsingJql({ jql: `key = ${issue.key}`, maxResults: 1 }),
+      () => client.issueSearch.searchIssues({ jql: `key = ${issue.key}`, maxResults: 1 }),
       result => (result.issues?.length ?? 0) > 0,
     );
 
@@ -84,5 +84,48 @@ describe('issue lifecycle', () => {
 
     expect(error).toBeInstanceOf(Error);
     expect((error as { status?: number }).status).toBeGreaterThanOrEqual(400);
+  });
+
+  it('reads an unresolved issue whose fields Jira reports as null without a schema mismatch', async () => {
+    const fetched = await getStrictCloudClient().issues.getIssue({ issueIdOrKey: issue.key });
+
+    expect(fetched.fields?.created).toBeInstanceOf(Date);
+    expect(fetched.fields?.resolution).toBeNull();
+    expect(fetched.fields?.resolutiondate).toBeNull();
+    expect(fetched.fields?.duedate).toBeNull();
+    expect(fetched.fields?.description).toBeNull();
+  });
+
+  it('keeps a null resolution date null rather than the epoch when the rest of the issue parses', async () => {
+    const fetched = await getCloudClient().issues.getIssue({ issueIdOrKey: issue.key, fields: ['resolutiondate'] });
+
+    expect(fetched.fields?.resolutiondate).toBeNull();
+  });
+
+  it('searches every field of an unresolved issue without a schema mismatch', async () => {
+    const found = await waitFor(
+      () =>
+        getStrictCloudClient().issueSearch.searchIssues({ jql: `key = ${issue.key}`, fields: ['*all'], maxResults: 1 }),
+      result => (result.issues?.length ?? 0) > 0,
+    );
+
+    expect(found.issues?.[0]?.fields?.resolution).toBeNull();
+    expect(found.issues?.[0]?.fields?.created).toBeInstanceOf(Date);
+  });
+
+  it('writes wiki markup set through update and reads it back as a document', async () => {
+    await client.issues.editIssue({ issueIdOrKey: issue.key, update: { description: [{ set: 'h2. From update' }] } });
+
+    const fetched = await client.issues.getIssue({ issueIdOrKey: issue.key, fields: ['description'] });
+
+    expect(fetched.fields?.description).toMatchObject({ type: 'doc', content: [{ type: 'heading' }] });
+  });
+
+  it('refuses wiki markup mixed with a document before either endpoint rejects it', async () => {
+    const error = await client.issues
+      .editIssue({ issueIdOrKey: issue.key, fields: { description: 'h1. markup', environment: documentOf('adf') } })
+      .catch((e: unknown) => e);
+
+    expect(error).toBeInstanceOf(TypeError);
   });
 });

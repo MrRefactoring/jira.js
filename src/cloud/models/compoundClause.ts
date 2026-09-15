@@ -1,9 +1,19 @@
 import { z } from 'zod';
 import { apiObject, openEnum } from '#/core';
-import { JqlQueryClauseSchema, type JqlQueryClause } from './jqlQueryClause';
+import { JqlQueryClauseSchema, type JqlQueryClause, type JqlQueryClauseInput } from './jqlQueryClause';
 
 export interface CompoundClause {
+  /** The list of nested clauses. */
   clauses: JqlQueryClause[];
+  /** The operator between the clauses. */
+  operator: 'and' | 'or' | 'not' | (string & {});
+  [key: string]: unknown;
+}
+
+export interface CompoundClauseInput {
+  /** The list of nested clauses. */
+  clauses: JqlQueryClauseInput[];
+  /** The operator between the clauses. */
   operator: 'and' | 'or' | 'not' | (string & {});
 }
 
@@ -13,7 +23,7 @@ export interface CompoundClause {
  * precedence. For example, "A OR B AND C" is parsed as "(A OR B) AND C". See Setting the precedence of operators for
  * more information about precedence in JQL queries.`
  */
-export const CompoundClauseSchema: z.ZodType<CompoundClause> = apiObject({
+export const CompoundClauseSchema: z.ZodType<CompoundClause, CompoundClauseInput> = apiObject({
   /** The list of nested clauses. */
   clauses: z.array(z.lazy(() => JqlQueryClauseSchema)),
   /** The operator between the clauses. */

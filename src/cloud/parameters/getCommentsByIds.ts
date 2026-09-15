@@ -11,12 +11,7 @@ export const GetCommentsByIdsSchema = z.object(IssueCommentListRequestSchema.sha
    * - `properties` Returns the comment's properties.
    */
   expand: z
-    .union([
-      z.string(),
-      z.array(z.string()),
-      openEnum(['renderedBody', 'properties']),
-      z.array(openEnum(['renderedBody', 'properties'])),
-    ])
+    .union([openEnum(['renderedBody', 'properties']), z.array(openEnum(['renderedBody', 'properties']))])
     .optional(),
 });
 

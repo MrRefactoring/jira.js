@@ -31,9 +31,7 @@ export const AddWorklogSchema = z.object(WorklogInputSchema.shape).extend({
    * information about work logs in the response. This parameter accepts `properties`, which returns worklog
    * properties.
    */
-  expand: z
-    .union([z.string(), z.array(z.string()), openEnum(['properties']), z.array(openEnum(['properties']))])
-    .optional(),
+  expand: z.union([openEnum(['properties']), z.array(openEnum(['properties']))]).optional(),
   /**
    * Whether the worklog entry should be added to the issue even if the issue is not editable, because
    * jira.issue.editable set to false or missing. For example, the issue is closed. Connect and Forge app users with

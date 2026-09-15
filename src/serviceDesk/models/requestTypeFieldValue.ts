@@ -2,12 +2,25 @@ import { z } from 'zod';
 import { apiObject } from '#/core';
 
 export interface RequestTypeFieldValue {
+  /** List of child fields. */
   children?: RequestTypeFieldValue[];
+  /** Label for the field. */
   label?: string;
+  /** Value of the field. */
+  value?: string;
+  [key: string]: unknown;
+}
+
+export interface RequestTypeFieldValueInput {
+  /** List of child fields. */
+  children?: RequestTypeFieldValueInput[];
+  /** Label for the field. */
+  label?: string;
+  /** Value of the field. */
   value?: string;
 }
 
-export const RequestTypeFieldValueSchema: z.ZodType<RequestTypeFieldValue> = apiObject({
+export const RequestTypeFieldValueSchema: z.ZodType<RequestTypeFieldValue, RequestTypeFieldValueInput> = apiObject({
   /** List of child fields. */
   children: z.array(z.lazy(() => RequestTypeFieldValueSchema)).optional(),
   /** Label for the field. */

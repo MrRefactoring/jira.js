@@ -1,5 +1,6 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
+import { TargetToSourcesMappingSchema } from './targetToSourcesMapping';
 
 /** Issue Bulk Move Payload */
 export const IssueBulkMovePayloadSchema = apiObject({
@@ -23,7 +24,7 @@ export const IssueBulkMovePayloadSchema = apiObject({
    * - _**Destination parent ID or key**_ (Optional): ID or key of the issue which will become the parent of the issues
    *   being moved. Only required when the destination issueType is a subtask.
    */
-  targetToSourcesMapping: z.record(z.string(), z.any()).optional(),
+  targetToSourcesMapping: z.record(z.string(), TargetToSourcesMappingSchema).optional(),
 });
 
 export type IssueBulkMovePayload = z.infer<typeof IssueBulkMovePayloadSchema>;

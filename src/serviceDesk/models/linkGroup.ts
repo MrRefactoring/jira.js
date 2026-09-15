@@ -9,10 +9,20 @@ export interface LinkGroup {
   links?: SimpleLink[];
   styleClass?: string;
   weight?: number;
+  [key: string]: unknown;
+}
+
+export interface LinkGroupInput {
+  groups?: LinkGroupInput[];
+  header?: z.input<typeof SimpleLinkSchema>;
+  id?: string;
+  links?: z.input<typeof SimpleLinkSchema>[];
+  styleClass?: string;
+  weight?: number;
 }
 
 /** Details a link group, which defines issue operations. */
-export const LinkGroupSchema: z.ZodType<LinkGroup> = apiObject({
+export const LinkGroupSchema: z.ZodType<LinkGroup, LinkGroupInput> = apiObject({
   groups: z.array(z.lazy(() => LinkGroupSchema)).optional(),
   header: SimpleLinkSchema.optional(),
   id: z.string().optional(),

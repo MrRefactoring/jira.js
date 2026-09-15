@@ -130,6 +130,124 @@ Persisting the new refresh token is not optional — Atlassian invalidates the p
 
 Use the predicates rather than `instanceof`. They read a branded symbol instead of the prototype chain, so they keep working when a bundler splits chunks, when minification renames classes, and when two copies of the package end up in one `node_modules`.
 
+## Four methods were renamed
+
+Atlassian names these operations after the machinery behind them. **6.3.0** names them after what they do, and keeps
+the old spelling as a deprecated alias that is removed in 7.0. The new names do not exist in 6.0 through 6.2 — only
+the old spellings do, so reach 6.3.0 before rewriting a call.
+
+| v5 | v6 |
+|---|---|
+| `issueSearch.searchForIssuesUsingJqlEnhancedSearch` | `issueSearch.searchIssues` |
+| `issueSearch.searchForIssuesUsingJqlEnhancedSearchPost` | `issueSearch.searchIssuesPost` |
+| `jiraExpressions.evaluateJiraExpressionUsingEnhancedSearch` | `jiraExpressions.evaluateExpression` |
+| `status.search` | `status.searchStatuses` |
+
+```diff
+-const { issues } = await jira.issueSearch.searchForIssuesUsingJqlEnhancedSearchPost({ jql });
++const { issues } = await jira.issueSearch.searchIssuesPost({ jql });
+```
+
+The aliases cover Atlassian's spellings — `searchAndReconsileIssuesUsingJql`, `searchAndReconsileIssuesUsingJqlPost`,
+`evaluateJSISJiraExpression`, `search` — because those are what 6.0 through 6.2 shipped.
+
+`status.search` appears in both lists, and it keeps its alias: v5 spelled it that way and so did 6.0 through 6.2, so
+the call goes on working until 7.0. The other three v5 names in the table — `searchForIssuesUsingJqlEnhancedSearch`,
+`searchForIssuesUsingJqlEnhancedSearchPost` and `evaluateJiraExpressionUsingEnhancedSearch` — have no alias: they
+never matched the specification, and 6.0 already dropped them.
+
+Two neighbours of these methods are gone rather than renamed, because Atlassian is removing the endpoints:
+
+- `issueSearch.searchForIssuesUsingJql` and `searchForIssuesUsingJqlPost` (`/rest/api/3/search`) → `searchIssues` and
+  `searchIssuesPost`, which page by `nextPageToken` instead of `startAt`.
+- `jiraExpressions.evaluateJiraExpression` (`/rest/api/3/expression/eval`) → `evaluateExpression`.
+
+## Types the 6.3.0 regeneration changed
+
+6.3.0 resyncs Cloud, Agile and Service Management against Atlassian's current documents. No operation is removed and
+no URL changes, but the types moved, and the compiler is where you will meet it.
+
+**Seven calls need an argument they did not need before**, because the document requires it and the endpoint always
+did:
+
+| Call | Now required |
+|---|---|
+| `users.getUser` | `accountId` |
+| `issueWatchers.removeWatcher` | `accountId` |
+| `issueBulkOperations.submitBulkEdit` | `editedFieldsInput` |
+| `issueRemoteLinks.createOrUpdateRemoteIssueLink`, `issueRemoteLinks.updateRemoteIssueLink` | `object` |
+| `screenSchemes.createScreenScheme` | `screens` |
+| `issueNotificationSchemes.addNotifications` | `event` |
+
+```diff
+-const me = await jira.users.getUser();
++const me = await jira.myself.getCurrentUser();
+```
+
+`users.getUser()` without an `accountId` answered 400 in every version that let you write it. Use `myself.getCurrentUser`
+when you meant the current user, and pass the id when you meant somebody else.
+
+**Maps that were `Record<string, any>` now say what they hold** — ninety-five of them. The ones most likely to be in
+your code take strings:
+
+```diff
+-transitions: [{ id: 't1', properties: { 'jira.issue.editable': false } }]
++transitions: [{ id: 't1', properties: { 'jira.issue.editable': 'false' } }]
+```
+
+`any` accepted the boolean and the endpoint never did, so this is a type error catching a call that was already wrong.
+
+**An issue describes its fields.** `Issue.fields` was an untyped map and is now `IssueFields`: the forty system fields
+by name, `null` where Jira clears one, and `customfield_*` keys through an index signature. That signature is `unknown`,
+not `any`, so a custom field needs narrowing before you read into it:
+
+```diff
+-const points = issue.fields?.customfield_10016.value;
++const points = (issue.fields?.customfield_10016 as { value: string } | undefined)?.value;
+```
+
+`IssueSchema` is a `z.ZodType<Issue>` rather than a `ZodObject`, because the schema is part of a reference cycle, so
+`IssueSchema.extend(...)` and `.shape` are gone.
+
+What `createIssue`, `editIssue` and `doTransition` send is `IssueFieldsInput`: the system fields a write can set by name
+and `customfield_*` keys. A key that is neither no longer compiles, and neither does a field Jira only reports, such as
+`status`, `created` or `votes` — move an issue between statuses with `issues.doTransition`:
+
+```diff
+-await jira.issues.editIssue({ issueIdOrKey: 'PROJ-1', fields: { sumary: 'Renamed' } });
++await jira.issues.editIssue({ issueIdOrKey: 'PROJ-1', fields: { summary: 'Renamed' } });
+```
+
+**A request names only the keys its models declare, at any depth.** Nested objects in a request used to accept any
+extra key, and Jira dropped it without a word. A key a model does not declare is a type error now — fix the spelling,
+or drop the key if it was never part of the API.
+
+**A few one-line changes worth grepping for:**
+
+- `SecurityLevelPayload.isDefault`, `BoardFeaturePayload.state` and `CardLayout.showDaysInColumn` are `boolean`, not the
+  strings `'true'` and `'false'`.
+- `DashboardUser` is now `User`, and `targetToSourcesMapping`, `targetStatus`, `targetClassification` and
+  `targetMandatoryFields` are capitalised. The old names stay as deprecated aliases until 7.0, so nothing has to change
+  today.
+- `workflowSchemes.updateSchemes` returned `TaskProgressObject` and now returns `TaskProgressObject | undefined`, so a
+  read of its result needs a guard; on Data Center the same holds for `board.setBoardProperty`, `issues.rankIssues` and
+  `issueSearch.getError`. Each answers 204 with no body in one documented case. `agile.board.moveIssuesToBoard`,
+  `timeTracking.getSelectedTimeTrackingImplementation`, `jqlFunctionsApps.updatePrecomputations` and
+  `workflowSchemeDrafts.publishDraftWorkflowScheme` gained the same `| undefined` in place of `void`, which breaks
+  nothing: their result had nothing to read before.
+- Nineteen response fields stopped being optional, so guards like `member.holder?.type` can lose the `?`.
+- Wiki markup and a document in one `createIssue`, `editIssue` or `doTransition` write — a string `description` with a
+  document `environment`, or the reverse — throws a `TypeError`. No endpoint accepts that combination. `update` counts
+  too: a description or environment set there, and a comment body or a worklog comment added or edited there. A multi-line custom field is
+  not looked at, so give it in the same form as the rest of the write.
+- The values of `issueProperties.bulkSetIssuesPropertiesList` and `bulkSetIssuePropertiesByIssue`,
+  `TaskProgressJsonNode.result` and Service Management's `FormAnswer.adf` are `unknown` rather than `JsonNode`. Any
+  JSON value can be written; a value read back needs narrowing. `JsonNode` is deprecated and removed in 7.0.
+- `User.emailAddress` and `User.locale` are `string | null`, because a privacy setting hides them, so a read that
+  assumed a string needs a guard.
+- `issues.assignIssue({ issueIdOrKey, accountId: null })` compiles and unassigns the issue, and
+  `StatusPayload.scope` accepts `null`.
+
 ## Everything else that was removed
 
 - **Callbacks.** Every method is promise-only. `client.issues.getIssue(params, callback)` → `await client.issues.getIssue(params)`.

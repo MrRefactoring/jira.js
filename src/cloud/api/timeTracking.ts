@@ -12,10 +12,14 @@ import { z } from 'zod';
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-export async function getSelectedTimeTrackingImplementation(client: Client, options?: RequestOptions): Promise<void> {
-  const config: SendRequestOptions<void> = {
+export async function getSelectedTimeTrackingImplementation(
+  client: Client,
+  options?: RequestOptions,
+): Promise<TimeTrackingProvider | undefined> {
+  const config: SendRequestOptions<TimeTrackingProvider> = {
     url: '/rest/api/3/configuration/timetracking',
     method: 'GET',
+    schema: TimeTrackingProviderSchema,
     signal: options?.signal,
   };
 

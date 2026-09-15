@@ -6,7 +6,7 @@ export const WorkflowTriggerSchema = apiObject({
   /** The ID of the trigger. */
   id: z.string().optional(),
   /** The parameters of the trigger. */
-  parameters: z.record(z.string(), z.any()),
+  parameters: z.record(z.string(), z.string()),
   /** The rule key of the trigger. */
   ruleKey: z.string(),
 });

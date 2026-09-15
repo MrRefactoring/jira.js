@@ -9,9 +9,19 @@ export interface LinkGroup {
   links?: SimpleLink[];
   styleClass?: string;
   weight?: number;
+  [key: string]: unknown;
 }
 
-export const LinkGroupSchema: z.ZodType<LinkGroup> = apiObject({
+export interface LinkGroupInput {
+  groups?: LinkGroupInput[];
+  header?: z.input<typeof SimpleLinkSchema>;
+  id?: string;
+  links?: z.input<typeof SimpleLinkSchema>[];
+  styleClass?: string;
+  weight?: number;
+}
+
+export const LinkGroupSchema: z.ZodType<LinkGroup, LinkGroupInput> = apiObject({
   groups: z.array(z.lazy(() => LinkGroupSchema)).optional(),
   header: SimpleLinkSchema.optional(),
   id: z.string().optional(),

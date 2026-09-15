@@ -14,6 +14,11 @@ export const StatusPayloadSchema = apiObject({
    */
   onConflict: openEnum(['FAIL', 'USE', 'NEW']).optional(),
   pcri: ProjectCreateResourceIdentifierSchema.optional(),
+  /**
+   * The scope of the status. Set to GLOBAL to make the status shared across projects. Leave null for the default
+   * (project-scoped) behaviour.
+   */
+  scope: openEnum(['GLOBAL']).nullish(),
   /** The status category of the status. The value is case-sensitive. */
   statusCategory: openEnum(['TODO', 'IN_PROGRESS', 'DONE']).optional(),
 });

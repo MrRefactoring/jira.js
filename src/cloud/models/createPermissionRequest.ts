@@ -3,7 +3,7 @@ import { apiObject, openEnum } from '#/core';
 import { CreatePermissionHolderRequestSchema } from './createPermissionHolderRequest';
 
 export const CreatePermissionRequestSchema = apiObject({
-  holder: CreatePermissionHolderRequestSchema.optional(),
+  holder: CreatePermissionHolderRequestSchema,
   /** The permission type. This must be "View" or "Edit". */
   type: openEnum(['View', 'Edit']),
 });

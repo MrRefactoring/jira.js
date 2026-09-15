@@ -48,8 +48,6 @@ export const GetIssueSchema = z.object({
    */
   expand: z
     .union([
-      z.string(),
-      z.array(z.string()),
       openEnum([
         'renderedFields',
         'names',

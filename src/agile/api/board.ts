@@ -9,6 +9,7 @@ import { GetConfigurationSchema, type GetConfiguration } from '../models/getConf
 import { GetEpicsSchema, type GetEpics } from '../models/getEpics';
 import { GetFeaturesForBoardSchema, type GetFeaturesForBoard } from '../models/getFeaturesForBoard';
 import { ToggleFeaturesSchema, type ToggleFeatures } from '../models/toggleFeatures';
+import { MoveIssuesToBoardSchema, type MoveIssuesToBoard } from '../models/moveIssuesToBoard';
 import { GetProjectsSchema, type GetProjects } from '../models/getProjects';
 import { GetProjectsFullSchema, type GetProjectsFull } from '../models/getProjectsFull';
 import { PropertyKeysSchema, type PropertyKeys } from '../models/propertyKeys';
@@ -31,7 +32,7 @@ import type { GetIssuesWithoutEpicForBoard } from '../parameters/getIssuesWithou
 import type { GetBoardIssuesForEpic } from '../parameters/getBoardIssuesForEpic';
 import type { GetFeaturesForBoard as GetFeaturesForBoardParameters } from '../parameters/getFeaturesForBoard';
 import type { ToggleFeatures as ToggleFeaturesParameters } from '../parameters/toggleFeatures';
-import type { MoveIssuesToBoard } from '../parameters/moveIssuesToBoard';
+import type { MoveIssuesToBoard as MoveIssuesToBoardParameters } from '../parameters/moveIssuesToBoard';
 import type { GetIssuesForBoard } from '../parameters/getIssuesForBoard';
 import type { GetApproximateIssueCountForBoard } from '../parameters/getApproximateIssueCountForBoard';
 import type { GetProjects as GetProjectsParameters } from '../parameters/getProjects';
@@ -393,10 +394,10 @@ export async function toggleFeatures(
  */
 export async function moveIssuesToBoard(
   client: Client,
-  parameters: MoveIssuesToBoard,
+  parameters: MoveIssuesToBoardParameters,
   options?: RequestOptions,
-): Promise<void> {
-  const config: SendRequestOptions<void> = {
+): Promise<MoveIssuesToBoard | undefined> {
+  const config: SendRequestOptions<MoveIssuesToBoard> = {
     url: `/rest/agile/1.0/board/${parameters.boardId}/issue`,
     method: 'POST',
     body: {
@@ -405,6 +406,7 @@ export async function moveIssuesToBoard(
       rankBeforeIssue: parameters.rankBeforeIssue,
       rankCustomFieldId: parameters.rankCustomFieldId,
     },
+    schema: MoveIssuesToBoardSchema,
     signal: options?.signal,
   };
 

@@ -8,9 +8,7 @@ export const GetWorklogsForIdsSchema = z.object(WorklogIdsRequestSchema.shape).e
    * information about worklogs in the response. This parameter accepts `properties` that returns the properties of each
    * worklog.
    */
-  expand: z
-    .union([z.string(), z.array(z.string()), openEnum(['properties']), z.array(openEnum(['properties']))])
-    .optional(),
+  expand: z.union([openEnum(['properties']), z.array(openEnum(['properties']))]).optional(),
 });
 
 export type GetWorklogsForIds = z.input<typeof GetWorklogsForIdsSchema>;

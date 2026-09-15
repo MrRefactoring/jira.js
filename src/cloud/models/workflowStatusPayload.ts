@@ -8,7 +8,7 @@ export const WorkflowStatusPayloadSchema = apiObject({
   layout: WorkflowStatusLayoutPayloadSchema.optional(),
   pcri: ProjectCreateResourceIdentifierSchema.optional(),
   /** The properties of the workflow status. */
-  properties: z.record(z.string(), z.any()).optional(),
+  properties: z.record(z.string(), z.string()).optional(),
 });
 
 export type WorkflowStatusPayload = z.infer<typeof WorkflowStatusPayloadSchema>;

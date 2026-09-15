@@ -5,8 +5,8 @@ import { SearchAndReconcileResultsSchema, type SearchAndReconcileResults } from 
 import type { GetIssuePickerResource } from '../parameters/getIssuePickerResource';
 import type { MatchIssues } from '../parameters/matchIssues';
 import type { CountIssues } from '../parameters/countIssues';
-import type { SearchAndReconsileIssuesUsingJql } from '../parameters/searchAndReconsileIssuesUsingJql';
-import type { SearchAndReconsileIssuesUsingJqlPost } from '../parameters/searchAndReconsileIssuesUsingJqlPost';
+import type { SearchIssues } from '../parameters/searchIssues';
+import type { SearchIssuesPost } from '../parameters/searchIssuesPost';
 import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /**
@@ -48,7 +48,8 @@ export async function getIssuePickerResource(
 }
 
 /**
- * Checks whether one or more issues would be returned by one or more JQL queries.
+ * Checks whether one or more issues would be returned by one or more JQL queries. Up to 10 JQL queries can be specified
+ * and up to 50 issue IDs included in the request.
  *
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** None,
  * however, issues are only matched against JQL queries where the user has:
@@ -128,9 +129,9 @@ export async function countIssues(
  * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
  *   to view the issue.
  */
-export async function searchAndReconsileIssuesUsingJql(
+export async function searchIssues(
   client: Client,
-  parameters?: SearchAndReconsileIssuesUsingJql,
+  parameters?: SearchIssues,
   options?: RequestOptions,
 ): Promise<SearchAndReconcileResults> {
   const config: SendRequestOptions<SearchAndReconcileResults> = {
@@ -146,6 +147,7 @@ export async function searchAndReconsileIssuesUsingJql(
       fieldsByKeys: parameters?.fieldsByKeys,
       failFast: parameters?.failFast,
       reconcileIssues: parameters?.reconcileIssues,
+      includeArchivedProjects: parameters?.includeArchivedProjects,
     },
     schema: SearchAndReconcileResultsSchema,
     signal: options?.signal,
@@ -169,9 +171,9 @@ export async function searchAndReconsileIssuesUsingJql(
  * - If [issue-level security](https://confluence.atlassian.com/x/J4lKLg) is configured, issue-level security permission
  *   to view the issue.
  */
-export async function searchAndReconsileIssuesUsingJqlPost(
+export async function searchIssuesPost(
   client: Client,
-  parameters: SearchAndReconsileIssuesUsingJqlPost,
+  parameters: SearchIssuesPost,
   options?: RequestOptions,
 ): Promise<SearchAndReconcileResults> {
   const config: SendRequestOptions<SearchAndReconcileResults> = {
@@ -181,6 +183,7 @@ export async function searchAndReconsileIssuesUsingJqlPost(
       expand: parameters.expand,
       fields: parameters.fields,
       fieldsByKeys: parameters.fieldsByKeys,
+      includeArchivedProjects: parameters.includeArchivedProjects,
       jql: parameters.jql,
       maxResults: parameters.maxResults,
       nextPageToken: parameters.nextPageToken,
@@ -193,3 +196,15 @@ export async function searchAndReconsileIssuesUsingJqlPost(
 
   return await client.sendRequest(config);
 }
+
+/**
+ * @deprecated Renamed to `searchIssues`, which calls the same endpoint. This alias is removed in the next major
+ *   version.
+ */
+export const searchAndReconsileIssuesUsingJql = searchIssues;
+
+/**
+ * @deprecated Renamed to `searchIssuesPost`, which calls the same endpoint. This alias is removed in the next major
+ *   version.
+ */
+export const searchAndReconsileIssuesUsingJqlPost = searchIssuesPost;

@@ -3,9 +3,9 @@ import { apiObject } from '#/core';
 
 /** List of issues and JQL queries. */
 export const IssuesAndJQLQueriesSchema = apiObject({
-  /** A list of issue IDs. */
+  /** A list of up to 50 issue IDs. */
   issueIds: z.array(z.number()),
-  /** A list of JQL queries. */
+  /** A list of up to 10 JQL queries. */
   jqls: z.array(z.string()),
 });
 

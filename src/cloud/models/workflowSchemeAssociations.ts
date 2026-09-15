@@ -6,7 +6,7 @@ import { WorkflowSchemeSchema } from './workflowScheme';
 export const WorkflowSchemeAssociationsSchema = apiObject({
   /** The list of projects that use the workflow scheme. */
   projectIds: z.array(z.string()),
-  workflowScheme: WorkflowSchemeSchema.optional(),
+  workflowScheme: WorkflowSchemeSchema,
 });
 
 export type WorkflowSchemeAssociations = z.infer<typeof WorkflowSchemeAssociationsSchema>;

@@ -18,8 +18,6 @@ export const CreatePermissionGrantSchema = z.object(PermissionGrantSchema.shape)
    */
   expand: z
     .union([
-      z.string(),
-      z.array(z.string()),
       openEnum(['permissions', 'user', 'group', 'projectRole', 'field', 'all']),
       z.array(openEnum(['permissions', 'user', 'group', 'projectRole', 'field', 'all'])),
     ])

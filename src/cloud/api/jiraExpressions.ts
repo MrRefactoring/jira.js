@@ -4,7 +4,7 @@ import {
   type JExpEvaluateJiraExpressionResult,
 } from '../models/jExpEvaluateJiraExpressionResult';
 import type { AnalyseExpression } from '../parameters/analyseExpression';
-import type { EvaluateJSISJiraExpression } from '../parameters/evaluateJSISJiraExpression';
+import type { EvaluateExpression } from '../parameters/evaluateExpression';
 import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /**
@@ -97,9 +97,9 @@ export async function analyseExpression(
  * different users may see different comments on the same issue. Permission to access Jira Software is required to
  * access Jira Software context variables (`board` and `sprint`) or fields (for example, `issue.sprint`).
  */
-export async function evaluateJSISJiraExpression(
+export async function evaluateExpression(
   client: Client,
-  parameters: EvaluateJSISJiraExpression,
+  parameters: EvaluateExpression,
   options?: RequestOptions,
 ): Promise<JExpEvaluateJiraExpressionResult> {
   const config: SendRequestOptions<JExpEvaluateJiraExpressionResult> = {
@@ -118,3 +118,9 @@ export async function evaluateJSISJiraExpression(
 
   return await client.sendRequest(config);
 }
+
+/**
+ * @deprecated Renamed to `evaluateExpression`, which calls the same endpoint. This alias is removed in the next major
+ *   version.
+ */
+export const evaluateJSISJiraExpression = evaluateExpression;

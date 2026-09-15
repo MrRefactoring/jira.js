@@ -12,14 +12,7 @@ export const SearchWorkflowsSchema = z.object({
    *
    * - `values.transitions` Returns the transitions that each workflow is associated with.
    */
-  expand: z
-    .union([
-      z.string(),
-      z.array(z.string()),
-      openEnum(['values.transitions']),
-      z.array(openEnum(['values.transitions'])),
-    ])
-    .optional(),
+  expand: z.union([openEnum(['values.transitions']), z.array(openEnum(['values.transitions']))]).optional(),
   /** String used to perform a case-insensitive partial match with workflow name. */
   queryString: z.string().optional(),
   /**

@@ -10,7 +10,7 @@ export const DashboardGadgetSchema = apiObject({
   id: z.number(),
   /** The module key of the gadget type. */
   moduleKey: z.string().optional(),
-  position: DashboardGadgetPositionSchema.optional(),
+  position: DashboardGadgetPositionSchema,
   /** The title of the gadget. */
   title: z.string(),
   /** The URI of the gadget type. */

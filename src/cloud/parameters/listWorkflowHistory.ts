@@ -11,12 +11,7 @@ export const ListWorkflowHistorySchema = z.object(WorkflowHistoryListRequestSche
    *   updates or migrations. By default, these are omitted from the response.
    */
   expand: z
-    .union([
-      z.string(),
-      z.array(z.string()),
-      openEnum(['includeIntermediateWorkflows']),
-      z.array(openEnum(['includeIntermediateWorkflows'])),
-    ])
+    .union([openEnum(['includeIntermediateWorkflows']), z.array(openEnum(['includeIntermediateWorkflows']))])
     .optional(),
 });
 

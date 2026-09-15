@@ -5,7 +5,7 @@ import { ResourceTracker } from '../setup/resources';
 import { createTestIssue, type TestIssue } from '../setup/fixtures';
 
 /**
- * Live suite for the `jiraExpressions` API (`evaluateJSISJiraExpression`, `analyseExpression`).
+ * Live suite for the `jiraExpressions` API (`evaluateExpression`, `analyseExpression`).
  *
  * Jira expressions are a small sandboxed language evaluated server-side against a context of issues, projects and
  * users. Nothing about them can be tested without a live site: the whole point is what the server computes, and there
@@ -31,7 +31,7 @@ describe('Jira Cloud — jiraExpressions (live)', () => {
 
   it('evaluates a constant expression with no context at all', async () => {
     const result = await client.jiraExpressions
-      .evaluateJSISJiraExpression({ expression: '1 + 1' })
+      .evaluateExpression({ expression: '1 + 1' })
       .catch((e: unknown) => e);
 
     if (result instanceof Error) {
@@ -47,7 +47,7 @@ describe('Jira Cloud — jiraExpressions (live)', () => {
     const me = await client.myself.getCurrentUser();
 
     const result = await client.jiraExpressions
-      .evaluateJSISJiraExpression({ expression: 'user.accountId' })
+      .evaluateExpression({ expression: 'user.accountId' })
       .catch(() => undefined);
 
     if (!result) return;
@@ -57,7 +57,7 @@ describe('Jira Cloud — jiraExpressions (live)', () => {
 
   it('reads an issue passed explicitly in the context', async () => {
     const result = await client.jiraExpressions
-      .evaluateJSISJiraExpression({
+      .evaluateExpression({
         expression: 'issue.key',
         context: { issue: { key: issue.key } },
       })
@@ -70,7 +70,7 @@ describe('Jira Cloud — jiraExpressions (live)', () => {
 
   it('rejects an expression that references something not in context', async () => {
     const error = await client.jiraExpressions
-      .evaluateJSISJiraExpression({ expression: 'issue.key' })
+      .evaluateExpression({ expression: 'issue.key' })
       .catch((e: unknown) => e);
 
     expect(error).toBeInstanceOf(Error);

@@ -25,7 +25,7 @@ export const GetPlanResponseSchema = apiObject({
   name: z.string().optional(),
   /** The permissions for the plan. */
   permissions: z.array(GetPermissionResponseSchema).optional(),
-  scheduling: GetSchedulingResponseSchema.optional(),
+  scheduling: GetSchedulingResponseSchema,
   /** The plan status. This is "Active", "Trashed" or "Archived". */
   status: openEnum(['Active', 'Trashed', 'Archived']),
 });

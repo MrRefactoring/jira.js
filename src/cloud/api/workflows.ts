@@ -34,6 +34,7 @@ import type { GetProjectUsagesForWorkflow } from '../parameters/getProjectUsages
 import type { GetWorkflowSchemeUsagesForWorkflow } from '../parameters/getWorkflowSchemeUsagesForWorkflow';
 import type { ReadWorkflows } from '../parameters/readWorkflows';
 import type { WorkflowCapabilities as WorkflowCapabilitiesParameters } from '../parameters/workflowCapabilities';
+import type { CopyWorkflow } from '../parameters/copyWorkflow';
 import type { CreateWorkflows } from '../parameters/createWorkflows';
 import type { ValidateCreateWorkflows } from '../parameters/validateCreateWorkflows';
 import type { ReadWorkflowPreviews } from '../parameters/readWorkflowPreviews';
@@ -362,14 +363,17 @@ export async function readWorkflows(
  *       "parameters": {
  *         "ruleType": "fieldMatchesRegularExpression",
  *         "regexp": "[0-9]{4}",
- *         "fieldKey": "description"
+ *         "fieldKey": "description",
+ *         "errorMessage": "Description must contain a 4-digit year"
  *       }
  *     }
  *
  * Parameters:
  *
- * - `regexp` the regular expression used to validate the field’s content.
+ * - `regexp` the regular expression used to validate the field's content.
  * - `fieldKey` the ID of the field to validate. For a custom field, it would look like `customfield_123`.
+ * - `errorMessage` the error message to display if the field value does not match the regular expression. A default error
+ *   message will be shown if you don't provide one (Optional).
  *
  * ###### Date field comparison
  *
@@ -827,6 +831,40 @@ export async function workflowCapabilities(
       issueTypeId: parameters?.issueTypeId,
     },
     schema: WorkflowCapabilitiesSchema,
+    signal: options?.signal,
+  };
+
+  return await client.sendRequest(config);
+}
+
+/**
+ * Copies an existing workflow, and the statuses it uses, into a new workflow with the given name. The copy is created
+ * in the same scope as the workflow it is copied from. If no description is provided, the copy is created with an empty
+ * description.
+ *
+ * Copying a workflow requires permission both to read the workflow being copied and to create the copy, which is
+ * created in the same scope as its source.
+ *
+ * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:**
+ *
+ * - _Administer Jira_ global permission to copy all, including project-scoped, workflows
+ * - To copy a project-scoped workflow, either the _Edit workflows_ project permission, or both the _View (read-only)
+ *   workflow_ and _Administer projects_ project permissions
+ */
+export async function copyWorkflow(
+  client: Client,
+  parameters: CopyWorkflow,
+  options?: RequestOptions,
+): Promise<WorkflowCreateResponse> {
+  const config: SendRequestOptions<WorkflowCreateResponse> = {
+    url: '/rest/api/3/workflows/copy',
+    method: 'POST',
+    body: {
+      description: parameters.description,
+      workflowId: parameters.workflowId,
+      workflowName: parameters.workflowName,
+    },
+    schema: WorkflowCreateResponseSchema,
     signal: options?.signal,
   };
 

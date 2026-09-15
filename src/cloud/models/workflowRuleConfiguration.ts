@@ -6,7 +6,7 @@ export const WorkflowRuleConfigurationSchema = apiObject({
   /** The ID of the rule. */
   id: z.string().nullish(),
   /** The parameters related to the rule. */
-  parameters: z.record(z.string(), z.any()).optional(),
+  parameters: z.record(z.string(), z.string()).optional(),
   /** The rule key of the rule. */
   ruleKey: z.string(),
 });

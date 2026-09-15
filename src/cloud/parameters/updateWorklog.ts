@@ -27,9 +27,7 @@ export const UpdateWorklogSchema = z.object({
    * Use [expand](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#expansion) to include additional
    * information about worklogs in the response. This parameter accepts `properties`, which returns worklog properties.
    */
-  expand: z
-    .union([z.string(), z.array(z.string()), openEnum(['properties']), z.array(openEnum(['properties']))])
-    .optional(),
+  expand: z.union([openEnum(['properties']), z.array(openEnum(['properties']))]).optional(),
   /**
    * Whether the worklog should be added to the issue even if the issue is not editable. For example, because the issue
    * is closed. Connect and Forge app users with _Administer Jira_ [global

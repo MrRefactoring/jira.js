@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import { apiObject, openEnum } from '#/core';
-import { AsyncContextSchema, type AsyncContext } from './asyncContext';
+import { AsyncContextSchema, type AsyncContext, type AsyncContextInput } from './asyncContext';
 import { ServletInputStreamSchema, type ServletInputStream } from './servletInputStream';
 import { ServletConnectionSchema, type ServletConnection } from './servletConnection';
 import { ServletContextSchema, type ServletContext } from './servletContext';
@@ -51,9 +51,58 @@ export interface ServletRequest {
   serverPort?: number;
   servletConnection?: ServletConnection;
   servletContext?: ServletContext;
+  [key: string]: unknown;
 }
 
-export const ServletRequestSchema: z.ZodType<ServletRequest> = apiObject({
+export interface ServletRequestInput {
+  asyncContext?: AsyncContextInput;
+  asyncStarted?: boolean;
+  asyncSupported?: boolean;
+  attributeNames?: Record<string, unknown>;
+  characterEncoding?: string;
+  contentLength?: number;
+  contentLengthLong?: number;
+  contentType?: string;
+  dispatcherType?: 'FORWARD' | 'INCLUDE' | 'REQUEST' | 'ASYNC' | 'ERROR' | (string & {});
+  inputStream?: z.input<typeof ServletInputStreamSchema>;
+  localAddr?: string;
+  localName?: string;
+  localPort?: number;
+  locale?: {
+    country?: string;
+    displayCountry?: string;
+    displayLanguage?: string;
+    displayName?: string;
+    displayScript?: string;
+    displayVariant?: string;
+    extensionKeys?: string[];
+    iso3Country?: string;
+    iso3Language?: string;
+    language?: string;
+    script?: string;
+    unicodeLocaleAttributes?: string[];
+    unicodeLocaleKeys?: string[];
+    variant?: string;
+  };
+  locales?: Record<string, unknown>;
+  parameterMap?: Record<string, string[]>;
+  parameterNames?: Record<string, unknown>;
+  protocol?: string;
+  protocolRequestId?: string;
+  reader?: Record<string, unknown>;
+  remoteAddr?: string;
+  remoteHost?: string;
+  remotePort?: number;
+  requestId?: string;
+  scheme?: string;
+  secure?: boolean;
+  serverName?: string;
+  serverPort?: number;
+  servletConnection?: z.input<typeof ServletConnectionSchema>;
+  servletContext?: z.input<typeof ServletContextSchema>;
+}
+
+export const ServletRequestSchema: z.ZodType<ServletRequest, ServletRequestInput> = apiObject({
   asyncContext: z.lazy(() => AsyncContextSchema).optional(),
   asyncStarted: z.boolean().optional(),
   asyncSupported: z.boolean().optional(),

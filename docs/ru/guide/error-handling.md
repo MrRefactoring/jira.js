@@ -64,7 +64,7 @@ try {
 import { isRateLimitError } from 'jira.js';
 
 try {
-  await jira.issueSearch.searchAndReconsileIssuesUsingJqlPost({ jql });
+  await jira.issueSearch.searchIssuesPost({ jql });
 } catch (error) {
   if (isRateLimitError(error) && error.retryAfterMs) {
     await new Promise(resolve => setTimeout(resolve, error.retryAfterMs));

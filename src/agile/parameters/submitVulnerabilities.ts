@@ -21,7 +21,7 @@ export const SubmitVulnerabilitiesSchema = z.object({
    * Properties are supplied as key/value pairs, and a maximum of 5 properties can be supplied, keys cannot contain ':'
    * or start with '_'.
    */
-  properties: z.record(z.string(), z.any()).optional(),
+  properties: z.record(z.string(), z.string().max(255, 'properties must be at most 255 characters')).optional(),
   vulnerabilities: z.array(
     z.object({
       /**

@@ -30,14 +30,7 @@ export const GetAllBoardsSchema = z.object({
   /** Ordering of the results by a given field. If not provided, values will not be sorted. Valid values: name. */
   orderBy: openEnum(['name', '-name', '+name']).optional(),
   /** List of fields to expand for each board. Valid values: admins, permissions. */
-  expand: z
-    .union([
-      z.string(),
-      z.array(z.string()),
-      openEnum(['admins', 'permissions']),
-      z.array(openEnum(['admins', 'permissions'])),
-    ])
-    .optional(),
+  expand: z.union([openEnum(['admins', 'permissions']), z.array(openEnum(['admins', 'permissions']))]).optional(),
   /**
    * Filters results to boards that are relevant to a project types. Support Jira Software, Jira Service Management.
    * Valid values: software, service_desk. By default software.

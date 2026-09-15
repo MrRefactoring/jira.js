@@ -1,8 +1,10 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
 import { ChangelogSchema } from './changelog';
+import { FieldMetadataSchema } from './fieldMetadata';
 import { IncludedFieldsSchema } from './includedFields';
 import { OperationsSchema } from './operations';
+import { JsonTypeSchema } from './jsonType';
 import { IssueTransitionSchema } from './issueTransition';
 
 /** Details about an issue. */
@@ -20,7 +22,7 @@ export const IssueSchema = apiObject({
   }).optional(),
   /** A list of editable field details. */
   editmeta: apiObject({
-    fields: z.record(z.string(), z.any()).optional(),
+    fields: z.record(z.string(), FieldMetadataSchema).optional(),
   }).optional(),
   /** Expand options that include additional issue details in the response. */
   expand: z.string().optional(),
@@ -31,14 +33,14 @@ export const IssueSchema = apiObject({
   /** The key of the issue. */
   key: z.string(),
   /** The ID and name of each field present on the issue. */
-  names: z.record(z.string(), z.any()).optional(),
+  names: z.record(z.string(), z.string()).optional(),
   operations: OperationsSchema.optional(),
   /** Details of the issue properties identified in the request. */
   properties: z.record(z.string(), z.any()).optional(),
   /** The rendered value of each field present on the issue. */
   renderedFields: z.record(z.string(), z.any()).optional(),
   /** The schema describing each field present on the issue. */
-  schema: z.record(z.string(), z.any()).optional(),
+  schema: z.record(z.string(), JsonTypeSchema).optional(),
   /** The URL of the issue details. */
   self: z.url(),
   /** The transitions that can be performed on the issue. */

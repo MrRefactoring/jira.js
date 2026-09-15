@@ -97,7 +97,7 @@ export const ChangelogSchema = apiObject({
     /** The description key of the email address associated the history record. */
     emailDescriptionKey: z.string().optional(),
     /** Additional arbitrary information about the history record. */
-    extraData: z.record(z.string(), z.any()).optional(),
+    extraData: z.record(z.string(), z.string()).optional(),
     /** Details of user or system associated with a issue history metadata item. */
     generator: apiObject({
       /** The URL to an avatar for the user or system associated with a history record. */

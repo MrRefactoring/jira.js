@@ -1,9 +1,9 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-import { JsonNodeSchema } from './jsonNode';
 
 export const FormAnswerSchema = apiObject({
-  adf: JsonNodeSchema.optional(),
+  /** Answer in Atlassian Document Format (ADF) */
+  adf: z.unknown().optional(),
   /** IDs of selected choices */
   choices: z.array(z.string()).optional(),
   /** Answer in date format (yyyy-MM-dd) */

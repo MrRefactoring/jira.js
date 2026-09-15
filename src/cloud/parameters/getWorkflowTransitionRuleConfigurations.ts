@@ -28,9 +28,7 @@ export const GetWorkflowTransitionRuleConfigurationsSchema = z.object({
    * information in the response. This parameter accepts `transition`, which, for each rule, returns information about
    * the transition the rule is assigned to.
    */
-  expand: z
-    .union([z.string(), z.array(z.string()), openEnum(['transition']), z.array(openEnum(['transition']))])
-    .optional(),
+  expand: z.union([openEnum(['transition']), z.array(openEnum(['transition']))]).optional(),
 });
 
 export type GetWorkflowTransitionRuleConfigurations = z.input<typeof GetWorkflowTransitionRuleConfigurationsSchema>;

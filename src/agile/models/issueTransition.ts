@@ -1,5 +1,6 @@
 import { z } from 'zod';
 import { apiObject, openEnum } from '#/core';
+import { FieldMetadataSchema } from './fieldMetadata';
 
 /** Details of an issue transition. */
 export const IssueTransitionSchema = apiObject({
@@ -9,7 +10,7 @@ export const IssueTransitionSchema = apiObject({
    * Details of the fields associated with the issue transition screen. Use this information to populate `fields` and
    * `update` in a transition request.
    */
-  fields: z.record(z.string(), z.any()).optional(),
+  fields: z.record(z.string(), FieldMetadataSchema).optional(),
   /** Whether there is a screen associated with the issue transition. */
   hasScreen: z.boolean().optional(),
   /** The ID of the issue transition. Required when specifying a transition to undertake. */

@@ -13,9 +13,7 @@ export const GetUiModificationsSchema = z.object({
    * - `data` Returns UI modification data.
    * - `contexts` Returns UI modification contexts.
    */
-  expand: z
-    .union([z.string(), z.array(z.string()), openEnum(['data', 'contexts']), z.array(openEnum(['data', 'contexts']))])
-    .optional(),
+  expand: z.union([openEnum(['data', 'contexts']), z.array(openEnum(['data', 'contexts']))]).optional(),
 });
 
 export type GetUiModifications = z.input<typeof GetUiModificationsSchema>;

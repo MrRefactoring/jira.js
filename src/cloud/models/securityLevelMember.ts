@@ -4,7 +4,7 @@ import { PermissionHolderSchema } from './permissionHolder';
 
 /** Issue security level member. */
 export const SecurityLevelMemberSchema = apiObject({
-  holder: PermissionHolderSchema.optional(),
+  holder: PermissionHolderSchema,
   /** The ID of the issue security level member. */
   id: z.string(),
   /** The ID of the issue security level. */

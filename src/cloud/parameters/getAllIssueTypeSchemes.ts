@@ -26,14 +26,7 @@ export const GetAllIssueTypeSchemesSchema = z.object({
    *   to.
    * - `issueTypes` For each issue type schemes, returns information about the issueTypes the issue type scheme have.
    */
-  expand: z
-    .union([
-      z.string(),
-      z.array(z.string()),
-      openEnum(['projects', 'issueTypes']),
-      z.array(openEnum(['projects', 'issueTypes'])),
-    ])
-    .optional(),
+  expand: z.union([openEnum(['projects', 'issueTypes']), z.array(openEnum(['projects', 'issueTypes']))]).optional(),
   /** String used to perform a case-insensitive partial match with issue type scheme name. */
   queryString: z.string().optional(),
 });

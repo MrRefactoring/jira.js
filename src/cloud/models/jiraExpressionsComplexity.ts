@@ -3,10 +3,10 @@ import { apiObject } from '#/core';
 import { JiraExpressionsComplexityValueSchema } from './jiraExpressionsComplexityValue';
 
 export const JiraExpressionsComplexitySchema = apiObject({
-  beans: JiraExpressionsComplexityValueSchema.optional(),
-  expensiveOperations: JiraExpressionsComplexityValueSchema.optional(),
-  primitiveValues: JiraExpressionsComplexityValueSchema.optional(),
-  steps: JiraExpressionsComplexityValueSchema.optional(),
+  beans: JiraExpressionsComplexityValueSchema,
+  expensiveOperations: JiraExpressionsComplexityValueSchema,
+  primitiveValues: JiraExpressionsComplexityValueSchema,
+  steps: JiraExpressionsComplexityValueSchema,
 });
 
 export type JiraExpressionsComplexity = z.infer<typeof JiraExpressionsComplexitySchema>;

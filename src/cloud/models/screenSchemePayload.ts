@@ -19,7 +19,7 @@ export const ScreenSchemePayloadSchema = apiObject({
    * specific operations that are available and users can assign a different screen for each one of them
    * https://support.atlassian.com/jira-cloud-administration/docs/manage-screen-schemes/#Associating-a-screen-with-an-issue-operation
    */
-  screens: z.record(z.string(), z.any()).optional(),
+  screens: z.record(z.string(), ProjectCreateResourceIdentifierSchema).optional(),
 });
 
 export type ScreenSchemePayload = z.infer<typeof ScreenSchemePayloadSchema>;

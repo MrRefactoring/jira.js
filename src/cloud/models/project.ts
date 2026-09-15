@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import { apiObject, openEnum } from '#/core';
-import { DashboardUserSchema } from './dashboardUser';
+import { UserSchema } from './user';
 import { AvatarUrlsSchema } from './avatarUrls';
 import { ProjectComponentSchema } from './projectComponent';
 import { ProjectInsightSchema } from './projectInsight';
@@ -15,7 +15,7 @@ import { VersionSchema } from './version';
 export const ProjectSchema = apiObject({
   /** Whether the project is archived. */
   archived: z.boolean().optional(),
-  archivedBy: DashboardUserSchema.optional(),
+  archivedBy: UserSchema.optional(),
   /** The date when the project was archived. */
   archivedDate: z.coerce.date().optional(),
   /** The default assignee when creating issues for this project. */
@@ -25,7 +25,7 @@ export const ProjectSchema = apiObject({
   components: z.array(ProjectComponentSchema).optional(),
   /** Whether the project is marked as deleted. */
   deleted: z.boolean().optional(),
-  deletedBy: DashboardUserSchema.optional(),
+  deletedBy: UserSchema.optional(),
   /** The date when the project was marked as deleted. */
   deletedDate: z.coerce.date().optional(),
   /** A brief description of the project. */
@@ -50,7 +50,7 @@ export const ProjectSchema = apiObject({
   /** The key of the project. */
   key: z.string().optional(),
   landingPageInfo: ProjectLandingPageInfoSchema.optional(),
-  lead: DashboardUserSchema.optional(),
+  lead: UserSchema.optional(),
   /** The name of the project. */
   name: z.string().optional(),
   permissions: ProjectPermissionsSchema.optional(),
@@ -75,7 +75,7 @@ export const ProjectSchema = apiObject({
    * The name and self URL for each role defined in the project. For more information, see [Create project
    * role](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-role/#api-rest-api-3-role-post).
    */
-  roles: z.record(z.string(), z.any()).optional(),
+  roles: z.record(z.string(), z.url()).optional(),
   /** The URL of the project details. */
   self: z.url().optional(),
   /** Whether the project is simplified. */

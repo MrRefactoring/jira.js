@@ -10,7 +10,7 @@ export const WorkflowReferenceStatusSchema = apiObject({
   deprecated: z.boolean().optional(),
   layout: WorkflowStatusLayoutSchema.optional(),
   /** The properties associated with the status. */
-  properties: z.record(z.string(), z.any()).optional(),
+  properties: z.record(z.string(), z.string()).optional(),
   /** The reference of the status. */
   statusReference: z.string().optional(),
 });

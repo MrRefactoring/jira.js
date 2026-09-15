@@ -77,7 +77,7 @@ const me = await jira.myself.getCurrentUser();
 console.log(me.displayName);
 
 // Search with JQL
-const { issues } = await jira.issueSearch.searchAndReconsileIssuesUsingJqlPost({
+const { issues } = await jira.issueSearch.searchIssuesPost({
   jql: 'project = TEST AND statusCategory != Done ORDER BY created DESC',
   maxResults: 20,
 });

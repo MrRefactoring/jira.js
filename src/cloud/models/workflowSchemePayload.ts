@@ -11,7 +11,7 @@ export const WorkflowSchemePayloadSchema = apiObject({
   /** The description of the workflow scheme */
   description: z.string().optional(),
   /** Association between issuetypes and workflows */
-  explicitMappings: z.record(z.string(), z.any()).optional(),
+  explicitMappings: z.record(z.string(), ProjectCreateResourceIdentifierSchema).optional(),
   /** The name of the workflow scheme */
   name: z.string().optional(),
   /** The strategy to use if there is a conflict with another workflow scheme */

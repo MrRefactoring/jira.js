@@ -8,7 +8,7 @@ export const StatusLayoutUpdateSchema = apiObject({
   approvalConfiguration: ApprovalConfigurationSchema.optional(),
   layout: WorkflowLayoutSchema.optional(),
   /** The properties for this status layout. */
-  properties: z.record(z.string(), z.any()),
+  properties: z.record(z.string(), z.string()),
   /** A unique ID which the status will use to refer to this layout configuration. */
   statusReference: z.string(),
 });

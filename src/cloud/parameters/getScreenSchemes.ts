@@ -16,14 +16,7 @@ export const GetScreenSchemesSchema = z.object({
    * information in the response. This parameter accepts `issueTypeScreenSchemes` that, for each screen schemes, returns
    * information about the issue type screen scheme the screen scheme is assigned to.
    */
-  expand: z
-    .union([
-      z.string(),
-      z.array(z.string()),
-      openEnum(['issueTypeScreenSchemes']),
-      z.array(openEnum(['issueTypeScreenSchemes'])),
-    ])
-    .optional(),
+  expand: z.union([openEnum(['issueTypeScreenSchemes']), z.array(openEnum(['issueTypeScreenSchemes']))]).optional(),
   /** String used to perform a case-insensitive partial match with screen scheme name. */
   queryString: z.string().optional(),
   /**

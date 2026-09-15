@@ -47,6 +47,11 @@ export const SearchAndReconcileRequestSchema = apiObject({
   /** Reference fields by their key (rather than ID). The default is `false`. */
   fieldsByKeys: z.boolean().optional(),
   /**
+   * Whether to also return issues that belong to archived projects. Archived projects are excluded by default. Requires
+   * _Browse projects_ permission on the archived project. The default is `false`.
+   */
+  includeArchivedProjects: z.boolean().optional(),
+  /**
    * A [JQL](https://confluence.atlassian.com/x/egORLQ) expression. For performance reasons, this parameter requires a
    * bounded query. A bounded query is a query with a search restriction.
    *

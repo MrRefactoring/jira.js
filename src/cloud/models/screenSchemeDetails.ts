@@ -8,7 +8,7 @@ export const ScreenSchemeDetailsSchema = apiObject({
   description: z.string().optional(),
   /** The name of the screen scheme. The name must be unique. The maximum length is 255 characters. */
   name: z.string(),
-  screens: ScreenTypesSchema.optional(),
+  screens: ScreenTypesSchema,
 });
 
 export type ScreenSchemeDetails = z.infer<typeof ScreenSchemeDetailsSchema>;

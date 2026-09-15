@@ -3,7 +3,7 @@ import { apiObject, openEnum } from '#/core';
 import { GetPermissionHolderResponseSchema } from './getPermissionHolderResponse';
 
 export const GetPermissionResponseSchema = apiObject({
-  holder: GetPermissionHolderResponseSchema.optional(),
+  holder: GetPermissionHolderResponseSchema,
   /** The permission type. This is "View" or "Edit". */
   type: openEnum(['View', 'Edit']),
 });

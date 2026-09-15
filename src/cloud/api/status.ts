@@ -11,7 +11,7 @@ import type { CreateStatuses } from '../parameters/createStatuses';
 import type { UpdateStatuses } from '../parameters/updateStatuses';
 import type { DeleteStatusesById } from '../parameters/deleteStatusesById';
 import type { GetStatusesByName } from '../parameters/getStatusesByName';
-import type { Search } from '../parameters/search';
+import type { SearchStatuses } from '../parameters/searchStatuses';
 import type { GetProjectIssueTypeUsagesForStatus } from '../parameters/getProjectIssueTypeUsagesForStatus';
 import type { GetProjectUsagesForStatus } from '../parameters/getProjectUsagesForStatus';
 import type { GetWorkflowUsagesForStatus } from '../parameters/getWorkflowUsagesForStatus';
@@ -158,7 +158,11 @@ export async function getStatusesByName(
  * - _Administer projects_ [project permission.](https://confluence.atlassian.com/x/yodKLg)
  * - _Administer Jira_ [project permission.](https://confluence.atlassian.com/x/yodKLg)
  */
-export async function search(client: Client, parameters?: Search, options?: RequestOptions): Promise<PageOfStatuses> {
+export async function searchStatuses(
+  client: Client,
+  parameters?: SearchStatuses,
+  options?: RequestOptions,
+): Promise<PageOfStatuses> {
   const config: SendRequestOptions<PageOfStatuses> = {
     url: '/rest/api/3/statuses/search',
     method: 'GET',
@@ -236,3 +240,9 @@ export async function getWorkflowUsagesForStatus(
 
   return await client.sendRequest(config);
 }
+
+/**
+ * @deprecated Renamed to `searchStatuses`, which calls the same endpoint. This alias is removed in the next major
+ *   version.
+ */
+export const search = searchStatuses;

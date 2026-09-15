@@ -339,7 +339,7 @@ export async function setBoardProperty(
   client: Client,
   parameters: SetBoardProperty,
   options?: RequestOptions,
-): Promise<EntityPropertiesKeys> {
+): Promise<EntityPropertiesKeys | undefined> {
   const config: SendRequestOptions<EntityPropertiesKeys> = {
     url: `/rest/agile/1.0/board/${parameters.boardId}/properties/${parameters.propertyKey}`,
     method: 'PUT',

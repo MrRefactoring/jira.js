@@ -142,7 +142,7 @@ export async function updateSchemes(
   client: Client,
   parameters: UpdateSchemes,
   options?: RequestOptions,
-): Promise<TaskProgressObject> {
+): Promise<TaskProgressObject | undefined> {
   const config: SendRequestOptions<TaskProgressObject> = {
     url: '/rest/api/3/workflowscheme/update',
     method: 'POST',

@@ -51,8 +51,6 @@ export const GetFieldsPaginatedSchema = z.object({
    */
   expand: z
     .union([
-      z.string(),
-      z.array(z.string()),
       openEnum(['key', 'stableId', 'lastUsed', 'screensCount', 'contextsCount', 'isLocked', 'searcherKey']),
       z.array(openEnum(['key', 'stableId', 'lastUsed', 'screensCount', 'contextsCount', 'isLocked', 'searcherKey'])),
     ])

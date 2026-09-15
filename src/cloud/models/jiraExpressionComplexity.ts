@@ -15,7 +15,7 @@ export const JiraExpressionComplexitySchema = apiObject({
    */
   expensiveOperations: z.string(),
   /** Variables used in the formula, mapped to the parts of the expression they refer to. */
-  variables: z.record(z.string(), z.any()).optional(),
+  variables: z.record(z.string(), z.string()).optional(),
 });
 
 export type JiraExpressionComplexity = z.infer<typeof JiraExpressionComplexitySchema>;

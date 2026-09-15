@@ -16,7 +16,7 @@ export const RemoteIssueLinkRequestSchema = apiObject({
    * The maximum length is 255 characters.
    */
   globalId: z.string().optional(),
-  object: RemoteObjectSchema.optional(),
+  object: RemoteObjectSchema,
   /**
    * Description of the relationship between the issue and the linked item. If not set, the relationship description
    * "links to" is used in Jira.

@@ -4,7 +4,7 @@ import { JiraIssueFieldsSchema } from './jiraIssueFields';
 
 /** Issue Bulk Edit Payload */
 export const IssueBulkEditPayloadSchema = apiObject({
-  editedFieldsInput: JiraIssueFieldsSchema.optional(),
+  editedFieldsInput: JiraIssueFieldsSchema,
   /**
    * List of all the field IDs that are to be bulk edited. Each field ID in this list corresponds to a specific
    * attribute of an issue that is set to be modified in the bulk edit operation. The relevant field ID can be obtained

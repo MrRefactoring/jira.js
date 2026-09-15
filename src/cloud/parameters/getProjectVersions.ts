@@ -9,9 +9,7 @@ export const GetProjectVersionsSchema = z.object({
    * information in the response. This parameter accepts `operations`, which returns actions that can be performed on
    * the version.
    */
-  expand: z
-    .union([z.string(), z.array(z.string()), openEnum(['operations']), z.array(openEnum(['operations']))])
-    .optional(),
+  expand: z.union([openEnum(['operations']), z.array(openEnum(['operations']))]).optional(),
 });
 
 export type GetProjectVersions = z.input<typeof GetProjectVersionsSchema>;
