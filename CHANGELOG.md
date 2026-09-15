@@ -270,6 +270,12 @@ Three long-standing requests, all of them the same shape: the client had no seam
 
 ### Types
 
+* **`siteId` is required on `teams.queryTeams` and `teams.createTeam`.** Atlassian's specification marks it optional and only calls omitting it deprecated, but the API answers `400 SITE_ID_REQUIRED_FOR_TEAM_API` — "siteId is mandatory for this API" — on an organization that scopes teams to a site, which is the default. Measured against a live tenant: those two refuse the call, while `getTeam` and `fetchMembers` still answer without it.
+
+  This is a breaking change to two parameter types, and it breaks code that does not work anyway — it turns a runtime 400 into a compile error. `siteId` is the site's cloud id, which `getTenantContext` returns as `cloudId`. On `createTeam` the property stays nullable, because the document declares it so: omitting it no longer compiles, passing an explicit `null` still does and still fails at the API.
+
+  The Teams guide showed three calls without it, including the quick start. They pass it now.
+
 * **Four request bodies are typed as the shape the endpoint reads, where they were `Record<string, any>`.** Each was generated from a request body the specification declares as something other than an object, which the generator had no reading for and degraded to an object of arbitrary keys. None of the four could be called correctly through its own declaration.
 
   | Operation | Body was | Body is |

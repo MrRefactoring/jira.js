@@ -15,7 +15,7 @@ import { type Client, type RequestOptions, type SendRequestOptions, toFormDataFi
 
 /**
  * This returns a list of all teams contained under an organization. This may be used as an option to export teams data
- * within your organization.
+ * within your organization. Callers must continue querying with the returned cursor until the cursor is null.
  */
 export async function queryTeams(
   client: Client,

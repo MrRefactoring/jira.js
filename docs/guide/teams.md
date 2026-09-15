@@ -11,10 +11,10 @@ import { createTeamsClient } from 'jira.js';
 const host = 'https://your-domain.atlassian.net';
 const auth = { type: 'basic', email: 'you@example.com', apiToken: 'YOUR_API_TOKEN' } as const;
 
-const { orgId } = await getTenantContext(createClient({ host, auth }));
+const { orgId, cloudId } = await getTenantContext(createClient({ host, auth }));
 const teams = createTeamsClient({ host, auth });
 
-const page = await teams.teams.queryTeams({ orgId });
+const page = await teams.teams.queryTeams({ orgId, siteId: cloudId });
 ```
 
 ## Authentication
@@ -31,18 +31,29 @@ the client. That is deliberate: an account can administer several organizations,
 `orgId` does not change. Resolve it once with [`getTenantContext`](./tenant-context) and keep it in configuration, or
 read it out of the URL when you open your organization at `admin.atlassian.com/o/{orgId}`.
 
+## The site id
+
+`queryTeams` and `createTeam` also require a `siteId` — the cloud id of the site the teams belong to, which
+[`getTenantContext`](./tenant-context) returns as `cloudId`. Atlassian's specification still marks it optional and only
+calls omitting it deprecated; the API answers `400 SITE_ID_REQUIRED_FOR_TEAM_API` on an organization that scopes teams
+to sites, which is the default. It is required here, so the omission is a compile error rather than a runtime one.
+
+`getTeam` and `fetchMembers` take it too and still answer without it. Pass it anyway — Atlassian's own guidance is to
+always provide a valid `siteId` so the call keeps working as Units roll out.
+
 ## Teams
 
 ```typescript
 const team = await teams.teams.createTeam({
   orgId,
+  siteId: cloudId,
   displayName: 'Platform',
   description: 'Owns the shared services.',
   teamType: 'MEMBER_INVITE',
 });
 
 await teams.teams.updateTeam({ orgId, teamId: team.teamId, description: 'Owns the shared services and the gateway.' });
-await teams.teams.getTeam({ orgId, teamId: team.teamId });
+await teams.teams.getTeam({ orgId, siteId: cloudId, teamId: team.teamId });
 ```
 
 `teamType` decides who may join: `OPEN` for anyone in the organization, `MEMBER_INVITE` for invitation only,
@@ -64,7 +75,7 @@ answers **410**, not 404 — the id stays known and reports itself as gone. `res
 let cursor: string | null | undefined;
 
 do {
-  const page = await teams.teams.queryTeams({ orgId, size: 100, cursor: cursor ?? undefined });
+  const page = await teams.teams.queryTeams({ orgId, siteId: cloudId, size: 100, cursor: cursor ?? undefined });
 
   for (const team of page.entities) console.log(team.displayName);
 
@@ -77,7 +88,7 @@ do {
 Membership is read through a `POST`, because the request carries a page payload rather than query parameters:
 
 ```typescript
-const members = await teams.teamMembers.fetchMembers({ orgId, teamId, first: 50 });
+const members = await teams.teamMembers.fetchMembers({ orgId, siteId: cloudId, teamId, first: 50 });
 
 for (const member of members.results) console.log(member.accountId);
 

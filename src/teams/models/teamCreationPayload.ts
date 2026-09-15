@@ -9,7 +9,7 @@ export const TeamCreationPayloadSchema = apiObject({
    * siteId is deprecated. With the introduction of Units, orgId alone is no longer sufficient to resolve the scope of
    * teams. Always provide a valid siteId to ensure this operation continues to work in the future.
    */
-  siteId: z.string().max(255, 'siteId must be at most 255 characters').nullish(),
+  siteId: z.string().max(255, 'siteId must be at most 255 characters').nullable(),
   teamType: openEnum(['OPEN', 'MEMBER_INVITE', 'EXTERNAL', 'ORG_ADMIN_MANAGED']),
 });
 
