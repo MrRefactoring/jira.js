@@ -1,6 +1,7 @@
 import { WorkflowSchemeSchema, type WorkflowScheme } from '../models/workflowScheme';
 import { DefaultWorkflowSchema, type DefaultWorkflow } from '../models/defaultWorkflow';
 import { IssueTypeWorkflowMappingSchema, type IssueTypeWorkflowMapping } from '../models/issueTypeWorkflowMapping';
+import { TaskProgressObjectSchema, type TaskProgressObject } from '../models/taskProgressObject';
 import { IssueTypesWorkflowMappingSchema, type IssueTypesWorkflowMapping } from '../models/issueTypesWorkflowMapping';
 import type { CreateWorkflowSchemeDraftFromParent } from '../parameters/createWorkflowSchemeDraftFromParent';
 import type { GetWorkflowSchemeDraft } from '../parameters/getWorkflowSchemeDraft';
@@ -262,8 +263,8 @@ export async function publishDraftWorkflowScheme(
   client: Client,
   parameters: PublishDraftWorkflowScheme,
   options?: RequestOptions,
-): Promise<void> {
-  const config: SendRequestOptions<void> = {
+): Promise<TaskProgressObject | undefined> {
+  const config: SendRequestOptions<TaskProgressObject> = {
     url: `/rest/api/3/workflowscheme/${parameters.id}/draft/publish`,
     method: 'POST',
     searchParams: {
@@ -272,6 +273,7 @@ export async function publishDraftWorkflowScheme(
     body: {
       statusMappings: parameters.statusMappings,
     },
+    schema: TaskProgressObjectSchema,
     signal: options?.signal,
   };
 

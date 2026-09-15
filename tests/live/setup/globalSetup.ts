@@ -87,7 +87,7 @@ async function sweep(label: string): Promise<void> {
   const jql = `summary ~ "${RESOURCE_MARKER}" AND created <= -${MIN_AGE_MINUTES}m ORDER BY created ASC`;
 
   const found = await client.issueSearch
-    .searchAndReconsileIssuesUsingJql({ jql, maxResults: 100, fields: ['summary'] })
+    .searchIssues({ jql, maxResults: 100, fields: ['summary'] })
     .catch(() => undefined);
 
   const issues = found?.issues ?? [];

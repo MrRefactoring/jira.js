@@ -14,7 +14,7 @@ export const IssueTypeScreenSchemePayloadSchema = apiObject({
    * The IDs of the screen schemes for the issue type IDs and default. A default entry is required to create an issue
    * type screen scheme, it defines the mapping for all issue types without a screen scheme.
    */
-  explicitMappings: z.record(z.string(), z.any()).optional(),
+  explicitMappings: z.record(z.string(), ProjectCreateResourceIdentifierSchema).optional(),
   /** The name of the issue type screen scheme */
   name: z.string().optional(),
   pcri: ProjectCreateResourceIdentifierSchema.optional(),

@@ -8,7 +8,7 @@ export const SimpleErrorCollectionSchema = apiObject({
    * The list of errors by parameter returned by the operation. For example,"projectKey": "Project keys must start with
    * an uppercase letter, followed by one or more uppercase alphanumeric characters."
    */
-  errors: z.record(z.string(), z.any()).optional(),
+  errors: z.record(z.string(), z.string()).optional(),
   httpStatusCode: z.number().optional(),
 });
 

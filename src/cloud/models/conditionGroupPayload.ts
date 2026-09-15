@@ -3,13 +3,34 @@ import { apiObject, openEnum } from '#/core';
 import { RulePayloadSchema, type RulePayload } from './rulePayload';
 
 export interface ConditionGroupPayload {
+  /** The nested conditions of the condition group. */
   conditionGroup?: ConditionGroupPayload[];
+  /** The rules for this condition. */
   conditions?: RulePayload[];
+  /**
+   * Determines how the conditions in the group are evaluated. Accepts either `ANY` or `ALL`. If `ANY` is used, at least
+   * one condition in the group must be true for the group to evaluate to true. If `ALL` is used, all conditions in the
+   * group must be true for the group to evaluate to true.
+   */
+  operation?: 'ANY' | 'ALL' | (string & {});
+  [key: string]: unknown;
+}
+
+export interface ConditionGroupPayloadInput {
+  /** The nested conditions of the condition group. */
+  conditionGroup?: ConditionGroupPayloadInput[];
+  /** The rules for this condition. */
+  conditions?: z.input<typeof RulePayloadSchema>[];
+  /**
+   * Determines how the conditions in the group are evaluated. Accepts either `ANY` or `ALL`. If `ANY` is used, at least
+   * one condition in the group must be true for the group to evaluate to true. If `ALL` is used, all conditions in the
+   * group must be true for the group to evaluate to true.
+   */
   operation?: 'ANY' | 'ALL' | (string & {});
 }
 
 /** The payload for creating a condition group in a workflow */
-export const ConditionGroupPayloadSchema: z.ZodType<ConditionGroupPayload> = apiObject({
+export const ConditionGroupPayloadSchema: z.ZodType<ConditionGroupPayload, ConditionGroupPayloadInput> = apiObject({
   /** The nested conditions of the condition group. */
   conditionGroup: z.array(z.lazy(() => ConditionGroupPayloadSchema)).optional(),
   /** The rules for this condition. */

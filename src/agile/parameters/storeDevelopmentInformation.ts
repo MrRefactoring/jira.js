@@ -340,7 +340,7 @@ export const StoreDevelopmentInformationSchema = z.object({
    * Maximum allowed number of properties key/value pairs is 5. Properties keys cannot start with '_' character.
    * Properties keys cannot contain ':' character.
    */
-  properties: z.record(z.string(), z.any()).optional(),
+  properties: z.record(z.string(), z.string()).optional(),
   /**
    * Information about the provider. This is useful for auditing, logging, debugging, and other internal uses. It is not
    * considered private information. Hence, it may not contain personally identifiable information.

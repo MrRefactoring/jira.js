@@ -73,7 +73,7 @@ export const GetRemoteLinkByIdSchema = apiObject({
    * Map of key/values (string to string mapping). This is used to build the urls for actions from the templateUrl the
    * provider registered their available actions with.
    */
-  attributeMap: z.record(z.string(), z.any()).optional(),
+  attributeMap: z.record(z.string(), z.string()).optional(),
 });
 
 export type GetRemoteLinkById = z.infer<typeof GetRemoteLinkByIdSchema>;

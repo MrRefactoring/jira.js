@@ -58,6 +58,8 @@ export * from './bulkSetIssueProperty';
 
 export * from './bulkSetIssuesPropertiesList';
 
+export * from './copyWorkflow';
+
 export * from './countIssues';
 
 export * from './createAssociations';
@@ -236,6 +238,8 @@ export * from './doTransition';
 
 export * from './editIssue';
 
+export * from './evaluateExpression';
+
 export * from './evaluateJSISJiraExpression';
 
 export * from './fetchMigrationTask';
@@ -333,6 +337,8 @@ export * from './getBulkEditableFields';
 export * from './getBulkOperationProgress';
 
 export * from './getBulkPermissions';
+
+export * from './getBulkPinStatus';
 
 export * from './getChangeLogs';
 
@@ -730,9 +736,15 @@ export * from './searchAndReconsileIssuesUsingJql';
 
 export * from './searchAndReconsileIssuesUsingJqlPost';
 
+export * from './searchIssues';
+
+export * from './searchIssuesPost';
+
 export * from './searchPriorities';
 
 export * from './searchProjects';
+
+export * from './searchStatuses';
 
 export * from './searchWorkflows';
 

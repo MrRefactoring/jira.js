@@ -9,7 +9,7 @@ export const JiraExpressionForAnalysisSchema = apiObject({
    * `issue` or `project`, are available in context and sets their type. Use this property to override the default types
    * or provide details of new variables.
    */
-  contextVariables: z.record(z.string(), z.any()).optional(),
+  contextVariables: z.record(z.string(), z.string()).optional(),
   /** The list of Jira expressions to analyse. */
   expressions: z.array(z.string()),
 });

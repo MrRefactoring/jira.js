@@ -1,14 +1,14 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-import { targetClassificationSchema } from './targetClassification';
-import { targetMandatoryFieldsSchema } from './targetMandatoryFields';
-import { targetStatusSchema } from './targetStatus';
+import { TargetClassificationSchema } from './targetClassification';
+import { TargetMandatoryFieldsSchema } from './targetMandatoryFields';
+import { TargetStatusSchema } from './targetStatus';
 
 /**
  * An object representing the mapping of issues and data related to destination entities, like fields and statuses, that
  * are required during a bulk move.
  */
-export const targetToSourcesMappingSchema = apiObject({
+export const TargetToSourcesMappingSchema = apiObject({
   /**
    * If `true`, when issues are moved into this target group, they will adopt the target project's default
    * classification, if they don't have a classification already. If they do have a classification, it will be kept the
@@ -69,7 +69,7 @@ export const targetToSourcesMappingSchema = apiObject({
    * - **You should only define this property when `inferClassificationDefaults` is `false`.**
    * - **In order to provide mapping for issues which don't have a classification, use `"-1"`.**
    */
-  targetClassification: z.array(targetClassificationSchema).nullish(),
+  targetClassification: z.array(TargetClassificationSchema).nullish(),
   /**
    * List of objects containing mandatory fields in the target field configuration and new values that need to be set
    * during the bulk move operation.
@@ -80,7 +80,7 @@ export const targetToSourcesMappingSchema = apiObject({
    *
    * **You should only define this property when `inferFieldDefaults` is `false`.**
    */
-  targetMandatoryFields: z.array(targetMandatoryFieldsSchema).nullish(),
+  targetMandatoryFields: z.array(TargetMandatoryFieldsSchema).nullish(),
   /**
    * List of the objects containing statuses in the source workflow and their new values which need to be set during the
    * bulk move operation.
@@ -92,7 +92,19 @@ export const targetToSourcesMappingSchema = apiObject({
    *
    * **You should only define this property when `inferStatusDefaults` is `false`.**
    */
-  targetStatus: z.array(targetStatusSchema).nullish(),
+  targetStatus: z.array(TargetStatusSchema).nullish(),
 });
 
-export type targetToSourcesMapping = z.infer<typeof targetToSourcesMappingSchema>;
+export type TargetToSourcesMapping = z.infer<typeof TargetToSourcesMappingSchema>;
+
+/**
+ * @deprecated Renamed to `TargetToSourcesMappingSchema`, which describes the same shape. This alias is removed in the
+ *   next major version.
+ */
+export const targetToSourcesMappingSchema = TargetToSourcesMappingSchema;
+
+/**
+ * @deprecated Renamed to `TargetToSourcesMapping`, which describes the same shape. This alias is removed in the next
+ *   major version.
+ */
+export type targetToSourcesMapping = TargetToSourcesMapping;

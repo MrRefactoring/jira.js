@@ -2,7 +2,7 @@ import { z } from 'zod';
 import { apiObject } from '#/core';
 
 export const ProjectLandingPageInfoSchema = apiObject({
-  attributes: z.record(z.string(), z.any()).optional(),
+  attributes: z.record(z.string(), z.string()).optional(),
   boardId: z.number().optional(),
   boardName: z.string().optional(),
   projectKey: z.string().optional(),

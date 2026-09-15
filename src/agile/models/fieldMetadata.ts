@@ -35,7 +35,7 @@ export const FieldMetadataSchema = apiObject({
     system: z.string().optional(),
     /** The data type of the field. */
     type: z.string(),
-  }).optional(),
+  }),
 });
 
 export type FieldMetadata = z.infer<typeof FieldMetadataSchema>;

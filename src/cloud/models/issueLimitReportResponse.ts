@@ -13,7 +13,7 @@ export const IssueLimitReportResponseSchema = apiObject({
   /** A list of ids of issues breaching the limit and their field count */
   issuesBreachingLimit: z.record(z.string(), z.any()).optional(),
   /** The fields and their defined limits */
-  limits: z.record(z.string(), z.any()).optional(),
+  limits: z.record(z.string(), z.number()).optional(),
 });
 
 export type IssueLimitReportResponse = z.infer<typeof IssueLimitReportResponseSchema>;

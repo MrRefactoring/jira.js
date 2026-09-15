@@ -6,7 +6,7 @@ export const CustomTemplatesProjectDetailsSchema = apiObject({
   /** The access level of the project. Only used by team-managed project */
   accessLevel: openEnum(['open', 'limited', 'private', 'free']).optional(),
   /** Additional properties of the project */
-  additionalProperties: z.record(z.string(), z.any()).optional(),
+  additionalProperties: z.record(z.string(), z.string()).optional(),
   /** The default assignee when creating issues in the project */
   assigneeType: openEnum(['PROJECT_DEFAULT', 'COMPONENT_LEAD', 'PROJECT_LEAD', 'UNASSIGNED']).optional(),
   /**

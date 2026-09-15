@@ -102,7 +102,29 @@ export async function createIssue(
   parameters: CreateIssue,
   options?: RequestOptions,
 ): Promise<CreatedIssue> {
-  if (typeof parameters.fields?.description === 'string' || typeof parameters.fields?.environment === 'string') {
+  const richText = [
+    parameters.fields?.description,
+    parameters.fields?.environment,
+    ...[...(parameters.update?.description ?? []), ...(parameters.update?.environment ?? [])].map(
+      operation => operation.set,
+    ),
+    ...(parameters.update?.comment ?? []).flatMap(operation => [
+      (operation.add as { body?: unknown } | undefined)?.body,
+      (operation.edit as { body?: unknown } | undefined)?.body,
+    ]),
+    ...(parameters.update?.worklog ?? []).flatMap(operation => [
+      (operation.add as { comment?: unknown } | undefined)?.comment,
+      (operation.edit as { comment?: unknown } | undefined)?.comment,
+    ]),
+  ];
+
+  if (richText.some(value => typeof value === 'string')) {
+    if (richText.some(value => typeof value === 'object' && value !== null)) {
+      throw new TypeError(
+        'description, environment, comment bodies and worklog comments must all be wiki markup or all be documents, in fields and in update alike: v2 reads only strings and v3 only documents.',
+      );
+    }
+
     return client.sendRequest({
       url: '/rest/api/2/issue',
       method: 'POST',
@@ -365,6 +387,50 @@ export async function getIssue(client: Client, parameters: GetIssue, options?: R
  *   to view the issue.
  */
 export async function editIssue(client: Client, parameters: EditIssue, options?: RequestOptions): Promise<void> {
+  const richText = [
+    parameters.fields?.description,
+    parameters.fields?.environment,
+    ...[...(parameters.update?.description ?? []), ...(parameters.update?.environment ?? [])].map(
+      operation => operation.set,
+    ),
+    ...(parameters.update?.comment ?? []).flatMap(operation => [
+      (operation.add as { body?: unknown } | undefined)?.body,
+      (operation.edit as { body?: unknown } | undefined)?.body,
+    ]),
+    ...(parameters.update?.worklog ?? []).flatMap(operation => [
+      (operation.add as { comment?: unknown } | undefined)?.comment,
+      (operation.edit as { comment?: unknown } | undefined)?.comment,
+    ]),
+  ];
+
+  if (richText.some(value => typeof value === 'string')) {
+    if (richText.some(value => typeof value === 'object' && value !== null)) {
+      throw new TypeError(
+        'description, environment, comment bodies and worklog comments must all be wiki markup or all be documents, in fields and in update alike: v2 reads only strings and v3 only documents.',
+      );
+    }
+
+    return client.sendRequest({
+      url: `/rest/api/2/issue/${parameters.issueIdOrKey}`,
+      method: 'PUT',
+      searchParams: {
+        notifyUsers: parameters.notifyUsers,
+        overrideScreenSecurity: parameters.overrideScreenSecurity,
+        overrideEditableFlag: parameters.overrideEditableFlag,
+        returnIssue: parameters.returnIssue,
+        expand: parameters.expand,
+      },
+      body: {
+        fields: parameters.fields,
+        historyMetadata: parameters.historyMetadata,
+        properties: parameters.properties,
+        transition: parameters.transition,
+        update: parameters.update,
+      },
+      signal: options?.signal,
+    });
+  }
+
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/issue/${parameters.issueIdOrKey}`,
     method: 'PUT',
@@ -681,6 +747,43 @@ export async function getTransitions(
  *   to view the issue.
  */
 export async function doTransition(client: Client, parameters: DoTransition, options?: RequestOptions): Promise<void> {
+  const richText = [
+    parameters.fields?.description,
+    parameters.fields?.environment,
+    ...[...(parameters.update?.description ?? []), ...(parameters.update?.environment ?? [])].map(
+      operation => operation.set,
+    ),
+    ...(parameters.update?.comment ?? []).flatMap(operation => [
+      (operation.add as { body?: unknown } | undefined)?.body,
+      (operation.edit as { body?: unknown } | undefined)?.body,
+    ]),
+    ...(parameters.update?.worklog ?? []).flatMap(operation => [
+      (operation.add as { comment?: unknown } | undefined)?.comment,
+      (operation.edit as { comment?: unknown } | undefined)?.comment,
+    ]),
+  ];
+
+  if (richText.some(value => typeof value === 'string')) {
+    if (richText.some(value => typeof value === 'object' && value !== null)) {
+      throw new TypeError(
+        'description, environment, comment bodies and worklog comments must all be wiki markup or all be documents, in fields and in update alike: v2 reads only strings and v3 only documents.',
+      );
+    }
+
+    return client.sendRequest({
+      url: `/rest/api/2/issue/${parameters.issueIdOrKey}/transitions`,
+      method: 'POST',
+      body: {
+        fields: parameters.fields,
+        historyMetadata: parameters.historyMetadata,
+        properties: parameters.properties,
+        transition: parameters.transition,
+        update: parameters.update,
+      },
+      signal: options?.signal,
+    });
+  }
+
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/issue/${parameters.issueIdOrKey}/transitions`,
     method: 'POST',

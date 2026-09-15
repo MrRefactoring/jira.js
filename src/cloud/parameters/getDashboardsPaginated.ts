@@ -75,8 +75,6 @@ export const GetDashboardsPaginatedSchema = z.object({
    */
   expand: z
     .union([
-      z.string(),
-      z.array(z.string()),
       openEnum([
         'description',
         'owner',

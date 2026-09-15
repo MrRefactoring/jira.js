@@ -17,8 +17,6 @@ export const GetProjectSchema = z.object({
    */
   expand: z
     .union([
-      z.string(),
-      z.array(z.string()),
       openEnum(['description', 'issueTypes', 'lead', 'projectKeys', 'issueTypeHierarchy']),
       z.array(openEnum(['description', 'issueTypes', 'lead', 'projectKeys', 'issueTypeHierarchy'])),
     ])

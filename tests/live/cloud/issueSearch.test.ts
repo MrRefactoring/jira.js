@@ -7,7 +7,7 @@ import { testName } from '../helpers/naming';
 import { waitFor } from '../helpers/poll';
 
 /**
- * Live suite for the `issueSearch` API (`searchAndReconsileIssuesUsingJql`, `searchAndReconsileIssuesUsingJqlPost`,
+ * Live suite for the `issueSearch` API (`searchIssues`, `searchIssuesPost`,
  * `countIssues`, `matchIssues`, `getIssuePickerResource`).
  *
  * Search is the one part of Jira that is emphatically *not* read-your-write: an issue exists the moment it is created
@@ -29,7 +29,7 @@ describe('Jira Cloud — issueSearch (live)', () => {
     issue = await createTestIssue(client, tracker, { summary });
 
     await waitFor(
-      () => client.issueSearch.searchAndReconsileIssuesUsingJql({ jql: `key = ${issue.key}` }),
+      () => client.issueSearch.searchIssues({ jql: `key = ${issue.key}` }),
       result => (result.issues?.length ?? 0) > 0,
       { maxAttempts: 10 },
     );
@@ -39,7 +39,7 @@ describe('Jira Cloud — issueSearch (live)', () => {
 
   it('returns ids alone when no fields are requested', async () => {
     const result = await waitFor(
-      () => client.issueSearch.searchAndReconsileIssuesUsingJql({ jql: `key = ${issue.key}` }),
+      () => client.issueSearch.searchIssues({ jql: `key = ${issue.key}` }),
       found => (found.issues?.length ?? 0) > 0,
     );
 
@@ -51,7 +51,7 @@ describe('Jira Cloud — issueSearch (live)', () => {
   it('returns exactly the fields asked for', async () => {
     const result = await waitFor(
       () =>
-        client.issueSearch.searchAndReconsileIssuesUsingJql({
+        client.issueSearch.searchIssues({
           jql: `key = ${issue.key}`,
           fields: ['summary'],
         }),
@@ -67,7 +67,7 @@ describe('Jira Cloud — issueSearch (live)', () => {
   it('finds the issue by text, not only by key', async () => {
     const result = await waitFor(
       () =>
-        client.issueSearch.searchAndReconsileIssuesUsingJql({
+        client.issueSearch.searchIssues({
           jql: `project = ${TEST_PROJECT_KEY} AND summary ~ "searchable"`,
           fields: ['summary'],
         }),
@@ -79,7 +79,7 @@ describe('Jira Cloud — issueSearch (live)', () => {
   });
 
   it('pages with a token rather than an offset', async () => {
-    const firstPage = await client.issueSearch.searchAndReconsileIssuesUsingJql({
+    const firstPage = await client.issueSearch.searchIssues({
       jql: `project = ${TEST_PROJECT_KEY} ORDER BY created DESC`,
       maxResults: 1,
     });
@@ -87,7 +87,7 @@ describe('Jira Cloud — issueSearch (live)', () => {
     expect(firstPage.issues).toHaveLength(1);
 
     if (firstPage.nextPageToken) {
-      const secondPage = await client.issueSearch.searchAndReconsileIssuesUsingJql({
+      const secondPage = await client.issueSearch.searchIssues({
         jql: `project = ${TEST_PROJECT_KEY} ORDER BY created DESC`,
         maxResults: 1,
         nextPageToken: firstPage.nextPageToken,
@@ -131,14 +131,14 @@ describe('Jira Cloud — issueSearch (live)', () => {
   });
 
   it('accepts bare words as a text search rather than rejecting them', async () => {
-    const result = await client.issueSearch.searchAndReconsileIssuesUsingJql({ jql: 'this is not jql' });
+    const result = await client.issueSearch.searchIssues({ jql: 'this is not jql' });
 
     expect(result.issues).toEqual([]);
   });
 
   it('rejects genuinely malformed JQL with a typed 400', async () => {
     const error = await client.issueSearch
-      .searchAndReconsileIssuesUsingJql({ jql: 'project = "unterminated' })
+      .searchIssues({ jql: 'project = "unterminated' })
       .catch((e: unknown) => e);
 
     expect(error).toBeInstanceOf(Error);
@@ -146,7 +146,7 @@ describe('Jira Cloud — issueSearch (live)', () => {
   });
 
   it('answers an unmatched query with an empty result, not an error', async () => {
-    const result = await client.issueSearch.searchAndReconsileIssuesUsingJql({
+    const result = await client.issueSearch.searchIssues({
       jql: `project = ${TEST_PROJECT_KEY} AND summary ~ "nothingmatchesthisatall"`,
     });
 

@@ -10,9 +10,7 @@ export const AddCommentSchema = z.object(CommentInputSchema.shape).extend({
    * information about comments in the response. This parameter accepts `renderedBody`, which returns the comment body
    * rendered in HTML.
    */
-  expand: z
-    .union([z.string(), z.array(z.string()), openEnum(['renderedBody']), z.array(openEnum(['renderedBody']))])
-    .optional(),
+  expand: z.union([openEnum(['renderedBody']), z.array(openEnum(['renderedBody']))]).optional(),
 });
 
 export type AddComment = z.input<typeof AddCommentSchema>;

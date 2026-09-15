@@ -21,7 +21,7 @@ export const CreatePlanRequestSchema = apiObject({
   name: z.string().max(255, 'name must be at most 255 characters'),
   /** The permissions for the plan. */
   permissions: z.array(CreatePermissionRequestSchema).optional(),
-  scheduling: CreateSchedulingRequestSchema.optional(),
+  scheduling: CreateSchedulingRequestSchema,
 });
 
 export type CreatePlanRequest = z.infer<typeof CreatePlanRequestSchema>;

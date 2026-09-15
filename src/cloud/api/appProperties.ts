@@ -154,11 +154,13 @@ export async function getForgeAppProperty(
 
 /**
  * Sets the value of a Forge app's property. These values can be retrieved in [Jira
- * expressions](/cloud/jira/platform/jira-expressions/) through the `app` [context
- * variable](/cloud/jira/platform/jira-expressions/#context-variables). They are also available in [entity property
- * display conditions](/platform/forge/manifest-reference/display-conditions/entity-property-conditions/).
+ * expressions](https://developer.atlassian.com/cloud/jira/platform/jira-expressions/) through the `app` [context
+ * variable](https://developer.atlassian.com/cloud/jira/platform/jira-expressions/#context-variables). They are also
+ * available in [entity property display
+ * conditions](https://developer.atlassian.com/platform/forge/manifest-reference/display-conditions/entity-property-conditions/).
  *
- * For other use cases, use the [Storage API](/platform/forge/runtime-reference/storage-api/).
+ * For other use cases, use the [Storage
+ * API](https://developer.atlassian.com/platform/forge/runtime-reference/storage-api/).
  *
  * The value of the request body must be a [valid](http://tools.ietf.org/html/rfc4627), non-empty JSON blob. The maximum
  * length is 32768 characters.

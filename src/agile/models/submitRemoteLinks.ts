@@ -24,7 +24,19 @@ export const SubmitRemoteLinksSchema = apiObject({
    * The object (if present) will be keyed by Remote Link ID and include any errors associated with that Remote Link
    * that have prevented it being submitted.
    */
-  rejectedRemoteLinks: z.record(z.string(), z.any()).optional(),
+  rejectedRemoteLinks: z
+    .record(
+      z.string(),
+      z.array(
+        apiObject({
+          /** A human-readable message describing the error. */
+          message: z.string(),
+          /** An optional trace ID that can be used by Jira developers to locate the source of the error. */
+          errorTraceId: z.string().optional(),
+        }),
+      ),
+    )
+    .optional(),
   /** Issue keys or services IDs or keys that are not known on this Jira instance (if any). */
   unknownAssociations: z.array(z.union([IssueIdOrKeysAssociationSchema, ServiceIdOrKeysAssociationSchema])).optional(),
 });

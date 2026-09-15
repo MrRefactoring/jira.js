@@ -1,4 +1,4 @@
-import { DashboardUserSchema, type DashboardUser } from '../models/dashboardUser';
+import { UserSchema, type User } from '../models/user';
 import { FoundUsersSchema, type FoundUsers } from '../models/foundUsers';
 import { PageUserSchema } from '../models/pageUser';
 import type { Page } from '../models/page';
@@ -40,8 +40,8 @@ export async function findBulkAssignableUsers(
   client: Client,
   parameters: FindBulkAssignableUsers,
   options?: RequestOptions,
-): Promise<DashboardUser[]> {
-  const config: SendRequestOptions<DashboardUser[]> = {
+): Promise<User[]> {
+  const config: SendRequestOptions<User[]> = {
     url: '/rest/api/3/user/assignable/multiProjectSearch',
     method: 'GET',
     searchParams: {
@@ -51,7 +51,7 @@ export async function findBulkAssignableUsers(
       startAt: parameters.startAt,
       maxResults: parameters.maxResults,
     },
-    schema: z.array(DashboardUserSchema),
+    schema: z.array(UserSchema),
     signal: options?.signal,
   };
 
@@ -90,8 +90,8 @@ export async function findAssignableUsers(
   client: Client,
   parameters?: FindAssignableUsers,
   options?: RequestOptions,
-): Promise<DashboardUser[]> {
-  const config: SendRequestOptions<DashboardUser[]> = {
+): Promise<User[]> {
+  const config: SendRequestOptions<User[]> = {
     url: '/rest/api/3/user/assignable/search',
     method: 'GET',
     searchParams: {
@@ -108,7 +108,7 @@ export async function findAssignableUsers(
       accountType: parameters?.accountType,
       appType: parameters?.appType,
     },
-    schema: z.array(DashboardUserSchema),
+    schema: z.array(UserSchema),
     signal: options?.signal,
   };
 
@@ -146,8 +146,8 @@ export async function findUsersWithAllPermissions(
   client: Client,
   parameters: FindUsersWithAllPermissions,
   options?: RequestOptions,
-): Promise<DashboardUser[]> {
-  const config: SendRequestOptions<DashboardUser[]> = {
+): Promise<User[]> {
+  const config: SendRequestOptions<User[]> = {
     url: '/rest/api/3/user/permission/search',
     method: 'GET',
     searchParams: {
@@ -159,7 +159,7 @@ export async function findUsersWithAllPermissions(
       startAt: parameters.startAt,
       maxResults: parameters.maxResults,
     },
-    schema: z.array(DashboardUserSchema),
+    schema: z.array(UserSchema),
     signal: options?.signal,
   };
 
@@ -229,12 +229,8 @@ export async function findUsersForPicker(
  * users and groups_ [global permission](https://confluence.atlassian.com/x/x4dKLg). Anonymous calls or calls by users
  * without the required permission return empty search results.
  */
-export async function findUsers(
-  client: Client,
-  parameters?: FindUsers,
-  options?: RequestOptions,
-): Promise<DashboardUser[]> {
-  const config: SendRequestOptions<DashboardUser[]> = {
+export async function findUsers(client: Client, parameters?: FindUsers, options?: RequestOptions): Promise<User[]> {
+  const config: SendRequestOptions<User[]> = {
     url: '/rest/api/3/user/search',
     method: 'GET',
     searchParams: {
@@ -245,7 +241,7 @@ export async function findUsers(
       maxResults: parameters?.maxResults,
       property: parameters?.property,
     },
-    schema: z.array(DashboardUserSchema),
+    schema: z.array(UserSchema),
     signal: options?.signal,
   };
 
@@ -287,8 +283,8 @@ export async function findUsersByQuery(
   client: Client,
   parameters: FindUsersByQuery,
   options?: RequestOptions,
-): Promise<Page<DashboardUser>> {
-  const config: SendRequestOptions<Page<DashboardUser>> = {
+): Promise<Page<User>> {
+  const config: SendRequestOptions<Page<User>> = {
     url: '/rest/api/3/user/search/query',
     method: 'GET',
     searchParams: {
@@ -386,8 +382,8 @@ export async function findUsersWithBrowsePermission(
   client: Client,
   parameters?: FindUsersWithBrowsePermission,
   options?: RequestOptions,
-): Promise<DashboardUser[]> {
-  const config: SendRequestOptions<DashboardUser[]> = {
+): Promise<User[]> {
+  const config: SendRequestOptions<User[]> = {
     url: '/rest/api/3/user/viewissue/search',
     method: 'GET',
     searchParams: {
@@ -398,7 +394,7 @@ export async function findUsersWithBrowsePermission(
       startAt: parameters?.startAt,
       maxResults: parameters?.maxResults,
     },
-    schema: z.array(DashboardUserSchema),
+    schema: z.array(UserSchema),
     signal: options?.signal,
   };
 

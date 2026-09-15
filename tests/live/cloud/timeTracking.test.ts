@@ -1,13 +1,12 @@
 import { beforeAll, describe, expect, it } from 'vitest';
 import { isForbiddenError } from '#/core';
 import type { CloudClient } from '#/cloud/createCloudClient';
-import { getCloudClient } from '../setup/client';
+import { getCloudClient, getStrictCloudClient } from '../setup/client';
 
 /**
  * Live suite for the `timeTracking` API (`getSelectedTimeTrackingImplementation`,
- * `getAvailableTimeTrackingImplementations`, `selectTimeTrackingImplementation`,
- * `getSharedTimeTrackingConfiguration`, `setSharedTimeTrackingConfiguration`) and the neighbouring
- * `issueNavigatorSettings` and `announcementBanner` reads.
+ * `getAvailableTimeTrackingImplementations`, `selectTimeTrackingImplementation`, `getSharedTimeTrackingConfiguration`,
+ * `setSharedTimeTrackingConfiguration`) and the neighbouring `issueNavigatorSettings` and `announcementBanner` reads.
  *
  * Read-only. Every write here is site-wide with no smaller scope: changing the time-tracking provider silently
  * reinterprets every worklog on the tenant, the default navigator columns change what every user sees in search
@@ -24,9 +23,7 @@ describe('Jira Cloud — timeTracking and site settings (live, read-only)', () =
   });
 
   it('reports the shared time-tracking configuration', async () => {
-    const configuration = await client.timeTracking
-      .getSharedTimeTrackingConfiguration()
-      .catch((e: unknown) => e);
+    const configuration = await client.timeTracking.getSharedTimeTrackingConfiguration().catch((e: unknown) => e);
 
     if (configuration instanceof Error) {
       expect(isForbiddenError(configuration) || (configuration as { status?: number }).status === 401).toBe(true);
@@ -56,9 +53,7 @@ describe('Jira Cloud — timeTracking and site settings (live, read-only)', () =
 
     if (providers instanceof Error) return;
 
-    const result = providers as Awaited<
-      ReturnType<typeof client.timeTracking.getAvailableTimeTrackingImplementations>
-    >;
+    const result = providers as Awaited<ReturnType<typeof client.timeTracking.getAvailableTimeTrackingImplementations>>;
 
     expect(Array.isArray(result)).toBe(true);
 
@@ -68,16 +63,23 @@ describe('Jira Cloud — timeTracking and site settings (live, read-only)', () =
     }
   });
 
-  it('returns the selected provider despite being declared to return nothing', async () => {
-    const selected = await client.timeTracking.getSelectedTimeTrackingImplementation().catch((e: unknown) => e);
+  it('returns the selected provider, typed as the model it is', async () => {
+    const selected = await getStrictCloudClient()
+      .timeTracking.getSelectedTimeTrackingImplementation()
+      .catch((e: unknown) => e);
 
-    if (selected instanceof Error) return;
+    if (selected instanceof Error) {
+      expect(isForbiddenError(selected) || (selected as { status?: number }).status === 401).toBe(true);
 
-    const provider = selected as unknown as { key?: string; name?: string };
+      return;
+    }
 
-    expect(provider).toBeDefined();
-    expect(typeof provider.key).toBe('string');
+    const provider = selected as Awaited<ReturnType<typeof client.timeTracking.getSelectedTimeTrackingImplementation>>;
+
+    if (provider === undefined) return;
+
     expect(provider.key).toBe('JIRA');
+    expect(typeof provider.name).toBe('string');
   });
 
   it('reports the default issue navigator columns', async () => {
@@ -85,9 +87,7 @@ describe('Jira Cloud — timeTracking and site settings (live, read-only)', () =
 
     if (columns instanceof Error) return;
 
-    const result = columns as Awaited<
-      ReturnType<typeof client.issueNavigatorSettings.getIssueNavigatorDefaultColumns>
-    >;
+    const result = columns as Awaited<ReturnType<typeof client.issueNavigatorSettings.getIssueNavigatorDefaultColumns>>;
 
     expect(Array.isArray(result)).toBe(true);
 

@@ -1,5 +1,6 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
+import { FieldMetadataSchema } from './fieldMetadata';
 import { ScopeSchema } from './scope';
 
 /** Details of the issue creation metadata for an issue type. */
@@ -13,7 +14,7 @@ export const IssueTypeIssueCreateMetadataSchema = apiObject({
   /** Expand options that include additional issue type metadata details in the response. */
   expand: z.string().optional(),
   /** List of the fields available when creating an issue for the issue type. */
-  fields: z.record(z.string(), z.any()).optional(),
+  fields: z.record(z.string(), FieldMetadataSchema).optional(),
   /** Hierarchy level of the issue type. */
   hierarchyLevel: z.number().optional(),
   /** The URL of the issue type's avatar. */

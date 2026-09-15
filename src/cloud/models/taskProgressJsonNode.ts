@@ -1,6 +1,5 @@
 import { z } from 'zod';
 import { apiObject, openEnum } from '#/core';
-import { JsonNodeSchema } from './jsonNode';
 
 /** Details about a task. */
 export const TaskProgressJsonNodeSchema = apiObject({
@@ -18,7 +17,8 @@ export const TaskProgressJsonNodeSchema = apiObject({
   message: z.string().optional(),
   /** The progress of the task, as a percentage complete. */
   progress: z.number(),
-  result: JsonNodeSchema.optional(),
+  /** The result of the task execution. */
+  result: z.unknown().optional(),
   /** The URL of the task. */
   self: z.url(),
   /** A timestamp recording when the task was started. */

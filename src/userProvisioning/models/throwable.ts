@@ -8,9 +8,18 @@ export interface Throwable {
   message?: string;
   localizedMessage?: string;
   suppressed?: Throwable[];
+  [key: string]: unknown;
 }
 
-export const ThrowableSchema: z.ZodType<Throwable> = apiObject({
+export interface ThrowableInput {
+  cause?: ThrowableInput;
+  stackTrace?: z.input<typeof StackTraceElementSchema>[];
+  message?: string;
+  localizedMessage?: string;
+  suppressed?: ThrowableInput[];
+}
+
+export const ThrowableSchema: z.ZodType<Throwable, ThrowableInput> = apiObject({
   cause: z.lazy(() => ThrowableSchema).optional(),
   stackTrace: z.array(StackTraceElementSchema).optional(),
   message: z.string().optional(),

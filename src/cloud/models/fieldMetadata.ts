@@ -22,7 +22,7 @@ export const FieldMetadataSchema = apiObject({
   operations: z.array(z.string()),
   /** Whether the field is required. */
   required: z.boolean(),
-  schema: JsonTypeSchema.optional(),
+  schema: JsonTypeSchema,
 });
 
 export type FieldMetadata = z.infer<typeof FieldMetadataSchema>;

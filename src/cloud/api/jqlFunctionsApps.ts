@@ -2,6 +2,10 @@ import { PageJqlFunctionPrecomputationSchema } from '../models/pageJqlFunctionPr
 import type { Page } from '../models/page';
 import type { JqlFunctionPrecomputation } from '../models/jqlFunctionPrecomputation';
 import {
+  JqlFunctionPrecomputationUpdateResponseSchema,
+  type JqlFunctionPrecomputationUpdateResponse,
+} from '../models/jqlFunctionPrecomputationUpdateResponse';
+import {
   JqlFunctionPrecomputationGetByIdResponseSchema,
   type JqlFunctionPrecomputationGetByIdResponse,
 } from '../models/jqlFunctionPrecomputationGetByIdResponse';
@@ -54,8 +58,8 @@ export async function updatePrecomputations(
   client: Client,
   parameters: UpdatePrecomputations,
   options?: RequestOptions,
-): Promise<void> {
-  const config: SendRequestOptions<void> = {
+): Promise<JqlFunctionPrecomputationUpdateResponse | undefined> {
+  const config: SendRequestOptions<JqlFunctionPrecomputationUpdateResponse> = {
     url: '/rest/api/3/jql/function/computation',
     method: 'POST',
     searchParams: {
@@ -64,6 +68,7 @@ export async function updatePrecomputations(
     body: {
       values: parameters.values,
     },
+    schema: JqlFunctionPrecomputationUpdateResponseSchema,
     signal: options?.signal,
   };
 

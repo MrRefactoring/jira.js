@@ -15,8 +15,6 @@ export const GetAllPermissionSchemesSchema = z.object({
    */
   expand: z
     .union([
-      z.string(),
-      z.array(z.string()),
       openEnum(['all', 'field', 'group', 'permissions', 'projectRole', 'user']),
       z.array(openEnum(['all', 'field', 'group', 'permissions', 'projectRole', 'user'])),
     ])

@@ -6,7 +6,7 @@ export const UserLinkSchema = apiObject({
    * Links to the various sizes of the customer's avatar. Note that this property is deprecated, and will be removed in
    * future versions.
    */
-  avatarUrls: z.record(z.string(), z.any()).optional(),
+  avatarUrls: z.record(z.string(), z.string()).optional(),
   /** REST API URL for the customer. */
   jiraRest: z.url().optional(),
   self: z.url().optional(),

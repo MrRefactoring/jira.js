@@ -19,8 +19,6 @@ export const AssignPermissionSchemeSchema = z.object(IdSchema.shape).extend({
    */
   expand: z
     .union([
-      z.string(),
-      z.array(z.string()),
       openEnum(['all', 'field', 'group', 'permissions', 'projectRole', 'user']),
       z.array(openEnum(['all', 'field', 'group', 'permissions', 'projectRole', 'user'])),
     ])

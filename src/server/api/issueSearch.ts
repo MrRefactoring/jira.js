@@ -62,7 +62,7 @@ export async function searchUsingSearchRequest(
 }
 
 /** Available since Jira Data Center 11.3. */
-export async function getError(client: Client, options?: RequestOptions): Promise<ResponseValue> {
+export async function getError(client: Client, options?: RequestOptions): Promise<ResponseValue | undefined> {
   const config: SendRequestOptions<ResponseValue> = {
     url: '/rest/api/2/search/error/lookup',
     method: 'GET',

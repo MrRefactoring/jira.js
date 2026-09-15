@@ -19,7 +19,7 @@ export const HistoryMetadataSchema = apiObject({
   /** The description key of the email address associated the history record. */
   emailDescriptionKey: z.string().optional(),
   /** Additional arbitrary information about the history record. */
-  extraData: z.record(z.string(), z.any()).optional(),
+  extraData: z.record(z.string(), z.string()).optional(),
   generator: HistoryMetadataParticipantSchema.optional(),
   /** The type of the history record. */
   type: z.string().optional(),

@@ -647,8 +647,10 @@ export function createServerClient(clientConfig: ServerClientConfig | Client) {
       ): Promise<EntityPropertiesKeys> => board.getBoardPropertyKeys(client, parameters, options),
       getBoardProperty: (parameters: GetBoardProperty, options?: RequestOptions): Promise<EntityProperty> =>
         board.getBoardProperty(client, parameters, options),
-      setBoardProperty: (parameters: SetBoardProperty, options?: RequestOptions): Promise<EntityPropertiesKeys> =>
-        board.setBoardProperty(client, parameters, options),
+      setBoardProperty: (
+        parameters: SetBoardProperty,
+        options?: RequestOptions,
+      ): Promise<EntityPropertiesKeys | undefined> => board.setBoardProperty(client, parameters, options),
       deleteBoardProperty: (parameters: DeleteBoardProperty, options?: RequestOptions): Promise<void> =>
         board.deleteBoardProperty(client, parameters, options),
       getRefinedVelocity: (parameters: GetRefinedVelocity, options?: RequestOptions): Promise<BooleanSetting> =>
@@ -681,7 +683,7 @@ export function createServerClient(clientConfig: ServerClientConfig | Client) {
         epic.rankEpics(client, parameters, options),
     },
     issues: {
-      rankIssues: (parameters: RankIssues, options?: RequestOptions): Promise<PartialSuccess> =>
+      rankIssues: (parameters: RankIssues, options?: RequestOptions): Promise<PartialSuccess | undefined> =>
         issues.rankIssues(client, parameters, options),
       getAgileIssue: (parameters: GetAgileIssue, options?: RequestOptions): Promise<Issue> =>
         issues.getAgileIssue(client, parameters, options),
@@ -1481,7 +1483,7 @@ export function createServerClient(clientConfig: ServerClientConfig | Client) {
         parameters: SearchUsingSearchRequest,
         options?: RequestOptions,
       ): Promise<SearchResults> => issueSearch.searchUsingSearchRequest(client, parameters, options),
-      getError: (options?: RequestOptions): Promise<ResponseValue> => issueSearch.getError(client, options),
+      getError: (options?: RequestOptions): Promise<ResponseValue | undefined> => issueSearch.getError(client, options),
     },
     searchLimits: {
       getMaxAggregationBuckets: (options?: RequestOptions): Promise<number> =>

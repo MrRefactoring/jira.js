@@ -9,13 +9,102 @@ export const StoreDevelopmentInformationSchema = apiObject({
    * devinfo entity that isn't updated due to it's updateSequenceId being out of order is not considered a failed
    * submission.
    */
-  acceptedDevinfoEntities: z.record(z.string(), z.any()).optional(),
+  acceptedDevinfoEntities: z
+    .record(
+      z.string(),
+      apiObject({
+        /** Commits IDs */
+        commits: z.array(z.string()).optional(),
+        /** Branch IDs */
+        branches: z.array(z.string()).optional(),
+        /** Pull request IDs */
+        pullRequests: z.array(z.string()).optional(),
+      }),
+    )
+    .optional(),
   /**
    * IDs of devinfo entities that have not been accepted for submission and caused error descriptions, usually due to a
    * problem with the request data. The entities (if present) will be grouped by their repository id and type. Entity
    * IDs are listed with errors associated with that devinfo entity that have prevented it being submitted.
    */
-  failedDevinfoEntities: z.record(z.string(), z.any()).optional(),
+  failedDevinfoEntities: z
+    .record(
+      z.string(),
+      apiObject({
+        /** Repository errors */
+        errorMessages: z
+          .array(
+            apiObject({
+              /** A human-readable message describing the error. */
+              message: z.string(),
+              /** An optional trace ID that can be used by Jira developers to locate the source of the error. */
+              errorTraceId: z.string().optional(),
+            }),
+          )
+          .optional(),
+        /** Commits errors */
+        commits: z
+          .array(
+            apiObject({
+              /** Entity id */
+              id: z.string(),
+              /** Error message */
+              errorMessages: z
+                .array(
+                  apiObject({
+                    /** A human-readable message describing the error. */
+                    message: z.string(),
+                    /** An optional trace ID that can be used by Jira developers to locate the source of the error. */
+                    errorTraceId: z.string().optional(),
+                  }),
+                )
+                .optional(),
+            }),
+          )
+          .optional(),
+        /** Branches errors */
+        branches: z
+          .array(
+            apiObject({
+              /** Entity id */
+              id: z.string(),
+              /** Error message */
+              errorMessages: z
+                .array(
+                  apiObject({
+                    /** A human-readable message describing the error. */
+                    message: z.string(),
+                    /** An optional trace ID that can be used by Jira developers to locate the source of the error. */
+                    errorTraceId: z.string().optional(),
+                  }),
+                )
+                .optional(),
+            }),
+          )
+          .optional(),
+        /** Pull requests errors */
+        pullRequests: z
+          .array(
+            apiObject({
+              /** Entity id */
+              id: z.string(),
+              /** Error message */
+              errorMessages: z
+                .array(
+                  apiObject({
+                    /** A human-readable message describing the error. */
+                    message: z.string(),
+                    /** An optional trace ID that can be used by Jira developers to locate the source of the error. */
+                    errorTraceId: z.string().optional(),
+                  }),
+                )
+                .optional(),
+            }),
+          )
+          .optional(),
+      }),
+    )
+    .optional(),
   /**
    * Issue keys that are not known on this Jira instance (if any). These may be invalid keys (e.g. `UTF-8` is sometimes
    * incorrectly identified as a Jira issue key), or they may be for projects that no longer exist. If a devinfo entity

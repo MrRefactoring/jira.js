@@ -96,7 +96,7 @@ export async function rankIssues(
   client: Client,
   parameters: RankIssues,
   options?: RequestOptions,
-): Promise<PartialSuccess> {
+): Promise<PartialSuccess | undefined> {
   const config: SendRequestOptions<PartialSuccess> = {
     url: '/rest/agile/1.0/issue/rank',
     method: 'PUT',

@@ -538,6 +538,12 @@ export * from './forgePanelProjectPinAsyncResponse';
 
 export * from './forgePanelProjectPinRequest';
 
+export * from './forgePanelProjectPinStatus';
+
+export * from './forgePanelProjectPinStatusRequest';
+
+export * from './forgePanelProjectPinStatusResponse';
+
 export * from './foundGroup';
 
 export * from './foundGroups';
@@ -672,6 +678,8 @@ export * from './issueFieldOptionCreate';
 
 export * from './issueFieldOptionScope';
 
+export * from './issueFields';
+
 export * from './issueFilterForBulkPropertyDelete';
 
 export * from './issueFilterForBulkPropertySet';
@@ -697,6 +705,8 @@ export * from './issueMatchesForJQL';
 export * from './issuePickerSuggestions';
 
 export * from './issuePickerSuggestionsIssueType';
+
+export * from './issueProgress';
 
 export * from './issueSecurityLevelMember';
 
@@ -1732,6 +1742,8 @@ export * from './updateUserToGroup';
 
 export * from './updatedProjectCategory';
 
+export * from './user';
+
 export * from './userAvatarUrls';
 
 export * from './userBean';
@@ -1807,6 +1819,8 @@ export * from './workflowCapabilityPayload';
 export * from './workflowCompoundCondition';
 
 export * from './workflowCondition';
+
+export * from './workflowCopyRequest';
 
 export * from './workflowCreate';
 

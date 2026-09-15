@@ -13,7 +13,7 @@ export const SubmitRemoteLinksSchema = z.object({
    * Properties are supplied as key/value pairs, a maximum of 5 properties can be supplied, and keys must not contain
    * ':' or start with '_'.
    */
-  properties: z.record(z.string(), z.any()).optional(),
+  properties: z.record(z.string(), z.string().max(255, 'properties must be at most 255 characters')).optional(),
   /**
    * A list of Remote Links to submit to Jira.
    *
@@ -102,7 +102,7 @@ export const SubmitRemoteLinksSchema = z.object({
        * Map of key/values (string to string mapping). This is used to build the urls for actions from the templateUrl
        * the provider registered their available actions with.
        */
-      attributeMap: z.record(z.string(), z.any()).optional(),
+      attributeMap: z.record(z.string(), z.string()).optional(),
     }),
   ),
   /**

@@ -17,8 +17,6 @@ export const GetVersionSchema = z.object({
    */
   expand: z
     .union([
-      z.string(),
-      z.array(z.string()),
       openEnum(['operations', 'issuesstatus', 'driver', 'approvers']),
       z.array(openEnum(['operations', 'issuesstatus', 'driver', 'approvers'])),
     ])

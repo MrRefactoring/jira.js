@@ -8,7 +8,7 @@ export const WorkflowTransitionRulesUpdateErrorDetailsSchema = apiObject({
    * A list of transition rule update errors, indexed by the transition rule ID. Any transition rule that appears here
    * wasn't updated.
    */
-  ruleUpdateErrors: z.record(z.string(), z.any()),
+  ruleUpdateErrors: z.record(z.string(), z.array(z.string())),
   /**
    * The list of errors that specify why the workflow update failed. The workflow was not updated if the list contains
    * any entries.

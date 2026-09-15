@@ -108,8 +108,6 @@ export const SearchProjectsSchema = z.object({
    */
   expand: z
     .union([
-      z.string(),
-      z.array(z.string()),
       openEnum(['description', 'projectKeys', 'lead', 'issueTypes', 'url', 'insight']),
       z.array(openEnum(['description', 'projectKeys', 'lead', 'issueTypes', 'url', 'insight'])),
     ])

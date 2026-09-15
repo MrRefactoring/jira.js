@@ -11,14 +11,7 @@ export const GetTransitionsSchema = z.object({
    * returned. Use this information to populate the `fields` and `update` fields in [Transition
    * issue](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-issues/#api-rest-api-3-issue-issueIdOrKey-transitions-post).
    */
-  expand: z
-    .union([
-      z.string(),
-      z.array(z.string()),
-      openEnum(['transitions.fields']),
-      z.array(openEnum(['transitions.fields'])),
-    ])
-    .optional(),
+  expand: z.union([openEnum(['transitions.fields']), z.array(openEnum(['transitions.fields']))]).optional(),
   /** The ID of the transition. */
   transitionId: z.string().optional(),
   /**

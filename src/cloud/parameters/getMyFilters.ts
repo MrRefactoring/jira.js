@@ -17,12 +17,7 @@ export const GetMyFiltersSchema = z.object({
    *   example, to access the next 1000 subscriptions, use `?expand=subscriptions[1001:2000]`.
    */
   expand: z
-    .union([
-      z.string(),
-      z.array(z.string()),
-      openEnum(['sharedUsers', 'subscriptions']),
-      z.array(openEnum(['sharedUsers', 'subscriptions'])),
-    ])
+    .union([openEnum(['sharedUsers', 'subscriptions']), z.array(openEnum(['sharedUsers', 'subscriptions']))])
     .optional(),
   /** Include the user's favorite filters in the response. */
   includeFavourites: z.boolean().optional(),

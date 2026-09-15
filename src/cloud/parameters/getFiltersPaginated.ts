@@ -85,8 +85,6 @@ export const GetFiltersPaginatedSchema = z.object({
    */
   expand: z
     .union([
-      z.string(),
-      z.array(z.string()),
       openEnum([
         'description',
         'favourite',

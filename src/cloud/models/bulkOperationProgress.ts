@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import { apiObject, openEnum } from '#/core';
-import { DashboardUserSchema } from './dashboardUser';
+import { UserSchema } from './user';
 
 export const BulkOperationProgressSchema = apiObject({
   /** A timestamp of when the task was submitted. */
@@ -10,7 +10,7 @@ export const BulkOperationProgressSchema = apiObject({
    * reasons for failure. These reasons are open-ended text descriptions of the error and are not selected from a
    * predefined list of standard reasons.
    */
-  failedAccessibleIssues: z.record(z.string(), z.any()).optional(),
+  failedAccessibleIssues: z.record(z.string(), z.array(z.string())).optional(),
   /**
    * The number of issues that are either invalid or issues that the user doesn't have permission to view, regardless of
    * the success or failure of the operation.
@@ -24,7 +24,7 @@ export const BulkOperationProgressSchema = apiObject({
   started: z.coerce.date().optional(),
   /** The status of the task. */
   status: openEnum(['ENQUEUED', 'RUNNING', 'COMPLETE', 'FAILED', 'CANCEL_REQUESTED', 'CANCELLED', 'DEAD']).optional(),
-  submittedBy: DashboardUserSchema.optional(),
+  submittedBy: UserSchema.optional(),
   /** The ID of the task. */
   taskId: z.string().optional(),
   /** The number of issues that the bulk operation was attempted on. */

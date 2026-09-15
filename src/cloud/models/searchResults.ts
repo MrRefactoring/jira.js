@@ -1,6 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
 import { IssueSchema } from './issue';
+import { JsonTypeSchema } from './jsonType';
 
 /** The result of a JQL search. */
 export const SearchResultsSchema = apiObject({
@@ -11,9 +12,9 @@ export const SearchResultsSchema = apiObject({
   /** The maximum number of results that could be on the page. */
   maxResults: z.number().optional(),
   /** The ID and name of each field in the search results. */
-  names: z.record(z.string(), z.any()).optional(),
+  names: z.record(z.string(), z.string()).optional(),
   /** The schema describing the field types in the search results. */
-  schema: z.record(z.string(), z.any()).optional(),
+  schema: z.record(z.string(), JsonTypeSchema).optional(),
   /** The index of the first item returned on the page. */
   startAt: z.number().optional(),
   /** The number of results on the page. */

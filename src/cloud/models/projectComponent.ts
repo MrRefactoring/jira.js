@@ -1,12 +1,12 @@
 import { z } from 'zod';
 import { apiObject, openEnum } from '#/core';
-import { DashboardUserSchema } from './dashboardUser';
+import { UserSchema } from './user';
 
 /** Details about a project component. */
 export const ProjectComponentSchema = apiObject({
   /** Compass component's ID. Can't be updated. Not required for creating a Project Component. */
   ari: z.string().optional(),
-  assignee: DashboardUserSchema.optional(),
+  assignee: UserSchema.optional(),
   /**
    * The nominal user type used to determine the assignee for issues created with this component. See `realAssigneeType`
    * for details on how the type of the user, and hence the user, assigned to issues is determined. Can take the
@@ -31,14 +31,14 @@ export const ProjectComponentSchema = apiObject({
    * the component lead is not set, then `false` is returned.
    */
   isAssigneeTypeValid: z.boolean().optional(),
-  lead: DashboardUserSchema.optional(),
+  lead: UserSchema.optional(),
   /**
    * The accountId of the component's lead user. The accountId uniquely identifies the user across all Atlassian
    * products. For example, _5b10ac8d82e05b22cc7d4ef5_.
    */
   leadAccountId: z.string().max(128, 'leadAccountId must be at most 128 characters').optional(),
   /** Compass component's metadata. Can't be updated. Not required for creating a Project Component. */
-  metadata: z.record(z.string(), z.any()).optional(),
+  metadata: z.record(z.string(), z.string()).optional(),
   /**
    * The unique name for the component in the project. Required when creating a component. Optional when updating a
    * component. The maximum length is 255 characters.
@@ -48,7 +48,7 @@ export const ProjectComponentSchema = apiObject({
   project: z.string().optional(),
   /** The ID of the project the component is assigned to. */
   projectId: z.number().optional(),
-  realAssignee: DashboardUserSchema.optional(),
+  realAssignee: UserSchema.optional(),
   /**
    * The type of the assignee that is assigned to issues created with this component, when an assignee cannot be set
    * from the `assigneeType`. For example, `assigneeType` is set to `COMPONENT_LEAD` but no component lead is set. This

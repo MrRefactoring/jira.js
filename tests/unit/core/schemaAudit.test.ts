@@ -87,6 +87,39 @@ describe('the schema audit', () => {
     ]);
   });
 
+  it('does not report a key under the documented prefix, and still reports one outside it', async () => {
+    const body = { summary: 's', customfield_10016: 3, undocumented: 7 };
+
+    mockFetch(body);
+
+    const { result, drift } = await read(apiObject({ summary: z.string() }, 'customfield_'), body);
+
+    expect(drift).toEqual([
+      { kind: 'keys', endpoint: 'GET /x', path: '', keys: ['undocumented'], types: { undocumented: 'number' } },
+    ]);
+
+    expect(result).toEqual({ summary: 's', customfield_10016: 3 });
+  });
+
+  it('reports an undocumented key beside a prefixed one even when a nested field drifts too', async () => {
+    const body = { fields: { status: 'archived', customfield_10016: 3, undocumented: 7 } };
+
+    mockFetch(body);
+
+    const { drift } = await read(
+      apiObject({ fields: apiObject({ status: z.enum(['active']) }, 'customfield_') }),
+      body,
+    );
+
+    expect(drift.map(entry => [entry.kind, entry.path])).toEqual(
+      expect.arrayContaining([
+        ['value', 'fields.status'],
+        ['keys', 'fields'],
+      ]),
+    );
+    expect(drift.flatMap(entry => (entry.kind === 'keys' ? entry.keys : []))).toEqual(['undocumented']);
+  });
+
   it('reports both kinds from one response', async () => {
     const body = { status: 'archived', undocumented: 'x' };
 

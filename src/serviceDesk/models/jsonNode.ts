@@ -1,6 +1,10 @@
 import { z } from 'zod';
 import { apiObject, openEnum } from '#/core';
 
+/**
+ * @deprecated Jackson's description of a JSON value, not the value itself: nothing in this API reads or sends it any
+ *   more. This model is removed in the next major version.
+ */
 export const JsonNodeSchema = apiObject({
   array: z.boolean().optional(),
   bigDecimal: z.boolean().optional(),
@@ -40,4 +44,8 @@ export const JsonNodeSchema = apiObject({
   valueNode: z.boolean().optional(),
 });
 
+/**
+ * @deprecated Jackson's description of a JSON value, not the value itself: nothing in this API reads or sends it any
+ *   more. This model is removed in the next major version.
+ */
 export type JsonNode = z.infer<typeof JsonNodeSchema>;

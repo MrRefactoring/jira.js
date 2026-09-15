@@ -172,7 +172,7 @@ import type {
   GetDashboard,
   GetPolicies,
   AnalyseExpression,
-  EvaluateJSISJiraExpression,
+  EvaluateExpression,
   CreateCustomField,
   GetFieldsPaginated,
   GetTrashedFieldsPaginated,
@@ -224,6 +224,7 @@ import type {
   GetSharePermission,
   DeleteSharePermission,
   BulkPinUnpinProjectsAsync,
+  GetBulkPinStatus,
   CreateGroup,
   RemoveGroup,
   GetUsersFromGroup,
@@ -234,8 +235,8 @@ import type {
   GetIssuePickerResource,
   MatchIssues,
   CountIssues,
-  SearchAndReconsileIssuesUsingJql,
-  SearchAndReconsileIssuesUsingJqlPost,
+  SearchIssues,
+  SearchIssuesPost,
   BulkSetIssuesPropertiesList,
   BulkSetIssuePropertiesByIssue,
   BulkSetIssueProperty,
@@ -433,7 +434,7 @@ import type {
   UpdateStatuses,
   DeleteStatusesById,
   GetStatusesByName,
-  Search,
+  SearchStatuses,
   GetProjectIssueTypeUsagesForStatus,
   GetProjectUsagesForStatus,
   GetWorkflowUsagesForStatus,
@@ -477,6 +478,7 @@ import type {
   GetWorkflowSchemeUsagesForWorkflow,
   ReadWorkflows,
   WorkflowCapabilities,
+  CopyWorkflow,
   CreateWorkflows,
   ValidateCreateWorkflows,
   ReadWorkflowPreviews,
@@ -605,6 +607,7 @@ import type {
   DefaultShareScope,
   SharePermission,
   ForgePanelProjectPinAsyncResponse,
+  ForgePanelProjectPinStatusResponse,
   Group,
   UserDetails,
   FoundGroups,
@@ -644,13 +647,14 @@ import type {
   ParsedJqlQueries,
   ConvertedJQLQueries,
   JqlFunctionPrecomputation,
+  JqlFunctionPrecomputationUpdateResponse,
   JqlFunctionPrecomputationGetByIdResponse,
   PageString,
   Permissions,
   BulkPermissionGrants,
   PermittedProjects,
   Locale,
-  DashboardUser,
+  User,
   NotificationScheme,
   NotificationSchemeAndProjectMapping,
   PermissionSchemes,
@@ -933,7 +937,7 @@ export function createCloudClient(clientConfig: ClientConfig | Client) {
         projectComponents.getProjectComponents(client, parameters, options),
     },
     timeTracking: {
-      getSelectedTimeTrackingImplementation: (options?: RequestOptions): Promise<void> =>
+      getSelectedTimeTrackingImplementation: (options?: RequestOptions): Promise<TimeTrackingProvider | undefined> =>
         timeTracking.getSelectedTimeTrackingImplementation(client, options),
       selectTimeTrackingImplementation: (
         parameters: SelectTimeTrackingImplementation,
@@ -1007,11 +1011,18 @@ export function createCloudClient(clientConfig: ClientConfig | Client) {
     jiraExpressions: {
       analyseExpression: (parameters: AnalyseExpression, options?: RequestOptions): Promise<JiraExpressionsAnalysis> =>
         jiraExpressions.analyseExpression(client, parameters, options),
-      evaluateJSISJiraExpression: (
-        parameters: EvaluateJSISJiraExpression,
+      evaluateExpression: (
+        parameters: EvaluateExpression,
         options?: RequestOptions,
-      ): Promise<JExpEvaluateJiraExpressionResult> =>
-        jiraExpressions.evaluateJSISJiraExpression(client, parameters, options),
+      ): Promise<JExpEvaluateJiraExpressionResult> => jiraExpressions.evaluateExpression(client, parameters, options),
+      /**
+       * @deprecated Renamed to `evaluateExpression`, which calls the same endpoint. This alias is removed in the next
+       *   major version.
+       */
+      evaluateJSISJiraExpression: (
+        parameters: EvaluateExpression,
+        options?: RequestOptions,
+      ): Promise<JExpEvaluateJiraExpressionResult> => jiraExpressions.evaluateExpression(client, parameters, options),
     },
     issueFields: {
       getFields: (options?: RequestOptions): Promise<FieldDetails[]> => issueFields.getFields(client, options),
@@ -1177,6 +1188,10 @@ export function createCloudClient(clientConfig: ClientConfig | Client) {
         options?: RequestOptions,
       ): Promise<ForgePanelProjectPinAsyncResponse> =>
         issuePanels.bulkPinUnpinProjectsAsync(client, parameters, options),
+      getBulkPinStatus: (
+        parameters: GetBulkPinStatus,
+        options?: RequestOptions,
+      ): Promise<ForgePanelProjectPinStatusResponse> => issuePanels.getBulkPinStatus(client, parameters, options),
     },
     groups: {
       createGroup: (parameters: CreateGroup, options?: RequestOptions): Promise<Group> =>
@@ -1205,16 +1220,26 @@ export function createCloudClient(clientConfig: ClientConfig | Client) {
         issueSearch.matchIssues(client, parameters, options),
       countIssues: (parameters: CountIssues, options?: RequestOptions): Promise<JQLCountResults> =>
         issueSearch.countIssues(client, parameters, options),
+      searchIssues: (parameters?: SearchIssues, options?: RequestOptions): Promise<SearchAndReconcileResults> =>
+        issueSearch.searchIssues(client, parameters, options),
+      /**
+       * @deprecated Renamed to `searchIssues`, which calls the same endpoint. This alias is removed in the next major
+       *   version.
+       */
       searchAndReconsileIssuesUsingJql: (
-        parameters?: SearchAndReconsileIssuesUsingJql,
+        parameters?: SearchIssues,
         options?: RequestOptions,
-      ): Promise<SearchAndReconcileResults> =>
-        issueSearch.searchAndReconsileIssuesUsingJql(client, parameters, options),
+      ): Promise<SearchAndReconcileResults> => issueSearch.searchIssues(client, parameters, options),
+      searchIssuesPost: (parameters: SearchIssuesPost, options?: RequestOptions): Promise<SearchAndReconcileResults> =>
+        issueSearch.searchIssuesPost(client, parameters, options),
+      /**
+       * @deprecated Renamed to `searchIssuesPost`, which calls the same endpoint. This alias is removed in the next
+       *   major version.
+       */
       searchAndReconsileIssuesUsingJqlPost: (
-        parameters: SearchAndReconsileIssuesUsingJqlPost,
+        parameters: SearchIssuesPost,
         options?: RequestOptions,
-      ): Promise<SearchAndReconcileResults> =>
-        issueSearch.searchAndReconsileIssuesUsingJqlPost(client, parameters, options),
+      ): Promise<SearchAndReconcileResults> => issueSearch.searchIssuesPost(client, parameters, options),
     },
     issueProperties: {
       bulkSetIssuesPropertiesList: (parameters: BulkSetIssuesPropertiesList, options?: RequestOptions): Promise<void> =>
@@ -1479,7 +1504,10 @@ export function createCloudClient(clientConfig: ClientConfig | Client) {
         parameters?: GetPrecomputations,
         options?: RequestOptions,
       ): Promise<Page<JqlFunctionPrecomputation>> => jqlFunctionsApps.getPrecomputations(client, parameters, options),
-      updatePrecomputations: (parameters: UpdatePrecomputations, options?: RequestOptions): Promise<void> =>
+      updatePrecomputations: (
+        parameters: UpdatePrecomputations,
+        options?: RequestOptions,
+      ): Promise<JqlFunctionPrecomputationUpdateResponse | undefined> =>
         jqlFunctionsApps.updatePrecomputations(client, parameters, options),
       getPrecomputationsByID: (
         parameters: GetPrecomputationsByID,
@@ -1509,7 +1537,7 @@ export function createCloudClient(clientConfig: ClientConfig | Client) {
       removePreference: (parameters: RemovePreference, options?: RequestOptions): Promise<void> =>
         myself.removePreference(client, parameters, options),
       getLocale: (options?: RequestOptions): Promise<Locale> => myself.getLocale(client, options),
-      getCurrentUser: (parameters?: GetCurrentUser, options?: RequestOptions): Promise<DashboardUser> =>
+      getCurrentUser: (parameters?: GetCurrentUser, options?: RequestOptions): Promise<User> =>
         myself.getCurrentUser(client, parameters, options),
     },
     issueNotificationSchemes: {
@@ -1864,8 +1892,14 @@ export function createCloudClient(clientConfig: ClientConfig | Client) {
         status.deleteStatusesById(client, parameters, options),
       getStatusesByName: (parameters: GetStatusesByName, options?: RequestOptions): Promise<JiraStatus[]> =>
         status.getStatusesByName(client, parameters, options),
-      search: (parameters?: Search, options?: RequestOptions): Promise<PageOfStatuses> =>
-        status.search(client, parameters, options),
+      searchStatuses: (parameters?: SearchStatuses, options?: RequestOptions): Promise<PageOfStatuses> =>
+        status.searchStatuses(client, parameters, options),
+      /**
+       * @deprecated Renamed to `searchStatuses`, which calls the same endpoint. This alias is removed in the next major
+       *   version.
+       */
+      search: (parameters?: SearchStatuses, options?: RequestOptions): Promise<PageOfStatuses> =>
+        status.searchStatuses(client, parameters, options),
       getProjectIssueTypeUsagesForStatus: (
         parameters: GetProjectIssueTypeUsagesForStatus,
         options?: RequestOptions,
@@ -1899,9 +1933,9 @@ export function createCloudClient(clientConfig: ClientConfig | Client) {
         uiModificationsApps.deleteUiModification(client, parameters, options),
     },
     users: {
-      getUser: (parameters?: GetUser, options?: RequestOptions): Promise<DashboardUser> =>
+      getUser: (parameters: GetUser, options?: RequestOptions): Promise<User> =>
         users.getUser(client, parameters, options),
-      createUser: (parameters: CreateUser, options?: RequestOptions): Promise<DashboardUser> =>
+      createUser: (parameters: CreateUser, options?: RequestOptions): Promise<User> =>
         users.createUser(client, parameters, options),
       removeUser: (parameters: RemoveUser, options?: RequestOptions): Promise<void> =>
         users.removeUser(client, parameters, options),
@@ -1917,34 +1951,32 @@ export function createCloudClient(clientConfig: ClientConfig | Client) {
         users.getUserEmailBulk(client, parameters, options),
       getUserGroups: (parameters: GetUserGroups, options?: RequestOptions): Promise<GroupName[]> =>
         users.getUserGroups(client, parameters, options),
-      getAllUsersDefault: (parameters?: GetAllUsersDefault, options?: RequestOptions): Promise<DashboardUser[]> =>
+      getAllUsersDefault: (parameters?: GetAllUsersDefault, options?: RequestOptions): Promise<User[]> =>
         users.getAllUsersDefault(client, parameters, options),
-      getAllUsers: (parameters?: GetAllUsers, options?: RequestOptions): Promise<DashboardUser[]> =>
+      getAllUsers: (parameters?: GetAllUsers, options?: RequestOptions): Promise<User[]> =>
         users.getAllUsers(client, parameters, options),
     },
     userSearch: {
-      findBulkAssignableUsers: (
-        parameters: FindBulkAssignableUsers,
-        options?: RequestOptions,
-      ): Promise<DashboardUser[]> => userSearch.findBulkAssignableUsers(client, parameters, options),
-      findAssignableUsers: (parameters?: FindAssignableUsers, options?: RequestOptions): Promise<DashboardUser[]> =>
+      findBulkAssignableUsers: (parameters: FindBulkAssignableUsers, options?: RequestOptions): Promise<User[]> =>
+        userSearch.findBulkAssignableUsers(client, parameters, options),
+      findAssignableUsers: (parameters?: FindAssignableUsers, options?: RequestOptions): Promise<User[]> =>
         userSearch.findAssignableUsers(client, parameters, options),
       findUsersWithAllPermissions: (
         parameters: FindUsersWithAllPermissions,
         options?: RequestOptions,
-      ): Promise<DashboardUser[]> => userSearch.findUsersWithAllPermissions(client, parameters, options),
+      ): Promise<User[]> => userSearch.findUsersWithAllPermissions(client, parameters, options),
       findUsersForPicker: (parameters: FindUsersForPicker, options?: RequestOptions): Promise<FoundUsers> =>
         userSearch.findUsersForPicker(client, parameters, options),
-      findUsers: (parameters?: FindUsers, options?: RequestOptions): Promise<DashboardUser[]> =>
+      findUsers: (parameters?: FindUsers, options?: RequestOptions): Promise<User[]> =>
         userSearch.findUsers(client, parameters, options),
-      findUsersByQuery: (parameters: FindUsersByQuery, options?: RequestOptions): Promise<Page<DashboardUser>> =>
+      findUsersByQuery: (parameters: FindUsersByQuery, options?: RequestOptions): Promise<Page<User>> =>
         userSearch.findUsersByQuery(client, parameters, options),
       findUserKeysByQuery: (parameters: FindUserKeysByQuery, options?: RequestOptions): Promise<Page<UserKey>> =>
         userSearch.findUserKeysByQuery(client, parameters, options),
       findUsersWithBrowsePermission: (
         parameters?: FindUsersWithBrowsePermission,
         options?: RequestOptions,
-      ): Promise<DashboardUser[]> => userSearch.findUsersWithBrowsePermission(client, parameters, options),
+      ): Promise<User[]> => userSearch.findUsersWithBrowsePermission(client, parameters, options),
     },
     userProperties: {
       getUserPropertyKeys: (parameters?: GetUserPropertyKeys, options?: RequestOptions): Promise<PropertyKeys> =>
@@ -2000,6 +2032,8 @@ export function createCloudClient(clientConfig: ClientConfig | Client) {
         parameters?: WorkflowCapabilities,
         options?: RequestOptions,
       ): Promise<WorkflowCapabilitiesModel> => workflows.workflowCapabilities(client, parameters, options),
+      copyWorkflow: (parameters: CopyWorkflow, options?: RequestOptions): Promise<WorkflowCreateResponse> =>
+        workflows.copyWorkflow(client, parameters, options),
       createWorkflows: (parameters: CreateWorkflows, options?: RequestOptions): Promise<WorkflowCreateResponse> =>
         workflows.createWorkflows(client, parameters, options),
       validateCreateWorkflows: (
@@ -2049,7 +2083,7 @@ export function createCloudClient(clientConfig: ClientConfig | Client) {
         parameters: ReadWorkflowSchemes,
         options?: RequestOptions,
       ): Promise<WorkflowSchemeReadResponse[]> => workflowSchemes.readWorkflowSchemes(client, parameters, options),
-      updateSchemes: (parameters: UpdateSchemes, options?: RequestOptions): Promise<TaskProgressObject> =>
+      updateSchemes: (parameters: UpdateSchemes, options?: RequestOptions): Promise<TaskProgressObject | undefined> =>
         workflowSchemes.updateSchemes(client, parameters, options),
       getRequiredWorkflowSchemeMappings: (
         parameters: GetRequiredWorkflowSchemeMappings,
@@ -2141,7 +2175,10 @@ export function createCloudClient(clientConfig: ClientConfig | Client) {
         options?: RequestOptions,
       ): Promise<WorkflowScheme> =>
         workflowSchemeDrafts.deleteWorkflowSchemeDraftIssueType(client, parameters, options),
-      publishDraftWorkflowScheme: (parameters: PublishDraftWorkflowScheme, options?: RequestOptions): Promise<void> =>
+      publishDraftWorkflowScheme: (
+        parameters: PublishDraftWorkflowScheme,
+        options?: RequestOptions,
+      ): Promise<TaskProgressObject | undefined> =>
         workflowSchemeDrafts.publishDraftWorkflowScheme(client, parameters, options),
       getDraftWorkflow: (parameters: GetDraftWorkflow, options?: RequestOptions): Promise<IssueTypesWorkflowMapping> =>
         workflowSchemeDrafts.getDraftWorkflow(client, parameters, options),

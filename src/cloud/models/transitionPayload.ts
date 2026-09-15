@@ -24,7 +24,7 @@ export const TransitionPayloadSchema = apiObject({
   /** The name of the transition */
   name: z.string().optional(),
   /** The properties of the transition */
-  properties: z.record(z.string(), z.any()).optional(),
+  properties: z.record(z.string(), z.string()).optional(),
   to: ToLayoutPayloadSchema.optional(),
   transitionScreen: RulePayloadSchema.optional(),
   /** The triggers that are performed when the transition is made */

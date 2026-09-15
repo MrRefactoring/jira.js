@@ -55,8 +55,6 @@ export const GetProjectVersionsPaginatedSchema = z.object({
    */
   expand: z
     .union([
-      z.string(),
-      z.array(z.string()),
       openEnum(['issuesstatus', 'operations', 'driver', 'approvers']),
       z.array(openEnum(['issuesstatus', 'operations', 'driver', 'approvers'])),
     ])

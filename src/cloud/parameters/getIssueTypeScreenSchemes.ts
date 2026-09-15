@@ -25,9 +25,7 @@ export const GetIssueTypeScreenSchemesSchema = z.object({
    * information in the response. This parameter accepts `projects` that, for each issue type screen schemes, returns
    * information about the projects the issue type screen scheme is assigned to.
    */
-  expand: z
-    .union([z.string(), z.array(z.string()), openEnum(['projects']), z.array(openEnum(['projects']))])
-    .optional(),
+  expand: z.union([openEnum(['projects']), z.array(openEnum(['projects']))]).optional(),
 });
 
 export type GetIssueTypeScreenSchemes = z.input<typeof GetIssueTypeScreenSchemesSchema>;

@@ -7,9 +7,18 @@ export interface Option {
   name?: string;
   optionId?: number;
   value?: string;
+  [key: string]: unknown;
 }
 
-export const OptionSchema: z.ZodType<Option> = apiObject({
+export interface OptionInput {
+  childOptions?: OptionInput[];
+  id?: number;
+  name?: string;
+  optionId?: number;
+  value?: string;
+}
+
+export const OptionSchema: z.ZodType<Option, OptionInput> = apiObject({
   childOptions: z.array(z.lazy(() => OptionSchema)).optional(),
   id: z.number().optional(),
   name: z.string().optional(),

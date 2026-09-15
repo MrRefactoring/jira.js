@@ -21,7 +21,7 @@ export const WorkflowTransitionsSchema = apiObject({
   /** The name of the transition. */
   name: z.string().optional(),
   /** The properties of the transition. */
-  properties: z.record(z.string(), z.any()).optional(),
+  properties: z.record(z.string(), z.string()).optional(),
   /** The status the transition goes to. */
   toStatusReference: z.string().optional(),
   transitionScreen: WorkflowRuleConfigurationSchema.optional(),

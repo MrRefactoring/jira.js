@@ -13,7 +13,7 @@ export const GetScreensForFieldSchema = z.object({
    * information about screens in the response. This parameter accepts `tab` which returns details about the screen tabs
    * the field is used in.
    */
-  expand: z.union([z.string(), z.array(z.string()), openEnum(['tab']), z.array(openEnum(['tab']))]).optional(),
+  expand: z.union([openEnum(['tab']), z.array(openEnum(['tab']))]).optional(),
 });
 
 export type GetScreensForField = z.input<typeof GetScreensForFieldSchema>;
