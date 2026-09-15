@@ -11,10 +11,10 @@ import { createTeamsClient } from 'jira.js';
 const host = 'https://your-domain.atlassian.net';
 const auth = { type: 'basic', email: 'you@example.com', apiToken: 'ВАШ_API_ТОКЕН' } as const;
 
-const { orgId } = await getTenantContext(createClient({ host, auth }));
+const { orgId, cloudId } = await getTenantContext(createClient({ host, auth }));
 const teams = createTeamsClient({ host, auth });
 
-const page = await teams.teams.queryTeams({ orgId });
+const page = await teams.teams.queryTeams({ orgId, siteId: cloudId });
 ```
 
 ## Аутентификация
@@ -31,18 +31,30 @@ API-токен или bearer-токен. **OAuth 2.0 не поддерживае
 `orgId` не меняется. Получите его один раз через [`getTenantContext`](./tenant-context) и держите в конфигурации — или
 прочитайте из адреса, когда открываете свою организацию по `admin.atlassian.com/o/{orgId}`.
 
+## Идентификатор сайта
+
+`queryTeams` и `createTeam` требуют ещё и `siteId` — облачный идентификатор сайта, которому принадлежат команды;
+[`getTenantContext`](./tenant-context) возвращает его как `cloudId`. Спецификация Atlassian до сих пор помечает
+параметр необязательным и лишь называет его пропуск устаревшим, но API отвечает `400 SITE_ID_REQUIRED_FOR_TEAM_API`,
+если организация ограничивает команды сайтом, — а это поведение по умолчанию. Здесь он обязателен, поэтому пропуск
+становится ошибкой компиляции, а не ошибкой во время выполнения.
+
+`getTeam` и `fetchMembers` тоже его принимают и пока отвечают без него. Передавайте всё равно: Atlassian прямо
+советует всегда указывать корректный `siteId`, чтобы вызов продолжил работать по мере внедрения Units.
+
 ## Команды
 
 ```typescript
 const team = await teams.teams.createTeam({
   orgId,
+  siteId: cloudId,
   displayName: 'Платформа',
   description: 'Владеет общими сервисами.',
   teamType: 'MEMBER_INVITE',
 });
 
 await teams.teams.updateTeam({ orgId, teamId: team.teamId, description: 'Владеет общими сервисами и шлюзом.' });
-await teams.teams.getTeam({ orgId, teamId: team.teamId });
+await teams.teams.getTeam({ orgId, siteId: cloudId, teamId: team.teamId });
 ```
 
 `teamType` решает, кто может вступить: `OPEN` — любой в организации, `MEMBER_INVITE` — только по приглашению,
@@ -65,7 +77,7 @@ await teams.teams.unarchiveTeams({ orgId, teamIds: [team.teamId] });
 let cursor: string | null | undefined;
 
 do {
-  const page = await teams.teams.queryTeams({ orgId, size: 100, cursor: cursor ?? undefined });
+  const page = await teams.teams.queryTeams({ orgId, siteId: cloudId, size: 100, cursor: cursor ?? undefined });
 
   for (const team of page.entities) console.log(team.displayName);
 
@@ -78,7 +90,7 @@ do {
 Список участников читается через `POST`, потому что запрос несёт тело с параметрами страницы, а не query-параметры:
 
 ```typescript
-const members = await teams.teamMembers.fetchMembers({ orgId, teamId, first: 50 });
+const members = await teams.teamMembers.fetchMembers({ orgId, siteId: cloudId, teamId, first: 50 });
 
 for (const member of members.results) console.log(member.accountId);
 
