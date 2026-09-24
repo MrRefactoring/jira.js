@@ -1,4 +1,11 @@
-import { type ClientConfig, type Client, type RequestOptions, ATLASSIAN_GATEWAY, createClient, type Buffer } from '#/core';
+import {
+  type ClientConfig,
+  type Client,
+  type RequestOptions,
+  ATLASSIAN_GATEWAY,
+  createClient,
+  type Buffer,
+} from '#/core';
 import * as icons from './api/icons';
 import * as imports from './api/imports';
 import * as importSources from './api/importSources';

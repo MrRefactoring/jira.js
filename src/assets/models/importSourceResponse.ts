@@ -45,7 +45,7 @@ export const ImportSourceResponseSchema = apiObject({
     /** Validation status type - system-evaluated status (not user-changeable) */
     validationStatusType: openEnum(['VALID', 'INVALID_CONFIGURATION', 'MODULE_UNINSTALLED']).nullish(),
     /** Map of reasons for invalidity */
-    reasonForInvalidity: z.record(z.string(), z.any()).nullish(),
+    reasonForInvalidity: z.record(z.string(), z.unknown()).nullish(),
     /** Status name (computed from configurationStatusType) */
     name: z.string().optional(),
     /** Validation status name (computed) */
@@ -97,7 +97,7 @@ export const ImportSourceResponseSchema = apiObject({
           /** Validation status type */
           validationStatusType: openEnum(['VALID', 'INVALID_CONFIGURATION', 'MODULE_UNINSTALLED']).optional(),
           /** Reasons for invalidity */
-          reasonForInvalidity: z.record(z.string(), z.any()).optional(),
+          reasonForInvalidity: z.record(z.string(), z.unknown()).optional(),
         }).nullish(),
         /** List of object type attribute mappings */
         importSourceOTAttrEntries: z

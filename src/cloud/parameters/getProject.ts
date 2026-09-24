@@ -21,7 +21,11 @@ export const GetProjectSchema = z.object({
       z.array(openEnum(['description', 'issueTypes', 'lead', 'projectKeys', 'issueTypeHierarchy'])),
     ])
     .optional(),
-  /** A list of project properties to return for the project. This parameter accepts a comma-separated list. */
+  /**
+   * A list of project properties to return for the project. This parameter accepts a comma-separated list. Note that
+   * only the properties named here are returned in `properties` in the response; that object is empty when this
+   * parameter is omitted.
+   */
   properties: z.array(z.string()).optional(),
 });
 

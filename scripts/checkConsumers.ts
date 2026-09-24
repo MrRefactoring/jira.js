@@ -98,11 +98,14 @@ try {
 
   const typeProbe = [
     "import { createCloudClient, isNotFoundError } from 'jira.js';",
-    "import { createClient } from 'jira.js/core';",
-    "import type { Client } from 'jira.js/core';",
+    "import { authBasicPasswordSchema, createClient } from 'jira.js/core';",
+    "import type { ApiObjectConfig, AuthBasicPassword, Client } from 'jira.js/core';",
     "import type { WebhookHeaders, WebhookPayload } from 'jira.js/webhooks';",
     '',
     "const client: Client = createClient({ host: 'https://example.atlassian.net' });",
+    "export const basicPassword: AuthBasicPassword = { type: 'basic', username: 'user', password: 'password' };",
+    'export const parsedBasicPassword = authBasicPasswordSchema.parse(basicPassword);',
+    'export const acceptApiObjectConfig = (config: ApiObjectConfig): ApiObjectConfig => config;',
     'export const jira = createCloudClient(client);',
     'export const predicate: (value: unknown) => boolean = isNotFoundError;',
     'export const identify = (headers: WebhookHeaders, payload: WebhookPayload): string =>',

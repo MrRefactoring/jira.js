@@ -1,7 +1,7 @@
 import { z, type ZodRawShape } from 'zod';
 import { isSchemaAuditEnabled } from './schemaAudit.js';
 
-type ApiObjectConfig = { out: z.core.$loose['out']; in: z.core.$strip['in'] };
+export type ApiObjectConfig = { out: z.core.$loose['out']; in: z.core.$strip['in'] };
 
 /**
  * Builds an object schema for an API response.

@@ -29,7 +29,7 @@ export {
   type OAuthErrorOptions,
 } from './errors/index.js';
 
-export { apiObject } from './apiObject.js';
+export { apiObject, type ApiObjectConfig } from './apiObject.js';
 
 export { ATLASSIAN_GATEWAY } from './atlassianGateway.js';
 
@@ -46,6 +46,7 @@ export {
   clientConfigSchema,
   authSchema,
   authBasicSchema,
+  authBasicPasswordSchema,
   authBearerSchema,
   authOAuth2Schema,
   authOAuth2ServerSchema,

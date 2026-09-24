@@ -67,7 +67,10 @@ export const ProjectSchema = apiObject({
     'product_discovery',
     'customer_service',
   ]).optional(),
-  /** Map of project properties */
+  /**
+   * Map of project properties. Only the properties named in the request's properties query parameter are returned, so
+   * this is an empty object when that parameter is omitted.
+   */
   properties: z.record(z.string(), z.any()).optional(),
   /** The date when the project is deleted permanently. */
   retentionTillDate: z.coerce.date().optional(),

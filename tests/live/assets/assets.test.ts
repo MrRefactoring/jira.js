@@ -31,6 +31,7 @@ async function findWorkspace(): Promise<string | undefined> {
 }
 
 const workspaceId = await findWorkspace();
+const { assetsImportSourceId } = requireLiveEnv();
 
 describe.skipIf(workspaceId === undefined)('Assets — Cloud (live)', () => {
   let assets: AssetsClient;
@@ -69,6 +70,18 @@ describe.skipIf(workspaceId === undefined)('Assets — Cloud (live)', () => {
     const count = await assets.objects.countObjectsByAql({ qlQuery: 'objectType is not empty' });
 
     expect(count.totalCount).toBeTypeOf('number');
+  });
+
+  it.runIf(Boolean(assetsImportSourceId))('validates an import source response', async () => {
+    const source = await assets.importSources.getImportSource({ id: assetsImportSourceId! });
+    const reasonMaps = [
+      source.importStatus?.reasonForInvalidity,
+      ...(source.importSourceOTEntries ?? []).map(entry => entry.importStatus?.reasonForInvalidity),
+    ].filter((value): value is Record<string, unknown> => value !== null && value !== undefined);
+
+    expect(reasonMaps.length).toBeGreaterThan(0);
+    expect(reasonMaps.some(reasons => Object.keys(reasons).length > 0)).toBe(true);
+    expect(reasonMaps.every(reasons => Object.values(reasons).every(value => typeof value === 'string'))).toBe(true);
   });
 });
 

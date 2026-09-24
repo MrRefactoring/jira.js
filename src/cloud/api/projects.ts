@@ -32,6 +32,7 @@ import { z } from 'zod';
  * - Jira Core, the default, enables `business` projects.
  * - Jira Service Management enables `service_desk` projects.
  * - Jira Software enables `software` projects.
+ * - Jira Customer Service enables `customer_service` projects.
  *
  * To determine which features are installed, go to **Jira settings** > **Apps** > **Manage apps** and review the System
  * Apps list. To add Jira Software or Jira Service Management into a JIRA instance, use **Jira settings** > **Apps** >
