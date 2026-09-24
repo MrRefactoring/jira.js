@@ -10,6 +10,10 @@ The transport underneath every surface gained its missing seams in the same rele
 
 Seven more surfaces arrive with it: Service Management and Assets on Data Center, Assets on Cloud — which closes [#266](https://github.com/MrRefactoring/jira.js/issues/266), open since May 2023 — and Teams, the first one addressed to your organization rather than to a site.
 
+The API reference is part of the VitePress site again. Navigation, search and deep links now stay in one documentation
+experience instead of handing `/api/` to the client-side router as a missing page and showing a false 404 until reload.
+Fixes [#459](https://github.com/MrRefactoring/jira.js/issues/459).
+
 ### The transport
 
 Three long-standing requests, all of them the same shape: the client had no seam. `fetch` was reached as a global, a request could not be cancelled, and a response's headers were read for one thing and thrown away. None of that was visible from outside, and all three issues predate 6.0.
