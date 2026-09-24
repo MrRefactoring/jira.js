@@ -8,6 +8,18 @@ on:
       - 'docs/**'
       - 'src/**'
       - 'typedoc.config.mjs'
+      - 'scripts/buildApiSidebar.ts'
+      - 'scripts/checkDocs.ts'
+      - 'package.json'
+      - 'pnpm-lock.yaml'
+      - '.github/workflows/docs.yml'
+  pull_request:
+    paths:
+      - 'docs/**'
+      - 'src/**'
+      - 'typedoc.config.mjs'
+      - 'scripts/buildApiSidebar.ts'
+      - 'scripts/checkDocs.ts'
       - 'package.json'
       - 'pnpm-lock.yaml'
       - '.github/workflows/docs.yml'
@@ -47,6 +59,14 @@ jobs:
 
       - name: 🏗️ Build documentation
         run: pnpm run docs:build
+        env:
+          NODE_OPTIONS: --max-old-space-size=8192
+
+      - name: 🎭 Install Chromium
+        run: pnpm exec playwright install --with-deps chromium
+
+      - name: 🧪 Test documentation
+        run: pnpm run check:docs
 
       - name: 📤 Upload Pages artifact
         uses: actions/upload-pages-artifact@v5
