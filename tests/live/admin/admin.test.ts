@@ -1,6 +1,7 @@
 import { beforeAll, describe, expect, it } from 'vitest';
 import { isApiError, isForbiddenError, type ApiError } from '#/core';
 import type { AdminClient } from '#/admin/createAdminClient';
+import { PageDataResponseV2Schema } from '#/admin/models/pageDataResponseV2';
 import { getAdminClient, getOrgId } from '../setup/client';
 import { hasAdminEnv } from '../setup/env';
 
@@ -103,10 +104,20 @@ describe.skipIf(!hasAdminEnv())('Organization administration (live)', () => {
   });
 
   it('lists the products the organization owns', async () => {
-    const { data } = await admin.workspaces.queryWorkspaces({ orgId });
+    const response = await admin.workspaces.queryWorkspaces({ orgId });
+    const data = response.data ?? [];
+    const relationshipGroups = data.flatMap(workspace => Object.values(workspace.relationships ?? {}));
+    const relationshipMembers = relationshipGroups.flat();
 
-    expect(data?.length).toBeGreaterThan(0);
-    expect(data!.every(workspace => typeof workspace.id === 'string')).toBe(true);
+    expect(PageDataResponseV2Schema.safeParse(response).success).toBe(true);
+    expect(data.length).toBeGreaterThan(0);
+    expect(data.every(workspace => typeof workspace.id === 'string')).toBe(true);
+    expect(relationshipGroups.length).toBeGreaterThan(0);
+    expect(relationshipGroups.every(Array.isArray)).toBe(true);
+    expect(relationshipMembers.length).toBeGreaterThan(0);
+    expect(
+      relationshipMembers.every(member => member !== null && typeof member === 'object' && !Array.isArray(member)),
+    ).toBe(true);
   });
 
   it('refuses what the key is not entitled to, as a typed error', async () => {

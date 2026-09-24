@@ -124,8 +124,8 @@ export const CreateProjectSchema = z.object({
     'software',
     'service_desk',
     'business',
-    'product_discovery',
     'customer_service',
+    'product_discovery',
   ]).optional(),
   /** A link to information about this project, such as project documentation */
   url: z.string().optional(),

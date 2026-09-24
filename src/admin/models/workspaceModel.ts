@@ -2,6 +2,9 @@ import { z } from 'zod';
 import { apiObject, openEnum } from '#/core';
 import { SandboxSchema } from './sandbox';
 import { LinkSelfModelSchema } from './linkSelfModel';
+import { PolicyModelV2Schema } from './policyModelV2';
+import { EntitlementModelV2Schema } from './entitlementModelV2';
+import { FeatureModelV2Schema } from './featureModelV2';
 
 export const WorkspaceModelSchema = apiObject({
   id: z.string().optional(),
@@ -52,7 +55,9 @@ export const WorkspaceModelSchema = apiObject({
     unit: z.string().optional(),
   }).optional(),
   links: LinkSelfModelSchema.optional(),
-  relationships: z.record(z.string(), z.any()).optional(),
+  relationships: z
+    .record(z.string(), z.array(z.union([PolicyModelV2Schema, EntitlementModelV2Schema, FeatureModelV2Schema])))
+    .optional(),
   appType: z.string().optional(),
 });
 

@@ -27,6 +27,7 @@ export interface LiveTestEnv {
    * token does not substitute — these APIs answer 401 to one.
    */
   adminApiKey?: string;
+  assetsImportSourceId?: string;
 }
 
 function firstSet(...values: (string | undefined)[]): string | undefined {
@@ -64,5 +65,6 @@ export function requireLiveEnv(): LiveTestEnv {
     apiToken,
     orgId: firstSet(process.env.JIRA_ORG_ID),
     adminApiKey: firstSet(process.env.JIRA_ADMIN_API_KEY),
+    assetsImportSourceId: firstSet(process.env.JIRA_ASSETS_IMPORT_SOURCE_ID),
   };
 }

@@ -79,14 +79,10 @@ export async function getTenantContext(
     signal: options?.signal,
   });
 
-  // Annotated rather than inferred: indexing an array is not checked, and the empty answer this branch exists for
-  // would otherwise read as impossible.
   const context: TenantContext | undefined = response.data?.tenantContexts?.[0];
 
   if (context) return context;
 
-  // The gateway answers 200 and reports the failure in the body, so the transport has already let this through as a
-  // success. The real status rides in `extensions`.
   const failure = response.errors?.[0];
 
   if (failure) {

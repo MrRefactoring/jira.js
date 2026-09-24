@@ -4,19 +4,25 @@ import { defineConfig } from 'vitest/config';
 
 const repoRoot = import.meta.dirname;
 
-export default defineConfig(({ mode }) => ({
-  test: {
-    include: ['tests/live/**/*.test.ts'],
-    exclude: ['tests/live/server/**', 'tests/live/jsm/**'],
-    environment: 'node',
-    reporters: ['verbose'],
-    env: loadEnv(mode, repoRoot, ''),
-    fileParallelism: false,
-    globalSetup: ['./tests/live/setup/globalSetup.ts'],
-    hookTimeout: 100_000,
-    testTimeout: 100_000,
-  },
-  resolve: {
-    alias: [{ find: /^#\/(.*)/, replacement: resolve(repoRoot, 'src/$1') }],
-  },
-}));
+export default defineConfig(({ mode }) => {
+  const readOnly = mode === 'readonly';
+
+  return {
+    test: {
+      include: readOnly
+        ? ['tests/live/admin/admin.test.ts', 'tests/live/assets/assets.test.ts']
+        : ['tests/live/**/*.test.ts'],
+      exclude: ['tests/live/server/**', 'tests/live/jsm/**'],
+      environment: 'node',
+      reporters: ['verbose'],
+      env: loadEnv(mode, repoRoot, ''),
+      fileParallelism: false,
+      globalSetup: readOnly ? undefined : ['./tests/live/setup/globalSetup.ts'],
+      hookTimeout: 100_000,
+      testTimeout: 100_000,
+    },
+    resolve: {
+      alias: [{ find: /^#\/(.*)/, replacement: resolve(repoRoot, 'src/$1') }],
+    },
+  };
+});

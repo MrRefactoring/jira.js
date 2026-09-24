@@ -76,6 +76,8 @@ Three long-standing requests, all of them the same shape: the client had no seam
 
   A live suite covers the organization API read-only, against a real organization. It found what a live suite is for: pagination links and four profile fields that the document types as strings and the API returns as `null`, a policy rule declared an object that arrives as an empty array when there is no rule, and two properties marked required that arrive absent. All corrected in the specification rather than worked around in the caller.
 
+  The same run confirmed that each workspace relationship is an array of policies, entitlements or features rather than the untyped map the first generated client exposed.
+
   Two surfaces ship less verified than that, and the reasons are the organization's rather than the library's. User management refuses a scoped API key outright — every operation answers `403` naming a `manage:org` scope that the key creation flow does not offer — and acts only on accounts whose domain the organization has claimed, of which a development organization has none; the suite pins that refusal and stands down. A SCIM directory needs Atlassian Guard, so `userProvisioning` has nothing to talk to and is unverified against a live instance.
 
 * **`createTeamsClient` and `jira.js/teams`.** Fifteen operations of the [Teams REST API](https://developer.atlassian.com/platform/teams/rest/v1/): teams, their members, and links to an external directory. Closes [#364](https://github.com/MrRefactoring/jira.js/issues/364).

@@ -218,6 +218,7 @@
     "check:consumers": "node scripts/checkConsumers.ts",
     "test": "vitest run",
     "test:live": "vitest run --config vitest.config.live.ts",
+    "test:live:readonly": "vitest run --config vitest.config.live.ts --mode readonly tests/live/admin/admin.test.ts tests/live/assets/assets.test.ts -t \"lists the products the organization owns|validates an import source response\"",
     "test:live:server": "vitest run --config vitest.config.server.ts",
     "coverage:server": "node scripts/serverCoverage.ts",
     "test:live:jsm": "vitest run --config vitest.config.jsm.ts",

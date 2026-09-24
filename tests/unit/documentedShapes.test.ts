@@ -5,6 +5,14 @@ import type { BulkSetIssuesPropertiesList } from '#/cloud/parameters/bulkSetIssu
 import type { StatusPayload, TaskProgressJsonNode, User } from '#/cloud/models';
 import { UserSchema } from '#/cloud/models';
 import type { FormAnswer } from '#/serviceDesk/models';
+import {
+  WorkspaceModelSchema,
+  type WorkspaceModel,
+  type PolicyModelV2,
+  type EntitlementModelV2,
+  type FeatureModelV2,
+} from '#/admin/models';
+import { ImportSourceResponseSchema } from '#/assets/models';
 
 function request<T>(parameters: T): T {
   return parameters;
@@ -43,5 +51,30 @@ describe('the shapes Atlassian documents', () => {
 
   it('leaves a status project-scoped with scope: null', () => {
     expect(request<StatusPayload>({ name: 'Done', scope: null }).scope).toBeNull();
+  });
+
+  it('reads workspace relationships as arrays of administration resources', () => {
+    const workspace = WorkspaceModelSchema.parse({
+      relationships: {
+        policies: [{ id: 'policy', type: 'policies', attributes: { fields: { enabled: true } } }],
+      },
+    });
+
+    expect(workspace.relationships?.policies).toHaveLength(1);
+    expect(() => WorkspaceModelSchema.parse({ relationships: { policies: { id: 'policy' } } })).toThrow();
+    expectTypeOf<NonNullable<WorkspaceModel['relationships']>[string]>().toEqualTypeOf<
+      Array<PolicyModelV2 | EntitlementModelV2 | FeatureModelV2>
+    >();
+  });
+
+  it('keeps undocumented Assets invalidity values unknown', () => {
+    const source = ImportSourceResponseSchema.parse({
+      importStatus: { reasonForInvalidity: { configuration: { missing: true } } },
+      importSourceOTEntries: [{ importStatus: { reasonForInvalidity: { selector: false } } }],
+    });
+
+    expect(source.importStatus?.reasonForInvalidity?.configuration).toEqual({ missing: true });
+    expect(source.importSourceOTEntries?.[0]?.importStatus?.reasonForInvalidity?.selector).toBe(false);
+    expectTypeOf(source.importStatus?.reasonForInvalidity).toEqualTypeOf<Record<string, unknown> | null | undefined>();
   });
 });
