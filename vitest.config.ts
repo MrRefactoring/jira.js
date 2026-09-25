@@ -11,14 +11,8 @@ export default defineConfig({
       reporter: ['text', 'json-summary', 'lcov'],
       reportsDirectory: './coverage',
       reportOnFailure: true,
-      all: true,
       include: ['src/**/*.ts'],
-      exclude: [
-        'src/*/models/**',
-        'src/*/parameters/**',
-        '**/index.ts',
-        'src/*/create*Client.ts',
-      ],
+      exclude: ['src/*/models/**', 'src/*/parameters/**', '**/index.ts', 'src/*/create*Client.ts'],
     },
   },
   resolve: {
