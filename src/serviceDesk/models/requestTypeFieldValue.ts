@@ -20,11 +20,17 @@ export interface RequestTypeFieldValueInput {
   value?: string;
 }
 
-export const RequestTypeFieldValueSchema: z.ZodType<RequestTypeFieldValue, RequestTypeFieldValueInput> = apiObject({
+export const RequestTypeFieldValueSchema = apiObject({
   /** List of child fields. */
-  children: z.array(z.lazy(() => RequestTypeFieldValueSchema)).optional(),
+  children: z
+    .array(
+      z.lazy(
+        (): z.ZodType<RequestTypeFieldValue, RequestTypeFieldValueInput> => RequestTypeFieldValueSchema,
+      ) as z.ZodType<RequestTypeFieldValue, RequestTypeFieldValueInput>,
+    )
+    .optional(),
   /** Label for the field. */
   label: z.string().optional(),
   /** Value of the field. */
   value: z.string().optional(),
-});
+}) satisfies z.ZodType<RequestTypeFieldValue, RequestTypeFieldValueInput>;

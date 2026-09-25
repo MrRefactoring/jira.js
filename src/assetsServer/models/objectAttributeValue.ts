@@ -39,8 +39,13 @@ export interface ObjectAttributeValueInput {
   displayValue?: string;
 }
 
-export const ObjectAttributeValueSchema: z.ZodType<ObjectAttributeValue, ObjectAttributeValueInput> = apiObject({
-  referencedObject: z.lazy(() => AssetObjectSchema).optional(),
+export const ObjectAttributeValueSchema = apiObject({
+  referencedObject: (
+    z.lazy((): z.ZodType<AssetObject, AssetObjectInput> => AssetObjectSchema) as z.ZodType<
+      AssetObject,
+      AssetObjectInput
+    >
+  ).optional(),
   user: UserSchema.optional(),
   group: GroupSchema.optional(),
   confluencePage: ConfluencePageSchema.optional(),
@@ -52,4 +57,4 @@ export const ObjectAttributeValueSchema: z.ZodType<ObjectAttributeValue, ObjectA
   searchValue: z.string().optional(),
   referencedType: z.boolean().optional(),
   displayValue: z.string().optional(),
-});
+}) satisfies z.ZodType<ObjectAttributeValue, ObjectAttributeValueInput>;

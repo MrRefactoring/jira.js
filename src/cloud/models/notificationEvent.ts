@@ -31,7 +31,7 @@ export interface NotificationEventInput {
 }
 
 /** Details about a notification event. */
-export const NotificationEventSchema: z.ZodType<NotificationEvent, NotificationEventInput> = apiObject({
+export const NotificationEventSchema = apiObject({
   /** The description of the event. */
   description: z.string().optional(),
   /**
@@ -42,5 +42,10 @@ export const NotificationEventSchema: z.ZodType<NotificationEvent, NotificationE
   id: z.number().optional(),
   /** The name of the event. */
   name: z.string().optional(),
-  templateEvent: z.lazy(() => NotificationEventSchema).optional(),
-});
+  templateEvent: (
+    z.lazy((): z.ZodType<NotificationEvent, NotificationEventInput> => NotificationEventSchema) as z.ZodType<
+      NotificationEvent,
+      NotificationEventInput
+    >
+  ).optional(),
+}) satisfies z.ZodType<NotificationEvent, NotificationEventInput>;

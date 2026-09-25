@@ -20,11 +20,15 @@ export interface WorkflowCompoundConditionInput {
 }
 
 /** A compound workflow transition rule condition. This object returns `nodeType` as `compound`. */
-export const WorkflowCompoundConditionSchema: z.ZodType<WorkflowCompoundCondition, WorkflowCompoundConditionInput> =
-  apiObject({
-    /** The list of workflow conditions. */
-    conditions: z.array(z.lazy(() => WorkflowConditionSchema)),
-    nodeType: z.enum(['compound']),
-    /** The compound condition operator. */
-    operator: openEnum(['AND', 'OR']),
-  });
+export const WorkflowCompoundConditionSchema = apiObject({
+  /** The list of workflow conditions. */
+  conditions: z.array(
+    z.lazy((): z.ZodType<WorkflowCondition, WorkflowConditionInput> => WorkflowConditionSchema) as z.ZodType<
+      WorkflowCondition,
+      WorkflowConditionInput
+    >,
+  ),
+  nodeType: z.enum(['compound']),
+  /** The compound condition operator. */
+  operator: openEnum(['AND', 'OR']),
+}) satisfies z.ZodType<WorkflowCompoundCondition, WorkflowCompoundConditionInput>;

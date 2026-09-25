@@ -1,10 +1,10 @@
 import { z } from 'zod';
 import { apiObject, openEnum } from '#/core';
-import { UserSchema } from './user';
+import { DashboardUserSchema } from './dashboardUser';
 
 /** Details about a component with a count of the issues it contains. */
 export const ComponentWithIssueCountSchema = apiObject({
-  assignee: UserSchema.optional(),
+  assignee: DashboardUserSchema.optional(),
   /**
    * The nominal user type used to determine the assignee for issues created with this component. See `realAssigneeType`
    * for details on how the type of the user, and hence the user, assigned to issues is determined. Takes the following
@@ -29,14 +29,14 @@ export const ComponentWithIssueCountSchema = apiObject({
   isAssigneeTypeValid: z.boolean().optional(),
   /** Count of issues for the component. */
   issueCount: z.number().optional(),
-  lead: UserSchema.optional(),
+  lead: DashboardUserSchema.optional(),
   /** The name for the component. */
   name: z.string().optional(),
   /** The key of the project to which the component is assigned. */
   project: z.string().optional(),
   /** Not used. */
   projectId: z.number().optional(),
-  realAssignee: UserSchema.optional(),
+  realAssignee: DashboardUserSchema.optional(),
   /**
    * The type of the assignee that is assigned to issues created with this component, when an assignee cannot be set
    * from the `assigneeType`. For example, `assigneeType` is set to `COMPONENT_LEAD` but no component lead is set. This

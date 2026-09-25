@@ -16,8 +16,13 @@ export interface AsyncContextInput {
   timeout?: number;
 }
 
-export const AsyncContextSchema: z.ZodType<AsyncContext, AsyncContextInput> = apiObject({
-  request: z.lazy(() => ServletRequestSchema).optional(),
+export const AsyncContextSchema = apiObject({
+  request: (
+    z.lazy((): z.ZodType<ServletRequest, ServletRequestInput> => ServletRequestSchema) as z.ZodType<
+      ServletRequest,
+      ServletRequestInput
+    >
+  ).optional(),
   response: ServletResponseSchema.optional(),
   timeout: z.number().optional(),
-});
+}) satisfies z.ZodType<AsyncContext, AsyncContextInput>;

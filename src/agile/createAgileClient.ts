@@ -120,7 +120,6 @@ import type {
   GetEpics as GetEpicsModel,
   GetFeaturesForBoard as GetFeaturesForBoardModel,
   ToggleFeatures as ToggleFeaturesModel,
-  MoveIssuesToBoard as MoveIssuesToBoardModel,
   GetProjects as GetProjectsModel,
   GetProjectsFull as GetProjectsFullModel,
   PropertyKeys,
@@ -204,10 +203,8 @@ export function createAgileClient(clientConfig: ClientConfig | Client) {
       ): Promise<GetFeaturesForBoardModel> => board.getFeaturesForBoard(client, parameters, options),
       toggleFeatures: (parameters: ToggleFeatures, options?: RequestOptions): Promise<ToggleFeaturesModel> =>
         board.toggleFeatures(client, parameters, options),
-      moveIssuesToBoard: (
-        parameters: MoveIssuesToBoard,
-        options?: RequestOptions,
-      ): Promise<MoveIssuesToBoardModel | undefined> => board.moveIssuesToBoard(client, parameters, options),
+      moveIssuesToBoard: (parameters: MoveIssuesToBoard, options?: RequestOptions): Promise<void> =>
+        board.moveIssuesToBoard(client, parameters, options),
       getIssuesForBoard: (parameters: GetIssuesForBoard, options?: RequestOptions): Promise<SoftwareIssueResults> =>
         board.getIssuesForBoard(client, parameters, options),
       getApproximateIssueCountForBoard: (

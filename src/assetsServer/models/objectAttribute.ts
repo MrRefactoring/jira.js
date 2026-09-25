@@ -24,10 +24,17 @@ export interface ObjectAttributeInput {
   objectId?: number;
 }
 
-export const ObjectAttributeSchema: z.ZodType<ObjectAttribute, ObjectAttributeInput> = apiObject({
+export const ObjectAttributeSchema = apiObject({
   id: z.number().optional(),
   objectTypeAttribute: ObjectTypeAttributeSchema.optional(),
   objectTypeAttributeId: z.number().optional(),
-  objectAttributeValues: z.array(z.lazy(() => ObjectAttributeValueSchema)).optional(),
+  objectAttributeValues: z
+    .array(
+      z.lazy((): z.ZodType<ObjectAttributeValue, ObjectAttributeValueInput> => ObjectAttributeValueSchema) as z.ZodType<
+        ObjectAttributeValue,
+        ObjectAttributeValueInput
+      >,
+    )
+    .optional(),
   objectId: z.number().optional(),
-});
+}) satisfies z.ZodType<ObjectAttribute, ObjectAttributeInput>;

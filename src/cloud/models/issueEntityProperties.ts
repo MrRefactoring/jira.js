@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { apiObject } from '#/core';
+import { apiObject, JsonValueSchema } from '#/core';
 
 /**
  * Lists of issues and entity properties. See [Entity
@@ -9,7 +9,7 @@ export const IssueEntityPropertiesSchema = apiObject({
   /** A list of entity property IDs. */
   entitiesIds: z.array(z.number()).optional(),
   /** A list of entity property keys and values. */
-  properties: z.record(z.string(), z.unknown()).optional(),
+  properties: z.record(z.string(), JsonValueSchema).optional(),
 });
 
 export type IssueEntityProperties = z.infer<typeof IssueEntityPropertiesSchema>;

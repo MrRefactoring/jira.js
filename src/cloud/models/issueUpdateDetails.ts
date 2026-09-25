@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-import { IssueFieldsSchema } from './issueFields';
+import { IssueFieldsSchema, type IssueFields, type IssueFieldsInput } from './issueFields';
 import { HistoryMetadataSchema } from './historyMetadata';
 import { EntityPropertySchema } from './entityProperty';
 import { IssueTransitionSchema } from './issueTransition';
@@ -13,7 +13,7 @@ export const IssueUpdateDetailsSchema = apiObject({
    * provides a straightforward option when setting a sub-field. When multiple sub-fields or other operations are
    * required, use `update`. Fields included in here cannot be included in `update`.
    */
-  fields: IssueFieldsSchema.optional(),
+  fields: (IssueFieldsSchema as z.ZodType<IssueFields, IssueFieldsInput>).optional(),
   historyMetadata: HistoryMetadataSchema.optional(),
   /** Details of issue properties to be add or update. */
   properties: z.array(EntityPropertySchema).optional(),

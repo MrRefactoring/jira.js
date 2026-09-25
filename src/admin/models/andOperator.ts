@@ -14,7 +14,14 @@ export interface AndOperatorInput {
 }
 
 /** Returns workspaces matching all of the nested query variants. Absence of nested variants makes this operator no-op. */
-export const AndOperatorSchema: z.ZodType<AndOperator, AndOperatorInput> = apiObject({
+export const AndOperatorSchema = apiObject({
   /** Returns workspaces matching all of the nested query variants. Absence of nested variants makes this operator no-op. */
-  and: z.array(z.lazy(() => QueryVariantsSchema)).optional(),
-});
+  and: z
+    .array(
+      z.lazy((): z.ZodType<QueryVariants, QueryVariantsInput> => QueryVariantsSchema) as z.ZodType<
+        QueryVariants,
+        QueryVariantsInput
+      >,
+    )
+    .optional(),
+}) satisfies z.ZodType<AndOperator, AndOperatorInput>;

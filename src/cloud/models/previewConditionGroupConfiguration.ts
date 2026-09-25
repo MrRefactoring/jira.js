@@ -30,12 +30,16 @@ export interface PreviewConditionGroupConfigurationInput {
 }
 
 /** Condition group configuration for workflow transitions. */
-export const PreviewConditionGroupConfigurationSchema: z.ZodType<
-  PreviewConditionGroupConfiguration,
-  PreviewConditionGroupConfigurationInput
-> = apiObject({
+export const PreviewConditionGroupConfigurationSchema = apiObject({
   /** The nested conditions of the condition group. */
-  conditionGroups: z.array(z.lazy(() => PreviewConditionGroupConfigurationSchema)).optional(),
+  conditionGroups: z
+    .array(
+      z.lazy(
+        (): z.ZodType<PreviewConditionGroupConfiguration, PreviewConditionGroupConfigurationInput> =>
+          PreviewConditionGroupConfigurationSchema,
+      ) as z.ZodType<PreviewConditionGroupConfiguration, PreviewConditionGroupConfigurationInput>,
+    )
+    .optional(),
   /** The rules for this condition. */
   conditions: z.array(PreviewRuleConfigurationSchema).optional(),
   /**
@@ -44,4 +48,4 @@ export const PreviewConditionGroupConfigurationSchema: z.ZodType<
    * group must be true for the group to evaluate to true.
    */
   operation: openEnum(['ANY', 'ALL']).optional(),
-});
+}) satisfies z.ZodType<PreviewConditionGroupConfiguration, PreviewConditionGroupConfigurationInput>;

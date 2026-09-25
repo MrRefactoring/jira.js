@@ -88,7 +88,7 @@ export interface IssueFields {
   votes?: Votes;
   watches?: Watchers;
   security?: SecurityLevel | null;
-  [key: string]: unknown;
+  [key: string]: z.output<z.ZodAny>;
 }
 
 export interface IssueFieldsInput {
@@ -139,7 +139,7 @@ export interface IssueFieldsInput {
  * Reading one, the fields the request did not ask for are absent; writing one, the fields left out are left as they
  * were.
  */
-export const IssueFieldsSchema: z.ZodType<IssueFields, IssueFieldsInput> = apiObject(
+export const IssueFieldsSchema = apiObject(
   {
     /** The one-line title. */
     summary: z.string().optional(),
@@ -182,8 +182,10 @@ export const IssueFieldsSchema: z.ZodType<IssueFields, IssueFieldsInput> = apiOb
     components: z.array(ProjectComponentSchema).optional(),
     fixVersions: z.array(VersionSchema).optional(),
     versions: z.array(VersionSchema).optional(),
-    parent: z.lazy(() => IssueSchema).optional(),
-    subtasks: z.array(z.lazy(() => IssueSchema)).optional(),
+    parent: (z.lazy((): z.ZodType<Issue, IssueInput> => IssueSchema) as z.ZodType<Issue, IssueInput>).optional(),
+    subtasks: z
+      .array(z.lazy((): z.ZodType<Issue, IssueInput> => IssueSchema) as z.ZodType<Issue, IssueInput>)
+      .optional(),
     issuelinks: z.array(IssueLinkSchema).optional(),
     attachment: z.array(AttachmentSchema).optional(),
     comment: PageOfCommentsSchema.optional(),
@@ -210,4 +212,4 @@ export const IssueFieldsSchema: z.ZodType<IssueFields, IssueFieldsInput> = apiOb
     security: SecurityLevelSchema.nullish(),
   },
   'customfield_',
-);
+) satisfies z.ZodType<IssueFields, IssueFieldsInput>;

@@ -1,13 +1,13 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-import { AssetObjectSchema } from './assetObject';
+import { AssetObjectSchema, type AssetObject, type AssetObjectInput } from './assetObject';
 import { ObjectTypeAttributeSchema } from './objectTypeAttribute';
 import { ObjectFilterValuesSchema } from './objectFilterValues';
-import { ObjectAttributeSchema } from './objectAttribute';
+import { ObjectAttributeSchema, type ObjectAttribute, type ObjectAttributeInput } from './objectAttribute';
 import { ObjectTypeInheritanceTreeSchema } from './objectTypeInheritanceTree';
 
 export const ObjectListResultSchema = apiObject({
-  objectEntries: z.array(AssetObjectSchema).optional(),
+  objectEntries: z.array(AssetObjectSchema as z.ZodType<AssetObject, AssetObjectInput>).optional(),
   objectTypeAttributes: z.array(ObjectTypeAttributeSchema).optional(),
   objectTypeId: z.number().optional(),
   objectTypeIsInherited: z.boolean().optional(),
@@ -23,7 +23,7 @@ export const ObjectListResultSchema = apiObject({
   qlQuery: z.string().optional(),
   qlQuerySearchResult: z.boolean().optional(),
   conversionPossible: z.boolean().optional(),
-  matchedFilterValues: z.array(ObjectAttributeSchema).optional(),
+  matchedFilterValues: z.array(ObjectAttributeSchema as z.ZodType<ObjectAttribute, ObjectAttributeInput>).optional(),
   inheritanceTree: ObjectTypeInheritanceTreeSchema.optional(),
   orderAscending: z.boolean().optional(),
   iql: z.string().optional(),

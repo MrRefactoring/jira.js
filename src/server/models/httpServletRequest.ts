@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import { apiObject, openEnum } from '#/core';
-import { AsyncContextSchema } from './asyncContext';
+import { AsyncContextSchema, type AsyncContext, type AsyncContextInput } from './asyncContext';
 import { CookieSchema } from './cookie';
 import { HttpServletMappingSchema } from './httpServletMapping';
 import { ServletInputStreamSchema } from './servletInputStream';
@@ -10,7 +10,7 @@ import { ServletContextSchema } from './servletContext';
 import { HttpSessionSchema } from './httpSession';
 
 export const HttpServletRequestSchema = apiObject({
-  asyncContext: AsyncContextSchema.optional(),
+  asyncContext: (AsyncContextSchema as z.ZodType<AsyncContext, AsyncContextInput>).optional(),
   asyncStarted: z.boolean().optional(),
   asyncSupported: z.boolean().optional(),
   attributeNames: z.record(z.string(), z.any()).optional(),

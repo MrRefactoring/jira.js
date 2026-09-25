@@ -102,8 +102,13 @@ export interface ServletRequestInput {
   servletContext?: z.input<typeof ServletContextSchema>;
 }
 
-export const ServletRequestSchema: z.ZodType<ServletRequest, ServletRequestInput> = apiObject({
-  asyncContext: z.lazy(() => AsyncContextSchema).optional(),
+export const ServletRequestSchema = apiObject({
+  asyncContext: (
+    z.lazy((): z.ZodType<AsyncContext, AsyncContextInput> => AsyncContextSchema) as z.ZodType<
+      AsyncContext,
+      AsyncContextInput
+    >
+  ).optional(),
   asyncStarted: z.boolean().optional(),
   asyncSupported: z.boolean().optional(),
   attributeNames: z.record(z.string(), z.any()).optional(),
@@ -148,4 +153,4 @@ export const ServletRequestSchema: z.ZodType<ServletRequest, ServletRequestInput
   serverPort: z.number().optional(),
   servletConnection: ServletConnectionSchema.optional(),
   servletContext: ServletContextSchema.optional(),
-});
+}) satisfies z.ZodType<ServletRequest, ServletRequestInput>;

@@ -1,12 +1,15 @@
 import { z } from 'zod';
-import { apiObject } from '#/core';
+import { apiObject, requireResponseKeys } from '#/core';
 import { IssueTypeSchemeSchema } from './issueTypeScheme';
 
 /** Issue type scheme with a list of the projects that use it. */
-export const IssueTypeSchemeProjectsSchema = apiObject({
-  issueTypeScheme: IssueTypeSchemeSchema,
-  /** The IDs of the projects using the issue type scheme. */
-  projectIds: z.array(z.string()),
-});
+export const IssueTypeSchemeProjectsSchema = requireResponseKeys(
+  apiObject({
+    issueTypeScheme: IssueTypeSchemeSchema.optional(),
+    /** The IDs of the projects using the issue type scheme. */
+    projectIds: z.array(z.string()),
+  }),
+  ['issueTypeScheme'],
+);
 
 export type IssueTypeSchemeProjects = z.infer<typeof IssueTypeSchemeProjectsSchema>;

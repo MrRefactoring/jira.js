@@ -18,11 +18,11 @@ export type QueryVariantsInput =
   | z.input<typeof PolicyFilterSchema>;
 
 /** Possible operators/operand in the event query. */
-export const QueryVariantsSchema: z.ZodType<QueryVariants, QueryVariantsInput> = z.union([
-  z.lazy(() => AndOperatorSchema),
-  z.lazy(() => NorOperatorSchema),
+export const QueryVariantsSchema = z.union([
+  z.lazy((): z.ZodType<AndOperator, AndOperatorInput> => AndOperatorSchema) as z.ZodType<AndOperator, AndOperatorInput>,
+  z.lazy((): z.ZodType<NorOperator, NorOperatorInput> => NorOperatorSchema) as z.ZodType<NorOperator, NorOperatorInput>,
   FieldOperandSchema,
   SearchWorkspacesOperandSchema,
   FeatureFilterSchema,
   PolicyFilterSchema,
-]);
+]) satisfies z.ZodType<QueryVariants, QueryVariantsInput>;

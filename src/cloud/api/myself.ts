@@ -1,5 +1,5 @@
 import { LocaleSchema, type Locale } from '../models/locale';
-import { UserSchema, type User } from '../models/user';
+import { DashboardUserSchema, type DashboardUser } from '../models/dashboardUser';
 import type { GetPreference } from '../parameters/getPreference';
 import type { SetPreference } from '../parameters/setPreference';
 import type { RemovePreference } from '../parameters/removePreference';
@@ -164,14 +164,14 @@ export async function getCurrentUser(
   client: Client,
   parameters?: GetCurrentUser,
   options?: RequestOptions,
-): Promise<User> {
-  const config: SendRequestOptions<User> = {
+): Promise<DashboardUser> {
+  const config: SendRequestOptions<DashboardUser> = {
     url: '/rest/api/3/myself',
     method: 'GET',
     searchParams: {
       expand: parameters?.expand,
     },
-    schema: UserSchema,
+    schema: DashboardUserSchema,
     signal: options?.signal,
   };
 

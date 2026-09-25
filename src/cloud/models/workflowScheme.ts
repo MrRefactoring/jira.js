@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
 import { IssueTypeDetailsSchema } from './issueTypeDetails';
-import { UserSchema } from './user';
+import { DashboardUserSchema } from './dashboardUser';
 
 /** Details about a workflow scheme. */
 export const WorkflowSchemeSchema = apiObject({
@@ -29,7 +29,7 @@ export const WorkflowSchemeSchema = apiObject({
    * type-project mappings only. This property does not apply to non-draft workflows.
    */
   lastModified: z.string().optional(),
-  lastModifiedUser: UserSchema.optional(),
+  lastModifiedUser: DashboardUserSchema.optional(),
   /**
    * The name of the workflow scheme. The name must be unique. The maximum length is 255 characters. Required when
    * creating a workflow scheme.

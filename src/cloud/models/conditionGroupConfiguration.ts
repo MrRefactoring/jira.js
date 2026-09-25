@@ -30,12 +30,16 @@ export interface ConditionGroupConfigurationInput {
 }
 
 /** The conditions group associated with the transition. */
-export const ConditionGroupConfigurationSchema: z.ZodType<
-  ConditionGroupConfiguration,
-  ConditionGroupConfigurationInput
-> = apiObject({
+export const ConditionGroupConfigurationSchema = apiObject({
   /** The nested conditions of the condition group. */
-  conditionGroups: z.array(z.lazy(() => ConditionGroupConfigurationSchema)).optional(),
+  conditionGroups: z
+    .array(
+      z.lazy(
+        (): z.ZodType<ConditionGroupConfiguration, ConditionGroupConfigurationInput> =>
+          ConditionGroupConfigurationSchema,
+      ) as z.ZodType<ConditionGroupConfiguration, ConditionGroupConfigurationInput>,
+    )
+    .optional(),
   /** The rules for this condition. */
   conditions: z.array(WorkflowRuleConfigurationSchema).optional(),
   /**
@@ -44,4 +48,4 @@ export const ConditionGroupConfigurationSchema: z.ZodType<
    * group must be true for the group to evaluate to true.
    */
   operation: openEnum(['ANY', 'ALL']).optional(),
-});
+}) satisfies z.ZodType<ConditionGroupConfiguration, ConditionGroupConfigurationInput>;

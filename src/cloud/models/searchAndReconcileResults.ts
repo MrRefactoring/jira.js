@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-import { IssueSchema } from './issue';
+import { IssueSchema, type Issue, type IssueInput } from './issue';
 import { JsonTypeSchema } from './jsonType';
 import { SearchWarningSchema } from './searchWarning';
 
@@ -9,7 +9,7 @@ export const SearchAndReconcileResultsSchema = apiObject({
   /** Indicates whether this is the last page of the paginated response. */
   isLast: z.boolean().optional(),
   /** The list of issues found by the search or reconsiliation. */
-  issues: z.array(IssueSchema).optional(),
+  issues: z.array(IssueSchema as z.ZodType<Issue, IssueInput>).optional(),
   /** The ID and name of each field in the search results. */
   names: z.record(z.string(), z.string()).optional(),
   /**

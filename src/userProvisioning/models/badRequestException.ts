@@ -1,10 +1,10 @@
 import { z } from 'zod';
 import { apiObject, openEnum } from '#/core';
-import { ThrowableSchema } from './throwable';
+import { ThrowableSchema, type Throwable, type ThrowableInput } from './throwable';
 import { StackTraceElementSchema } from './stackTraceElement';
 
 export const BadRequestExceptionSchema = apiObject({
-  cause: ThrowableSchema.optional(),
+  cause: (ThrowableSchema as z.ZodType<Throwable, ThrowableInput>).optional(),
   stackTrace: z.array(StackTraceElementSchema).optional(),
   responseStatus: openEnum([
     'OK',
@@ -58,7 +58,7 @@ export const BadRequestExceptionSchema = apiObject({
   ]).optional(),
   message: z.string().optional(),
   localizedMessage: z.string().optional(),
-  suppressed: z.array(ThrowableSchema).optional(),
+  suppressed: z.array(ThrowableSchema as z.ZodType<Throwable, ThrowableInput>).optional(),
 });
 
 export type BadRequestException = z.infer<typeof BadRequestExceptionSchema>;

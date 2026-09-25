@@ -23,6 +23,7 @@ import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
+const TYPESCRIPT_FLOOR = '5.7';
 
 if (!existsSync(join(root, 'dist'))) {
   console.error('[consumers] dist/ is missing. Run `pnpm run build` first.');
@@ -138,40 +139,32 @@ try {
     }
   }
 
-  const declared: string | undefined = JSON.parse(readFileSync(join(root, 'package.json'), 'utf8'))
-    .peerDependencies?.typescript;
-  const floor = declared?.replace(/^\D+/, '');
-
-  if (floor === undefined || floor === '') {
-    problems.push('package.json declares no minimum TypeScript under peerDependencies.');
-  } else {
-    writeFileSync(
-      join(workspace, 'tsconfig.floor.json'),
-      `${JSON.stringify(
-        {
-          compilerOptions: {
-            module: 'esnext',
-            moduleResolution: 'bundler',
-            noEmit: true,
-            skipLibCheck: false,
-            strict: true,
-            target: 'es2022',
-          },
-          files: ['probe.ts'],
+  writeFileSync(
+    join(workspace, 'tsconfig.floor.json'),
+    `${JSON.stringify(
+      {
+        compilerOptions: {
+          module: 'esnext',
+          moduleResolution: 'bundler',
+          noEmit: true,
+          skipLibCheck: false,
+          strict: true,
+          target: 'es2022',
         },
-        null,
-        2,
-      )}\n`,
-    );
+        files: ['probe.ts'],
+      },
+      null,
+      2,
+    )}\n`,
+  );
 
-    try {
-      run('npm', ['install', '--no-audit', '--no-fund', '--silent', '--no-save', `typescript@${floor}`], workspace);
-      run('node', [join(workspace, 'node_modules', 'typescript', 'bin', 'tsc'), '-p', 'tsconfig.floor.json'], workspace);
-    } catch (error) {
-      const output = ((error as { stdout?: string }).stdout ?? (error as Error).message).trim();
+  try {
+    run('npm', ['install', '--no-audit', '--no-fund', '--silent', '--no-save', `typescript@${TYPESCRIPT_FLOOR}`], workspace);
+    run('node', [join(workspace, 'node_modules', 'typescript', 'bin', 'tsc'), '-p', 'tsconfig.floor.json'], workspace);
+  } catch (error) {
+    const output = ((error as { stdout?: string }).stdout ?? (error as Error).message).trim();
 
-      problems.push(`TypeScript ${floor}, the minimum package.json declares, cannot read the declarations:\n${output}`);
-    }
+    problems.push(`TypeScript ${TYPESCRIPT_FLOOR}, the documented minimum, cannot read the declarations:\n${output}`);
   }
 } finally {
   rmSync(workspace, { recursive: true, force: true });
