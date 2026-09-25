@@ -4,7 +4,9 @@ import { createAgileClient } from '#/agile/createAgileClient';
 import {
   DashboardUserSchema,
   FieldMetadataSchema,
+  IssueLinkSchema,
   IssueSchema,
+  SecurityLevelMemberSchema,
   type DashboardUser,
   type Issue,
 } from '#/cloud/models';
@@ -137,12 +139,21 @@ describe('compatibility types do not weaken response validation', () => {
     expect(FieldMetadataSchema.safeParse({ ...field, schema: { type: 'string' } }).success).toBe(true);
   });
 
-  it('accepts hidden dashboard user values while retaining the 6.2 type', () => {
+  it('turns hidden dashboard user values into undefined, matching the 6.2 type', () => {
     const user = DashboardUserSchema.parse({ emailAddress: null, locale: null });
 
-    expect(user.emailAddress).toBeNull();
-    expect(user.locale).toBeNull();
+    expect(user.emailAddress).toBeUndefined();
+    expect(user.locale).toBeUndefined();
     expectTypeOf<DashboardUser['emailAddress']>().toEqualTypeOf<string | undefined>();
     expectTypeOf<DashboardUser['locale']>().toEqualTypeOf<string | undefined>();
+  });
+
+  it('keeps the 6.2 schema derivations available on response-required schemas', () => {
+    expect(() => FieldMetadataSchema.pick({ key: true })).not.toThrow();
+    expect(() => SecurityLevelMemberSchema.partial()).not.toThrow();
+    expect(() => SecurityLevelMemberSchema.omit({ managed: true })).not.toThrow();
+    expect(FieldMetadataSchema.partial().safeParse({}).success).toBe(true);
+    expect(IssueLinkSchema.omit({ type: true }).safeParse({ id: '1' }).success).toBe(true);
+    expect(IssueLinkSchema.safeParse({ id: '1' }).success).toBe(false);
   });
 });

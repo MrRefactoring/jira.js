@@ -1,5 +1,6 @@
 import { z } from 'zod';
-import { apiObject, openEnum, nonNullOutput } from '#/core';
+import { apiObject, openEnum } from '#/core';
+import { nonNullOutput } from '#/core/compatibility';
 import { SimpleListWrapperApplicationRoleSchema } from './simpleListWrapperApplicationRole';
 import { AvatarUrlsSchema } from './avatarUrls';
 import { SimpleListWrapperGroupNameSchema } from './simpleListWrapperGroupName';
@@ -15,6 +16,9 @@ import { SimpleListWrapperGroupNameSchema } from './simpleListWrapperGroupName';
  *   users. In this case, `accountId` returns _unknown_ and all other parameters have fallback values.
  * - User record unavailable: This usually occurs due to an internal service outage. In this case, all parameters have
  *   fallback values.
+ *
+ * @deprecated Use `User`, which types `emailAddress` and `locale` as nullable, the way Jira returns them for users
+ *   hidden by privacy settings. This alias is removed in the next major version.
  */
 export const DashboardUserSchema = apiObject({
   /**
@@ -45,14 +49,14 @@ export const DashboardUserSchema = apiObject({
   /** The display name of the user. Depending on the user’s privacy setting, this may return an alternative value. */
   displayName: z.string().optional(),
   /** The email address of the user. Depending on the user’s privacy setting, this may be returned as null. */
-  emailAddress: nonNullOutput(z.string().nullish()),
+  emailAddress: nonNullOutput(z.string().nullish()).optional(),
   /** Expand options that include additional user details in the response. */
   expand: z.string().optional(),
   groups: SimpleListWrapperGroupNameSchema.optional(),
   /** Whether the user is a guest. */
   guest: z.boolean().optional(),
   /** The locale of the user. Depending on the user’s privacy setting, this may be returned as null. */
-  locale: nonNullOutput(z.string().nullish()),
+  locale: nonNullOutput(z.string().nullish()).optional(),
   /** The URL of the user. */
   self: z.url().optional(),
   /**
@@ -62,4 +66,8 @@ export const DashboardUserSchema = apiObject({
   timeZone: z.string().optional(),
 });
 
+/**
+ * @deprecated Use `User`, which types `emailAddress` and `locale` as nullable, the way Jira returns them for users
+ *   hidden by privacy settings. This alias is removed in the next major version.
+ */
 export type DashboardUser = z.infer<typeof DashboardUserSchema>;

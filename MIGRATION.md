@@ -198,16 +198,20 @@ your code take strings:
 `any` accepted the boolean and the endpoint never did, so this is a type error catching a call that was already wrong.
 
 **An issue describes its fields.** `Issue.fields` was an untyped map and is now `IssueFields`: the forty system fields
-by name, `null` where Jira clears one, and `customfield_*` keys through an index signature. That signature is `unknown`,
-not `any`, so a custom field needs narrowing before you read into it:
+by name, `null` where Jira clears one, and `customfield_*` keys through an index signature. That signature stays `any`,
+as in 6.2, so `issue.fields?.customfield_10016.value` keeps compiling. The system fields are typed, and code that read
+them as `any` needs updating: `summary` is `string | undefined`, values of `renderedFields` and `properties` are
+`unknown`, and `created`, `updated`, `resolutiondate`, `statuscategorychangedate` and `lastViewed` are `Date` objects
+rather than ISO strings:
 
 ```diff
--const points = issue.fields?.customfield_10016.value;
-+const points = (issue.fields?.customfield_10016 as { value: string } | undefined)?.value;
+-const title: string = issue.fields?.summary;
+-const day = issue.fields?.created.slice(0, 10);
++const title = issue.fields?.summary ?? '';
++const day = issue.fields?.created?.toISOString().slice(0, 10);
 ```
 
-`IssueSchema` is a `z.ZodType<Issue>` rather than a `ZodObject`, because the schema is part of a reference cycle, so
-`IssueSchema.extend(...)` and `.shape` are gone.
+`IssueSchema` stays a `ZodObject`, so `IssueSchema.extend(...)` and `.shape` keep working.
 
 What `createIssue`, `editIssue` and `doTransition` send is `IssueFieldsInput`: the system fields a write can set by name
 and `customfield_*` keys. A key that is neither no longer compiles, and neither does a field Jira only reports, such as
@@ -226,23 +230,24 @@ or drop the key if it was never part of the API.
 
 - `SecurityLevelPayload.isDefault`, `BoardFeaturePayload.state` and `CardLayout.showDaysInColumn` are `boolean`, not the
   strings `'true'` and `'false'`.
-- `DashboardUser` is now `User`, and `targetToSourcesMapping`, `targetStatus`, `targetClassification` and
-  `targetMandatoryFields` are capitalised. The old names stay as deprecated aliases until 7.0, so nothing has to change
-  today.
-- `workflowSchemes.updateSchemes` returned `TaskProgressObject` and now returns `TaskProgressObject | undefined`, so a
-  read of its result needs a guard; on Data Center the same holds for `board.setBoardProperty`, `issues.rankIssues` and
-  `issueSearch.getError`. Each answers 204 with no body in one documented case. `agile.board.moveIssuesToBoard`,
-  `timeTracking.getSelectedTimeTrackingImplementation`, `jqlFunctionsApps.updatePrecomputations` and
-  `workflowSchemeDrafts.publishDraftWorkflowScheme` gained the same `| undefined` in place of `void`, which breaks
-  nothing: their result had nothing to read before.
-- Nineteen response fields stopped being optional, so guards like `member.holder?.type` can lose the `?`.
+- `targetToSourcesMapping`, `targetStatus`, `targetClassification` and `targetMandatoryFields` are capitalised. The old
+  names stay as deprecated aliases until 7.0, so nothing has to change today.
+- `DashboardUser` keeps its 6.2 shape and is still what `myself`, `users` and `userSearch` return, but it is deprecated
+  in favor of `User` and removed in 7.0. Jira sends `null` for the `emailAddress` and `locale` of a user hidden by
+  privacy settings, and `DashboardUser` turns it into `undefined` to match its type. `User` keeps the `null` and types
+  both as nullable, and a returned `DashboardUser` can be assigned to it.
+- On Data Center, `board.setBoardProperty`, `issues.rankIssues` and `issueSearch.getError` return `… | undefined`: each
+  answers 204 with no body in one documented case, so a read of the result needs a guard. The Cloud and Agile methods
+  that can answer 204 keep their 6.2 return types.
+- Response fields Atlassian now marks required keep their 6.2 optional types, so guards like `member.holder?.type` stay
+  as they are. The schemas still report a response that omits them.
 - Wiki markup and a document in one `createIssue`, `editIssue` or `doTransition` write — a string `description` with a
   document `environment`, or the reverse — throws a `TypeError`. No endpoint accepts that combination. `update` counts
   too: a description or environment set there, and a comment body or a worklog comment added or edited there. A multi-line custom field is
   not looked at, so give it in the same form as the rest of the write.
 - The values of `issueProperties.bulkSetIssuesPropertiesList` and `bulkSetIssuePropertiesByIssue`,
-  `TaskProgressJsonNode.result` and Service Management's `FormAnswer.adf` are `unknown` rather than `JsonNode`. Any
-  JSON value can be written; a value read back needs narrowing. `JsonNode` is deprecated and removed in 7.0.
+  `TaskProgressJsonNode.result` and Service Management's `FormAnswer.adf` accept any JSON value when written and read
+  back as `any`, as `JsonNode` did. `JsonNode` is deprecated and removed in 7.0.
 - `User.emailAddress` and `User.locale` are `string | null`, because a privacy setting hides them, so a read that
   assumed a string needs a guard.
 - `issues.assignIssue({ issueIdOrKey, accountId: null })` compiles and unassigns the issue, and

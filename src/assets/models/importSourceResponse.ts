@@ -1,5 +1,6 @@
 import { z } from 'zod';
-import { apiObject, openEnum, JsonValueSchema } from '#/core';
+import { apiObject, openEnum } from '#/core';
+import { JsonValueSchema } from '#/core/compatibility';
 import { ScheduledImportDetailsSchema } from './scheduledImportDetails';
 
 export const ImportSourceResponseSchema = apiObject({

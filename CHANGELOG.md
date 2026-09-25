@@ -2,361 +2,173 @@
 
 ## 6.3.0
 
-Jira Data Center gets a client. `createServerClient` is a fourth surface alongside Cloud, Agile and Service Management — not the Cloud client pointed elsewhere, because the two APIs differ in more than their address: `/rest/api/2` against `/rest/api/3`, wiki markup against Atlassian Document Format, `name` and `key` against `accountId`. Of four hundred and forty-four operations, two hundred and six share a name with a Cloud one and eighty-seven share a model name; nothing else is common but the transport.
+Jira.js 6.3.0 expands the library beyond Jira Cloud while tightening the transport and correcting API shapes found against real Atlassian responses. The release adds clients for Jira Data Center, Jira Service Management Data Center, Assets on Cloud and Data Center, Atlassian Administration, user management, SCIM provisioning, and Teams. It also restores the API reference inside the VitePress site, fixing [#459](https://github.com/MrRefactoring/jira.js/issues/459).
 
-Every one of those operations has been called against a running Jira Data Center instance. That is what the rest of these notes are: Atlassian generates the Data Center document from Java annotations rather than writing it, and it is wrong in ways reading cannot reveal.
+The generated surfaces were refreshed from Atlassian's current documents, but the release keeps the public contracts that valid 6.2 code depends on, with one deliberate exception: the Cloud `Issue` model now types the system fields that 6.2 left as `any` (see [Types and deprecations](#types-and-deprecations)). Apart from that, valid code that compiled against 6.2 remains source-compatible. Renamed methods and models retain deprecated aliases until 7.0. Type errors introduced by this release identify request shapes Jira already rejected.
 
-The transport underneath every surface gained its missing seams in the same release — cancellation, a replaceable `fetch`, and an error where a refused credential used to pass for an empty result. Those are described first, because the last of them changes what existing code sees.
+### Before upgrading
 
-The dependency baseline is current as well. Runtime validation now develops and tests against Zod 4.6, including its Unicode code-point string-length semantics, while the build and test toolchain moves to pnpm 12, Vite 8.3 and Vitest 5. The unused Sinon helper and the dependencies left behind by earlier migrations are gone; the browser bundle now uses Vite's native Oxc and Rolldown pipeline.
+- Node.js 22 and ESM remain the runtime baseline. TypeScript 5.7 is the documented and tested compiler floor. TypeScript is not installed or enforced as a peer dependency; `check:consumers` installs 5.7 separately and verifies the packed declarations with `skipLibCheck` disabled.
+- Requests are more precise. Misspelt nested keys, response-only issue fields used in writes, missing parameters that Jira documents and enforces as required, string values passed where Jira expects booleans, and object bodies passed to endpoints that expect a string or array now fail during compilation. These are not newly unsupported requests: Jira already rejected them.
+- Authentication refusal is now observable. Jira can answer an authenticated request as an anonymous user with status 200 while setting `X-Seraph-LoginReason`. When credentials were supplied and that header reports `AUTHENTICATED_FAILED` or `AUTHENTICATION_DENIED`, the client throws `AuthError` instead of returning anonymous or empty data. Code that treated a revoked token as a legitimate empty result must handle the error. Fixes [#418](https://github.com/MrRefactoring/jira.js/issues/418).
+- Response validation remains tolerant of undocumented fields. Compatibility-only optional response types do not weaken runtime checks: when Atlassian's contract requires a field, the schema still reports its absence.
 
-Seven more surfaces arrive with it: Service Management and Assets on Data Center, Assets on Cloud — which closes [#266](https://github.com/MrRefactoring/jira.js/issues/266), open since May 2023 — and Teams, the first one addressed to your organization rather than to a site.
+### New clients and entry points
 
-The API reference is part of the VitePress site again. Navigation, search and deep links now stay in one documentation
-experience instead of handing `/api/` to the client-side router as a missing page and showing a false 404 until reload.
-Fixes [#459](https://github.com/MrRefactoring/jira.js/issues/459).
+`createAdminClient`, `createUserManagementClient`, and `createUserProvisioningClient` cover organization administration, managed accounts, and SCIM provisioning. They default to `https://api.atlassian.com` and accept bearer credentials intended for those organization APIs. Site API tokens and OAuth 2.0 (3LO) are not interchangeable with organization credentials. Closes [#317](https://github.com/MrRefactoring/jira.js/issues/317), [#316](https://github.com/MrRefactoring/jira.js/issues/316) and [#315](https://github.com/MrRefactoring/jira.js/issues/315).
 
-### The transport
+The administration client separates product access from organization-wide roles: `grantUserAccess` and `revokeUserAccess` manage access to a product, while `assignOrganizationRole` and `revokeOrganizationRole` manage roles such as organization administrator. Its read-only live coverage also corrected pagination links, nullable profile fields, absent optional policy fields, and workspace relationships that arrive as arrays of policies, entitlements, or features. The user-management surface intentionally models the fields Atlassian lets callers change instead of accepting a complete read model as an update body.
 
-Three long-standing requests, all of them the same shape: the client had no seam. `fetch` was reached as a global, a request could not be cancelled, and a response's headers were read for one thing and thrown away. None of that was visible from outside, and all three issues predate 6.0.
+```ts
+import { createAdminClient } from 'jira.js';
 
-* **Every call takes an `AbortSignal`.** Each method gains an optional argument after its parameters — an operation that takes no parameters takes it in their place — and the signal reaches `fetch`. It also cuts short a retry back-off, which until now had no upper bound on total wall time. Fixes [#406](https://github.com/MrRefactoring/jira.js/issues/406).
+const admin = createAdminClient({
+  auth: { type: 'bearer', token: organizationApiKey },
+});
 
-  ```ts
-  await jira.issues.getIssue({ issueIdOrKey: 'PROJ-1' }, { signal: AbortSignal.timeout(5_000) });
-  await jira.announcementBanner.getBanner({ signal });
-  ```
+const users = await admin.users.getDirectoryUsers({ orgId, directoryId, limit: 50 });
+```
 
-  The abort reason is rethrown untouched rather than wrapped in a `NetworkError`: `error.name === 'AbortError'` is what the ecosystem branches on, a `TimeoutError` from `AbortSignal.timeout()` stays a `TimeoutError`, and a reason of your own comes back as the object you passed. Aborting one call never disturbs an OAuth 2.0 refresh in flight — that refresh is single-flighted and shared by every concurrent request on the client.
+`createTeamsClient` exposes teams, members, and external-directory links. Most operations take `orgId`; `queryTeams` and `createTeam` also require `siteId` because the live API rejects calls without it on site-scoped organizations. `getTenantContext` resolves the site's `cloudId`, `orgId`, and host name through the Atlassian gateway. Closes [#364](https://github.com/MrRefactoring/jira.js/issues/364).
 
-  Nothing that compiled before stops compiling: the argument is optional and it is last.
+```ts
+import { createClient, getTenantContext } from 'jira.js/core';
+import { createTeamsClient } from 'jira.js';
 
-* **The `fetch` the client calls is yours to replace.** `fetch` in the client configuration receives the URL and the `RequestInit` the client built, headers included, and returns a `Response`. That covers logging, tracing, a corporate proxy and fixture recording — what `middlewares` was used for before 6.0 removed axios, and what has had no replacement since. Fixes [#404](https://github.com/MrRefactoring/jira.js/issues/404).
+const { cloudId: siteId, orgId } = await getTenantContext(createClient({ host, auth }));
+const teams = createTeamsClient({ host, auth });
+const page = await teams.teams.queryTeams({ orgId, siteId });
+```
 
-  ```ts
-  import { fetch as undiciFetch, ProxyAgent } from 'undici';
+`createAssetsClient` adds the Assets Cloud API. It uses an Assets `workspaceId`, not the Jira site URL; obtain that identifier from Service Management. The surface includes objects, schemas, object types and attributes, AQL, icons, status and reference types, and import sources. This closes [#266](https://github.com/MrRefactoring/jira.js/issues/266).
 
-  const dispatcher = new ProxyAgent(process.env.HTTPS_PROXY!);
+Assets configuration types are generated from the contract rather than flattened into open objects. In particular, an attribute's `DefaultType` is a union of the documented id/name pairs, so an impossible combination is rejected while every published pair remains suggested by the editor. Import responses preserve undocumented invalidity details as arbitrary JSON instead of pretending those values have a fixed object shape.
 
-  const jira = createCloudClient({ host, auth, fetch: (url, init) => undiciFetch(url, { ...init, dispatcher }) });
-  ```
+```ts
+import { createAssetsClient, createServiceDeskClient } from 'jira.js';
 
-  The OAuth 2.0 token and cloud-id calls go through it too, so a proxy covers the whole flow rather than working until the first refresh an hour later. The flip side is worth stating plainly: a wrapper that logs request bodies will see `client_secret` and `refresh_token` on the token call.
+const serviceDesk = createServiceDeskClient({ host, auth });
+const [workspace] = (await serviceDesk.assets.getAssetsWorkspaces()).values ?? [];
+const assets = createAssetsClient({ workspaceId: workspace.workspaceId, auth });
 
-  Its type is `(url: string, init: RequestInit) => Promise<Response>` rather than `typeof globalThis.fetch`, so undici's `fetch` — whose `RequestInit` carries `dispatcher` and lacks `duplex` — fits without a cast.
+await assets.objects.loadObject({ id: '42' });
+```
 
-* **An expired API token is an error rather than an empty result. This changes behaviour.** Around a quarter of Jira's operations can be reached anonymously, and on those a dead or revoked token does not fail the request: Jira serves it as the anonymous user, returns a well-formed response containing whatever an anonymous visitor may see, and reports the refusal only in the `X-Seraph-LoginReason` header. Measured against a live site, `GET /rest/api/3/project/search` with a dead token answers `200` and `{"total":0,"isLast":true,"values":[]}`. Fixes [#418](https://github.com/MrRefactoring/jira.js/issues/418).
+`createServerClient` adds the self-hosted Jira platform and Jira Software APIs from Atlassian's Jira Data Center 11.3 specification. Boards and sprints live on this client rather than a separate Agile factory. The automated rig currently verifies the surface against Jira Software Data Center 10.3; operations introduced in newer releases carry their availability in generated documentation.
 
-  The client now reads that header and throws `AuthError` whenever it says the credentials were refused — whatever the status, because the header rides on `200`, `400` and `401` alike and the diagnosis is the same in each case. `error.status` records the status that actually arrived rather than a `401` that never happened; that is what the new `AuthErrorOptions.status` is for.
+```ts
+import { createServerClient } from 'jira.js';
 
-  Two values count: `AUTHENTICATED_FAILED` and `AUTHENTICATION_DENIED`, both meaning the credentials were presented and refused. `AUTHORISATION_FAILED` does not — it means the user is who they claim and merely lacks a permission, which the status already carries and `ForbiddenError` already describes. A genuine permission denial was measured to send no such header at all. The check runs only when the client was given credentials, so a deliberately anonymous client is untouched, and `getAuthOn401` is offered the same single retry a plain `401` earns it.
+const jira = createServerClient({
+  host: 'https://jira.example.com',
+  auth: { type: 'bearer', token: personalAccessToken },
+});
 
-  If your code treated an empty result on a dead token as normal, it will now throw. It was reading anonymous data and calling it yours.
+await jira.issues.getIssue({ issueIdOrKey: 'PROJ-1' });
+```
 
-* **Request parameter types are importable again.** `CreateIssue`, `GetIssue` and the twelve hundred others appeared in no published declaration file: a surface entry point re-exports `api`, `models` and its factory, and never `parameters`. They now have a subpath of their own, on all eleven surfaces:
+`createServiceDeskServerClient` and `createAssetsServerClient` add the corresponding Jira Service Management Data Center surfaces. They cover requests, comments, SLAs, queues, request types, organizations, approvals, customer transitions, Assets objects and schemas, attachments, comments, archiving, QR codes, and index control.
 
-  ```ts
-  import type { CreateIssue } from 'jira.js/cloud/parameters';
-  import type { Issue } from 'jira.js/cloud';
-  ```
+Data Center is a separate generated surface, not the Cloud client pointed at another host. It uses `/rest/api/2`, carries Data Center user identifiers and wiki-markup conventions, and includes Jira Software operations in the same document. The client accepts the authentication strategies supported by the self-hosted transport, including bearer personal access tokens. Personal access tokens are available in Jira Core and Jira Software 8.14 or later; customized installations may still require the authentication method selected by their administrators.
 
-  A subpath rather than a re-export from the surface, because a parameter and a model share a name in nine places on Cloud and forty-one on Agile, and `export *` cannot resolve that. A subpath rather than `export * as Parameters`, because the parameter modules export zod schemas as values, and a namespace object is what a bundler cannot take apart.
+Self-hosted webhooks are included under `server.webhooks`. Atlassian does not publish them in the OpenAPI document, so their request paths were recovered from the WADL served by a running instance and their bodies from real calls. Create, list, update, delete, and the associated reads are covered by the Data Center live rig rather than being inferred from Cloud equivalents.
 
-* **A header set to `undefined` is left out rather than sent.** `SendRequestOptions.headers` accepts `string | undefined`, and the transport strips the absent entries before the request is built — the same treatment `searchParams` and a JSON body have always had. An omitted header does not shadow one set in the client configuration either, so a per-request `undefined` falls through to the client-wide value instead of erasing it.
+`jira.js/webhooks` now exports webhook headers and a discriminated `WebhookPayload` union. The payload types describe what Jira posts to your server; they deliberately do not parse or strip site-specific fields. Closes [#294](https://github.com/MrRefactoring/jira.js/issues/294).
 
-### Features
+Issue-event payloads are based on Atlassian's complete example and a captured delivery. Other event families keep their entity optional because Atlassian documents the event names but not one universal body. Header names are lower-case as they arrive through Node HTTP servers, and retry metadata remains a string like every other HTTP header.
 
-* **Three surfaces above the site: organization, user management and SCIM provisioning.** `createAdminClient`, `createUserManagementClient` and `createUserProvisioningClient` — 47, 10 and 24 operations. Closes [#317](https://github.com/MrRefactoring/jira.js/issues/317), [#316](https://github.com/MrRefactoring/jira.js/issues/316) and [#315](https://github.com/MrRefactoring/jira.js/issues/315).
+```ts
+import type { WebhookPayload } from 'jira.js/webhooks';
 
-  ```ts
-  import { createAdminClient } from 'jira.js';
+function handle(payload: WebhookPayload) {
+  if (payload.webhookEvent === 'jira:issue_created') {
+    console.log(payload.issue.key);
+  }
+}
+```
 
-  const admin = createAdminClient({ auth: { type: 'bearer', token: organizationApiKey } });
+`verifyWebhookSignature` validates the `x-hub-signature` HMAC over the exact request bytes and uses a constant-time comparison. A parsed and re-serialized JSON object is not the same byte sequence.
 
-  const users = await admin.users.searchDirectoryUsers({ orgId, directoryId: '-', limit: 50 });
-  ```
+```ts
+import { verifyWebhookSignature } from 'jira.js/webhooks';
 
-  These are organization APIs, not site ones, and they answer on `https://api.atlassian.com` — `host` is optional and defaults there. Each takes a bearer token and nothing else: an organization API key for the first two, the SCIM directory's own key for the third. A site API token answers 401 and so does OAuth 2.0 (3LO), whose scopes a user grants for a site rather than an organization granting them for itself; the config type refuses both at compile time.
+const trusted = await verifyWebhookSignature({
+  body: rawBody,
+  secret: process.env.JIRA_WEBHOOK_SECRET!,
+  signature: request.headers['x-hub-signature'],
+});
+```
 
-  Two pairs of operations the documents call "roles" mean different things, and the names here say which: `grantUserAccess` and `revokeUserAccess` control access to a product, `assignOrganizationRole` and `revokeOrganizationRole` control an organization-wide role such as organization admin.
+### Transport and shared API
 
-  A live suite covers the organization API read-only, against a real organization. It found what a live suite is for: pagination links and four profile fields that the document types as strings and the API returns as `null`, a policy rule declared an object that arrives as an empty array when there is no rule, and two properties marked required that arrive absent. All corrected in the specification rather than worked around in the caller.
+Every generated call accepts an optional `RequestOptions` argument with an `AbortSignal`. The signal reaches `fetch` and also interrupts retry backoff. Abort and timeout reasons are rethrown unchanged instead of being wrapped in `NetworkError`; aborting one request does not cancel an OAuth refresh shared by other requests. Fixes [#406](https://github.com/MrRefactoring/jira.js/issues/406).
 
-  The same run confirmed that each workspace relationship is an array of policies, entitlements or features rather than the untyped map the first generated client exposed.
+```ts
+await jira.issues.getIssue(
+  { issueIdOrKey: 'PROJ-1' },
+  { signal: AbortSignal.timeout(5_000) },
+);
+```
 
-  Two surfaces ship less verified than that, and the reasons are the organization's rather than the library's. User management refuses a scoped API key outright — every operation answers `403` naming a `manage:org` scope that the key creation flow does not offer — and acts only on accounts whose domain the organization has claimed, of which a development organization has none; the suite pins that refusal and stands down. A SCIM directory needs Atlassian Guard, so `userProvisioning` has nothing to talk to and is unverified against a live instance.
+`ClientConfig.fetch` replaces the global transport for the complete authentication and request flow, including OAuth token refresh and cloud-id resolution. This restores the logging, proxying, tracing, and fixture-recording seam that was lost with the axios removal. A wrapper that records bodies can see OAuth secrets, so redact them before logging. Fixes [#404](https://github.com/MrRefactoring/jira.js/issues/404).
 
-* **`createTeamsClient` and `jira.js/teams`.** Fifteen operations of the [Teams REST API](https://developer.atlassian.com/platform/teams/rest/v1/): teams, their members, and links to an external directory. Closes [#364](https://github.com/MrRefactoring/jira.js/issues/364).
+```ts
+import { fetch as undiciFetch, ProxyAgent } from 'undici';
 
-  Teams are organization-level rather than site-level, so every operation but one is addressed to an `orgId` — a parameter on the call rather than a field on the client, because one account can administer several organizations and one client reaches all of them.
+const dispatcher = new ProxyAgent(process.env.HTTPS_PROXY!);
+const jira = createCloudClient({
+  host,
+  auth,
+  fetch: (url, init) => undiciFetch(url, { ...init, dispatcher }),
+});
+```
 
-  ```ts
-  import { createClient, getTenantContext } from 'jira.js/core';
-  import { createTeamsClient } from 'jira.js';
+Request parameter types are published from `jira.js/<surface>/parameters`, avoiding collisions with model names while remaining tree-shakeable. `SendRequestOptions.headers` accepts `string | undefined`; undefined entries are omitted and no longer erase a client-wide header. `jira.js/core` additionally exports the individual authentication schemas, `CommonClientConfig`, `ParsedClientConfig`, `ErrorKind`, and `getTenantContext`.
 
-  const { orgId } = await getTenantContext(createClient({ host, auth }));
-  const teams = createTeamsClient({ host, auth });
+The custom transport receives `(url: string, init: RequestInit)` rather than `typeof globalThis.fetch`. That keeps standards-compatible wrappers straightforward and lets runtimes such as undici add their own initialization fields without forcing a cast at every call site. OAuth refresh remains single-flight: concurrent requests share one refresh attempt, while cancellation applies only to the request whose signal was aborted.
 
-  const page = await teams.teams.queryTeams({ orgId });
-  ```
+### Fixes
 
-  OAuth 2.0 is absent from the config type on purpose: the API refuses it, as it refuses Forge apps, and a compile error says so earlier than a 401 would. A deleted team answers **410** rather than 404 on the next read — the id stays known and reports itself as gone.
+- The VitePress deployment owns `/api/` again. API navigation, search, direct links, and reloads stay in one documentation application instead of producing a client-side 404. Fixes [#459](https://github.com/MrRefactoring/jira.js/issues/459).
+- Administration pagination now serializes `sortBy` for both `admin.groups.getGroups` and `admin.users.getDirectoryUsers`. The live suite verifies ascending, descending, multi-field ordering, and the cursor echoed by Atlassian.
+- Data Center response patches now match the running products: collection endpoints return arrays, Agile reads return pages or search results, Service Management pages use `Page<T>`, and operations whose specifications omitted a response schema expose their real model or binary body.
+- The generator now counts operations before and after transformation. A collision such as the differently spelled `{permission-id}` and `{permissionId}` paths can no longer silently replace one operation with another; generation fails until the path is corrected.
+- Entity-property endpoints accept and return arbitrary JSON. Missing request bodies were restored for issue, project, board, sprint, comment, issue-type, user, and dashboard-item properties.
+- Multipart uploads use `FormData`; plain-text, form-encoded, and zip endpoints send their documented media types. Email-template downloads return a `Buffer` instead of discarding the archive.
+- Assets Data Center corrects list envelopes, archived-object shapes, archive-by-key bodies, attribute value types, upload timestamps, and the differing read/write forms of object schemas.
+- Data Center path and body corrections restore operations previously overwritten or impossible to call, including `getSharePermission`, application-property writes, webhooks, project lists, fields, statuses, versions, screens, subtasks, and remote issue links.
+- Cloud, Agile, and Service Management models were refreshed from Atlassian's current documents. Nullable issue fields parse as null rather than coercing dates to the epoch; Unicode string limits count code points; malformed HTML descriptions are normalized to Markdown before API documentation is generated.
+- Query and identifier shapes now agree across related endpoints. Board and sprint ids no longer change type on property operations, `fields` and `expand` accept their documented string lists, and known `orderBy` values remain editor suggestions without closing the type to vendor extensions.
+- Non-object request bodies are no longer forced through `Record<string, any>`. `issueWatchers.addWatcher` and `myself.setPreference` send a JSON string; app migration sends an `EntityPropertyDetails[]`; Service Management temporary attachments use multipart files.
+- `serviceDesk.request.validateCustomerRequest` is generated and available. `getInsightWorkspaces` remains callable but is marked deprecated in favor of `getAssetsWorkspaces`.
 
-* **`createAssetsClient` and `jira.js/assets`.** Sixty operations of the [Assets Cloud REST API](https://developer.atlassian.com/cloud/assets/rest/) across thirteen modules: objects and their schemas, types and attributes, AQL, icons, status and reference types, and the import sources a third-party integration feeds data through.
+### Types and deprecations
 
-  Assets is the one surface in this library that does not answer on your site's own host, so its client is built from its own configuration rather than shared with the others:
+`Issue.fields` now documents the system fields and keeps arbitrary response keys available. Direct `issue.fields?.customfield_10016` access remains source-compatible and permissive; request inputs accept only documented writable fields plus `customfield_*`, so misspellings and response-only fields are rejected. Recursive schemas retain concrete Zod object types, so `IssueSchema.extend(...)` and `IssueSchema.shape` continue to work.
 
-  ```ts
-  import { createServiceDeskClient, createAssetsClient } from 'jira.js';
+The documented system fields are a source-breaking change for code that read them as `any` in 6.2. `issue.fields?.summary` is `string | undefined`, values of `renderedFields` and `properties` are `unknown` and must be narrowed, and `created`, `updated`, `resolutiondate`, `statuscategorychangedate` and `lastViewed` are parsed into `Date` objects instead of ISO strings. Code that calls string methods on those dates must format them first.
 
-  const serviceDesk = createServiceDeskClient({ host, auth });
-  const [workspace] = (await serviceDesk.assets.getAssetsWorkspaces()).values ?? [];
+`DashboardUser` keeps its 6.2 shape and remains the return type of `myself`, `users` and `userSearch` operations, but it is deprecated in favor of `User` and removed in 7.0. Jira returns `null` for the `emailAddress` and `locale` of users hidden by privacy settings; `DashboardUser` turns that `null` into `undefined`, so the value matches its 6.2 type. `User` keeps the `null` and types both fields as nullable, and a returned `DashboardUser` can be assigned to it. Lower-case bulk-move model names and other renamed public models likewise remain as deprecated aliases.
 
-  const assets = createAssetsClient({ workspaceId: workspace.workspaceId, auth });
+The 6.2 return signatures are preserved for `timeTracking.getSelectedTimeTrackingImplementation`, `jqlFunctionsApps.updatePrecomputations`, `workflowSchemeDrafts.publishDraftWorkflowScheme`, `agile.board.moveIssuesToBoard`, and `workflowSchemes.updateSchemes`. Runtime handling still accepts documented empty 204 responses; compatibility casts are applied only at the public boundary.
 
-  await assets.objects.loadObject({ id: '42' });
-  ```
+Fields that Atlassian now marks required in responses can remain optional in the public TypeScript output where 6.2 allowed omission. The Zod schemas still require them on the wire, so compatibility does not hide contract drift. Conversely, request fields remain required where Jira rejects their absence.
 
-  `workspaceId` is required and explicit: a site has one, `getAssetsWorkspaces` returns it, and it does not change. Under OAuth 2.0 the client resolves the gateway itself as it does everywhere else; under every other strategy it goes to `api.atlassian.com`. Assets needs Jira Service Management Premium, without which the workspace list comes back empty. Closes [#266](https://github.com/MrRefactoring/jira.js/issues/266), open since May 2023.
+This split covers `FieldMetadata.schema`, security-level holders, workflow-scheme associations, dashboard gadget positions, plan scheduling, issue-link types, and Jira expression complexity counters. A user can still assign a partial response-shaped fixture where 6.2 allowed it, but parsing a real response with the required key missing produces a schema mismatch. `CreatePermissionRequest.holder` and `CreatePlanRequest.scheduling` stay optional because no public operation sends those models and making them required would remove a previously valid construction without preventing a failing Jira call.
 
-  One shape is read against its own specification rather than with it. `DefaultType`, an attribute's default, is declared an object with an `id` and a `name` of no fixed value, and the thirteen pairs those two are ever drawn from are written out in the description as a markdown table — so read literally it types `{ id: 42, name: 'Nonsense' }`, which the API neither sends nor accepts. It is generated as a union discriminated on `id` instead, one branch per row:
+Nested request models are exact on input and loose on output. Jira can add a response field without breaking a consumer, while `sharePermissions: [{ type: 'global', typo: 1 }]` and `fields: { summaryy: 'x' }` fail before the request is sent. Issue writes expose `IssueFieldsInput`, excluding status, creator, timestamps, attachments, comments, progress, votes, watches, and the other fields Jira only reports.
 
-  ```ts
-  const type: DefaultType = { id: 4, name: 'Date' };   // ok
-  const wrong: DefaultType = { id: 4, name: 'Text' };  // the pair does not exist
-  ```
+JSON slots such as issue entity properties, task results, Service Management form answers, and Assets invalidity details accept arbitrary JSON values. Read values are permissive and should be narrowed before use.
 
-  A response naming an id outside the table fails against that one branch rather than all thirteen, which is the difference between an error that says what arrived and one that lists everything it was not.
+### Verification and known limitations
 
-* **`jira.js/webhooks` types what Jira posts to you.** Everything else in this library calls Jira; a webhook is the other direction, and until now there was no way to say what arrives. Fifty-seven events as a union discriminated by `webhookEvent`, sixteen payload shapes, and the headers Jira attaches. Closes [#294](https://github.com/MrRefactoring/jira.js/issues/294).
+The generator owns these compatibility rules. Regenerating from the same source keeps the aliases, public return types, recursive schema behavior, request/output split, and runtime response checks; the release does not rely on hand-edited generated files. A compile-only 6.2 fixture pins the old usage patterns, and consumer checks install the packed tarball into clean `bundler` and `nodenext` projects, both with the current compiler and at the TypeScript 5.7 floor.
 
-  ```ts
-  import type { WebhookHeaders, WebhookPayload } from 'jira.js/webhooks';
+The same generator tests pin the markers that distinguish public compatibility from wire validation. That matters for future Atlassian refreshes: a normal regeneration must reproduce the compatibility declarations and will fail tests if a schema, endpoint, or renamed model no longer receives the required transform.
 
-  app.post('/jira', (request, response) => {
-    const payload = request.body as WebhookPayload;
+Unit, type, lint, build, browser-safety, documentation, and packed-consumer checks run before publication. Cloud live tests and schema audit cover the hosted APIs. Data Center and Service Management use separate Docker rigs and coverage ledgers; missing timebomb-licence secrets now fail their workflows with an explicit diagnostic instead of producing a misleading result.
 
-    switch (payload.webhookEvent) {
-      case 'jira:issue_created':
-        console.log(payload.issue.key);
-        break;
-    }
-
-    response.sendStatus(200);
-  });
-  ```
-
-  There is no parser: a webhook body is shaped by the site that sent it, custom fields and installed apps included, so a schema strict enough to be worth having would reject bodies that are perfectly valid elsewhere.
-
-  **`verifyWebhookSignature` is the one thing here that runs**, because it is the one claim that can be checked rather than asserted. `x-hub-signature` is what distinguishes a delivery from Jira from a POST anyone who found your URL can make, and it is HMAC-SHA256 over the exact bytes of the body.
-
-  ```ts
-  import { verifyWebhookSignature } from 'jira.js/webhooks';
-
-  app.post('/jira', express.raw({ type: 'application/json' }), async (request, response) => {
-    const trusted = await verifyWebhookSignature({
-      body: request.body,
-      secret: process.env.JIRA_WEBHOOK_SECRET!,
-      signature: request.get('x-hub-signature'),
-    });
-
-    if (!trusted) return response.sendStatus(401);
-  });
-  ```
-
-  The body must be the bytes that arrived — `JSON.stringify` of a parsed object is a different byte sequence for the same data, and never matches. Every untrustworthy delivery answers `false` alike, whether the header is missing, names another algorithm, or carries a digest of the right shape and the wrong value; only an empty secret throws, being a mistake of yours rather than a failed check. The comparison is constant-time, and `crypto.subtle` is a global in Node and browsers alike, so nothing is imported and the browser bundle is unchanged.
-
-  How much is documented is worth stating plainly, because the types say it too. Atlassian publishes one complete payload, the one for issue events; that group is written from it and from a capture of a real delivery, and is the only one whose entity is required. Every other group names its entity optionally, after the entity the event concerns. The headers are lower-cased, as they arrive, and every value is typed as the string an HTTP header is — the retry count included.
-
-* **Six more types and schemas are exported from `jira.js/core`.** `authBasicSchema`, `authBearerSchema` and `authOAuth2ServerSchema` beside the `authSchema` that was already there, and the types `CommonClientConfig`, `ParsedClientConfig` and `ErrorKind`. Each was already part of a public type's definition while being unreachable from outside the package — you could receive a `ClientConfig` but not name what it was built from.
-
-* **`getTenantContext` resolves a site's `cloudId`, `orgId` and host name.** Atlassian publishes no REST endpoint for any of the three, and `orgId` in particular names the organization above your site rather than the site itself. The call goes to the GraphQL gateway, which is the documented way to ask, and it takes the client you already built, so it inherits its proxy, retries and custom `fetch`.
-
-  ```ts
-  import { createClient, getTenantContext } from 'jira.js/core';
-
-  const { cloudId, orgId, hostName } = await getTenantContext(createClient({ host, auth }));
-  ```
-
-  Cloud only. Under OAuth 2.0 (3LO) there is no fixed host to ask about and the call throws a `ConfigError` rather than guessing; a Data Center instance serves no gateway.
-
-* **`createServiceDeskServerClient` and `jira.js/serviceDeskServer`.** Sixty-one operations across fourteen modules — customer requests with their comments, participants and SLAs, queues, request types and their permissions, organizations, portals, approvals and customer transitions — generated from the Jira Service Management Data Center 11.3 specification. The `serviceDesk` client was Cloud-only; this is its self-hosted counterpart, and it takes the same client every other Data Center surface does.
-
-* **`createAssetsServerClient` and `jira.js/assetsServer`.** Fifty-eight operations across fifteen modules: everything Assets Cloud has except imports, plus the attachments, comments, archiving, QR codes and index control that only the self-hosted product offers. Assets ships with Service Management rather than as a separate app, so any licensed instance has it.
-
-  Every one of the fifty-eight is called against a running instance on each run of the live suite. The Service Desk half needs a Service Management licence, without which all sixty-one of its endpoints answer 403 with an HTML page — `getInfo` is the one that answers regardless, and how to tell.
-
-* **`createServerClient` and `jira.js/server`.** Four hundred and forty-four operations across sixty-one modules, generated from the Jira Data Center 11.3 LTS specification and usable against **Jira Data Center 10.0 and later**. Data Center publishes its platform, Agile and session endpoints as one document, so unlike Cloud there is no separate Agile factory — boards and sprints sit in the same client as issues.
-
-  ```ts
-  import { createServerClient } from 'jira.js';
-
-  const jira = createServerClient({
-    host: 'https://jira.your-company.com',
-    auth: { type: 'bearer', token: personalAccessToken },
-  });
-
-  await jira.issues.getIssue({ issueIdOrKey: 'PROJ-1' });
-  ```
-
-  The nine operations that arrived after 10.0 say so in their own description, naming the release each can be relied on from. Jira 9.x is not supported: Atlassian never published an OpenAPI document for it, and the line reached end of life on 26 June 2026.
-
-* **Webhooks.** `createWebhook`, `getWebhooks`, `updateWebhook`, `deleteWebhook` and the five reads beside them, under `jira.webhooks`. They are the one part of this surface Atlassian describes in prose and in no specification, so they were written from the Jersey WADL a running instance serves at `/rest/jira-webhook/1.0/application.wadl` — which describes the requests and, its `grammars` element being empty, nothing about the bodies — and from calling each one against a live Data Center 10.3. The live suite exercises all nine.
-
-  Note the path. `/rest/webhooks/1.0/webhook` served Jira 9 and earlier and answers 404 on every 10.x; these use `/rest/jira-webhook/1.0/webhooks`, which is where Jira 10 moved them.
-
-* **Basic authentication accepts a username and password.** A self-hosted account has no Atlassian address and no API token, so `auth: { type: 'basic', ... }` now takes either pair. The Cloud form is unchanged, and mixing the two halves is a validation error rather than a 401 an hour later.
-
-* **OAuth 2.0 against a Data Center instance.** `generateServerAuthorizationUrl`, `exchangeServerAuthorizationCode` and `refreshServerOAuth2Token`, plus `auth: { type: 'oauth2Server' }` for a client that refreshes on its own. A self-hosted instance is its own authorization server, so none of this goes near `auth.atlassian.com` or the Atlassian gateway, and there is no cloud id to resolve.
-
-  Note that Jira 11.0 disables basic authentication by default and rejects `/rest/auth/1/session` as well; on a default Jira 11 instance a personal access token is the only way in.
-
-* **Four methods are named after what they do.** Atlassian names these operations after the machinery behind them, and one of the names carries a misspelling the specification keeps in the operation while spelling the model it answers with correctly. Each old name stays as a deprecated alias — on the flat export and on the client method alike — and is removed in 7.0.
-
-  | Was | Is |
-  | --- | --- |
-  | `issueSearch.searchAndReconsileIssuesUsingJql` | `issueSearch.searchIssues` |
-  | `issueSearch.searchAndReconsileIssuesUsingJqlPost` | `issueSearch.searchIssuesPost` |
-  | `jiraExpressions.evaluateJSISJiraExpression` | `jiraExpressions.evaluateExpression` |
-  | `status.search` | `status.searchStatuses` |
-
-  ```ts
-  const { issues } = await jira.issueSearch.searchIssuesPost({ jql: 'project = PROJ' });
-  ```
-
-  `status.search` is the one worth calling out separately: every neighbouring operation in the specification is named `searchX` — `searchProjects`, `searchPriorities`, `searchWorkflows` — and this one was left bare, which made `import { search } from 'jira.js/cloud'` say nothing about what it searches. `JSIS` is the Jira Software Issue Search backend, an implementation detail that has no business in a method name.
-
-  The v5 names these operations had — `searchForIssuesUsingJqlEnhancedSearch`, `searchForIssuesUsingJqlEnhancedSearchPost` and `evaluateJiraExpressionUsingEnhancedSearch` — get no alias: they never matched the specification, and 6.0 already dropped them. `MIGRATION.md` maps them, and the v5-to-v6 codemod rewrites all four. It also migrates a client imported under another name (`import { Version3Client as V3 }`), leaves a variable declared inside a block that shadows a client alone, and notes a retired name taken out of a client by destructuring.
-
-### Bug Fixes
-
-* **An unresolved issue reads back without a schema mismatch.** The regeneration typed `Issue.fields`, and every field in it was optional but none admitted `null` — which is what Jira sends for an unset `resolution`, `description`, `duedate` or time estimate. Under the default `onSchemaMismatch: 'warn'` the response came back unvalidated, so `fields.created` stayed a string typed `Date` and `.getTime()` threw; under `'throw'` the call failed; and where the rest parsed, `resolutiondate: null` was coerced to 1 January 1970. The cleared fields are nullable now, a null date stays `null`, and `tests/live/cloud/issues.test.ts` reads a fresh issue through a strict client to keep it that way. `ForgePanelProjectPinStatus.error`, documented as null on success, is nullable for the same reason, and so are the other fields Atlassian documents as null: `User.emailAddress` and `User.locale`, which a privacy setting hides, and `StatusPayload.scope`, left null for a project-scoped status. `issues.assignIssue` takes `accountId: null`, which is how the endpoint unassigns an issue and what its type used to refuse.
-
-* **`editIssue` and `doTransition` take wiki markup the way `createIssue` does, and a write mixing the two formats is refused before it is sent.** A string `description` or `environment` on an edit or a transition now goes to the v2 endpoint, as it already did for `createIssue`. A write giving one of those fields a string and the other a document reaches no endpoint that accepts it — v2 answers `Operation value must be a string`, v3 `must be an Atlassian Document` — so all three calls throw a `TypeError` naming the conflict instead of a 400. The check reads `update` as well as `fields`: a description or environment set there, and a comment body or a worklog comment added or edited there, count the same way, so `update: { description: [{ set: 'h2. Title' }] }` reaches v2 instead of a 400 from v3. A multi-line custom field is not looked at; give it in the same form as the rest of the write.
-
-* **The documentation site builds again, and the API reference covers the whole package.** The reference was generated by walking every file under each entry point rather than by following its exports. That published four internal `core` modules as though they were API, and produced a page per generated model that said only `type X = z.infer<typeof XSchema>` — 8913 of 10583 pages, linked from nothing and describing nothing, and between them enough weight to exhaust the build's heap. It is now generated from the package's own `exports` map, so it documents exactly what can be imported: every surface, every model and parameter type, and every zod schema.
-
-* **The HTML Atlassian leaves in its descriptions reaches the documentation as markdown.** These specifications are generated from Java annotations whose javadoc was written for an HTML page, so a handful of descriptions carried `<b>`, `<code>` and anchor tags into the published types. One of them, in the Data Center notification schemes, opened a list item it never closed — which stopped the documentation site building rather than merely rendering oddly.
-
-* **`serviceDesk.request.validateCustomerRequest` is in the library.** `POST /rest/servicedeskapi/request/validate` is described by the specification and was dropped before it reached the surface. It checks a request payload and creates nothing.
-
-* **Six things the Assets Data Center specification gets wrong.** Found the same way as the rest of these, by calling each endpoint against a running instance:
-
-  - ten endpoints answer with an array while the document names a single item;
-  - `getArchivedObjects` answers with a page of a shape the document does not describe at all — its items carry `key` where an object carries `objectKey`, and `archived`, `archivedDate` and `archivedBy` besides;
-  - `archiveObjectsByKeys`, named `archiveObjectsByIds` and declared with a string body, archives by key and takes an array of them;
-  - an attribute's `value`, `displayValue` and `searchValue` are typed as objects and are strings on the wire — which failed validation on most of the surface, since every response carrying an object's attributes has them;
-  - an attachment's `created` is the documented date when listed and `{ seconds, nanos }` when uploaded, so the upload has a response type of its own;
-  - an object schema's id is a string for reading and an integer for writing, so `loadSchema` and `updateSchema` took the same schema under two types.
-
-* **Data Center writes its pages inside the response.** Eighteen Service Management operations answered with one envelope and generated eighteen models of it, named after the operation rather than after what it holds — `GetRequestComments` where the rest of the library returns `Page<Comment>`. They are `Page<T>` now.
-
-* **Thirty-seven responses that arrive as a list were typed as a single item.** `getAllProjects`, `getStatuses`, `getFields`, `getProjectVersions`, `getAllScreens`, `getSubTasks`, `getRemoteIssueLinks` and thirty more declare one object and answer with an array of them — the Java method returns a collection and the annotation names the element. Every entry was measured against a live instance rather than reasoned about, because a document cannot tell the two apart.
-
-* **Nine agile endpoints answered with a page and were typed as its contents.** `getAllBoards` said `Board`, `getAllSprints` said `Sprint`, `getIssuesForBacklog` said `Issue`. The declared types have no required fields, so a page validated against them cleanly with every one of its own fields ignored — the caller got something typed `Board` with no `id` and no `name`. They are now `Page<Board>`, `Page<Sprint>` and, for the four that answer with search results, `SearchResults`.
-
-* **Entity properties can be written, and read back as what they are.** The eight endpoints that store arbitrary JSON against an issue, a project, a board, a sprint, a comment, an issue type, a user and a dashboard item were described five different ways; four declared no request body at all, so the property could not be set. `value` was typed a string on the way back, with a JSON document as its own example.
-
-* **`getSharePermission` is in the library.** The document spells one path `{permission-id}` and the one beside it `{permissionId}`; camel-casing collapsed the first onto the second, and the read was silently overwritten by the delete. The generator now counts what it started with and fails the build rather than shipping four hundred and thirty-four operations where four hundred and thirty-five went in.
-
-* **Seven endpoints that do not take JSON now send what they take.** `setSchemeAttribute` and `archiveIssues` want `text/plain`, the three column setters want a form encoding, and email templates want a zip; all of them were sent JSON and answered 415. The five multipart uploads — an attachment and four avatars — were generated as a JSON body of the Java method's field names, which no upload could be made from.
-
-* **Ten operations that answer with a body were typed `void`.** `createIssueType`, `createIssueLinkType`, `createScheme` and the rest describe their response in a sentence and name no schema, so the only way to see what was created was to ask for it again. `getAllWorkflows` and `getAllScreens` return things the document describes nowhere at all.
-
-* **The email templates download, and an application property can be written.** Two more of the same kind, and both were found by porting a Jira MCP server onto this client rather than by the live suites — which is worth saying, because of why the suites missed them. `downloadEmailTemplates` is documented as "returns the file" and then describes no body, so it was typed `void` and the zip was thrown away; it now answers with a `Buffer`, and asks for `application/zip`, without which Jira returns 406 rather than the file. `setPropertyViaRestfulTable` declares a path parameter and no request body while its own summary says the `value` field in the PUT overrides the existing one; sent bodyless it answers 400 — indistinguishable, to a suite that accepts an instance's refusals, from a permission it does not have.
-
-* **One id, one type.** `boardId` and `sprintId` were integers on the endpoints that read them and strings on the ones that read their properties; a filter's share permission was a string when read and an integer when deleted. `fields` and `expand` accept the strings they always accepted — seventeen parameters typed through `StringList`, a component declared as an object with no properties, so `fields: ['summary']` did not type-check against the endpoint it is most often passed to.
-
-* **Twenty-eight more responses match what Jira sends.** `getAutoComplete` types its field and function lists as arrays of strings when both are arrays of objects. `getAvailableMetrics` and `getPasswordPolicy` declare a string and answer with an array. `SearchResults` returns `null` for `expand`, `names`, `schema` and `warningMessages`, and every issue read carries `renderedFields: null`. A project's roles, its avatars, a group's members and the eighty-five application properties were each declared as something they contain.
-
-* **Every docblock keeps its own line breaks.** A schema's description was written into the comment with a `*` before each newline rather than a ` * ` after it, so a multi-line description came out with a stray star welded to the end of each line and the markdown around it did not survive. `UserDetails` is the plainest case — three exceptions Atlassian writes as a bullet list read as one run-on sentence with two stars in the middle of it, on Cloud, Agile and Service Management alike.
-
-  Thirty models across the three surfaces are restored, and the docblock is reattached to what it documents: it sat one
-  blank line above its `export`, which reads as a file-level note rather than a description of the schema below it, and
-  in an editor the hover shows nothing at all. Only comments and the blank line before them move; not a schema, a type
-  or a line of runtime code changes.
-
-### Types
-
-* **`siteId` is required on `teams.queryTeams` and `teams.createTeam`.** Atlassian's specification marks it optional and only calls omitting it deprecated, but the API answers `400 SITE_ID_REQUIRED_FOR_TEAM_API` — "siteId is mandatory for this API" — on an organization that scopes teams to a site, which is the default. Measured against a live tenant: those two refuse the call, while `getTeam` and `fetchMembers` still answer without it.
-
-  This is a breaking change to two parameter types, and it breaks code that does not work anyway — it turns a runtime 400 into a compile error. `siteId` is the site's cloud id, which `getTenantContext` returns as `cloudId`. On `createTeam` the property stays nullable, because the document declares it so: omitting it no longer compiles, passing an explicit `null` still does and still fails at the API.
-
-  The Teams guide showed three calls without it, including the quick start. They pass it now.
-
-* **Four request bodies are typed as the shape the endpoint reads, where they were `Record<string, any>`.** Each was generated from a request body the specification declares as something other than an object, which the generator had no reading for and degraded to an object of arbitrary keys. None of the four could be called correctly through its own declaration.
-
-  | Operation | Body was | Body is |
-  | --- | --- | --- |
-  | `issueWatchers.addWatcher` | `Record<string, any>` | `string` |
-  | `myself.setPreference` | `Record<string, any>` | `string` |
-  | `appMigration.updateEntityPropertiesValue` | `Record<string, any>` | `EntityPropertyDetails[]` |
-  | `servicedesk.attachTemporaryFile` (Service Desk) | `Record<string, any>` | `MultipartFile[]` |
-
-  ```ts
-  await jira.issueWatchers.addWatcher({ issueIdOrKey: 'PROJ-1', body: '5b10ac8d82e05b22cc7d4ef5' });
-  await jira.myself.setPreference({ key: 'user.notifications.mimetype', body: 'text' });
-  ```
-
-  The two that take a lone string were the sharper break. `addWatcher` wants an account id and `setPreference` a preference value, each sent as a JSON string — and an object was never a value either would accept, so the only way to call them was to cast a string past the declaration. The live suite did exactly that, with a helper whose whole purpose was to launder a `string` into a `Record<string, unknown>`. Those casts are what stops compiling now, and deleting each one is the fix.
-
-  The two that take an array break more quietly: an array satisfies `Record<string, any>`, so a caller already passing the right thing is untouched and needs no change. A caller passing a single object, which the old declaration invited and the endpoint refused, is the one the compiler now stops.
-
-  `tests/unit/nonObjectBodies.test.ts` pins all four against the wire. It is unit rather than live because two of them cannot be reached: `updateEntityPropertiesValue` is addressed with a Connect app's JWT, and `attachTemporaryFile` needs an agent licence — so what a live run can show is the typed refusal, and what it cannot show is that the body left the client as a bare string or a top-level array rather than wrapped in a key.
-
-* **The regeneration changes public types, and this is the list.** The renames above ride along with a resync of Cloud, Agile and Service Management against Atlassian's current documents. No operation is removed and no URL or method changes, but some of it is breaking, and a minor release is the wrong place to discover that from a compiler.
-
-  **Twenty-seven fields stopped being optional, and none started.** The document says so in each case. Six of them sit on what seven operations send, so a call that used to build no longer does:
-
-  | Operation | Field |
-  | --- | --- |
-  | `users.getUser` | `accountId` |
-  | `issueWatchers.removeWatcher` | `accountId` |
-  | `issueBulkOperations.submitBulkEdit` | `editedFieldsInput` |
-  | `issueRemoteLinks.createOrUpdateRemoteIssueLink`, `issueRemoteLinks.updateRemoteIssueLink` | `object` |
-  | `screenSchemes.createScreenScheme` | `screens` |
-  | `issueNotificationSchemes.addNotifications` | `event` |
-
-  The two `accountId` parameters are the ones worth knowing about. Atlassian ends both descriptions with the word `Required.` and leaves the schema's `required` unset, so `users.getUser()` compiled and answered 400 every time — a call that could never succeed and never failed to compile. It fails to compile now, which is the point of the change.
-
-  Nineteen are on responses, where the flip works for you: a field you used to guard is now promised, so `member.holder?.type` can drop its `?`. The last two, `CreatePermissionRequest.holder` and `CreatePlanRequest.scheduling`, are on request models no operation sends. `FieldMetadata.schema`, `IssueSecurityLevelMember.holder`, `SecurityLevelMember.holder`, `WorkflowSchemeAssociations.workflowScheme`, `DashboardGadget.position` and the four counters on `JiraExpressionsComplexity` are the ones most likely to be read.
-
-  **Ninety-five maps that were `Record<string, any>` now say what they hold.** Sixty on Cloud, twenty-seven on Agile, eight on Service Management. `WorkflowTrigger.parameters`, `StatusLayoutUpdate.properties` and `TransitionPayload.properties` hold strings; `WorkflowScheme.issueTypes` holds `IssueTypeDetails`; `ProjectRoleActorsUpdate.categorisedActors` holds arrays of strings. `any` accepted a boolean or a number where the endpoint reads a string, so `properties: { 'jira.issue.editable': false }` compiled and was wrong on the wire; it is a type error now.
-
-  **`Issue.fields` is `IssueFields`, not an untyped map.** An issue read back through `getIssue` or `searchIssues` describes the forty system fields by name, with the ones Jira clears — `assignee`, `resolution`, `resolutiondate`, `duedate`, `description` and the time counters among them — typed `| null`, because an unresolved issue answers with exactly that. Two things this breaks:
-
-  ```diff
-  -const points = issue.fields?.customfield_10016.value;
-  +const points = (issue.fields?.customfield_10016 as { value: string } | undefined)?.value;
-  ```
-
-  A `customfield_*` key reads as `unknown` rather than `any`, so it needs narrowing before use. And `IssueSchema` is annotated as `z.ZodType<Issue>` — the schema sits on a reference cycle, and TypeScript cannot infer one — so `IssueSchema.extend(...)` and `.shape` are gone; build a schema of your own from `z.object` where you extended it.
-
-  **`createIssue`, `editIssue` and `doTransition` describe the fields they send.** Their `fields` parameter is `IssueFieldsInput`: the system fields a write can set by name and `customfield_*` keys, each typed as what the endpoint reads — a model by its own input, a date as anything that coerces to one. `fields: { summaryy: 'x' }`, a key that is neither a system field nor a `customfield_` one, or a field Jira only reports — `status`, `creator`, `created`, `updated`, `resolutiondate`, `statuscategorychangedate`, `lastViewed`, `subtasks`, `attachment`, `comment`, `worklog`, `progress`, `aggregateprogress`, the three `aggregatetime*` counters, `workratio`, `votes`, `watches` — is a type error; reading `summary` back off `EditIssue['fields']` gives `string | undefined`. Every model on a reference cycle — `IssueFields`, the workflow condition groups and the admin query operators among them — now has an `XInput` type beside it for the same reason.
-
-  **A misspelt key in a request is a type error at any depth.** Only the top level of a request was checked before: every nested object was a response model, loose so an undocumented key Jira sends can still be read, and it stayed loose on the way in. `sharePermissions: [{ type: 'global', typo: 1 }]` compiled and the key was dropped on the wire. A model still accepts extra keys when it is read and names exactly its own when it is written, so code passing a key a model does not declare stops compiling.
-
-  **Three flags are booleans.** `SecurityLevelPayload.isDefault`, `BoardFeaturePayload.state` and `CardLayout.showDaysInColumn` were open enums of the strings `'true'` and `'false'`, which is not what the document declares and not what the endpoints take. `state: 'true'` in a `customTemplates` board definition is a type error now.
-
-  **`DashboardUser` is `User`.** Atlassian renamed the schema; `DashboardUser` stays as a deprecated alias of it until 7.0, so nothing has to change today. The four models of a bulk move are capitalised like every other model — `TargetToSourcesMapping`, `TargetStatus`, `TargetClassification` and `TargetMandatoryFields` — and their lower-case names stay as deprecated aliases until 7.0.
-
-  **Five calls can answer with no body, and their types say so.** `timeTracking.getSelectedTimeTrackingImplementation`, `jqlFunctionsApps.updatePrecomputations`, `workflowSchemeDrafts.publishDraftWorkflowScheme` and `agile.board.moveIssuesToBoard` were `void` and now return their model `| undefined`, and `workflowSchemes.updateSchemes` returned its model and gained the `| undefined`. Each of them is documented to answer 204 with no body in one case — time tracking switched off, every issue moved — so `(await jira.workflowSchemes.updateSchemes(params)).id` compiled against the bare model and threw at runtime. On Data Center the same holds for `board.setBoardProperty`, `issues.rankIssues` and `issueSearch.getError`.
-
-  **A JSON value is `unknown`, not `JsonNode`.** Atlassian types the values of `issueProperties.bulkSetIssuesPropertiesList` and `bulkSetIssuePropertiesByIssue`, `TaskProgressJsonNode.result` and Service Management's `FormAnswer.adf` as `JsonNode` — the flags object Jackson describes a JSON value with, not the value. Typed that way, `properties: { approval: { approved: true } }` did not compile, and neither did a string or a number. All four take and hold `unknown` now, so any JSON value goes in, and reading one needs narrowing where `any` or the flags object used to let it through. `JsonNode` itself stays on both surfaces as a deprecated model until 7.0.
-
-  **Two operations and two fields are new.** `workflows.copyWorkflow` (`POST /rest/api/3/workflows/copy`) and `issuePanels.getBulkPinStatus` (`POST /rest/api/3/forge/panel/action/bulk/status`) arrived with the documents, `StatusPayload.scope` takes `'GLOBAL'` to create a status shared across projects, and `issueSearch.searchIssues` and `searchIssuesPost` take `includeArchivedProjects` to return issues from archived projects.
-
-### General
-
-* **The minimum TypeScript is declared, and measured.** `>=5.7`, as an optional peer dependency, in the README and here. It was never written down before, and the honest number is higher than anyone would have guessed: the declarations name `ArrayBufferView`, which became generic in 5.7, so a 5.6 compiler reads them as an error unless `skipLibCheck` hides them from it. `check:consumers` now installs exactly that version and type-checks the packed tarball with `skipLibCheck` off, so the floor moves only when someone means to move it.
-
-* **Built with TypeScript 6.** The declarations it emits are byte-identical to 5.9's across all 3596 of them, so nothing a consumer sees changes. Not 7.0, though npm calls it latest — typedoc's supported range ends at 6.0 and typescript-eslint's below 6.1, at the newest version either has published.
-
-* **`getInsightWorkspaces` is marked deprecated.** Atlassian says so in prose — "This endpoint is deprecated, please use /assets/workspace/." — and leaves the specification's `deprecated` flag at `false`, so the sentence reached the generated documentation and stopped there. It is now a `@deprecated` tag carrying that same sentence, on the standalone function and on the `serviceDesk.assets` method alike, so an editor strikes the call through and a linter can find it. The tag names the replacement as well: Atlassian's sentence points at a URL, and what you actually call is `getAssetsWorkspaces`, sitting right beside it.
-
-  Nothing is removed and the endpoint still answers where the licence allows it. It is also the only operation in the whole Jira surface this reaches: the other eight deprecated in prose carry the flag as well, and the generator drops a flagged operation before it can reach the client.
-
-* **The documentation deploys from `master` alone.** A manual run against a branch used to build the site and then publish it, because the deploy job followed the build with no condition on the ref. The build is what is worth running from a branch.
+Some product limitations remain external to the library. User management operations require claimed-domain accounts and currently reject the scoped key available to the development organization. SCIM provisioning requires Atlassian Guard and is not live-verified. Assets Cloud requires an eligible Jira Service Management plan. Without a Jira Service Management Data Center licence, the Service Desk surface returns 403 HTML for all tested operations except `getInfo`; the workflow therefore requires its own licence secret.
 
 ## 6.2.0
 

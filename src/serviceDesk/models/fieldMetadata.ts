@@ -1,31 +1,29 @@
 import { z } from 'zod';
-import { apiObject, requireResponseKeys } from '#/core';
+import { apiObject } from '#/core';
+import { requiredInResponse } from '#/core/compatibility';
 import { JsonTypeSchema } from './jsonType';
 
 /** The metadata describing an issue field. */
-export const FieldMetadataSchema = requireResponseKeys(
-  apiObject({
-    /** The list of values allowed in the field. */
-    allowedValues: z.array(z.unknown()).optional(),
-    /** The URL that can be used to automatically complete the field. */
-    autoCompleteUrl: z.string().optional(),
-    /** The configuration properties. */
-    configuration: z.record(z.string(), z.any()).optional(),
-    /** The default value of the field. */
-    defaultValue: z.unknown().optional(),
-    /** Whether the field has a default value. */
-    hasDefaultValue: z.boolean().optional(),
-    /** The key of the field. */
-    key: z.string(),
-    /** The name of the field. */
-    name: z.string(),
-    /** The list of operations that can be performed on the field. */
-    operations: z.array(z.string()),
-    /** Whether the field is required. */
-    required: z.boolean(),
-    schema: JsonTypeSchema.optional(),
-  }),
-  ['schema'],
-);
+export const FieldMetadataSchema = apiObject({
+  /** The list of values allowed in the field. */
+  allowedValues: z.array(z.unknown()).optional(),
+  /** The URL that can be used to automatically complete the field. */
+  autoCompleteUrl: z.string().optional(),
+  /** The configuration properties. */
+  configuration: z.record(z.string(), z.any()).optional(),
+  /** The default value of the field. */
+  defaultValue: z.unknown().optional(),
+  /** Whether the field has a default value. */
+  hasDefaultValue: z.boolean().optional(),
+  /** The key of the field. */
+  key: z.string(),
+  /** The name of the field. */
+  name: z.string(),
+  /** The list of operations that can be performed on the field. */
+  operations: z.array(z.string()),
+  /** Whether the field is required. */
+  required: z.boolean(),
+  schema: requiredInResponse(JsonTypeSchema),
+});
 
 export type FieldMetadata = z.infer<typeof FieldMetadataSchema>;

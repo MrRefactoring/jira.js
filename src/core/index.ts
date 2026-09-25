@@ -31,8 +31,6 @@ export {
 
 export { apiObject, type ApiObjectConfig } from './apiObject.js';
 
-export { JsonValueSchema, nonNullOutput, requireResponseKeys } from './compatibility.js';
-
 export { ATLASSIAN_GATEWAY } from './atlassianGateway.js';
 
 export { openEnum } from './openEnum.js';

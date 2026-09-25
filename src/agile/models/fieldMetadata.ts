@@ -1,29 +1,30 @@
 import { z } from 'zod';
-import { apiObject, requireResponseKeys } from '#/core';
+import { apiObject } from '#/core';
+import { requiredInResponse } from '#/core/compatibility';
 
 /** The metadata describing an issue field. */
-export const FieldMetadataSchema = requireResponseKeys(
-  apiObject({
-    /** The list of values allowed in the field. */
-    allowedValues: z.array(z.unknown()).optional(),
-    /** The URL that can be used to automatically complete the field. */
-    autoCompleteUrl: z.string().optional(),
-    /** The configuration properties. */
-    configuration: z.record(z.string(), z.any()).optional(),
-    /** The default value of the field. */
-    defaultValue: z.unknown().optional(),
-    /** Whether the field has a default value. */
-    hasDefaultValue: z.boolean().optional(),
-    /** The key of the field. */
-    key: z.string(),
-    /** The name of the field. */
-    name: z.string(),
-    /** The list of operations that can be performed on the field. */
-    operations: z.array(z.string()),
-    /** Whether the field is required. */
-    required: z.boolean(),
-    /** The schema of a field. */
-    schema: apiObject({
+export const FieldMetadataSchema = apiObject({
+  /** The list of values allowed in the field. */
+  allowedValues: z.array(z.unknown()).optional(),
+  /** The URL that can be used to automatically complete the field. */
+  autoCompleteUrl: z.string().optional(),
+  /** The configuration properties. */
+  configuration: z.record(z.string(), z.any()).optional(),
+  /** The default value of the field. */
+  defaultValue: z.unknown().optional(),
+  /** Whether the field has a default value. */
+  hasDefaultValue: z.boolean().optional(),
+  /** The key of the field. */
+  key: z.string(),
+  /** The name of the field. */
+  name: z.string(),
+  /** The list of operations that can be performed on the field. */
+  operations: z.array(z.string()),
+  /** Whether the field is required. */
+  required: z.boolean(),
+  /** The schema of a field. */
+  schema: requiredInResponse(
+    apiObject({
       /** If the field is a custom field, the configuration of the field. */
       configuration: z.record(z.string(), z.any()).optional(),
       /** If the field is a custom field, the URI of the field. */
@@ -36,9 +37,8 @@ export const FieldMetadataSchema = requireResponseKeys(
       system: z.string().optional(),
       /** The data type of the field. */
       type: z.string(),
-    }).optional(),
-  }),
-  ['schema'],
-);
+    }),
+  ),
+});
 
 export type FieldMetadata = z.infer<typeof FieldMetadataSchema>;

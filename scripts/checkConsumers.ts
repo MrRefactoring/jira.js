@@ -102,6 +102,7 @@ try {
     "import { authBasicPasswordSchema, createClient } from 'jira.js/core';",
     "import type { ApiObjectConfig, AuthBasicPassword, Client } from 'jira.js/core';",
     "import type { WebhookHeaders, WebhookPayload } from 'jira.js/webhooks';",
+    ...SUBPATHS.map((subpath, index) => `import type * as surface${index} from '${subpath}';`),
     '',
     "const client: Client = createClient({ host: 'https://example.atlassian.net' });",
     "export const basicPassword: AuthBasicPassword = { type: 'basic', username: 'user', password: 'password' };",
@@ -139,32 +140,37 @@ try {
     }
   }
 
-  writeFileSync(
-    join(workspace, 'tsconfig.floor.json'),
-    `${JSON.stringify(
-      {
-        compilerOptions: {
-          module: 'esnext',
-          moduleResolution: 'bundler',
-          noEmit: true,
-          skipLibCheck: false,
-          strict: true,
-          target: 'es2022',
-        },
-        files: ['probe.ts'],
-      },
-      null,
-      2,
-    )}\n`,
-  );
-
   try {
     run('npm', ['install', '--no-audit', '--no-fund', '--silent', '--no-save', `typescript@${TYPESCRIPT_FLOOR}`], workspace);
-    run('node', [join(workspace, 'node_modules', 'typescript', 'bin', 'tsc'), '-p', 'tsconfig.floor.json'], workspace);
   } catch (error) {
-    const output = ((error as { stdout?: string }).stdout ?? (error as Error).message).trim();
+    problems.push(`TypeScript ${TYPESCRIPT_FLOOR} could not be installed:\n${(error as Error).message}`);
+  }
 
-    problems.push(`TypeScript ${TYPESCRIPT_FLOOR}, the documented minimum, cannot read the declarations:\n${output}`);
+  for (const moduleResolution of ['bundler', 'nodenext'] as const) {
+    const module = moduleResolution === 'nodenext' ? 'nodenext' : 'esnext';
+    const config = `tsconfig.floor.${moduleResolution}.json`;
+
+    writeFileSync(
+      join(workspace, config),
+      `${JSON.stringify(
+        {
+          compilerOptions: { module, moduleResolution, noEmit: true, skipLibCheck: false, strict: true, target: 'es2022' },
+          files: ['probe.ts'],
+        },
+        null,
+        2,
+      )}\n`,
+    );
+
+    try {
+      run('node', [join(workspace, 'node_modules', 'typescript', 'bin', 'tsc'), '-p', config], workspace);
+    } catch (error) {
+      const output = ((error as { stdout?: string }).stdout ?? (error as Error).message).trim();
+
+      problems.push(
+        `TypeScript ${TYPESCRIPT_FLOOR}, the documented minimum, cannot read the declarations under moduleResolution "${moduleResolution}":\n${output}`,
+      );
+    }
   }
 } finally {
   rmSync(workspace, { recursive: true, force: true });
