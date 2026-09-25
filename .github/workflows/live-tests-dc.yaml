@@ -32,8 +32,11 @@ jobs:
         env:
           LICENSE: ${{ secrets.JIRA_DC_TIMEBOMB_LICENSE }}
         run: |
+          if [ -z "$LICENSE" ]; then
+            echo "::error title=Missing Jira Data Center licence::Set the JIRA_DC_TIMEBOMB_LICENSE repository secret."
+            exit 1
+          fi
           printf '%s' "$LICENSE" > docker/jira-dc/timebomb-license.txt
-          test -s docker/jira-dc/timebomb-license.txt
       - name: 🧱 Bring up Jira Data Center
         run: pnpm run jira-dc:up
       - name: 🚀 Run the suites and the coverage ledger
