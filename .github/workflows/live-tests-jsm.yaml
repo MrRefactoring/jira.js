@@ -32,8 +32,11 @@ jobs:
         env:
           LICENSE: ${{ secrets.JSM_DC_TIMEBOMB_LICENSE }}
         run: |
+          if [ -z "$LICENSE" ]; then
+            echo "::error title=Missing Jira Service Management licence::Set the JSM_DC_TIMEBOMB_LICENSE repository secret."
+            exit 1
+          fi
           printf '%s' "$LICENSE" > docker/jsm-dc/timebomb-license.txt
-          test -s docker/jsm-dc/timebomb-license.txt
       - name: 🧰 Bring up Jira Service Management
         run: pnpm run jsm-dc:up
       - name: 🚀 Run the suites and the coverage ledger
