@@ -1,6 +1,7 @@
 import { beforeAll, describe, expect, it } from 'vitest';
 import { isForbiddenError } from '#/core';
 import type { CloudClient } from '#/cloud/createCloudClient';
+import type { TimeTrackingProvider } from '#/cloud/models';
 import { getCloudClient, getStrictCloudClient } from '../setup/client';
 
 /**
@@ -63,10 +64,10 @@ describe('Jira Cloud — timeTracking and site settings (live, read-only)', () =
     }
   });
 
-  it('reads the selected provider without rejecting', async () => {
+  it('returns the selected provider behind the 6.2 void signature', async () => {
     const selected = await getStrictCloudClient()
       .timeTracking.getSelectedTimeTrackingImplementation()
-      .then(() => 'ok' as const)
+      .then(value => value as unknown as TimeTrackingProvider | undefined)
       .catch((e: unknown) => e);
 
     if (selected instanceof Error) {
@@ -75,7 +76,12 @@ describe('Jira Cloud — timeTracking and site settings (live, read-only)', () =
       return;
     }
 
-    expect(selected).toBe('ok');
+    const provider = selected as TimeTrackingProvider | undefined;
+
+    if (provider === undefined) return;
+
+    expect(provider.key).toBe('JIRA');
+    expect(typeof provider.name).toBe('string');
   });
 
   it('reports the default issue navigator columns', async () => {

@@ -1,5 +1,6 @@
 import { z } from 'zod';
-import { apiObject, JsonValueSchema } from '#/core';
+import { apiObject } from '#/core';
+import { JsonValueSchema } from '#/core/compatibility';
 
 /**
  * An issue ID with entity property values. See [Entity
