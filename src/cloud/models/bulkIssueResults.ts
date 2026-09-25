@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
 import { IssueErrorSchema } from './issueError';
-import { IssueSchema } from './issue';
+import { IssueSchema, type Issue, type IssueInput } from './issue';
 
 /** The list of requested issues & fields. */
 export const BulkIssueResultsSchema = apiObject({
@@ -12,7 +12,7 @@ export const BulkIssueResultsSchema = apiObject({
    */
   issueErrors: z.array(IssueErrorSchema).optional(),
   /** The list of issues. */
-  issues: z.array(IssueSchema).optional(),
+  issues: z.array(IssueSchema as z.ZodType<Issue, IssueInput>).optional(),
 });
 
 export type BulkIssueResults = z.infer<typeof BulkIssueResultsSchema>;

@@ -66,12 +66,17 @@ export interface IssueInput {
 }
 
 /** Details about an issue. */
-export const IssueSchema: z.ZodType<Issue, IssueInput> = apiObject({
+export const IssueSchema = apiObject({
   changelog: PageOfChangelogsSchema.optional(),
   editmeta: IssueUpdateMetadataSchema.optional(),
   /** Expand options that include additional issue details in the response. */
   expand: z.string().optional(),
-  fields: z.lazy(() => IssueFieldsSchema).optional(),
+  fields: (
+    z.lazy((): z.ZodType<IssueFields, IssueFieldsInput> => IssueFieldsSchema) as z.ZodType<
+      IssueFields,
+      IssueFieldsInput
+    >
+  ).optional(),
   fieldsToInclude: IncludedFieldsSchema.optional(),
   /** The ID of the issue. */
   id: z.string().optional(),
@@ -92,4 +97,4 @@ export const IssueSchema: z.ZodType<Issue, IssueInput> = apiObject({
   transitions: z.array(IssueTransitionSchema).optional(),
   /** The versions of each field on the issue. */
   versionedRepresentations: z.record(z.string(), z.any()).optional(),
-});
+}) satisfies z.ZodType<Issue, IssueInput>;

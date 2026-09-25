@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-import { UserSchema } from './user';
+import { DashboardUserSchema } from './dashboardUser';
 
 /**
  * A paginated list of users sharing the filter. This includes users that are members of the groups or can browse the
@@ -10,7 +10,7 @@ export const UserListSchema = apiObject({
   /** The index of the last item returned on the page. */
   'end-index': z.number().optional(),
   /** The list of items. */
-  items: z.array(UserSchema).optional(),
+  items: z.array(DashboardUserSchema).optional(),
   /** The maximum number of results that could be on the page. */
   'max-results': z.number().optional(),
   /** The number of items on the page. */

@@ -30,9 +30,15 @@ export interface ConditionGroupPayloadInput {
 }
 
 /** The payload for creating a condition group in a workflow */
-export const ConditionGroupPayloadSchema: z.ZodType<ConditionGroupPayload, ConditionGroupPayloadInput> = apiObject({
+export const ConditionGroupPayloadSchema = apiObject({
   /** The nested conditions of the condition group. */
-  conditionGroup: z.array(z.lazy(() => ConditionGroupPayloadSchema)).optional(),
+  conditionGroup: z
+    .array(
+      z.lazy(
+        (): z.ZodType<ConditionGroupPayload, ConditionGroupPayloadInput> => ConditionGroupPayloadSchema,
+      ) as z.ZodType<ConditionGroupPayload, ConditionGroupPayloadInput>,
+    )
+    .optional(),
   /** The rules for this condition. */
   conditions: z.array(RulePayloadSchema).optional(),
   /**
@@ -41,4 +47,4 @@ export const ConditionGroupPayloadSchema: z.ZodType<ConditionGroupPayload, Condi
    * group must be true for the group to evaluate to true.
    */
   operation: openEnum(['ANY', 'ALL']).optional(),
-});
+}) satisfies z.ZodType<ConditionGroupPayload, ConditionGroupPayloadInput>;

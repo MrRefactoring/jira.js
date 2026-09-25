@@ -46,7 +46,7 @@ export interface AssetObjectInput {
   name?: string;
 }
 
-export const AssetObjectSchema: z.ZodType<AssetObject, AssetObjectInput> = apiObject({
+export const AssetObjectSchema = apiObject({
   id: z.number().optional(),
   label: z.string().optional(),
   objectKey: z.string().optional(),
@@ -58,9 +58,16 @@ export const AssetObjectSchema: z.ZodType<AssetObject, AssetObjectInput> = apiOb
   updated: z.coerce.date().optional(),
   hasAvatar: z.boolean().optional(),
   timestamp: z.number().optional(),
-  attributes: z.array(z.lazy(() => ObjectAttributeSchema)).optional(),
+  attributes: z
+    .array(
+      z.lazy((): z.ZodType<ObjectAttribute, ObjectAttributeInput> => ObjectAttributeSchema) as z.ZodType<
+        ObjectAttribute,
+        ObjectAttributeInput
+      >,
+    )
+    .optional(),
   extendedInfo: AssetObjectExtendedSchema.optional(),
   get_links: LinkSchema.optional(),
   archived: z.boolean().optional(),
   name: z.string().optional(),
-});
+}) satisfies z.ZodType<AssetObject, AssetObjectInput>;

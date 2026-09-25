@@ -263,7 +263,7 @@ export async function publishDraftWorkflowScheme(
   client: Client,
   parameters: PublishDraftWorkflowScheme,
   options?: RequestOptions,
-): Promise<TaskProgressObject | undefined> {
+): Promise<void> {
   const config: SendRequestOptions<TaskProgressObject> = {
     url: `/rest/api/3/workflowscheme/${parameters.id}/draft/publish`,
     method: 'POST',
@@ -277,7 +277,7 @@ export async function publishDraftWorkflowScheme(
     signal: options?.signal,
   };
 
-  return await client.sendRequest(config);
+  return (await client.sendRequest(config)) as unknown as void;
 }
 
 /**

@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { apiObject } from '#/core';
+import { apiObject, JsonValueSchema } from '#/core';
 
 /**
  * An issue ID with entity property values. See [Entity
@@ -9,7 +9,7 @@ export const IssueEntityPropertiesForMultiUpdateSchema = apiObject({
   /** The ID of the issue. */
   issueID: z.number().optional(),
   /** Entity properties to set on the issue. The maximum length of an issue property value is 32768 characters. */
-  properties: z.record(z.string(), z.unknown()).optional(),
+  properties: z.record(z.string(), JsonValueSchema).optional(),
 });
 
 export type IssueEntityPropertiesForMultiUpdate = z.infer<typeof IssueEntityPropertiesForMultiUpdateSchema>;

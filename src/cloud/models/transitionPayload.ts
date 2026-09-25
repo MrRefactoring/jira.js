@@ -1,7 +1,11 @@
 import { z } from 'zod';
 import { apiObject, openEnum } from '#/core';
 import { RulePayloadSchema } from './rulePayload';
-import { ConditionGroupPayloadSchema } from './conditionGroupPayload';
+import {
+  ConditionGroupPayloadSchema,
+  type ConditionGroupPayload,
+  type ConditionGroupPayloadInput,
+} from './conditionGroupPayload';
 import { FromLayoutPayloadSchema } from './fromLayoutPayload';
 import { ToLayoutPayloadSchema } from './toLayoutPayload';
 
@@ -9,7 +13,7 @@ import { ToLayoutPayloadSchema } from './toLayoutPayload';
 export const TransitionPayloadSchema = apiObject({
   /** The actions that are performed when the transition is made */
   actions: z.array(RulePayloadSchema).optional(),
-  conditions: ConditionGroupPayloadSchema.optional(),
+  conditions: (ConditionGroupPayloadSchema as z.ZodType<ConditionGroupPayload, ConditionGroupPayloadInput>).optional(),
   /**
    * Mechanism in Jira for triggering certain actions, like notifications, automations, etc. Unless a custom
    * notification scheme is configure, it's better not to provide any value here

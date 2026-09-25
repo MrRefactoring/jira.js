@@ -24,12 +24,14 @@ export interface LinkGroupInput {
 }
 
 /** Details a link group, which defines issue operations. */
-export const LinkGroupSchema: z.ZodType<LinkGroup, LinkGroupInput> = apiObject({
-  groups: z.array(z.lazy(() => LinkGroupSchema)).optional(),
+export const LinkGroupSchema = apiObject({
+  groups: z
+    .array(z.lazy((): z.ZodType<LinkGroup, LinkGroupInput> => LinkGroupSchema) as z.ZodType<LinkGroup, LinkGroupInput>)
+    .optional(),
   /** Details about the operations available in this version. */
   header: SimpleLinkSchema.optional(),
   id: z.string().optional(),
   links: z.array(SimpleLinkSchema).optional(),
   styleClass: z.string().optional(),
   weight: z.number().optional(),
-});
+}) satisfies z.ZodType<LinkGroup, LinkGroupInput>;

@@ -1,11 +1,17 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-import { RequestTypeFieldValueSchema } from './requestTypeFieldValue';
+import {
+  RequestTypeFieldValueSchema,
+  type RequestTypeFieldValue,
+  type RequestTypeFieldValueInput,
+} from './requestTypeFieldValue';
 import { JsonTypeSchema } from './jsonType';
 
 export const RequestTypeFieldSchema = apiObject({
   /** List of default values for the field. */
-  defaultValues: z.array(RequestTypeFieldValueSchema).optional(),
+  defaultValues: z
+    .array(RequestTypeFieldValueSchema as z.ZodType<RequestTypeFieldValue, RequestTypeFieldValueInput>)
+    .optional(),
   /** Description of the field. */
   description: z.string().optional(),
   /** ID of the field. */
@@ -18,7 +24,9 @@ export const RequestTypeFieldSchema = apiObject({
   /** Indicates if the field is required (true) or not (false). */
   required: z.boolean().optional(),
   /** List of valid values for the field. */
-  validValues: z.array(RequestTypeFieldValueSchema).optional(),
+  validValues: z
+    .array(RequestTypeFieldValueSchema as z.ZodType<RequestTypeFieldValue, RequestTypeFieldValueInput>)
+    .optional(),
   visible: z.boolean().optional(),
 });
 

@@ -396,7 +396,7 @@ export async function moveIssuesToBoard(
   client: Client,
   parameters: MoveIssuesToBoardParameters,
   options?: RequestOptions,
-): Promise<MoveIssuesToBoard | undefined> {
+): Promise<void> {
   const config: SendRequestOptions<MoveIssuesToBoard> = {
     url: `/rest/agile/1.0/board/${parameters.boardId}/issue`,
     method: 'POST',
@@ -410,7 +410,7 @@ export async function moveIssuesToBoard(
     signal: options?.signal,
   };
 
-  return await client.sendRequest(config);
+  return (await client.sendRequest(config)) as unknown as void;
 }
 
 /**

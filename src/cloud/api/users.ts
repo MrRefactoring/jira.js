@@ -1,4 +1,4 @@
-import { UserSchema, type User } from '../models/user';
+import { DashboardUserSchema, type DashboardUser } from '../models/dashboardUser';
 import { ColumnItemSchema, type ColumnItem } from '../models/columnItem';
 import { UnrestrictedUserEmailSchema, type UnrestrictedUserEmail } from '../models/unrestrictedUserEmail';
 import { GroupNameSchema, type GroupName } from '../models/groupName';
@@ -26,15 +26,15 @@ import { z } from 'zod';
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** _Browse
  * users and groups_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-export async function getUser(client: Client, parameters: GetUser, options?: RequestOptions): Promise<User> {
-  const config: SendRequestOptions<User> = {
+export async function getUser(client: Client, parameters: GetUser, options?: RequestOptions): Promise<DashboardUser> {
+  const config: SendRequestOptions<DashboardUser> = {
     url: '/rest/api/3/user',
     method: 'GET',
     searchParams: {
       accountId: parameters.accountId,
       expand: parameters.expand,
     },
-    schema: UserSchema,
+    schema: DashboardUserSchema,
     signal: options?.signal,
   };
 
@@ -54,8 +54,12 @@ export async function getUser(client: Client, parameters: GetUser, options?: Req
  * _Administer Jira_ [global permission](https://confluence.atlassian.com/x/x4dKLg). The caller has to be an
  * **organization admin**.
  */
-export async function createUser(client: Client, parameters: CreateUser, options?: RequestOptions): Promise<User> {
-  const config: SendRequestOptions<User> = {
+export async function createUser(
+  client: Client,
+  parameters: CreateUser,
+  options?: RequestOptions,
+): Promise<DashboardUser> {
+  const config: SendRequestOptions<DashboardUser> = {
     url: '/rest/api/3/user',
     method: 'POST',
     body: {
@@ -63,7 +67,7 @@ export async function createUser(client: Client, parameters: CreateUser, options
       products: parameters.products,
       self: parameters.self,
     },
-    schema: UserSchema,
+    schema: DashboardUserSchema,
     signal: options?.signal,
   };
 
@@ -266,8 +270,8 @@ export async function getAllUsersDefault(
   client: Client,
   parameters?: GetAllUsersDefault,
   options?: RequestOptions,
-): Promise<User[]> {
-  const config: SendRequestOptions<User[]> = {
+): Promise<DashboardUser[]> {
+  const config: SendRequestOptions<DashboardUser[]> = {
     url: '/rest/api/3/users',
     method: 'GET',
     searchParams: {
@@ -275,7 +279,7 @@ export async function getAllUsersDefault(
       maxResults: parameters?.maxResults,
       expand: parameters?.expand,
     },
-    schema: z.array(UserSchema),
+    schema: z.array(DashboardUserSchema),
     signal: options?.signal,
   };
 
@@ -293,8 +297,12 @@ export async function getAllUsersDefault(
  * **[Permissions](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#permissions) required:** _Browse
  * users and groups_ [global permission](https://confluence.atlassian.com/x/x4dKLg).
  */
-export async function getAllUsers(client: Client, parameters?: GetAllUsers, options?: RequestOptions): Promise<User[]> {
-  const config: SendRequestOptions<User[]> = {
+export async function getAllUsers(
+  client: Client,
+  parameters?: GetAllUsers,
+  options?: RequestOptions,
+): Promise<DashboardUser[]> {
+  const config: SendRequestOptions<DashboardUser[]> = {
     url: '/rest/api/3/users/search',
     method: 'GET',
     searchParams: {
@@ -302,7 +310,7 @@ export async function getAllUsers(client: Client, parameters?: GetAllUsers, opti
       maxResults: parameters?.maxResults,
       expand: parameters?.expand,
     },
-    schema: z.array(UserSchema),
+    schema: z.array(DashboardUserSchema),
     signal: options?.signal,
   };
 

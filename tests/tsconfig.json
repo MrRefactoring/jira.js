@@ -14,5 +14,5 @@
       "#/*": ["../src/*"]
     }
   },
-  "include": ["unit", "live"]
+  "include": ["unit", "live", "compat"]
 }

@@ -13,9 +13,12 @@ export type JqlQueryClauseInput =
   | z.input<typeof FieldChangedClauseSchema>;
 
 /** A JQL query clause. */
-export const JqlQueryClauseSchema: z.ZodType<JqlQueryClause, JqlQueryClauseInput> = z.union([
-  z.lazy(() => CompoundClauseSchema),
+export const JqlQueryClauseSchema = z.union([
+  z.lazy((): z.ZodType<CompoundClause, CompoundClauseInput> => CompoundClauseSchema) as z.ZodType<
+    CompoundClause,
+    CompoundClauseInput
+  >,
   FieldValueClauseSchema,
   FieldWasClauseSchema,
   FieldChangedClauseSchema,
-]);
+]) satisfies z.ZodType<JqlQueryClause, JqlQueryClauseInput>;

@@ -58,7 +58,7 @@ export async function updatePrecomputations(
   client: Client,
   parameters: UpdatePrecomputations,
   options?: RequestOptions,
-): Promise<JqlFunctionPrecomputationUpdateResponse | undefined> {
+): Promise<void> {
   const config: SendRequestOptions<JqlFunctionPrecomputationUpdateResponse> = {
     url: '/rest/api/3/jql/function/computation',
     method: 'POST',
@@ -72,7 +72,7 @@ export async function updatePrecomputations(
     signal: options?.signal,
   };
 
-  return await client.sendRequest(config);
+  return (await client.sendRequest(config)) as unknown as void;
 }
 
 /**

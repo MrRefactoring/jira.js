@@ -23,9 +23,14 @@ export interface CompoundClauseInput {
  * precedence. For example, "A OR B AND C" is parsed as "(A OR B) AND C". See Setting the precedence of operators for
  * more information about precedence in JQL queries.`
  */
-export const CompoundClauseSchema: z.ZodType<CompoundClause, CompoundClauseInput> = apiObject({
+export const CompoundClauseSchema = apiObject({
   /** The list of nested clauses. */
-  clauses: z.array(z.lazy(() => JqlQueryClauseSchema)),
+  clauses: z.array(
+    z.lazy((): z.ZodType<JqlQueryClause, JqlQueryClauseInput> => JqlQueryClauseSchema) as z.ZodType<
+      JqlQueryClause,
+      JqlQueryClauseInput
+    >,
+  ),
   /** The operator between the clauses. */
   operator: openEnum(['and', 'or', 'not']),
-});
+}) satisfies z.ZodType<CompoundClause, CompoundClauseInput>;

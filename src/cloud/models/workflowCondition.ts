@@ -11,7 +11,9 @@ export type WorkflowCondition = WorkflowSimpleCondition | WorkflowCompoundCondit
 export type WorkflowConditionInput = z.input<typeof WorkflowSimpleConditionSchema> | WorkflowCompoundConditionInput;
 
 /** The workflow transition rule conditions tree. */
-export const WorkflowConditionSchema: z.ZodType<WorkflowCondition, WorkflowConditionInput> = z.union([
+export const WorkflowConditionSchema = z.union([
   WorkflowSimpleConditionSchema,
-  z.lazy(() => WorkflowCompoundConditionSchema),
-]);
+  z.lazy(
+    (): z.ZodType<WorkflowCompoundCondition, WorkflowCompoundConditionInput> => WorkflowCompoundConditionSchema,
+  ) as z.ZodType<WorkflowCompoundCondition, WorkflowCompoundConditionInput>,
+]) satisfies z.ZodType<WorkflowCondition, WorkflowConditionInput>;

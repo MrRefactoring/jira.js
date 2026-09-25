@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import { apiObject, openEnum } from '#/core';
-import { UserSchema } from './user';
+import { DashboardUserSchema } from './dashboardUser';
 
 export const BulkOperationProgressSchema = apiObject({
   /** A timestamp of when the task was submitted. */
@@ -24,7 +24,7 @@ export const BulkOperationProgressSchema = apiObject({
   started: z.coerce.date().optional(),
   /** The status of the task. */
   status: openEnum(['ENQUEUED', 'RUNNING', 'COMPLETE', 'FAILED', 'CANCEL_REQUESTED', 'CANCELLED', 'DEAD']).optional(),
-  submittedBy: UserSchema.optional(),
+  submittedBy: DashboardUserSchema.optional(),
   /** The ID of the task. */
   taskId: z.string().optional(),
   /** The number of issues that the bulk operation was attempted on. */

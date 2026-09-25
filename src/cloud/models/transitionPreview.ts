@@ -1,7 +1,11 @@
 import { z } from 'zod';
 import { apiObject, openEnum } from '#/core';
 import { PreviewRuleConfigurationSchema } from './previewRuleConfiguration';
-import { PreviewConditionGroupConfigurationSchema } from './previewConditionGroupConfiguration';
+import {
+  PreviewConditionGroupConfigurationSchema,
+  type PreviewConditionGroupConfiguration,
+  type PreviewConditionGroupConfigurationInput,
+} from './previewConditionGroupConfiguration';
 import { TransitionLinkSchema } from './transitionLink';
 import { PreviewTriggerSchema } from './previewTrigger';
 
@@ -9,7 +13,12 @@ import { PreviewTriggerSchema } from './previewTrigger';
 export const TransitionPreviewSchema = apiObject({
   /** The post-functions of the transition. */
   actions: z.array(PreviewRuleConfigurationSchema).optional(),
-  conditions: PreviewConditionGroupConfigurationSchema.optional(),
+  conditions: (
+    PreviewConditionGroupConfigurationSchema as z.ZodType<
+      PreviewConditionGroupConfiguration,
+      PreviewConditionGroupConfigurationInput
+    >
+  ).optional(),
   /** The custom issue event ID for the transition. */
   customIssueEventId: z.string().optional(),
   /** The description of the transition. */

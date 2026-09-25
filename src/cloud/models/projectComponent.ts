@@ -1,12 +1,12 @@
 import { z } from 'zod';
 import { apiObject, openEnum } from '#/core';
-import { UserSchema } from './user';
+import { DashboardUserSchema } from './dashboardUser';
 
 /** Details about a project component. */
 export const ProjectComponentSchema = apiObject({
   /** Compass component's ID. Can't be updated. Not required for creating a Project Component. */
   ari: z.string().optional(),
-  assignee: UserSchema.optional(),
+  assignee: DashboardUserSchema.optional(),
   /**
    * The nominal user type used to determine the assignee for issues created with this component. See `realAssigneeType`
    * for details on how the type of the user, and hence the user, assigned to issues is determined. Can take the
@@ -31,7 +31,7 @@ export const ProjectComponentSchema = apiObject({
    * the component lead is not set, then `false` is returned.
    */
   isAssigneeTypeValid: z.boolean().optional(),
-  lead: UserSchema.optional(),
+  lead: DashboardUserSchema.optional(),
   /**
    * The accountId of the component's lead user. The accountId uniquely identifies the user across all Atlassian
    * products. For example, _5b10ac8d82e05b22cc7d4ef5_.
@@ -48,7 +48,7 @@ export const ProjectComponentSchema = apiObject({
   project: z.string().optional(),
   /** The ID of the project the component is assigned to. */
   projectId: z.number().optional(),
-  realAssignee: UserSchema.optional(),
+  realAssignee: DashboardUserSchema.optional(),
   /**
    * The type of the assignee that is assigned to issues created with this component, when an assignee cannot be set
    * from the `assigneeType`. For example, `assigneeType` is set to `COMPONENT_LEAD` but no component lead is set. This

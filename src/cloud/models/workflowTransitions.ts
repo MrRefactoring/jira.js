@@ -1,7 +1,11 @@
 import { z } from 'zod';
 import { apiObject, openEnum } from '#/core';
 import { WorkflowRuleConfigurationSchema } from './workflowRuleConfiguration';
-import { ConditionGroupConfigurationSchema } from './conditionGroupConfiguration';
+import {
+  ConditionGroupConfigurationSchema,
+  type ConditionGroupConfiguration,
+  type ConditionGroupConfigurationInput,
+} from './conditionGroupConfiguration';
 import { WorkflowTransitionLinksSchema } from './workflowTransitionLinks';
 import { WorkflowTriggerSchema } from './workflowTrigger';
 
@@ -9,7 +13,9 @@ import { WorkflowTriggerSchema } from './workflowTrigger';
 export const WorkflowTransitionsSchema = apiObject({
   /** The post-functions of the transition. */
   actions: z.array(WorkflowRuleConfigurationSchema).optional(),
-  conditions: ConditionGroupConfigurationSchema.optional(),
+  conditions: (
+    ConditionGroupConfigurationSchema as z.ZodType<ConditionGroupConfiguration, ConditionGroupConfigurationInput>
+  ).optional(),
   /** The custom event ID of the transition. */
   customIssueEventId: z.string().nullish(),
   /** The description of the transition. */

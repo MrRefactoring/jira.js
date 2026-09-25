@@ -1,10 +1,10 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-import { UserSchema } from './user';
+import { DashboardUserSchema } from './dashboardUser';
 
 /** Metadata for an issue attachment. */
 export const AttachmentMetadataSchema = apiObject({
-  author: UserSchema.optional(),
+  author: DashboardUserSchema.optional(),
   /** The URL of the attachment. */
   content: z.string().optional(),
   /** The datetime the attachment was created. */

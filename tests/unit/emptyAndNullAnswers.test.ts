@@ -1,8 +1,13 @@
 import { afterEach, describe, expect, expectTypeOf, it, vi } from 'vitest';
 import { createCloudClient } from '#/cloud/createCloudClient';
 import { createAgileClient } from '#/agile/createAgileClient';
-import { IssueSchema, type Issue, type TimeTrackingProvider } from '#/cloud/models';
-import type { MoveIssuesToBoard } from '#/agile/models';
+import {
+  DashboardUserSchema,
+  FieldMetadataSchema,
+  IssueSchema,
+  type DashboardUser,
+  type Issue,
+} from '#/cloud/models';
 
 const UNRESOLVED_ISSUE = {
   id: '20511',
@@ -80,8 +85,9 @@ describe('an unresolved issue answers with nulls', () => {
     const points = (issue.fields?.customfield_10016 as { value: string } | undefined)?.value;
 
     expect(points).toBe('three');
-    expectTypeOf<NonNullable<Issue['fields']>['customfield_10016']>().toEqualTypeOf<unknown>();
-    expectTypeOf(IssueSchema).not.toHaveProperty('extend');
+    expectTypeOf<NonNullable<Issue['fields']>['customfield_10016']>().toBeAny();
+    expectTypeOf(IssueSchema.extend).toBeFunction();
+    expect(IssueSchema.shape).toHaveProperty('fields');
   });
 
   it('types the cleared fields as nullable and leaves undeclared keys reachable', () => {
@@ -90,14 +96,14 @@ describe('an unresolved issue answers with nulls', () => {
   });
 });
 
-describe('a success without a body resolves to undefined, and the type says so', () => {
+describe('a success without a body preserves the 6.2 void signatures', () => {
   it('getSelectedTimeTrackingImplementation, when time tracking is disabled', async () => {
     answer(204);
 
     const provider = await createCloudClient(config).timeTracking.getSelectedTimeTrackingImplementation();
 
     expect(provider).toBeUndefined();
-    expectTypeOf(provider).toEqualTypeOf<TimeTrackingProvider | undefined>();
+    expectTypeOf(provider).toEqualTypeOf<void>();
   });
 
   it('moveIssuesToBoard, when every issue moved', async () => {
@@ -106,7 +112,7 @@ describe('a success without a body resolves to undefined, and the type says so',
     const moved = await createAgileClient(config).board.moveIssuesToBoard({ boardId: 1, issues: ['AUTOTEST-1'] });
 
     expect(moved).toBeUndefined();
-    expectTypeOf(moved).toEqualTypeOf<MoveIssuesToBoard | undefined>();
+    expectTypeOf(moved).toEqualTypeOf<void>();
   });
 });
 
@@ -120,5 +126,23 @@ describe('a pin status read successfully says error: null', () => {
     });
 
     expect(result.statuses?.[0]?.error).toBeNull();
+  });
+});
+
+describe('compatibility types do not weaken response validation', () => {
+  it('still requires fields made optional only in the public output type', () => {
+    const field = { key: 'summary', name: 'Summary', operations: ['set'], required: true };
+
+    expect(FieldMetadataSchema.safeParse(field).success).toBe(false);
+    expect(FieldMetadataSchema.safeParse({ ...field, schema: { type: 'string' } }).success).toBe(true);
+  });
+
+  it('accepts hidden dashboard user values while retaining the 6.2 type', () => {
+    const user = DashboardUserSchema.parse({ emailAddress: null, locale: null });
+
+    expect(user.emailAddress).toBeNull();
+    expect(user.locale).toBeNull();
+    expectTypeOf<DashboardUser['emailAddress']>().toEqualTypeOf<string | undefined>();
+    expectTypeOf<DashboardUser['locale']>().toEqualTypeOf<string | undefined>();
   });
 });

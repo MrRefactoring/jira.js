@@ -19,10 +19,14 @@ export interface ThrowableInput {
   suppressed?: ThrowableInput[];
 }
 
-export const ThrowableSchema: z.ZodType<Throwable, ThrowableInput> = apiObject({
-  cause: z.lazy(() => ThrowableSchema).optional(),
+export const ThrowableSchema = apiObject({
+  cause: (
+    z.lazy((): z.ZodType<Throwable, ThrowableInput> => ThrowableSchema) as z.ZodType<Throwable, ThrowableInput>
+  ).optional(),
   stackTrace: z.array(StackTraceElementSchema).optional(),
   message: z.string().optional(),
   localizedMessage: z.string().optional(),
-  suppressed: z.array(z.lazy(() => ThrowableSchema)).optional(),
-});
+  suppressed: z
+    .array(z.lazy((): z.ZodType<Throwable, ThrowableInput> => ThrowableSchema) as z.ZodType<Throwable, ThrowableInput>)
+    .optional(),
+}) satisfies z.ZodType<Throwable, ThrowableInput>;

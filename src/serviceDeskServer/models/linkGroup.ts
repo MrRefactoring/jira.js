@@ -21,11 +21,13 @@ export interface LinkGroupInput {
   weight?: number;
 }
 
-export const LinkGroupSchema: z.ZodType<LinkGroup, LinkGroupInput> = apiObject({
-  groups: z.array(z.lazy(() => LinkGroupSchema)).optional(),
+export const LinkGroupSchema = apiObject({
+  groups: z
+    .array(z.lazy((): z.ZodType<LinkGroup, LinkGroupInput> => LinkGroupSchema) as z.ZodType<LinkGroup, LinkGroupInput>)
+    .optional(),
   header: SimpleLinkSchema.optional(),
   id: z.string().optional(),
   links: z.array(SimpleLinkSchema).optional(),
   styleClass: z.string().optional(),
   weight: z.number().optional(),
-});
+}) satisfies z.ZodType<LinkGroup, LinkGroupInput>;

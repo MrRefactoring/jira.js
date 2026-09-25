@@ -1,11 +1,11 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-import { QueryVariantsSchema } from './queryVariants';
+import { QueryVariantsSchema, type QueryVariants, type QueryVariantsInput } from './queryVariants';
 import { SortFieldSchema } from './sortField';
 
 /** Workspaces request supporting enhanced Workspace searching. */
 export const SearchWorkspacesRequestV2Schema = apiObject({
-  query: QueryVariantsSchema.optional(),
+  query: (QueryVariantsSchema as z.ZodType<QueryVariants, QueryVariantsInput>).optional(),
   /** Specifies the maximum page size. */
   limit: z.number().optional(),
   sort: z.array(SortFieldSchema).nullish(),

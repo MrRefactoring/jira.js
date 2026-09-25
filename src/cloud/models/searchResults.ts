@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-import { IssueSchema } from './issue';
+import { IssueSchema, type Issue, type IssueInput } from './issue';
 import { JsonTypeSchema } from './jsonType';
 
 /** The result of a JQL search. */
@@ -8,7 +8,7 @@ export const SearchResultsSchema = apiObject({
   /** Expand options that include additional search result details in the response. */
   expand: z.string().optional(),
   /** The list of issues found by the search. */
-  issues: z.array(IssueSchema).optional(),
+  issues: z.array(IssueSchema as z.ZodType<Issue, IssueInput>).optional(),
   /** The maximum number of results that could be on the page. */
   maxResults: z.number().optional(),
   /** The ID and name of each field in the search results. */

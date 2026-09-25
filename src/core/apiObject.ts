@@ -1,7 +1,10 @@
 import { z, type ZodRawShape } from 'zod';
 import { isSchemaAuditEnabled } from './schemaAudit.js';
 
-export type ApiObjectConfig = { out: z.core.$loose['out']; in: z.core.$strip['in'] };
+export type ApiObjectConfig<Prefix extends string | undefined = undefined> = {
+  out: z.core.$loose['out'];
+  in: Prefix extends string ? { [Key in `${Prefix}${string}`]: unknown } : z.core.$strip['in'];
+};
 
 /**
  * Builds an object schema for an API response.
@@ -20,11 +23,11 @@ export type ApiObjectConfig = { out: z.core.$loose['out']; in: z.core.$strip['in
  * stays that in both modes, deliberately. The switch is read at runtime, so the compiler cannot follow it, and the
  * published declarations must not shift with an environment variable.
  */
-export function apiObject<Shape extends ZodRawShape>(
+export function apiObject<Shape extends ZodRawShape, Prefix extends string | undefined = undefined>(
   shape: Shape,
-  additionalKeyPrefix?: string,
-): z.ZodObject<Shape, ApiObjectConfig> {
-  const loose = z.object(shape).loose() as unknown as z.ZodObject<Shape, ApiObjectConfig>;
+  additionalKeyPrefix?: Prefix,
+): z.ZodObject<Shape, ApiObjectConfig<Prefix>> {
+  const loose = z.object(shape).loose() as unknown as z.ZodObject<Shape, ApiObjectConfig<Prefix>>;
 
   if (!isSchemaAuditEnabled()) {
     return loose;

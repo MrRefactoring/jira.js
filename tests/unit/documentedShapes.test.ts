@@ -68,7 +68,7 @@ describe('the shapes Atlassian documents', () => {
     >();
   });
 
-  it('keeps undocumented Assets invalidity values unknown', () => {
+  it('keeps undocumented Assets invalidity values permissive', () => {
     const source = ImportSourceResponseSchema.parse({
       importStatus: { reasonForInvalidity: { configuration: { missing: true } } },
       importSourceOTEntries: [{ importStatus: { reasonForInvalidity: { selector: false } } }],
@@ -76,7 +76,9 @@ describe('the shapes Atlassian documents', () => {
 
     expect(source.importStatus?.reasonForInvalidity?.configuration).toEqual({ missing: true });
     expect(source.importSourceOTEntries?.[0]?.importStatus?.reasonForInvalidity?.selector).toBe(false);
-    expectTypeOf(source.importStatus?.reasonForInvalidity).toEqualTypeOf<Record<string, unknown> | null | undefined>();
+    expectTypeOf(source.importStatus?.reasonForInvalidity).toEqualTypeOf<
+      Record<string, any> | null | undefined
+    >();
   });
 
   it('counts astral characters as Unicode code points at string-length boundaries', () => {

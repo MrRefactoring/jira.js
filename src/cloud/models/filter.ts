@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
 import { SharePermissionSchema } from './sharePermission';
-import { UserSchema } from './user';
+import { DashboardUserSchema } from './dashboardUser';
 import { UserListSchema } from './userList';
 import { FilterSubscriptionsListSchema } from './filterSubscriptionsList';
 
@@ -27,7 +27,7 @@ export const FilterSchema = apiObject({
   jql: z.string().optional(),
   /** The name of the filter. Must be unique. */
   name: z.string(),
-  owner: UserSchema.optional(),
+  owner: DashboardUserSchema.optional(),
   /**
    * A URL to view the filter results in Jira, using the [Search for issues using
    * JQL](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-filters/#api-rest-api-3-filter-search-get)

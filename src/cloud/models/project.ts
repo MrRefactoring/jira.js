@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import { apiObject, openEnum } from '#/core';
-import { UserSchema } from './user';
+import { DashboardUserSchema } from './dashboardUser';
 import { AvatarUrlsSchema } from './avatarUrls';
 import { ProjectComponentSchema } from './projectComponent';
 import { ProjectInsightSchema } from './projectInsight';
@@ -15,7 +15,7 @@ import { VersionSchema } from './version';
 export const ProjectSchema = apiObject({
   /** Whether the project is archived. */
   archived: z.boolean().optional(),
-  archivedBy: UserSchema.optional(),
+  archivedBy: DashboardUserSchema.optional(),
   /** The date when the project was archived. */
   archivedDate: z.coerce.date().optional(),
   /** The default assignee when creating issues for this project. */
@@ -25,7 +25,7 @@ export const ProjectSchema = apiObject({
   components: z.array(ProjectComponentSchema).optional(),
   /** Whether the project is marked as deleted. */
   deleted: z.boolean().optional(),
-  deletedBy: UserSchema.optional(),
+  deletedBy: DashboardUserSchema.optional(),
   /** The date when the project was marked as deleted. */
   deletedDate: z.coerce.date().optional(),
   /** A brief description of the project. */
@@ -50,7 +50,7 @@ export const ProjectSchema = apiObject({
   /** The key of the project. */
   key: z.string().optional(),
   landingPageInfo: ProjectLandingPageInfoSchema.optional(),
-  lead: UserSchema.optional(),
+  lead: DashboardUserSchema.optional(),
   /** The name of the project. */
   name: z.string().optional(),
   permissions: ProjectPermissionsSchema.optional(),
