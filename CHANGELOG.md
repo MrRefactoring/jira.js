@@ -8,6 +8,8 @@ Every one of those operations has been called against a running Jira Data Center
 
 The transport underneath every surface gained its missing seams in the same release — cancellation, a replaceable `fetch`, and an error where a refused credential used to pass for an empty result. Those are described first, because the last of them changes what existing code sees.
 
+The dependency baseline is current as well. Runtime validation now develops and tests against Zod 4.6, including its Unicode code-point string-length semantics, while the build and test toolchain moves to pnpm 12, Vite 8.3 and Vitest 5. The unused Sinon helper and the dependencies left behind by earlier migrations are gone; the browser bundle now uses Vite's native Oxc and Rolldown pipeline.
+
 Seven more surfaces arrive with it: Service Management and Assets on Data Center, Assets on Cloud — which closes [#266](https://github.com/MrRefactoring/jira.js/issues/266), open since May 2023 — and Teams, the first one addressed to your organization rather than to a site.
 
 The API reference is part of the VitePress site again. Navigation, search and deep links now stay in one documentation

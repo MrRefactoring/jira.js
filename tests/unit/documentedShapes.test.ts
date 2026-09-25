@@ -2,6 +2,7 @@ import { describe, expect, expectTypeOf, it } from 'vitest';
 import type { AssignIssue } from '#/cloud/parameters/assignIssue';
 import type { BulkSetIssuePropertiesByIssue } from '#/cloud/parameters/bulkSetIssuePropertiesByIssue';
 import type { BulkSetIssuesPropertiesList } from '#/cloud/parameters/bulkSetIssuesPropertiesList';
+import { FindUsersWithBrowsePermissionSchema } from '#/cloud/parameters/findUsersWithBrowsePermission';
 import type { StatusPayload, TaskProgressJsonNode, User } from '#/cloud/models';
 import { UserSchema } from '#/cloud/models';
 import type { FormAnswer } from '#/serviceDesk/models';
@@ -76,5 +77,10 @@ describe('the shapes Atlassian documents', () => {
     expect(source.importStatus?.reasonForInvalidity?.configuration).toEqual({ missing: true });
     expect(source.importSourceOTEntries?.[0]?.importStatus?.reasonForInvalidity?.selector).toBe(false);
     expectTypeOf(source.importStatus?.reasonForInvalidity).toEqualTypeOf<Record<string, unknown> | null | undefined>();
+  });
+
+  it('counts astral characters as Unicode code points at string-length boundaries', () => {
+    expect(FindUsersWithBrowsePermissionSchema.safeParse({ accountId: '😀'.repeat(128) }).success).toBe(true);
+    expect(FindUsersWithBrowsePermissionSchema.safeParse({ accountId: '😀'.repeat(129) }).success).toBe(false);
   });
 });
