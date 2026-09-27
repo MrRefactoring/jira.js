@@ -4,7 +4,7 @@ import type { BulkSetIssuePropertiesByIssue } from '#/cloud/parameters/bulkSetIs
 import type { BulkSetIssuesPropertiesList } from '#/cloud/parameters/bulkSetIssuesPropertiesList';
 import { FindUsersWithBrowsePermissionSchema } from '#/cloud/parameters/findUsersWithBrowsePermission';
 import type { StatusPayload, TaskProgressJsonNode, User } from '#/cloud/models';
-import { UserSchema } from '#/cloud/models';
+import { AvatarSchema, UserSchema } from '#/cloud/models';
 import type { FormAnswer } from '#/serviceDesk/models';
 import {
   WorkspaceModelSchema,
@@ -48,6 +48,16 @@ describe('the shapes Atlassian documents', () => {
     expectTypeOf<User['emailAddress']>().toEqualTypeOf<string | null | undefined>();
     expect(user.emailAddress).toBeNull();
     expect(user.locale).toBeNull();
+  });
+
+  it('reads the relative paths Jira answers with as avatar urls', () => {
+    const avatar = AvatarSchema.parse({
+      id: '10400',
+      isSystemAvatar: true,
+      urls: { '16x16': '/secure/viewavatar?size=xsmall&avatarId=10400&avatarType=project' },
+    });
+
+    expect(avatar.urls?.['16x16']).toBe('/secure/viewavatar?size=xsmall&avatarId=10400&avatarType=project');
   });
 
   it('leaves a status project-scoped with scope: null', () => {
