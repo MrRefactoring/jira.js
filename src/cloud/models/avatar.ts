@@ -19,7 +19,7 @@ export const AvatarSchema = apiObject({
    */
   owner: z.string().optional(),
   /** The list of avatar icon URLs. */
-  urls: z.record(z.string(), z.url()).optional(),
+  urls: z.record(z.string(), z.string()).optional(),
 });
 
 export type Avatar = z.infer<typeof AvatarSchema>;
