@@ -12,6 +12,8 @@ export const PageOfCommentsSchema = apiObject({
   startAt: z.number().optional(),
   /** The number of items returned. */
   total: z.number().optional(),
+  /** The URL of the comments of the issue. */
+  self: z.url().optional(),
 });
 
 export type PageOfComments = z.infer<typeof PageOfCommentsSchema>;
