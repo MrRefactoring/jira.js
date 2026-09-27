@@ -4,6 +4,7 @@ import { DocumentSchema, type Document } from './document';
 import { IssueTypeDetailsSchema, type IssueTypeDetails } from './issueTypeDetails';
 import { ProjectSchema, type Project } from './project';
 import { StatusDetailsSchema, type StatusDetails } from './statusDetails';
+import { StatusCategorySchema, type StatusCategory } from './statusCategory';
 import { PrioritySchema, type Priority } from './priority';
 import { ResolutionSchema, type Resolution } from './resolution';
 import { UserDetailsSchema, type UserDetails } from './userDetails';
@@ -40,6 +41,7 @@ export interface IssueFields {
   issuetype?: IssueTypeDetails;
   project?: Project;
   status?: StatusDetails;
+  statusCategory?: StatusCategory;
   priority?: Priority | null;
   resolution?: Resolution | null;
   assignee?: UserDetails | null;
@@ -160,6 +162,7 @@ export const IssueFieldsSchema = apiObject(
     issuetype: IssueTypeDetailsSchema.optional(),
     project: ProjectSchema.optional(),
     status: StatusDetailsSchema.optional(),
+    statusCategory: StatusCategorySchema.optional(),
     priority: PrioritySchema.nullish(),
     resolution: ResolutionSchema.nullish(),
     assignee: UserDetailsSchema.nullish(),
