@@ -1,6 +1,8 @@
 # Jira.js changelog
 
-## 6.3.0
+## 6.3.0-rc.1
+
+Release candidate for 6.3.0, published under the `next` tag: `npm i jira.js@next`. `npm i jira.js` still installs 6.2.0.
 
 Jira.js 6.3.0 expands the library beyond Jira Cloud while tightening the transport and correcting API shapes found against real Atlassian responses. The release adds clients for Jira Data Center, Jira Service Management Data Center, Assets on Cloud and Data Center, Atlassian Administration, user management, SCIM provisioning, and Teams. It also restores the API reference inside the VitePress site, fixing [#459](https://github.com/MrRefactoring/jira.js/issues/459).
 
