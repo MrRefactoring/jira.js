@@ -29,7 +29,7 @@ describe('issues', () => {
   });
 
   afterAll(async () => {
-    for (const key of created) await touch(() => jira.issues.deleteIssue({ issueIdOrKey: key, deleteSubtasks: 'true' }));
+    for (const key of created) await touch(() => jira.issues.deleteIssue({ issueIdOrKey: key, deleteSubtasks: true }));
   });
 
   it('reads back the issue it created, description and all', async () => {

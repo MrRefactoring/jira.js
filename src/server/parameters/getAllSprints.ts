@@ -10,7 +10,9 @@ export const GetAllSprintsSchema = z.object({
    * Filters results to sprints in specified states. Valid values: future, active, closed. You can define multiple
    * states separated by commas, e.g. state=active,closed
    */
-  state: openEnum(['future', 'active', 'closed']).optional(),
+  state: z
+    .union([openEnum(['future', 'active', 'closed']), z.array(openEnum(['future', 'active', 'closed']))])
+    .optional(),
   /** The starting index of the returned sprints. Base index: 0. */
   startAt: z.number().optional(),
 });
