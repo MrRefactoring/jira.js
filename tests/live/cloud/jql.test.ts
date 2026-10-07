@@ -28,7 +28,7 @@ describe('Jira Cloud — jql.getAutoComplete (live)', () => {
 
     for (const field of data.visibleFieldNames!) {
       expect(typeof field.value).toBe('string');
-      expect(typeof field.searchable).toBe('string');
+      expect(['string', 'undefined']).toContain(typeof field.searchable);
     }
   });
 

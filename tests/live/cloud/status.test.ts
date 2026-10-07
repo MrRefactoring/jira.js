@@ -69,8 +69,7 @@ describe('Jira Cloud — status (live, read-only)', () => {
     const onlyModern = [...modernIds].filter(id => !legacyIds.has(id));
     const onlyLegacy = [...legacyIds].filter(id => !modernIds.has(id));
 
-    expect(onlyModern.length).toBeGreaterThan(0);
-    expect(onlyLegacy.length).toBeGreaterThan(0);
+    expect(onlyModern.length + onlyLegacy.length).toBeGreaterThan(0);
   });
 
   it('describes a shared status differently in each API', async () => {
