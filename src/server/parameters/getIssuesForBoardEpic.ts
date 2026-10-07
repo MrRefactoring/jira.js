@@ -21,7 +21,7 @@ export const GetIssuesForBoardEpicSchema = z.object({
   /** The Id of the board that contains the requested issues. */
   boardId: z.number(),
   /** The list of fields to return for each issue. By default, all navigable and Agile fields are returned. */
-  fields: z.array(z.string()).optional(),
+  fields: z.union([z.string(), z.array(z.string())]).optional(),
   /**
    * The starting index of the returned issues. Base index: 0. See the 'Pagination' section at the top of this page for
    * more details.

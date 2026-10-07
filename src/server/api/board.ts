@@ -417,7 +417,7 @@ export async function getAllSprints(
     method: 'GET',
     searchParams: {
       maxResults: parameters.maxResults,
-      state: parameters.state,
+      state: Array.isArray(parameters.state) ? parameters.state.join(',') : parameters.state,
       startAt: parameters.startAt,
     },
     schema: PageSprintSchema,

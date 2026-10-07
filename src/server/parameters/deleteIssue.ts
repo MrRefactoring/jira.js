@@ -1,5 +1,4 @@
 import { z } from 'zod';
-import { openEnum } from '#/core';
 
 export const DeleteIssueSchema = z.object({
   /**
@@ -7,7 +6,7 @@ export const DeleteIssueSchema = z.object({
    * parameter is ignored. If the issue has subtasks and this parameter is missing or false, then the issue will not be
    * deleted and an error will be returned.
    */
-  deleteSubtasks: openEnum(['true', 'false']).optional(),
+  deleteSubtasks: z.boolean().optional(),
   /** Issue id or key */
   issueIdOrKey: z.string(),
 });

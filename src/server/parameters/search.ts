@@ -10,7 +10,7 @@ export const SearchSchema = z.object({
   /** Whether to validate the JQL query */
   validateQuery: z.boolean().optional(),
   /** The list of fields to return for each issue */
-  fields: z.array(z.string()).optional(),
+  fields: z.union([z.string(), z.array(z.string())]).optional(),
   /** The index of the first issue to return (0-based) */
   startAt: z.number().optional(),
 });
