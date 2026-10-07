@@ -17,7 +17,17 @@ export const ObjectSchemaSchema = apiObject({
   objectTypeCount: z.number(),
   canManage: z.boolean().optional(),
   atlassianTemplateId: z.string().optional(),
-  cdmData: z.record(z.string(), z.any()).optional(),
+  cdmData: apiObject({
+    types: z
+      .array(
+        apiObject({
+          key: z.string().optional(),
+          version: z.number().optional(),
+          opinionated: z.boolean().optional(),
+        }),
+      )
+      .optional(),
+  }).optional(),
   crossSchemaReferencingAllowed: z.boolean().optional(),
 });
 

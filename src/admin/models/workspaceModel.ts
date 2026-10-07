@@ -55,9 +55,37 @@ export const WorkspaceModelSchema = apiObject({
     unit: z.string().optional(),
   }).optional(),
   links: LinkSelfModelSchema.optional(),
-  relationships: z
-    .record(z.string(), z.array(z.union([PolicyModelV2Schema, EntitlementModelV2Schema, FeatureModelV2Schema])))
-    .optional(),
+  relationships: apiObject({
+    policy: z.array(PolicyModelV2Schema).optional(),
+    entitlement: z.array(EntitlementModelV2Schema).optional(),
+    feature: z.array(FeatureModelV2Schema).optional(),
+    relatesFromEntitlement: z
+      .array(
+        apiObject({
+          id: z.string().optional(),
+          type: z.string().optional(),
+          attributes: apiObject({
+            entitlementId: z.string().optional(),
+            relationshipType: z.string().optional(),
+            entitlement: apiObject({
+              offering: apiObject({
+                productId: z.string().optional(),
+                name: z.string().optional(),
+                productListing: apiObject({
+                  productId: z.string().optional(),
+                  name: z.string().optional(),
+                  iconUrl: z.string().nullish(),
+                }).optional(),
+              }).optional(),
+            }).optional(),
+          }).optional(),
+          links: apiObject({
+            self: z.string().optional(),
+          }).optional(),
+        }),
+      )
+      .optional(),
+  }).optional(),
   appType: z.string().optional(),
 });
 

@@ -64,17 +64,24 @@ describe('the shapes Atlassian documents', () => {
     expect(request<StatusPayload>({ name: 'Done', scope: null }).scope).toBeNull();
   });
 
-  it('reads workspace relationships as arrays of administration resources', () => {
+  it('reads workspace relationships as arrays of the resource their name selects', () => {
     const workspace = WorkspaceModelSchema.parse({
       relationships: {
-        policies: [{ id: 'policy', type: 'policies', attributes: { fields: { enabled: true } } }],
+        policy: [{ id: 'policy', type: 'policies', attributes: { enabled: true } }],
+        entitlement: [{ id: 'entitlement', type: 'entitlements', attributes: { key: 'jira-software' } }],
+        feature: [{ id: 'feature', type: 'features', attributes: { limit: 5 } }],
       },
     });
 
-    expect(workspace.relationships?.policies).toHaveLength(1);
-    expect(() => WorkspaceModelSchema.parse({ relationships: { policies: { id: 'policy' } } })).toThrow();
-    expectTypeOf<NonNullable<WorkspaceModel['relationships']>[string]>().toEqualTypeOf<
-      Array<PolicyModelV2 | EntitlementModelV2 | FeatureModelV2>
+    expect(workspace.relationships?.policy).toHaveLength(1);
+    expect(workspace.relationships?.entitlement?.[0]?.attributes?.key).toBe('jira-software');
+    expect(() => WorkspaceModelSchema.parse({ relationships: { policy: { id: 'policy' } } })).toThrow();
+    expectTypeOf<NonNullable<WorkspaceModel['relationships']>['policy']>().toEqualTypeOf<PolicyModelV2[] | undefined>();
+    expectTypeOf<NonNullable<WorkspaceModel['relationships']>['entitlement']>().toEqualTypeOf<
+      EntitlementModelV2[] | undefined
+    >();
+    expectTypeOf<NonNullable<WorkspaceModel['relationships']>['feature']>().toEqualTypeOf<
+      FeatureModelV2[] | undefined
     >();
   });
 

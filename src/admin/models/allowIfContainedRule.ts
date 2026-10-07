@@ -6,7 +6,14 @@ export const AllowIfContainedRuleSchema = apiObject({
   in: z.array(z.string()).optional(),
   adminApprovalSummary: z.string().optional(),
   consented: z.boolean().optional(),
-  notification: z.array(z.record(z.string(), z.any())).optional(),
+  notification: z
+    .array(
+      apiObject({
+        channel: z.string().optional(),
+        trigger: z.string().optional(),
+      }),
+    )
+    .optional(),
   off: z.array(z.string()).optional(),
   scopeType: z.string().optional(),
 });
