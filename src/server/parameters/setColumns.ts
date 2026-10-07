@@ -2,7 +2,7 @@ import { z } from 'zod';
 
 export const SetColumnsSchema = z.object({
   /** The filter id. */
-  id: z.string(),
+  id: z.number(),
   columns: z.array(z.string()).optional(),
 });
 

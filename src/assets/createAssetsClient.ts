@@ -205,7 +205,7 @@ export function createAssetsClient(config: AssetsClientConfig) {
         objects.loadObject(client, parameters, options),
       updateObject: (parameters: UpdateObject, options?: RequestOptions): Promise<AssetObject> =>
         objects.updateObject(client, parameters, options),
-      deleteObject: (parameters: DeleteObject, options?: RequestOptions): Promise<unknown> =>
+      deleteObject: (parameters: DeleteObject, options?: RequestOptions): Promise<AssetObject> =>
         objects.deleteObject(client, parameters, options),
       findObjectAttributes: (parameters: FindObjectAttributes, options?: RequestOptions): Promise<ObjectAttribute[]> =>
         objects.findObjectAttributes(client, parameters, options),

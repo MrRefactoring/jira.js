@@ -27,7 +27,7 @@ export async function search(client: Client, parameters?: Search, options?: Requ
       jql: parameters?.jql,
       maxResults: parameters?.maxResults,
       validateQuery: parameters?.validateQuery,
-      fields: parameters?.fields,
+      fields: Array.isArray(parameters?.fields) ? parameters.fields.join(',') : parameters?.fields,
       startAt: parameters?.startAt,
     },
     schema: SearchResultsSchema,

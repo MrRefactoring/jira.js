@@ -6,6 +6,7 @@ export const ObjectSchemaSchema = apiObject({
   globalId: z.string(),
   id: z.string(),
   name: z.string(),
+  displayName: z.string().optional(),
   objectSchemaKey: z.string(),
   description: z.string().optional(),
   /** Always 'Ok' */
@@ -15,6 +16,9 @@ export const ObjectSchemaSchema = apiObject({
   objectCount: z.number(),
   objectTypeCount: z.number(),
   canManage: z.boolean().optional(),
+  atlassianTemplateId: z.string().optional(),
+  cdmData: z.record(z.string(), z.any()).optional(),
+  crossSchemaReferencingAllowed: z.boolean().optional(),
 });
 
 export type ObjectSchema = z.infer<typeof ObjectSchemaSchema>;

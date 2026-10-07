@@ -760,6 +760,8 @@ export * from './setColumns';
 
 export * from './setCommentProperty';
 
+export * from './setContextDefaultValues';
+
 export * from './setDashboardItemProperty';
 
 export * from './setDefaultPriority';

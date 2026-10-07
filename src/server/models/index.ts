@@ -410,6 +410,10 @@ export * from './pageFieldMeta';
 
 export * from './pageIssueTypeJson';
 
+export * from './pageOfNotificationSchemes';
+
+export * from './pageOfVersions';
+
 export * from './pagePriorityJson';
 
 export * from './pageProject';

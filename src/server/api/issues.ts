@@ -127,7 +127,7 @@ export async function getAgileIssue(
     method: 'GET',
     searchParams: {
       expand: parameters.expand,
-      fields: parameters.fields,
+      fields: Array.isArray(parameters.fields) ? parameters.fields.join(',') : parameters.fields,
       updateHistory: parameters.updateHistory,
     },
     schema: IssueSchema,
@@ -415,10 +415,10 @@ export async function getIssue(client: Client, parameters: GetIssue, options?: R
     url: `/rest/api/2/issue/${parameters.issueIdOrKey}`,
     method: 'GET',
     searchParams: {
-      expand: parameters.expand,
-      fields: parameters.fields,
+      expand: Array.isArray(parameters.expand) ? parameters.expand.join(',') : parameters.expand,
+      fields: Array.isArray(parameters.fields) ? parameters.fields.join(',') : parameters.fields,
       updateHistory: parameters.updateHistory,
-      properties: parameters.properties,
+      properties: Array.isArray(parameters.properties) ? parameters.properties.join(',') : parameters.properties,
     },
     schema: IssueSchema,
     signal: options?.signal,
@@ -558,7 +558,7 @@ export async function getComments(
     url: `/rest/api/2/issue/${parameters.issueIdOrKey}/comment`,
     method: 'GET',
     searchParams: {
-      expand: parameters.expand,
+      expand: Array.isArray(parameters.expand) ? parameters.expand.join(',') : parameters.expand,
       maxResults: parameters.maxResults,
       orderBy: parameters.orderBy,
       startAt: parameters.startAt,
@@ -580,7 +580,7 @@ export async function addComment(
     url: `/rest/api/2/issue/${parameters.issueIdOrKey}/comment`,
     method: 'POST',
     searchParams: {
-      expand: parameters.expand,
+      expand: Array.isArray(parameters.expand) ? parameters.expand.join(',') : parameters.expand,
     },
     body: {
       author: parameters.author,
@@ -611,7 +611,7 @@ export async function getComment(
     url: `/rest/api/2/issue/${parameters.issueIdOrKey}/comment/${parameters.id}`,
     method: 'GET',
     searchParams: {
-      expand: parameters.expand,
+      expand: Array.isArray(parameters.expand) ? parameters.expand.join(',') : parameters.expand,
     },
     schema: CommentJsonSchema,
     signal: options?.signal,
@@ -630,7 +630,7 @@ export async function updateComment(
     url: `/rest/api/2/issue/${parameters.issueIdOrKey}/comment/${parameters.id}`,
     method: 'PUT',
     searchParams: {
-      expand: parameters.expand,
+      expand: Array.isArray(parameters.expand) ? parameters.expand.join(',') : parameters.expand,
     },
     body: parameters.body,
     schema: CommentJsonSchema,

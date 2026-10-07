@@ -8,6 +8,8 @@ export * from './addField';
 
 export * from './addGroup';
 
+export * from './addIssueTypesToContext';
+
 export * from './addNotificationsDetails';
 
 export * from './addSecuritySchemeLevelsRequest';
@@ -333,6 +335,8 @@ export * from './customFieldContextDefaultValueTextField';
 export * from './customFieldContextDefaultValueURL';
 
 export * from './customFieldContextDefaultValueUpdate';
+
+export * from './customFieldContextDefaultValuesUpdate';
 
 export * from './customFieldContextOption';
 
@@ -719,6 +723,8 @@ export * from './issueTransitionStatus';
 export * from './issueTypeCreate';
 
 export * from './issueTypeDefaultValue';
+
+export * from './issueTypeDefaultValueUpdate';
 
 export * from './issueTypeDetails';
 

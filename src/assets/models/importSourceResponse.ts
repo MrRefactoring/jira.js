@@ -58,7 +58,11 @@ export const ImportSourceResponseSchema = apiObject({
   }).nullish(),
   /** Import-specific configuration as JSON string */
   importSpecificConfiguration: z.string().optional(),
-  /** List of object type mappings for this import source */
+  /**
+   * List of object type mappings for this import source. Object types and object type attributes can include display
+   * names. Missing-object configuration can include display names for the selected attribute, target object type, and
+   * reference object type.
+   */
   importSourceOTEntries: z
     .array(
       apiObject({
@@ -80,6 +84,8 @@ export const ImportSourceResponseSchema = apiObject({
           id: z.string().optional(),
           /** Object type name */
           name: z.string().optional(),
+          /** Object type display name */
+          displayName: z.string().optional(),
         }).nullish(),
         /** Selector QL query */
         selectorQlQuery: z.string().nullish(),
@@ -100,12 +106,14 @@ export const ImportSourceResponseSchema = apiObject({
           /** Reasons for invalidity */
           reasonForInvalidity: z.record(z.string(), JsonValueSchema).optional(),
         }).nullish(),
-        /** List of object type attribute mappings */
+        /** List of object type attribute mappings. Entries can include `objectTypeAttributeDisplayName`. */
         importSourceOTAttrEntries: z
           .array(
             apiObject({
               /** Attribute mapping ID */
               id: z.string().optional(),
+              /** Object type attribute display name */
+              objectTypeAttributeDisplayName: z.string().nullish(),
             }),
           )
           .nullish(),

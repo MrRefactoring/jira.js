@@ -34,9 +34,9 @@ export const PolicyModelSchema = apiObject({
     metadata: z.unknown().optional(),
     ownerId: z.string().optional(),
     queryData: z.unknown().optional(),
-    updatedAt: z.string().optional(),
+    updatedAt: z.string().nullish(),
   }),
-  links: z.record(z.string(), z.any()).optional(),
+  links: z.record(z.string(), z.any()).nullish(),
   message: z.unknown().optional(),
 });
 

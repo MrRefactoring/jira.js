@@ -43,7 +43,7 @@ export async function getIssue(client: Client, parameters: GetIssue, options?: R
     url: `/rest/agile/1.0/issue/${parameters.issueIdOrKey}`,
     method: 'GET',
     searchParams: {
-      fields: parameters.fields,
+      fields: Array.isArray(parameters.fields) ? parameters.fields.join(',') : parameters.fields,
       expand: parameters.expand,
       updateHistory: parameters.updateHistory,
     },

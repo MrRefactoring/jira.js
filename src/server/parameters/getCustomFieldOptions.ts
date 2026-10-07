@@ -2,7 +2,7 @@ import { z } from 'zod';
 
 export const GetCustomFieldOptionsSchema = z.object({
   /** The maximum number of results to return. */
-  maxResults: z.string().optional(),
+  maxResults: z.number().optional(),
   /** A list of issue type IDs in a context. */
   issueTypeIds: z.string().optional(),
   /** A string used to filter options. */
@@ -14,7 +14,7 @@ export const GetCustomFieldOptionsSchema = z.object({
   /** Flag to fetch all options regardless of context, project IDs, or issue type IDs. */
   useAllContexts: z.string().optional(),
   /** The page of options to return. */
-  page: z.string().optional(),
+  page: z.number().optional(),
   /** A list of project IDs in a context. */
   projectIds: z.string().optional(),
 });

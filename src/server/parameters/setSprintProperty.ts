@@ -4,7 +4,7 @@ export const SetSprintPropertySchema = z.object({
   /** The key of the sprint's property. The maximum length of the key is 255 bytes. */
   propertyKey: z.string().max(255, 'propertyKey must be at most 255 characters'),
   /** The id of the sprint on which the property will be set. */
-  sprintId: z.number(),
+  sprintId: z.string(),
   body: z.record(z.string(), z.any()),
 });
 

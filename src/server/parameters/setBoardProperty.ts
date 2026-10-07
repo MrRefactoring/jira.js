@@ -4,7 +4,7 @@ export const SetBoardPropertySchema = z.object({
   /** The key of the board's property. */
   propertyKey: z.string().max(255, 'propertyKey must be at most 255 characters'),
   /** The id of the board on which the property will be set. */
-  boardId: z.number(),
+  boardId: z.string(),
   body: z.record(z.string(), z.any()),
 });
 

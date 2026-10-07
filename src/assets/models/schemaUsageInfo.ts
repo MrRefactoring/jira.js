@@ -5,8 +5,10 @@ import { apiObject } from '#/core';
 export const SchemaUsageInfoSchema = apiObject({
   /** The unique identifier of the schema. */
   schemaId: z.number(),
-  /** The display name of the schema. */
+  /** The name of the schema. */
   schemaName: z.string(),
+  /** The user-facing display name of the schema. */
+  displayName: z.string().nullish(),
   /** The timestamp when the schema was created (ISO 8601). */
   schemaCreatedAt: z.coerce.date(),
   /** The number of objects in this schema. */

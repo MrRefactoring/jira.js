@@ -166,35 +166,35 @@ describe('users and groups', () => {
       description: 'created by the users suite',
     });
 
-    await jira.filters.editFilter({ id: String(filter.id), body: { description: 'changed by the users suite' } });
+    await jira.filters.editFilter({ id: Number(filter.id), body: { description: 'changed by the users suite' } });
 
-    const read = await jira.filters.getFilter({ id: String(filter.id) });
+    const read = await jira.filters.getFilter({ id: Number(filter.id) });
 
     expect(read.description).toBe('changed by the users suite');
 
-    await jira.filters.setColumns({ id: String(filter.id), columns: ['summary', 'status'] });
+    await jira.filters.setColumns({ id: Number(filter.id), columns: ['summary', 'status'] });
 
-    const columns = await jira.filters.getFilterColumns({ id: String(filter.id) });
+    const columns = await jira.filters.getFilterColumns({ id: Number(filter.id) });
 
     expect(columns.length).toBeGreaterThan(0);
 
-    await jira.filters.resetColumns({ id: String(filter.id) });
+    await jira.filters.resetColumns({ id: Number(filter.id) });
 
-    const permission = await jira.filters.addSharePermission({ id: String(filter.id), type: 'authenticated' });
+    const permission = await jira.filters.addSharePermission({ id: Number(filter.id), type: 'authenticated' });
     const permissionId = permission[0]?.id;
 
     if (permissionId !== undefined) {
-      const read = await jira.filters.getSharePermission({ id: String(filter.id), permissionId: String(permissionId) });
+      const read = await jira.filters.getSharePermission({ id: Number(filter.id), permissionId: Number(permissionId) });
 
       expect(read.id).toBe(permissionId);
 
-      await jira.filters.deleteSharePermission({ id: String(filter.id), permissionId: String(permissionId) });
+      await jira.filters.deleteSharePermission({ id: Number(filter.id), permissionId: Number(permissionId) });
     }
 
     const shareScope = await jira.filters.getDefaultShareScope();
 
     await touch(() => jira.filters.setDefaultShareScope({ scope: 'PRIVATE' }));
     await touch(() => jira.filters.setDefaultShareScope({ scope: shareScope.scope }));
-    await jira.filters.deleteFilter({ id: String(filter.id) });
+    await jira.filters.deleteFilter({ id: Number(filter.id) });
   });
 });

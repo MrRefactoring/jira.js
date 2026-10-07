@@ -13,6 +13,7 @@ import type { CustomFieldContextProjectMapping } from '../models/customFieldCont
 import type { GetContextsForField } from '../parameters/getContextsForField';
 import type { CreateCustomFieldContext as CreateCustomFieldContextParameters } from '../parameters/createCustomFieldContext';
 import type { GetContextDefaultValues } from '../parameters/getContextDefaultValues';
+import type { SetContextDefaultValues } from '../parameters/setContextDefaultValues';
 import type { GetIssueTypeMappingsForContexts } from '../parameters/getIssueTypeMappingsForContexts';
 import type { GetCustomFieldContextsForProjectsAndIssueTypes } from '../parameters/getCustomFieldContextsForProjectsAndIssueTypes';
 import type { GetProjectContextMapping } from '../parameters/getProjectContextMapping';
@@ -127,6 +128,33 @@ export async function getContextDefaultValues(
       maxResults: parameters.maxResults,
     },
     schema: PageContextDefaultValuesSchema,
+    signal: options?.signal,
+  };
+
+  return await client.sendRequest(config);
+}
+
+/**
+ * Updates default values for individual issue types in custom field contexts.
+ *
+ * Only tenants enrolled in the early access program (EAP) can access this resource. See the [EAP
+ * announcement](https://ecosystem.atlassian.net/browse/CHANGE-3082) for details.
+ *
+ * Each entry targets either one issue type through `issueTypeId`, or the catch-all configuration through
+ * `isAnyIssueType=true`. A null value removes the default for that target. Entries not included in the request are left
+ * unchanged.
+ */
+export async function setContextDefaultValues(
+  client: Client,
+  parameters: SetContextDefaultValues,
+  options?: RequestOptions,
+): Promise<void> {
+  const config: SendRequestOptions<void> = {
+    url: `/rest/api/3/field/${parameters.fieldId}/context/defaultValues`,
+    method: 'PUT',
+    body: {
+      defaultValues: parameters.defaultValues,
+    },
     signal: options?.signal,
   };
 
@@ -285,8 +313,10 @@ export async function deleteCustomFieldContext(
 /**
  * Adds issue types to a custom field context, appending the issue types to the issue types list.
  *
- * A custom field context without any issue types applies to all issue types. Adding issue types to such a custom field
- * context would result in it applying to only the listed issue types.
+ * A custom field context without any issue types applies to all issue types. Adding issue types replaces the
+ * any-issue-type mapping unless `isAnyIssueType` is true. A supplied `defaultValue` applies to newly added mappings. If
+ * omitted, the default value of the first existing issue type mapping is copied. Existing mappings retain their
+ * defaults.
  *
  * If any of the issue types exists in the custom field context, the operation fails and no issue types are added.
  *
@@ -305,6 +335,8 @@ export async function addIssueTypesToContext(
     url: `/rest/api/3/field/${parameters.fieldId}/context/${parameters.contextId}/issuetype`,
     method: 'PUT',
     body: {
+      defaultValue: parameters.defaultValue,
+      isAnyIssueType: parameters.isAnyIssueType,
       issueTypeIds: parameters.issueTypeIds,
     },
     signal: options?.signal,

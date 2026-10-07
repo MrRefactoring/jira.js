@@ -37,6 +37,7 @@ export async function createStatusType(
     method: 'POST',
     body: {
       name: parameters.name,
+      displayName: parameters.displayName,
       description: parameters.description,
       category: parameters.category,
       objectSchemaId: parameters.objectSchemaId,
@@ -75,6 +76,7 @@ export async function updateStatusType(
     method: 'PUT',
     body: {
       name: parameters.name,
+      displayName: parameters.displayName,
       description: parameters.description,
       category: parameters.category,
       objectSchemaId: parameters.objectSchemaId,

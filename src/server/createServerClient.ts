@@ -540,6 +540,7 @@ import type {
   PermissionsJson,
   User,
   UserWrite,
+  PageOfNotificationSchemes,
   NotificationScheme,
   PermissionSchemes,
   PermissionScheme,
@@ -555,11 +556,12 @@ import type {
   GetProjectRoles as GetProjectRolesModel,
   ProjectRole,
   IssueTypeWithStatusJson,
+  PageOfVersions,
   Version,
   SecurityListLevelJson,
   WorkflowScheme,
   ProjectPickerResultWrapper,
-  ProjectCategoryJson,
+  ProjectCategory,
   ErrorCollection,
   ReadOnlyModeStatus,
   ResolutionJson,
@@ -1025,7 +1027,7 @@ export function createServerClient(clientConfig: ServerClientConfig | Client) {
         groups.findGroups(client, parameters, options),
     },
     groupAndUserPicker: {
-      findUsersAndGroups: (parameters?: FindUsersAndGroups, options?: RequestOptions): Promise<UsersAndGroups> =>
+      findUsersAndGroups: (parameters: FindUsersAndGroups, options?: RequestOptions): Promise<UsersAndGroups> =>
         groupAndUserPicker.findUsersAndGroups(client, parameters, options),
     },
     indexing: {
@@ -1184,7 +1186,7 @@ export function createServerClient(clientConfig: ServerClientConfig | Client) {
         permissions.getAllPermissions(client, options),
     },
     myPreferences: {
-      getPreference: (parameters?: GetPreference, options?: RequestOptions): Promise<string> =>
+      getPreference: (parameters: GetPreference, options?: RequestOptions): Promise<string> =>
         myPreferences.getPreference(client, parameters, options),
       setPreference: (parameters: SetPreference, options?: RequestOptions): Promise<void> =>
         myPreferences.setPreference(client, parameters, options),
@@ -1199,7 +1201,10 @@ export function createServerClient(clientConfig: ServerClientConfig | Client) {
         myself.changeMyPassword(client, parameters, options),
     },
     issueNotificationSchemes: {
-      getNotificationSchemes: (parameters?: GetNotificationSchemes, options?: RequestOptions): Promise<PagedResults> =>
+      getNotificationSchemes: (
+        parameters?: GetNotificationSchemes,
+        options?: RequestOptions,
+      ): Promise<PageOfNotificationSchemes> =>
         issueNotificationSchemes.getNotificationSchemes(client, parameters, options),
       getNotificationScheme: (
         parameters: GetNotificationScheme,
@@ -1340,7 +1345,7 @@ export function createServerClient(clientConfig: ServerClientConfig | Client) {
       getProjectVersionsPaginated: (
         parameters: GetProjectVersionsPaginated,
         options?: RequestOptions,
-      ): Promise<PagedResults> => projects.getProjectVersionsPaginated(client, parameters, options),
+      ): Promise<PageOfVersions> => projects.getProjectVersionsPaginated(client, parameters, options),
       getProjectVersions: (parameters: GetProjectVersions, options?: RequestOptions): Promise<Version[]> =>
         projects.getProjectVersions(client, parameters, options),
       getProjectIssueSecurityScheme: (
@@ -1381,20 +1386,16 @@ export function createServerClient(clientConfig: ServerClientConfig | Client) {
       ): Promise<ProjectPickerResultWrapper> => projects.searchForProjects(client, parameters, options),
     },
     projectCategories: {
-      getAllProjectCategories: (options?: RequestOptions): Promise<ProjectCategoryJson[]> =>
+      getAllProjectCategories: (options?: RequestOptions): Promise<ProjectCategory[]> =>
         projectCategories.getAllProjectCategories(client, options),
-      createProjectCategory: (
-        parameters: CreateProjectCategory,
-        options?: RequestOptions,
-      ): Promise<ProjectCategoryJson> => projectCategories.createProjectCategory(client, parameters, options),
+      createProjectCategory: (parameters: CreateProjectCategory, options?: RequestOptions): Promise<ProjectCategory> =>
+        projectCategories.createProjectCategory(client, parameters, options),
       getProjectCategoryById: (
         parameters: GetProjectCategoryById,
         options?: RequestOptions,
-      ): Promise<ProjectCategoryJson> => projectCategories.getProjectCategoryById(client, parameters, options),
-      updateProjectCategory: (
-        parameters: UpdateProjectCategory,
-        options?: RequestOptions,
-      ): Promise<ProjectCategoryJson> => projectCategories.updateProjectCategory(client, parameters, options),
+      ): Promise<ProjectCategory> => projectCategories.getProjectCategoryById(client, parameters, options),
+      updateProjectCategory: (parameters: UpdateProjectCategory, options?: RequestOptions): Promise<ProjectCategory> =>
+        projectCategories.updateProjectCategory(client, parameters, options),
       removeProjectCategory: (parameters: RemoveProjectCategory, options?: RequestOptions): Promise<void> =>
         projectCategories.removeProjectCategory(client, parameters, options),
     },
@@ -1571,9 +1572,9 @@ export function createServerClient(clientConfig: ServerClientConfig | Client) {
         users.addUserToApplication(client, parameters, options),
       removeUserFromApplication: (parameters: RemoveUserFromApplication, options?: RequestOptions): Promise<void> =>
         users.removeUserFromApplication(client, parameters, options),
-      findBulkAssignableUsers: (parameters?: FindBulkAssignableUsers, options?: RequestOptions): Promise<User> =>
+      findBulkAssignableUsers: (parameters: FindBulkAssignableUsers, options?: RequestOptions): Promise<User[]> =>
         users.findBulkAssignableUsers(client, parameters, options),
-      findAssignableUsers: (parameters?: FindAssignableUsers, options?: RequestOptions): Promise<User> =>
+      findAssignableUsers: (parameters?: FindAssignableUsers, options?: RequestOptions): Promise<User[]> =>
         users.findAssignableUsers(client, parameters, options),
       createUserAvatarFromTemporary: (
         parameters: CreateUserAvatarFromTemporary,
@@ -1603,7 +1604,7 @@ export function createServerClient(clientConfig: ServerClientConfig | Client) {
         users.getUserList(client, parameters, options),
       changeUserPassword: (parameters: ChangeUserPassword, options?: RequestOptions): Promise<void> =>
         users.changeUserPassword(client, parameters, options),
-      findUsersForPicker: (parameters?: FindUsersForPicker, options?: RequestOptions): Promise<UserPickerResults> =>
+      findUsersForPicker: (parameters: FindUsersForPicker, options?: RequestOptions): Promise<UserPickerResults> =>
         users.findUsersForPicker(client, parameters, options),
       getUserPropertyKeys: (
         parameters?: GetUserPropertyKeys,
@@ -1615,14 +1616,14 @@ export function createServerClient(clientConfig: ServerClientConfig | Client) {
         users.setUserProperty(client, parameters, options),
       deleteUserProperty: (parameters: DeleteUserProperty, options?: RequestOptions): Promise<void> =>
         users.deleteUserProperty(client, parameters, options),
-      findUsers: (parameters?: FindUsers, options?: RequestOptions): Promise<User> =>
+      findUsers: (parameters?: FindUsers, options?: RequestOptions): Promise<User[]> =>
         users.findUsers(client, parameters, options),
       deleteSession: (parameters: DeleteSession, options?: RequestOptions): Promise<void> =>
         users.deleteSession(client, parameters, options),
       findUsersWithBrowsePermission: (
         parameters?: FindUsersWithBrowsePermission,
         options?: RequestOptions,
-      ): Promise<User> => users.findUsersWithBrowsePermission(client, parameters, options),
+      ): Promise<User[]> => users.findUsersWithBrowsePermission(client, parameters, options),
     },
     projectVersions: {
       getPaginatedVersions: (parameters?: GetPaginatedVersions, options?: RequestOptions): Promise<Page<Version>> =>

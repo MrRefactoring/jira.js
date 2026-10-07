@@ -3,9 +3,9 @@ import { openEnum } from '#/core';
 
 export const GetNotificationSchemesSchema = z.object({
   /** The index of the first item to return in a page of results (page offset). */
-  startAt: z.string().optional(),
+  startAt: z.union([z.number(), z.string()]).optional(),
   /** The maximum number of items to return per page. */
-  maxResults: z.string().optional(),
+  maxResults: z.union([z.number(), z.string()]).optional(),
   /** The list of notification schemes IDs to be filtered by */
   id: z.array(z.string()).optional(),
   /** The list of projects IDs to be filtered by */

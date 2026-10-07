@@ -25,8 +25,8 @@ export const ObjectListResultSchema = apiObject({
   conversionPossible: z.boolean().optional(),
   matchedFilterValues: z.array(ObjectAttributeSchema as z.ZodType<ObjectAttribute, ObjectAttributeInput>).optional(),
   inheritanceTree: ObjectTypeInheritanceTreeSchema.optional(),
-  orderAscending: z.boolean().optional(),
   iql: z.string().optional(),
+  orderAscending: z.boolean().optional(),
   iqlSearchResult: z.boolean().optional(),
   pageSize: z.number().optional(),
 });

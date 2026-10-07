@@ -2,9 +2,9 @@ import { z } from 'zod';
 
 export const GetSharePermissionSchema = z.object({
   /** The permission id. */
-  permissionId: z.string(),
+  permissionId: z.number(),
   /** The filter id. */
-  id: z.string(),
+  id: z.number(),
 });
 
 export type GetSharePermission = z.input<typeof GetSharePermissionSchema>;

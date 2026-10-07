@@ -76,7 +76,7 @@ export const MultiDirectoryUserSchema = apiObject({
    */
   groups: z.array(MultiDirectoryUserGroupSchema).optional(),
   links: LinkSelfCursorSchema.optional(),
-  deactivatedOn: z.string().optional(),
+  deactivatedOn: z.string().nullish(),
   forDeletion: z.boolean().optional(),
 });
 

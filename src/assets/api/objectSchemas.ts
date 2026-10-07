@@ -23,6 +23,7 @@ export async function findSchemas(
     url: '/objectschema/list',
     method: 'GET',
     searchParams: {
+      query: parameters?.query,
       startAt: parameters?.startAt,
       maxResults: parameters?.maxResults,
       includeCounts: parameters?.includeCounts,
@@ -45,6 +46,7 @@ export async function createSchema(
     method: 'POST',
     body: {
       name: parameters.name,
+      displayName: parameters.displayName,
       objectSchemaKey: parameters.objectSchemaKey,
       description: parameters.description,
     },
@@ -82,6 +84,7 @@ export async function updateSchema(
     method: 'PUT',
     body: {
       name: parameters.name,
+      displayName: parameters.displayName,
       objectSchemaKey: parameters.objectSchemaKey,
       description: parameters.description,
     },

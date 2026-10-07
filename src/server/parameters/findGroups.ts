@@ -2,7 +2,7 @@ import { z } from 'zod';
 
 export const FindGroupsSchema = z.object({
   /** Maximum number of results to return */
-  maxResults: z.string().optional(),
+  maxResults: z.number().optional(),
   /** A String to match groups against */
   query: z.string().optional(),
   /** List of groups to exclude */

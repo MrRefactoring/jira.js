@@ -11,6 +11,7 @@ export const ObjectTypeAttributeSchema = apiObject({
   id: z.string(),
   objectType: ObjectTypeSchema.optional(),
   name: z.string().optional(),
+  displayName: z.string().optional(),
   label: z.boolean(),
   /**
    * | Value | Description      |

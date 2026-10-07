@@ -7,6 +7,7 @@ export const ReferenceTypeSchema = apiObject({
   globalId: z.string(),
   id: z.string().optional(),
   name: z.string(),
+  displayName: z.string().optional(),
   description: z.string().optional(),
   color: z.string().optional(),
   url16: z.string().optional(),

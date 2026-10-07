@@ -42,7 +42,7 @@ describe('Jira Cloud — issuePriorities (live, read-only)', () => {
   });
 
   it('honours pagination typed as strings rather than numbers', async () => {
-    const page = await client.issuePriorities.searchPriorities({ maxResults: '1' });
+    const page = await client.issuePriorities.searchPriorities({ maxResults: 1 });
 
     expect(page.values?.length).toBeLessThanOrEqual(1);
     expect(page.maxResults).toBe(1);

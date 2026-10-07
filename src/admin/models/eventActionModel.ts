@@ -14,7 +14,7 @@ export const EventActionModelSchema = apiObject({
     groupDisplayName: z.string().optional(),
     groupDisplayNames: z.array(z.string()).optional(),
   }),
-  links: z.record(z.string(), z.any()).optional(),
+  links: z.record(z.string(), z.any()).nullish(),
   message: z.unknown().optional(),
 });
 

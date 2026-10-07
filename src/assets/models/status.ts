@@ -5,6 +5,7 @@ import { apiObject } from '#/core';
 export const StatusSchema = apiObject({
   id: z.string(),
   name: z.string(),
+  displayName: z.string().optional(),
   description: z.string().optional(),
   /**
    * | Name     | Value | Color  |
@@ -15,6 +16,8 @@ export const StatusSchema = apiObject({
    */
   category: z.number(),
   objectSchemaId: z.string().optional(),
+  globalId: z.string().optional(),
+  workspaceId: z.string().optional(),
 });
 
 export type Status = z.infer<typeof StatusSchema>;

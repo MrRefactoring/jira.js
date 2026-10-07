@@ -8,6 +8,7 @@ export const ObjectTypeSchema = apiObject({
   globalId: z.string(),
   id: z.string(),
   name: z.string(),
+  displayName: z.string().optional(),
   description: z.string().optional(),
   icon: IconSchema,
   position: z.number(),

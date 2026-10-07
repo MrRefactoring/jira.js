@@ -1,13 +1,13 @@
 import { z } from 'zod';
 import { apiObject } from '#/core';
-import { ProjectCategoryJsonSchema } from './projectCategoryJson';
+import { ProjectCategorySchema } from './projectCategory';
 
 export const ProjectJsonSchema = apiObject({
   avatarUrls: z.record(z.string(), z.string()).optional(),
   id: z.string().optional(),
   key: z.string().optional(),
   name: z.string().optional(),
-  projectCategory: ProjectCategoryJsonSchema.optional(),
+  projectCategory: ProjectCategorySchema.optional(),
   projectTypeKey: z.string().optional(),
   self: z.string().optional(),
 });

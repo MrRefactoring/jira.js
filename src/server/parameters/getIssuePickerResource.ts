@@ -8,14 +8,14 @@ export const GetIssuePickerResourceSchema = z.object({
   /** The key of the issue in context of which the request is executed */
   currentIssueKey: z.string().optional(),
   /** If set to false, subtasks will not be included in the list */
-  showSubTasks: z.string().optional(),
+  showSubTasks: z.boolean().optional(),
   /** The JQL in context of which the request is executed */
   currentJQL: z.string().optional(),
   /**
    * If set to false and request is executed in context of a subtask, the parent issue will not be included in the
    * auto-completion result, even if it matches the query
    */
-  showSubTaskParent: z.string().optional(),
+  showSubTaskParent: z.boolean().optional(),
 });
 
 export type GetIssuePickerResource = z.input<typeof GetIssuePickerResourceSchema>;

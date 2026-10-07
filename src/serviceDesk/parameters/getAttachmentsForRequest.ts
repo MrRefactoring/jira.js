@@ -8,13 +8,13 @@ export const GetAttachmentsForRequestSchema = z.object({
    * [Pagination](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro#pagination) section for more
    * details.
    */
-  start: z.number(),
+  start: z.number().optional(),
   /**
    * The maximum number of comments to return per page. Default: 50. See the
    * [Pagination](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro#pagination) section for more
    * details.
    */
-  limit: z.number(),
+  limit: z.number().optional(),
 });
 
 export type GetAttachmentsForRequest = z.input<typeof GetAttachmentsForRequestSchema>;

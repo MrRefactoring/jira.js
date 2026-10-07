@@ -11,6 +11,7 @@ export const EpicSchema = apiObject({
     key: z.string().optional(),
   }).optional(),
   done: z.boolean().optional(),
+  issueColor: z.record(z.string(), z.any()).optional(),
 });
 
 export type Epic = z.infer<typeof EpicSchema>;

@@ -4,9 +4,9 @@ export const ListSchema = z.object({
   /** An optional filter that is applied to the list of dashboards. */
   filter: z.string().optional(),
   /** A hint as to the maximum number of dashboards to return in each call. */
-  maxResults: z.string().optional(),
+  maxResults: z.number().optional(),
   /** The index of the first dashboard to return (0-based). */
-  startAt: z.string().optional(),
+  startAt: z.number().optional(),
 });
 
 export type List = z.input<typeof ListSchema>;

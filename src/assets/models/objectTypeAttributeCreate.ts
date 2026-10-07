@@ -4,6 +4,7 @@ import { apiObject } from '#/core';
 /** Input entity to create an object type attribute */
 export const ObjectTypeAttributeCreateSchema = apiObject({
   name: z.string(),
+  displayName: z.string().max(255, 'displayName must be at most 255 characters').optional(),
   label: z.boolean().optional(),
   description: z.string().optional(),
   /**

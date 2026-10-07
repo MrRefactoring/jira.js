@@ -30,7 +30,7 @@ export const GetIssuesForBoardSchema = z.object({
   /** Specifies whether to validate the JQL query or not. Default: true. */
   validateQuery: z.boolean().optional(),
   /** The list of fields to return for each issue. By default, all navigable and Software project fields are returned. */
-  fields: z.array(z.record(z.string(), z.any())).optional(),
+  fields: z.array(z.string()).optional(),
   /** A comma-separated list of the parameters to expand. */
   expand: z.union([z.string(), z.array(z.string())]).optional(),
 });
