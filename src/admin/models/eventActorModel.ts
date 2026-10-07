@@ -38,6 +38,7 @@ export const EventActorModelSchema = apiObject({
     attributes: z.record(z.string(), z.any()).optional(),
   }).optional(),
   links: LinkSelfModelSchema.optional(),
+  picture: z.unknown().optional(),
 });
 
 export type EventActorModel = z.infer<typeof EventActorModelSchema>;

@@ -9,14 +9,14 @@ export const GetArchivedObjectsSchema = z.object({
    */
   archivedFromDate: z.string().optional(),
   /** The offset of the first object to return. Optional. */
-  offset: z.string().optional(),
+  offset: z.number().optional(),
   /**
    * A list of object type ids to search for. Optional. If not set, all object types within the schema will be searched
    * for.
    */
   objectTypeIds: z.string().optional(),
   /** The maximum number of objects to return. Optional. */
-  limit: z.string().optional(),
+  limit: z.number().optional(),
   /**
    * Timestamp in ISO Offset Date Time format e.g. 2021-12-03T10:15:30+01:00. Only objects archived before this time
    * will be displayed. Must be after archivedFromDate, if both are set. Optional.

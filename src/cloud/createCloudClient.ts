@@ -185,6 +185,7 @@ import type {
   GetContextsForField,
   CreateCustomFieldContext,
   GetContextDefaultValues,
+  SetContextDefaultValues,
   GetIssueTypeMappingsForContexts,
   GetCustomFieldContextsForProjectsAndIssueTypes,
   GetProjectContextMapping,
@@ -1063,6 +1064,8 @@ export function createCloudClient(clientConfig: ClientConfig | Client) {
         options?: RequestOptions,
       ): Promise<Page<ContextDefaultValues>> =>
         issueCustomFieldContexts.getContextDefaultValues(client, parameters, options),
+      setContextDefaultValues: (parameters: SetContextDefaultValues, options?: RequestOptions): Promise<void> =>
+        issueCustomFieldContexts.setContextDefaultValues(client, parameters, options),
       getIssueTypeMappingsForContexts: (
         parameters: GetIssueTypeMappingsForContexts,
         options?: RequestOptions,

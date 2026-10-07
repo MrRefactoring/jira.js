@@ -4,6 +4,7 @@ import { apiObject } from '#/core';
 /** The Assets object type input used for creating object types */
 export const ObjectTypeInSchema = apiObject({
   name: z.string(),
+  displayName: z.string().max(50, 'displayName must be at most 50 characters').optional(),
   description: z.string().optional(),
   iconId: z.string(),
   objectSchemaId: z.string(),

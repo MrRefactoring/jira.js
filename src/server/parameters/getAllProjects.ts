@@ -3,8 +3,8 @@ import { z } from 'zod';
 export const GetAllProjectsSchema = z.object({
   /** Whether to include archived projects in response, default: false */
   includeArchived: z.boolean().optional(),
-  /** Parameters to expand */
-  expand: z.string().optional(),
+  /** Parameters to expand This parameter is a comma-separated list. */
+  expand: z.array(z.string()).optional(),
   /**
    * If this parameter is set then only projects recently accessed by the current user (if not logged in then based on
    * HTTP session) will be returned (maximum count limited to the specified number but no more than 20)

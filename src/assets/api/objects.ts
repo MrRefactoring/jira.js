@@ -62,10 +62,11 @@ export async function deleteObject(
   client: Client,
   parameters: DeleteObject,
   options?: RequestOptions,
-): Promise<unknown> {
-  const config: SendRequestOptions<unknown> = {
+): Promise<AssetObject> {
+  const config: SendRequestOptions<AssetObject> = {
     url: `/object/${parameters.id}`,
     method: 'DELETE',
+    schema: AssetObjectSchema,
     signal: options?.signal,
   };
 

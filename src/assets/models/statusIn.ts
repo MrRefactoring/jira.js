@@ -3,6 +3,7 @@ import { apiObject } from '#/core';
 
 export const StatusInSchema = apiObject({
   name: z.string(),
+  displayName: z.string().max(50, 'displayName must be at most 50 characters').optional(),
   description: z.string().optional(),
   /**
    * | Name     | Value | Color  |

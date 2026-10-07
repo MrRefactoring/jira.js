@@ -82,7 +82,7 @@ describe('schemes and screens', () => {
     expect(scheme.id).toBeDefined();
 
     await jira.issueTypeSchemes.updateIssueTypeScheme({
-      schemeId: String(scheme.id),
+      schemeId: Number(scheme.id),
       name: testName('its2'),
       issueTypeIds: [String(standard.id)],
     });
@@ -98,7 +98,7 @@ describe('schemes and screens', () => {
     await touch(() =>
       jira.issueTypeSchemes.removeProjectAssociation({ schemeId: String(scheme.id), projIdOrKey: projectKey }));
     await touch(() => jira.issueTypeSchemes.removeAllProjectAssociations({ schemeId: String(scheme.id) }));
-    await jira.issueTypeSchemes.deleteIssueTypeScheme({ schemeId: String(scheme.id) });
+    await jira.issueTypeSchemes.deleteIssueTypeScheme({ schemeId: Number(scheme.id) });
   });
 
   it('keeps a permission scheme and a grant in it', async () => {

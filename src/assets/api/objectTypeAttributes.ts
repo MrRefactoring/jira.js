@@ -15,6 +15,7 @@ export async function createObjectTypeAttribute(
     method: 'POST',
     body: {
       name: parameters.name,
+      displayName: parameters.displayName,
       label: parameters.label,
       description: parameters.description,
       type: parameters.type,
@@ -51,6 +52,7 @@ export async function updateObjectTypeAttribute(
     method: 'PUT',
     body: {
       name: parameters.name,
+      displayName: parameters.displayName,
       label: parameters.label,
       description: parameters.description,
       type: parameters.type,

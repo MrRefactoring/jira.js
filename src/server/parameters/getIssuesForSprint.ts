@@ -19,7 +19,7 @@ export const GetIssuesForSprintSchema = z.object({
   /** Specifies whether to validate the JQL query or not. Default: true. */
   validateQuery: z.boolean().optional(),
   /** The list of fields to return for each issue. By default, all navigable and Agile fields are returned. */
-  fields: z.union([z.string(), z.array(z.string())]).optional(),
+  fields: z.array(z.string()).optional(),
   /**
    * The starting index of the returned issues. Base index: 0. See the 'Pagination' section at the top of this page for
    * more details.

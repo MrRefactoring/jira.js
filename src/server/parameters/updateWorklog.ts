@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { openEnum } from '#/core';
 import { WorklogSchema } from '../models';
 
 export const UpdateWorklogSchema = z.object({
@@ -8,7 +9,7 @@ export const UpdateWorklogSchema = z.object({
    * Allows you to provide specific instructions to update the remaining time estimate of the issue. Valid values are:
    * new, leave, auto
    */
-  adjustEstimate: z.string().optional(),
+  adjustEstimate: openEnum(['new', 'leave', 'auto']).optional(),
   /** A string containing the issue id or key the worklog belongs to */
   issueIdOrKey: z.string(),
   /** Id of the worklog to be updated */

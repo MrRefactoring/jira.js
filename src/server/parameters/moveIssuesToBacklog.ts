@@ -1,6 +1,7 @@
 import { z } from 'zod';
-import { IssueAssignRequestSchema } from '../models';
 
-export const MoveIssuesToBacklogSchema = z.object(IssueAssignRequestSchema.shape);
+export const MoveIssuesToBacklogSchema = z.object({
+  issues: z.array(z.string()),
+});
 
 export type MoveIssuesToBacklog = z.input<typeof MoveIssuesToBacklogSchema>;

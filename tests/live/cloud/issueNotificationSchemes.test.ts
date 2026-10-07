@@ -23,7 +23,7 @@ describe('Jira Cloud — issueNotificationSchemes (live, read-only)', () => {
   beforeAll(async () => {
     client = getCloudClient();
 
-    const page = await client.issueNotificationSchemes.getNotificationSchemes({ maxResults: '5' }).catch(() => undefined);
+    const page = await client.issueNotificationSchemes.getNotificationSchemes({ maxResults: 5 }).catch(() => undefined);
 
     if (!page) {
       permitted = false;
@@ -43,7 +43,7 @@ describe('Jira Cloud — issueNotificationSchemes (live, read-only)', () => {
       return;
     }
 
-    const page = await client.issueNotificationSchemes.getNotificationSchemes({ maxResults: '2' });
+    const page = await client.issueNotificationSchemes.getNotificationSchemes({ maxResults: 2 });
 
     expect(Array.isArray(page.values)).toBe(true);
     expect(page.maxResults).toBe(2);

@@ -4,11 +4,11 @@ export const FindUsersAndGroupsSchema = z.object({
   /** The list of issue type ids to further restrict the search */
   issueTypeId: z.string().optional(),
   /** The maximum number of users to return */
-  maxResults: z.string().optional(),
+  maxResults: z.number().optional(),
   /** A string used to search username, Name or e-mail address */
-  query: z.string().optional(),
+  query: z.string(),
   /** Show avatar */
-  showAvatar: z.string().optional(),
+  showAvatar: z.boolean().optional(),
   /** The list of project ids to further restrict the search */
   projectId: z.string().optional(),
   /** The custom field id */

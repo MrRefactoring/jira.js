@@ -1,4 +1,4 @@
-import { PagedResultsSchema, type PagedResults } from '../models/pagedResults';
+import { PageOfNotificationSchemesSchema, type PageOfNotificationSchemes } from '../models/pageOfNotificationSchemes';
 import { NotificationSchemeSchema, type NotificationScheme } from '../models/notificationScheme';
 import type { GetNotificationSchemes } from '../parameters/getNotificationSchemes';
 import type { GetNotificationScheme } from '../parameters/getNotificationScheme';
@@ -15,16 +15,16 @@ export async function getNotificationSchemes(
   client: Client,
   parameters?: GetNotificationSchemes,
   options?: RequestOptions,
-): Promise<PagedResults> {
-  const config: SendRequestOptions<PagedResults> = {
+): Promise<PageOfNotificationSchemes> {
+  const config: SendRequestOptions<PageOfNotificationSchemes> = {
     url: '/rest/api/2/notificationscheme',
     method: 'GET',
     searchParams: {
-      expand: parameters?.expand,
+      expand: Array.isArray(parameters?.expand) ? parameters.expand.join(',') : parameters?.expand,
       maxResults: parameters?.maxResults,
       startAt: parameters?.startAt,
     },
-    schema: PagedResultsSchema,
+    schema: PageOfNotificationSchemesSchema,
     signal: options?.signal,
   };
 
@@ -68,7 +68,7 @@ export async function getNotificationScheme(
     url: `/rest/api/2/notificationscheme/${parameters.id}`,
     method: 'GET',
     searchParams: {
-      expand: parameters.expand,
+      expand: Array.isArray(parameters.expand) ? parameters.expand.join(',') : parameters.expand,
     },
     schema: NotificationSchemeSchema,
     signal: options?.signal,

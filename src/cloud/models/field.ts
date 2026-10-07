@@ -22,7 +22,7 @@ export const FieldSchema = apiObject({
   name: z.string(),
   /** Number of projects where the field is used. */
   projectsCount: z.number().optional(),
-  schema: JsonTypeSchema,
+  schema: JsonTypeSchema.optional(),
   /** Number of screens where the field is used. */
   screensCount: z.number().optional(),
   /** The searcher key of the field. Returned for custom fields. */

@@ -303,18 +303,18 @@ export async function removeUserFromApplication(
 /** Returns a list of users that match the search string and can be assigned issues for all the given projects. */
 export async function findBulkAssignableUsers(
   client: Client,
-  parameters?: FindBulkAssignableUsers,
+  parameters: FindBulkAssignableUsers,
   options?: RequestOptions,
-): Promise<User> {
-  const config: SendRequestOptions<User> = {
+): Promise<User[]> {
+  const config: SendRequestOptions<User[]> = {
     url: '/rest/api/2/user/assignable/multiProjectSearch',
     method: 'GET',
     searchParams: {
-      maxResults: parameters?.maxResults,
-      projectKeys: parameters?.projectKeys,
-      username: parameters?.username,
+      maxResults: parameters.maxResults,
+      projectKeys: parameters.projectKeys,
+      username: parameters.username,
     },
-    schema: UserSchema,
+    schema: z.array(UserSchema),
     signal: options?.signal,
   };
 
@@ -331,8 +331,8 @@ export async function findAssignableUsers(
   client: Client,
   parameters?: FindAssignableUsers,
   options?: RequestOptions,
-): Promise<User> {
-  const config: SendRequestOptions<User> = {
+): Promise<User[]> {
+  const config: SendRequestOptions<User[]> = {
     url: '/rest/api/2/user/assignable/search',
     method: 'GET',
     searchParams: {
@@ -342,7 +342,7 @@ export async function findAssignableUsers(
       actionDescriptorId: parameters?.actionDescriptorId,
       username: parameters?.username,
     },
-    schema: UserSchema,
+    schema: z.array(UserSchema),
     signal: options?.signal,
   };
 
@@ -654,17 +654,17 @@ export async function changeUserPassword(
 /** Returns a list of users matching query with highlighting. */
 export async function findUsersForPicker(
   client: Client,
-  parameters?: FindUsersForPicker,
+  parameters: FindUsersForPicker,
   options?: RequestOptions,
 ): Promise<UserPickerResults> {
   const config: SendRequestOptions<UserPickerResults> = {
     url: '/rest/api/2/user/picker',
     method: 'GET',
     searchParams: {
-      maxResults: parameters?.maxResults,
-      query: parameters?.query,
-      exclude: parameters?.exclude,
-      showAvatar: parameters?.showAvatar,
+      maxResults: parameters.maxResults,
+      query: parameters.query,
+      exclude: parameters.exclude,
+      showAvatar: parameters.showAvatar,
     },
     schema: UserPickerResultsSchema,
     signal: options?.signal,
@@ -760,8 +760,8 @@ export async function deleteUserProperty(
 }
 
 /** Finds users. */
-export async function findUsers(client: Client, parameters?: FindUsers, options?: RequestOptions): Promise<User> {
-  const config: SendRequestOptions<User> = {
+export async function findUsers(client: Client, parameters?: FindUsers, options?: RequestOptions): Promise<User[]> {
+  const config: SendRequestOptions<User[]> = {
     url: '/rest/api/2/user/search',
     method: 'GET',
     searchParams: {
@@ -771,7 +771,7 @@ export async function findUsers(client: Client, parameters?: FindUsers, options?
       startAt: parameters?.startAt,
       username: parameters?.username,
     },
-    schema: UserSchema,
+    schema: z.array(UserSchema),
     signal: options?.signal,
   };
 
@@ -802,8 +802,8 @@ export async function findUsersWithBrowsePermission(
   client: Client,
   parameters?: FindUsersWithBrowsePermission,
   options?: RequestOptions,
-): Promise<User> {
-  const config: SendRequestOptions<User> = {
+): Promise<User[]> {
+  const config: SendRequestOptions<User[]> = {
     url: '/rest/api/2/user/viewissue/search',
     method: 'GET',
     searchParams: {
@@ -812,7 +812,7 @@ export async function findUsersWithBrowsePermission(
       maxResults: parameters?.maxResults,
       username: parameters?.username,
     },
-    schema: UserSchema,
+    schema: z.array(UserSchema),
     signal: options?.signal,
   };
 

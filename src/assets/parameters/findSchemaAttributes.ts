@@ -5,7 +5,7 @@ export const FindSchemaAttributesSchema = z.object({
   onlyValueEditable: z.boolean().optional(),
   /** Include the object type with each object type attribute */
   extended: z.boolean().optional(),
-  /** A query that will be used to filter object type attributes by their name */
+  /** A case-insensitive query used to filter object type attributes whose name or display name contains the value */
   query: z.string().optional(),
   /** The object schema id */
   id: z.string(),

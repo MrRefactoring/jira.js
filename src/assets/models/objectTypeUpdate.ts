@@ -4,6 +4,7 @@ import { apiObject } from '#/core';
 /** The Assets object type input used for updating object types */
 export const ObjectTypeUpdateSchema = apiObject({
   name: z.string().optional(),
+  displayName: z.string().max(50, 'displayName must be at most 50 characters').optional(),
   description: z.string().optional(),
   iconId: z.string().optional(),
   /**

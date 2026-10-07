@@ -8,7 +8,7 @@ export const GetCustomFieldsSchema = z.object({
   /** A query string used to search custom fields. */
   search: z.string().optional(),
   /** The maximum number of custom fields to return. */
-  maxResults: z.string().optional(),
+  maxResults: z.number().optional(),
   /** The order in which to sort the returned custom fields. */
   sortOrder: z.string().optional(),
   /** A list of screen IDs to filter the custom fields. */
@@ -18,7 +18,7 @@ export const GetCustomFieldsSchema = z.object({
   /** A list of project IDs to filter the custom fields. */
   projectIds: z.string().optional(),
   /** The starting index of the returned custom fields. */
-  startAt: z.string().optional(),
+  startAt: z.number().optional(),
 });
 
 export type GetCustomFields = z.input<typeof GetCustomFieldsSchema>;

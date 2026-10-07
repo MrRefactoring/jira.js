@@ -9,7 +9,7 @@ import { EntityPropertySchema, type EntityProperty } from '../models/entityPrope
 import { GetProjectRolesSchema, type GetProjectRoles } from '../models/getProjectRoles';
 import { ProjectRoleSchema, type ProjectRole } from '../models/projectRole';
 import { IssueTypeWithStatusJsonSchema, type IssueTypeWithStatusJson } from '../models/issueTypeWithStatusJson';
-import { PagedResultsSchema, type PagedResults } from '../models/pagedResults';
+import { PageOfVersionsSchema, type PageOfVersions } from '../models/pageOfVersions';
 import { VersionSchema, type Version } from '../models/version';
 import { SecuritySchemeJsonSchema, type SecuritySchemeJson } from '../models/securitySchemeJson';
 import { NotificationSchemeSchema, type NotificationScheme } from '../models/notificationScheme';
@@ -76,7 +76,7 @@ export async function getAllProjects(
     method: 'GET',
     searchParams: {
       includeArchived: parameters?.includeArchived,
-      expand: parameters?.expand,
+      expand: Array.isArray(parameters?.expand) ? parameters.expand.join(',') : parameters?.expand,
       recent: parameters?.recent,
       browseArchive: parameters?.browseArchive,
     },
@@ -178,7 +178,7 @@ export async function getProject(client: Client, parameters: GetProject, options
     url: `/rest/api/2/project/${parameters.projectIdOrKey}`,
     method: 'GET',
     searchParams: {
-      expand: parameters.expand,
+      expand: Array.isArray(parameters.expand) ? parameters.expand.join(',') : parameters.expand,
     },
     schema: ProjectSchema,
     signal: options?.signal,
@@ -200,7 +200,7 @@ export async function updateProject(
     url: `/rest/api/2/project/${parameters.projectIdOrKey}`,
     method: 'PUT',
     searchParams: {
-      expand: parameters.expand,
+      expand: Array.isArray(parameters.expand) ? parameters.expand.join(',') : parameters.expand,
     },
     body: {
       assigneeType: parameters.assigneeType,
@@ -593,17 +593,17 @@ export async function getProjectVersionsPaginated(
   client: Client,
   parameters: GetProjectVersionsPaginated,
   options?: RequestOptions,
-): Promise<PagedResults> {
-  const config: SendRequestOptions<PagedResults> = {
+): Promise<PageOfVersions> {
+  const config: SendRequestOptions<PageOfVersions> = {
     url: `/rest/api/2/project/${parameters.projectIdOrKey}/version`,
     method: 'GET',
     searchParams: {
-      expand: parameters.expand,
+      expand: Array.isArray(parameters.expand) ? parameters.expand.join(',') : parameters.expand,
       maxResults: parameters.maxResults,
       orderBy: parameters.orderBy,
       startAt: parameters.startAt,
     },
-    schema: PagedResultsSchema,
+    schema: PageOfVersionsSchema,
     signal: options?.signal,
   };
 
@@ -620,7 +620,7 @@ export async function getProjectVersions(
     url: `/rest/api/2/project/${parameters.projectIdOrKey}/versions`,
     method: 'GET',
     searchParams: {
-      expand: parameters.expand,
+      expand: Array.isArray(parameters.expand) ? parameters.expand.join(',') : parameters.expand,
     },
     schema: z.array(VersionSchema),
     signal: options?.signal,
@@ -658,7 +658,7 @@ export async function getProjectNotificationScheme(
     url: `/rest/api/2/project/${parameters.projectKeyOrId}/notificationscheme`,
     method: 'GET',
     searchParams: {
-      expand: parameters.expand,
+      expand: Array.isArray(parameters.expand) ? parameters.expand.join(',') : parameters.expand,
     },
     schema: NotificationSchemeSchema,
     signal: options?.signal,

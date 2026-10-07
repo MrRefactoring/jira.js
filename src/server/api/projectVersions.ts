@@ -108,7 +108,7 @@ export async function getVersion(client: Client, parameters: GetVersion, options
     url: `/rest/api/2/version/${parameters.id}`,
     method: 'GET',
     searchParams: {
-      expand: parameters.expand,
+      expand: Array.isArray(parameters.expand) ? parameters.expand.join(',') : parameters.expand,
     },
     schema: VersionSchema,
     signal: options?.signal,

@@ -45,3 +45,9 @@ export const arbitraryJson: boolean = entityProperties.properties?.nested.valid;
 export const dashboardUser: DashboardUser = { emailAddress: 'user@example.com', locale: 'en-US' };
 export const nullableUser: User = { emailAddress: null, locale: null };
 export const bareUser: DashboardUser = { accountId: 'x' };
+export const stringPagedSchemes = cloud.issueNotificationSchemes.getNotificationSchemes({ startAt: '0', maxResults: '50' });
+export const stringPagedMappings = cloud.issueNotificationSchemes.getNotificationSchemeToProjectMappings({
+  startAt: '0',
+  maxResults: '50',
+});
+export const stringPagedPriorities = cloud.issuePriorities.searchPriorities({ startAt: '0', maxResults: '50' });

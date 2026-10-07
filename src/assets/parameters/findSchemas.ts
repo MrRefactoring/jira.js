@@ -1,6 +1,8 @@
 import { z } from 'zod';
 
 export const FindSchemasSchema = z.object({
+  /** A case-insensitive query used to filter object schemas whose name or display name contains the value */
+  query: z.string().optional(),
   /** The starting index for the next page of results */
   startAt: z.number().optional(),
   /**

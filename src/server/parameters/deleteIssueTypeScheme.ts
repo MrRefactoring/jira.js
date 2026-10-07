@@ -2,7 +2,7 @@ import { z } from 'zod';
 
 export const DeleteIssueTypeSchemeSchema = z.object({
   /** The id of the issue type scheme to remove. */
-  schemeId: z.string(),
+  schemeId: z.number(),
 });
 
 export type DeleteIssueTypeScheme = z.input<typeof DeleteIssueTypeSchemeSchema>;

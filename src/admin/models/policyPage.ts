@@ -12,11 +12,11 @@ export const PolicyPageSchema = apiObject({
     /** Number of items in a page */
     page_size: z.number().optional(),
     attributes: z.unknown().optional(),
-    current: z.number().optional(),
-    end_index: z.number().optional(),
-    prev: z.string().optional(),
-    start_index: z.number().optional(),
-    total: z.number().optional(),
+    current: z.number().nullish(),
+    end_index: z.number().nullish(),
+    prev: z.string().nullish(),
+    start_index: z.number().nullish(),
+    total: z.number().nullish(),
   }).optional(),
   links: LinkPageModelSchema.optional(),
 });

@@ -1,7 +1,8 @@
 import { z } from 'zod';
 
 export const GetVersionSchema = z.object({
-  expand: z.string().optional(),
+  /** This parameter is a comma-separated list. */
+  expand: z.array(z.string()).optional(),
   /** ID of the version. */
   id: z.string(),
 });

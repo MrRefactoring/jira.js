@@ -29,7 +29,7 @@ export const FindObjectsSchema = z.object({
    */
   qlQuery: z.string().optional(),
   /** The page to fetch when paginating through the response. */
-  page: z.string().optional(),
+  page: z.number().optional(),
   /**
    * Should the response include information about open issues and attachments. If the value is set to `true`, each
    * returned object contains information on whether there are open tickets connected to it and if the object has

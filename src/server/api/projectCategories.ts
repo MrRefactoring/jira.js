@@ -1,4 +1,4 @@
-import { ProjectCategoryJsonSchema, type ProjectCategoryJson } from '../models/projectCategoryJson';
+import { ProjectCategorySchema, type ProjectCategory } from '../models/projectCategory';
 import type { CreateProjectCategory } from '../parameters/createProjectCategory';
 import type { GetProjectCategoryById } from '../parameters/getProjectCategoryById';
 import type { UpdateProjectCategory } from '../parameters/updateProjectCategory';
@@ -7,14 +7,11 @@ import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 import { z } from 'zod';
 
 /** Returns all project categories */
-export async function getAllProjectCategories(
-  client: Client,
-  options?: RequestOptions,
-): Promise<ProjectCategoryJson[]> {
-  const config: SendRequestOptions<ProjectCategoryJson[]> = {
+export async function getAllProjectCategories(client: Client, options?: RequestOptions): Promise<ProjectCategory[]> {
+  const config: SendRequestOptions<ProjectCategory[]> = {
     url: '/rest/api/2/projectCategory',
     method: 'GET',
-    schema: z.array(ProjectCategoryJsonSchema),
+    schema: z.array(ProjectCategorySchema),
     signal: options?.signal,
   };
 
@@ -26,8 +23,8 @@ export async function createProjectCategory(
   client: Client,
   parameters: CreateProjectCategory,
   options?: RequestOptions,
-): Promise<ProjectCategoryJson> {
-  const config: SendRequestOptions<ProjectCategoryJson> = {
+): Promise<ProjectCategory> {
+  const config: SendRequestOptions<ProjectCategory> = {
     url: '/rest/api/2/projectCategory',
     method: 'POST',
     body: {
@@ -36,7 +33,7 @@ export async function createProjectCategory(
       name: parameters.name,
       self: parameters.self,
     },
-    schema: ProjectCategoryJsonSchema,
+    schema: ProjectCategorySchema,
     signal: options?.signal,
   };
 
@@ -48,11 +45,11 @@ export async function getProjectCategoryById(
   client: Client,
   parameters: GetProjectCategoryById,
   options?: RequestOptions,
-): Promise<ProjectCategoryJson> {
-  const config: SendRequestOptions<ProjectCategoryJson> = {
+): Promise<ProjectCategory> {
+  const config: SendRequestOptions<ProjectCategory> = {
     url: `/rest/api/2/projectCategory/${parameters.id}`,
     method: 'GET',
-    schema: ProjectCategoryJsonSchema,
+    schema: ProjectCategorySchema,
     signal: options?.signal,
   };
 
@@ -64,12 +61,12 @@ export async function updateProjectCategory(
   client: Client,
   parameters: UpdateProjectCategory,
   options?: RequestOptions,
-): Promise<ProjectCategoryJson> {
-  const config: SendRequestOptions<ProjectCategoryJson> = {
+): Promise<ProjectCategory> {
+  const config: SendRequestOptions<ProjectCategory> = {
     url: `/rest/api/2/projectCategory/${parameters.id}`,
     method: 'PUT',
     body: parameters.body,
-    schema: ProjectCategoryJsonSchema,
+    schema: ProjectCategorySchema,
     signal: options?.signal,
   };
 

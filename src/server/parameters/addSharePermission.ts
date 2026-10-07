@@ -3,7 +3,7 @@ import { SharePermissionInputSchema } from '../models';
 
 export const AddSharePermissionSchema = z.object(SharePermissionInputSchema.shape).extend({
   /** The filter id. */
-  id: z.string(),
+  id: z.number(),
 });
 
 export type AddSharePermission = z.input<typeof AddSharePermissionSchema>;

@@ -33,7 +33,7 @@ describe('agile', () => {
   it('creates a board and deletes it', async () => {
     const filter = await jira.filters.createFilter({ name: testName('board filter'), jql: `project = ${projectKey}` });
 
-    await jira.filters.addSharePermission({ id: String(filter.id), type: 'authenticated' });
+    await jira.filters.addSharePermission({ id: Number(filter.id), type: 'authenticated' });
 
     const board = await jira.board.createBoard({
       name: testName('a board'),
@@ -44,7 +44,7 @@ describe('agile', () => {
     expect(board.id).toBeDefined();
 
     await jira.board.deleteBoard({ boardId: board.id! });
-    await jira.filters.deleteFilter({ id: String(filter.id) });
+    await jira.filters.deleteFilter({ id: Number(filter.id) });
   });
 
   it('reads the board it was given', async () => {
@@ -63,16 +63,16 @@ describe('agile', () => {
 
   it('stores a property on the board', async () => {
     await jira.board.setBoardProperty({
-      boardId: fixtures.boardId,
+      boardId: String(fixtures.boardId),
       propertyKey: 'suite',
       body: { written: true },
     });
 
-    const property = await jira.board.getBoardProperty({ boardId: fixtures.boardId, propertyKey: 'suite' });
+    const property = await jira.board.getBoardProperty({ boardId: String(fixtures.boardId), propertyKey: 'suite' });
 
     expect(property.value).toEqual({ written: true });
 
-    await jira.board.deleteBoardProperty({ boardId: fixtures.boardId, propertyKey: 'suite' });
+    await jira.board.deleteBoardProperty({ boardId: String(fixtures.boardId), propertyKey: 'suite' });
   });
 
   it('turns refined velocity on and reads it back', async () => {
@@ -106,17 +106,17 @@ describe('agile', () => {
   });
 
   it('stores a property on the sprint', async () => {
-    await jira.sprint.setSprintProperty({ sprintId, propertyKey: 'suite', body: { written: true } });
+    await jira.sprint.setSprintProperty({ sprintId: String(sprintId), propertyKey: 'suite', body: { written: true } });
 
-    const property = await jira.sprint.getSprintProperty({ sprintId, propertyKey: 'suite' });
+    const property = await jira.sprint.getSprintProperty({ sprintId: String(sprintId), propertyKey: 'suite' });
 
     expect(property.value).toEqual({ written: true });
 
-    const keys = await jira.sprint.getSprintPropertyKeys({ sprintId });
+    const keys = await jira.sprint.getSprintPropertyKeys({ sprintId: String(sprintId) });
 
     expect(keys.keys?.some(entry => entry.key === 'suite')).toBe(true);
 
-    await jira.sprint.deleteSprintProperty({ sprintId, propertyKey: 'suite' });
+    await jira.sprint.deleteSprintProperty({ sprintId: String(sprintId), propertyKey: 'suite' });
   });
 
   it('moves an issue into an epic and back out', async () => {

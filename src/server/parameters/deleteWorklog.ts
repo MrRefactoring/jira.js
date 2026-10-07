@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { openEnum } from '#/core';
 
 export const DeleteWorklogSchema = z.object({
   /** Required when 'new' is selected for adjustEstimate. e.g. "2d" */
@@ -7,7 +8,7 @@ export const DeleteWorklogSchema = z.object({
    * Allows you to provide specific instructions to update the remaining time estimate of the issue. Valid values are:
    * new, leave, manual, auto
    */
-  adjustEstimate: z.string().optional(),
+  adjustEstimate: openEnum(['new', 'leave', 'manual', 'auto']).optional(),
   /** A string containing the issue id or key the worklog belongs to */
   issueIdOrKey: z.string(),
   /** Id of the worklog to be deleted */

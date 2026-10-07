@@ -9,7 +9,7 @@ export const FindBulkAssignableUsersSchema = z.object({
    */
   maxResults: z.number().optional(),
   /** The keys of the projects we are finding assignable users for, comma-separated */
-  projectKeys: z.union([z.string(), z.array(z.string())]).optional(),
+  projectKeys: z.union([z.string(), z.array(z.string())]),
   /** The username */
   username: z.string().optional(),
 });

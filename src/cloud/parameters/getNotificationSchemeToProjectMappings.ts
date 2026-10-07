@@ -2,9 +2,9 @@ import { z } from 'zod';
 
 export const GetNotificationSchemeToProjectMappingsSchema = z.object({
   /** The index of the first item to return in a page of results (page offset). */
-  startAt: z.string().optional(),
+  startAt: z.union([z.number(), z.string()]).optional(),
   /** The maximum number of items to return per page. */
-  maxResults: z.string().optional(),
+  maxResults: z.union([z.number(), z.string()]).optional(),
   /** The list of notifications scheme IDs to be filtered out */
   notificationSchemeId: z.array(z.string()).optional(),
   /** The list of project IDs to be filtered out */

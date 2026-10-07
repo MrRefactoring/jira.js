@@ -220,7 +220,7 @@ describe('issues', () => {
       outwardIssue: { key: other },
     });
 
-    const issue = await jira.issues.getIssue({ issueIdOrKey: issueKey, fields: 'issuelinks' });
+    const issue = await jira.issues.getIssue({ issueIdOrKey: issueKey, fields: ['issuelinks'] });
     const links = (issue.fields as { issuelinks?: Array<{ id?: string }> }).issuelinks ?? [];
 
     expect(links.length).toBeGreaterThan(0);

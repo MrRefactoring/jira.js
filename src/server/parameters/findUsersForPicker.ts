@@ -9,7 +9,7 @@ export const FindUsersForPickerSchema = z.object({
    */
   maxResults: z.number().optional(),
   /** A string used to search username, Name or e-mail address */
-  query: z.string().optional(),
+  query: z.string(),
   /** List of users to be excluded from the search results */
   exclude: z.array(z.string()).optional(),
   /** If true, then avatars are included in the results */

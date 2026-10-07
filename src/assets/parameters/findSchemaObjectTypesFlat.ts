@@ -3,9 +3,9 @@ import { z } from 'zod';
 export const FindSchemaObjectTypesFlatSchema = z.object({
   /** The object schema id */
   id: z.string(),
-  /** Object Type Names to search for */
-  query: z.boolean().optional(),
-  /** Exclude objects with this name */
+  /** A case-insensitive query used to filter object types whose name or display name starts with the value */
+  query: z.string().optional(),
+  /** Exclude object types whose name or display name exactly matches this value, ignoring case */
   exclude: z.string().optional(),
   /** If true, the objectCount attribute is populated for each object type */
   includeObjectCounts: z.boolean().optional(),

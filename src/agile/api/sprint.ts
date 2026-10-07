@@ -194,7 +194,7 @@ export async function getIssuesForSprint(
       reconcileIssues: parameters.reconcileIssues,
       jql: parameters.jql,
       validateQuery: parameters.validateQuery,
-      fields: parameters.fields,
+      fields: Array.isArray(parameters.fields) ? parameters.fields.join(',') : parameters.fields,
       expand: parameters.expand,
     },
     schema: SoftwareIssueResultsSchema,

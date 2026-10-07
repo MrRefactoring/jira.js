@@ -35,6 +35,7 @@ export async function createReferenceType(
     method: 'POST',
     body: {
       name: parameters.name,
+      displayName: parameters.displayName,
       description: parameters.description,
       color: parameters.color,
       objectSchemaId: parameters.objectSchemaId,

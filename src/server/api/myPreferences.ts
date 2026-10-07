@@ -11,14 +11,14 @@ import { z } from 'zod';
  */
 export async function getPreference(
   client: Client,
-  parameters?: GetPreference,
+  parameters: GetPreference,
   options?: RequestOptions,
 ): Promise<string> {
   const config: SendRequestOptions<string> = {
     url: '/rest/api/2/mypreferences',
     method: 'GET',
     searchParams: {
-      key: parameters?.key,
+      key: parameters.key,
     },
     schema: z.string(),
     signal: options?.signal,

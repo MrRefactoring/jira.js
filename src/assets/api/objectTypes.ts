@@ -36,6 +36,7 @@ export async function updateObjectType(
     method: 'PUT',
     body: {
       name: parameters.name,
+      displayName: parameters.displayName,
       description: parameters.description,
       iconId: parameters.iconId,
       inherited: parameters.inherited,
@@ -120,6 +121,7 @@ export async function createObjectType(
     method: 'POST',
     body: {
       name: parameters.name,
+      displayName: parameters.displayName,
       description: parameters.description,
       iconId: parameters.iconId,
       objectSchemaId: parameters.objectSchemaId,

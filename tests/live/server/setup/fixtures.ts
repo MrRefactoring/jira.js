@@ -115,7 +115,7 @@ export async function createFixtures(jira: ServerClient, projectKey: string, use
     description: 'created by the Data Center suite',
   });
 
-  await jira.filters.addSharePermission({ id: String(filter.id), type: 'authenticated' });
+  await jira.filters.addSharePermission({ id: Number(filter.id), type: 'authenticated' });
 
   const issueTypes = await jira.issueTypes.getIssueAllTypes();
   const issueTypeId = String(issueTypes[0]!.id);
@@ -141,8 +141,8 @@ export async function createFixtures(jira: ServerClient, projectKey: string, use
   await jira.users.setUserProperty({ propertyKey, username, body: PROPERTY_VALUE });
   await jira.issueComments.setCommentProperty({ commentId: String(comment.id), propertyKey, body: PROPERTY_VALUE });
   await jira.issueTypes.setIssueTypeProperty({ issueTypeId, propertyKey, body: PROPERTY_VALUE });
-  await jira.board.setBoardProperty({ boardId, propertyKey, body: PROPERTY_VALUE });
-  await jira.sprint.setSprintProperty({ sprintId: sprint.id!, propertyKey, body: PROPERTY_VALUE });
+  await jira.board.setBoardProperty({ boardId: String(boardId), propertyKey, body: PROPERTY_VALUE });
+  await jira.sprint.setSprintProperty({ sprintId: String(sprint.id), propertyKey, body: PROPERTY_VALUE });
 
   await jira.webhooks.createWebhook({
     name: testName('webhook'),
