@@ -1,9 +1,24 @@
 import { describe, expect, inject, it } from 'vitest';
+import { isApiError } from '#/core';
 import type { ServerClient } from '#/server/createServerClient';
 import { connect } from './setup/client';
 import { serverTestEnv } from './setup/env';
 import { touch } from './setup/touch';
 import { pngBytes } from '../helpers/image';
+
+const NOT_CLUSTERED = 'This Jira instance is not clustered.';
+
+async function clustered<T>(run: () => Promise<T>): Promise<T | undefined> {
+  try {
+    return await touch(run);
+  } catch (error) {
+    if (isApiError(error) && error.status === 405 && JSON.stringify(error.body).includes(NOT_CLUSTERED)) {
+      return undefined;
+    }
+
+    throw error;
+  }
+}
 
 describe('the instance', () => {
   const jira: ServerClient = connect();
@@ -81,15 +96,15 @@ describe('the instance', () => {
   });
 
   it('asks the cluster about itself', async () => {
-    const nodes = await touch(() => jira.cluster.getAllNodes());
+    const nodes = await clustered(() => jira.cluster.getAllNodes());
     const nodeId = nodes?.[0]?.nodeId ?? 'no-such-node';
 
-    await touch(() => jira.cluster.changeNodeStateToOffline({ nodeId }));
-    await touch(() => jira.cluster.deleteNode({ nodeId }));
-    await touch(() => jira.cluster.setReadyToUpgrade());
-    await touch(() => jira.cluster.approveUpgrade());
-    await touch(() => jira.cluster.acknowledgeErrors());
-    await touch(() => jira.cluster.cancelUpgrade());
+    await clustered(() => jira.cluster.changeNodeStateToOffline({ nodeId }));
+    await clustered(() => jira.cluster.deleteNode({ nodeId }));
+    await clustered(() => jira.cluster.setReadyToUpgrade());
+    await clustered(() => jira.cluster.approveUpgrade());
+    await clustered(() => jira.cluster.acknowledgeErrors());
+    await clustered(() => jira.cluster.cancelUpgrade());
   });
 
   it('handles the email templates', async () => {
