@@ -20,7 +20,7 @@ export const SearchPrioritiesSchema = z.object({
    * Use `schemes` to return the associated priority schemes for each priority. Limited to returning first 15 priority
    * schemes per priority.
    */
-  expand: z.string().optional(),
+  expand: z.union([z.string().optional(), z.array(z.string())]).optional(),
 });
 
 export type SearchPriorities = z.input<typeof SearchPrioritiesSchema>;

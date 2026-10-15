@@ -113,7 +113,6 @@ export async function addComment(client: Client, parameters: AddComment, options
       options,
     );
   }
-
   const config: SendRequestOptions<Comment> = {
     url: `/rest/api/3/issue/${parameters.issueIdOrKey}/comment`,
     method: 'POST',
@@ -211,7 +210,6 @@ export async function updateComment(
       options,
     );
   }
-
   const config: SendRequestOptions<Comment> = {
     url: `/rest/api/3/issue/${parameters.issueIdOrKey}/comment/${parameters.id}`,
     method: 'PUT',

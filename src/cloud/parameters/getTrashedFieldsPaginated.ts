@@ -9,20 +9,40 @@ export const GetTrashedFieldsPaginatedSchema = z.object({
   id: z.array(z.string()).optional(),
   /** String used to perform a case-insensitive partial match with field names or descriptions. */
   query: z.string().optional(),
-  expand: openEnum([
-    'name',
-    '-name',
-    '+name',
-    'trashDate',
-    '-trashDate',
-    '+trashDate',
-    'plannedDeletionDate',
-    '-plannedDeletionDate',
-    '+plannedDeletionDate',
-    'projectsCount',
-    '-projectsCount',
-    '+projectsCount',
-  ]).optional(),
+  expand: z
+    .union([
+      openEnum([
+        'name',
+        '-name',
+        '+name',
+        'trashDate',
+        '-trashDate',
+        '+trashDate',
+        'plannedDeletionDate',
+        '-plannedDeletionDate',
+        '+plannedDeletionDate',
+        'projectsCount',
+        '-projectsCount',
+        '+projectsCount',
+      ]).optional(),
+      z.array(
+        openEnum([
+          'name',
+          '-name',
+          '+name',
+          'trashDate',
+          '-trashDate',
+          '+trashDate',
+          'plannedDeletionDate',
+          '-plannedDeletionDate',
+          '+plannedDeletionDate',
+          'projectsCount',
+          '-projectsCount',
+          '+projectsCount',
+        ]),
+      ),
+    ])
+    .optional(),
   /**
    * [Order](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#ordering) the results by a field:
    *

@@ -96,6 +96,14 @@ export * from './boardPayload';
 
 export * from './boardsPayload';
 
+export * from './bulkAgentSessionInvocation';
+
+export * from './bulkAgentSessionItemError';
+
+export * from './bulkAgentSessionOutcome';
+
+export * from './bulkAgentSessionsResponse';
+
 export * from './bulkChangeOwnerDetails';
 
 export * from './bulkChangelogRequest';
@@ -134,13 +142,21 @@ export * from './bulkPermissionGrants';
 
 export * from './bulkPermissionsRequest';
 
+export * from './bulkPolicyOperationResponse';
+
 export * from './bulkProjectPermissionGrants';
 
 export * from './bulkProjectPermissions';
 
+export * from './bulkProjectPolicyRequest';
+
 export * from './bulkRedactionRequest';
 
 export * from './bulkRedactionResponse';
+
+export * from './bulkStartAgentSessionsBatchRequest';
+
+export * from './bulkStartUniformAgentSessionsRequest';
 
 export * from './bulkTransitionGetAvailableTransitions';
 
@@ -310,6 +326,8 @@ export * from './customFieldContextDefaultValueForgeUserField';
 
 export * from './customFieldContextDefaultValueLabels';
 
+export * from './customFieldContextDefaultValueLongText';
+
 export * from './customFieldContextDefaultValueMultiUserPicker';
 
 export * from './customFieldContextDefaultValueMultipleGroupPicker';
@@ -429,6 +447,8 @@ export * from './errorCollection';
 export * from './errorCollections';
 
 export * from './errorMessage';
+
+export * from './errorResponse';
 
 export * from './errors';
 
@@ -1290,6 +1310,12 @@ export * from './permissionsKeys';
 
 export * from './permittedProjects';
 
+export * from './policyApplicationViolation';
+
+export * from './policySummary';
+
+export * from './policySummaryResponse';
+
 export * from './previewConditionGroupConfiguration';
 
 export * from './previewRuleConfiguration';
@@ -1373,6 +1399,8 @@ export * from './projectPayload';
 export * from './projectPermissions';
 
 export * from './projectPinAction';
+
+export * from './projectResult';
 
 export * from './projectRole';
 
@@ -1552,6 +1580,8 @@ export * from './setDefaultPriorityRequest';
 
 export * from './setDefaultResolutionRequest';
 
+export * from './setProjectPoliciesRequest';
+
 export * from './sharePermission';
 
 export * from './sharePermissionInput';
@@ -1575,6 +1605,10 @@ export * from './singleRedactionRequest';
 export * from './singleRedactionResponse';
 
 export * from './softwareNavigationInfo';
+
+export * from './statePolicyDocument';
+
+export * from './statePolicyRule';
 
 export * from './status';
 
@@ -1771,6 +1805,8 @@ export * from './userMigration';
 export * from './userPermission';
 
 export * from './userPickerUser';
+
+export * from './validatePolicyRequest';
 
 export * from './validationOptionsForCreate';
 

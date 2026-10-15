@@ -38,11 +38,13 @@ async function requestJson<T>(url: string, init: RequestInit, fetchImpl?: FetchL
 
   if (!response.ok) {
     const text = await response.text().catch(() => '');
-    let body: unknown = text;
+    let body: unknown;
 
     try {
       body = JSON.parse(text);
-    } catch {}
+    } catch {
+      body = text;
+    }
 
     throw new OAuthError(
       `Request to ${url} failed with status ${response.status} ${response.statusText}${text ? `: ${text}` : ''}`,
