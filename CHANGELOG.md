@@ -1,5 +1,23 @@
 # Jira.js changelog
 
+## Unreleased
+
+The complete generated SDK is synchronized with `apis-code-gen` commit `c2b2fdc` and its committed Jira OpenAPI snapshot. These changes are intended for the next major release.
+
+### Breaking changes
+
+- Cloud `issues.deleteIssue({ deleteSubtasks })` now takes a boolean instead of a string. Replace `'true'` and `'false'` with `true` and `false`; the query still carries `deleteSubtasks=true` or `deleteSubtasks=false`. The Data Center parameter was already boolean in 6.3.0.
+- Data Center no longer exports the duplicate `ProjectCategoryJson` and `ProjectCategoryJsonSchema` models. Import `ProjectCategory` and `ProjectCategorySchema` from `jira.js/server/models` instead.
+- Cloud `CustomFieldContextDefaultValue` includes the new `type: 'longtext'` variant. Exhaustive switches must handle it.
+
+See [the migration steps](MIGRATION.md#unreleased-changes-for-the-next-major).
+
+### Improvements
+
+- List query parameters accept both comma-separated strings and lists on Cloud, Agile, Data Center, Service Management Cloud and Data Center, and Administration. This includes `fields`, `properties`, `expand`, permissions, account exclusions, and event filters. Existing inputs remain valid, known values remain editor suggestions, and each operation retains its existing query serialization.
+- Cloud `labels.getAllLabels` accepts optional `query` and `scope` filters. Eighteen Cloud models from the refreshed OpenAPI snapshot are exported, including the `longtext` default value. Experimental operations remain excluded.
+- The shared runtime is synchronized with the generator. `SchemaMismatchError` accepts the legacy string constructor and exposes `body`; Jira leaves that body empty by default and continues reporting paths and types without response values. The default mismatch behavior remains `warn`.
+
 ## 6.3.0
 
 Jira.js 6.3.0 expands the library beyond Jira Cloud while tightening the transport and correcting API shapes found against real Atlassian responses. The release adds clients for Jira Data Center, Jira Service Management Data Center, Assets on Cloud and Data Center, Atlassian Administration, user management, SCIM provisioning, and Teams. It also restores the API reference inside the VitePress site, fixing [#459](https://github.com/MrRefactoring/jira.js/issues/459).
