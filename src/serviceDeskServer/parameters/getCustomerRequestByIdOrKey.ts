@@ -10,7 +10,7 @@ export const GetCustomerRequestByIdOrKeySchema = z.object({
    * - `sla` - Return the SLA information on the given request.
    * - `status` - Return the status transitions, in chronological order, for each customer request in the response.
    */
-  expand: z.string().optional(),
+  expand: z.union([z.string().optional(), z.array(z.string())]).optional(),
   /** The id or key of the customer request. */
   issueIdOrKey: z.string(),
 });

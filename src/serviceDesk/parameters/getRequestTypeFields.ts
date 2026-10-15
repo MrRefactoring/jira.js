@@ -13,7 +13,7 @@ export const GetRequestTypeFieldsSchema = z.object({
    * information in the response. This parameter accepts `hiddenFields` that returns hidden fields associated with the
    * request type.
    */
-  expand: z.array(z.string()).optional(),
+  expand: z.union([z.array(z.string()).optional(), z.string()]).optional(),
 });
 
 export type GetRequestTypeFields = z.input<typeof GetRequestTypeFieldsSchema>;

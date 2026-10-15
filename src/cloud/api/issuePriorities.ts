@@ -125,7 +125,7 @@ export async function searchPriorities(
       projectId: parameters?.projectId,
       priorityName: parameters?.priorityName,
       onlyDefault: parameters?.onlyDefault,
-      expand: parameters?.expand,
+      expand: Array.isArray(parameters?.expand) ? parameters.expand.join(',') : parameters?.expand,
     },
     schema: PagePrioritySchema,
     signal: options?.signal,

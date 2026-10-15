@@ -68,7 +68,8 @@ export async function deleteProjectAvatar(
  *   Headers](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#special-request-headers).
  * - `Content-Type: image/image type` Valid image types are JPEG, GIF, or PNG.
  *
- * For example: `curl --request POST `
+ * For example:\
+ * `curl --request POST `
  *
  * `--user email@example.com:<api_token> `
  *

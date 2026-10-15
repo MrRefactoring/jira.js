@@ -14,7 +14,7 @@ export const GetRequestCommentByIdSchema = z.object({
    * - `renderedBody` (Experimental) returns the rendered body in HTML format (in addition to the raw body) of the
    *   comment.
    */
-  expand: z.array(z.string()).optional(),
+  expand: z.union([z.array(z.string()).optional(), z.string()]).optional(),
 });
 
 export type GetRequestCommentById = z.input<typeof GetRequestCommentByIdSchema>;

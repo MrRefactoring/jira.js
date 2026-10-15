@@ -16,7 +16,7 @@ export const GetRequestCommentsSchema = z.object({
    * - `renderedBody` (Experimental) returns the rendered body in HTML format (in addition to the raw body) for each
    *   comment.
    */
-  expand: z.array(z.string()).optional(),
+  expand: z.union([z.array(z.string()).optional(), z.string()]).optional(),
   /**
    * The starting index of the returned comments. Base index: 0. See the
    * [Pagination](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro#pagination) section for more
