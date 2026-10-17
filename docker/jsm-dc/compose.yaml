@@ -28,7 +28,7 @@ services:
       ATL_DB_DRIVER: org.postgresql.Driver
       ATL_TOMCAT_PORT: '8080'
       JVM_MINIMUM_MEMORY: 1024m
-      JVM_MAXIMUM_MEMORY: 3072m
+      JVM_MAXIMUM_MEMORY: ${JSM_DC_MAXIMUM_MEMORY:-3072m}
       ATL_PROXY_NAME: localhost
       ATL_PROXY_PORT: '8081'
       ATL_TOMCAT_SCHEME: http
