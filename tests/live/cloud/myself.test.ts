@@ -1,6 +1,7 @@
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 import type { CloudClient } from '#/cloud/createCloudClient';
 import { getCloudClient } from '../setup/client';
+import { runId } from '../helpers/naming';
 
 /**
  * Live suite for the `myself` API (`getCurrentUser`, `getLocale`, `getPreference`, `setPreference`,
@@ -12,7 +13,7 @@ import { getCloudClient } from '../setup/client';
  */
 
 /** Namespaced so a failed run can never clobber a real user preference. */
-const PREFERENCE_KEY = 'jira.js.livetest.preference';
+const PREFERENCE_KEY = `jira.js.livetest.preference.${runId()}`;
 
 describe('Jira Cloud — myself.getCurrentUser (live)', () => {
   let client: CloudClient;
@@ -78,6 +79,10 @@ describe('Jira Cloud — myself preferences (live, round trip)', () => {
   });
 
   it('overwrites rather than appending on a second write', async () => {
+    await client.myself.setPreference({ key: PREFERENCE_KEY, body: 'first' });
+
+    expect(await client.myself.getPreference({ key: PREFERENCE_KEY })).toBe('first');
+
     await client.myself.setPreference({ key: PREFERENCE_KEY, body: 'second' });
 
     expect(await client.myself.getPreference({ key: PREFERENCE_KEY })).toBe('second');
