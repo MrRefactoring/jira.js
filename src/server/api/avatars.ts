@@ -6,7 +6,13 @@ import type { GetAvatars as GetAvatarsParameters } from '../parameters/getAvatar
 import type { CreateAvatarFromTemporary } from '../parameters/createAvatarFromTemporary';
 import type { DeleteAvatar } from '../parameters/deleteAvatar';
 import type { StoreTemporaryAvatarUsingMultiPart } from '../parameters/storeTemporaryAvatarUsingMultiPart';
-import { type Client, type RequestOptions, type SendRequestOptions, toFormDataFile } from '#/core';
+import {
+  type Client,
+  type RequestOptions,
+  type SendRequestOptions,
+  toFormDataFile,
+  parseAvatarUploadResponse,
+} from '#/core';
 
 /** Returns all system avatars of the given type. */
 export async function getAllSystemAvatars(
@@ -92,9 +98,11 @@ export async function storeTemporaryAvatarUsingMultiPart(
     method: 'POST',
     headers: {
       'X-Atlassian-Token': 'no-check',
+      Accept: 'text/html',
     },
     body: formData,
     schema: AvatarCroppingSchema,
+    responseParser: parseAvatarUploadResponse,
     signal: options?.signal,
   };
 

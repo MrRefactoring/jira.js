@@ -2,7 +2,7 @@
 
 ## Unreleased
 
-The complete generated SDK is synchronized with `apis-code-gen` commit `c2b2fdc` and its committed Jira OpenAPI snapshot. These changes are intended for the next major release.
+The complete generated SDK is synchronized with `apis-code-gen` commit `4e0caaf` and its committed Jira OpenAPI snapshot. These changes are intended for the next major release.
 
 ### Breaking changes
 
@@ -17,6 +17,10 @@ See [the migration steps](MIGRATION.md#unreleased-changes-for-the-next-major).
 - List query parameters accept both comma-separated strings and lists on Cloud, Agile, Data Center, Service Management Cloud and Data Center, and Administration. This includes `fields`, `properties`, `expand`, permissions, account exclusions, and event filters. Existing inputs remain valid, known values remain editor suggestions, and each operation retains its existing query serialization.
 - Cloud `labels.getAllLabels` accepts optional `query` and `scope` filters. Eighteen Cloud models from the refreshed OpenAPI snapshot are exported, including the `longtext` default value. Experimental operations remain excluded.
 - The shared runtime is synchronized with the generator. `SchemaMismatchError` accepts the legacy string constructor and exposes `body`; Jira leaves that body empty by default and continues reporting paths and types without response values. The default mismatch behavior remains `warn`.
+
+### Fixes
+
+- Data Center multipart avatar uploads request HTML and parse the JSON embedded in the response, including cropping instructions and upload errors. The four live avatar scenarios now require a successful upload, creation, lookup and deletion using one authenticated session.
 
 ## 6.3.0
 

@@ -16,7 +16,13 @@ import type { GetIssueTypePropertyKeys } from '../parameters/getIssueTypePropert
 import type { GetIssueTypeProperty } from '../parameters/getIssueTypeProperty';
 import type { SetIssueTypeProperty } from '../parameters/setIssueTypeProperty';
 import type { DeleteIssueTypeProperty } from '../parameters/deleteIssueTypeProperty';
-import { type Client, type RequestOptions, type SendRequestOptions, toFormDataFile } from '#/core';
+import {
+  type Client,
+  type RequestOptions,
+  type SendRequestOptions,
+  toFormDataFile,
+  parseAvatarUploadResponse,
+} from '#/core';
 import { z } from 'zod';
 
 /** Returns a list of all issue types visible to the user */
@@ -204,8 +210,10 @@ export async function storeTemporaryIssueTypeAvatarUsingMultiPart(
     method: 'POST',
     headers: {
       'X-Atlassian-Token': 'no-check',
+      Accept: 'text/html',
     },
     body: formData,
+    responseParser: parseAvatarUploadResponse,
     signal: options?.signal,
   };
 

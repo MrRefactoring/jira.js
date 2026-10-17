@@ -59,7 +59,13 @@ import type { UnassignPriorityScheme } from '../parameters/unassignPrioritySchem
 import type { GetSecurityLevelsForProject } from '../parameters/getSecurityLevelsForProject';
 import type { GetWorkflowSchemeForProject } from '../parameters/getWorkflowSchemeForProject';
 import type { SearchForProjects } from '../parameters/searchForProjects';
-import { type Client, type RequestOptions, type SendRequestOptions, toFormDataFile } from '#/core';
+import {
+  type Client,
+  type RequestOptions,
+  type SendRequestOptions,
+  toFormDataFile,
+  parseAvatarUploadResponse,
+} from '#/core';
 import { z } from 'zod';
 
 /**
@@ -330,8 +336,10 @@ export async function storeTemporaryProjectAvatarUsingMultiPart(
     method: 'POST',
     headers: {
       'X-Atlassian-Token': 'no-check',
+      Accept: 'text/html',
     },
     body: formData,
+    responseParser: parseAvatarUploadResponse,
     signal: options?.signal,
   };
 
