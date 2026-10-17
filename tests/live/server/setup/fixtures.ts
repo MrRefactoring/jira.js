@@ -1,5 +1,5 @@
 import type { ServerClient } from '#/server/createServerClient';
-import { testName } from '../../helpers/naming';
+import { runId, testName } from '../../helpers/naming';
 
 export const FIXTURE = {
   propertyKey: 'jira-js',
@@ -146,7 +146,7 @@ export async function createFixtures(jira: ServerClient, projectKey: string, use
 
   await jira.webhooks.createWebhook({
     name: testName('webhook'),
-    url: 'https://example.com/jira-js',
+    url: `https://example.com/jira-js/${runId()}`,
     events: ['jira:issue_created'],
   });
 
