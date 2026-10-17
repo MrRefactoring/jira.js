@@ -64,6 +64,9 @@ timebomb licence in `docker/jsm-dc/timebomb-license.txt`.
 For a separate Jira Data Center rig, set `COMPOSE_PROJECT_NAME` to a unique name and `JIRA_DC_PORT` to a free port.
 Set `JIRA_SERVER_BASE_URL` to the matching URL for both startup and live checks. The default port remains 8080.
 
+For a separate Service Management rig, set `COMPOSE_PROJECT_NAME` to a unique name. On a shared Docker host,
+`JSM_DC_MAXIMUM_MEMORY` overrides its maximum JVM heap; the default is `3072m`.
+
 ## Reporting a bug
 
 The useful report names the endpoint, shows the call, and shows what came back. In 6.x an error carries the response
