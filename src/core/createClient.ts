@@ -486,7 +486,7 @@ export function createClient(config: ClientConfig | Client): Client {
 
       const isJson = contentType !== null && isJsonMediaType(contentType);
 
-      if (contentType && !isJson) {
+      if (contentType && !isJson && !requestConfig.responseParser) {
         if (requestConfig.schema) {
           throw new SchemaMismatchError(
             `Expected a JSON response to validate against the schema, got ${contentType}`,
@@ -503,7 +503,9 @@ export function createClient(config: ClientConfig | Client): Client {
 
       let data: unknown;
 
-      if (isJson) {
+      if (requestConfig.responseParser) {
+        data = await requestConfig.responseParser(response);
+      } else if (isJson) {
         const text = await response.text();
 
         try {

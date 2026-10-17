@@ -96,6 +96,7 @@ export type {
 } from './oauth/index.js';
 
 export { BlobSchema, BufferSchema, createMultipartRequestBody, toFormDataFile, mimeTypeFor } from './formData/index.js';
+export { parseAvatarUploadResponse } from './avatarUploadResponse.js';
 
 export type { AttachmentContent, AttachmentInput, Buffer, MultipartRequestBody } from './formData/index.js';
 

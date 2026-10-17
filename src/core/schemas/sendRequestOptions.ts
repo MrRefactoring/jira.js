@@ -24,6 +24,7 @@ export const sendRequestOptionsSchema = z.object({
 
 export type SendRequestOptions<T = unknown> = z.infer<typeof sendRequestOptionsSchema> & {
   schema?: z.ZodType<T>;
+  responseParser?: (response: Response) => Promise<unknown>;
   /**
    * Aborts the request, and any retry back-off it is waiting out.
    *

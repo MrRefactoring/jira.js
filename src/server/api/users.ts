@@ -45,7 +45,13 @@ import type { DeleteUserProperty } from '../parameters/deleteUserProperty';
 import type { FindUsers } from '../parameters/findUsers';
 import type { DeleteSession } from '../parameters/deleteSession';
 import type { FindUsersWithBrowsePermission } from '../parameters/findUsersWithBrowsePermission';
-import { type Client, type RequestOptions, type SendRequestOptions, toFormDataFile } from '#/core';
+import {
+  type Client,
+  type RequestOptions,
+  type SendRequestOptions,
+  toFormDataFile,
+  parseAvatarUploadResponse,
+} from '#/core';
 import { z } from 'zod';
 
 /** Returns a user. */
@@ -431,11 +437,13 @@ export async function storeTemporaryUserAvatarUsingMultiPart(
     method: 'POST',
     headers: {
       'X-Atlassian-Token': 'no-check',
+      Accept: 'text/html',
     },
     searchParams: {
       username: parameters.username,
     },
     body: formData,
+    responseParser: parseAvatarUploadResponse,
     signal: options?.signal,
   };
 
