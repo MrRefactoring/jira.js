@@ -1,6 +1,7 @@
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 import type { ServerClient } from '#/server/createServerClient';
-import { connect } from './setup/client';
+import { connect, connectWithSession } from './setup/client';
+import { AvatarCroppingSchema } from '#/server/models/avatarCropping';
 import { serverTestEnv } from './setup/env';
 import { touch } from './setup/touch';
 import { projectKey as newProjectKey, testName } from '../helpers/naming';
@@ -204,26 +205,39 @@ describe('projects', () => {
   });
 
   it('uploads an avatar and puts it back', async () => {
-    const temporary = await touch(() =>
-      jira.projects.storeTemporaryProjectAvatarUsingMultiPart({
-        projectIdOrKey: key,
-        avatar: { filename: 'avatar.png', content: pngBytes(1) },
-      }));
+    const jira = await connectWithSession();
+    const before = await jira.projects.getAllProjectAvatars({ projectIdOrKey: key });
+    const system = before.system?.[0];
 
-    if (temporary) {
-      await touch(() => jira.projects.createProjectAvatarFromTemporary({ projectIdOrKey: key, cropperWidth: 1 }));
+    expect(system?.id).toBeDefined();
+
+    const temporary = AvatarCroppingSchema.parse(await jira.projects.storeTemporaryProjectAvatarUsingMultiPart({
+      projectIdOrKey: key,
+      avatar: { filename: 'avatar.png', content: pngBytes(96) },
+    }));
+
+    expect(temporary.needsCropping).toBe(true);
+
+    const avatar = await jira.projects.createProjectAvatarFromTemporary({ ...temporary, projectIdOrKey: key });
+
+    expect(avatar.id).toMatch(/^\d+$/);
+
+    const stored = expect.objectContaining({ id: avatar.id });
+
+    try {
+      await jira.projects.updateProjectAvatar({ projectIdOrKey: key, id: avatar.id! });
+
+      const avatars = await jira.projects.getAllProjectAvatars({ projectIdOrKey: key });
+
+      expect(avatars.custom).toEqual(expect.arrayContaining([stored]));
+    } finally {
+      await jira.projects.updateProjectAvatar({ projectIdOrKey: key, id: system!.id! });
+      await jira.projects.deleteProjectAvatar({ projectIdOrKey: key, id: Number(avatar.id) });
     }
 
     const avatars = await jira.projects.getAllProjectAvatars({ projectIdOrKey: key });
 
-    expect(avatars.system?.length).toBeGreaterThan(0);
-
-    const system = avatars.system?.[0];
-
-    if (system?.id !== undefined) {
-      await touch(() => jira.projects.updateProjectAvatar({ projectIdOrKey: key, id: String(system.id) }));
-      await touch(() => jira.projects.deleteProjectAvatar({ projectIdOrKey: key, id: Number(system.id) }));
-    }
+    expect(avatars.custom).toEqual(expect.not.arrayContaining([stored]));
   });
 
   it('keeps a project role of its own', async () => {

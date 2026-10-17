@@ -59,7 +59,7 @@ async function waitForState(rig: Rig, accepted: string[]): Promise<string> {
   );
 }
 
-function createSession(): { fetch: (url: string, init?: RequestInit) => Promise<Response> } {
+export function createSession(): { fetch: (url: string, init?: RequestInit) => Promise<Response> } {
   const jar = new Map<string, string>();
 
   const store = (response: Response): void => {
@@ -133,9 +133,9 @@ function readLicense(rig: Rig): string {
 
   if (!existsSync(path)) {
     throw new Error(
-      `No licence at ${path}. It is deliberately not in the repository: take a three-hour timebomb licence from `
-        + 'https://developer.atlassian.com/platform/marketplace/timebomb-licenses-for-testing-server-apps/ '
-        + 'and save it there.',
+      `No licence at ${path}. It is deliberately not in the repository: take a three-hour timebomb licence from ` +
+        'https://developer.atlassian.com/platform/marketplace/timebomb-licenses-for-testing-server-apps/ ' +
+        'and save it there.',
     );
   }
 

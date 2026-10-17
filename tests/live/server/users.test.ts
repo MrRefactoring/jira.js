@@ -1,6 +1,7 @@
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 import type { ServerClient } from '#/server/createServerClient';
-import { connect } from './setup/client';
+import { connect, connectWithSession } from './setup/client';
+import { AvatarCroppingSchema } from '#/server/models/avatarCropping';
 import { serverTestEnv } from './setup/env';
 import { touch } from './setup/touch';
 import { runId, testName } from '../helpers/naming';
@@ -117,24 +118,39 @@ describe('users and groups', () => {
   });
 
   it('keeps an avatar for the user', async () => {
-    const avatars = await jira.users.getAllUserAvatars({ username: name });
+    const jira = await connectWithSession();
+    const before = await jira.users.getAllUserAvatars({ username });
+    const system = before.system?.[0];
 
-    expect(avatars.system?.length).toBeGreaterThan(0);
+    expect(system?.id).toBeDefined();
 
-    const temporary = await touch(() =>
-      jira.users.storeTemporaryUserAvatarUsingMultiPart({
-        username: name,
-        avatar: { filename: 'avatar.png', content: pngBytes(1) },
-      }));
+    const temporary = AvatarCroppingSchema.parse(await jira.users.storeTemporaryUserAvatarUsingMultiPart({
+      username,
+      avatar: { filename: 'avatar.png', content: pngBytes(96) },
+    }));
 
-    await touch(() => jira.users.createUserAvatarFromTemporary({ username: name, cropperWidth: 1 }));
+    expect(temporary.needsCropping).toBe(true);
 
-    const system = avatars.system?.[0];
+    const avatar = await jira.users.createUserAvatarFromTemporary({ ...temporary, username });
 
-    if (system?.id !== undefined) {
-      await touch(() => jira.users.updateUserAvatar({ username: name, id: String(system.id) }));
-      await touch(() => jira.users.deleteUserAvatar({ username: name, id: Number(system.id) }));
+    expect(avatar.id).toMatch(/^\d+$/);
+
+    const stored = expect.objectContaining({ id: avatar.id });
+
+    try {
+      await jira.users.updateUserAvatar({ username, id: avatar.id! });
+
+      const avatars = await jira.users.getAllUserAvatars({ username });
+
+      expect(avatars.custom).toEqual(expect.arrayContaining([stored]));
+    } finally {
+      await jira.users.updateUserAvatar({ username, id: system!.id! });
+      await jira.users.deleteUserAvatar({ username, id: Number(avatar.id) });
     }
+
+    const avatars = await jira.users.getAllUserAvatars({ username });
+
+    expect(avatars.custom).toEqual(expect.not.arrayContaining([stored]));
   });
 
   it('reads and writes the signed-in account', async () => {

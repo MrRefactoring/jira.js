@@ -1,7 +1,9 @@
 import { describe, expect, inject, it } from 'vitest';
 import { isApiError } from '#/core';
 import type { ServerClient } from '#/server/createServerClient';
-import { connect } from './setup/client';
+import type { Avatar } from '#/server/models/avatar';
+import { AvatarCroppingSchema } from '#/server/models/avatarCropping';
+import { connect, connectWithSession } from './setup/client';
 import { serverTestEnv } from './setup/env';
 import { touch } from './setup/touch';
 import { pngBytes } from '../helpers/image';
@@ -18,6 +20,28 @@ async function clustered<T>(run: () => Promise<T>): Promise<T | undefined> {
 
     throw error;
   }
+}
+
+async function verifyAvatar(
+  jira: ServerClient,
+  owner: { type: string; owningObjectId: string },
+  avatar: Avatar,
+): Promise<void> {
+  expect(avatar.id).toMatch(/^\d+$/);
+
+  const stored = expect.objectContaining({ id: avatar.id });
+
+  try {
+    const avatars = await jira.avatars.getAvatars(owner);
+
+    expect(avatars.custom).toEqual(expect.arrayContaining([stored]));
+  } finally {
+    await jira.avatars.deleteAvatar({ ...owner, id: Number(avatar.id) });
+  }
+
+  const avatars = await jira.avatars.getAvatars(owner);
+
+  expect(avatars.custom).toEqual(expect.not.arrayContaining([stored]));
 }
 
 describe('the instance', () => {
@@ -120,40 +144,34 @@ describe('the instance', () => {
   });
 
   it('keeps an avatar through the universal endpoints', async () => {
-    const temporary = await touch(() =>
-      jira.avatars.storeTemporaryAvatarUsingMultiPart({
-        type: 'project',
-        owningObjectId: fixtures.projectId,
-        avatar: { filename: 'avatar.png', content: pngBytes(1) },
-      }));
+    const jira = await connectWithSession();
+    const owner = { type: 'project', owningObjectId: fixtures.projectId };
+    const temporary = await jira.avatars.storeTemporaryAvatarUsingMultiPart({
+      ...owner,
+      avatar: { filename: 'avatar.png', content: pngBytes(96) },
+    });
 
-    if (temporary !== undefined) expect(temporary.cropperWidth ?? temporary.url).toBeDefined();
+    expect(temporary.needsCropping).toBe(true);
 
-    await touch(() =>
-      jira.avatars.createAvatarFromTemporary({
-        type: 'project',
-        owningObjectId: fixtures.projectId,
-        cropperWidth: 1,
-      }));
+    const avatar = await jira.avatars.createAvatarFromTemporary({ ...temporary, ...owner });
 
-    const avatars = await jira.avatars.getAvatars({ type: 'project', owningObjectId: fixtures.projectId });
+    await verifyAvatar(jira, owner, avatar);
+  });
 
-    expect(avatars.system?.length ?? 0).toBeGreaterThanOrEqual(0);
-
-    await touch(() =>
-      jira.avatars.deleteAvatar({ type: 'project', owningObjectId: fixtures.projectId, id: 1 }));
-
-    await touch(() =>
-      jira.issueTypes.storeTemporaryIssueTypeAvatarUsingMultiPart({
+  it('keeps an avatar through the issue type endpoints', async () => {
+    const jira = await connectWithSession();
+    const temporary = AvatarCroppingSchema.parse(
+      await jira.issueTypes.storeTemporaryIssueTypeAvatarUsingMultiPart({
         id: fixtures.issueTypeId,
-        avatar: { filename: 'avatar.png', content: pngBytes(1) },
-      }));
+        avatar: { filename: 'avatar.png', content: pngBytes(96) },
+      }),
+    );
 
-    await touch(() =>
-      jira.issueTypes.createIssueTypeAvatarFromTemporary({ id: fixtures.issueTypeId, cropperWidth: 1 }));
+    expect(temporary.needsCropping).toBe(true);
 
-    await touch(() =>
-      jira.projects.createProjectAvatarFromTemporary({ projectIdOrKey: fixtures.projectId, cropperWidth: 1 }));
+    const avatar = await jira.issueTypes.createIssueTypeAvatarFromTemporary({ ...temporary, id: fixtures.issueTypeId });
+
+    await verifyAvatar(jira, { type: 'issuetype', owningObjectId: fixtures.issueTypeId }, avatar);
   });
 
   it('runs the upgrade tasks', async () => {
