@@ -30,10 +30,10 @@ services:
       JVM_MINIMUM_MEMORY: 1024m
       JVM_MAXIMUM_MEMORY: 2048m
       ATL_PROXY_NAME: localhost
-      ATL_PROXY_PORT: '8080'
+      ATL_PROXY_PORT: '${JIRA_DC_PORT:-8080}'
       ATL_TOMCAT_SCHEME: http
     ports:
-      - '127.0.0.1:8080:8080'
+      - '127.0.0.1:${JIRA_DC_PORT:-8080}:8080'
     volumes:
       - jira-home:/var/atlassian/application-data/jira
 
