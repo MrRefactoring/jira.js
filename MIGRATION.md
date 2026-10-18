@@ -351,7 +351,7 @@ The cost is that these types no longer accept an arbitrary object. If you were b
 
 ## Unreleased changes for the next major
 
-The complete SDK regeneration introduces three changes to check before upgrading.
+The complete SDK regeneration introduces four changes to check before upgrading.
 
 Cloud issue deletion takes a boolean for `deleteSubtasks`. Data Center already uses this form. The serialized query remains `deleteSubtasks=true` or `deleteSubtasks=false`.
 
@@ -378,6 +378,12 @@ if (value.type === 'longtext') {
 ```
 
 List query parameters also accept comma-separated strings beside arrays. Existing callers can keep their current inputs. Serialization follows each operation's existing contract: parameters sent as one comma-separated value still use one value; arrays already sent as repeated keys keep that behavior. For example, Cloud issue `fields` and `properties` retain repeated keys for arrays, while Data Center project `expand` joins its array with commas. A string such as `'description,lead'` is sent as one value.
+
+Service Management Data Center queue issues can have `fields: null` when the queue includes only the issue key. `serviceDeskServer.Issue.fields` is now `Record<string, any> | null | undefined`. Use a null-safe read:
+
+```ts
+const summary = issue.fields?.summary;
+```
 
 ## What you gain
 
