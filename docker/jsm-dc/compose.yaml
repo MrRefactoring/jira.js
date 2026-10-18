@@ -16,7 +16,7 @@ services:
       - postgres-data:/var/lib/postgresql/data
 
   jira:
-    image: atlassian/jira-servicemanagement:${JSM_DC_VERSION:-10.3.25}
+    image: atlassian/jira-servicemanagement:${JSM_DC_VERSION:-11.3.12}
     depends_on:
       postgres:
         condition: service_healthy

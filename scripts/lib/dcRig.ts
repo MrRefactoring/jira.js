@@ -236,6 +236,55 @@ async function waitForRest(rig: Rig): Promise<void> {
   );
 }
 
+async function allowBasicAuth(rig: Rig): Promise<void> {
+  const myself = `${rig.baseUrl}/rest/api/2/myself`;
+  const headers = {
+    Authorization: `Basic ${Buffer.from(`${rig.adminUsername}:${rig.adminPassword}`).toString('base64')}`,
+  };
+  const probe = await fetch(myself, { headers });
+  if (probe.ok) return;
+  if (
+    probe.status !== 403 ||
+    !(await probe.text()).includes('Basic Authentication has been disabled on this instance.')
+  ) {
+    throw new Error(`The administrator authentication probe answered HTTP ${probe.status}.`);
+  }
+
+  console.log('▸ allowing basic authentication on the test instance');
+  const session = createSession();
+  const jsonHeaders = { 'Content-Type': 'application/json', 'X-Atlassian-Token': 'no-check' };
+  const login = await session.fetch(`${rig.baseUrl}/rest/tsv/1.0/authenticate`, {
+    method: 'POST',
+    headers: jsonHeaders,
+    body: JSON.stringify({
+      username: rig.adminUsername,
+      password: rig.adminPassword,
+      rememberMe: false,
+      targetUrl: '',
+    }),
+  });
+  if (!login.ok) throw new Error(`The administrator login answered HTTP ${login.status}.`);
+  const sudo = await session.fetch(`${rig.baseUrl}/secure/admin/WebSudoAuthenticate.jspa`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded', 'X-Atlassian-Token': 'no-check' },
+    body: new URLSearchParams({ webSudoPassword: rig.adminPassword }),
+  });
+  if (sudo.status >= 400) throw new Error(`The WebSudo confirmation answered HTTP ${sudo.status}.`);
+  const configured = await session.fetch(`${rig.baseUrl}/rest/basicauth/1.0/config`, {
+    method: 'PUT',
+    headers: jsonHeaders,
+    body: JSON.stringify({
+      'block-requests': false,
+      'allowed-paths': [],
+      'allowed-users': [],
+      'show-warning-message': true,
+    }),
+  });
+  if (!configured.ok) throw new Error(`Configuring basic authentication answered HTTP ${configured.status}.`);
+  const authenticated = await fetch(myself, { headers });
+  if (!authenticated.ok) throw new Error(`Basic authentication is still refused: HTTP ${authenticated.status}.`);
+}
+
 export async function runRigCommand(rig: Rig, command: string): Promise<void> {
   if (command === 'down') {
     compose(rig, 'down', '--volumes');
@@ -271,6 +320,7 @@ export async function runRigCommand(rig: Rig, command: string): Promise<void> {
   }
 
   await waitForRest(rig);
+  await allowBasicAuth(rig);
 
   console.log(`✔ ready at ${rig.baseUrl} — sign in as ${rig.adminUsername}, password from JIRA_SERVER_PASSWORD`);
 }

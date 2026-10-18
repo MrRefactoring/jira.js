@@ -66,6 +66,8 @@ Set `JIRA_SERVER_BASE_URL` to the matching URL for both startup and live checks.
 
 For a separate Service Management rig, set `COMPOSE_PROJECT_NAME` to a unique name. On a shared Docker host,
 `JSM_DC_MAXIMUM_MEMORY` overrides its maximum JVM heap; the default is `3072m`.
+The Service Management rig defaults to 11.3.12, matching the vendored API document. Startup enables basic
+authentication on the test instance when its default policy blocks the API credentials.
 
 ## Reporting a bug
 
