@@ -1,7 +1,6 @@
 import type { Uncovered } from '../../../scripts/lib/liveCoverage.ts';
 
-const NOT_LICENSED = 'Service Management is not licensed on the rig, and every servicedeskapi endpoint answers 403.';
-const NO_TEST_YET = 'Service Management is licensed on the rig, but no live test calls this endpoint yet.';
+const NOT_LICENSED = 'Service Management is not licensed on the rig; the licensed Service Desk scenarios cannot run.';
 
 const SERVICE_DESK = [
   'DELETE /servicedeskapi/organization/cleanup',
@@ -67,7 +66,5 @@ const SERVICE_DESK = [
 ];
 
 export function uncovered(licensed: boolean): Uncovered[] {
-  const reason = licensed ? NO_TEST_YET : NOT_LICENSED;
-
-  return SERVICE_DESK.map(endpoint => ({ endpoint, reason }));
+  return licensed ? [] : SERVICE_DESK.map(endpoint => ({ endpoint, reason: NOT_LICENSED }));
 }

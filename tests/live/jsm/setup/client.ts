@@ -1,12 +1,20 @@
 import { createClient, type Client } from '#/core';
 import { createAssetsServerClient, type AssetsServerClient } from '#/assetsServer/createAssetsServerClient';
-import { createServiceDeskServerClient, type ServiceDeskServerClient } from '#/serviceDeskServer/createServiceDeskServerClient';
+import {
+  createServiceDeskServerClient,
+  type ServiceDeskServerClient,
+} from '#/serviceDeskServer/createServiceDeskServerClient';
 import { jsmTestEnv } from './env';
+import { createServerClient, type ServerClient } from '#/server/createServerClient';
 
-function connect(): Client {
+export function connect(): Client {
   const { host, username, password } = jsmTestEnv();
 
   return createClient({ host, auth: { type: 'basic', username, password }, onSchemaMismatch: 'throw' });
+}
+
+export function platform(): ServerClient {
+  return createServerClient(connect());
 }
 
 export function assets(): AssetsServerClient {

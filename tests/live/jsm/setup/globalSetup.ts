@@ -3,9 +3,10 @@ import type { TestProject } from 'vitest/node';
 import { jsmTestEnv } from './env';
 import { recordServiceDeskLicence } from './licenceMarker';
 import { refuseUnlessThrowaway } from './guard';
-import { assets } from './client';
+import { assets, serviceDesk } from './client';
 import { createFixtures, type Cleanup, type Fixtures } from './fixtures';
 import { flushRecordedCalls } from '../../setup/recordCalls';
+import { createServiceDeskFixtures } from './serviceDeskFixtures';
 
 declare module 'vitest' {
   interface ProvidedContext {
@@ -13,29 +14,30 @@ declare module 'vitest' {
   }
 }
 
-async function isServiceDeskLicensed(host: string, username: string, password: string): Promise<boolean> {
-  const response = await fetch(`${host}/rest/servicedeskapi/info`, {
-    headers: {
-      Authorization: `Basic ${Buffer.from(`${username}:${password}`).toString('base64')}`,
-      Accept: 'application/json',
-    },
-  });
-
-  if (!response.ok) return false;
-
-  return ((await response.json()) as { isLicensedForUse?: boolean }).isLicensedForUse === true;
+async function isServiceDeskLicensed(): Promise<boolean> {
+  const info = await serviceDesk().info.getInfo();
+  if (typeof info.isLicensedForUse !== 'boolean') throw new Error('Service Desk info omitted its license status.');
+  return info.isLicensedForUse;
 }
 
 const cleanup: Cleanup[] = [];
 
 async function removeWhatWasCreated(): Promise<void> {
-  while (cleanup.length > 0) await cleanup.pop()!().catch(() => {});
+  const errors: unknown[] = [];
+  while (cleanup.length > 0) {
+    try {
+      await cleanup.pop()!();
+    } catch (error) {
+      errors.push(error);
+    }
+  }
+  if (errors.length > 0) throw new AggregateError(errors, 'Failed to remove live-test fixtures.');
 }
 
 export async function setup(project: TestProject): Promise<void> {
   refuseUnlessThrowaway();
 
-  const { host, username, password } = jsmTestEnv();
+  const { host } = jsmTestEnv();
 
   let state: string;
 
@@ -47,27 +49,27 @@ export async function setup(project: TestProject): Promise<void> {
     state = ((await response.json()) as { state?: string }).state ?? 'UNKNOWN';
   } catch (error) {
     throw new Error(
-      `No Jira Service Management instance is answering at ${host}: `
-        + `${error instanceof Error ? error.message : String(error)}\nStart one with: pnpm jsm-dc:up`,
+      `No Jira Service Management instance is answering at ${host}: ` +
+        `${error instanceof Error ? error.message : String(error)}\nStart one with: pnpm jsm-dc:up`,
     );
   }
 
   if (state !== 'RUNNING') {
     throw new Error(
-      `The Jira Service Management instance at ${host} is in state ${state}, not RUNNING.\n`
-        + 'If it is still starting, wait; if it has never been set up, run: pnpm jsm-dc:up',
+      `The Jira Service Management instance at ${host} is in state ${state}, not RUNNING.\n` +
+        'If it is still starting, wait; if it has never been set up, run: pnpm jsm-dc:up',
     );
   }
 
-  const licensed = await isServiceDeskLicensed(host, username, password);
+  const licensed = await isServiceDeskLicensed();
 
   recordServiceDeskLicence(resolve(import.meta.dirname, '..', '..', '..', '..'), licensed);
 
   if (!licensed) {
     console.warn(
-      'Service Desk is not licensed on this instance, so its suites will stand down. Assets runs either way.\n'
-        + 'Put a Service Management Data Center timebomb in docker/jsm-dc/timebomb-license.txt to license it.\n'
-        + 'The Service Desk suite is two tests so far; the rest of that surface is listed in tests/live/jsm/uncovered.ts.',
+      'Service Desk is not licensed on this instance, so its suites will stand down. Assets runs either way.\n' +
+        'Put a Service Management Data Center timebomb in docker/jsm-dc/timebomb-license.txt to license it.\n' +
+        'The licensed Service Desk scenarios require a service project and its template workflows.',
     );
   }
 
@@ -75,8 +77,13 @@ export async function setup(project: TestProject): Promise<void> {
 
   try {
     created = await createFixtures(assets(), licensed, cleanup);
+    if (licensed) created.serviceDesk = await createServiceDeskFixtures(cleanup);
   } catch (error) {
-    await removeWhatWasCreated();
+    try {
+      await removeWhatWasCreated();
+    } catch (cleanupError) {
+      throw new AggregateError([error, cleanupError], 'Preparing and removing live-test fixtures failed.');
+    }
 
     throw error;
   }

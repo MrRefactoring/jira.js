@@ -1,9 +1,11 @@
 import type { AssetsServerClient } from '#/assetsServer/createAssetsServerClient';
 import { assetName, schemaKey } from './naming';
+import type { ServiceDeskFixtures } from './serviceDeskFixtures';
 
 export type Cleanup = () => Promise<unknown>;
 
 export interface Fixtures {
+  serviceDesk?: ServiceDeskFixtures;
   serviceDeskLicensed: boolean;
   schemaId: number;
   objectTypeId: number;
