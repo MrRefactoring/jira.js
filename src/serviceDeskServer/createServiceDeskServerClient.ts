@@ -99,6 +99,7 @@ import type {
   RequestTypePermission,
   ServiceDesk,
   SoftwareInfo,
+  QueueSettings,
 } from './models';
 
 export type ServiceDeskServerClientConfig = Omit<ClientConfig, 'auth' | 'host'> & {
@@ -286,8 +287,10 @@ export function createServiceDeskServerClient(clientConfig: ServiceDeskServerCli
       getInfo: (options?: RequestOptions): Promise<SoftwareInfo> => info.getInfo(client, options),
     },
     queueSettings: {
-      getQueueSettingsOnProject: (parameters: GetQueueSettingsOnProject, options?: RequestOptions): Promise<void> =>
-        queueSettings.getQueueSettingsOnProject(client, parameters, options),
+      getQueueSettingsOnProject: (
+        parameters: GetQueueSettingsOnProject,
+        options?: RequestOptions,
+      ): Promise<QueueSettings> => queueSettings.getQueueSettingsOnProject(client, parameters, options),
       setShouldQueuesIncludeCountGlobally: (
         parameters: SetShouldQueuesIncludeCountGlobally,
         options?: RequestOptions,

@@ -2,7 +2,7 @@
 
 ## Unreleased
 
-The complete generated SDK is synchronized with `apis-code-gen` commit `546786b` and its committed Jira OpenAPI snapshot. These changes are intended for the next major release.
+The complete generated SDK is synchronized with `apis-code-gen` commit `d53513a` and its committed Jira OpenAPI snapshot. These changes are intended for the next major release.
 
 ### Breaking changes
 
@@ -10,6 +10,7 @@ The complete generated SDK is synchronized with `apis-code-gen` commit `546786b`
 - Data Center no longer exports the duplicate `ProjectCategoryJson` and `ProjectCategoryJsonSchema` models. Import `ProjectCategory` and `ProjectCategorySchema` from `jira.js/server/models` instead.
 - Cloud `CustomFieldContextDefaultValue` includes the new `type: 'longtext'` variant. Exhaustive switches must handle it.
 - Service Management Data Center `Issue.fields` can be `null`, as returned by queues containing only the issue key. Guard the field before reading its entries.
+- Service Management Data Center `queueSettings.getQueueSettingsOnProject` returns `Promise<QueueSettings>` instead of `Promise<void>`. Wrappers that explicitly promise `void` must discard the returned settings.
 
 See [the migration steps](MIGRATION.md#unreleased-changes-for-the-next-major).
 
@@ -24,6 +25,7 @@ See [the migration steps](MIGRATION.md#unreleased-changes-for-the-next-major).
 
 - Data Center multipart avatar uploads request HTML and parse the JSON embedded in the response, including cropping instructions and upload errors. The four live avatar scenarios now require a successful upload, creation, lookup and deletion using one authenticated session.
 - Service Management Data Center queue pages validate successfully when an issue has `fields: null`.
+- Service Management Data Center queue settings validate and expose the `includeQueueCount` and `useCachedQueueCount` booleans returned by the server. The vendor document omitted the response schema.
 
 ## 6.3.0
 
