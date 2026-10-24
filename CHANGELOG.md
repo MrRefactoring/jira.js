@@ -2,7 +2,9 @@
 
 ## Unreleased
 
-The complete generated SDK is synchronized with `apis-code-gen` commit `d53513a` and its committed Jira OpenAPI snapshot. These changes are intended for the next major release.
+## 7.0.0
+
+Jira.js 7.0.0 synchronizes the complete generated SDK with `apis-code-gen` commit `d53513a` and its committed Jira OpenAPI snapshot.
 
 ### Breaking changes
 
@@ -12,7 +14,7 @@ The complete generated SDK is synchronized with `apis-code-gen` commit `d53513a`
 - Service Management Data Center `Issue.fields` can be `null`, as returned by queues containing only the issue key. Guard the field before reading its entries.
 - Service Management Data Center `queueSettings.getQueueSettingsOnProject` returns `Promise<QueueSettings>` instead of `Promise<void>`. Wrappers that explicitly promise `void` must discard the returned settings.
 
-See [the migration steps](MIGRATION.md#unreleased-changes-for-the-next-major).
+See [the migration steps](MIGRATION.md#migrating-to-7).
 
 ### Improvements
 

@@ -1,6 +1,6 @@
-# Migrating to jira.js 6.0
+# Migrating to jira.js
 
-For the pending major release, see [Unreleased changes for the next major](#unreleased-changes-for-the-next-major).
+To upgrade from 6.3 to 7.0, see [Migrating to 7](#migrating-to-7).
 
 6.0 replaces the transport, the client shape and the API surface. This is a rewrite, not a refresh, and there is no version of this page that makes the upgrade small. What follows is what changed, why, and what to do about it.
 
@@ -349,7 +349,7 @@ TypeScript now knows which fields go together — `useCurrent` belongs to `datep
 
 The cost is that these types no longer accept an arbitrary object. If you were building one of them by hand, the compiler will ask which branch you meant; add the `type` the API already required. And since the union is checked at runtime as well, a `type` Atlassian adds later matches no branch and is reported the way any other drift is — one warning, body handed back unvalidated, nothing thrown.
 
-## Unreleased changes for the next major
+## Migrating to 7
 
 The complete SDK regeneration introduces five changes to check before upgrading.
 
