@@ -1,7 +1,8 @@
-import { afterAll, beforeAll, describe, expect, it } from 'vitest';
-import { isForbiddenError, isNotFoundError } from '#/core';
+import { afterAll, beforeAll, beforeEach, describe, expect, it } from 'vitest';
+import { isNotFoundError } from '#/core';
 import type { CloudClient } from '#/cloud/createCloudClient';
 import { getCloudClient } from '../setup/client';
+import { hasCloudAdminPermission } from '../setup/permissions';
 import { ResourceTracker } from '../setup/resources';
 import { testName } from '../helpers/naming';
 
@@ -20,23 +21,22 @@ describe('Jira Cloud — projectCategories (live)', () => {
   const tracker = new ResourceTracker();
   let client: CloudClient;
   let categoryId: number;
-  let permitted = true;
+  let permitted = false;
   const name = testName('category').replace(/[[\]]/g, '');
 
   beforeAll(async () => {
     client = getCloudClient();
+    permitted = await hasCloudAdminPermission(client);
 
-    const created = await client.projectCategories
-      .createProjectCategory({ name, description: 'created by the live suite' })
-      .catch((e: unknown) => e);
+    if (!permitted) return;
 
-    if (created instanceof Error) {
-      permitted = false;
+    const created = await client.projectCategories.createProjectCategory({
+      name,
+      description: 'created by the live suite',
+    });
 
-      return;
-    }
-
-    categoryId = Number((created as { id?: string }).id);
+    categoryId = Number(created.id);
+    expect(categoryId).toBeGreaterThan(0);
     tracker.defer(async () => {
       await client.projectCategories.removeProjectCategory({ id: categoryId });
     });
@@ -44,21 +44,15 @@ describe('Jira Cloud — projectCategories (live)', () => {
 
   afterAll(() => tracker.cleanup());
 
-  it('creates a category, or refuses typed without admin rights', async () => {
-    if (!permitted) {
-      const error = await client.projectCategories.createProjectCategory({ name }).catch((e: unknown) => e);
+  beforeEach(ctx => {
+    ctx.skip(!permitted, 'the account lacks the ADMINISTER permission required by this suite');
+  });
 
-      expect(isForbiddenError(error) || (error as { status?: number }).status === 401).toBe(true);
-
-      return;
-    }
-
+  it('creates a category', () => {
     expect(categoryId).toBeGreaterThan(0);
   });
 
   it('reads the category back by id', async () => {
-    if (!permitted) return;
-
     const category = await client.projectCategories.getProjectCategoryById({ id: categoryId });
 
     expect(category.name).toBe(name);
@@ -67,16 +61,12 @@ describe('Jira Cloud — projectCategories (live)', () => {
   });
 
   it('lists it among the site categories', async () => {
-    if (!permitted) return;
-
     const all = await client.projectCategories.getAllProjectCategories();
 
     expect(all.map(category => Number(category.id))).toContain(categoryId);
   });
 
   it('changes the description on update', async () => {
-    if (!permitted) return;
-
     await client.projectCategories.updateProjectCategory({ id: categoryId, body: { description: 'edited' } });
 
     const category = await client.projectCategories.getProjectCategoryById({ id: categoryId });
@@ -86,8 +76,6 @@ describe('Jira Cloud — projectCategories (live)', () => {
   });
 
   it('rejects a category whose name collides with an existing one', async () => {
-    if (!permitted) return;
-
     const error = await client.projectCategories.createProjectCategory({ name }).catch((e: unknown) => e);
 
     expect(error).toBeInstanceOf(Error);
@@ -95,8 +83,6 @@ describe('Jira Cloud — projectCategories (live)', () => {
   });
 
   it('makes the category unreadable once removed', async () => {
-    if (!permitted) return;
-
     const throwaway = await client.projectCategories.createProjectCategory({ name: `${name}-throwaway` });
     const id = Number(throwaway.id);
 

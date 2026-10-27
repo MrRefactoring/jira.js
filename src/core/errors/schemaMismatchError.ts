@@ -25,6 +25,8 @@ export class SchemaMismatchError extends Error {
   readonly report: SchemaMismatchReport;
   readonly body: string;
 
+  constructor(message: string, body: string, options?: { cause?: unknown; body?: string });
+  constructor(message: string, report: SchemaMismatchReport, options?: { cause?: unknown; body?: string });
   constructor(message: string, report: SchemaMismatchReport | string, options?: { cause?: unknown; body?: string }) {
     super(message, options);
     this.name = 'SchemaMismatchError';
