@@ -1,7 +1,5 @@
 # Migrating to jira.js 6.0
 
-For the pending major release, see [Unreleased changes for the next major](#unreleased-changes-for-the-next-major).
-
 6.0 replaces the transport, the client shape and the API surface. This is a rewrite, not a refresh, and there is no version of this page that makes the upgrade small. What follows is what changed, why, and what to do about it.
 
 A codemod handles the mechanical parts:
@@ -348,36 +346,6 @@ for (const context of page.values ?? []) {
 TypeScript now knows which fields go together — `useCurrent` belongs to `datepicker`, `optionId` to `option.single` — so a typo in a branch-specific field is a compile error rather than `undefined` at runtime.
 
 The cost is that these types no longer accept an arbitrary object. If you were building one of them by hand, the compiler will ask which branch you meant; add the `type` the API already required. And since the union is checked at runtime as well, a `type` Atlassian adds later matches no branch and is reported the way any other drift is — one warning, body handed back unvalidated, nothing thrown.
-
-## Unreleased changes for the next major
-
-The complete SDK regeneration introduces three changes to check before upgrading.
-
-Cloud issue deletion takes a boolean for `deleteSubtasks`. Data Center already uses this form. The serialized query remains `deleteSubtasks=true` or `deleteSubtasks=false`.
-
-```diff
--await cloud.issues.deleteIssue({ issueIdOrKey: 'EX-1', deleteSubtasks: 'true' });
-+await cloud.issues.deleteIssue({ issueIdOrKey: 'EX-1', deleteSubtasks: true });
-```
-
-The duplicate Data Center project-category model is removed. Replace both the type and schema imports:
-
-```diff
--import { ProjectCategoryJsonSchema, type ProjectCategoryJson } from 'jira.js/server/models';
-+import { ProjectCategorySchema, type ProjectCategory } from 'jira.js/server/models';
-```
-
-`ProjectCategorySchema` validates `self` as a URL. The removed duplicate accepted any string.
-
-`CustomFieldContextDefaultValue` now includes `type: 'longtext'`, with a required `contextId` and optional `text`. Add that branch to exhaustive switches or maps over the union's discriminator:
-
-```ts
-if (value.type === 'longtext') {
-  console.log(value.contextId, value.text);
-}
-```
-
-List query parameters also accept comma-separated strings beside arrays. Existing callers can keep their current inputs. Serialization follows each operation's existing contract: parameters sent as one comma-separated value still use one value; arrays already sent as repeated keys keep that behavior. For example, Cloud issue `fields` and `properties` retain repeated keys for arrays, while Data Center project `expand` joins its array with commas. A string such as `'description,lead'` is sent as one value.
 
 ## What you gain
 
