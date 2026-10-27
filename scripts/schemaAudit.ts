@@ -12,7 +12,7 @@
  * Runs on bare `node` — keep the types here erasable, as in scripts/checkBrowserSafe.ts.
  */
 import { spawnSync } from 'node:child_process';
-import { appendFileSync, existsSync, mkdirSync, readFileSync, rmSync } from 'node:fs';
+import { appendFileSync, existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -190,10 +190,11 @@ if (ranked.length > 0) {
 
 const report = `${summary.join('\n')}\n`;
 
+writeFileSync(join(dirname(findings), 'schema-audit-report.md'), report, 'utf8');
+console.log(`\n${report}`);
+
 if (process.env.GITHUB_STEP_SUMMARY) {
   appendFileSync(process.env.GITHUB_STEP_SUMMARY, report, 'utf8');
-} else {
-  console.log(`\n${report}`);
 }
 
 if (run.status !== 0) {
