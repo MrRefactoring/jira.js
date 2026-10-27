@@ -17,7 +17,7 @@ See [the migration steps](MIGRATION.md#unreleased-changes-for-the-next-major).
 ### Improvements
 
 - List query parameters accept both comma-separated strings and lists on Cloud, Agile, Data Center, Service Management Cloud and Data Center, and Administration. This includes `fields`, `properties`, `expand`, permissions, account exclusions, and event filters. Existing inputs remain valid, known values remain editor suggestions, and each operation retains its existing query serialization.
-- Cloud `labels.getAllLabels` accepts optional `query` and `scope` filters. Eighteen Cloud models from the refreshed OpenAPI snapshot are exported, including the `longtext` default value. Experimental operations remain excluded.
+- Cloud `labels.getAllLabels` accepts optional `query` and `scope` parameters; filtering depends on support from the Jira site. Eighteen Cloud models from the refreshed OpenAPI snapshot are exported, including the `longtext` default value. Experimental operations remain excluded.
 - The shared runtime is synchronized with the generator. `SchemaMismatchError` accepts the legacy string constructor and exposes `body`; Jira leaves that body empty by default and continues reporting paths and types without response values. The default mismatch behavior remains `warn`.
 - The licensed Service Management Data Center live rig now exercises all 119 Service Management and Assets endpoints on version 11.3.12, including approval decisions and organization cleanup.
 
