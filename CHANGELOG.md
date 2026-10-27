@@ -4,7 +4,7 @@
 
 ### Improvements
 
-- Add optional `query` and `scope` filters to Cloud `labels.getAllLabels`.
+- Add optional `query` and `scope` parameters to Cloud `labels.getAllLabels`. Filtering depends on support from the Jira site.
 
 - The licensed Service Management Data Center live rig now exercises all 119 Service Management and Assets endpoints on version 11.3.12, including approval decisions and organization cleanup.
 
