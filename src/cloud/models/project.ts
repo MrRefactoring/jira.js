@@ -95,6 +95,7 @@ export const ProjectSchema = apiObject({
    */
   versions: z.array(VersionSchema).optional(),
   entityId: z.string().optional(),
+  isLiveTemplate: z.boolean().optional(),
 });
 
 export type Project = z.infer<typeof ProjectSchema>;

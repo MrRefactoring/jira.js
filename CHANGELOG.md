@@ -23,6 +23,7 @@ See [the migration steps](MIGRATION.md#unreleased-changes-for-the-next-major).
 
 ### Fixes
 
+- Cloud `Project.isLiveTemplate` теперь описан как необязательный boolean. Ответы чтения проекта по ключу и ID проходят schema audit без дрифта; поле доступно в типах.
 - Data Center multipart avatar uploads request HTML and parse the JSON embedded in the response, including cropping instructions and upload errors. The four live avatar scenarios now require a successful upload, creation, lookup and deletion using one authenticated session.
 - Service Management Data Center queue pages validate successfully when an issue has `fields: null`.
 - Service Management Data Center queue settings validate and expose the `includeQueueCount` and `useCachedQueueCount` booleans returned by the server. The vendor document omitted the response schema.
