@@ -28,6 +28,7 @@ describe('Jira Cloud — projects (live, read-only)', () => {
     expect(project.key).toBe(TEST_PROJECT_KEY);
     expect(project.id).toMatch(/^\d+$/);
     expect(typeof project.name).toBe('string');
+    expect(typeof project.isLiveTemplate).toBe('boolean');
     expect(project.self).toMatch(/^https:\/\//);
     expect(project.issueTypes?.map(type => type.name)).toContain('Task');
   });
@@ -37,6 +38,8 @@ describe('Jira Cloud — projects (live, read-only)', () => {
     const byId = await client.projects.getProject({ projectIdOrKey: byKey.id! });
 
     expect(byId.key).toBe(TEST_PROJECT_KEY);
+    expect(typeof byId.isLiveTemplate).toBe('boolean');
+    expect(byId.isLiveTemplate).toBe(byKey.isLiveTemplate);
   });
 
   it('already returns lead and description without being asked', async () => {
