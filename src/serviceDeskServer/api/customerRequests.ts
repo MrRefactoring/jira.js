@@ -123,7 +123,7 @@ export async function getMyCustomerRequests(
     url: '/rest/servicedeskapi/request',
     method: 'GET',
     searchParams: {
-      expand: Array.isArray(parameters?.expand) ? parameters.expand.join(',') : parameters?.expand,
+      expand: parameters?.expand,
       searchTerm: parameters?.searchTerm,
       serviceDeskId: parameters?.serviceDeskId,
       requestOwnership: parameters?.requestOwnership,
@@ -191,7 +191,7 @@ export async function getCustomerRequestByIdOrKey(
     url: `/rest/servicedeskapi/request/${parameters.issueIdOrKey}`,
     method: 'GET',
     searchParams: {
-      expand: Array.isArray(parameters.expand) ? parameters.expand.join(',') : parameters.expand,
+      expand: parameters.expand,
     },
     schema: CustomerRequestSchema,
     signal: options?.signal,

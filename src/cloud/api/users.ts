@@ -277,7 +277,7 @@ export async function getAllUsersDefault(
     searchParams: {
       startAt: parameters?.startAt,
       maxResults: parameters?.maxResults,
-      expand: Array.isArray(parameters?.expand) ? parameters.expand.join(',') : parameters?.expand,
+      expand: parameters?.expand,
     },
     schema: z.array(DashboardUserSchema),
     signal: options?.signal,
@@ -308,7 +308,7 @@ export async function getAllUsers(
     searchParams: {
       startAt: parameters?.startAt,
       maxResults: parameters?.maxResults,
-      expand: Array.isArray(parameters?.expand) ? parameters.expand.join(',') : parameters?.expand,
+      expand: parameters?.expand,
     },
     schema: z.array(DashboardUserSchema),
     signal: options?.signal,

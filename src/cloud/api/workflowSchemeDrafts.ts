@@ -45,8 +45,7 @@ export async function createWorkflowSchemeDraftFromParent(
  * Returns the draft workflow scheme for an active workflow scheme. Draft workflow schemes allow changes to be made to
  * the active workflow schemes: When an active workflow scheme is updated, a draft copy is created. The draft is
  * modified, then the changes in the draft are copied back to the active workflow scheme. See [Configuring workflow
- * schemes](https://confluence.atlassian.com/x/tohKLg) for more information.\
- * Note that:
+ * schemes](https://confluence.atlassian.com/x/tohKLg) for more information. Note that:
  *
  * - Only active workflow schemes can have draft workflow schemes.
  * - An active workflow scheme can only have one draft workflow scheme.

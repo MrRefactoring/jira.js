@@ -5,7 +5,7 @@ export const GetAllUsersSchema = z.object({
   startAt: z.number().optional(),
   /** The maximum number of items to return (limited to 1000). */
   maxResults: z.number().optional(),
-  expand: z.union([z.string().optional(), z.array(z.string())]).optional(),
+  expand: z.string().optional(),
 });
 
 export type GetAllUsers = z.input<typeof GetAllUsersSchema>;

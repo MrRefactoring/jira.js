@@ -70,7 +70,7 @@ export const GetCustomerRequestsSchema = z.object({
    * - `comment.renderedBody` (Experimental) returns the rendered body in HTML format (in addition to the raw body) for
    *   each comment.
    */
-  expand: z.union([z.array(z.string()).optional(), z.string()]).optional(),
+  expand: z.array(z.string()).optional(),
   /**
    * The starting index of the returned objects. Base index: 0. See the
    * [Pagination](https://developer.atlassian.com/cloud/jira/service-desk/rest/intro#pagination) section for more

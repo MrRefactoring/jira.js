@@ -17,7 +17,7 @@ export const FindUsersForPickerSchema = z.object({
    * `excludeAccountIds=5b10a2844c20165700ede21g,5b10a0effa615349cb016cd8&excludeAccountIds=5b10ac8d82e05b22cc7d4ef5`.
    * Cannot be provided with `exclude`.
    */
-  excludeAccountIds: z.union([z.array(z.string()).optional(), z.string()]).optional(),
+  excludeAccountIds: z.array(z.string()).optional(),
   avatarSize: z.string().optional(),
   excludeConnectUsers: z.boolean().optional(),
 });

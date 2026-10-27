@@ -121,7 +121,7 @@ export async function getAssociatedProjects(
     url: `/rest/api/2/issuetypescheme/${parameters.schemeId}/associations`,
     method: 'GET',
     searchParams: {
-      expand: Array.isArray(parameters.expand) ? parameters.expand.join(',') : parameters.expand,
+      expand: parameters.expand,
     },
     schema: z.array(ProjectSchema),
     signal: options?.signal,

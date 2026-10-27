@@ -62,13 +62,11 @@ async function requestToken(
 
   if (!response.ok) {
     const text = await response.text().catch(() => '');
-    let body: unknown;
+    let body: unknown = text;
 
     try {
       body = JSON.parse(text);
-    } catch {
-      body = text;
-    }
+    } catch {}
 
     throw new OAuthError(
       `Request to ${url} failed with status ${response.status} ${response.statusText}${text ? `: ${text}` : ''}`,

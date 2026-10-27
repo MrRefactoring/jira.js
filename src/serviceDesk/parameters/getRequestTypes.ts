@@ -8,7 +8,7 @@ export const GetRequestTypesSchema = z.object({
   serviceDeskId: z.string(),
   /** Filters results to those in a customer request type group. */
   groupId: z.number().optional(),
-  expand: z.union([z.array(z.string()).optional(), z.string()]).optional(),
+  expand: z.array(z.string()).optional(),
   /** The string to be used to filter the results. */
   searchQuery: z.string().optional(),
   /**

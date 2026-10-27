@@ -28,7 +28,7 @@ export async function getAllScreens(
     method: 'GET',
     searchParams: {
       search: parameters?.search,
-      expand: Array.isArray(parameters?.expand) ? parameters.expand.join(',') : parameters?.expand,
+      expand: parameters?.expand,
       maxResults: parameters?.maxResults,
       startAt: parameters?.startAt,
     },

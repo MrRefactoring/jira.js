@@ -14,7 +14,6 @@ import { CustomFieldContextDefaultValueFloatSchema } from './customFieldContextD
 import { CustomFieldContextDefaultValueLabelsSchema } from './customFieldContextDefaultValueLabels';
 import { CustomFieldContextDefaultValueTextFieldSchema } from './customFieldContextDefaultValueTextField';
 import { CustomFieldContextDefaultValueTextAreaSchema } from './customFieldContextDefaultValueTextArea';
-import { CustomFieldContextDefaultValueLongTextSchema } from './customFieldContextDefaultValueLongText';
 import { CustomFieldContextDefaultValueReadOnlySchema } from './customFieldContextDefaultValueReadOnly';
 import { CustomFieldContextDefaultValueSingleVersionPickerSchema } from './customFieldContextDefaultValueSingleVersionPicker';
 import { CustomFieldContextDefaultValueMultipleVersionPickerSchema } from './customFieldContextDefaultValueMultipleVersionPicker';
@@ -44,7 +43,6 @@ export const CustomFieldContextDefaultValueSchema = z.discriminatedUnion('type',
   CustomFieldContextDefaultValueLabelsSchema,
   CustomFieldContextDefaultValueTextFieldSchema,
   CustomFieldContextDefaultValueTextAreaSchema,
-  CustomFieldContextDefaultValueLongTextSchema,
   CustomFieldContextDefaultValueReadOnlySchema,
   CustomFieldContextDefaultValueSingleVersionPickerSchema,
   CustomFieldContextDefaultValueMultipleVersionPickerSchema,

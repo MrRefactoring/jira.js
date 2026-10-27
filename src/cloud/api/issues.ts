@@ -139,6 +139,7 @@ export async function createIssue(
       signal: options?.signal,
     });
   }
+
   const config: SendRequestOptions<CreatedIssue> = {
     url: '/rest/api/3/issue',
     method: 'POST',
@@ -429,6 +430,7 @@ export async function editIssue(client: Client, parameters: EditIssue, options?:
       signal: options?.signal,
     });
   }
+
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/issue/${parameters.issueIdOrKey}`,
     method: 'PUT',
@@ -437,7 +439,7 @@ export async function editIssue(client: Client, parameters: EditIssue, options?:
       overrideScreenSecurity: parameters.overrideScreenSecurity,
       overrideEditableFlag: parameters.overrideEditableFlag,
       returnIssue: parameters.returnIssue,
-      expand: Array.isArray(parameters.expand) ? parameters.expand.join(',') : parameters.expand,
+      expand: parameters.expand,
     },
     body: {
       fields: parameters.fields,
@@ -781,6 +783,7 @@ export async function doTransition(client: Client, parameters: DoTransition, opt
       signal: options?.signal,
     });
   }
+
   const config: SendRequestOptions<void> = {
     url: `/rest/api/3/issue/${parameters.issueIdOrKey}/transitions`,
     method: 'POST',

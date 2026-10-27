@@ -136,14 +136,14 @@ export async function submitBulkEdit(
  * - Moving multiple issues of type A in one or more projects to multiple issues of type B in one of the source projects
  *   or a different project: `SUPPORTED`
  * - Moving issues of multiple issue types in one or more projects to issues of a single issue type in one of the source
- *   project or a different project: **`SUPPORTED`**\
- *   E.g. Moving issues of story and task issue types in project 1 and project 2 to issues of task issue type in project 3
+ *   project or a different project: **`SUPPORTED`** E.g. Moving issues of story and task issue types in project 1 and
+ *   project 2 to issues of task issue type in project 3
  * - Moving a standard parent issue of type A with its multiple subtask issue types in one project to standard issue of
  *   type B and multiple subtask issue types in the same project or a different project: `SUPPORTED`
  * - Moving standard issues with their subtasks to a parent issue in the same project or a different project without
  *   losing their relation: `SUPPORTED`
- * - Moving an epic issue with its child issues to a different project without losing their relation: `SUPPORTED`\
- *   This usecase is **supported using multiple requests**. Move the epic in one request and then move the children in a
+ * - Moving an epic issue with its child issues to a different project without losing their relation: `SUPPORTED` This
+ *   usecase is **supported using multiple requests**. Move the epic in one request and then move the children in a
  *   separate request with target parent set to the epic issue id
  *
  *   (Alternatively, move them individually and stitch the relationship back with the Bulk Edit API)
