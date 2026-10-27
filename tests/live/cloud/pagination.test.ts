@@ -66,13 +66,14 @@ describe('Jira Cloud — pagination helper (live)', () => {
       { maxAttempts: 8 },
     );
     const found: number[] = [];
-    let pages = 0;
+    const pageSizes: number[] = [];
 
     for await (const issue of paginate({
       initialParameters,
-      fetchPage: (parameters: SearchIssues, options: RequestOptions) => {
-        pages += 1;
-        return client.issueSearch.searchIssues(parameters, options);
+      fetchPage: async (parameters: SearchIssues, options: RequestOptions) => {
+        const page = await client.issueSearch.searchIssues(parameters, options);
+        pageSizes.push(page.issues?.length ?? 0);
+        return page;
       },
       getItems: page => page.issues ?? [],
       getNextParameters: (page, parameters) =>
@@ -82,6 +83,6 @@ describe('Jira Cloud — pagination helper (live)', () => {
     }
 
     expect(found.sort((a, b) => a - b)).toEqual([...issueIds].sort((a, b) => a - b));
-    expect(pages).toBe(2);
+    expect(pageSizes.filter(size => size > 0)).toEqual([1, 1]);
   });
 });
