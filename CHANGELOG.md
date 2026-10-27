@@ -2,7 +2,7 @@
 
 ## Unreleased
 
-The generated SDK baseline comes from `apis-code-gen` commit `d53513a` and its committed Jira OpenAPI snapshot. Compatible fixes are forward-merged from `master`. This branch accumulates the next major release.
+The generated SDK baseline comes from `apis-code-gen` commit `d53513a` and its committed Jira OpenAPI snapshot. Compatible fixes are forward-merged from `master`. This branch accumulates the next major release on top of 6.4.0.
 
 ### Breaking changes
 
@@ -17,9 +17,22 @@ See [the migration steps](MIGRATION.md#unreleased-changes-for-the-next-major).
 ### Improvements
 
 - List query parameters accept both comma-separated strings and lists on Cloud, Agile, Data Center, Service Management Cloud and Data Center, and Administration. This includes `fields`, `properties`, `expand`, permissions, account exclusions, and event filters. Existing inputs remain valid, known values remain editor suggestions, and each operation retains its existing query serialization.
-- Cloud `labels.getAllLabels` accepts optional `query` and `scope` parameters; filtering depends on support from the Jira site. Eighteen Cloud models from the refreshed OpenAPI snapshot are exported, including the `longtext` default value. Experimental operations remain excluded.
-- The shared runtime is synchronized with the generator. `SchemaMismatchError` accepts the legacy string constructor and exposes `body`; Jira leaves that body empty by default and continues reporting paths and types without response values. The default mismatch behavior remains `warn`. Constructor overloads preserve the 6.x report parameter type.
+- Eighteen Cloud models from the refreshed OpenAPI snapshot are exported, including the `longtext` default value. Experimental operations remain excluded.
+
+### Fixes
+
+- Service Management Data Center queue pages validate successfully when an issue has `fields: null`.
+- Service Management Data Center queue settings validate and expose the `includeQueueCount` and `useCachedQueueCount` booleans returned by the server. The vendor document omitted the response schema.
+
+## 6.4.0
+
+Jira.js 6.4.0 adds lazy item pagination, exposes optional Cloud label filters, restores legacy schema-error construction, and fixes Data Center avatar uploads and Cloud project response validation. The release preserves the 6.3 public contracts.
+
+### Improvements
+
+- Add optional `query` and `scope` parameters to Cloud `labels.getAllLabels`. Filtering depends on support from the Jira site.
 - Schema audits now print the full report in CI logs and upload the aggregated Markdown report as an artifact.
+- `SchemaMismatchError` accepts a legacy string body as well as a structured report. Its new `body` property stays empty for Jira responses by default.
 - Add `paginate`, a lazy async iterator over individual items, with explicit page adapters and `AbortSignal` support.
 - The licensed Service Management Data Center live rig now exercises all 119 Service Management and Assets endpoints on version 11.3.12, including approval decisions and organization cleanup.
 
@@ -27,8 +40,6 @@ See [the migration steps](MIGRATION.md#unreleased-changes-for-the-next-major).
 
 - Cloud project responses now describe `isLiveTemplate` as an optional boolean, fixing schema audit drift when reading a project by key or ID.
 - Data Center multipart avatar uploads request HTML and parse the JSON embedded in the response, including cropping instructions and upload errors. The four live avatar scenarios now require a successful upload, creation, lookup and deletion using one authenticated session.
-- Service Management Data Center queue pages validate successfully when an issue has `fields: null`.
-- Service Management Data Center queue settings validate and expose the `includeQueueCount` and `useCachedQueueCount` booleans returned by the server. The vendor document omitted the response schema.
 
 ## 6.3.0
 
