@@ -128,7 +128,7 @@ export async function getTrashedFieldsPaginated(
       maxResults: parameters?.maxResults,
       id: parameters?.id,
       query: parameters?.query,
-      expand: parameters?.expand,
+      expand: Array.isArray(parameters?.expand) ? parameters.expand.join(',') : parameters?.expand,
       orderBy: parameters?.orderBy,
     },
     schema: PageFieldSchema,

@@ -1,3 +1,4 @@
+import { PRODUCT } from './productInfo.js';
 import type { core as zodCore } from 'zod';
 import { bodyToFetchBody, requiresDuplex, shouldSetJsonContentType } from './bodyToFetchBody.js';
 import type { Auth, ClientConfig, SendRequestOptions } from './schemas/index.js';
@@ -335,7 +336,7 @@ export function createClient(config: ClientConfig | Client): Client {
     headers: configHeaders = {},
     getAuthOn401,
     retry,
-    onSchemaMismatch = 'warn',
+    onSchemaMismatch = PRODUCT.onSchemaMismatch,
     fetch: customFetch,
   } = config;
   const retryMaxAttempts = Math.max(1, retry?.maxAttempts ?? 1);
@@ -487,10 +488,14 @@ export function createClient(config: ClientConfig | Client): Client {
 
       if (contentType && !isJson && !requestConfig.responseParser) {
         if (requestConfig.schema) {
-          throw new SchemaMismatchError(`Expected a JSON response to validate against the schema, got ${contentType}`, {
-            endpoint: `${requestConfig.method ?? 'GET'} ${requestConfig.url}`,
-            issues: [{ path: '', expected: 'application/json', received: contentType || 'no content type' }],
-          });
+          throw new SchemaMismatchError(
+            `Expected a JSON response to validate against the schema, got ${contentType}`,
+            {
+              endpoint: `${requestConfig.method ?? 'GET'} ${requestConfig.url}`,
+              issues: [{ path: '', expected: 'application/json', received: contentType || 'no content type' }],
+            },
+            { body: PRODUCT.preserveSchemaMismatchBody ? await response.text() : undefined },
+          );
         }
 
         return undefined as T;
@@ -559,6 +564,7 @@ export function createClient(config: ClientConfig | Client): Client {
           if (reportSchemaMismatch(behavior, report)) {
             throw new SchemaMismatchError(`Response did not match the schema for ${endpoint}`, report, {
               cause: parsed.error,
+              body: PRODUCT.preserveSchemaMismatchBody ? JSON.stringify(data) : undefined,
             });
           }
 

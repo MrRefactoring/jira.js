@@ -388,9 +388,10 @@ export async function toggleFeatures(
 }
 
 /**
- * Move issues from the backog to the board (if they are already in the backlog of that board). This operation either
- * moves an issue(s) onto a board from the backlog (by adding it to the issueList for the board) Or transitions the
- * issue(s) to the first column for a kanban board with backlog. At most 50 issues may be moved at once.
+ * Move issues from the backog to the board (if they are already in the backlog of that board).\
+ * This operation either moves an issue(s) onto a board from the backlog (by adding it to the issueList for the board)
+ * Or transitions the issue(s) to the first column for a kanban board with backlog. At most 50 issues may be moved at
+ * once.
  */
 export async function moveIssuesToBoard(
   client: Client,

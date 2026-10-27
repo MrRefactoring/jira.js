@@ -141,7 +141,7 @@ export function createOAuth2Manager(options: OAuth2ManagerOptions): OAuth2Manage
   const selectResource = (resources: AccessibleResource[]): AccessibleResource => {
     if (resources.length === 0) {
       throw new OAuthError(
-        'No accessible resources were returned for this OAuth 2.0 token. Check the granted scopes and that the ' +
+        `No accessible ${PRODUCT.productName ? `${PRODUCT.productName} ` : ''}resources were returned for this OAuth 2.0 token. Check the granted scopes and that the ` +
           'user has access to at least one site.',
       );
     }
@@ -161,7 +161,7 @@ export function createOAuth2Manager(options: OAuth2ManagerOptions): OAuth2Manage
 
     if (resources.length > 1) {
       throw new OAuthError(
-        'Multiple accessible resources found; pass `cloudId` or `siteUrl` to disambiguate. Available: ' +
+        `Multiple accessible ${PRODUCT.productName ? `${PRODUCT.productName} ` : ''}resources found; pass \`cloudId\` or \`siteUrl\` to disambiguate. Available: ` +
           `${resources.map(r => r.url).join(', ')}.`,
       );
     }

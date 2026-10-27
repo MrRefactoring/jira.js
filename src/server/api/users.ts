@@ -164,7 +164,7 @@ export async function validateUserAnonymization(
     url: '/rest/api/2/user/anonymization',
     method: 'GET',
     searchParams: {
-      expand: parameters?.expand,
+      expand: Array.isArray(parameters?.expand) ? parameters.expand.join(',') : parameters?.expand,
       userKey: parameters?.userKey,
     },
     schema: UserAnonymizationValidationSchema,
@@ -221,7 +221,7 @@ export async function validateUserAnonymizationRerun(
     url: '/rest/api/2/user/anonymization/rerun',
     method: 'GET',
     searchParams: {
-      expand: parameters?.expand,
+      expand: Array.isArray(parameters?.expand) ? parameters.expand.join(',') : parameters?.expand,
       oldUserKey: parameters?.oldUserKey,
       oldUserName: parameters?.oldUserName,
       userKey: parameters?.userKey,

@@ -18,11 +18,16 @@ export const GetEventsSchema = z.object({
   /** A query filter that returns events of a specific action type. */
   action: z.string().optional(),
   /** A query filter that returns events by one or more specific actors. */
-  actor: z.array(z.string()).optional(),
+  actor: z.union([z.array(z.string()).optional(), z.string()]).optional(),
   /** A query filter that returns events by one or more specific ip addresses. */
-  ip: z.array(z.string()).optional(),
+  ip: z.union([z.array(z.string()).optional(), z.string()]).optional(),
   /** A query filter that returns events by one or more specific products. */
-  product: z.array(openEnum(['bitbucket', 'confluence', 'guard_detect', 'jira', 'loom'])).optional(),
+  product: z
+    .union([
+      z.array(openEnum(['bitbucket', 'confluence', 'guard_detect', 'jira', 'loom'])).optional(),
+      openEnum(['bitbucket', 'confluence', 'guard_detect', 'jira', 'loom']),
+    ])
+    .optional(),
   /**
    * A query filter that returns events by one or more specific locations. Of format: [ { "city": "<CityName>",
    * "countryName": "<CountryName>" }, ... ]

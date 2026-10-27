@@ -153,7 +153,7 @@ export async function findUsersWithAllPermissions(
     searchParams: {
       query: parameters.query,
       accountId: parameters.accountId,
-      permissions: parameters.permissions,
+      permissions: Array.isArray(parameters.permissions) ? parameters.permissions.join(',') : parameters.permissions,
       issueKey: parameters.issueKey,
       projectKey: parameters.projectKey,
       startAt: parameters.startAt,

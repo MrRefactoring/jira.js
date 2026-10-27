@@ -6,8 +6,8 @@ import type { GetServiceProviderConfig } from '../parameters/getServiceProviderC
 import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /**
- * Get different types of resources available on a SCIM service provider (e.g., Users and Groups). **Note:** This API
- * does not support filtering, pagination, or sorting.
+ * Get different types of resources available on a SCIM service provider (e.g., Users and Groups).\
+ * **Note:** This API does not support filtering, pagination, or sorting.
  */
 export async function getResourceTypes(
   client: Client,
