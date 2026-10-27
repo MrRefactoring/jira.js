@@ -16,6 +16,8 @@ import { waitFor } from '../helpers/poll';
 
 /** Jira labels may not contain whitespace; run-scoped so concurrent runs cannot collide. */
 const LABEL = `jjs${runId()}label`.toLowerCase().replace(/[^a-z0-9]/g, '');
+const SECOND_LABEL = `${LABEL}second`;
+const OTHER_LABEL = `other${LABEL}`;
 
 describe('Jira Cloud — labels.getAllLabels (live)', () => {
   const tracker = new ResourceTracker();
@@ -26,7 +28,7 @@ describe('Jira Cloud — labels.getAllLabels (live)', () => {
 
     const issue = await createTestIssue(client, tracker);
 
-    await client.issues.editIssue({ issueIdOrKey: issue.key, fields: { labels: [LABEL] } });
+    await client.issues.editIssue({ issueIdOrKey: issue.key, fields: { labels: [LABEL, SECOND_LABEL, OTHER_LABEL] } });
   });
 
   afterAll(() => tracker.cleanup());
@@ -49,6 +51,23 @@ describe('Jira Cloud — labels.getAllLabels (live)', () => {
     );
 
     expect(page.values).toContain(LABEL);
+  });
+
+  it('filters a case-insensitive prefix before paginating browseable labels', async () => {
+    const parameters = { query: LABEL.toUpperCase(), scope: 'ALL_BROWSEABLE_PROJECTS', maxResults: 1 };
+    const first = await waitFor(
+      () => client.labels.getAllLabels(parameters),
+      page => page.total === 2,
+      { maxAttempts: 8 },
+    );
+    const second = await client.labels.getAllLabels({ ...parameters, startAt: 1 });
+
+    expect(first.values).toHaveLength(1);
+    expect(first.isLast).toBe(false);
+    expect(second.startAt).toBe(1);
+    expect(second.total).toBe(2);
+    expect(second.isLast).toBe(true);
+    expect([...(first.values ?? []), ...(second.values ?? [])].sort()).toEqual([LABEL, SECOND_LABEL].sort());
   });
 
   it('honours maxResults and startAt', async () => {
