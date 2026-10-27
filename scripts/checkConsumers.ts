@@ -100,6 +100,8 @@ try {
   const typeProbe = [
     "import { createCloudClient, isNotFoundError } from 'jira.js';",
     "import { authBasicPasswordSchema, createClient } from 'jira.js/core';",
+    "import type { PageString } from 'jira.js/cloud/models';",
+    "import type { GetAllLabels } from 'jira.js/cloud/parameters';",
     "import type { ApiObjectConfig, AuthBasicPassword, Client } from 'jira.js/core';",
     "import type { WebhookHeaders, WebhookPayload } from 'jira.js/webhooks';",
     ...SUBPATHS.map((subpath, index) => `import type * as surface${index} from '${subpath}';`),
@@ -109,6 +111,9 @@ try {
     'export const parsedBasicPassword = authBasicPasswordSchema.parse(basicPassword);',
     'export const acceptApiObjectConfig = (config: ApiObjectConfig): ApiObjectConfig => config;',
     'export const jira = createCloudClient(client);',
+    'export const oldLabelsCall: () => Promise<PageString> = jira.labels.getAllLabels;',
+    "export const labelFilters: GetAllLabels = { startAt: 0, maxResults: 1, query: 'prefix', scope: 'ALL_BROWSEABLE_PROJECTS' };",
+    'export const filteredLabels: Promise<PageString> = jira.labels.getAllLabels(labelFilters);',
     'export const predicate: (value: unknown) => boolean = isNotFoundError;',
     'export const identify = (headers: WebhookHeaders, payload: WebhookPayload): string =>',
     "  `${payload.webhookEvent} ${headers['x-atlassian-webhook-identifier']}`;",
