@@ -167,3 +167,5 @@ export type {
 export { createMultipartRequestBody, toFormDataFile } from './core/index.js';
 
 export type { AttachmentContent, AttachmentInput, MultipartRequestBody } from './core/index.js';
+
+export { paginate, type PaginationOptions } from './core/index.js';
