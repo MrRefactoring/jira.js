@@ -1,7 +1,7 @@
-import { beforeAll, describe, expect, it } from 'vitest';
-import { isForbiddenError } from '#/core';
+import { beforeAll, beforeEach, describe, expect, it } from 'vitest';
 import type { CloudClient } from '#/cloud/createCloudClient';
 import { getCloudClient } from '../setup/client';
+import { hasCloudAdminPermission } from '../setup/permissions';
 
 /**
  * Live suite for the `screens` API (`getScreens`, `getScreensForField`, `getAvailableScreenFields`,
@@ -17,29 +17,22 @@ import { getCloudClient } from '../setup/client';
  */
 describe('Jira Cloud — screens (live, read-only)', () => {
   let client: CloudClient;
-  let permitted = true;
+  let permitted = false;
 
   beforeAll(async () => {
     client = getCloudClient();
-
-    permitted = await client.screens
-      .getScreens({ maxResults: 1 })
-      .then(() => true)
-      .catch(() => false);
+    permitted = await hasCloudAdminPermission(client);
   });
 
-  it('pages the screen listing, or refuses typed without admin rights', async () => {
-    if (!permitted) {
-      const error = await client.screens.getScreens({ maxResults: 1 }).catch((e: unknown) => e);
+  beforeEach(ctx => {
+    ctx.skip(!permitted, 'the account lacks the ADMINISTER permission required by this suite');
+  });
 
-      expect(isForbiddenError(error) || (error as { status?: number }).status === 401).toBe(true);
-
-      return;
-    }
-
+  it('pages the screen listing', async () => {
     const page = await client.screens.getScreens({ maxResults: 5 });
 
     expect(Array.isArray(page.values)).toBe(true);
+    expect(page.values!.length).toBeGreaterThan(0);
     expect(page.maxResults).toBe(5);
     expect(typeof page.isLast).toBe('boolean');
 
@@ -50,8 +43,6 @@ describe('Jira Cloud — screens (live, read-only)', () => {
   });
 
   it('distinguishes global screens from project-scoped ones', async () => {
-    if (!permitted) return;
-
     const page = await client.screens.getScreens({ maxResults: 50 });
 
     for (const screen of page.values ?? []) {
@@ -62,8 +53,6 @@ describe('Jira Cloud — screens (live, read-only)', () => {
   });
 
   it('filters the listing by scope', async () => {
-    if (!permitted) return;
-
     const global = await client.screens.getScreens({ scope: ['GLOBAL'], maxResults: 50 });
 
     for (const screen of global.values ?? []) {
@@ -72,30 +61,24 @@ describe('Jira Cloud — screens (live, read-only)', () => {
   });
 
   it('answers where a custom field would be visible', async () => {
-    if (!permitted) return;
-
     const fields = await client.issueFields.getFields();
     const custom = fields.find(field => field.custom);
 
-    if (!custom) return;
+    expect(custom, 'the site needs a custom field for the screen lookup').toBeDefined();
 
-    const page = await client.screens.getScreensForField({ fieldId: custom.id!, maxResults: 10 });
+    const page = await client.screens.getScreensForField({ fieldId: custom!.id!, maxResults: 10 });
 
     expect(Array.isArray(page.values)).toBe(true);
     for (const screen of page.values ?? []) expect(typeof screen.id).toBe('number');
   });
 
   it('refuses a system field outright, despite it being on every screen', async () => {
-    if (!permitted) return;
-
     const error = await client.screens.getScreensForField({ fieldId: 'summary', maxResults: 10 }).catch(e => e);
 
     expect((error as { status?: number }).status).toBe(404);
   });
 
   it('refuses an unknown custom field the same way', async () => {
-    if (!permitted) return;
-
     const error = await client.screens
       .getScreensForField({ fieldId: 'customfield_99999999', maxResults: 10 })
       .catch(e => e);
@@ -104,18 +87,12 @@ describe('Jira Cloud — screens (live, read-only)', () => {
   });
 
   it('lists the fields that could still be added to a screen', async () => {
-    if (!permitted) return;
-
     const screens = await client.screens.getScreens({ maxResults: 1 });
     const screen = screens.values?.[0];
 
-    if (!screen) return;
+    expect(screen, 'the site needs a screen for the available-field lookup').toBeDefined();
 
-    const available = await client.screens
-      .getAvailableScreenFields({ screenId: screen.id! })
-      .catch((e: unknown) => e);
-
-    if (available instanceof Error) return;
+    const available = await client.screens.getAvailableScreenFields({ screenId: screen!.id! });
 
     expect(Array.isArray(available)).toBe(true);
   });

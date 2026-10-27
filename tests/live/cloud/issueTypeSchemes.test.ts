@@ -1,7 +1,7 @@
-import { beforeAll, describe, expect, it } from 'vitest';
-import { isForbiddenError } from '#/core';
+import { beforeAll, beforeEach, describe, expect, it } from 'vitest';
 import type { CloudClient } from '#/cloud/createCloudClient';
 import { getCloudClient } from '../setup/client';
+import { hasCloudAdminPermission } from '../setup/permissions';
 import { TEST_ISSUE_TYPE, TEST_PROJECT_KEY } from '../setup/fixtures';
 
 /**
@@ -9,36 +9,31 @@ import { TEST_ISSUE_TYPE, TEST_PROJECT_KEY } from '../setup/fixtures';
  * `getIssueTypeSchemeForProjects`, and the create/update/delete/assign group).
  *
  * Read-only. A scheme decides which issue types a project offers, and schemes are shared — the `epic` suite could not
- * run precisely because adding the Epic type here would have meant editing a scheme other projects depend on. This
- * file is the other half of that story: it shows the mapping that made the decision.
+ * run precisely because adding the Epic type here would have meant editing a scheme other projects depend on. This file
+ * is the other half of that story: it shows the mapping that made the decision.
  */
 describe('Jira Cloud — issueTypeSchemes (live, read-only)', () => {
   let client: CloudClient;
   let projectId: number;
-  let permitted = true;
+  let permitted = false;
 
   beforeAll(async () => {
     client = getCloudClient();
-    projectId = Number((await client.projects.getProject({ projectIdOrKey: TEST_PROJECT_KEY })).id);
+    permitted = await hasCloudAdminPermission(client);
 
-    permitted = await client.issueTypeSchemes
-      .getAllIssueTypeSchemes({ maxResults: 1 })
-      .then(() => true)
-      .catch(() => false);
+    if (!permitted) return;
+    projectId = Number((await client.projects.getProject({ projectIdOrKey: TEST_PROJECT_KEY })).id);
   });
 
-  it('pages the scheme listing, or refuses typed without admin rights', async () => {
-    if (!permitted) {
-      const error = await client.issueTypeSchemes.getAllIssueTypeSchemes({}).catch((e: unknown) => e);
+  beforeEach(ctx => {
+    ctx.skip(!permitted, 'the account lacks the ADMINISTER permission required by this suite');
+  });
 
-      expect(isForbiddenError(error) || (error as { status?: number }).status === 401).toBe(true);
-
-      return;
-    }
-
+  it('pages the scheme listing', async () => {
     const page = await client.issueTypeSchemes.getAllIssueTypeSchemes({ maxResults: 5 });
 
     expect(Array.isArray(page.values)).toBe(true);
+    expect(page.values!.length).toBeGreaterThan(0);
     expect(page.maxResults).toBe(5);
 
     for (const scheme of page.values ?? []) {
@@ -49,8 +44,6 @@ describe('Jira Cloud — issueTypeSchemes (live, read-only)', () => {
   });
 
   it('names the scheme the test project is attached to', async () => {
-    if (!permitted) return;
-
     const page = await client.issueTypeSchemes.getIssueTypeSchemeForProjects({ projectId: [projectId] });
 
     expect(page.values?.length).toBe(1);
@@ -59,8 +52,6 @@ describe('Jira Cloud — issueTypeSchemes (live, read-only)', () => {
   });
 
   it('explains which issue types the project offers, and which it does not', async () => {
-    if (!permitted) return;
-
     const forProject = await client.issueTypeSchemes.getIssueTypeSchemeForProjects({ projectId: [projectId] });
     const schemeId = Number(forProject.values![0]!.issueTypeScheme!.id);
 
@@ -74,15 +65,12 @@ describe('Jira Cloud — issueTypeSchemes (live, read-only)', () => {
     expect(project.issueTypes!.map(type => type.name)).toContain(TEST_ISSUE_TYPE);
   });
 
-  it('orders the listing by name in both directions', async () => {
-    if (!permitted) return;
-
+  it('orders the listing by name in both directions', async ctx => {
     const ascending = await client.issueTypeSchemes.getAllIssueTypeSchemes({ orderBy: 'name', maxResults: 50 });
     const descending = await client.issueTypeSchemes.getAllIssueTypeSchemes({ orderBy: '-name', maxResults: 50 });
 
-    if ((ascending.values?.length ?? 0) > 1) {
-      expect(descending.values?.map(scheme => scheme.id)).toEqual(ascending.values?.map(scheme => scheme.id).reverse());
-    }
+    ctx.skip((ascending.values?.length ?? 0) < 2, 'sorting needs at least two issue type schemes on this site');
+    expect(descending.values?.map(scheme => scheme.id)).toEqual(ascending.values?.map(scheme => scheme.id).reverse());
   });
 
   it('fails typed on the destructive path, without ever aiming it at a real scheme', async () => {
