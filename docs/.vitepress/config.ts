@@ -27,6 +27,7 @@ const guideSidebar = (prefix = '') => [
       { text: prefix ? 'Администрирование организации' : 'Organization Administration', link: `${prefix}/guide/administration` },
       { text: prefix ? 'Вебхуки' : 'Webhooks', link: `${prefix}/guide/webhooks` },
       { text: prefix ? 'Обработка ошибок' : 'Error Handling', link: `${prefix}/guide/error-handling` },
+      { text: prefix ? 'Пагинация' : 'Pagination', link: `${prefix}/guide/pagination` },
       { text: prefix ? 'Валидация ответов' : 'Response Validation', link: `${prefix}/guide/response-validation` },
       { text: 'Tree-Shaking', link: `${prefix}/guide/tree-shaking` },
     ],

@@ -100,6 +100,8 @@ export { parseAvatarUploadResponse } from './avatarUploadResponse.js';
 
 export type { AttachmentContent, AttachmentInput, Buffer, MultipartRequestBody } from './formData/index.js';
 
+export { paginate, type PaginationOptions } from './paginate.js';
+
 export { withRetry } from './withRetry.js';
 
 export type { RetryOptions } from './withRetry.js';

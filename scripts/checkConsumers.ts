@@ -99,7 +99,7 @@ try {
 
   const typeProbe = [
     "import { createCloudClient, isNotFoundError } from 'jira.js';",
-    "import { authBasicPasswordSchema, createClient, SchemaMismatchError } from 'jira.js/core';",
+    "import { authBasicPasswordSchema, createClient, SchemaMismatchError, paginate } from 'jira.js/core';",
     "import type { PageString } from 'jira.js/cloud/models';",
     "import type { GetAllLabels } from 'jira.js/cloud/parameters';",
     "import type { ApiObjectConfig, AuthBasicPassword, Client } from 'jira.js/core';",
@@ -118,6 +118,12 @@ try {
     "export const legacyMismatch = new SchemaMismatchError('mismatch', 'legacy body');",
     'export const structuredIssues: ConstructorParameters<typeof SchemaMismatchError>[1]["issues"] = structuredMismatch.report.issues;',
     'export const mismatchBody: string = structuredMismatch.body;',
+    'export const paginatedLabels: AsyncIterable<string> = paginate({',
+    '  initialParameters: { startAt: 0, maxResults: 1 },',
+    '  fetchPage: jira.labels.getAllLabels,',
+    '  getItems: page => page.values ?? [],',
+    '  getNextParameters: (page, parameters) => page.isLast || !page.values?.length ? undefined : { ...parameters, startAt: parameters.startAt + page.values.length },',
+    '});',
     'export const predicate: (value: unknown) => boolean = isNotFoundError;',
     'export const identify = (headers: WebhookHeaders, payload: WebhookPayload): string =>',
     "  `${payload.webhookEvent} ${headers['x-atlassian-webhook-identifier']}`;",
