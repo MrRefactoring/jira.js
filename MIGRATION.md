@@ -351,7 +351,7 @@ The cost is that these types no longer accept an arbitrary object. If you were b
 
 ## Unreleased changes for the next major
 
-The complete SDK regeneration introduces five changes to check before upgrading.
+The complete SDK regeneration introduces four changes to check before upgrading.
 
 Cloud issue deletion takes a boolean for `deleteSubtasks`. Data Center already uses this form. The serialized query remains `deleteSubtasks=true` or `deleteSubtasks=false`.
 
@@ -384,15 +384,6 @@ Service Management Data Center queue issues can have `fields: null` when the que
 ```ts
 const summary = issue.fields?.summary;
 ```
-
-Service Management Data Center `queueSettings.getQueueSettingsOnProject` returns `QueueSettings` instead of `void`. Read the server's boolean settings directly:
-
-```ts
-const { queueCount } = await serviceDeskServer.queueSettings.getQueueSettingsOnProject({ projectKey: 'TEST' });
-console.log(queueCount.includeQueueCount, queueCount.useCachedQueueCount);
-```
-
-Wrappers declared as `Promise<void>` must await the call without returning its result. The four queue-settings setters still return `Promise<void>`.
 
 ## What you gain
 

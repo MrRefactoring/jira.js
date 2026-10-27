@@ -116,11 +116,7 @@ export * from './properties';
 
 export * from './queue';
 
-export * from './queueCountSettings';
-
 export * from './queueCreate';
-
-export * from './queueSettings';
 
 export * from './requestCreate';
 

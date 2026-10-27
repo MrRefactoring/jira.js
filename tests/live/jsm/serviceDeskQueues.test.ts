@@ -2,6 +2,7 @@ import { describe, expect, inject, it } from 'vitest';
 import { serviceDesk } from './setup/client';
 import { deskFixtures, raiseRequest } from './serviceDeskHelpers';
 import { assetName } from './setup/naming';
+import { z } from 'zod';
 
 describe.runIf(inject('jsmFixtures').serviceDeskLicensed)('licensed service desk queues', () => {
   const api = serviceDesk();
@@ -67,7 +68,11 @@ describe.runIf(inject('jsmFixtures').serviceDeskLicensed)('licensed service desk
 
   it('changes global and project queue count settings and restores their defaults', async () => {
     const { projectKey } = deskFixtures();
-    const read = async () => (await api.queueSettings.getQueueSettingsOnProject({ projectKey })).queueCount;
+    const settings = z.object({
+      queueCount: z.object({ includeQueueCount: z.boolean(), useCachedQueueCount: z.boolean() }),
+    });
+    const read = async () =>
+      settings.parse(await api.queueSettings.getQueueSettingsOnProject({ projectKey })).queueCount;
     const original = await read();
     try {
       await api.queueSettings.setShouldQueuesIncludeCountGlobally({ body: true });

@@ -1,4 +1,3 @@
-import { QueueSettingsSchema, type QueueSettings } from '../models/queueSettings';
 import type { GetQueueSettingsOnProject } from '../parameters/getQueueSettingsOnProject';
 import type { SetShouldQueuesIncludeCountGlobally } from '../parameters/setShouldQueuesIncludeCountGlobally';
 import type { SetShouldQueuesIncludeCountOnProject } from '../parameters/setShouldQueuesIncludeCountOnProject';
@@ -11,11 +10,10 @@ export async function getQueueSettingsOnProject(
   client: Client,
   parameters: GetQueueSettingsOnProject,
   options?: RequestOptions,
-): Promise<QueueSettings> {
-  const config: SendRequestOptions<QueueSettings> = {
+): Promise<void> {
+  const config: SendRequestOptions<void> = {
     url: `/rest/servicedeskapi/admin/queues/${parameters.projectKey}`,
     method: 'GET',
-    schema: QueueSettingsSchema,
     signal: options?.signal,
   };
 
