@@ -2,7 +2,7 @@
 
 ## Unreleased
 
-The complete generated SDK is synchronized with `apis-code-gen` commit `d53513a` and its committed Jira OpenAPI snapshot. These changes are intended for the next major release.
+The generated SDK baseline comes from `apis-code-gen` commit `d53513a` and its committed Jira OpenAPI snapshot. Compatible fixes are forward-merged from `master`. This branch accumulates the next major release.
 
 ### Breaking changes
 
@@ -20,6 +20,7 @@ See [the migration steps](MIGRATION.md#unreleased-changes-for-the-next-major).
 - Cloud `labels.getAllLabels` accepts optional `query` and `scope` parameters; filtering depends on support from the Jira site. Eighteen Cloud models from the refreshed OpenAPI snapshot are exported, including the `longtext` default value. Experimental operations remain excluded.
 - The shared runtime is synchronized with the generator. `SchemaMismatchError` accepts the legacy string constructor and exposes `body`; Jira leaves that body empty by default and continues reporting paths and types without response values. The default mismatch behavior remains `warn`. Constructor overloads preserve the 6.x report parameter type.
 - Schema audits now print the full report in CI logs and upload the aggregated Markdown report as an artifact.
+- Add `paginate`, a lazy async iterator over individual items, with explicit page adapters and `AbortSignal` support.
 - The licensed Service Management Data Center live rig now exercises all 119 Service Management and Assets endpoints on version 11.3.12, including approval decisions and organization cleanup.
 
 ### Fixes
