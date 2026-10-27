@@ -2,13 +2,16 @@
 
 ## Unreleased
 
+## 6.4.0
+
+Jira.js 6.4.0 adds lazy item pagination, exposes optional Cloud label filters, restores legacy schema-error construction, and fixes Data Center avatar uploads and Cloud project response validation. The release preserves the 6.3 public contracts.
+
 ### Improvements
 
 - Add optional `query` and `scope` parameters to Cloud `labels.getAllLabels`. Filtering depends on support from the Jira site.
 - Schema audits now print the full report in CI logs and upload the aggregated Markdown report as an artifact.
 - `SchemaMismatchError` accepts a legacy string body as well as a structured report. Its new `body` property stays empty for Jira responses by default.
 - Add `paginate`, a lazy async iterator over individual items, with explicit page adapters and `AbortSignal` support.
-
 - The licensed Service Management Data Center live rig now exercises all 119 Service Management and Assets endpoints on version 11.3.12, including approval decisions and organization cleanup.
 
 ### Fixes
