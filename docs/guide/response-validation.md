@@ -85,6 +85,8 @@ interface SchemaMismatchReport {
 pasted into a bug report, and the body it describes is yours — issue summaries, display names, custom
 field contents. `SchemaMismatchError` carries the same object on `.report`.
 
+`SchemaMismatchError.body` is empty for errors created by the Jira client. For compatibility, the class also accepts a legacy string as its second constructor argument; that explicit string is retained in `body`, with an empty report (`endpoint: ''`, `issues: []`). The structured-report constructor still preserves `report` and `cause`.
+
 ## Noise
 
 Warnings are deduplicated by endpoint and field for the life of the process, so paginating five hundred
