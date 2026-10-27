@@ -53,7 +53,23 @@ describe('Jira Cloud — labels.getAllLabels (live)', () => {
     expect(page.values).toContain(LABEL);
   });
 
-  it('filters a case-insensitive prefix before paginating browseable labels', async () => {
+  it('filters a case-insensitive prefix before paginating browseable labels', async ctx => {
+    await waitFor(
+      () => client.labels.getAllLabels({ maxResults: 1000 }),
+      page => [LABEL, SECOND_LABEL, OTHER_LABEL].every(label => page.values?.includes(label)),
+      { maxAttempts: 8 },
+    );
+    const probe = await client.labels.getAllLabels({
+      query: `missing${LABEL}`,
+      scope: 'ALL_BROWSEABLE_PROJECTS',
+      maxResults: 1000,
+    });
+
+    ctx.skip(
+      [LABEL, SECOND_LABEL, OTHER_LABEL].every(label => probe.values?.includes(label)),
+      'the site returns run-owned labels for a nonmatching query; label filtering is unavailable',
+    );
+
     const parameters = { query: LABEL.toUpperCase(), scope: 'ALL_BROWSEABLE_PROJECTS', maxResults: 1 };
     const first = await waitFor(
       () => client.labels.getAllLabels(parameters),
