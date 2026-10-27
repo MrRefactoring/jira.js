@@ -1,7 +1,8 @@
-import { beforeAll, describe, expect, it } from 'vitest';
+import { beforeAll, beforeEach, describe, expect, it } from 'vitest';
 import { isForbiddenError, isNotFoundError } from '#/core';
 import type { CloudClient } from '#/cloud/createCloudClient';
 import { getCloudClient } from '../setup/client';
+import { hasCloudAdminPermission } from '../setup/permissions';
 import { TEST_PROJECT_KEY } from '../setup/fixtures';
 
 /**
@@ -9,38 +10,38 @@ import { TEST_PROJECT_KEY } from '../setup/fixtures';
  * `getPermissionSchemeGrants`, `getPermissionSchemeGrant`, and the create/update/delete group).
  *
  * Read-only, emphatically. A permission scheme is shared by every project attached to it, so editing one silently
- * changes who can do what across projects this suite knows nothing about. Adding a grant is how you accidentally give
- * a group rights it should not have; removing one is how you lock people out.
+ * changes who can do what across projects this suite knows nothing about. Adding a grant is how you accidentally give a
+ * group rights it should not have; removing one is how you lock people out.
  *
  * The read half earns its place by explaining the rest of the suite. Every write the live tests perform is possible
  * because a scheme grants a permission to a project role the account happens to sit in — this file is what makes that
- * chain inspectable rather than folklore, and it is the first place to look when a write suite starts failing with
- * 403s that were not there yesterday.
+ * chain inspectable rather than folklore, and it is the first place to look when a write suite starts failing with 403s
+ * that were not there yesterday.
  */
 describe('Jira Cloud — permissionSchemes (live, read-only)', () => {
   let client: CloudClient;
   let schemeId: number;
-  let permitted = true;
+  let permitted = false;
 
   beforeAll(async () => {
     client = getCloudClient();
+    permitted = await hasCloudAdminPermission(client);
 
-    const attached = await client.projectPermissionSchemes
-      .getAssignedPermissionScheme({ projectKeyOrId: TEST_PROJECT_KEY })
-      .catch(() => undefined);
+    if (!permitted) return;
 
-    if (!attached) {
-      permitted = false;
-
-      return;
-    }
+    const attached = await client.projectPermissionSchemes.getAssignedPermissionScheme({
+      projectKeyOrId: TEST_PROJECT_KEY,
+    });
 
     schemeId = Number(attached.id);
+    expect(schemeId).toBeGreaterThan(0);
+  });
+
+  beforeEach(ctx => {
+    ctx.skip(!permitted, 'the account lacks the ADMINISTER permission required by this suite');
   });
 
   it('reports which scheme the test project is attached to', async () => {
-    if (!permitted) return;
-
     expect(schemeId).toBeGreaterThan(0);
 
     const scheme = await client.permissionSchemes.getPermissionScheme({ schemeId });
@@ -51,24 +52,12 @@ describe('Jira Cloud — permissionSchemes (live, read-only)', () => {
   });
 
   it('lists the schemes on the site, including that one', async () => {
-    if (!permitted) return;
-
-    const all = await client.permissionSchemes.getAllPermissionSchemes().catch((e: unknown) => e);
-
-    if (all instanceof Error) {
-      expect(isForbiddenError(all)).toBe(true);
-
-      return;
-    }
-
-    const schemes = all as Awaited<ReturnType<typeof client.permissionSchemes.getAllPermissionSchemes>>;
+    const schemes = await client.permissionSchemes.getAllPermissionSchemes();
 
     expect(schemes.permissionSchemes?.map(scheme => scheme.id)).toContain(schemeId);
   });
 
   it('returns every grant whether or not `expand` asks for it', async () => {
-    if (!permitted) return;
-
     const plain = await client.permissionSchemes.getPermissionScheme({ schemeId });
     const expanded = await client.permissionSchemes.getPermissionScheme({ schemeId, expand: ['permissions'] });
 
@@ -77,8 +66,6 @@ describe('Jira Cloud — permissionSchemes (live, read-only)', () => {
   });
 
   it('describes each grant as a permission paired with a holder', async () => {
-    if (!permitted) return;
-
     const grants = await client.permissionSchemes.getPermissionSchemeGrants({ schemeId });
 
     expect(grants.permissions!.length).toBeGreaterThan(0);
@@ -91,8 +78,6 @@ describe('Jira Cloud — permissionSchemes (live, read-only)', () => {
   });
 
   it('explains why this suite can delete issues at all', async () => {
-    if (!permitted) return;
-
     const grants = await client.permissionSchemes.getPermissionSchemeGrants({ schemeId });
     const deleteGrants = grants.permissions!.filter(grant => grant.permission === 'DELETE_ISSUES');
 
@@ -101,8 +86,6 @@ describe('Jira Cloud — permissionSchemes (live, read-only)', () => {
   });
 
   it('resolves a single grant by id', async () => {
-    if (!permitted) return;
-
     const grants = await client.permissionSchemes.getPermissionSchemeGrants({ schemeId });
     const sample = grants.permissions![0]!;
 

@@ -1,7 +1,7 @@
-import { beforeAll, describe, expect, it } from 'vitest';
-import { isForbiddenError } from '#/core';
+import { beforeAll, beforeEach, describe, expect, it } from 'vitest';
 import type { CloudClient } from '#/cloud/createCloudClient';
 import { getCloudClient } from '../setup/client';
+import { hasCloudAdminPermission } from '../setup/permissions';
 
 /**
  * Live suite for the `screenSchemes`, `screenTabs` and `screenTabFields` APIs — the three layers between a field and
@@ -17,29 +17,22 @@ import { getCloudClient } from '../setup/client';
  */
 describe('Jira Cloud — screen schemes, tabs and fields (live, read-only)', () => {
   let client: CloudClient;
-  let permitted = true;
+  let permitted = false;
 
   beforeAll(async () => {
     client = getCloudClient();
-
-    permitted = await client.screenSchemes
-      .getScreenSchemes({ maxResults: 1 })
-      .then(() => true)
-      .catch(() => false);
+    permitted = await hasCloudAdminPermission(client);
   });
 
-  it('pages the screen scheme listing, or refuses typed without admin rights', async () => {
-    if (!permitted) {
-      const error = await client.screenSchemes.getScreenSchemes({}).catch((e: unknown) => e);
+  beforeEach(ctx => {
+    ctx.skip(!permitted, 'the account lacks the ADMINISTER permission required by this suite');
+  });
 
-      expect(isForbiddenError(error) || (error as { status?: number }).status === 401).toBe(true);
-
-      return;
-    }
-
+  it('pages the screen scheme listing', async () => {
     const page = await client.screenSchemes.getScreenSchemes({ maxResults: 5 });
 
     expect(Array.isArray(page.values)).toBe(true);
+    expect(page.values!.length).toBeGreaterThan(0);
     expect(page.maxResults).toBe(5);
 
     for (const scheme of page.values ?? []) {
@@ -50,34 +43,28 @@ describe('Jira Cloud — screen schemes, tabs and fields (live, read-only)', () 
   });
 
   it('resolves a screen scheme down to a screen that exists', async () => {
-    if (!permitted) return;
-
     const schemes = await client.screenSchemes.getScreenSchemes({ maxResults: 1 });
     const scheme = schemes.values?.[0];
 
-    if (!scheme) return;
+    expect(scheme, 'the site needs a screen scheme').toBeDefined();
 
-    const screenId = scheme.screens!.default!;
+    const screenId = scheme!.screens!.default!;
+    expect(screenId).toBeGreaterThan(0);
     const screens = await client.screens.getScreens({ id: [screenId], maxResults: 1 });
 
     expect(screens.values?.[0]?.id).toBe(screenId);
   });
 
   it('lists the tabs of that screen', async () => {
-    if (!permitted) return;
-
     const schemes = await client.screenSchemes.getScreenSchemes({ maxResults: 1 });
     const screenId = schemes.values?.[0]?.screens?.default;
 
-    if (screenId === undefined) return;
+    expect(screenId, 'the screen scheme needs a default screen').toBeDefined();
 
-    const tabs = await client.screenTabs.getAllScreenTabs({ screenId }).catch((e: unknown) => e);
-
-    if (tabs instanceof Error) return;
-
-    const list = tabs as Awaited<ReturnType<typeof client.screenTabs.getAllScreenTabs>>;
+    const list = await client.screenTabs.getAllScreenTabs({ screenId: screenId! });
 
     expect(Array.isArray(list)).toBe(true);
+    expect(list.length).toBeGreaterThan(0);
 
     for (const tab of list) {
       expect(typeof tab.id).toBe('number');
@@ -86,23 +73,20 @@ describe('Jira Cloud — screen schemes, tabs and fields (live, read-only)', () 
   });
 
   it('lists the fields on a tab, which is where the chain finally ends', async () => {
-    if (!permitted) return;
-
     const schemes = await client.screenSchemes.getScreenSchemes({ maxResults: 1 });
     const screenId = schemes.values?.[0]?.screens?.default;
 
-    if (screenId === undefined) return;
+    expect(screenId, 'the screen scheme needs a default screen').toBeDefined();
 
-    const tabs = await client.screenTabs.getAllScreenTabs({ screenId }).catch(() => undefined);
+    const tabs = await client.screenTabs.getAllScreenTabs({ screenId: screenId! });
     const tabId = tabs?.[0]?.id;
 
-    if (tabId === undefined) return;
+    expect(tabId, 'the default screen needs a tab').toBeDefined();
 
-    const fields = await client.screenTabFields.getAllScreenTabFields({ screenId, tabId }).catch(() => undefined);
-
-    if (!fields) return;
+    const fields = await client.screenTabFields.getAllScreenTabFields({ screenId: screenId!, tabId: tabId! });
 
     expect(Array.isArray(fields)).toBe(true);
+    expect(fields.length).toBeGreaterThan(0);
 
     for (const field of fields) {
       expect(typeof field.id).toBe('string');
