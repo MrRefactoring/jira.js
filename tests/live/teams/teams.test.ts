@@ -4,6 +4,7 @@ import type { TeamsClient } from '#/teams/createTeamsClient';
 import type { Team } from '#/teams/models/team';
 import { getOrgId, getSiteId, getTeamsClient } from '../setup/client';
 import { RESOURCE_MARKER, testName } from '../helpers/naming';
+import { waitFor } from '../helpers/poll';
 
 /**
  * Live suite for the Teams API.
@@ -115,11 +116,16 @@ describe('Teams (live)', () => {
   });
 
   it('pages the members, which come back under a cursor of their own', async () => {
-    const { teamId } = await createTeam('members');
+    const { teamId, members } = await createTeam('members');
 
-    const page = await client.teamMembers.fetchMembers({ orgId, siteId, teamId, first: 10 });
+    expect(members.length).toBeGreaterThan(0);
+    const accountId = members[0]!.accountId;
+    const page = await waitFor(
+      () => client.teamMembers.fetchMembers({ orgId, siteId, teamId, first: 10 }),
+      result => result.results.some(member => member.accountId === accountId),
+    );
 
-    expect(page.results.length).toBeGreaterThan(0);
+    expect(page.results.some(member => member.accountId === accountId)).toBe(true);
     expect(typeof page.results[0].accountId).toBe('string');
     expect(typeof page.pageInfo.hasNextPage).toBe('boolean');
   });
