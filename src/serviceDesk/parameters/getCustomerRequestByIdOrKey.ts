@@ -18,7 +18,7 @@ export const GetCustomerRequestByIdOrKeySchema = z.object({
    * - `comment.renderedBody` (Experimental) return the rendered body in HTML format (in addition to the raw body) for
    *   each comment.
    */
-  expand: z.union([z.array(z.string()).optional(), z.string()]).optional(),
+  expand: z.array(z.string()).optional(),
 });
 
 export type GetCustomerRequestByIdOrKey = z.input<typeof GetCustomerRequestByIdOrKeySchema>;

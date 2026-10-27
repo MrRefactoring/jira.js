@@ -2,7 +2,7 @@ import { z } from 'zod';
 
 export const ValidateUserAnonymizationRerunSchema = z.object({
   /** Parameter used to include parts of the response. */
-  expand: z.union([z.string().optional(), z.array(z.string())]).optional(),
+  expand: z.string().optional(),
   /**
    * User key before anonymization, only needed when current value is anonymized. If there is no old key, e.g. because
    * the user was already created using the new key generation strategy, provide a value equal to the current key.

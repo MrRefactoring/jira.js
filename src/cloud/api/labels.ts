@@ -14,8 +14,6 @@ export async function getAllLabels(
     searchParams: {
       startAt: parameters?.startAt,
       maxResults: parameters?.maxResults,
-      query: parameters?.query,
-      scope: parameters?.scope,
     },
     schema: PageStringSchema,
     signal: options?.signal,

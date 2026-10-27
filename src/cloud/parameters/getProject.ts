@@ -26,7 +26,7 @@ export const GetProjectSchema = z.object({
    * only the properties named here are returned in `properties` in the response; that object is empty when this
    * parameter is omitted.
    */
-  properties: z.union([z.array(z.string()).optional(), z.string()]).optional(),
+  properties: z.array(z.string()).optional(),
 });
 
 export type GetProject = z.input<typeof GetProjectSchema>;

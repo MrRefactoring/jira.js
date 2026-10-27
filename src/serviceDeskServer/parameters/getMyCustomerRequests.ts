@@ -10,7 +10,7 @@ export const GetMyCustomerRequestsSchema = z.object({
    * - `sla` - Return the SLA information on the given request.
    * - `status` - Return the status transitions, in chronological order, for each customer request in the response.
    */
-  expand: z.union([z.string().optional(), z.array(z.string())]).optional(),
+  expand: z.string().optional(),
   /**
    * Filters results to customer requests where the issue summary matches the `searchTerm`. You can use
    * [wildcards](https://confluence.atlassian.com/display/JIRACORECLOUD/Search+syntax+for+text+fields) in the

@@ -57,8 +57,6 @@ export function recordSchemaDrift(entry: SchemaDrift): void {
   (store[STORE] ??= []).push(entry);
 }
 
-export const collectedSchemaDrift = getCollectedSchemaDrift;
-
 export function getCollectedSchemaDrift(): readonly SchemaDrift[] {
   return (globalThis as Store)[STORE] ?? [];
 }

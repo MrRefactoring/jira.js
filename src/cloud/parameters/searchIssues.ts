@@ -49,7 +49,7 @@ export const SearchIssuesSchema = z.object({
    * issue](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-issues/#api-rest-api-3-issue-issueIdOrKey-get)
    * where the default is all fields.
    */
-  fields: z.union([z.array(z.string()).optional(), z.string()]).optional(),
+  fields: z.array(z.string()).optional(),
   /**
    * Use [expand](https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro#expansion) to include additional
    * information about issues in the response. Note that, unlike the majority of instances where `expand` is specified,
@@ -95,7 +95,7 @@ export const SearchIssuesSchema = z.object({
     ])
     .optional(),
   /** A list of up to 5 issue properties to include in the results. This parameter accepts a comma-separated list. */
-  properties: z.union([z.array(z.string()).optional(), z.string()]).optional(),
+  properties: z.array(z.string()).optional(),
   /** Reference fields by their key (rather than ID). The default is `false`. */
   fieldsByKeys: z.boolean().optional(),
   /** Fail this request early if we can't retrieve all field data. */

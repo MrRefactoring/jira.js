@@ -482,6 +482,8 @@ export * from './project';
 
 export * from './projectCategory';
 
+export * from './projectCategoryJson';
+
 export * from './projectDeleteInstructions';
 
 export * from './projectIdentity';

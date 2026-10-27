@@ -124,7 +124,7 @@ export const SearchProjectsSchema = z.object({
    * EXPERIMENTAL. A list of project properties to return for the project. This parameter accepts a comma-separated
    * list.
    */
-  properties: z.union([z.array(StringListSchema).optional(), z.string(), z.array(z.string())]).optional(),
+  properties: z.array(StringListSchema).optional(),
   /**
    * EXPERIMENTAL. A query string used to search properties. The query string cannot be specified using a JSON object.
    * For example, to search for the value of `nested` from `{"something":{"nested":1,"other":2}}` use

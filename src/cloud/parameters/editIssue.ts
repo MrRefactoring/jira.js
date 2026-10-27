@@ -29,7 +29,7 @@ export const EditIssueSchema = z.object(IssueUpdateDetailsSchema.shape).extend({
    */
   returnIssue: z.boolean().optional(),
   /** The Get issue API expand parameter to use in the response if the `returnIssue` parameter is `true`. */
-  expand: z.union([z.string().optional(), z.array(z.string())]).optional(),
+  expand: z.string().optional(),
 });
 
 export type EditIssue = z.input<typeof EditIssueSchema>;

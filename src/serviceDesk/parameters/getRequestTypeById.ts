@@ -8,7 +8,7 @@ export const GetRequestTypeByIdSchema = z.object({
   serviceDeskId: z.string(),
   /** The ID of the customer request type to be returned. */
   requestTypeId: z.string(),
-  expand: z.union([z.array(z.string()).optional(), z.string()]).optional(),
+  expand: z.array(z.string()).optional(),
 });
 
 export type GetRequestTypeById = z.input<typeof GetRequestTypeByIdSchema>;

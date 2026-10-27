@@ -92,6 +92,7 @@ export async function addWorklog(client: Client, parameters: AddWorklog, options
       options,
     );
   }
+
   const config: SendRequestOptions<Worklog> = {
     url: `/rest/api/3/issue/${parameters.issueIdOrKey}/worklog`,
     method: 'POST',
@@ -202,6 +203,7 @@ export async function updateWorklog(
       options,
     );
   }
+
   const config: SendRequestOptions<Worklog> = {
     url: `/rest/api/3/issue/${parameters.issueIdOrKey}/worklog/${parameters.id}`,
     method: 'PUT',

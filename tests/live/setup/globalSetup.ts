@@ -98,7 +98,7 @@ async function sweep(label: string): Promise<void> {
 
   for (const issue of issues) {
     const deleted = await client.issues
-      .deleteIssue({ issueIdOrKey: issue.id!, deleteSubtasks: true })
+      .deleteIssue({ issueIdOrKey: issue.id!, deleteSubtasks: 'true' })
       .then(() => true)
       .catch(() => false);
 

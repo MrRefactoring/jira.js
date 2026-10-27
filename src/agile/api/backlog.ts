@@ -3,9 +3,8 @@ import type { MoveIssuesToBacklogForBoard } from '../parameters/moveIssuesToBack
 import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 
 /**
- * Move issues to the backlog.\
- * This operation is equivalent to remove future and active sprints from a given set of issues. At most 50 issues may be
- * moved at once.
+ * Move issues to the backlog. This operation is equivalent to remove future and active sprints from a given set of
+ * issues. At most 50 issues may be moved at once.
  */
 export async function moveIssuesToBacklog(
   client: Client,
@@ -25,10 +24,9 @@ export async function moveIssuesToBacklog(
 }
 
 /**
- * Move issues to the backlog of a particular board (if they are already on that board).\
- * This operation is equivalent to remove future and active sprints from a given set of issues if the board has sprints
- * If the board does not have sprints this will put the issues back into the backlog from the board. At most 50 issues
- * may be moved at once.
+ * Move issues to the backlog of a particular board (if they are already on that board). This operation is equivalent to
+ * remove future and active sprints from a given set of issues if the board has sprints If the board does not have
+ * sprints this will put the issues back into the backlog from the board. At most 50 issues may be moved at once.
  */
 export async function moveIssuesToBacklogForBoard(
   client: Client,

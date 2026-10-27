@@ -51,7 +51,7 @@ export const FindUsersWithAllPermissionsSchema = z.object({
    *   - WORKLOG_EDIT_OWN
    *   - WORK_ISSUE
    */
-  permissions: z.union([z.string(), z.array(z.string())]),
+  permissions: z.string(),
   /** The issue key for the issue. */
   issueKey: z.string().optional(),
   /** The project key for the project (case sensitive). */

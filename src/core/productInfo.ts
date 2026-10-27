@@ -7,9 +7,6 @@
  */
 export interface ProductInfo {
   packageName: string;
-  productName: string;
-  onSchemaMismatch: 'warn' | 'throw';
-  preserveSchemaMismatchBody: boolean;
   gatewaySlug: string;
   scopeHint: string;
 }
@@ -18,9 +15,6 @@ export interface ProductInfo {
 export const PRODUCT: ProductInfo = {
   /** The npm package name, e.g. `confluence.js`. */
   packageName: 'jira.js',
-  productName: '',
-  onSchemaMismatch: 'warn' as 'warn' | 'throw',
-  preserveSchemaMismatchBody: ('false' as string) === 'true',
 
   /**
    * The Atlassian gateway slug, as in `https://api.atlassian.com/ex/<slug>/{cloudId}`.

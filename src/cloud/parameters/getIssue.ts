@@ -26,7 +26,7 @@ export const GetIssueSchema = z.object({
    * (POST)](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-search/#api-rest-api-3-search-post)
    * where the default is all navigable fields.
    */
-  fields: z.union([z.array(z.string()).optional(), z.string()]).optional(),
+  fields: z.array(z.string()).optional(),
   /**
    * Whether fields in `fields` are referenced by keys rather than IDs. This parameter is useful where fields have been
    * added by a connect app and a field's key may differ from its ID.
@@ -84,7 +84,7 @@ export const GetIssueSchema = z.object({
    *
    * This parameter may be specified multiple times. For example, `properties=prop1,prop2& properties=prop3`.
    */
-  properties: z.union([z.array(z.string()).optional(), z.string()]).optional(),
+  properties: z.array(z.string()).optional(),
   /**
    * Whether the project in which the issue is created is added to the user's **Recently viewed** project list, as shown
    * under **Projects** in Jira. This also populates the [JQL issues
