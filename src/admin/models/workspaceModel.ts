@@ -11,6 +11,7 @@ export const WorkspaceModelSchema = apiObject({
   type: z.string().optional(),
   attributes: apiObject({
     name: z.string().optional(),
+    slug: z.string().optional(),
     typeKey: z.string().optional(),
     type: z.string().optional(),
     owner: z.string().nullish(),

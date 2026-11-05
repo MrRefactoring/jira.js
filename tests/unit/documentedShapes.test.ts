@@ -66,15 +66,27 @@ describe('the shapes Atlassian documents', () => {
 
   it('reads workspace relationships as arrays of the resource their name selects', () => {
     const workspace = WorkspaceModelSchema.parse({
+      attributes: { slug: 'example' },
       relationships: {
         policy: [{ id: 'policy', type: 'policies', attributes: { enabled: true } }],
         entitlement: [{ id: 'entitlement', type: 'entitlements', attributes: { key: 'jira-software' } }],
-        feature: [{ id: 'feature', type: 'features', attributes: { limit: 5 } }],
+        feature: [
+          {
+            id: 'feature',
+            type: 'features',
+            attributes: { limit: 5, allowances: [{ reference: 'ref', type: 'usage', config: { usageKey: 'seats' } }] },
+            links: null,
+          },
+        ],
       },
     });
 
     expect(workspace.relationships?.policy).toHaveLength(1);
     expect(workspace.relationships?.entitlement?.[0]?.attributes?.key).toBe('jira-software');
+    expect(workspace.relationships?.feature?.[0]?.links).toBeNull();
+    expect(workspace.attributes?.slug).toBe('example');
+    expect(workspace.relationships?.feature?.[0]?.attributes?.allowances?.[0]?.config?.usageKey).toBe('seats');
+    expectTypeOf<null>().toExtend<FeatureModelV2['links']>();
     expect(() => WorkspaceModelSchema.parse({ relationships: { policy: { id: 'policy' } } })).toThrow();
     expectTypeOf<NonNullable<WorkspaceModel['relationships']>['policy']>().toEqualTypeOf<PolicyModelV2[] | undefined>();
     expectTypeOf<NonNullable<WorkspaceModel['relationships']>['entitlement']>().toEqualTypeOf<
@@ -93,9 +105,7 @@ describe('the shapes Atlassian documents', () => {
 
     expect(source.importStatus?.reasonForInvalidity?.configuration).toEqual({ missing: true });
     expect(source.importSourceOTEntries?.[0]?.importStatus?.reasonForInvalidity?.selector).toBe(false);
-    expectTypeOf(source.importStatus?.reasonForInvalidity).toEqualTypeOf<
-      Record<string, any> | null | undefined
-    >();
+    expectTypeOf(source.importStatus?.reasonForInvalidity).toEqualTypeOf<Record<string, any> | null | undefined>();
   });
 
   it('counts astral characters as Unicode code points at string-length boundaries', () => {
