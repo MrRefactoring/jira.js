@@ -5,6 +5,15 @@ export const FeatureModelV2Schema = apiObject({
   id: z.string().optional(),
   type: z.string().optional(),
   attributes: apiObject({
+    allowances: z
+      .array(
+        apiObject({
+          reference: z.string().optional(),
+          type: z.string().optional(),
+          config: apiObject({ usageKey: z.string().optional() }).optional(),
+        }),
+      )
+      .optional(),
     fields: z.record(z.string(), z.any()).optional(),
     allInclusive: z.boolean().optional(),
     available: z.boolean().optional(),
@@ -33,7 +42,7 @@ export const FeatureModelV2Schema = apiObject({
   }).optional(),
   links: apiObject({
     self: z.string().optional(),
-  }).optional(),
+  }).nullish(),
 });
 
 export type FeatureModelV2 = z.infer<typeof FeatureModelV2Schema>;
