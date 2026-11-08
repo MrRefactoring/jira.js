@@ -14,6 +14,8 @@ export * from './configuration';
 
 export * from './dashboards';
 
+export * from './developmentStatus';
+
 export * from './emailTemplates';
 
 export * from './epic';

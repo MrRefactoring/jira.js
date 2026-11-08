@@ -1,0 +1,66 @@
+{
+  "errors": [],
+  "detail": [
+    {
+      "repositories": [],
+      "branches": [
+        {
+          "name": "feature/JMIG-1",
+          "url": "http://192.168.97.4:7990/projects/JMIG/repos/development-status/commits?until=refs%2Fheads%2Ffeature%2FJMIG-1",
+          "createPullRequestUrl": "http://192.168.97.4:7990/projects/JMIG/repos/development-status/pull-requests?create&sourceBranch=refs%2Fheads%2Ffeature%2FJMIG-1",
+          "repository": {
+            "name": "development-status",
+            "avatar": "http://192.168.97.4:7990/projects/JMIG/avatar.png?s=32&v=1754973993239",
+            "avatarDescription": "Development status fixture",
+            "url": "http://192.168.97.4:7990/projects/JMIG/repos/development-status/browse"
+          }
+        }
+      ],
+      "pullRequests": [
+        {
+          "author": {
+            "name": "Release Pilot Admin",
+            "avatar": "http://www.gravatar.com/avatar/98afc2e6474fc6c67d129b8b3043e959.jpg?s=128&d=mm"
+          },
+          "id": "#1",
+          "name": "JMIG-1 Verify development status",
+          "commentCount": 0,
+          "source": {
+            "branch": "feature/JMIG-1",
+            "repository": {
+              "name": "development-status",
+              "avatar": "http://192.168.97.4:7990/projects/JMIG/avatar.png?s=32&v=1754973993239",
+              "avatarDescription": "Development status fixture",
+              "url": "http://192.168.97.4:7990/projects/JMIG/repos/development-status/browse"
+            },
+            "url": "http://192.168.97.4:7990/projects/JMIG/repos/development-status/commits?until=refs%2Fheads%2Ffeature%2FJMIG-1"
+          },
+          "destination": {
+            "branch": "master",
+            "repository": {
+              "name": "development-status",
+              "avatar": "http://192.168.97.4:7990/projects/JMIG/avatar.png?s=32&v=1754973993239",
+              "avatarDescription": "Development status fixture",
+              "url": "http://192.168.97.4:7990/projects/JMIG/repos/development-status/browse"
+            },
+            "url": "http://192.168.97.4:7990/projects/JMIG/repos/development-status/commits?until=refs%2Fheads%2Fmaster"
+          },
+          "reviewers": [],
+          "status": "OPEN",
+          "url": "http://192.168.97.4:7990/projects/JMIG/repos/development-status/pull-requests/1",
+          "lastUpdate": "2026-11-08T18:38:26.177+0000"
+        }
+      ],
+      "_instance": {
+        "name": "Release Pilot Bitbucket",
+        "typeName": "Bitbucket",
+        "id": "8965e588-2152-3a78-976c-28d22a48b85a",
+        "type": "stash",
+        "singleInstance": false,
+        "applicationLinkId": "8965e588-2152-3a78-976c-28d22a48b85a",
+        "primary": true,
+        "baseUrl": "http://192.168.97.4:7990"
+      }
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "issueKey": "JMIG-1",
+  "issueId": "10000",
+  "applicationType": "stash",
+  "verified": true,
+  "hasPullRequests": true,
+  "hasBranches": true,
+  "unavailable": []
+}

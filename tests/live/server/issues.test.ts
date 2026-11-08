@@ -39,6 +39,21 @@ describe('issues', () => {
     expect(String((issue.fields as Record<string, unknown>).description)).toContain('*bold*');
   });
 
+  it('reads the development-status envelope independently of integration payload coverage', async () => {
+    const issue = await jira.issues.getIssue({ issueIdOrKey: issueKey });
+
+    expect(issue.id).toMatch(/^\d+$/);
+
+    const development = await jira.developmentStatus.getIssueDevelopmentStatusDetail({
+      issueId: issue.id!,
+      applicationType: 'stash',
+      dataType: 'pullrequest',
+    });
+
+    expect(Array.isArray(development.errors)).toBe(true);
+    expect(Array.isArray(development.detail)).toBe(true);
+  });
+
   it('creates issues in bulk', async () => {
     const bulk = await jira.issues.createIssues({
       issueUpdates: [

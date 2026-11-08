@@ -350,6 +350,8 @@ export * from './getIdsOfWorklogsModifiedSince';
 
 export * from './getIssue';
 
+export * from './getIssueDevelopmentStatusDetail';
+
 export * from './getIssueEstimationForBoard';
 
 export * from './getIssueLink';
