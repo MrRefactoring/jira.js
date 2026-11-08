@@ -1,0 +1,23 @@
+{
+  "verifiedAt": "2026-11-09",
+  "issueKey": "JMIG-1",
+  "issueId": "10000",
+  "query": {
+    "fields": ["id"]
+  },
+  "responses": [
+    {
+      "name": "platform",
+      "path": "/rest/api/2/issue/JMIG-1?fields=id",
+      "status": 200,
+      "fields": null
+    },
+    {
+      "name": "agile",
+      "path": "/rest/agile/1.0/issue/JMIG-1?fields=id",
+      "status": 200,
+      "fields": null
+    }
+  ],
+  "jiraVersion": "10.3.27"
+}

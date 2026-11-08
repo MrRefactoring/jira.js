@@ -4,12 +4,11 @@
  * Everything else in CI reads this repository's own tree, where the source resolves through `tsconfig` paths and the
  * `#/` alias. A consumer has neither. The failures that class produces have all shipped before:
  *
- * - a subpath that resolves here and 404s from `node_modules` (#403);
- * - an `exports` map that answers for `import` but not for a type resolver, so every consumer's `tsc` fails while the
+ * - A subpath that resolves here and 404s from `node_modules` (#403);
+ * - An `exports` map that answers for `import` but not for a type resolver, so every consumer's `tsc` fails while the
  *   runtime is fine (#381, #383);
- * - a stray `package.json` inside `src/`, which redefines `#/` for the files under it and breaks the source
- *   navigation that shipping `src/` exists to provide — invisible to a build that resolves the alias through
- *   `tsconfig` instead.
+ * - A stray `package.json` inside `src/`, which redefines `#/` for the files under it and breaks the source navigation
+ *   that shipping `src/` exists to provide — invisible to a build that resolves the alias through `tsconfig` instead.
  *
  * Both type resolvers are exercised, because they disagree: `bundler` reads `exports` loosely, `nodenext` enforces
  * extensions and the ESM/CJS split.
@@ -88,11 +87,11 @@ try {
     'surfaces.forEach((surface, index) => {',
     '  const empty = Object.keys(surface).length === 0;',
     '  if (empty && !typesOnly.includes(names[index])) {',
-    "    console.error(`empty namespace from ${names[index]}`);",
+    '    console.error(`empty namespace from ${names[index]}`);',
     '    process.exitCode = 1;',
     '  }',
     '  if (!empty && typesOnly.includes(names[index])) {',
-    "    console.error(`${names[index]} is types only but exports runtime values`);",
+    '    console.error(`${names[index]} is types only but exports runtime values`);',
     '    process.exitCode = 1;',
     '  }',
     '});',
@@ -114,6 +113,7 @@ try {
     "import { createCloudClient, isNotFoundError } from 'jira.js';",
     "import { authBasicPasswordSchema, createClient, SchemaMismatchError, paginate } from 'jira.js/core';",
     "import type { Issue, PageString } from 'jira.js/cloud/models';",
+    "import { IssueSchema as ServerIssueSchema, type Issue as ServerIssue } from 'jira.js/server/models';",
     "import type { GetAllLabels, SearchIssues } from 'jira.js/cloud/parameters';",
     "import type { ApiObjectConfig, AuthBasicPassword, Client } from 'jira.js/core';",
     "import type { WebhookHeaders, WebhookPayload } from 'jira.js/webhooks';",
@@ -123,6 +123,9 @@ try {
     ...SUBPATHS.map((subpath, index) => `import type * as surface${index} from '${subpath}';`),
     '',
     "const client: Client = createClient({ host: 'https://example.atlassian.net' });",
+    "export const minimalServerIssue: ServerIssue = ServerIssueSchema.parse({ id: '10000', fields: null });",
+    'export const serverFields = (issue: ServerIssue): NonNullable<ServerIssue["fields"]> => issue.fields ?? {};',
+    'export const serverSummary = (issue: ServerIssue): unknown => issue.fields?.summary;',
     "export const developmentParameters: GetIssueDevelopmentStatusDetail = { issueId: '9007199254740993', applicationType: 'vendor', dataType: 'future' };",
     'export const developmentResult: Promise<DevelopmentStatusDetail> = getIssueDevelopmentStatusDetail(client, developmentParameters);',
     'export const boundDevelopmentResult: Promise<DevelopmentStatusDetail> = createServerClient(client).developmentStatus.getIssueDevelopmentStatusDetail(developmentParameters);',
@@ -169,7 +172,14 @@ try {
       join(workspace, `tsconfig.${moduleResolution}.json`),
       `${JSON.stringify(
         {
-          compilerOptions: { module, moduleResolution, noEmit: true, skipLibCheck: true, strict: true, target: 'es2022' },
+          compilerOptions: {
+            module,
+            moduleResolution,
+            noEmit: true,
+            skipLibCheck: true,
+            strict: true,
+            target: 'es2022',
+          },
           files: ['probe.ts'],
         },
         null,
@@ -178,7 +188,11 @@ try {
     );
 
     try {
-      run('node', [join(root, 'node_modules', 'typescript', 'bin', 'tsc'), '-p', `tsconfig.${moduleResolution}.json`], workspace);
+      run(
+        'node',
+        [join(root, 'node_modules', 'typescript', 'bin', 'tsc'), '-p', `tsconfig.${moduleResolution}.json`],
+        workspace,
+      );
     } catch (error) {
       const output = ((error as { stdout?: string }).stdout ?? (error as Error).message).trim();
 
@@ -187,7 +201,11 @@ try {
   }
 
   try {
-    run('npm', ['install', '--no-audit', '--no-fund', '--silent', '--no-save', `typescript@${TYPESCRIPT_FLOOR}`], workspace);
+    run(
+      'npm',
+      ['install', '--no-audit', '--no-fund', '--silent', '--no-save', `typescript@${TYPESCRIPT_FLOOR}`],
+      workspace,
+    );
   } catch (error) {
     problems.push(`TypeScript ${TYPESCRIPT_FLOOR} could not be installed:\n${(error as Error).message}`);
   }
@@ -200,7 +218,14 @@ try {
       join(workspace, config),
       `${JSON.stringify(
         {
-          compilerOptions: { module, moduleResolution, noEmit: true, skipLibCheck: false, strict: true, target: 'es2022' },
+          compilerOptions: {
+            module,
+            moduleResolution,
+            noEmit: true,
+            skipLibCheck: false,
+            strict: true,
+            target: 'es2022',
+          },
           files: ['probe.ts'],
         },
         null,
