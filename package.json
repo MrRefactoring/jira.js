@@ -218,6 +218,7 @@
     "check:docs": "node scripts/checkDocs.ts",
     "check:consumers": "node scripts/checkConsumers.ts",
     "check:development-status": "node scripts/checkDevelopmentStatus.ts",
+    "check:cluster-snapshot": "node scripts/checkClusterSnapshot.ts",
     "test": "vitest run",
     "test:live": "vitest run --config vitest.config.live.ts",
     "test:live:readonly": "vitest run --config vitest.config.live.ts --mode readonly tests/live/admin/admin.test.ts tests/live/assets/assets.test.ts -t \"lists the products the organization owns|validates an import source response\"",
