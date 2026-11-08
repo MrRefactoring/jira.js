@@ -110,9 +110,55 @@ The scopes are `READ`, `WRITE`, `ADMIN` and `SYSTEM_ADMIN`, each implying the on
 `redirectUri` belongs with the refresh credentials, not only with the initial exchange: the Data Center provider
 validates it on the refresh grant too, and omitting it earns an `invalid_grant` that explains nothing.
 
+## Development information
+
+`jira.developmentStatus.getIssueDevelopmentStatusDetail` reads the issue's Development panel through
+`GET /rest/dev-status/1.0/issue/detail`. This is an internal Jira Software API, exposed as a public SDK method.
+Its availability and payload depend on the Jira version and the connected integration. Atlassian provides
+[Data Center examples](https://support.atlassian.com/jira/kb/access-git-repo-commit-data-via-jira-rest-api-in-development-panel-data/)
+rather than an OpenAPI specification.
+
+```typescript
+const issue = await jira.issues.getIssue({ issueIdOrKey: 'PROJ-1' });
+
+if (!issue.id) throw new Error('The issue has no numeric ID.');
+
+const development = await jira.developmentStatus.getIssueDevelopmentStatusDetail({
+  issueId: issue.id,
+  applicationType: 'stash',
+  dataType: 'pullrequest',
+});
+```
+
+All three parameters are required. `issueId` is the numeric ID as a string; an issue key cannot be sent in its place.
+`applicationType` and `dataType` accept open strings. Values such as `stash`, `bitbucket`, `github`, `githube`,
+`pullrequest`, `repository` and `branch` are passed through unchanged. Use the identifier your integration expects;
+the SDK does not treat provider names as aliases.
+
+The response models preserve integration-specific fields. An `errors` array inside HTTP 200 remains part of the
+response; HTTP failures, cancellation and schema mismatches use the shared SDK behavior.
+
+Nonempty pull request, branch and repository payloads were verified with Jira Software Data Center 10.3.27 and
+Bitbucket Data Center 9.6.5 using `applicationType=stash`. In that integration, `dataType=pullrequest` returned both
+pull requests and branches; the separate `branch` query returned an empty envelope. Captured responses and their
+provenance are in `tests/fixtures/development-status`. GitHub, GitHub Enterprise and Bitbucket Cloud fixtures were
+unavailable and remain unverified.
+
+After `pnpm build`, verify an existing development-linked issue with:
+
+```bash
+JIRA_SERVER_DEV_ISSUE_KEY=PROJ-1 JIRA_SERVER_DEV_APPLICATION_TYPE=stash pnpm check:development-status
+```
+
+The check uses `JIRA_SERVER_BASE_URL`, `JIRA_SERVER_USERNAME` and `JIRA_SERVER_PASSWORD`. It requires nonempty pull
+request and branch payloads from successful responses, which may be separate responses. Set
+`JIRA_SERVER_DEV_CAPTURE_DIR` to save the responses and a verification report, including unavailable queries.
+The standard live suite also checks the response envelope without requiring an integration; an empty response
+does not establish pull request or branch payload coverage.
+
 ## Webhooks
 
-The one part of this surface Atlassian does not describe in a specification. `createWebhook` and the eight
+Atlassian describes webhook endpoints in prose rather than a specification. `createWebhook` and the eight
 operations beside it were written from the Jersey WADL a running instance serves at
 `/rest/jira-webhook/1.0/application.wadl`, which describes the requests and — its `grammars` element being
 empty — nothing about the bodies, and from calling each one against a live Data Center instance.

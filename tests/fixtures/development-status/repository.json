@@ -1,0 +1,47 @@
+{
+  "errors": [],
+  "detail": [
+    {
+      "repositories": [
+        {
+          "name": "development-status",
+          "url": "http://192.168.97.4:7990/projects/JMIG/repos/development-status/browse",
+          "commits": [
+            {
+              "id": "bd7d5c8a5ac8a03921b377390d74ba4a6dd3665b",
+              "displayId": "bd7d5c8a5ac",
+              "authorTimestamp": "2026-11-08T18:38:25.000+0000",
+              "url": "http://192.168.97.4:7990/projects/JMIG/repos/development-status/commits/bd7d5c8a5ac8a03921b377390d74ba4a6dd3665b",
+              "author": {
+                "name": "admin",
+                "avatar": "http://www.gravatar.com/avatar/98afc2e6474fc6c67d129b8b3043e959.jpg?s=128&d=mm"
+              },
+              "fileCount": 1,
+              "merge": false,
+              "message": "JMIG-1 Add development status fixture",
+              "files": [
+                {
+                  "path": "README.md",
+                  "url": "http://192.168.97.4:7990/projects/JMIG/repos/development-status/commits/bd7d5c8a5ac8a03921b377390d74ba4a6dd3665b#README.md",
+                  "changeType": "MODIFIED"
+                }
+              ]
+            }
+          ],
+          "avatar": "http://192.168.97.4:7990/projects/JMIG/avatar.png?s=32&v=1754973993239",
+          "avatarDescription": "Development status fixture"
+        }
+      ],
+      "_instance": {
+        "name": "Release Pilot Bitbucket",
+        "typeName": "Bitbucket",
+        "id": "8965e588-2152-3a78-976c-28d22a48b85a",
+        "type": "stash",
+        "singleInstance": false,
+        "applicationLinkId": "8965e588-2152-3a78-976c-28d22a48b85a",
+        "primary": true,
+        "baseUrl": "http://192.168.97.4:7990"
+      }
+    }
+  ]
+}

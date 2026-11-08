@@ -61,6 +61,7 @@ import * as issueWorklogs from './api/issueWorklogs';
 import * as session from './api/session';
 import * as websudo from './api/websudo';
 import * as webhooks from './api/webhooks';
+import * as developmentStatus from './api/developmentStatus';
 import type {
   MoveIssuesToBacklog,
   GetAllBoards,
@@ -452,6 +453,7 @@ import type {
   GetWebhookStatisticsSummary,
   GetWebhookTransitions,
   GetLatestWebhookInvocation,
+  GetIssueDevelopmentStatusDetail,
 } from './parameters';
 import type {
   Page,
@@ -595,6 +597,7 @@ import type {
   Webhook,
   WebhookStatistics,
   GetWebhookStatisticsSummary as GetWebhookStatisticsSummaryModel,
+  DevelopmentStatusDetail,
 } from './models';
 
 export type ServerClientConfig = Omit<ClientConfig, 'auth' | 'host'> & {
@@ -1788,6 +1791,13 @@ export function createServerClient(clientConfig: ServerClientConfig | Client) {
         parameters: GetLatestWebhookInvocation,
         options?: RequestOptions,
       ): Promise<unknown> => webhooks.getLatestWebhookInvocation(client, parameters, options),
+    },
+    developmentStatus: {
+      getIssueDevelopmentStatusDetail: (
+        parameters: GetIssueDevelopmentStatusDetail,
+        options?: RequestOptions,
+      ): Promise<DevelopmentStatusDetail> =>
+        developmentStatus.getIssueDevelopmentStatusDetail(client, parameters, options),
     },
   };
 }
