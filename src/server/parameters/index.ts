@@ -630,6 +630,8 @@ export * from './removeWatcher';
 
 export * from './renameTab';
 
+export * from './requestCurrentIndexFromNode';
+
 export * from './resetColumns';
 
 export * from './resetOrder';
