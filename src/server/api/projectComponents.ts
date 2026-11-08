@@ -66,7 +66,7 @@ export async function getComponent(
   options?: RequestOptions,
 ): Promise<Component> {
   const config: SendRequestOptions<Component> = {
-    url: `/rest/api/2/component/${parameters.id}`,
+    url: `/rest/api/2/component/${encodeURIComponent(parameters.id)}`,
     method: 'GET',
     schema: ComponentSchema,
     signal: options?.signal,
@@ -85,7 +85,7 @@ export async function updateComponent(
   options?: RequestOptions,
 ): Promise<Component> {
   const config: SendRequestOptions<Component> = {
-    url: `/rest/api/2/component/${parameters.id}`,
+    url: `/rest/api/2/component/${encodeURIComponent(parameters.id)}`,
     method: 'PUT',
     body: parameters.body,
     schema: ComponentSchema,
@@ -102,7 +102,7 @@ export async function deleteComponent(
   options?: RequestOptions,
 ): Promise<void> {
   const config: SendRequestOptions<void> = {
-    url: `/rest/api/2/component/${parameters.id}`,
+    url: `/rest/api/2/component/${encodeURIComponent(parameters.id)}`,
     method: 'DELETE',
     searchParams: {
       moveIssuesTo: parameters.moveIssuesTo,
@@ -120,7 +120,7 @@ export async function getComponentRelatedIssues(
   options?: RequestOptions,
 ): Promise<ComponentIssueCounts> {
   const config: SendRequestOptions<ComponentIssueCounts> = {
-    url: `/rest/api/2/component/${parameters.id}/relatedIssueCounts`,
+    url: `/rest/api/2/component/${encodeURIComponent(parameters.id)}/relatedIssueCounts`,
     method: 'GET',
     schema: ComponentIssueCountsSchema,
     signal: options?.signal,

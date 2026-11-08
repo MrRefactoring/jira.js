@@ -93,7 +93,7 @@ export async function getIssueType(
   options?: RequestOptions,
 ): Promise<IssueTypeJson> {
   const config: SendRequestOptions<IssueTypeJson> = {
-    url: `/rest/api/2/issuetype/${parameters.id}`,
+    url: `/rest/api/2/issuetype/${encodeURIComponent(parameters.id)}`,
     method: 'GET',
     schema: IssueTypeJsonSchema,
     signal: options?.signal,
@@ -109,7 +109,7 @@ export async function updateIssueType(
   options?: RequestOptions,
 ): Promise<IssueTypeJson> {
   const config: SendRequestOptions<IssueTypeJson> = {
-    url: `/rest/api/2/issuetype/${parameters.id}`,
+    url: `/rest/api/2/issuetype/${encodeURIComponent(parameters.id)}`,
     method: 'PUT',
     body: {
       avatarId: parameters.avatarId,
@@ -133,7 +133,7 @@ export async function deleteIssueType(
   options?: RequestOptions,
 ): Promise<void> {
   const config: SendRequestOptions<void> = {
-    url: `/rest/api/2/issuetype/${parameters.id}`,
+    url: `/rest/api/2/issuetype/${encodeURIComponent(parameters.id)}`,
     method: 'DELETE',
     searchParams: {
       alternativeIssueTypeId: parameters.alternativeIssueTypeId,
@@ -151,7 +151,7 @@ export async function getAlternativeIssueTypes(
   options?: RequestOptions,
 ): Promise<IssueTypeJson[]> {
   const config: SendRequestOptions<IssueTypeJson[]> = {
-    url: `/rest/api/2/issuetype/${parameters.id}/alternatives`,
+    url: `/rest/api/2/issuetype/${encodeURIComponent(parameters.id)}/alternatives`,
     method: 'GET',
     schema: z.array(IssueTypeJsonSchema),
     signal: options?.signal,
@@ -167,7 +167,7 @@ export async function createIssueTypeAvatarFromTemporary(
   options?: RequestOptions,
 ): Promise<Avatar> {
   const config: SendRequestOptions<Avatar> = {
-    url: `/rest/api/2/issuetype/${parameters.id}/avatar`,
+    url: `/rest/api/2/issuetype/${encodeURIComponent(parameters.id)}/avatar`,
     method: 'POST',
     body: {
       cropperOffsetX: parameters.cropperOffsetX,
@@ -206,7 +206,7 @@ export async function storeTemporaryIssueTypeAvatarUsingMultiPart(
   }
 
   const config: SendRequestOptions<unknown> = {
-    url: `/rest/api/2/issuetype/${parameters.id}/avatar/temporary`,
+    url: `/rest/api/2/issuetype/${encodeURIComponent(parameters.id)}/avatar/temporary`,
     method: 'POST',
     headers: {
       'X-Atlassian-Token': 'no-check',
@@ -227,7 +227,7 @@ export async function getIssueTypePropertyKeys(
   options?: RequestOptions,
 ): Promise<EntityPropertiesKeys> {
   const config: SendRequestOptions<EntityPropertiesKeys> = {
-    url: `/rest/api/2/issuetype/${parameters.issueTypeId}/properties`,
+    url: `/rest/api/2/issuetype/${encodeURIComponent(parameters.issueTypeId)}/properties`,
     method: 'GET',
     schema: EntityPropertiesKeysSchema,
     signal: options?.signal,
@@ -243,7 +243,7 @@ export async function getIssueTypeProperty(
   options?: RequestOptions,
 ): Promise<EntityProperty> {
   const config: SendRequestOptions<EntityProperty> = {
-    url: `/rest/api/2/issuetype/${parameters.issueTypeId}/properties/${parameters.propertyKey}`,
+    url: `/rest/api/2/issuetype/${encodeURIComponent(parameters.issueTypeId)}/properties/${encodeURIComponent(parameters.propertyKey)}`,
     method: 'GET',
     schema: EntityPropertySchema,
     signal: options?.signal,
@@ -259,7 +259,7 @@ export async function setIssueTypeProperty(
   options?: RequestOptions,
 ): Promise<void> {
   const config: SendRequestOptions<void> = {
-    url: `/rest/api/2/issuetype/${parameters.issueTypeId}/properties/${parameters.propertyKey}`,
+    url: `/rest/api/2/issuetype/${encodeURIComponent(parameters.issueTypeId)}/properties/${encodeURIComponent(parameters.propertyKey)}`,
     method: 'PUT',
     body: parameters.body,
     signal: options?.signal,
@@ -275,7 +275,7 @@ export async function deleteIssueTypeProperty(
   options?: RequestOptions,
 ): Promise<void> {
   const config: SendRequestOptions<void> = {
-    url: `/rest/api/2/issuetype/${parameters.issueTypeId}/properties/${parameters.propertyKey}`,
+    url: `/rest/api/2/issuetype/${encodeURIComponent(parameters.issueTypeId)}/properties/${encodeURIComponent(parameters.propertyKey)}`,
     method: 'DELETE',
     signal: options?.signal,
   };

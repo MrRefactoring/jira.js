@@ -28,6 +28,16 @@ each says which release it arrived in, and calling one on an older instance answ
 Jira 9.x is not supported. Atlassian never published an OpenAPI document for it, and the whole line reached end
 of life on 26 June 2026.
 
+## Path parameters
+
+Pass raw values to Data Center path parameters. Each value is encoded as one URL path segment; `/`, `?`, `#`, spaces,
+Unicode and literal percent signs remain data. Do not call `encodeURIComponent` before passing a value: raw `a%2Fb`
+is sent as `a%252Fb`. Numeric IDs and the route's own separators are unchanged. Query parameters are serialized separately.
+
+```typescript
+await jira.issues.getIssueProperty({ issueIdOrKey: 'PROJ-1', propertyKey: 'team/status' });
+```
+
 ## Authentication
 
 ::: warning Basic authentication is disabled by default on Jira 11
@@ -182,15 +192,15 @@ would have been worse than leaving the narrowing to the caller.
 
 ## Coming from Cloud
 
-| | Cloud | Data Center |
-| --- | --- | --- |
-| Factory | `createCloudClient` | `createServerClient` |
-| Import | `jira.js/cloud` | `jira.js/server` |
-| API version | `/rest/api/3` | `/rest/api/2` |
-| Agile | separate `createAgileClient` | in the same client |
-| Rich text | Atlassian Document Format | wiki markup, as a plain string |
-| User identity | `accountId` | `name` and `key` |
-| Basic auth | email + API token | username + password |
+|               | Cloud                        | Data Center                    |
+| ------------- | ---------------------------- | ------------------------------ |
+| Factory       | `createCloudClient`          | `createServerClient`           |
+| Import        | `jira.js/cloud`              | `jira.js/server`               |
+| API version   | `/rest/api/3`                | `/rest/api/2`                  |
+| Agile         | separate `createAgileClient` | in the same client             |
+| Rich text     | Atlassian Document Format    | wiki markup, as a plain string |
+| User identity | `accountId`                  | `name` and `key`               |
+| Basic auth    | email + API token            | username + password            |
 
 Because the two surfaces describe different shapes, their models are not interchangeable. Import types from
 `jira.js/server`, not from `jira.js/cloud`, and note that a handful of names — `Issue`, `Project`, `User` — exist

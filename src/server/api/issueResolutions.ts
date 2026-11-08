@@ -46,7 +46,7 @@ export async function getResolution(
   options?: RequestOptions,
 ): Promise<ResolutionJson> {
   const config: SendRequestOptions<ResolutionJson> = {
-    url: `/rest/api/2/resolution/${parameters.id}`,
+    url: `/rest/api/2/resolution/${encodeURIComponent(parameters.id)}`,
     method: 'GET',
     schema: ResolutionJsonSchema,
     signal: options?.signal,

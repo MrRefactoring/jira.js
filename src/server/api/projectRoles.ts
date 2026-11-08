@@ -50,7 +50,7 @@ export async function getProjectRolesById(
   options?: RequestOptions,
 ): Promise<ProjectRole> {
   const config: SendRequestOptions<ProjectRole> = {
-    url: `/rest/api/2/role/${parameters.id}`,
+    url: `/rest/api/2/role/${encodeURIComponent(parameters.id)}`,
     method: 'GET',
     schema: ProjectRoleSchema,
     signal: options?.signal,
@@ -66,7 +66,7 @@ export async function partialUpdateProjectRole(
   options?: RequestOptions,
 ): Promise<ProjectRole> {
   const config: SendRequestOptions<ProjectRole> = {
-    url: `/rest/api/2/role/${parameters.id}`,
+    url: `/rest/api/2/role/${encodeURIComponent(parameters.id)}`,
     method: 'POST',
     body: {
       description: parameters.description,
@@ -86,7 +86,7 @@ export async function fullyUpdateProjectRole(
   options?: RequestOptions,
 ): Promise<ProjectRole> {
   const config: SendRequestOptions<ProjectRole> = {
-    url: `/rest/api/2/role/${parameters.id}`,
+    url: `/rest/api/2/role/${encodeURIComponent(parameters.id)}`,
     method: 'PUT',
     body: {
       description: parameters.description,
@@ -106,7 +106,7 @@ export async function deleteProjectRole(
   options?: RequestOptions,
 ): Promise<void> {
   const config: SendRequestOptions<void> = {
-    url: `/rest/api/2/role/${parameters.id}`,
+    url: `/rest/api/2/role/${encodeURIComponent(parameters.id)}`,
     method: 'DELETE',
     searchParams: {
       swap: parameters.swap,
@@ -124,7 +124,7 @@ export async function getProjectRoleActorsForRole(
   options?: RequestOptions,
 ): Promise<ProjectRoleActors> {
   const config: SendRequestOptions<ProjectRoleActors> = {
-    url: `/rest/api/2/role/${parameters.id}/actors`,
+    url: `/rest/api/2/role/${encodeURIComponent(parameters.id)}/actors`,
     method: 'GET',
     schema: ProjectRoleActorsSchema,
     signal: options?.signal,
@@ -143,7 +143,7 @@ export async function addProjectRoleActorsToRole(
   options?: RequestOptions,
 ): Promise<ProjectRoleActors> {
   const config: SendRequestOptions<ProjectRoleActors> = {
-    url: `/rest/api/2/role/${parameters.id}/actors`,
+    url: `/rest/api/2/role/${encodeURIComponent(parameters.id)}/actors`,
     method: 'POST',
     body: {
       group: parameters.group,
@@ -163,7 +163,7 @@ export async function deleteProjectRoleActorsFromRole(
   options?: RequestOptions,
 ): Promise<ProjectRoleActors> {
   const config: SendRequestOptions<ProjectRoleActors> = {
-    url: `/rest/api/2/role/${parameters.id}/actors`,
+    url: `/rest/api/2/role/${encodeURIComponent(parameters.id)}/actors`,
     method: 'DELETE',
     searchParams: {
       user: parameters.user,

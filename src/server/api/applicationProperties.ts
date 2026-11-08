@@ -44,7 +44,7 @@ export async function setPropertyViaRestfulTable(
   options?: RequestOptions,
 ): Promise<ApplicationProperty> {
   const config: SendRequestOptions<ApplicationProperty> = {
-    url: `/rest/api/2/application-properties/${parameters.id}`,
+    url: `/rest/api/2/application-properties/${encodeURIComponent(parameters.id)}`,
     method: 'PUT',
     body: parameters.body,
     schema: ApplicationPropertySchema,

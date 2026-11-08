@@ -9,7 +9,7 @@ export async function getIssueSecurityLevel(
   options?: RequestOptions,
 ): Promise<SecurityLevelJson> {
   const config: SendRequestOptions<SecurityLevelJson> = {
-    url: `/rest/api/2/securitylevel/${parameters.id}`,
+    url: `/rest/api/2/securitylevel/${encodeURIComponent(parameters.id)}`,
     method: 'GET',
     schema: SecurityLevelJsonSchema,
     signal: options?.signal,

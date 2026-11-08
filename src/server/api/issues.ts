@@ -123,7 +123,7 @@ export async function getAgileIssue(
   options?: RequestOptions,
 ): Promise<Issue> {
   const config: SendRequestOptions<Issue> = {
-    url: `/rest/agile/1.0/issue/${parameters.issueIdOrKey}`,
+    url: `/rest/agile/1.0/issue/${encodeURIComponent(parameters.issueIdOrKey)}`,
     method: 'GET',
     searchParams: {
       expand: parameters.expand,
@@ -149,7 +149,7 @@ export async function getIssueEstimationForBoard(
   options?: RequestOptions,
 ): Promise<FieldValue> {
   const config: SendRequestOptions<FieldValue> = {
-    url: `/rest/agile/1.0/issue/${parameters.issueIdOrKey}/estimation`,
+    url: `/rest/agile/1.0/issue/${encodeURIComponent(parameters.issueIdOrKey)}/estimation`,
     method: 'GET',
     searchParams: {
       boardId: parameters.boardId,
@@ -176,7 +176,7 @@ export async function estimateIssueForBoard(
   options?: RequestOptions,
 ): Promise<FieldValue> {
   const config: SendRequestOptions<FieldValue> = {
-    url: `/rest/agile/1.0/issue/${parameters.issueIdOrKey}/estimation`,
+    url: `/rest/agile/1.0/issue/${encodeURIComponent(parameters.issueIdOrKey)}/estimation`,
     method: 'PUT',
     searchParams: {
       boardId: parameters.boardId,
@@ -282,7 +282,7 @@ export async function getCreateIssueMetaProjectIssueTypes(
   options?: RequestOptions,
 ): Promise<Page<CreateMetaIssueType>> {
   const config: SendRequestOptions<Page<CreateMetaIssueType>> = {
-    url: `/rest/api/2/issue/createmeta/${parameters.projectIdOrKey}/issuetypes`,
+    url: `/rest/api/2/issue/createmeta/${encodeURIComponent(parameters.projectIdOrKey)}/issuetypes`,
     method: 'GET',
     searchParams: {
       maxResults: parameters.maxResults,
@@ -305,7 +305,7 @@ export async function getCreateIssueMetaFields(
   options?: RequestOptions,
 ): Promise<Page<FieldMeta>> {
   const config: SendRequestOptions<Page<FieldMeta>> = {
-    url: `/rest/api/2/issue/createmeta/${parameters.projectIdOrKey}/issuetypes/${parameters.issueTypeId}`,
+    url: `/rest/api/2/issue/createmeta/${encodeURIComponent(parameters.projectIdOrKey)}/issuetypes/${encodeURIComponent(parameters.issueTypeId)}`,
     method: 'GET',
     searchParams: {
       maxResults: parameters.maxResults,
@@ -412,7 +412,7 @@ export async function createReciprocalRemoteIssueLink(
  */
 export async function getIssue(client: Client, parameters: GetIssue, options?: RequestOptions): Promise<Issue> {
   const config: SendRequestOptions<Issue> = {
-    url: `/rest/api/2/issue/${parameters.issueIdOrKey}`,
+    url: `/rest/api/2/issue/${encodeURIComponent(parameters.issueIdOrKey)}`,
     method: 'GET',
     searchParams: {
       expand: Array.isArray(parameters.expand) ? parameters.expand.join(',') : parameters.expand,
@@ -433,7 +433,7 @@ export async function getIssue(client: Client, parameters: GetIssue, options?: R
  */
 export async function editIssue(client: Client, parameters: EditIssue, options?: RequestOptions): Promise<void> {
   const config: SendRequestOptions<void> = {
-    url: `/rest/api/2/issue/${parameters.issueIdOrKey}`,
+    url: `/rest/api/2/issue/${encodeURIComponent(parameters.issueIdOrKey)}`,
     method: 'PUT',
     searchParams: {
       notifyUsers: parameters.notifyUsers,
@@ -457,7 +457,7 @@ export async function editIssue(client: Client, parameters: EditIssue, options?:
  */
 export async function deleteIssue(client: Client, parameters: DeleteIssue, options?: RequestOptions): Promise<void> {
   const config: SendRequestOptions<void> = {
-    url: `/rest/api/2/issue/${parameters.issueIdOrKey}`,
+    url: `/rest/api/2/issue/${encodeURIComponent(parameters.issueIdOrKey)}`,
     method: 'DELETE',
     searchParams: {
       deleteSubtasks: parameters.deleteSubtasks,
@@ -471,7 +471,7 @@ export async function deleteIssue(client: Client, parameters: DeleteIssue, optio
 /** Archives an issue. */
 export async function archiveIssue(client: Client, parameters: ArchiveIssue, options?: RequestOptions): Promise<void> {
   const config: SendRequestOptions<void> = {
-    url: `/rest/api/2/issue/${parameters.issueIdOrKey}/archive`,
+    url: `/rest/api/2/issue/${encodeURIComponent(parameters.issueIdOrKey)}/archive`,
     method: 'PUT',
     searchParams: {
       notifyUsers: parameters.notifyUsers,
@@ -485,7 +485,7 @@ export async function archiveIssue(client: Client, parameters: ArchiveIssue, opt
 /** Assign an issue to a user. */
 export async function assign(client: Client, parameters: Assign, options?: RequestOptions): Promise<void> {
   const config: SendRequestOptions<void> = {
-    url: `/rest/api/2/issue/${parameters.issueIdOrKey}/assignee`,
+    url: `/rest/api/2/issue/${encodeURIComponent(parameters.issueIdOrKey)}/assignee`,
     method: 'PUT',
     body: {
       active: parameters.active,
@@ -532,7 +532,7 @@ export async function addAttachment(
   }
 
   const config: SendRequestOptions<AttachmentJson[]> = {
-    url: `/rest/api/2/issue/${parameters.issueIdOrKey}/attachments`,
+    url: `/rest/api/2/issue/${encodeURIComponent(parameters.issueIdOrKey)}/attachments`,
     method: 'POST',
     headers: {
       'X-Atlassian-Token': 'no-check',
@@ -555,7 +555,7 @@ export async function getComments(
   options?: RequestOptions,
 ): Promise<CommentsWithPaginationJson> {
   const config: SendRequestOptions<CommentsWithPaginationJson> = {
-    url: `/rest/api/2/issue/${parameters.issueIdOrKey}/comment`,
+    url: `/rest/api/2/issue/${encodeURIComponent(parameters.issueIdOrKey)}/comment`,
     method: 'GET',
     searchParams: {
       expand: Array.isArray(parameters.expand) ? parameters.expand.join(',') : parameters.expand,
@@ -577,7 +577,7 @@ export async function addComment(
   options?: RequestOptions,
 ): Promise<CommentJson> {
   const config: SendRequestOptions<CommentJson> = {
-    url: `/rest/api/2/issue/${parameters.issueIdOrKey}/comment`,
+    url: `/rest/api/2/issue/${encodeURIComponent(parameters.issueIdOrKey)}/comment`,
     method: 'POST',
     searchParams: {
       expand: Array.isArray(parameters.expand) ? parameters.expand.join(',') : parameters.expand,
@@ -608,7 +608,7 @@ export async function getComment(
   options?: RequestOptions,
 ): Promise<CommentJson> {
   const config: SendRequestOptions<CommentJson> = {
-    url: `/rest/api/2/issue/${parameters.issueIdOrKey}/comment/${parameters.id}`,
+    url: `/rest/api/2/issue/${encodeURIComponent(parameters.issueIdOrKey)}/comment/${encodeURIComponent(parameters.id)}`,
     method: 'GET',
     searchParams: {
       expand: Array.isArray(parameters.expand) ? parameters.expand.join(',') : parameters.expand,
@@ -627,7 +627,7 @@ export async function updateComment(
   options?: RequestOptions,
 ): Promise<CommentJson> {
   const config: SendRequestOptions<CommentJson> = {
-    url: `/rest/api/2/issue/${parameters.issueIdOrKey}/comment/${parameters.id}`,
+    url: `/rest/api/2/issue/${encodeURIComponent(parameters.issueIdOrKey)}/comment/${encodeURIComponent(parameters.id)}`,
     method: 'PUT',
     searchParams: {
       expand: Array.isArray(parameters.expand) ? parameters.expand.join(',') : parameters.expand,
@@ -647,7 +647,7 @@ export async function deleteComment(
   options?: RequestOptions,
 ): Promise<void> {
   const config: SendRequestOptions<void> = {
-    url: `/rest/api/2/issue/${parameters.issueIdOrKey}/comment/${parameters.id}`,
+    url: `/rest/api/2/issue/${encodeURIComponent(parameters.issueIdOrKey)}/comment/${encodeURIComponent(parameters.id)}`,
     method: 'DELETE',
     signal: options?.signal,
   };
@@ -662,7 +662,7 @@ export async function setPinComment(
   options?: RequestOptions,
 ): Promise<void> {
   const config: SendRequestOptions<void> = {
-    url: `/rest/api/2/issue/${parameters.issueIdOrKey}/comment/${parameters.id}/pin`,
+    url: `/rest/api/2/issue/${encodeURIComponent(parameters.issueIdOrKey)}/comment/${encodeURIComponent(parameters.id)}/pin`,
     method: 'PUT',
     body: parameters.body,
     signal: options?.signal,
@@ -681,7 +681,7 @@ export async function getEditIssueMeta(
   options?: RequestOptions,
 ): Promise<EditMeta> {
   const config: SendRequestOptions<EditMeta> = {
-    url: `/rest/api/2/issue/${parameters.issueIdOrKey}/editmeta`,
+    url: `/rest/api/2/issue/${encodeURIComponent(parameters.issueIdOrKey)}/editmeta`,
     method: 'GET',
     schema: EditMetaSchema,
     signal: options?.signal,
@@ -693,7 +693,7 @@ export async function getEditIssueMeta(
 /** Sends a notification (email) to the list or recipients defined in the request. */
 export async function notify(client: Client, parameters: Notify, options?: RequestOptions): Promise<void> {
   const config: SendRequestOptions<void> = {
-    url: `/rest/api/2/issue/${parameters.issueIdOrKey}/notify`,
+    url: `/rest/api/2/issue/${encodeURIComponent(parameters.issueIdOrKey)}/notify`,
     method: 'POST',
     body: {
       htmlBody: parameters.htmlBody,
@@ -715,7 +715,7 @@ export async function getPinnedComments(
   options?: RequestOptions,
 ): Promise<PinnedCommentJson[]> {
   const config: SendRequestOptions<PinnedCommentJson[]> = {
-    url: `/rest/api/2/issue/${parameters.issueIdOrKey}/pinned-comments`,
+    url: `/rest/api/2/issue/${encodeURIComponent(parameters.issueIdOrKey)}/pinned-comments`,
     method: 'GET',
     schema: z.array(PinnedCommentJsonSchema),
     signal: options?.signal,
@@ -731,7 +731,7 @@ export async function getIssuePropertyKeys(
   options?: RequestOptions,
 ): Promise<EntityPropertiesKeys> {
   const config: SendRequestOptions<EntityPropertiesKeys> = {
-    url: `/rest/api/2/issue/${parameters.issueIdOrKey}/properties`,
+    url: `/rest/api/2/issue/${encodeURIComponent(parameters.issueIdOrKey)}/properties`,
     method: 'GET',
     schema: EntityPropertiesKeysSchema,
     signal: options?.signal,
@@ -747,7 +747,7 @@ export async function getIssueProperty(
   options?: RequestOptions,
 ): Promise<EntityProperty> {
   const config: SendRequestOptions<EntityProperty> = {
-    url: `/rest/api/2/issue/${parameters.issueIdOrKey}/properties/${parameters.propertyKey}`,
+    url: `/rest/api/2/issue/${encodeURIComponent(parameters.issueIdOrKey)}/properties/${encodeURIComponent(parameters.propertyKey)}`,
     method: 'GET',
     schema: EntityPropertySchema,
     signal: options?.signal,
@@ -763,7 +763,7 @@ export async function setIssueProperty(
   options?: RequestOptions,
 ): Promise<void> {
   const config: SendRequestOptions<void> = {
-    url: `/rest/api/2/issue/${parameters.issueIdOrKey}/properties/${parameters.propertyKey}`,
+    url: `/rest/api/2/issue/${encodeURIComponent(parameters.issueIdOrKey)}/properties/${encodeURIComponent(parameters.propertyKey)}`,
     method: 'PUT',
     body: parameters.body,
     signal: options?.signal,
@@ -779,7 +779,7 @@ export async function deleteIssueProperty(
   options?: RequestOptions,
 ): Promise<void> {
   const config: SendRequestOptions<void> = {
-    url: `/rest/api/2/issue/${parameters.issueIdOrKey}/properties/${parameters.propertyKey}`,
+    url: `/rest/api/2/issue/${encodeURIComponent(parameters.issueIdOrKey)}/properties/${encodeURIComponent(parameters.propertyKey)}`,
     method: 'DELETE',
     signal: options?.signal,
   };
@@ -794,7 +794,7 @@ export async function getRemoteIssueLinks(
   options?: RequestOptions,
 ): Promise<RemoteIssueLink[]> {
   const config: SendRequestOptions<RemoteIssueLink[]> = {
-    url: `/rest/api/2/issue/${parameters.issueIdOrKey}/remotelink`,
+    url: `/rest/api/2/issue/${encodeURIComponent(parameters.issueIdOrKey)}/remotelink`,
     method: 'GET',
     searchParams: {
       globalId: parameters.globalId,
@@ -816,7 +816,7 @@ export async function createOrUpdateRemoteIssueLink(
   options?: RequestOptions,
 ): Promise<RemoteIssueLink> {
   const config: SendRequestOptions<RemoteIssueLink> = {
-    url: `/rest/api/2/issue/${parameters.issueIdOrKey}/remotelink`,
+    url: `/rest/api/2/issue/${encodeURIComponent(parameters.issueIdOrKey)}/remotelink`,
     method: 'POST',
     body: {
       application: parameters.application,
@@ -838,7 +838,7 @@ export async function deleteRemoteIssueLinkByGlobalId(
   options?: RequestOptions,
 ): Promise<void> {
   const config: SendRequestOptions<void> = {
-    url: `/rest/api/2/issue/${parameters.issueIdOrKey}/remotelink`,
+    url: `/rest/api/2/issue/${encodeURIComponent(parameters.issueIdOrKey)}/remotelink`,
     method: 'DELETE',
     searchParams: {
       globalId: parameters.globalId,
@@ -856,7 +856,7 @@ export async function getRemoteIssueLinkById(
   options?: RequestOptions,
 ): Promise<RemoteIssueLink> {
   const config: SendRequestOptions<RemoteIssueLink> = {
-    url: `/rest/api/2/issue/${parameters.issueIdOrKey}/remotelink/${parameters.linkId}`,
+    url: `/rest/api/2/issue/${encodeURIComponent(parameters.issueIdOrKey)}/remotelink/${encodeURIComponent(parameters.linkId)}`,
     method: 'GET',
     schema: RemoteIssueLinkSchema,
     signal: options?.signal,
@@ -872,7 +872,7 @@ export async function updateRemoteIssueLink(
   options?: RequestOptions,
 ): Promise<void> {
   const config: SendRequestOptions<void> = {
-    url: `/rest/api/2/issue/${parameters.issueIdOrKey}/remotelink/${parameters.linkId}`,
+    url: `/rest/api/2/issue/${encodeURIComponent(parameters.issueIdOrKey)}/remotelink/${encodeURIComponent(parameters.linkId)}`,
     method: 'PUT',
     body: {
       application: parameters.application,
@@ -893,7 +893,7 @@ export async function deleteRemoteIssueLinkById(
   options?: RequestOptions,
 ): Promise<void> {
   const config: SendRequestOptions<void> = {
-    url: `/rest/api/2/issue/${parameters.issueIdOrKey}/remotelink/${parameters.linkId}`,
+    url: `/rest/api/2/issue/${encodeURIComponent(parameters.issueIdOrKey)}/remotelink/${encodeURIComponent(parameters.linkId)}`,
     method: 'DELETE',
     signal: options?.signal,
   };
@@ -904,7 +904,7 @@ export async function deleteRemoteIssueLinkById(
 /** Restores an archived issue. */
 export async function restoreIssue(client: Client, parameters: RestoreIssue, options?: RequestOptions): Promise<void> {
   const config: SendRequestOptions<void> = {
-    url: `/rest/api/2/issue/${parameters.issueIdOrKey}/restore`,
+    url: `/rest/api/2/issue/${encodeURIComponent(parameters.issueIdOrKey)}/restore`,
     method: 'PUT',
     searchParams: {
       notifyUsers: parameters.notifyUsers,
@@ -922,7 +922,7 @@ export async function getSubTasks(
   options?: RequestOptions,
 ): Promise<IssueRefJson[]> {
   const config: SendRequestOptions<IssueRefJson[]> = {
-    url: `/rest/api/2/issue/${parameters.issueIdOrKey}/subtask`,
+    url: `/rest/api/2/issue/${encodeURIComponent(parameters.issueIdOrKey)}/subtask`,
     method: 'GET',
     schema: z.array(IssueRefJsonSchema),
     signal: options?.signal,
@@ -938,7 +938,7 @@ export async function canMoveSubTask(
   options?: RequestOptions,
 ): Promise<boolean> {
   const config: SendRequestOptions<boolean> = {
-    url: `/rest/api/2/issue/${parameters.issueIdOrKey}/subtask/move`,
+    url: `/rest/api/2/issue/${encodeURIComponent(parameters.issueIdOrKey)}/subtask/move`,
     method: 'GET',
     schema: z.boolean(),
     signal: options?.signal,
@@ -950,7 +950,7 @@ export async function canMoveSubTask(
 /** Reorders an issue's subtasks by moving the subtask at index 'from' to index 'to'. */
 export async function moveSubTasks(client: Client, parameters: MoveSubTasks, options?: RequestOptions): Promise<void> {
   const config: SendRequestOptions<void> = {
-    url: `/rest/api/2/issue/${parameters.issueIdOrKey}/subtask/move`,
+    url: `/rest/api/2/issue/${encodeURIComponent(parameters.issueIdOrKey)}/subtask/move`,
     method: 'POST',
     body: {
       current: parameters.current,
@@ -973,7 +973,7 @@ export async function getTransitions(
   options?: RequestOptions,
 ): Promise<TransitionsMeta> {
   const config: SendRequestOptions<TransitionsMeta> = {
-    url: `/rest/api/2/issue/${parameters.issueIdOrKey}/transitions`,
+    url: `/rest/api/2/issue/${encodeURIComponent(parameters.issueIdOrKey)}/transitions`,
     method: 'GET',
     searchParams: {
       transitionId: parameters.transitionId,
@@ -997,7 +997,7 @@ export async function getTransitions(
  */
 export async function doTransition(client: Client, parameters: DoTransition, options?: RequestOptions): Promise<void> {
   const config: SendRequestOptions<void> = {
-    url: `/rest/api/2/issue/${parameters.issueIdOrKey}/transitions`,
+    url: `/rest/api/2/issue/${encodeURIComponent(parameters.issueIdOrKey)}/transitions`,
     method: 'POST',
     body: {
       fields: parameters.fields,
@@ -1015,7 +1015,7 @@ export async function doTransition(client: Client, parameters: DoTransition, opt
 /** A REST sub-resource representing the voters on the issue. */
 export async function getVotes(client: Client, parameters: GetVotes, options?: RequestOptions): Promise<Vote> {
   const config: SendRequestOptions<Vote> = {
-    url: `/rest/api/2/issue/${parameters.issueIdOrKey}/votes`,
+    url: `/rest/api/2/issue/${encodeURIComponent(parameters.issueIdOrKey)}/votes`,
     method: 'GET',
     schema: VoteSchema,
     signal: options?.signal,
@@ -1027,7 +1027,7 @@ export async function getVotes(client: Client, parameters: GetVotes, options?: R
 /** Adds voter (currently logged user) to particular ticket. You need to be logged in to use this method. */
 export async function addVote(client: Client, parameters: AddVote, options?: RequestOptions): Promise<void> {
   const config: SendRequestOptions<void> = {
-    url: `/rest/api/2/issue/${parameters.issueIdOrKey}/votes`,
+    url: `/rest/api/2/issue/${encodeURIComponent(parameters.issueIdOrKey)}/votes`,
     method: 'POST',
     signal: options?.signal,
   };
@@ -1038,7 +1038,7 @@ export async function addVote(client: Client, parameters: AddVote, options?: Req
 /** Remove your vote from an issue. */
 export async function removeVote(client: Client, parameters: RemoveVote, options?: RequestOptions): Promise<void> {
   const config: SendRequestOptions<void> = {
-    url: `/rest/api/2/issue/${parameters.issueIdOrKey}/votes`,
+    url: `/rest/api/2/issue/${encodeURIComponent(parameters.issueIdOrKey)}/votes`,
     method: 'DELETE',
     signal: options?.signal,
   };
@@ -1053,7 +1053,7 @@ export async function getIssueWatchers(
   options?: RequestOptions,
 ): Promise<Watchers> {
   const config: SendRequestOptions<Watchers> = {
-    url: `/rest/api/2/issue/${parameters.issueIdOrKey}/watchers`,
+    url: `/rest/api/2/issue/${encodeURIComponent(parameters.issueIdOrKey)}/watchers`,
     method: 'GET',
     schema: WatchersSchema,
     signal: options?.signal,
@@ -1065,7 +1065,7 @@ export async function getIssueWatchers(
 /** Adds a user to an issue's watcher list. */
 export async function addWatcher(client: Client, parameters: AddWatcher, options?: RequestOptions): Promise<void> {
   const config: SendRequestOptions<void> = {
-    url: `/rest/api/2/issue/${parameters.issueIdOrKey}/watchers`,
+    url: `/rest/api/2/issue/${encodeURIComponent(parameters.issueIdOrKey)}/watchers`,
     method: 'POST',
     searchParams: {
       userName: parameters.userName,
@@ -1084,7 +1084,7 @@ export async function removeWatcher(
   options?: RequestOptions,
 ): Promise<void> {
   const config: SendRequestOptions<void> = {
-    url: `/rest/api/2/issue/${parameters.issueIdOrKey}/watchers`,
+    url: `/rest/api/2/issue/${encodeURIComponent(parameters.issueIdOrKey)}/watchers`,
     method: 'DELETE',
     searchParams: {
       userName: parameters.userName,
@@ -1103,7 +1103,7 @@ export async function getIssueWorklog(
   options?: RequestOptions,
 ): Promise<WorklogWithPagination> {
   const config: SendRequestOptions<WorklogWithPagination> = {
-    url: `/rest/api/2/issue/${parameters.issueIdOrKey}/worklog`,
+    url: `/rest/api/2/issue/${encodeURIComponent(parameters.issueIdOrKey)}/worklog`,
     method: 'GET',
     schema: WorklogWithPaginationSchema,
     signal: options?.signal,
@@ -1115,7 +1115,7 @@ export async function getIssueWorklog(
 /** Adds a new worklog entry to an issue. */
 export async function addWorklog(client: Client, parameters: AddWorklog, options?: RequestOptions): Promise<Worklog> {
   const config: SendRequestOptions<Worklog> = {
-    url: `/rest/api/2/issue/${parameters.issueIdOrKey}/worklog`,
+    url: `/rest/api/2/issue/${encodeURIComponent(parameters.issueIdOrKey)}/worklog`,
     method: 'POST',
     searchParams: {
       newEstimate: parameters.newEstimate,
@@ -1146,7 +1146,7 @@ export async function addWorklog(client: Client, parameters: AddWorklog, options
 /** Returns a specific worklog. The work log won't be returned if the Log work field is hidden for the project. */
 export async function getWorklog(client: Client, parameters: GetWorklog, options?: RequestOptions): Promise<Worklog> {
   const config: SendRequestOptions<Worklog> = {
-    url: `/rest/api/2/issue/${parameters.issueIdOrKey}/worklog/${parameters.id}`,
+    url: `/rest/api/2/issue/${encodeURIComponent(parameters.issueIdOrKey)}/worklog/${encodeURIComponent(parameters.id)}`,
     method: 'GET',
     schema: WorklogSchema,
     signal: options?.signal,
@@ -1169,7 +1169,7 @@ export async function updateWorklog(
   options?: RequestOptions,
 ): Promise<Worklog> {
   const config: SendRequestOptions<Worklog> = {
-    url: `/rest/api/2/issue/${parameters.issueIdOrKey}/worklog/${parameters.id}`,
+    url: `/rest/api/2/issue/${encodeURIComponent(parameters.issueIdOrKey)}/worklog/${encodeURIComponent(parameters.id)}`,
     method: 'PUT',
     searchParams: {
       newEstimate: parameters.newEstimate,
@@ -1190,7 +1190,7 @@ export async function deleteWorklog(
   options?: RequestOptions,
 ): Promise<void> {
   const config: SendRequestOptions<void> = {
-    url: `/rest/api/2/issue/${parameters.issueIdOrKey}/worklog/${parameters.id}`,
+    url: `/rest/api/2/issue/${encodeURIComponent(parameters.issueIdOrKey)}/worklog/${encodeURIComponent(parameters.id)}`,
     method: 'DELETE',
     searchParams: {
       newEstimate: parameters.newEstimate,

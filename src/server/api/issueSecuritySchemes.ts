@@ -22,7 +22,7 @@ export async function getIssueSecurityScheme(
   options?: RequestOptions,
 ): Promise<SecuritySchemeJson> {
   const config: SendRequestOptions<SecuritySchemeJson> = {
-    url: `/rest/api/2/issuesecurityschemes/${parameters.id}`,
+    url: `/rest/api/2/issuesecurityschemes/${encodeURIComponent(parameters.id)}`,
     method: 'GET',
     schema: SecuritySchemeJsonSchema,
     signal: options?.signal,

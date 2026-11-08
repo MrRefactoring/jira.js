@@ -53,7 +53,7 @@ export async function getTerminologyEntry(
   options?: RequestOptions,
 ): Promise<TerminologyResponse> {
   const config: SendRequestOptions<TerminologyResponse> = {
-    url: `/rest/api/2/terminology/entries/${parameters.originalName}`,
+    url: `/rest/api/2/terminology/entries/${encodeURIComponent(parameters.originalName)}`,
     method: 'GET',
     schema: TerminologyResponseSchema,
     signal: options?.signal,

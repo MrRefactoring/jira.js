@@ -66,7 +66,7 @@ export async function createScheme(
 /** Returns the requested workflow scheme to the caller. */
 export async function getById(client: Client, parameters: GetById, options?: RequestOptions): Promise<WorkflowScheme> {
   const config: SendRequestOptions<WorkflowScheme> = {
-    url: `/rest/api/2/workflowscheme/${parameters.id}`,
+    url: `/rest/api/2/workflowscheme/${encodeURIComponent(parameters.id)}`,
     method: 'GET',
     searchParams: {
       returnDraftIfExists: parameters.returnDraftIfExists,
@@ -90,7 +90,7 @@ export async function updateWorkflowScheme(
   options?: RequestOptions,
 ): Promise<WorkflowScheme> {
   const config: SendRequestOptions<WorkflowScheme> = {
-    url: `/rest/api/2/workflowscheme/${parameters.id}`,
+    url: `/rest/api/2/workflowscheme/${encodeURIComponent(parameters.id)}`,
     method: 'PUT',
     body: parameters.body,
     schema: WorkflowSchemeSchema,
@@ -103,7 +103,7 @@ export async function updateWorkflowScheme(
 /** Delete the passed workflow scheme. */
 export async function deleteScheme(client: Client, parameters: DeleteScheme, options?: RequestOptions): Promise<void> {
   const config: SendRequestOptions<void> = {
-    url: `/rest/api/2/workflowscheme/${parameters.id}`,
+    url: `/rest/api/2/workflowscheme/${encodeURIComponent(parameters.id)}`,
     method: 'DELETE',
     signal: options?.signal,
   };
@@ -118,7 +118,7 @@ export async function createDraftForParent(
   options?: RequestOptions,
 ): Promise<WorkflowScheme> {
   const config: SendRequestOptions<WorkflowScheme> = {
-    url: `/rest/api/2/workflowscheme/${parameters.id}/createdraft`,
+    url: `/rest/api/2/workflowscheme/${encodeURIComponent(parameters.id)}/createdraft`,
     method: 'POST',
     schema: WorkflowSchemeSchema,
     signal: options?.signal,
@@ -134,7 +134,7 @@ export async function getDefault(
   options?: RequestOptions,
 ): Promise<WorkflowScheme> {
   const config: SendRequestOptions<WorkflowScheme> = {
-    url: `/rest/api/2/workflowscheme/${parameters.id}/default`,
+    url: `/rest/api/2/workflowscheme/${encodeURIComponent(parameters.id)}/default`,
     method: 'GET',
     searchParams: {
       returnDraftIfExists: parameters.returnDraftIfExists,
@@ -156,7 +156,7 @@ export async function updateDefault(
   options?: RequestOptions,
 ): Promise<WorkflowScheme> {
   const config: SendRequestOptions<WorkflowScheme> = {
-    url: `/rest/api/2/workflowscheme/${parameters.id}/default`,
+    url: `/rest/api/2/workflowscheme/${encodeURIComponent(parameters.id)}/default`,
     method: 'PUT',
     body: {
       updateDraftIfNeeded: parameters.updateDraftIfNeeded,
@@ -176,7 +176,7 @@ export async function deleteDefault(
   options?: RequestOptions,
 ): Promise<WorkflowScheme> {
   const config: SendRequestOptions<WorkflowScheme> = {
-    url: `/rest/api/2/workflowscheme/${parameters.id}/default`,
+    url: `/rest/api/2/workflowscheme/${encodeURIComponent(parameters.id)}/default`,
     method: 'DELETE',
     searchParams: {
       updateDraftIfNeeded: parameters.updateDraftIfNeeded,
@@ -195,7 +195,7 @@ export async function getDraftById(
   options?: RequestOptions,
 ): Promise<WorkflowScheme> {
   const config: SendRequestOptions<WorkflowScheme> = {
-    url: `/rest/api/2/workflowscheme/${parameters.id}/draft`,
+    url: `/rest/api/2/workflowscheme/${encodeURIComponent(parameters.id)}/draft`,
     method: 'GET',
     schema: WorkflowSchemeSchema,
     signal: options?.signal,
@@ -214,7 +214,7 @@ export async function updateDraft(
   options?: RequestOptions,
 ): Promise<WorkflowScheme> {
   const config: SendRequestOptions<WorkflowScheme> = {
-    url: `/rest/api/2/workflowscheme/${parameters.id}/draft`,
+    url: `/rest/api/2/workflowscheme/${encodeURIComponent(parameters.id)}/draft`,
     method: 'PUT',
     body: parameters.body,
     schema: WorkflowSchemeSchema,
@@ -231,7 +231,7 @@ export async function deleteDraftById(
   options?: RequestOptions,
 ): Promise<void> {
   const config: SendRequestOptions<void> = {
-    url: `/rest/api/2/workflowscheme/${parameters.id}/draft`,
+    url: `/rest/api/2/workflowscheme/${encodeURIComponent(parameters.id)}/draft`,
     method: 'DELETE',
     signal: options?.signal,
   };
@@ -246,7 +246,7 @@ export async function getDraftDefault(
   options?: RequestOptions,
 ): Promise<WorkflowScheme> {
   const config: SendRequestOptions<WorkflowScheme> = {
-    url: `/rest/api/2/workflowscheme/${parameters.id}/draft/default`,
+    url: `/rest/api/2/workflowscheme/${encodeURIComponent(parameters.id)}/draft/default`,
     method: 'GET',
     schema: WorkflowSchemeSchema,
     signal: options?.signal,
@@ -262,7 +262,7 @@ export async function updateDraftDefault(
   options?: RequestOptions,
 ): Promise<WorkflowScheme> {
   const config: SendRequestOptions<WorkflowScheme> = {
-    url: `/rest/api/2/workflowscheme/${parameters.id}/draft/default`,
+    url: `/rest/api/2/workflowscheme/${encodeURIComponent(parameters.id)}/draft/default`,
     method: 'PUT',
     body: {
       updateDraftIfNeeded: parameters.updateDraftIfNeeded,
@@ -282,7 +282,7 @@ export async function deleteDraftDefault(
   options?: RequestOptions,
 ): Promise<WorkflowScheme> {
   const config: SendRequestOptions<WorkflowScheme> = {
-    url: `/rest/api/2/workflowscheme/${parameters.id}/draft/default`,
+    url: `/rest/api/2/workflowscheme/${encodeURIComponent(parameters.id)}/draft/default`,
     method: 'DELETE',
     schema: WorkflowSchemeSchema,
     signal: options?.signal,
@@ -298,7 +298,7 @@ export async function getDraftIssueType(
   options?: RequestOptions,
 ): Promise<IssueTypeMapping> {
   const config: SendRequestOptions<IssueTypeMapping> = {
-    url: `/rest/api/2/workflowscheme/${parameters.id}/draft/issuetype/${parameters.issueType}`,
+    url: `/rest/api/2/workflowscheme/${encodeURIComponent(parameters.id)}/draft/issuetype/${encodeURIComponent(parameters.issueType)}`,
     method: 'GET',
     schema: IssueTypeMappingSchema,
     signal: options?.signal,
@@ -317,7 +317,7 @@ export async function setDraftIssueType(
   options?: RequestOptions,
 ): Promise<WorkflowScheme> {
   const config: SendRequestOptions<WorkflowScheme> = {
-    url: `/rest/api/2/workflowscheme/${parameters.id}/draft/issuetype/${parameters.issueType}`,
+    url: `/rest/api/2/workflowscheme/${encodeURIComponent(parameters.id)}/draft/issuetype/${encodeURIComponent(parameters.issueType)}`,
     method: 'PUT',
     body: parameters.body,
     schema: WorkflowSchemeSchema,
@@ -334,7 +334,7 @@ export async function deleteDraftIssueType(
   options?: RequestOptions,
 ): Promise<WorkflowScheme> {
   const config: SendRequestOptions<WorkflowScheme> = {
-    url: `/rest/api/2/workflowscheme/${parameters.id}/draft/issuetype/${parameters.issueType}`,
+    url: `/rest/api/2/workflowscheme/${encodeURIComponent(parameters.id)}/draft/issuetype/${encodeURIComponent(parameters.issueType)}`,
     method: 'DELETE',
     schema: WorkflowSchemeSchema,
     signal: options?.signal,
@@ -350,7 +350,7 @@ export async function getDraftWorkflow(
   options?: RequestOptions,
 ): Promise<WorkflowScheme> {
   const config: SendRequestOptions<WorkflowScheme> = {
-    url: `/rest/api/2/workflowscheme/${parameters.id}/draft/workflow`,
+    url: `/rest/api/2/workflowscheme/${encodeURIComponent(parameters.id)}/draft/workflow`,
     method: 'GET',
     searchParams: {
       workflowName: parameters.workflowName,
@@ -372,7 +372,7 @@ export async function updateDraftWorkflowMapping(
   options?: RequestOptions,
 ): Promise<WorkflowScheme> {
   const config: SendRequestOptions<WorkflowScheme> = {
-    url: `/rest/api/2/workflowscheme/${parameters.id}/draft/workflow`,
+    url: `/rest/api/2/workflowscheme/${encodeURIComponent(parameters.id)}/draft/workflow`,
     method: 'PUT',
     searchParams: {
       workflowName: parameters.workflowName,
@@ -397,7 +397,7 @@ export async function deleteDraftWorkflowMapping(
   options?: RequestOptions,
 ): Promise<WorkflowScheme> {
   const config: SendRequestOptions<WorkflowScheme> = {
-    url: `/rest/api/2/workflowscheme/${parameters.id}/draft/workflow`,
+    url: `/rest/api/2/workflowscheme/${encodeURIComponent(parameters.id)}/draft/workflow`,
     method: 'DELETE',
     searchParams: {
       workflowName: parameters.workflowName,
@@ -416,7 +416,7 @@ export async function getWorkflowSchemeIssueType(
   options?: RequestOptions,
 ): Promise<IssueTypeMapping> {
   const config: SendRequestOptions<IssueTypeMapping> = {
-    url: `/rest/api/2/workflowscheme/${parameters.id}/issuetype/${parameters.issueType}`,
+    url: `/rest/api/2/workflowscheme/${encodeURIComponent(parameters.id)}/issuetype/${encodeURIComponent(parameters.issueType)}`,
     method: 'GET',
     searchParams: {
       returnDraftIfExists: parameters.returnDraftIfExists,
@@ -438,7 +438,7 @@ export async function setIssueType(
   options?: RequestOptions,
 ): Promise<WorkflowScheme> {
   const config: SendRequestOptions<WorkflowScheme> = {
-    url: `/rest/api/2/workflowscheme/${parameters.id}/issuetype/${parameters.issueType}`,
+    url: `/rest/api/2/workflowscheme/${encodeURIComponent(parameters.id)}/issuetype/${encodeURIComponent(parameters.issueType)}`,
     method: 'PUT',
     body: parameters.body,
     schema: WorkflowSchemeSchema,
@@ -455,7 +455,7 @@ export async function deleteWorkflowSchemeIssueType(
   options?: RequestOptions,
 ): Promise<WorkflowScheme> {
   const config: SendRequestOptions<WorkflowScheme> = {
-    url: `/rest/api/2/workflowscheme/${parameters.id}/issuetype/${parameters.issueType}`,
+    url: `/rest/api/2/workflowscheme/${encodeURIComponent(parameters.id)}/issuetype/${encodeURIComponent(parameters.issueType)}`,
     method: 'DELETE',
     searchParams: {
       updateDraftIfNeeded: parameters.updateDraftIfNeeded,
@@ -474,7 +474,7 @@ export async function getWorkflow(
   options?: RequestOptions,
 ): Promise<GetWorkflow> {
   const config: SendRequestOptions<GetWorkflow> = {
-    url: `/rest/api/2/workflowscheme/${parameters.id}/workflow`,
+    url: `/rest/api/2/workflowscheme/${encodeURIComponent(parameters.id)}/workflow`,
     method: 'GET',
     searchParams: {
       workflowName: parameters.workflowName,
@@ -498,7 +498,7 @@ export async function updateWorkflowMapping(
   options?: RequestOptions,
 ): Promise<WorkflowScheme> {
   const config: SendRequestOptions<WorkflowScheme> = {
-    url: `/rest/api/2/workflowscheme/${parameters.id}/workflow`,
+    url: `/rest/api/2/workflowscheme/${encodeURIComponent(parameters.id)}/workflow`,
     method: 'PUT',
     searchParams: {
       workflowName: parameters.workflowName,
@@ -523,7 +523,7 @@ export async function deleteWorkflowMapping(
   options?: RequestOptions,
 ): Promise<WorkflowScheme> {
   const config: SendRequestOptions<WorkflowScheme> = {
-    url: `/rest/api/2/workflowscheme/${parameters.id}/workflow`,
+    url: `/rest/api/2/workflowscheme/${encodeURIComponent(parameters.id)}/workflow`,
     method: 'DELETE',
     searchParams: {
       updateDraftIfNeeded: parameters.updateDraftIfNeeded,

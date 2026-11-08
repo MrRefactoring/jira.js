@@ -30,7 +30,7 @@ export async function getAttachment(
   options?: RequestOptions,
 ): Promise<Attachment> {
   const config: SendRequestOptions<Attachment> = {
-    url: `/rest/api/2/attachment/${parameters.id}`,
+    url: `/rest/api/2/attachment/${encodeURIComponent(parameters.id)}`,
     method: 'GET',
     schema: AttachmentSchema,
     signal: options?.signal,
@@ -46,7 +46,7 @@ export async function removeAttachment(
   options?: RequestOptions,
 ): Promise<void> {
   const config: SendRequestOptions<void> = {
-    url: `/rest/api/2/attachment/${parameters.id}`,
+    url: `/rest/api/2/attachment/${encodeURIComponent(parameters.id)}`,
     method: 'DELETE',
     signal: options?.signal,
   };
@@ -61,7 +61,7 @@ export async function expandForHumans(
   options?: RequestOptions,
 ): Promise<HumanReadableArchive> {
   const config: SendRequestOptions<HumanReadableArchive> = {
-    url: `/rest/api/2/attachment/${parameters.id}/expand/human`,
+    url: `/rest/api/2/attachment/${encodeURIComponent(parameters.id)}/expand/human`,
     method: 'GET',
     schema: HumanReadableArchiveSchema,
     signal: options?.signal,
@@ -77,7 +77,7 @@ export async function expandForMachines(
   options?: RequestOptions,
 ): Promise<AttachmentArchiveImpl> {
   const config: SendRequestOptions<AttachmentArchiveImpl> = {
-    url: `/rest/api/2/attachment/${parameters.id}/expand/raw`,
+    url: `/rest/api/2/attachment/${encodeURIComponent(parameters.id)}/expand/raw`,
     method: 'GET',
     schema: AttachmentArchiveImplSchema,
     signal: options?.signal,
