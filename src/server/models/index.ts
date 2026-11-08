@@ -152,6 +152,18 @@ export * from './defaultShareScope';
 
 export * from './deleteAndReplaceVersion';
 
+export * from './developmentStatusBranch';
+
+export * from './developmentStatusDetail';
+
+export * from './developmentStatusDetailItem';
+
+export * from './developmentStatusPullRequest';
+
+export * from './developmentStatusPullRequestBranch';
+
+export * from './developmentStatusRepository';
+
 export * from './editMeta';
 
 export * from './editorMarkupParameters';
