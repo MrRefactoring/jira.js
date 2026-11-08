@@ -1,5 +1,17 @@
 # Data Center cluster snapshot verification
 
+## Captured fixture
+
+`verification.json` records a real successful request on Jira Software Data Center 10.3.27, captured on
+2026-11-09 Europe/Moscow (2026-11-08 UTC). Two nodes, `jira650-node1` and `jira650-node2`, were active and alive in
+a dedicated licensed Docker cluster sharing PostgreSQL and a shared-home volume. Node 1 requested a snapshot from
+node 2; the server accepted the bodyless request with HTTP 200 and zero response bytes.
+
+`negative-cases.json` records the license capability check and the actual permission/missing-node probes. Jira 11.3
+clusters and alternate search platforms were unavailable. Snapshot transfer completion was not verified.
+
+## Reproducing the check
+
 Use a dedicated licensed Jira Data Center cluster with two active nodes. Point `JIRA_SERVER_BASE_URL` at the current
 node and choose the other node as the snapshot source. The request asks that source to prepare an index snapshot
 asynchronously; an empty successful response establishes that the request was accepted, not that transfer completed.

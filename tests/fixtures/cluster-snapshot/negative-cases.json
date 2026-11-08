@@ -1,0 +1,18 @@
+{
+  "jiraVersion": "10.3.27",
+  "clusterCases": [
+    {
+      "case": "missing-node",
+      "status": 404
+    },
+    {
+      "case": "anonymous",
+      "status": 401
+    }
+  ],
+  "unavailable": ["Jira 11.3 cluster", "alternate search platform"],
+  "license": {
+    "valid": true,
+    "dataCenter": true
+  }
+}
