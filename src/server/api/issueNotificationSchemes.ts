@@ -65,7 +65,7 @@ export async function getNotificationScheme(
   options?: RequestOptions,
 ): Promise<NotificationScheme> {
   const config: SendRequestOptions<NotificationScheme> = {
-    url: `/rest/api/2/notificationscheme/${parameters.id}`,
+    url: `/rest/api/2/notificationscheme/${encodeURIComponent(parameters.id)}`,
     method: 'GET',
     searchParams: {
       expand: Array.isArray(parameters.expand) ? parameters.expand.join(',') : parameters.expand,

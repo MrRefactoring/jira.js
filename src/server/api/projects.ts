@@ -147,7 +147,7 @@ export async function getProjectTypeByKey(
   options?: RequestOptions,
 ): Promise<ProjectType> {
   const config: SendRequestOptions<ProjectType> = {
-    url: `/rest/api/2/project/type/${parameters.projectTypeKey}`,
+    url: `/rest/api/2/project/type/${encodeURIComponent(parameters.projectTypeKey)}`,
     method: 'GET',
     schema: ProjectTypeSchema,
     signal: options?.signal,
@@ -166,7 +166,7 @@ export async function getAccessibleProjectTypeByKey(
   options?: RequestOptions,
 ): Promise<ProjectType> {
   const config: SendRequestOptions<ProjectType> = {
-    url: `/rest/api/2/project/type/${parameters.projectTypeKey}/accessible`,
+    url: `/rest/api/2/project/type/${encodeURIComponent(parameters.projectTypeKey)}/accessible`,
     method: 'GET',
     schema: ProjectTypeSchema,
     signal: options?.signal,
@@ -181,7 +181,7 @@ export async function getAccessibleProjectTypeByKey(
  */
 export async function getProject(client: Client, parameters: GetProject, options?: RequestOptions): Promise<Project> {
   const config: SendRequestOptions<Project> = {
-    url: `/rest/api/2/project/${parameters.projectIdOrKey}`,
+    url: `/rest/api/2/project/${encodeURIComponent(parameters.projectIdOrKey)}`,
     method: 'GET',
     searchParams: {
       expand: Array.isArray(parameters.expand) ? parameters.expand.join(',') : parameters.expand,
@@ -203,7 +203,7 @@ export async function updateProject(
   options?: RequestOptions,
 ): Promise<Project> {
   const config: SendRequestOptions<Project> = {
-    url: `/rest/api/2/project/${parameters.projectIdOrKey}`,
+    url: `/rest/api/2/project/${encodeURIComponent(parameters.projectIdOrKey)}`,
     method: 'PUT',
     searchParams: {
       expand: Array.isArray(parameters.expand) ? parameters.expand.join(',') : parameters.expand,
@@ -237,7 +237,7 @@ export async function deleteProject(
   options?: RequestOptions,
 ): Promise<void> {
   const config: SendRequestOptions<void> = {
-    url: `/rest/api/2/project/${parameters.projectIdOrKey}`,
+    url: `/rest/api/2/project/${encodeURIComponent(parameters.projectIdOrKey)}`,
     method: 'DELETE',
     signal: options?.signal,
   };
@@ -252,7 +252,7 @@ export async function archiveProject(
   options?: RequestOptions,
 ): Promise<void> {
   const config: SendRequestOptions<void> = {
-    url: `/rest/api/2/project/${parameters.projectIdOrKey}/archive`,
+    url: `/rest/api/2/project/${encodeURIComponent(parameters.projectIdOrKey)}/archive`,
     method: 'PUT',
     signal: options?.signal,
   };
@@ -273,7 +273,7 @@ export async function createProjectAvatarFromTemporary(
   options?: RequestOptions,
 ): Promise<Avatar> {
   const config: SendRequestOptions<Avatar> = {
-    url: `/rest/api/2/project/${parameters.projectIdOrKey}/avatar`,
+    url: `/rest/api/2/project/${encodeURIComponent(parameters.projectIdOrKey)}/avatar`,
     method: 'POST',
     body: {
       cropperOffsetX: parameters.cropperOffsetX,
@@ -296,7 +296,7 @@ export async function updateProjectAvatar(
   options?: RequestOptions,
 ): Promise<void> {
   const config: SendRequestOptions<void> = {
-    url: `/rest/api/2/project/${parameters.projectIdOrKey}/avatar`,
+    url: `/rest/api/2/project/${encodeURIComponent(parameters.projectIdOrKey)}/avatar`,
     method: 'PUT',
     body: {
       id: parameters.id,
@@ -332,7 +332,7 @@ export async function storeTemporaryProjectAvatarUsingMultiPart(
   }
 
   const config: SendRequestOptions<unknown> = {
-    url: `/rest/api/2/project/${parameters.projectIdOrKey}/avatar/temporary`,
+    url: `/rest/api/2/project/${encodeURIComponent(parameters.projectIdOrKey)}/avatar/temporary`,
     method: 'POST',
     headers: {
       'X-Atlassian-Token': 'no-check',
@@ -353,7 +353,7 @@ export async function deleteProjectAvatar(
   options?: RequestOptions,
 ): Promise<void> {
   const config: SendRequestOptions<void> = {
-    url: `/rest/api/2/project/${parameters.projectIdOrKey}/avatar/${parameters.id}`,
+    url: `/rest/api/2/project/${encodeURIComponent(parameters.projectIdOrKey)}/avatar/${encodeURIComponent(parameters.id)}`,
     method: 'DELETE',
     signal: options?.signal,
   };
@@ -371,7 +371,7 @@ export async function getAllProjectAvatars(
   options?: RequestOptions,
 ): Promise<GetAllProjectAvatars> {
   const config: SendRequestOptions<GetAllProjectAvatars> = {
-    url: `/rest/api/2/project/${parameters.projectIdOrKey}/avatars`,
+    url: `/rest/api/2/project/${encodeURIComponent(parameters.projectIdOrKey)}/avatars`,
     method: 'GET',
     schema: GetAllProjectAvatarsSchema,
     signal: options?.signal,
@@ -387,7 +387,7 @@ export async function getProjectComponents(
   options?: RequestOptions,
 ): Promise<Component[]> {
   const config: SendRequestOptions<Component[]> = {
-    url: `/rest/api/2/project/${parameters.projectIdOrKey}/components`,
+    url: `/rest/api/2/project/${encodeURIComponent(parameters.projectIdOrKey)}/components`,
     method: 'GET',
     schema: z.array(ComponentSchema),
     signal: options?.signal,
@@ -403,7 +403,7 @@ export async function getProjectPropertyKeys(
   options?: RequestOptions,
 ): Promise<EntityPropertiesKeys> {
   const config: SendRequestOptions<EntityPropertiesKeys> = {
-    url: `/rest/api/2/project/${parameters.projectIdOrKey}/properties`,
+    url: `/rest/api/2/project/${encodeURIComponent(parameters.projectIdOrKey)}/properties`,
     method: 'GET',
     schema: EntityPropertiesKeysSchema,
     signal: options?.signal,
@@ -419,7 +419,7 @@ export async function getProjectProperty(
   options?: RequestOptions,
 ): Promise<EntityProperty> {
   const config: SendRequestOptions<EntityProperty> = {
-    url: `/rest/api/2/project/${parameters.projectIdOrKey}/properties/${parameters.propertyKey}`,
+    url: `/rest/api/2/project/${encodeURIComponent(parameters.projectIdOrKey)}/properties/${encodeURIComponent(parameters.propertyKey)}`,
     method: 'GET',
     schema: EntityPropertySchema,
     signal: options?.signal,
@@ -439,7 +439,7 @@ export async function setProjectProperty(
   options?: RequestOptions,
 ): Promise<void> {
   const config: SendRequestOptions<void> = {
-    url: `/rest/api/2/project/${parameters.projectIdOrKey}/properties/${parameters.propertyKey}`,
+    url: `/rest/api/2/project/${encodeURIComponent(parameters.projectIdOrKey)}/properties/${encodeURIComponent(parameters.propertyKey)}`,
     method: 'PUT',
     body: parameters.body,
     signal: options?.signal,
@@ -455,7 +455,7 @@ export async function deleteProjectProperty(
   options?: RequestOptions,
 ): Promise<void> {
   const config: SendRequestOptions<void> = {
-    url: `/rest/api/2/project/${parameters.projectIdOrKey}/properties/${parameters.propertyKey}`,
+    url: `/rest/api/2/project/${encodeURIComponent(parameters.projectIdOrKey)}/properties/${encodeURIComponent(parameters.propertyKey)}`,
     method: 'DELETE',
     signal: options?.signal,
   };
@@ -470,7 +470,7 @@ export async function restoreProject(
   options?: RequestOptions,
 ): Promise<void> {
   const config: SendRequestOptions<void> = {
-    url: `/rest/api/2/project/${parameters.projectIdOrKey}/restore`,
+    url: `/rest/api/2/project/${encodeURIComponent(parameters.projectIdOrKey)}/restore`,
     method: 'PUT',
     signal: options?.signal,
   };
@@ -485,7 +485,7 @@ export async function getProjectRoles(
   options?: RequestOptions,
 ): Promise<GetProjectRoles> {
   const config: SendRequestOptions<GetProjectRoles> = {
-    url: `/rest/api/2/project/${parameters.projectIdOrKey}/role`,
+    url: `/rest/api/2/project/${encodeURIComponent(parameters.projectIdOrKey)}/role`,
     method: 'GET',
     schema: GetProjectRolesSchema,
     signal: options?.signal,
@@ -501,7 +501,7 @@ export async function getProjectRole(
   options?: RequestOptions,
 ): Promise<ProjectRole> {
   const config: SendRequestOptions<ProjectRole> = {
-    url: `/rest/api/2/project/${parameters.projectIdOrKey}/role/${parameters.id}`,
+    url: `/rest/api/2/project/${encodeURIComponent(parameters.projectIdOrKey)}/role/${encodeURIComponent(parameters.id)}`,
     method: 'GET',
     schema: ProjectRoleSchema,
     signal: options?.signal,
@@ -517,7 +517,7 @@ export async function addActorUsers(
   options?: RequestOptions,
 ): Promise<ProjectRole> {
   const config: SendRequestOptions<ProjectRole> = {
-    url: `/rest/api/2/project/${parameters.projectIdOrKey}/role/${parameters.id}`,
+    url: `/rest/api/2/project/${encodeURIComponent(parameters.projectIdOrKey)}/role/${encodeURIComponent(parameters.id)}`,
     method: 'POST',
     body: {
       user: parameters.user,
@@ -536,7 +536,7 @@ export async function addActorUsers(
  */
 export async function setActors(client: Client, parameters: SetActors, options?: RequestOptions): Promise<ProjectRole> {
   const config: SendRequestOptions<ProjectRole> = {
-    url: `/rest/api/2/project/${parameters.projectIdOrKey}/role/${parameters.id}`,
+    url: `/rest/api/2/project/${encodeURIComponent(parameters.projectIdOrKey)}/role/${encodeURIComponent(parameters.id)}`,
     method: 'PUT',
     body: parameters.body,
     schema: ProjectRoleSchema,
@@ -549,7 +549,7 @@ export async function setActors(client: Client, parameters: SetActors, options?:
 /** Deletes actors (users or groups) from a project role. */
 export async function deleteActor(client: Client, parameters: DeleteActor, options?: RequestOptions): Promise<void> {
   const config: SendRequestOptions<void> = {
-    url: `/rest/api/2/project/${parameters.projectIdOrKey}/role/${parameters.id}`,
+    url: `/rest/api/2/project/${encodeURIComponent(parameters.projectIdOrKey)}/role/${encodeURIComponent(parameters.id)}`,
     method: 'DELETE',
     searchParams: {
       user: parameters.user,
@@ -568,7 +568,7 @@ export async function getAllStatuses(
   options?: RequestOptions,
 ): Promise<IssueTypeWithStatusJson[]> {
   const config: SendRequestOptions<IssueTypeWithStatusJson[]> = {
-    url: `/rest/api/2/project/${parameters.projectIdOrKey}/statuses`,
+    url: `/rest/api/2/project/${encodeURIComponent(parameters.projectIdOrKey)}/statuses`,
     method: 'GET',
     schema: z.array(IssueTypeWithStatusJsonSchema),
     signal: options?.signal,
@@ -584,7 +584,7 @@ export async function updateProjectType(
   options?: RequestOptions,
 ): Promise<Project> {
   const config: SendRequestOptions<Project> = {
-    url: `/rest/api/2/project/${parameters.projectIdOrKey}/type/${parameters.newProjectTypeKey}`,
+    url: `/rest/api/2/project/${encodeURIComponent(parameters.projectIdOrKey)}/type/${encodeURIComponent(parameters.newProjectTypeKey)}`,
     method: 'PUT',
     schema: ProjectSchema,
     signal: options?.signal,
@@ -603,7 +603,7 @@ export async function getProjectVersionsPaginated(
   options?: RequestOptions,
 ): Promise<PageOfVersions> {
   const config: SendRequestOptions<PageOfVersions> = {
-    url: `/rest/api/2/project/${parameters.projectIdOrKey}/version`,
+    url: `/rest/api/2/project/${encodeURIComponent(parameters.projectIdOrKey)}/version`,
     method: 'GET',
     searchParams: {
       expand: Array.isArray(parameters.expand) ? parameters.expand.join(',') : parameters.expand,
@@ -625,7 +625,7 @@ export async function getProjectVersions(
   options?: RequestOptions,
 ): Promise<Version[]> {
   const config: SendRequestOptions<Version[]> = {
-    url: `/rest/api/2/project/${parameters.projectIdOrKey}/versions`,
+    url: `/rest/api/2/project/${encodeURIComponent(parameters.projectIdOrKey)}/versions`,
     method: 'GET',
     searchParams: {
       expand: Array.isArray(parameters.expand) ? parameters.expand.join(',') : parameters.expand,
@@ -644,7 +644,7 @@ export async function getProjectIssueSecurityScheme(
   options?: RequestOptions,
 ): Promise<SecuritySchemeJson> {
   const config: SendRequestOptions<SecuritySchemeJson> = {
-    url: `/rest/api/2/project/${parameters.projectKeyOrId}/issuesecuritylevelscheme`,
+    url: `/rest/api/2/project/${encodeURIComponent(parameters.projectKeyOrId)}/issuesecuritylevelscheme`,
     method: 'GET',
     schema: SecuritySchemeJsonSchema,
     signal: options?.signal,
@@ -663,7 +663,7 @@ export async function getProjectNotificationScheme(
   options?: RequestOptions,
 ): Promise<NotificationScheme> {
   const config: SendRequestOptions<NotificationScheme> = {
-    url: `/rest/api/2/project/${parameters.projectKeyOrId}/notificationscheme`,
+    url: `/rest/api/2/project/${encodeURIComponent(parameters.projectKeyOrId)}/notificationscheme`,
     method: 'GET',
     searchParams: {
       expand: Array.isArray(parameters.expand) ? parameters.expand.join(',') : parameters.expand,
@@ -682,7 +682,7 @@ export async function getAssignedPermissionScheme(
   options?: RequestOptions,
 ): Promise<PermissionScheme> {
   const config: SendRequestOptions<PermissionScheme> = {
-    url: `/rest/api/2/project/${parameters.projectKeyOrId}/permissionscheme`,
+    url: `/rest/api/2/project/${encodeURIComponent(parameters.projectKeyOrId)}/permissionscheme`,
     method: 'GET',
     searchParams: {
       expand: parameters.expand,
@@ -701,7 +701,7 @@ export async function assignPermissionScheme(
   options?: RequestOptions,
 ): Promise<PermissionScheme> {
   const config: SendRequestOptions<PermissionScheme> = {
-    url: `/rest/api/2/project/${parameters.projectKeyOrId}/permissionscheme`,
+    url: `/rest/api/2/project/${encodeURIComponent(parameters.projectKeyOrId)}/permissionscheme`,
     method: 'PUT',
     searchParams: {
       expand: parameters.expand,
@@ -727,7 +727,7 @@ export async function getAssignedPriorityScheme(
   options?: RequestOptions,
 ): Promise<PriorityScheme> {
   const config: SendRequestOptions<PriorityScheme> = {
-    url: `/rest/api/2/project/${parameters.projectKeyOrId}/priorityscheme`,
+    url: `/rest/api/2/project/${encodeURIComponent(parameters.projectKeyOrId)}/priorityscheme`,
     method: 'GET',
     schema: PrioritySchemeSchema,
     signal: options?.signal,
@@ -748,7 +748,7 @@ export async function assignPriorityScheme(
   options?: RequestOptions,
 ): Promise<PriorityScheme> {
   const config: SendRequestOptions<PriorityScheme> = {
-    url: `/rest/api/2/project/${parameters.projectKeyOrId}/priorityscheme`,
+    url: `/rest/api/2/project/${encodeURIComponent(parameters.projectKeyOrId)}/priorityscheme`,
     method: 'PUT',
     body: {
       id: parameters.id,
@@ -771,7 +771,7 @@ export async function unassignPriorityScheme(
   options?: RequestOptions,
 ): Promise<PriorityScheme> {
   const config: SendRequestOptions<PriorityScheme> = {
-    url: `/rest/api/2/project/${parameters.projectKeyOrId}/priorityscheme/${parameters.schemeId}`,
+    url: `/rest/api/2/project/${encodeURIComponent(parameters.projectKeyOrId)}/priorityscheme/${encodeURIComponent(parameters.schemeId)}`,
     method: 'DELETE',
     schema: PrioritySchemeSchema,
     signal: options?.signal,
@@ -790,7 +790,7 @@ export async function getSecurityLevelsForProject(
   options?: RequestOptions,
 ): Promise<SecurityListLevelJson> {
   const config: SendRequestOptions<SecurityListLevelJson> = {
-    url: `/rest/api/2/project/${parameters.projectKeyOrId}/securitylevel`,
+    url: `/rest/api/2/project/${encodeURIComponent(parameters.projectKeyOrId)}/securitylevel`,
     method: 'GET',
     schema: SecurityListLevelJsonSchema,
     signal: options?.signal,
@@ -806,7 +806,7 @@ export async function getWorkflowSchemeForProject(
   options?: RequestOptions,
 ): Promise<WorkflowScheme> {
   const config: SendRequestOptions<WorkflowScheme> = {
-    url: `/rest/api/2/project/${parameters.projectKeyOrId}/workflowscheme`,
+    url: `/rest/api/2/project/${encodeURIComponent(parameters.projectKeyOrId)}/workflowscheme`,
     method: 'GET',
     schema: WorkflowSchemeSchema,
     signal: options?.signal,

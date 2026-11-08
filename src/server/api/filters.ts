@@ -110,7 +110,7 @@ export async function getFavouriteFilters(
 /** Returns a filter given an id */
 export async function getFilter(client: Client, parameters: GetFilter, options?: RequestOptions): Promise<Filter> {
   const config: SendRequestOptions<Filter> = {
-    url: `/rest/api/2/filter/${parameters.id}`,
+    url: `/rest/api/2/filter/${encodeURIComponent(parameters.id)}`,
     method: 'GET',
     searchParams: {
       expand: parameters.expand,
@@ -129,7 +129,7 @@ export async function getFilter(client: Client, parameters: GetFilter, options?:
  */
 export async function editFilter(client: Client, parameters: EditFilter, options?: RequestOptions): Promise<Filter> {
   const config: SendRequestOptions<Filter> = {
-    url: `/rest/api/2/filter/${parameters.id}`,
+    url: `/rest/api/2/filter/${encodeURIComponent(parameters.id)}`,
     method: 'PUT',
     searchParams: {
       expand: parameters.expand,
@@ -145,7 +145,7 @@ export async function editFilter(client: Client, parameters: EditFilter, options
 /** Delete a filter */
 export async function deleteFilter(client: Client, parameters: DeleteFilter, options?: RequestOptions): Promise<void> {
   const config: SendRequestOptions<void> = {
-    url: `/rest/api/2/filter/${parameters.id}`,
+    url: `/rest/api/2/filter/${encodeURIComponent(parameters.id)}`,
     method: 'DELETE',
     signal: options?.signal,
   };
@@ -163,7 +163,7 @@ export async function getFilterColumns(
   options?: RequestOptions,
 ): Promise<ColumnLayout[]> {
   const config: SendRequestOptions<ColumnLayout[]> = {
-    url: `/rest/api/2/filter/${parameters.id}/columns`,
+    url: `/rest/api/2/filter/${encodeURIComponent(parameters.id)}/columns`,
     method: 'GET',
     schema: z.array(ColumnLayoutSchema),
     signal: options?.signal,
@@ -175,7 +175,7 @@ export async function getFilterColumns(
 /** Sets the default columns for the given filter */
 export async function setColumns(client: Client, parameters: SetColumns, options?: RequestOptions): Promise<void> {
   const config: SendRequestOptions<void> = {
-    url: `/rest/api/2/filter/${parameters.id}/columns`,
+    url: `/rest/api/2/filter/${encodeURIComponent(parameters.id)}/columns`,
     method: 'PUT',
     body: {
       columns: parameters.columns,
@@ -189,7 +189,7 @@ export async function setColumns(client: Client, parameters: SetColumns, options
 /** Resets the columns for the given filter such that the filter no longer has its own column config */
 export async function resetColumns(client: Client, parameters: ResetColumns, options?: RequestOptions): Promise<void> {
   const config: SendRequestOptions<void> = {
-    url: `/rest/api/2/filter/${parameters.id}/columns`,
+    url: `/rest/api/2/filter/${encodeURIComponent(parameters.id)}/columns`,
     method: 'DELETE',
     signal: options?.signal,
   };
@@ -204,7 +204,7 @@ export async function getSharePermissions(
   options?: RequestOptions,
 ): Promise<FilterPermission[]> {
   const config: SendRequestOptions<FilterPermission[]> = {
-    url: `/rest/api/2/filter/${parameters.id}/permission`,
+    url: `/rest/api/2/filter/${encodeURIComponent(parameters.id)}/permission`,
     method: 'GET',
     schema: z.array(FilterPermissionSchema),
     signal: options?.signal,
@@ -223,7 +223,7 @@ export async function addSharePermission(
   options?: RequestOptions,
 ): Promise<FilterPermission[]> {
   const config: SendRequestOptions<FilterPermission[]> = {
-    url: `/rest/api/2/filter/${parameters.id}/permission`,
+    url: `/rest/api/2/filter/${encodeURIComponent(parameters.id)}/permission`,
     method: 'POST',
     body: {
       edit: parameters.edit,
@@ -248,7 +248,7 @@ export async function getSharePermission(
   options?: RequestOptions,
 ): Promise<FilterPermission> {
   const config: SendRequestOptions<FilterPermission> = {
-    url: `/rest/api/2/filter/${parameters.id}/permission/${parameters.permissionId}`,
+    url: `/rest/api/2/filter/${encodeURIComponent(parameters.id)}/permission/${encodeURIComponent(parameters.permissionId)}`,
     method: 'GET',
     schema: FilterPermissionSchema,
     signal: options?.signal,
@@ -264,7 +264,7 @@ export async function deleteSharePermission(
   options?: RequestOptions,
 ): Promise<void> {
   const config: SendRequestOptions<void> = {
-    url: `/rest/api/2/filter/${parameters.id}/permission/${parameters.permissionId}`,
+    url: `/rest/api/2/filter/${encodeURIComponent(parameters.id)}/permission/${encodeURIComponent(parameters.permissionId)}`,
     method: 'DELETE',
     signal: options?.signal,
   };

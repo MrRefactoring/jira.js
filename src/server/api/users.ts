@@ -457,7 +457,7 @@ export async function deleteUserAvatar(
   options?: RequestOptions,
 ): Promise<void> {
   const config: SendRequestOptions<void> = {
-    url: `/rest/api/2/user/avatar/${parameters.id}`,
+    url: `/rest/api/2/user/avatar/${encodeURIComponent(parameters.id)}`,
     method: 'DELETE',
     searchParams: {
       username: parameters.username,
@@ -708,7 +708,7 @@ export async function getUserProperty(
   options?: RequestOptions,
 ): Promise<EntityProperty> {
   const config: SendRequestOptions<EntityProperty> = {
-    url: `/rest/api/2/user/properties/${parameters.propertyKey}`,
+    url: `/rest/api/2/user/properties/${encodeURIComponent(parameters.propertyKey)}`,
     method: 'GET',
     searchParams: {
       userKey: parameters.userKey,
@@ -732,7 +732,7 @@ export async function setUserProperty(
   options?: RequestOptions,
 ): Promise<void> {
   const config: SendRequestOptions<void> = {
-    url: `/rest/api/2/user/properties/${parameters.propertyKey}`,
+    url: `/rest/api/2/user/properties/${encodeURIComponent(parameters.propertyKey)}`,
     method: 'PUT',
     searchParams: {
       userKey: parameters.userKey,
@@ -755,7 +755,7 @@ export async function deleteUserProperty(
   options?: RequestOptions,
 ): Promise<void> {
   const config: SendRequestOptions<void> = {
-    url: `/rest/api/2/user/properties/${parameters.propertyKey}`,
+    url: `/rest/api/2/user/properties/${encodeURIComponent(parameters.propertyKey)}`,
     method: 'DELETE',
     searchParams: {
       userKey: parameters.userKey,
@@ -793,7 +793,7 @@ export async function deleteSession(
   options?: RequestOptions,
 ): Promise<void> {
   const config: SendRequestOptions<void> = {
-    url: `/rest/api/2/user/session/${parameters.username}`,
+    url: `/rest/api/2/user/session/${encodeURIComponent(parameters.username)}`,
     method: 'DELETE',
     signal: options?.signal,
   };

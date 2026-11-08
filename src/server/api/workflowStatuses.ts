@@ -44,7 +44,7 @@ export async function getPaginatedStatuses(
 /** Returns a full representation of the Status having the given id or name. */
 export async function getStatus(client: Client, parameters: GetStatus, options?: RequestOptions): Promise<StatusJson> {
   const config: SendRequestOptions<StatusJson> = {
-    url: `/rest/api/2/status/${parameters.idOrName}`,
+    url: `/rest/api/2/status/${encodeURIComponent(parameters.idOrName)}`,
     method: 'GET',
     schema: StatusJsonSchema,
     signal: options?.signal,

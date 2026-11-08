@@ -73,7 +73,7 @@ export async function getIssueLinkType(
   options?: RequestOptions,
 ): Promise<IssueLinkTypeJson> {
   const config: SendRequestOptions<IssueLinkTypeJson> = {
-    url: `/rest/api/2/issueLinkType/${parameters.issueLinkTypeId}`,
+    url: `/rest/api/2/issueLinkType/${encodeURIComponent(parameters.issueLinkTypeId)}`,
     method: 'GET',
     schema: IssueLinkTypeJsonSchema,
     signal: options?.signal,
@@ -89,7 +89,7 @@ export async function updateIssueLinkType(
   options?: RequestOptions,
 ): Promise<IssueLinkTypeJson> {
   const config: SendRequestOptions<IssueLinkTypeJson> = {
-    url: `/rest/api/2/issueLinkType/${parameters.issueLinkTypeId}`,
+    url: `/rest/api/2/issueLinkType/${encodeURIComponent(parameters.issueLinkTypeId)}`,
     method: 'PUT',
     body: {
       id: parameters.id,
@@ -112,7 +112,7 @@ export async function deleteIssueLinkType(
   options?: RequestOptions,
 ): Promise<void> {
   const config: SendRequestOptions<void> = {
-    url: `/rest/api/2/issueLinkType/${parameters.issueLinkTypeId}`,
+    url: `/rest/api/2/issueLinkType/${encodeURIComponent(parameters.issueLinkTypeId)}`,
     method: 'DELETE',
     signal: options?.signal,
   };
@@ -131,7 +131,7 @@ export async function moveIssueLinkType(
   options?: RequestOptions,
 ): Promise<IssueLinkTypeJson> {
   const config: SendRequestOptions<IssueLinkTypeJson> = {
-    url: `/rest/api/2/issueLinkType/${parameters.issueLinkTypeId}/order`,
+    url: `/rest/api/2/issueLinkType/${encodeURIComponent(parameters.issueLinkTypeId)}/order`,
     method: 'PUT',
     body: {
       newPosition: parameters.newPosition,

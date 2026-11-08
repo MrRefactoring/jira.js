@@ -47,7 +47,7 @@ export async function getProjectCategoryById(
   options?: RequestOptions,
 ): Promise<ProjectCategory> {
   const config: SendRequestOptions<ProjectCategory> = {
-    url: `/rest/api/2/projectCategory/${parameters.id}`,
+    url: `/rest/api/2/projectCategory/${encodeURIComponent(parameters.id)}`,
     method: 'GET',
     schema: ProjectCategorySchema,
     signal: options?.signal,
@@ -63,7 +63,7 @@ export async function updateProjectCategory(
   options?: RequestOptions,
 ): Promise<ProjectCategory> {
   const config: SendRequestOptions<ProjectCategory> = {
-    url: `/rest/api/2/projectCategory/${parameters.id}`,
+    url: `/rest/api/2/projectCategory/${encodeURIComponent(parameters.id)}`,
     method: 'PUT',
     body: parameters.body,
     schema: ProjectCategorySchema,
@@ -80,7 +80,7 @@ export async function removeProjectCategory(
   options?: RequestOptions,
 ): Promise<void> {
   const config: SendRequestOptions<void> = {
-    url: `/rest/api/2/projectCategory/${parameters.id}`,
+    url: `/rest/api/2/projectCategory/${encodeURIComponent(parameters.id)}`,
     method: 'DELETE',
     signal: options?.signal,
   };

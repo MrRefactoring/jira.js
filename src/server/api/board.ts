@@ -93,7 +93,7 @@ export async function createBoard(client: Client, parameters: CreateBoard, optio
 /** Returns a single board, for a given board Id. */
 export async function getBoard(client: Client, parameters: GetBoard, options?: RequestOptions): Promise<Board> {
   const config: SendRequestOptions<Board> = {
-    url: `/rest/agile/1.0/board/${parameters.boardId}`,
+    url: `/rest/agile/1.0/board/${encodeURIComponent(parameters.boardId)}`,
     method: 'GET',
     schema: BoardSchema,
     signal: options?.signal,
@@ -105,7 +105,7 @@ export async function getBoard(client: Client, parameters: GetBoard, options?: R
 /** Deletes the board. */
 export async function deleteBoard(client: Client, parameters: DeleteBoard, options?: RequestOptions): Promise<void> {
   const config: SendRequestOptions<void> = {
-    url: `/rest/agile/1.0/board/${parameters.boardId}`,
+    url: `/rest/agile/1.0/board/${encodeURIComponent(parameters.boardId)}`,
     method: 'DELETE',
     signal: options?.signal,
   };
@@ -120,7 +120,7 @@ export async function getIssuesForBacklog(
   options?: RequestOptions,
 ): Promise<SearchResults> {
   const config: SendRequestOptions<SearchResults> = {
-    url: `/rest/agile/1.0/board/${parameters.boardId}/backlog`,
+    url: `/rest/agile/1.0/board/${encodeURIComponent(parameters.boardId)}/backlog`,
     method: 'GET',
     searchParams: {
       expand: Array.isArray(parameters.expand) ? parameters.expand.join(',') : parameters.expand,
@@ -161,7 +161,7 @@ export async function getBoardConfiguration(
   options?: RequestOptions,
 ): Promise<BoardConfig> {
   const config: SendRequestOptions<BoardConfig> = {
-    url: `/rest/agile/1.0/board/${parameters.boardId}/configuration`,
+    url: `/rest/agile/1.0/board/${encodeURIComponent(parameters.boardId)}/configuration`,
     method: 'GET',
     schema: BoardConfigSchema,
     signal: options?.signal,
@@ -176,7 +176,7 @@ export async function getBoardConfiguration(
  */
 export async function getEpics(client: Client, parameters: GetEpics, options?: RequestOptions): Promise<Page<Epic>> {
   const config: SendRequestOptions<Page<Epic>> = {
-    url: `/rest/agile/1.0/board/${parameters.boardId}/epic`,
+    url: `/rest/agile/1.0/board/${encodeURIComponent(parameters.boardId)}/epic`,
     method: 'GET',
     searchParams: {
       maxResults: parameters.maxResults,
@@ -197,7 +197,7 @@ export async function getIssuesWithoutEpicForBoard(
   options?: RequestOptions,
 ): Promise<SearchResults> {
   const config: SendRequestOptions<SearchResults> = {
-    url: `/rest/agile/1.0/board/${parameters.boardId}/epic/none/issue`,
+    url: `/rest/agile/1.0/board/${encodeURIComponent(parameters.boardId)}/epic/none/issue`,
     method: 'GET',
     searchParams: {
       expand: parameters.expand,
@@ -221,7 +221,7 @@ export async function getIssuesForBoardEpic(
   options?: RequestOptions,
 ): Promise<SearchResults> {
   const config: SendRequestOptions<SearchResults> = {
-    url: `/rest/agile/1.0/board/${parameters.boardId}/epic/${parameters.epicId}/issue`,
+    url: `/rest/agile/1.0/board/${encodeURIComponent(parameters.boardId)}/epic/${encodeURIComponent(parameters.epicId)}/issue`,
     method: 'GET',
     searchParams: {
       expand: parameters.expand,
@@ -250,7 +250,7 @@ export async function getIssuesForBoard(
   options?: RequestOptions,
 ): Promise<SearchResults> {
   const config: SendRequestOptions<SearchResults> = {
-    url: `/rest/agile/1.0/board/${parameters.boardId}/issue`,
+    url: `/rest/agile/1.0/board/${encodeURIComponent(parameters.boardId)}/issue`,
     method: 'GET',
     searchParams: {
       expand: Array.isArray(parameters.expand) ? parameters.expand.join(',') : parameters.expand,
@@ -280,7 +280,7 @@ export async function getProjects(
   options?: RequestOptions,
 ): Promise<Page<ProjectJson>> {
   const config: SendRequestOptions<Page<ProjectJson>> = {
-    url: `/rest/agile/1.0/board/${parameters.boardId}/project`,
+    url: `/rest/agile/1.0/board/${encodeURIComponent(parameters.boardId)}/project`,
     method: 'GET',
     searchParams: {
       maxResults: parameters.maxResults,
@@ -303,7 +303,7 @@ export async function getBoardPropertyKeys(
   options?: RequestOptions,
 ): Promise<EntityPropertiesKeys> {
   const config: SendRequestOptions<EntityPropertiesKeys> = {
-    url: `/rest/agile/1.0/board/${parameters.boardId}/properties`,
+    url: `/rest/agile/1.0/board/${encodeURIComponent(parameters.boardId)}/properties`,
     method: 'GET',
     schema: EntityPropertiesKeysSchema,
     signal: options?.signal,
@@ -322,7 +322,7 @@ export async function getBoardProperty(
   options?: RequestOptions,
 ): Promise<EntityProperty> {
   const config: SendRequestOptions<EntityProperty> = {
-    url: `/rest/agile/1.0/board/${parameters.boardId}/properties/${parameters.propertyKey}`,
+    url: `/rest/agile/1.0/board/${encodeURIComponent(parameters.boardId)}/properties/${encodeURIComponent(parameters.propertyKey)}`,
     method: 'GET',
     schema: EntityPropertySchema,
     signal: options?.signal,
@@ -341,7 +341,7 @@ export async function setBoardProperty(
   options?: RequestOptions,
 ): Promise<EntityPropertiesKeys | undefined> {
   const config: SendRequestOptions<EntityPropertiesKeys> = {
-    url: `/rest/agile/1.0/board/${parameters.boardId}/properties/${parameters.propertyKey}`,
+    url: `/rest/agile/1.0/board/${encodeURIComponent(parameters.boardId)}/properties/${encodeURIComponent(parameters.propertyKey)}`,
     method: 'PUT',
     body: parameters.body,
     schema: EntityPropertiesKeysSchema,
@@ -361,7 +361,7 @@ export async function deleteBoardProperty(
   options?: RequestOptions,
 ): Promise<void> {
   const config: SendRequestOptions<void> = {
-    url: `/rest/agile/1.0/board/${parameters.boardId}/properties/${parameters.propertyKey}`,
+    url: `/rest/agile/1.0/board/${encodeURIComponent(parameters.boardId)}/properties/${encodeURIComponent(parameters.propertyKey)}`,
     method: 'DELETE',
     signal: options?.signal,
   };
@@ -376,7 +376,7 @@ export async function getRefinedVelocity(
   options?: RequestOptions,
 ): Promise<BooleanSetting> {
   const config: SendRequestOptions<BooleanSetting> = {
-    url: `/rest/agile/1.0/board/${parameters.boardId}/settings/refined-velocity`,
+    url: `/rest/agile/1.0/board/${encodeURIComponent(parameters.boardId)}/settings/refined-velocity`,
     method: 'GET',
     schema: BooleanSettingSchema,
     signal: options?.signal,
@@ -392,7 +392,7 @@ export async function setRefinedVelocity(
   options?: RequestOptions,
 ): Promise<void> {
   const config: SendRequestOptions<void> = {
-    url: `/rest/agile/1.0/board/${parameters.boardId}/settings/refined-velocity`,
+    url: `/rest/agile/1.0/board/${encodeURIComponent(parameters.boardId)}/settings/refined-velocity`,
     method: 'PUT',
     body: {
       value: parameters.value,
@@ -413,7 +413,7 @@ export async function getAllSprints(
   options?: RequestOptions,
 ): Promise<Page<Sprint>> {
   const config: SendRequestOptions<Page<Sprint>> = {
-    url: `/rest/agile/1.0/board/${parameters.boardId}/sprint`,
+    url: `/rest/agile/1.0/board/${encodeURIComponent(parameters.boardId)}/sprint`,
     method: 'GET',
     searchParams: {
       maxResults: parameters.maxResults,
@@ -438,7 +438,7 @@ export async function getIssuesForBoardSprint(
   options?: RequestOptions,
 ): Promise<SearchResults> {
   const config: SendRequestOptions<SearchResults> = {
-    url: `/rest/agile/1.0/board/${parameters.boardId}/sprint/${parameters.sprintId}/issue`,
+    url: `/rest/agile/1.0/board/${encodeURIComponent(parameters.boardId)}/sprint/${encodeURIComponent(parameters.sprintId)}/issue`,
     method: 'GET',
     searchParams: {
       expand: parameters.expand,
@@ -466,7 +466,7 @@ export async function getAllVersions(
   options?: RequestOptions,
 ): Promise<Page<AgileVersion>> {
   const config: SendRequestOptions<Page<AgileVersion>> = {
-    url: `/rest/agile/1.0/board/${parameters.boardId}/version`,
+    url: `/rest/agile/1.0/board/${encodeURIComponent(parameters.boardId)}/version`,
     method: 'GET',
     searchParams: {
       maxResults: parameters.maxResults,

@@ -66,7 +66,7 @@ export async function getSchemeAttribute(
   options?: RequestOptions,
 ): Promise<PermissionSchemeAttribute> {
   const config: SendRequestOptions<PermissionSchemeAttribute> = {
-    url: `/rest/api/2/permissionscheme/${parameters.permissionSchemeId}/attribute/${parameters.attributeKey}`,
+    url: `/rest/api/2/permissionscheme/${encodeURIComponent(parameters.permissionSchemeId)}/attribute/${encodeURIComponent(parameters.attributeKey)}`,
     method: 'GET',
     schema: PermissionSchemeAttributeSchema,
     signal: options?.signal,
@@ -85,7 +85,7 @@ export async function setSchemeAttribute(
   options?: RequestOptions,
 ): Promise<void> {
   const config: SendRequestOptions<void> = {
-    url: `/rest/api/2/permissionscheme/${parameters.permissionSchemeId}/attribute/${parameters.key}`,
+    url: `/rest/api/2/permissionscheme/${encodeURIComponent(parameters.permissionSchemeId)}/attribute/${encodeURIComponent(parameters.key)}`,
     method: 'PUT',
     body: parameters.body,
     contentType: 'text/plain',
@@ -102,7 +102,7 @@ export async function getPermissionScheme(
   options?: RequestOptions,
 ): Promise<PermissionScheme> {
   const config: SendRequestOptions<PermissionScheme> = {
-    url: `/rest/api/2/permissionscheme/${parameters.schemeId}`,
+    url: `/rest/api/2/permissionscheme/${encodeURIComponent(parameters.schemeId)}`,
     method: 'GET',
     searchParams: {
       expand: parameters.expand,
@@ -127,7 +127,7 @@ export async function updatePermissionScheme(
   options?: RequestOptions,
 ): Promise<PermissionScheme> {
   const config: SendRequestOptions<PermissionScheme> = {
-    url: `/rest/api/2/permissionscheme/${parameters.schemeId}`,
+    url: `/rest/api/2/permissionscheme/${encodeURIComponent(parameters.schemeId)}`,
     method: 'PUT',
     searchParams: {
       expand: parameters.expand,
@@ -147,7 +147,7 @@ export async function deletePermissionScheme(
   options?: RequestOptions,
 ): Promise<void> {
   const config: SendRequestOptions<void> = {
-    url: `/rest/api/2/permissionscheme/${parameters.schemeId}`,
+    url: `/rest/api/2/permissionscheme/${encodeURIComponent(parameters.schemeId)}`,
     method: 'DELETE',
     signal: options?.signal,
   };
@@ -162,7 +162,7 @@ export async function getPermissionSchemeGrants(
   options?: RequestOptions,
 ): Promise<PermissionGrants> {
   const config: SendRequestOptions<PermissionGrants> = {
-    url: `/rest/api/2/permissionscheme/${parameters.schemeId}/permission`,
+    url: `/rest/api/2/permissionscheme/${encodeURIComponent(parameters.schemeId)}/permission`,
     method: 'GET',
     searchParams: {
       expand: parameters.expand,
@@ -181,7 +181,7 @@ export async function createPermissionGrant(
   options?: RequestOptions,
 ): Promise<PermissionGrant> {
   const config: SendRequestOptions<PermissionGrant> = {
-    url: `/rest/api/2/permissionscheme/${parameters.schemeId}/permission`,
+    url: `/rest/api/2/permissionscheme/${encodeURIComponent(parameters.schemeId)}/permission`,
     method: 'POST',
     searchParams: {
       expand: parameters.expand,
@@ -206,7 +206,7 @@ export async function getPermissionSchemeGrant(
   options?: RequestOptions,
 ): Promise<PermissionGrant> {
   const config: SendRequestOptions<PermissionGrant> = {
-    url: `/rest/api/2/permissionscheme/${parameters.schemeId}/permission/${parameters.permissionId}`,
+    url: `/rest/api/2/permissionscheme/${encodeURIComponent(parameters.schemeId)}/permission/${encodeURIComponent(parameters.permissionId)}`,
     method: 'GET',
     searchParams: {
       expand: parameters.expand,
@@ -225,7 +225,7 @@ export async function deletePermissionSchemeEntity(
   options?: RequestOptions,
 ): Promise<void> {
   const config: SendRequestOptions<void> = {
-    url: `/rest/api/2/permissionscheme/${parameters.schemeId}/permission/${parameters.permissionId}`,
+    url: `/rest/api/2/permissionscheme/${encodeURIComponent(parameters.schemeId)}/permission/${encodeURIComponent(parameters.permissionId)}`,
     method: 'DELETE',
     signal: options?.signal,
   };

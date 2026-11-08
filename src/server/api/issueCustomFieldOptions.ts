@@ -9,7 +9,7 @@ export async function getCustomFieldOption(
   options?: RequestOptions,
 ): Promise<CustomFieldOption> {
   const config: SendRequestOptions<CustomFieldOption> = {
-    url: `/rest/api/2/customFieldOption/${parameters.id}`,
+    url: `/rest/api/2/customFieldOption/${encodeURIComponent(parameters.id)}`,
     method: 'GET',
     schema: CustomFieldOptionSchema,
     signal: options?.signal,

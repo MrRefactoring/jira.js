@@ -31,7 +31,7 @@ export async function getStatusCategory(
   options?: RequestOptions,
 ): Promise<StatusCategoryJson> {
   const config: SendRequestOptions<StatusCategoryJson> = {
-    url: `/rest/api/2/statuscategory/${parameters.idOrKey}`,
+    url: `/rest/api/2/statuscategory/${encodeURIComponent(parameters.idOrKey)}`,
     method: 'GET',
     schema: StatusCategoryJsonSchema,
     signal: options?.signal,

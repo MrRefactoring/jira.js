@@ -46,7 +46,7 @@ export async function addFieldToDefaultScreen(
   options?: RequestOptions,
 ): Promise<void> {
   const config: SendRequestOptions<void> = {
-    url: `/rest/api/2/screens/addToDefault/${parameters.fieldId}`,
+    url: `/rest/api/2/screens/addToDefault/${encodeURIComponent(parameters.fieldId)}`,
     method: 'POST',
     signal: options?.signal,
   };
@@ -61,7 +61,7 @@ export async function getFieldsToAdd(
   options?: RequestOptions,
 ): Promise<ScreenableField[]> {
   const config: SendRequestOptions<ScreenableField[]> = {
-    url: `/rest/api/2/screens/${parameters.screenId}/availableFields`,
+    url: `/rest/api/2/screens/${encodeURIComponent(parameters.screenId)}/availableFields`,
     method: 'GET',
     schema: z.array(ScreenableFieldSchema),
     signal: options?.signal,
@@ -77,7 +77,7 @@ export async function getAllTabs(
   options?: RequestOptions,
 ): Promise<ScreenableTab[]> {
   const config: SendRequestOptions<ScreenableTab[]> = {
-    url: `/rest/api/2/screens/${parameters.screenId}/tabs`,
+    url: `/rest/api/2/screens/${encodeURIComponent(parameters.screenId)}/tabs`,
     method: 'GET',
     searchParams: {
       projectKey: parameters.projectKey,
@@ -92,7 +92,7 @@ export async function getAllTabs(
 /** Creates tab for given screen. */
 export async function addTab(client: Client, parameters: AddTab, options?: RequestOptions): Promise<ScreenableTab> {
   const config: SendRequestOptions<ScreenableTab> = {
-    url: `/rest/api/2/screens/${parameters.screenId}/tabs`,
+    url: `/rest/api/2/screens/${encodeURIComponent(parameters.screenId)}/tabs`,
     method: 'POST',
     body: {
       id: parameters.id,
@@ -112,7 +112,7 @@ export async function renameTab(
   options?: RequestOptions,
 ): Promise<ScreenableTab> {
   const config: SendRequestOptions<ScreenableTab> = {
-    url: `/rest/api/2/screens/${parameters.screenId}/tabs/${parameters.tabId}`,
+    url: `/rest/api/2/screens/${encodeURIComponent(parameters.screenId)}/tabs/${encodeURIComponent(parameters.tabId)}`,
     method: 'PUT',
     body: {
       id: parameters.id,
@@ -128,7 +128,7 @@ export async function renameTab(
 /** Deletes tab from given screen. */
 export async function deleteTab(client: Client, parameters: DeleteTab, options?: RequestOptions): Promise<void> {
   const config: SendRequestOptions<void> = {
-    url: `/rest/api/2/screens/${parameters.screenId}/tabs/${parameters.tabId}`,
+    url: `/rest/api/2/screens/${encodeURIComponent(parameters.screenId)}/tabs/${encodeURIComponent(parameters.tabId)}`,
     method: 'DELETE',
     signal: options?.signal,
   };
@@ -143,7 +143,7 @@ export async function getAllFields(
   options?: RequestOptions,
 ): Promise<ScreenableField[]> {
   const config: SendRequestOptions<ScreenableField[]> = {
-    url: `/rest/api/2/screens/${parameters.screenId}/tabs/${parameters.tabId}/fields`,
+    url: `/rest/api/2/screens/${encodeURIComponent(parameters.screenId)}/tabs/${encodeURIComponent(parameters.tabId)}/fields`,
     method: 'GET',
     searchParams: {
       projectKey: parameters.projectKey,
@@ -162,7 +162,7 @@ export async function addField(
   options?: RequestOptions,
 ): Promise<ScreenableField> {
   const config: SendRequestOptions<ScreenableField> = {
-    url: `/rest/api/2/screens/${parameters.screenId}/tabs/${parameters.tabId}/fields`,
+    url: `/rest/api/2/screens/${encodeURIComponent(parameters.screenId)}/tabs/${encodeURIComponent(parameters.tabId)}/fields`,
     method: 'POST',
     body: {
       fieldId: parameters.fieldId,
@@ -177,7 +177,7 @@ export async function addField(
 /** Removes field from given tab. */
 export async function removeField(client: Client, parameters: RemoveField, options?: RequestOptions): Promise<void> {
   const config: SendRequestOptions<void> = {
-    url: `/rest/api/2/screens/${parameters.screenId}/tabs/${parameters.tabId}/fields/${parameters.id}`,
+    url: `/rest/api/2/screens/${encodeURIComponent(parameters.screenId)}/tabs/${encodeURIComponent(parameters.tabId)}/fields/${encodeURIComponent(parameters.id)}`,
     method: 'DELETE',
     signal: options?.signal,
   };
@@ -188,7 +188,7 @@ export async function removeField(client: Client, parameters: RemoveField, optio
 /** Moves field on the given tab. */
 export async function moveField(client: Client, parameters: MoveField, options?: RequestOptions): Promise<void> {
   const config: SendRequestOptions<void> = {
-    url: `/rest/api/2/screens/${parameters.screenId}/tabs/${parameters.tabId}/fields/${parameters.id}/move`,
+    url: `/rest/api/2/screens/${encodeURIComponent(parameters.screenId)}/tabs/${encodeURIComponent(parameters.tabId)}/fields/${encodeURIComponent(parameters.id)}/move`,
     method: 'POST',
     body: {
       after: parameters.after,
@@ -207,7 +207,7 @@ export async function updateShowWhenEmptyIndicator(
   options?: RequestOptions,
 ): Promise<void> {
   const config: SendRequestOptions<void> = {
-    url: `/rest/api/2/screens/${parameters.screenId}/tabs/${parameters.tabId}/fields/${parameters.id}/updateShowWhenEmptyIndicator/${parameters.newValue}`,
+    url: `/rest/api/2/screens/${encodeURIComponent(parameters.screenId)}/tabs/${encodeURIComponent(parameters.tabId)}/fields/${encodeURIComponent(parameters.id)}/updateShowWhenEmptyIndicator/${encodeURIComponent(parameters.newValue)}`,
     method: 'PUT',
     signal: options?.signal,
   };
@@ -218,7 +218,7 @@ export async function updateShowWhenEmptyIndicator(
 /** Moves tab position. */
 export async function moveTab(client: Client, parameters: MoveTab, options?: RequestOptions): Promise<void> {
   const config: SendRequestOptions<void> = {
-    url: `/rest/api/2/screens/${parameters.screenId}/tabs/${parameters.tabId}/move/${parameters.pos}`,
+    url: `/rest/api/2/screens/${encodeURIComponent(parameters.screenId)}/tabs/${encodeURIComponent(parameters.tabId)}/move/${encodeURIComponent(parameters.pos)}`,
     method: 'POST',
     signal: options?.signal,
   };

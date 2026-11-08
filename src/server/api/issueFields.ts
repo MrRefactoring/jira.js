@@ -64,7 +64,7 @@ export async function getCustomFieldOptions(
   options?: RequestOptions,
 ): Promise<CustomFieldOptions> {
   const config: SendRequestOptions<CustomFieldOptions> = {
-    url: `/rest/api/2/customFields/${parameters.customFieldId}/options`,
+    url: `/rest/api/2/customFields/${encodeURIComponent(parameters.customFieldId)}/options`,
     method: 'GET',
     searchParams: {
       maxResults: parameters.maxResults,

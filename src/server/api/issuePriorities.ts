@@ -47,7 +47,7 @@ export async function getPriority(
   options?: RequestOptions,
 ): Promise<PriorityJson> {
   const config: SendRequestOptions<PriorityJson> = {
-    url: `/rest/api/2/priority/${parameters.id}`,
+    url: `/rest/api/2/priority/${encodeURIComponent(parameters.id)}`,
     method: 'GET',
     schema: PriorityJsonSchema,
     signal: options?.signal,

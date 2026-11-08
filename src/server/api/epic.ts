@@ -61,7 +61,7 @@ export async function removeIssuesFromEpic(
 /** Returns the epic for a given epic Id. This epic will only be returned if the user has permission to view it. */
 export async function getEpic(client: Client, parameters: GetEpic, options?: RequestOptions): Promise<Epic> {
   const config: SendRequestOptions<Epic> = {
-    url: `/rest/agile/1.0/epic/${parameters.epicIdOrKey}`,
+    url: `/rest/agile/1.0/epic/${encodeURIComponent(parameters.epicIdOrKey)}`,
     method: 'GET',
     schema: EpicSchema,
     signal: options?.signal,
@@ -80,7 +80,7 @@ export async function partiallyUpdateEpic(
   options?: RequestOptions,
 ): Promise<Epic> {
   const config: SendRequestOptions<Epic> = {
-    url: `/rest/agile/1.0/epic/${parameters.epicIdOrKey}`,
+    url: `/rest/agile/1.0/epic/${encodeURIComponent(parameters.epicIdOrKey)}`,
     method: 'POST',
     body: {
       color: parameters.color,
@@ -106,7 +106,7 @@ export async function getIssuesForEpic(
   options?: RequestOptions,
 ): Promise<SearchResults> {
   const config: SendRequestOptions<SearchResults> = {
-    url: `/rest/agile/1.0/epic/${parameters.epicIdOrKey}/issue`,
+    url: `/rest/agile/1.0/epic/${encodeURIComponent(parameters.epicIdOrKey)}/issue`,
     method: 'GET',
     searchParams: {
       expand: parameters.expand,
@@ -135,7 +135,7 @@ export async function moveIssuesToEpic(
   options?: RequestOptions,
 ): Promise<void> {
   const config: SendRequestOptions<void> = {
-    url: `/rest/agile/1.0/epic/${parameters.epicIdOrKey}/issue`,
+    url: `/rest/agile/1.0/epic/${encodeURIComponent(parameters.epicIdOrKey)}/issue`,
     method: 'POST',
     body: {
       issues: parameters.issues,
@@ -152,7 +152,7 @@ export async function moveIssuesToEpic(
  */
 export async function rankEpics(client: Client, parameters: RankEpics, options?: RequestOptions): Promise<void> {
   const config: SendRequestOptions<void> = {
-    url: `/rest/agile/1.0/epic/${parameters.epicIdOrKey}/rank`,
+    url: `/rest/agile/1.0/epic/${encodeURIComponent(parameters.epicIdOrKey)}/rank`,
     method: 'PUT',
     body: {
       rankAfterEpic: parameters.rankAfterEpic,

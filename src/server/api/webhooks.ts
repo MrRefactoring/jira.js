@@ -66,7 +66,7 @@ export async function createWebhook(
 /** Returns a registered webhook. Requires administrator permission. */
 export async function getWebhook(client: Client, parameters: GetWebhook, options?: RequestOptions): Promise<Webhook> {
   const config: SendRequestOptions<Webhook> = {
-    url: `/rest/jira-webhook/1.0/webhooks/${parameters.webhookId}`,
+    url: `/rest/jira-webhook/1.0/webhooks/${encodeURIComponent(parameters.webhookId)}`,
     method: 'GET',
     schema: WebhookSchema,
     signal: options?.signal,
@@ -82,7 +82,7 @@ export async function updateWebhook(
   options?: RequestOptions,
 ): Promise<Webhook> {
   const config: SendRequestOptions<Webhook> = {
-    url: `/rest/jira-webhook/1.0/webhooks/${parameters.webhookId}`,
+    url: `/rest/jira-webhook/1.0/webhooks/${encodeURIComponent(parameters.webhookId)}`,
     method: 'PUT',
     body: {
       name: parameters.name,
@@ -107,7 +107,7 @@ export async function deleteWebhook(
   options?: RequestOptions,
 ): Promise<void> {
   const config: SendRequestOptions<void> = {
-    url: `/rest/jira-webhook/1.0/webhooks/${parameters.webhookId}`,
+    url: `/rest/jira-webhook/1.0/webhooks/${encodeURIComponent(parameters.webhookId)}`,
     method: 'DELETE',
     signal: options?.signal,
   };
@@ -122,7 +122,7 @@ export async function getWebhookStatistics(
   options?: RequestOptions,
 ): Promise<WebhookStatistics> {
   const config: SendRequestOptions<WebhookStatistics> = {
-    url: `/rest/jira-webhook/1.0/webhooks/${parameters.webhookId}/statistics`,
+    url: `/rest/jira-webhook/1.0/webhooks/${encodeURIComponent(parameters.webhookId)}/statistics`,
     method: 'GET',
     schema: WebhookStatisticsSchema,
     signal: options?.signal,
@@ -138,7 +138,7 @@ export async function getWebhookStatisticsSummary(
   options?: RequestOptions,
 ): Promise<GetWebhookStatisticsSummary> {
   const config: SendRequestOptions<GetWebhookStatisticsSummary> = {
-    url: `/rest/jira-webhook/1.0/webhooks/${parameters.webhookId}/statistics/summary`,
+    url: `/rest/jira-webhook/1.0/webhooks/${encodeURIComponent(parameters.webhookId)}/statistics/summary`,
     method: 'GET',
     schema: GetWebhookStatisticsSummarySchema,
     signal: options?.signal,
@@ -158,7 +158,7 @@ export async function getWebhookTransitions(
   options?: RequestOptions,
 ): Promise<unknown> {
   const config: SendRequestOptions<unknown> = {
-    url: `/rest/jira-webhook/1.0/webhooks/${parameters.webhookId}/transitions`,
+    url: `/rest/jira-webhook/1.0/webhooks/${encodeURIComponent(parameters.webhookId)}/transitions`,
     method: 'GET',
     signal: options?.signal,
   };
@@ -177,7 +177,7 @@ export async function getLatestWebhookInvocation(
   options?: RequestOptions,
 ): Promise<unknown> {
   const config: SendRequestOptions<unknown> = {
-    url: `/rest/jira-webhook/1.0/webhooks/${parameters.webhookId}/latest`,
+    url: `/rest/jira-webhook/1.0/webhooks/${encodeURIComponent(parameters.webhookId)}/latest`,
     method: 'GET',
     signal: options?.signal,
   };

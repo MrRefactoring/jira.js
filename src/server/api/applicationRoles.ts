@@ -49,7 +49,7 @@ export async function getApplicationRole(
   options?: RequestOptions,
 ): Promise<ApplicationRole> {
   const config: SendRequestOptions<ApplicationRole> = {
-    url: `/rest/api/2/applicationrole/${parameters.key}`,
+    url: `/rest/api/2/applicationrole/${encodeURIComponent(parameters.key)}`,
     method: 'GET',
     schema: ApplicationRoleSchema,
     signal: options?.signal,
@@ -68,7 +68,7 @@ export async function updateApplicationRole(
   options?: RequestOptions,
 ): Promise<ApplicationRole> {
   const config: SendRequestOptions<ApplicationRole> = {
-    url: `/rest/api/2/applicationrole/${parameters.key}`,
+    url: `/rest/api/2/applicationrole/${encodeURIComponent(parameters.key)}`,
     method: 'PUT',
     headers: {
       'If-Match': parameters['If-Match'],

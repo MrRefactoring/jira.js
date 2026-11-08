@@ -81,7 +81,7 @@ export async function unmapAllSprints(client: Client, options?: RequestOptions):
  */
 export async function getSprint(client: Client, parameters: GetSprint, options?: RequestOptions): Promise<Sprint> {
   const config: SendRequestOptions<Sprint> = {
-    url: `/rest/agile/1.0/sprint/${parameters.sprintId}`,
+    url: `/rest/agile/1.0/sprint/${encodeURIComponent(parameters.sprintId)}`,
     method: 'GET',
     schema: SprintSchema,
     signal: options?.signal,
@@ -112,7 +112,7 @@ export async function partiallyUpdateSprint(
   options?: RequestOptions,
 ): Promise<Sprint> {
   const config: SendRequestOptions<Sprint> = {
-    url: `/rest/agile/1.0/sprint/${parameters.sprintId}`,
+    url: `/rest/agile/1.0/sprint/${encodeURIComponent(parameters.sprintId)}`,
     method: 'POST',
     body: {
       activatedDate: parameters.activatedDate,
@@ -157,7 +157,7 @@ export async function updateSprint(
   options?: RequestOptions,
 ): Promise<Sprint> {
   const config: SendRequestOptions<Sprint> = {
-    url: `/rest/agile/1.0/sprint/${parameters.sprintId}`,
+    url: `/rest/agile/1.0/sprint/${encodeURIComponent(parameters.sprintId)}`,
     method: 'PUT',
     body: {
       activatedDate: parameters.activatedDate,
@@ -187,7 +187,7 @@ export async function updateSprint(
  */
 export async function deleteSprint(client: Client, parameters: DeleteSprint, options?: RequestOptions): Promise<void> {
   const config: SendRequestOptions<void> = {
-    url: `/rest/agile/1.0/sprint/${parameters.sprintId}`,
+    url: `/rest/agile/1.0/sprint/${encodeURIComponent(parameters.sprintId)}`,
     method: 'DELETE',
     signal: options?.signal,
   };
@@ -205,7 +205,7 @@ export async function getIssuesForSprint(
   options?: RequestOptions,
 ): Promise<SearchResults> {
   const config: SendRequestOptions<SearchResults> = {
-    url: `/rest/agile/1.0/sprint/${parameters.sprintId}/issue`,
+    url: `/rest/agile/1.0/sprint/${encodeURIComponent(parameters.sprintId)}/issue`,
     method: 'GET',
     searchParams: {
       expand: parameters.expand,
@@ -232,7 +232,7 @@ export async function moveIssuesToSprint(
   options?: RequestOptions,
 ): Promise<void> {
   const config: SendRequestOptions<void> = {
-    url: `/rest/agile/1.0/sprint/${parameters.sprintId}/issue`,
+    url: `/rest/agile/1.0/sprint/${encodeURIComponent(parameters.sprintId)}/issue`,
     method: 'POST',
     body: {
       issues: parameters.issues,
@@ -253,7 +253,7 @@ export async function getSprintPropertyKeys(
   options?: RequestOptions,
 ): Promise<EntityPropertiesKeys> {
   const config: SendRequestOptions<EntityPropertiesKeys> = {
-    url: `/rest/agile/1.0/sprint/${parameters.sprintId}/properties`,
+    url: `/rest/agile/1.0/sprint/${encodeURIComponent(parameters.sprintId)}/properties`,
     method: 'GET',
     schema: EntityPropertiesKeysSchema,
     signal: options?.signal,
@@ -272,7 +272,7 @@ export async function getSprintProperty(
   options?: RequestOptions,
 ): Promise<EntityProperty> {
   const config: SendRequestOptions<EntityProperty> = {
-    url: `/rest/agile/1.0/sprint/${parameters.sprintId}/properties/${parameters.propertyKey}`,
+    url: `/rest/agile/1.0/sprint/${encodeURIComponent(parameters.sprintId)}/properties/${encodeURIComponent(parameters.propertyKey)}`,
     method: 'GET',
     schema: EntityPropertySchema,
     signal: options?.signal,
@@ -291,7 +291,7 @@ export async function setSprintProperty(
   options?: RequestOptions,
 ): Promise<void> {
   const config: SendRequestOptions<void> = {
-    url: `/rest/agile/1.0/sprint/${parameters.sprintId}/properties/${parameters.propertyKey}`,
+    url: `/rest/agile/1.0/sprint/${encodeURIComponent(parameters.sprintId)}/properties/${encodeURIComponent(parameters.propertyKey)}`,
     method: 'PUT',
     body: parameters.body,
     signal: options?.signal,
@@ -310,7 +310,7 @@ export async function deleteSprintProperty(
   options?: RequestOptions,
 ): Promise<void> {
   const config: SendRequestOptions<void> = {
-    url: `/rest/agile/1.0/sprint/${parameters.sprintId}/properties/${parameters.propertyKey}`,
+    url: `/rest/agile/1.0/sprint/${encodeURIComponent(parameters.sprintId)}/properties/${encodeURIComponent(parameters.propertyKey)}`,
     method: 'DELETE',
     signal: options?.signal,
   };
@@ -321,7 +321,7 @@ export async function deleteSprintProperty(
 /** Swap the position of the sprint with the second sprint. */
 export async function swapSprint(client: Client, parameters: SwapSprint, options?: RequestOptions): Promise<void> {
   const config: SendRequestOptions<void> = {
-    url: `/rest/agile/1.0/sprint/${parameters.sprintId}/swap`,
+    url: `/rest/agile/1.0/sprint/${encodeURIComponent(parameters.sprintId)}/swap`,
     method: 'POST',
     body: {
       sprintToSwapWith: parameters.sprintToSwapWith,

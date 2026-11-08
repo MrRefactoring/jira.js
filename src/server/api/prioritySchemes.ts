@@ -60,7 +60,7 @@ export async function getPriorityScheme(
   options?: RequestOptions,
 ): Promise<PriorityScheme> {
   const config: SendRequestOptions<PriorityScheme> = {
-    url: `/rest/api/2/priorityschemes/${parameters.schemeId}`,
+    url: `/rest/api/2/priorityschemes/${encodeURIComponent(parameters.schemeId)}`,
     method: 'GET',
     schema: PrioritySchemeSchema,
     signal: options?.signal,
@@ -79,7 +79,7 @@ export async function updatePriorityScheme(
   options?: RequestOptions,
 ): Promise<PriorityScheme> {
   const config: SendRequestOptions<PriorityScheme> = {
-    url: `/rest/api/2/priorityschemes/${parameters.schemeId}`,
+    url: `/rest/api/2/priorityschemes/${encodeURIComponent(parameters.schemeId)}`,
     method: 'PUT',
     body: {
       defaultOptionId: parameters.defaultOptionId,
@@ -102,7 +102,7 @@ export async function deletePriorityScheme(
   options?: RequestOptions,
 ): Promise<void> {
   const config: SendRequestOptions<void> = {
-    url: `/rest/api/2/priorityschemes/${parameters.schemeId}`,
+    url: `/rest/api/2/priorityschemes/${encodeURIComponent(parameters.schemeId)}`,
     method: 'DELETE',
     signal: options?.signal,
   };
