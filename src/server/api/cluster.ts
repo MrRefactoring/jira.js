@@ -1,9 +1,29 @@
 import { NodeSchema, type Node } from '../models/node';
 import { ClusterStateSchema, type ClusterState } from '../models/clusterState';
+import type { RequestCurrentIndexFromNode } from '../parameters/requestCurrentIndexFromNode';
 import type { DeleteNode } from '../parameters/deleteNode';
 import type { ChangeNodeStateToOffline } from '../parameters/changeNodeStateToOffline';
 import type { Client, RequestOptions, SendRequestOptions } from '#/core';
 import { z } from 'zod';
+
+/**
+ * Request current index from node (the request is processed asynchronously).
+ *
+ * @deprecated Deprecated since Jira 10.4 and marked for removal by Atlassian.
+ */
+export async function requestCurrentIndexFromNode(
+  client: Client,
+  parameters: RequestCurrentIndexFromNode,
+  options?: RequestOptions,
+): Promise<void> {
+  const config: SendRequestOptions<void> = {
+    url: `/rest/api/2/cluster/index-snapshot/${encodeURIComponent(parameters.nodeId)}`,
+    method: 'PUT',
+    signal: options?.signal,
+  };
+
+  return await client.sendRequest(config);
+}
 
 /** Delete the node from the cluster if state of node is OFFLINE. */
 export async function deleteNode(client: Client, parameters: DeleteNode, options?: RequestOptions): Promise<void> {

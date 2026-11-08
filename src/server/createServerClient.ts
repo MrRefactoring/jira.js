@@ -171,6 +171,7 @@ import type {
   CreateAvatarFromTemporary,
   DeleteAvatar,
   StoreTemporaryAvatarUsingMultiPart,
+  RequestCurrentIndexFromNode,
   DeleteNode,
   ChangeNodeStateToOffline,
   GetCommentPropertyKeys,
@@ -893,6 +894,9 @@ export function createServerClient(clientConfig: ServerClientConfig | Client) {
       ): Promise<AvatarCropping> => avatars.storeTemporaryAvatarUsingMultiPart(client, parameters, options),
     },
     cluster: {
+      /** @deprecated Deprecated since Jira 10.4 and marked for removal by Atlassian. */
+      requestCurrentIndexFromNode: (parameters: RequestCurrentIndexFromNode, options?: RequestOptions): Promise<void> =>
+        cluster.requestCurrentIndexFromNode(client, parameters, options),
       deleteNode: (parameters: DeleteNode, options?: RequestOptions): Promise<void> =>
         cluster.deleteNode(client, parameters, options),
       changeNodeStateToOffline: (parameters: ChangeNodeStateToOffline, options?: RequestOptions): Promise<void> =>
