@@ -1,0 +1,8 @@
+{
+  "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+  "id": "10000",
+  "self": "http://localhost:8081/rest/agile/1.0/issue/10000",
+  "key": "JMIG-1",
+  "fields": null,
+  "renderedFields": null
+}

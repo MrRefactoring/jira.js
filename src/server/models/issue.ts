@@ -11,7 +11,7 @@ import { TransitionSchema } from './transition';
 export const IssueSchema = apiObject({
   changelog: ChangelogSchema.optional(),
   editmeta: EditMetaSchema.optional(),
-  fields: z.record(z.string(), z.any()).optional(),
+  fields: z.record(z.string(), z.any()).nullish(),
   fieldsToInclude: IncludedFieldsSchema.optional(),
   id: z.string().optional(),
   key: z.string().optional(),
