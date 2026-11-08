@@ -1,0 +1,32 @@
+{
+  "verifiedAt": "2026-11-08T22:12:16.385Z",
+  "jiraVersion": "10.3.27",
+  "currentNodeId": "jira650-node1",
+  "sourceNodeId": "jira650-node2",
+  "nodes": [
+    {
+      "alive": true,
+      "cacheListenerPort": 40001,
+      "ip": "node1",
+      "lastStateChangeTimestamp": 1794175785420,
+      "nodeBuildNumber": 10030027,
+      "nodeId": "jira650-node1",
+      "nodeVersion": "10.3.27",
+      "state": "ACTIVE"
+    },
+    {
+      "alive": true,
+      "cacheListenerPort": 40001,
+      "ip": "node2",
+      "lastStateChangeTimestamp": 1794175848709,
+      "nodeBuildNumber": 10030027,
+      "nodeId": "jira650-node2",
+      "nodeVersion": "10.3.27",
+      "state": "ACTIVE"
+    }
+  ],
+  "status": 200,
+  "responseBytes": 0,
+  "requestAccepted": true,
+  "snapshotCompletionVerified": false
+}
