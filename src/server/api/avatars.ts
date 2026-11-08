@@ -21,7 +21,7 @@ export async function getAllSystemAvatars(
   options?: RequestOptions,
 ): Promise<Avatar> {
   const config: SendRequestOptions<Avatar> = {
-    url: `/rest/api/2/avatar/${parameters.type}/system`,
+    url: `/rest/api/2/avatar/${encodeURIComponent(parameters.type)}/system`,
     method: 'GET',
     schema: AvatarSchema,
     signal: options?.signal,
@@ -37,7 +37,7 @@ export async function getAvatars(
   options?: RequestOptions,
 ): Promise<GetAvatars> {
   const config: SendRequestOptions<GetAvatars> = {
-    url: `/rest/api/2/universal_avatar/type/${parameters.type}/owner/${parameters.owningObjectId}`,
+    url: `/rest/api/2/universal_avatar/type/${encodeURIComponent(parameters.type)}/owner/${encodeURIComponent(parameters.owningObjectId)}`,
     method: 'GET',
     schema: GetAvatarsSchema,
     signal: options?.signal,
@@ -53,7 +53,7 @@ export async function createAvatarFromTemporary(
   options?: RequestOptions,
 ): Promise<Avatar> {
   const config: SendRequestOptions<Avatar> = {
-    url: `/rest/api/2/universal_avatar/type/${parameters.type}/owner/${parameters.owningObjectId}/avatar`,
+    url: `/rest/api/2/universal_avatar/type/${encodeURIComponent(parameters.type)}/owner/${encodeURIComponent(parameters.owningObjectId)}/avatar`,
     method: 'POST',
     body: {
       cropperOffsetX: parameters.cropperOffsetX,
@@ -72,7 +72,7 @@ export async function createAvatarFromTemporary(
 /** Deletes avatar */
 export async function deleteAvatar(client: Client, parameters: DeleteAvatar, options?: RequestOptions): Promise<void> {
   const config: SendRequestOptions<void> = {
-    url: `/rest/api/2/universal_avatar/type/${parameters.type}/owner/${parameters.owningObjectId}/avatar/${parameters.id}`,
+    url: `/rest/api/2/universal_avatar/type/${encodeURIComponent(parameters.type)}/owner/${encodeURIComponent(parameters.owningObjectId)}/avatar/${encodeURIComponent(parameters.id)}`,
     method: 'DELETE',
     signal: options?.signal,
   };
@@ -94,7 +94,7 @@ export async function storeTemporaryAvatarUsingMultiPart(
   }
 
   const config: SendRequestOptions<AvatarCropping> = {
-    url: `/rest/api/2/universal_avatar/type/${parameters.type}/owner/${parameters.owningObjectId}/temp`,
+    url: `/rest/api/2/universal_avatar/type/${encodeURIComponent(parameters.type)}/owner/${encodeURIComponent(parameters.owningObjectId)}/temp`,
     method: 'POST',
     headers: {
       'X-Atlassian-Token': 'no-check',

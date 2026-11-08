@@ -105,7 +105,7 @@ export async function getRemoteVersionLinks(
 /** Returns a version. */
 export async function getVersion(client: Client, parameters: GetVersion, options?: RequestOptions): Promise<Version> {
   const config: SendRequestOptions<Version> = {
-    url: `/rest/api/2/version/${parameters.id}`,
+    url: `/rest/api/2/version/${encodeURIComponent(parameters.id)}`,
     method: 'GET',
     searchParams: {
       expand: Array.isArray(parameters.expand) ? parameters.expand.join(',') : parameters.expand,
@@ -124,7 +124,7 @@ export async function updateVersion(
   options?: RequestOptions,
 ): Promise<void> {
   const config: SendRequestOptions<void> = {
-    url: `/rest/api/2/version/${parameters.id}`,
+    url: `/rest/api/2/version/${encodeURIComponent(parameters.id)}`,
     method: 'PUT',
     body: parameters.body,
     signal: options?.signal,
@@ -136,7 +136,7 @@ export async function updateVersion(
 /** Merge versions */
 export async function merge(client: Client, parameters: Merge, options?: RequestOptions): Promise<void> {
   const config: SendRequestOptions<void> = {
-    url: `/rest/api/2/version/${parameters.id}/mergeto/${parameters.moveIssuesTo}`,
+    url: `/rest/api/2/version/${encodeURIComponent(parameters.id)}/mergeto/${encodeURIComponent(parameters.moveIssuesTo)}`,
     method: 'PUT',
     signal: options?.signal,
   };
@@ -152,7 +152,7 @@ export async function merge(client: Client, parameters: Merge, options?: Request
  */
 export async function moveVersion(client: Client, parameters: MoveVersion, options?: RequestOptions): Promise<Version> {
   const config: SendRequestOptions<Version> = {
-    url: `/rest/api/2/version/${parameters.id}/move`,
+    url: `/rest/api/2/version/${encodeURIComponent(parameters.id)}/move`,
     method: 'POST',
     body: {
       after: parameters.after,
@@ -172,7 +172,7 @@ export async function getVersionRelatedIssues(
   options?: RequestOptions,
 ): Promise<VersionIssueCounts> {
   const config: SendRequestOptions<VersionIssueCounts> = {
-    url: `/rest/api/2/version/${parameters.id}/relatedIssueCounts`,
+    url: `/rest/api/2/version/${encodeURIComponent(parameters.id)}/relatedIssueCounts`,
     method: 'GET',
     schema: VersionIssueCountsSchema,
     signal: options?.signal,
@@ -188,7 +188,7 @@ export async function deleteVersionAndSwap(
   options?: RequestOptions,
 ): Promise<void> {
   const config: SendRequestOptions<void> = {
-    url: `/rest/api/2/version/${parameters.id}/removeAndSwap`,
+    url: `/rest/api/2/version/${encodeURIComponent(parameters.id)}/removeAndSwap`,
     method: 'POST',
     body: {
       customFieldReplacementList: parameters.customFieldReplacementList,
@@ -208,7 +208,7 @@ export async function getVersionUnresolvedIssues(
   options?: RequestOptions,
 ): Promise<VersionUnresolvedIssueCounts> {
   const config: SendRequestOptions<VersionUnresolvedIssueCounts> = {
-    url: `/rest/api/2/version/${parameters.id}/unresolvedIssueCount`,
+    url: `/rest/api/2/version/${encodeURIComponent(parameters.id)}/unresolvedIssueCount`,
     method: 'GET',
     schema: VersionUnresolvedIssueCountsSchema,
     signal: options?.signal,
@@ -224,7 +224,7 @@ export async function getRemoteVersionLinksByVersionId(
   options?: RequestOptions,
 ): Promise<RemoteEntityLinksJson> {
   const config: SendRequestOptions<RemoteEntityLinksJson> = {
-    url: `/rest/api/2/version/${parameters.versionId}/remotelink`,
+    url: `/rest/api/2/version/${encodeURIComponent(parameters.versionId)}/remotelink`,
     method: 'GET',
     schema: RemoteEntityLinksJsonSchema,
     signal: options?.signal,
@@ -243,7 +243,7 @@ export async function createOrUpdateRemoteVersionLink(
   options?: RequestOptions,
 ): Promise<void> {
   const config: SendRequestOptions<void> = {
-    url: `/rest/api/2/version/${parameters.versionId}/remotelink`,
+    url: `/rest/api/2/version/${encodeURIComponent(parameters.versionId)}/remotelink`,
     method: 'POST',
     body: {
       link: parameters.link,
@@ -263,7 +263,7 @@ export async function deleteRemoteVersionLinksByVersionId(
   options?: RequestOptions,
 ): Promise<void> {
   const config: SendRequestOptions<void> = {
-    url: `/rest/api/2/version/${parameters.versionId}/remotelink`,
+    url: `/rest/api/2/version/${encodeURIComponent(parameters.versionId)}/remotelink`,
     method: 'DELETE',
     signal: options?.signal,
   };
@@ -278,7 +278,7 @@ export async function getRemoteVersionLink(
   options?: RequestOptions,
 ): Promise<RemoteEntityLinkJson> {
   const config: SendRequestOptions<RemoteEntityLinkJson> = {
-    url: `/rest/api/2/version/${parameters.versionId}/remotelink/${parameters.globalId}`,
+    url: `/rest/api/2/version/${encodeURIComponent(parameters.versionId)}/remotelink/${encodeURIComponent(parameters.globalId)}`,
     method: 'GET',
     schema: RemoteEntityLinkJsonSchema,
     signal: options?.signal,
@@ -294,7 +294,7 @@ export async function createOrUpdateRemoteVersionLinkByGlobalId(
   options?: RequestOptions,
 ): Promise<void> {
   const config: SendRequestOptions<void> = {
-    url: `/rest/api/2/version/${parameters.versionId}/remotelink/${parameters.globalId}`,
+    url: `/rest/api/2/version/${encodeURIComponent(parameters.versionId)}/remotelink/${encodeURIComponent(parameters.globalId)}`,
     method: 'POST',
     body: {
       link: parameters.link,
@@ -314,7 +314,7 @@ export async function deleteRemoteVersionLink(
   options?: RequestOptions,
 ): Promise<void> {
   const config: SendRequestOptions<void> = {
-    url: `/rest/api/2/version/${parameters.versionId}/remotelink/${parameters.globalId}`,
+    url: `/rest/api/2/version/${encodeURIComponent(parameters.versionId)}/remotelink/${encodeURIComponent(parameters.globalId)}`,
     method: 'DELETE',
     signal: options?.signal,
   };

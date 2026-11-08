@@ -8,7 +8,7 @@ import { z } from 'zod';
 /** Delete the node from the cluster if state of node is OFFLINE. */
 export async function deleteNode(client: Client, parameters: DeleteNode, options?: RequestOptions): Promise<void> {
   const config: SendRequestOptions<void> = {
-    url: `/rest/api/2/cluster/node/${parameters.nodeId}`,
+    url: `/rest/api/2/cluster/node/${encodeURIComponent(parameters.nodeId)}`,
     method: 'DELETE',
     signal: options?.signal,
   };
@@ -23,7 +23,7 @@ export async function changeNodeStateToOffline(
   options?: RequestOptions,
 ): Promise<void> {
   const config: SendRequestOptions<void> = {
-    url: `/rest/api/2/cluster/node/${parameters.nodeId}/offline`,
+    url: `/rest/api/2/cluster/node/${encodeURIComponent(parameters.nodeId)}/offline`,
     method: 'PUT',
     signal: options?.signal,
   };

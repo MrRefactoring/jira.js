@@ -61,7 +61,7 @@ export async function getIssueTypeScheme(
   options?: RequestOptions,
 ): Promise<IssueTypeScheme> {
   const config: SendRequestOptions<IssueTypeScheme> = {
-    url: `/rest/api/2/issuetypescheme/${parameters.schemeId}`,
+    url: `/rest/api/2/issuetypescheme/${encodeURIComponent(parameters.schemeId)}`,
     method: 'GET',
     schema: IssueTypeSchemeSchema,
     signal: options?.signal,
@@ -77,7 +77,7 @@ export async function updateIssueTypeScheme(
   options?: RequestOptions,
 ): Promise<IssueTypeScheme> {
   const config: SendRequestOptions<IssueTypeScheme> = {
-    url: `/rest/api/2/issuetypescheme/${parameters.schemeId}`,
+    url: `/rest/api/2/issuetypescheme/${encodeURIComponent(parameters.schemeId)}`,
     method: 'PUT',
     body: {
       defaultIssueTypeId: parameters.defaultIssueTypeId,
@@ -103,7 +103,7 @@ export async function deleteIssueTypeScheme(
   options?: RequestOptions,
 ): Promise<void> {
   const config: SendRequestOptions<void> = {
-    url: `/rest/api/2/issuetypescheme/${parameters.schemeId}`,
+    url: `/rest/api/2/issuetypescheme/${encodeURIComponent(parameters.schemeId)}`,
     method: 'DELETE',
     signal: options?.signal,
   };
@@ -118,7 +118,7 @@ export async function getAssociatedProjects(
   options?: RequestOptions,
 ): Promise<Project[]> {
   const config: SendRequestOptions<Project[]> = {
-    url: `/rest/api/2/issuetypescheme/${parameters.schemeId}/associations`,
+    url: `/rest/api/2/issuetypescheme/${encodeURIComponent(parameters.schemeId)}/associations`,
     method: 'GET',
     searchParams: {
       expand: parameters.expand,
@@ -137,7 +137,7 @@ export async function addProjectAssociationsToScheme(
   options?: RequestOptions,
 ): Promise<void> {
   const config: SendRequestOptions<void> = {
-    url: `/rest/api/2/issuetypescheme/${parameters.schemeId}/associations`,
+    url: `/rest/api/2/issuetypescheme/${encodeURIComponent(parameters.schemeId)}/associations`,
     method: 'POST',
     body: {
       idsOrKeys: parameters.idsOrKeys,
@@ -155,7 +155,7 @@ export async function setProjectAssociationsForScheme(
   options?: RequestOptions,
 ): Promise<void> {
   const config: SendRequestOptions<void> = {
-    url: `/rest/api/2/issuetypescheme/${parameters.schemeId}/associations`,
+    url: `/rest/api/2/issuetypescheme/${encodeURIComponent(parameters.schemeId)}/associations`,
     method: 'PUT',
     body: {
       idsOrKeys: parameters.idsOrKeys,
@@ -173,7 +173,7 @@ export async function removeAllProjectAssociations(
   options?: RequestOptions,
 ): Promise<void> {
   const config: SendRequestOptions<void> = {
-    url: `/rest/api/2/issuetypescheme/${parameters.schemeId}/associations`,
+    url: `/rest/api/2/issuetypescheme/${encodeURIComponent(parameters.schemeId)}/associations`,
     method: 'DELETE',
     signal: options?.signal,
   };
@@ -188,7 +188,7 @@ export async function removeProjectAssociation(
   options?: RequestOptions,
 ): Promise<void> {
   const config: SendRequestOptions<void> = {
-    url: `/rest/api/2/issuetypescheme/${parameters.schemeId}/associations/${parameters.projIdOrKey}`,
+    url: `/rest/api/2/issuetypescheme/${encodeURIComponent(parameters.schemeId)}/associations/${encodeURIComponent(parameters.projIdOrKey)}`,
     method: 'DELETE',
     signal: options?.signal,
   };

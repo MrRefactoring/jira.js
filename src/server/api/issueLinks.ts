@@ -28,7 +28,7 @@ export async function getIssueLink(
   options?: RequestOptions,
 ): Promise<IssueLink> {
   const config: SendRequestOptions<IssueLink> = {
-    url: `/rest/api/2/issueLink/${parameters.linkId}`,
+    url: `/rest/api/2/issueLink/${encodeURIComponent(parameters.linkId)}`,
     method: 'GET',
     schema: IssueLinkSchema,
     signal: options?.signal,
@@ -44,7 +44,7 @@ export async function deleteIssueLink(
   options?: RequestOptions,
 ): Promise<void> {
   const config: SendRequestOptions<void> = {
-    url: `/rest/api/2/issueLink/${parameters.linkId}`,
+    url: `/rest/api/2/issueLink/${encodeURIComponent(parameters.linkId)}`,
     method: 'DELETE',
     signal: options?.signal,
   };

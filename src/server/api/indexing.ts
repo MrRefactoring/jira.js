@@ -225,7 +225,7 @@ export async function getReindexRequestProgress(
   options?: RequestOptions,
 ): Promise<ReindexRequest> {
   const config: SendRequestOptions<ReindexRequest> = {
-    url: `/rest/api/2/reindex/request/${parameters.requestId}`,
+    url: `/rest/api/2/reindex/request/${encodeURIComponent(parameters.requestId)}`,
     method: 'GET',
     schema: ReindexRequestSchema,
     signal: options?.signal,

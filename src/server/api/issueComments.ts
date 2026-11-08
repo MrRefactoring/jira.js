@@ -13,7 +13,7 @@ export async function getCommentPropertyKeys(
   options?: RequestOptions,
 ): Promise<EntityPropertiesKeys> {
   const config: SendRequestOptions<EntityPropertiesKeys> = {
-    url: `/rest/api/2/comment/${parameters.commentId}/properties`,
+    url: `/rest/api/2/comment/${encodeURIComponent(parameters.commentId)}/properties`,
     method: 'GET',
     schema: EntityPropertiesKeysSchema,
     signal: options?.signal,
@@ -32,7 +32,7 @@ export async function getCommentProperty(
   options?: RequestOptions,
 ): Promise<EntityProperty> {
   const config: SendRequestOptions<EntityProperty> = {
-    url: `/rest/api/2/comment/${parameters.commentId}/properties/${parameters.propertyKey}`,
+    url: `/rest/api/2/comment/${encodeURIComponent(parameters.commentId)}/properties/${encodeURIComponent(parameters.propertyKey)}`,
     method: 'GET',
     schema: EntityPropertySchema,
     signal: options?.signal,
@@ -48,7 +48,7 @@ export async function setCommentProperty(
   options?: RequestOptions,
 ): Promise<void> {
   const config: SendRequestOptions<void> = {
-    url: `/rest/api/2/comment/${parameters.commentId}/properties/${parameters.propertyKey}`,
+    url: `/rest/api/2/comment/${encodeURIComponent(parameters.commentId)}/properties/${encodeURIComponent(parameters.propertyKey)}`,
     method: 'PUT',
     body: parameters.body,
     signal: options?.signal,
@@ -67,7 +67,7 @@ export async function deleteCommentProperty(
   options?: RequestOptions,
 ): Promise<void> {
   const config: SendRequestOptions<void> = {
-    url: `/rest/api/2/comment/${parameters.commentId}/properties/${parameters.propertyKey}`,
+    url: `/rest/api/2/comment/${encodeURIComponent(parameters.commentId)}/properties/${encodeURIComponent(parameters.propertyKey)}`,
     method: 'DELETE',
     signal: options?.signal,
   };

@@ -34,7 +34,7 @@ export async function getDashboardItemPropertyKeys(
   options?: RequestOptions,
 ): Promise<EntityPropertiesKeys> {
   const config: SendRequestOptions<EntityPropertiesKeys> = {
-    url: `/rest/api/2/dashboard/${parameters.dashboardId}/items/${parameters.itemId}/properties`,
+    url: `/rest/api/2/dashboard/${encodeURIComponent(parameters.dashboardId)}/items/${encodeURIComponent(parameters.itemId)}/properties`,
     method: 'GET',
     schema: EntityPropertiesKeysSchema,
     signal: options?.signal,
@@ -50,7 +50,7 @@ export async function getDashboardItemProperty(
   options?: RequestOptions,
 ): Promise<EntityProperty> {
   const config: SendRequestOptions<EntityProperty> = {
-    url: `/rest/api/2/dashboard/${parameters.dashboardId}/items/${parameters.itemId}/properties/${parameters.propertyKey}`,
+    url: `/rest/api/2/dashboard/${encodeURIComponent(parameters.dashboardId)}/items/${encodeURIComponent(parameters.itemId)}/properties/${encodeURIComponent(parameters.propertyKey)}`,
     method: 'GET',
     schema: EntityPropertySchema,
     signal: options?.signal,
@@ -66,7 +66,7 @@ export async function setDashboardItemProperty(
   options?: RequestOptions,
 ): Promise<void> {
   const config: SendRequestOptions<void> = {
-    url: `/rest/api/2/dashboard/${parameters.dashboardId}/items/${parameters.itemId}/properties/${parameters.propertyKey}`,
+    url: `/rest/api/2/dashboard/${encodeURIComponent(parameters.dashboardId)}/items/${encodeURIComponent(parameters.itemId)}/properties/${encodeURIComponent(parameters.propertyKey)}`,
     method: 'PUT',
     body: parameters.body,
     signal: options?.signal,
@@ -82,7 +82,7 @@ export async function deleteDashboardItemProperty(
   options?: RequestOptions,
 ): Promise<void> {
   const config: SendRequestOptions<void> = {
-    url: `/rest/api/2/dashboard/${parameters.dashboardId}/items/${parameters.itemId}/properties/${parameters.propertyKey}`,
+    url: `/rest/api/2/dashboard/${encodeURIComponent(parameters.dashboardId)}/items/${encodeURIComponent(parameters.itemId)}/properties/${encodeURIComponent(parameters.propertyKey)}`,
     method: 'DELETE',
     signal: options?.signal,
   };
@@ -97,7 +97,7 @@ export async function getDashboard(
   options?: RequestOptions,
 ): Promise<Dashboard> {
   const config: SendRequestOptions<Dashboard> = {
-    url: `/rest/api/2/dashboard/${parameters.id}`,
+    url: `/rest/api/2/dashboard/${encodeURIComponent(parameters.id)}`,
     method: 'GET',
     schema: DashboardSchema,
     signal: options?.signal,
